@@ -1,0 +1,14 @@
+\newcommand<>{\videoyoutube}[3]
+{
+	\includemedia[
+    width=#2,height=#3,
+    activate=pageopen,
+    flashvars={
+        modestbranding=1 % no YT logo in control bar
+        &autohide=1 % controlbar autohide
+        &showinfo=0 % no title and other info before start
+        &rel=0 % no related videos after end
+        }
+        ]{}{http://www.youtube.com/v/#1}
+
+}

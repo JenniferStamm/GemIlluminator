@@ -1,0 +1,7 @@
+\newcommand<>{\zoom}[6]
+{
+	\begin{tikzpicture}[spy using outlines={circle,hpi@yellow,magnification=#1,size=#2, connect spies}]
+		\node {#3};
+		\spy on #4 in node [#5] at #6;
+	\end{tikzpicture}
+}

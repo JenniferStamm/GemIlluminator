@@ -1,0 +1,164 @@
+\useinnertheme{rectangles}
+
+
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+%\usepackage{amsmath}
+\usepackage[labelformat=empty,textfont=small,justification=centering,compatibility=false, skip=5pt]{caption}
+\usepackage[labelformat=empty,textfont=small,justification=centering]{subcaption}
+%\usepackage[labelformat=empty,textfont=scriptsize,justification=centering]{subcaption}
+%\usepackage{textpos}
+\usepackage{tikz}
+\usetikzlibrary{spy}
+%\usepackage{media9}
+%\usepackage{array}
+%\usepackage{multirow}
+%\usepackage{csquotes}
+%\usepackage{gitinfo}
+%\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{datetime}
+\usepackage{calc}
+\usepackage{etoolbox}
+\usepackage{animate}
+\input{../../common/glsl-lstset}
+
+
+\deftranslation[to=German]{Table of Contents}{Inhaltsverzeichnis}
+\deftranslation[to=German]{Hasso Plattner Institute}{Hasso-Plattner-Institut}
+
+%\hypersetup{bookmarksopen=false}
+%\definecolor{darkblue}{rgb}{0,0,.5}
+%\hypersetup{pdftex=true, colorlinks=true, breaklinks=true, linkcolor=darkblue, menucolor=darkblue, pagecolor=darkblue, urlcolor=darkblue}
+
+%\providecommand*{\what}[1]{\widehat{#1}}
+%\providecommand*{\wtilde}[1]{\widetilde{#1}}
+
+\renewcommand<>{\emph}[1]{\textbf{#1}}
+\newcommand{\deemph}[1]{\textcolor{gray}{#1}}
+
+\setbeamercovered{transparent}
+
+\mode<presentation>
+\beamer@suppressreplacementstrue
+
+\definecolor{hpi@grey}  {RGB}{ 90, 96,101} 
+\definecolor{hpi@red}   {RGB}{177,  6, 58}
+\definecolor{hpi@yellow}{RGB}{246,168,  0} 
+\definecolor{hpi@orange}{RGB}{221, 97,  8}
+
+\setbeamercolor{postit}{fg=black,bg=white}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{subtitle}{fg=hpi@grey}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{frametitle}{fg=hpi@grey}
+\setbeamercolor{footline}{fg=hpi@grey}
+%\setbeamercolor{footline}{bg=hpi@grey, fg=white}
+%\setbeamercolor{topfootline}{bg=hpi@yellow, fg=hpi@yellow}
+
+\setbeamercolor{normal text}{fg=black}
+
+\setbeamercolor{structure}{fg=hpi@red}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{subsubsection in toc}{fg=black}
+\setbeamercolor{background canvas}{bg=}
+
+%\setbeamercolor{frametitle}{fg=hpi@red}
+%\setbeamercolor{frametitle line}{bg=hpi@yellow}
+%\setbeamercolor{footline}{fg=hpi@red}
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{framesubtitle}{size=\scriptsize}
+\setbeamerfont{footline}{size=\tiny}
+
+\pgfdeclareimage[height=0.66cm]{hpi@logo_grey}{../../common/logos/hpi_logo_grey_b}
+\pgfdeclareimage[height=0.66cm]{hpi@logo_cmyk}{../../common/logos/hpi_logo_cmyk_b}
+
+%\logo{\pgfuseimage{hpi@logo_cmyk}}
+
+\defbeamertemplate*{title page}{cgs}[1][]
+{
+	\center
+	\hfill\pgfuseimage{hpi@logo_grey}\par
+	\vspace{-0.66cm}
+  \usebeamerfont{title}\inserttitle\par
+  \medskip
+	\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}
+	\insertsubtitle\par
+  \bigskip
+	\inserttitlegraphic\par
+  \bigskip
+	\usebeamerfont{author}\usebeamercolor[fg]{title}
+	\insertauthor\par
+  \smallskip
+	\usebeamerfont{institute}\usebeamercolor[fg]{subtitle}
+	\renewcommand{\dateseparator}{}
+	\insertinstitute \quad \usebeamerfont{date}\insertdate \quad v\mmddyyyydate\today\par
+}
+
+\defbeamertemplate*{frametitle}{cgs}
+{
+	\begin{beamercolorbox}[left, leftskip=0.5cm, ht=8mm, dp=1mm, wd=\paperwidth]{frametitle}
+		\usebeamerfont{frametitle}\insertframetitle{}
+	\end{beamercolorbox}
+	\nointerlineskip
+	\vspace{-8mm}
+	\begin{beamercolorbox}[right, rightskip=0.5cm, ht=8mm, dp=1mm, wd=\paperwidth]{}
+		\pgfuseimage{hpi@logo_cmyk}
+		%\pgfuseimage{hpi@logo_grey}
+	\end{beamercolorbox}
+	\vspace{-2mm}
+}
+
+\defbeamertemplate*{footline}{cgs}
+{
+\hbox{%
+	\begin{beamercolorbox}[wd=\paperwidth, ht=0.5mm, dp=.2mm]{topfootline}
+	\end{beamercolorbox}
+}
+\hbox{%
+	\begin{beamercolorbox}[left, leftskip=0.5cm, rightskip=0.5cm, dp=1mm, wd=\paperwidth]{footline}
+		\insertpagenumber \quad \insertsubtitle~\slash~\insertsectionhead
+		\hfill
+		\renewcommand{\dateseparator}{}
+		\insertshorttitle \quad \insertshortdate \quad v\mmddyyyydate\today\par
+	\end{beamercolorbox}
+}
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{itemize subitem}{fg=black}
+\setbeamercolor{item projected}{bg=black}
+\setbeamertemplate{enumerate items}[box]
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+
+\input{../../common/commands/fullsizegraphic}
+\input{../../common/commands/slidetitle}
+\input{../../common/commands/slidetableofcontents}
+\input{../../common/commands/slidefullsizegraphic}
+\input{../../common/commands/slidegraphic}
+\input{../../common/commands/slidesectionwithgraphic}
+\input{../../common/commands/slidesourcecode}
+\input{../../common/commands/onetotwo}
+\input{../../common/commands/slideonetotwo}
+\input{../../common/commands/onetoone}
+\input{../../common/commands/slideonetoone}
+\input{../../common/commands/slideonetoonegraphics}
+\input{../../common/commands/definition}
+\input{../../common/commands/onetoonetoone}
+\input{../../common/commands/slideonetoonetoone}
+\input{../../common/commands/slideonetoonetoonegraphics}
+\input{../../common/commands/zoom}
+\input{../../common/commands/videoyoutube}
+\input{../../common/commands/videovimeo}

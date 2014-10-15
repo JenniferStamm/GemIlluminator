@@ -1,0 +1,10 @@
+\newcommand<>{\videovimeo}[3]
+{
+	\includemedia[
+    width=#2,height=#3,
+    activate=pageopen,
+	flashvars={
+    	clip_id=#1
+        }
+        ]{}{http://vimeo.com/moogaloop.swf}
+}

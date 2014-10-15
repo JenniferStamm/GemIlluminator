@@ -1,0 +1,22 @@
+\newlength{\currenttextwidth}
+
+\newcommand{\fullsizegraphic}[3][top]
+{
+	\settowidth{\currenttextwidth}{\fontsize{8mm}{0}\selectfont  \uppercase{\textbf{#2}} \hspace{1.2cm}}
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[at=(current page.center)]
+	{
+		\includegraphics[width=\paperwidth]{#3}
+	};
+	\end{tikzpicture}
+
+	\setlength{\fboxsep}{1pt}%
+    \setlength{\fboxrule}{0pt}%
+	\vspace{\ifcsequal{#1}{top}{-0.5}{0.5}\paperheight}\hfill
+	\fcolorbox{black}{black}{\begin{beamercolorbox}[wd=\currenttextwidth,ht=11mm,dp=1ex,right,rightskip=1cm]{postit}
+		\fontsize{8mm}{0}\selectfont  \uppercase{\textbf{#2}}
+		\vspace{2mm}
+	\end{beamercolorbox}
+	}
+	\hspace{-2cm}
+}
