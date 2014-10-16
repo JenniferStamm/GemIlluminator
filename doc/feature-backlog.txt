@@ -13,3 +13,4 @@ Feature-Backlog
 * Highscore
 * Herr der Ringe Ring als Spieler
 * Belohnungen
+* Brennende Spur hinterm Torus
