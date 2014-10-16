@@ -10,3 +10,6 @@ Feature-Backlog
 * Obstacles im Raum
 * Countdown bis das Ziel erreicht wird
 * Level/Spielmodi/Story
+* Highscore
+* Herr der Ringe Ring als Spieler
+* Belohnungen
