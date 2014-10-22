@@ -1,11 +1,11 @@
 Game-Programming-WS2014
 =======================
-Idee
+**Idee**
 
 Inspiriert wurden wir von Mammut und Krautscape. Du musst dich bewegen. Du kannst nicht anhalten. Du kennst dein Ziel. Der Weg... existiert noch nicht. Während du dich fortbewegst, wird die Strecke unter deinem Einfluss generiert!
 
 =======================
-Konzept (Anreize, Schwierigkeitsgrad, geforderte Skills...)
+**Konzept (Anreize, Schwierigkeitsgrad, geforderte Skills...)**
 
 Levelbasiertes Spiel. Ein Level besteht aus Start und Ziel, einem Farbschema und Schwierigkeitsgrad, der sich in verschiedenen Aspekten äußert. Jedes Level soll automatisch generiert werden aus einer Auswahl von Farbschemata und Schwierigkeitsgraden. Der Schwierigkeitsgrad soll von Level zu Level zufällig ansteigen. Wenn der Spieler das Ziel erreicht, wird seine Bewegung pausiert und es kommt zum Levelübergang. Es wird so die Kamera bewegt (gezoomt), dass die gesamte Strecke und der Start zu sehen ist; der Start bleibt erhalten, der Rest der Welt (Ziel und generierte Strecke) wird verzerrt und in den Start gezogen; ist alles verschwunden, erscheint die Spielfigur im Start und das neue Ziel.
 
@@ -20,7 +20,7 @@ Schwierigkeitsgrad:
 Die Geschicklichkeit und die Reaktionsfähigkeit des Spielers sollen herausgefordert werden.
 
 =======================
-Details
+**Details**
 
 Spielfigur
 Ein Torus, eventuell mit verschiedenen Skins. 
@@ -32,12 +32,12 @@ Streckengenerierung
 Der Spieler soll über die Streckengenerierung das Ziel ansteuern. Das heißt, der Spieler beeinflusst, ob die Strecke eine Links-/Rechtskurve (Steigung/Senkung optional) generiert wird. Das Spiel "entscheidet", wie die Strecke aussieht. Vorstellbar ist alles von einer flache Strecke, über eine halbe Pipeline bis zum Tunnel. Des Weiteren könnte es Hindernisse und Boni jeglicher Art geben.
 
 =======================
-Grafik
+**Grafik**
 
 Motion-Blur
 
 =======================
-Stil
+**Stil**
 
 Geometrische Landschaft, abstrakte Formen. Dunkler Hintergrund. Schwarze Gegenstände, neonfarbene Outlines. Glow-Effekt. 
 
@@ -49,7 +49,7 @@ Der nächste, von der Mausposition abhängige, zu generierende Streckenabschnitt
 Die Spielfigur glüht und zieht eine Spur hinter sich her.
 
 =======================
-Sound
+**Sound**
 
 Es soll ein Item geben, bei dem abhängig von der Musik Blendeffekte im Raum erzeugt werden(, um den Nutzer zu überfordern - negatives Item). 
 
