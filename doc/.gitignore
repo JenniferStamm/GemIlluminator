@@ -32,7 +32,7 @@
 *.xdy
 *.tdo
 
-# Generated PDFs
+# Don't exclude PDFs in this subdirectory
 !*.pdf
 
 # Don't exclude image files
