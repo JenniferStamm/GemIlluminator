@@ -4,8 +4,10 @@
 
 import QtQuick 2.0
 import OpenGLUnderQML 1.0
+import QtSensors 5.0
 
 Item {
+    id: mainWindow
     width: 320
     height: 480
 
@@ -18,15 +20,7 @@ Item {
         }
     }
 
-    Rectangle {
-        color: Qt.rgba(1, 1, 1, 0.7)
-        radius: 10
-        border.width: 1
-        border.color: "white"
-        anchors.fill: label
-        anchors.margins: -10
-    }
-
+    // Demonstrates the use of touch events
     MultiPointTouchArea {
         anchors.fill: parent
         minimumTouchPoints: 1
@@ -54,18 +48,10 @@ Item {
     }
 
     Rectangle {
-         color: "steelblue"
-         width: 40
-         height: 40
-         x: touch2.x
-         y: touch2.y
-    }
-
-    Rectangle {
         id: red
         color: "red"
-        width: 120
-        height: 120
+        width: 80
+        height: 80
         x: 0
         y: 0
 
@@ -104,6 +90,67 @@ Item {
                 downPressed = false
         }
      }
+
+    // Demonstrates the use of the motion sensor
+    Accelerometer {
+        id: accel
+        dataRate: 100
+        active:true
+
+        onReadingChanged: {
+            // Depending on the screen orientation x and y need to be switched
+            // (currently configurated for landscape on S4)
+            var newX = (blue.x - calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3)
+            var newY = (blue.y - calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * .3)
+
+            if(isNaN(newX) || isNaN(newY)) {
+                return;
+            }
+
+            if(newX < 0) {
+                newX = 0
+            }
+
+            if(newX > mainWindow.width - blue.width) {
+                newX = mainWindow.width - blue.width
+            }
+
+            if(newY < 0) {
+                newY = 0
+            }
+
+            if(newY > mainWindow.height - blue.height) {
+                newY = mainWindow.height - blue.height
+            }
+
+            blue.x = newX
+            blue.y = newY
+        }
+    }
+
+    function calcPitch(x,y,z) {
+        return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 57.2957795);
+    }
+    function calcRoll(x,y,z) {
+         return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 57.2957795);
+    }
+
+    Rectangle {
+        id: blue
+        color: "steelblue"
+        width: 80
+        height: 80
+    }
+
+    // etc.
+    Rectangle {
+        color: Qt.rgba(1, 1, 1, 0.7)
+        radius: 10
+        border.width: 1
+        border.color: "white"
+        anchors.fill: label
+        anchors.margins: -10
+    }
 
     Text {
         id: label
