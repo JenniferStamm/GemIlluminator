@@ -31,18 +31,40 @@ Item {
         ]
 
         onTouchUpdated: {
+            var speed = 5;
+
             if(touch1.x < parent.width / 2) {
-                red.x -= 5
+                if(red.x - speed < 0) {
+                    red.x = 0
+                }
+                else {
+                    red.x -= speed
+                }
             }
             else {
-                red.x += 5
+                if(red.x + red.width >= parent.width) {
+                    red.x = parent.width - red.width
+                }
+                else {
+                    red.x += speed
+                }
             }
 
             if(touch1.y < parent.height / 2) {
-                red.y -= 5
+                if(red.y - speed < 0) {
+                    red.y = 0
+                }
+                else {
+                    red.y -= speed
+                }
             }
             else {
-                red.y += 5
+                if(red.y + red.height >= parent.height) {
+                    red.y = parent.height - red.height
+                }
+                else {
+                    red.y += speed
+                }
             }
         }
     }
