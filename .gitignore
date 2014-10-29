@@ -38,3 +38,9 @@
 # Don't exclude image files
 !**/images/*
 !**/logos/*
+
+# Exclude all build files of Qt
+/build-*
+
+# Exclude user specific project files
+*.pro.user
