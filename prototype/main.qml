@@ -31,41 +31,31 @@ Item {
         ]
 
         onTouchUpdated: {
-            var speed = 5;
+            var speed = 10
+            var x = touch1.x - red.x
+            var y = touch1.y - red.y
+            var diagonal = Math.sqrt(x * x + y * y)
+            var normX = (x / diagonal) * speed
+            var normY = (y / diagonal) * speed
 
-            if(touch1.x < parent.width / 2) {
-                if(red.x - speed < 0) {
-                    red.x = 0
-                }
-                else {
-                    red.x -= speed
-                }
-            }
-            else {
-                if(red.x + red.width >= parent.width) {
-                    red.x = parent.width - red.width
-                }
-                else {
-                    red.x += speed
-                }
+            if(red.x + normX < 0) {
+                normX = 0
             }
 
-            if(touch1.y < parent.height / 2) {
-                if(red.y - speed < 0) {
-                    red.y = 0
-                }
-                else {
-                    red.y -= speed
-                }
+            if(normX + red.x + red.width >= parent.width) {
+                red.x = parent.width - red.width
             }
-            else {
-                if(red.y + red.height >= parent.height) {
-                    red.y = parent.height - red.height
-                }
-                else {
-                    red.y += speed
-                }
+
+            if(red.y + normY < 0) {
+                normY = 0
             }
+
+            if(normY + red.y + red.height >= parent.height) {
+                red.y = parent.height - red.height
+            }
+
+            red.x += normX
+            red.y += normY
         }
     }
 
