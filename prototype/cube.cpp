@@ -13,7 +13,7 @@ Cube::Cube()
 
 void Cube::setT(qreal t)
 {
-    if(visible == m_visible) {
+    if(t == m_t) {
         return;
     }
     m_t = t;

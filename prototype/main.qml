@@ -13,7 +13,7 @@ Item {
 
     Cube {
         id: cube
-        visible: true
+        visible: false
 
         SequentialAnimation on t {
             NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
@@ -207,7 +207,7 @@ Item {
         height: 80
         x: 0
         y: 0
-        visible: false
+        visible: true
 
         focus: true
         property bool upPressed: false
