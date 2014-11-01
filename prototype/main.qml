@@ -3,13 +3,25 @@
 ****************************************************************************/
 
 import QtQuick 2.0
-import OpenGLUnderQML 1.0
+import GPCube 1.0
 import QtSensors 5.0
 
 Item {
     id: mainWindow
     width: 320
     height: 480
+
+    Cube {
+        id: cube
+        visible: true
+
+        SequentialAnimation on t {
+            NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+            NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
+            loops: Animation.Infinite
+            running: true
+        }
+    }
 
     // Demonstrates the use of touch events
     MouseArea {
@@ -85,6 +97,10 @@ Item {
         else if(green.visible == true) {
             green.visible = false
             timer.stop()
+            cube.visible = true
+        }
+        else if(cube.visible == true) {
+            cube.visible = false
             red.visible = true
         }
     }
@@ -191,6 +207,7 @@ Item {
         height: 80
         x: 0
         y: 0
+        visible: false
 
         focus: true
         property bool upPressed: false
