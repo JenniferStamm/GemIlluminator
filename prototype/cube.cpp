@@ -174,6 +174,7 @@ void CubeRenderer::paint()
         0.0f, 0.0f, 1.0f
     };
 
+#ifdef __ANDROID__
     glVertexAttribPointer(m_posAttr, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
@@ -208,6 +209,7 @@ void CubeRenderer::paint()
 
     glDisableVertexAttribArray(1);
     glDisableVertexAttribArray(0);
+#endif
 
     m_program->release();
 
