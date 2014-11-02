@@ -5,6 +5,7 @@
 import QtQuick 2.0
 import GPCube 1.0
 import QtSensors 5.0
+import QtMultimedia 5.0
 
 Item {
     id: mainWindow

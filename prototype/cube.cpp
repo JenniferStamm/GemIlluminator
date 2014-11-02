@@ -1,5 +1,8 @@
 #include <QtQuick/qquickwindow.h>
 #include <QtGui/QOpenGLShaderProgram>
+#include <QMediaResource>
+#include <QMediaContent>
+#include <QMediaPlayer>
 
 #include "cube.h"
 
@@ -83,6 +86,19 @@ static const char *fragmentShaderSource =
 
 void CubeRenderer::paint()
 {
+    if(m_visible) {
+        if(m_frame % 360 == 359) {
+            // Media resources are a bit tricky to deploy (or at least their url, relative paths will not work)
+            // To make sure the correct url is used console.log(<id>.source) in qml is a quite nice way
+            QMediaResource mediaResource(QUrl("qrc:/data/Camera_Shutter.wav"));
+            QMediaContent mediaContent(mediaResource);
+
+            QMediaPlayer *player = new QMediaPlayer(this);
+            player->setMedia(mediaContent);
+            player->play();
+        }
+    }
+
     if(!m_program) {
         m_program = new QOpenGLShaderProgram(this);
         m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
@@ -216,7 +232,9 @@ void CubeRenderer::paint()
 
     m_program->release();
 
-    ++m_frame;
+    if(m_visible) {
+        ++m_frame;
+    }
 }
 
 CubeRenderer::~CubeRenderer()

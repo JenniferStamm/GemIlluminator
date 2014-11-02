@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors opengl
+QT += qml quick widgets sensors opengl multimedia
 
 SOURCES += main.cpp \
     cube.cpp
