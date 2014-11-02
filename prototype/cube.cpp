@@ -105,29 +105,54 @@ void CubeRenderer::paint()
 
     QMatrix4x4 matrix;
     matrix.perspective(60.0f, 16.0f/9.0f, 0.1f, 100.0f);
-    matrix.translate(0.25, 0.25, -2.5);
-    matrix.rotate(m_frame, 1, 1, 1);
+    matrix.translate(0, 0, -2.5);
+    float customRotationWeight = ((float) (m_frame % 360)) / 360;
+    matrix.rotate(m_frame, customRotationWeight, 1 - customRotationWeight, 0.5);
 
     m_program->setUniformValue(m_matrixUniform, matrix);
 
     GLfloat vertices[] = {
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, 0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, 0.5f, -0.5f,
+        -0.5f, 0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
         //
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, 0.5f,
+        -0.5f, 0.5f, 0.5f,
+        0.5f, -0.5f, 0.5f,
+        0.5f, 0.5f, 0.5f,
+        -0.5f, 0.5f, 0.5f,
+        0.5f, -0.5f, 0.5f,
         //
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, 0.5f,
+        -0.5f, 0.5f, 0.5f,
+        -0.5f, -0.5f, -0.5f,
+        -0.5f, 0.5f, -0.5f,
+        -0.5f, 0.5f, 0.5f,
         //
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, 0.5f,
+        0.5f, 0.5f, 0.5f,
+        0.5f, -0.5f, -0.5f,
+        0.5f, 0.5f, -0.5f,
+        0.5f, 0.5f, 0.5f,
         //
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, 0.5f,
+        -0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, 0.5f,
+        0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,
+        0.5f, -0.5f, 0.5f,
         //
-        0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+        -0.5f, 0.5f, 0.5f,
+        -0.5f, 0.5f, -0.5f,
+        0.5f, 0.5f, 0.5f,
+        0.5f, 0.5f, -0.5f,
+        -0.5f, 0.5f, -0.5f,
+        0.5f, 0.5f, 0.5f,
     };
 
     GLfloat colors[] = {
@@ -175,36 +200,14 @@ void CubeRenderer::paint()
     };
 
 #ifdef __ANDROID__
-    glVertexAttribPointer(m_posAttr, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+    glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
 
     if(m_visible) {
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-
-        matrix.translate(0, 0, -1);
-        m_program->setUniformValue(m_matrixUniform, matrix);
-        glDrawArrays(GL_TRIANGLES, 6, 6);
-
-        matrix.rotate(90, 0, 1, 0);
-        matrix.translate(-0.5, 0, 0.5);
-        m_program->setUniformValue(m_matrixUniform, matrix);
-        glDrawArrays(GL_TRIANGLES, 12, 6);
-
-        matrix.translate(0, 0, -1);
-        m_program->setUniformValue(m_matrixUniform, matrix);
-        glDrawArrays(GL_TRIANGLES, 18, 6);
-
-        matrix.rotate(90, 1, 0, 0);
-        matrix.translate(0, 0.5, 0.5);
-        m_program->setUniformValue(m_matrixUniform, matrix);
-        glDrawArrays(GL_TRIANGLES, 24, 6);
-
-        matrix.translate(0, 0, -1);
-        m_program->setUniformValue(m_matrixUniform, matrix);
-        glDrawArrays(GL_TRIANGLES, 30, 6);
+        glDrawArrays(GL_TRIANGLES, 0, 72);
     }
 
     glDisableVertexAttribArray(1);
