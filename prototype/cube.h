@@ -5,6 +5,7 @@
 #include <QWindow>
 #include <QtQuick/qquickwindow.h>
 #include <QtQuick/QQuickItem>
+#include <QtGui/QScreen>
 
 // OpenGL stuff
 #include <QOpenGLFunctions>

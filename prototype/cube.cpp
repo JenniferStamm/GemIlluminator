@@ -121,10 +121,9 @@ void CubeRenderer::paint()
     m_program->bind();
 
     QMatrix4x4 matrix;
-    matrix.perspective(60.0f, 16.0f/9.0f, 0.1f, 100.0f);
+    matrix.perspective(60.0f, (qreal)m_viewportSize.width() / m_viewportSize.height(), 0.1f, 100.0f);
     matrix.translate(0, 0, -2.5);
-    float customRotationWeight = ((float) (m_frame % 360)) / 360;
-    matrix.rotate(m_frame, customRotationWeight, 1 - customRotationWeight, 0.5);
+    matrix.rotate(20.0f * m_frame / screen()->refreshRate(), 1, 1, 0.5);
 
     m_program->setUniformValue(m_matrixUniform, matrix);
 
