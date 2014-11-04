@@ -1,9 +1,3 @@
-#include <QtQuick/qquickwindow.h>
-#include <QtGui/QOpenGLShaderProgram>
-#include <QMediaResource>
-#include <QMediaContent>
-#include <QMediaPlayer>
-
 #include "cube.h"
 
 Cube::Cube()
@@ -83,6 +77,13 @@ static const char *fragmentShaderSource =
     "void main() {\n"
     "   gl_FragColor = col;\n"
     "}\n";
+
+CubeRenderer::CubeRenderer(QWindow *parent)
+    : QWindow(parent), m_t(0), m_program(0)
+{
+    setSurfaceType(QWindow::OpenGLSurface);
+    initializeOpenGLFunctions();
+}
 
 void CubeRenderer::paint()
 {
@@ -215,7 +216,6 @@ void CubeRenderer::paint()
         0.0f, 0.0f, 1.0f
     };
 
-#ifdef __ANDROID__
     glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
@@ -228,7 +228,6 @@ void CubeRenderer::paint()
 
     glDisableVertexAttribArray(1);
     glDisableVertexAttribArray(0);
-#endif
 
     m_program->release();
 
