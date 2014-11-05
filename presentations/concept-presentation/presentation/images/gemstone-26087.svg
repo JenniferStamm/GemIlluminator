@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient id="linearGradient2241">
+<stop offset="0" stop-color="#63efff"/>
+<stop offset="1" stop-color="#003ec3"/>
+</linearGradient>
+<linearGradient id="linearGradient2240" spreadMethod="reflect" x1=".45082" x2=".69672" xlink:href="#linearGradient2241" y1=".23438" y2=".35938"/>
+<linearGradient id="linearGradient2244" x1=".43478" x2=".49531" xlink:href="#linearGradient2241" y1=".71875" y2="-.17544"/>
+<linearGradient id="linearGradient2245" x1=".8" x2=".15714" xlink:href="#linearGradient2241" y1=".71094" y2=".88281"/>
+<linearGradient id="linearGradient2246" x1=".45313" x2=".76563" xlink:href="#linearGradient2241" y1=".3125" y2=".30469"/>
+<linearGradient id="linearGradient2258" x1=".52326" x2=".86047" xlink:href="#linearGradient2241" y1=".03906" y2=".95313"/>
+</defs>
+<path d="m63.09526,25.21547-44.88422,50.15746 117.82092,168.52896 93.5087-176.55417-43.014-50.15746-37.4035-12.03773-65.45605,4.01261-20.57185,16.05034z" fill="url(#linearGradient2240)" fill-rule="evenodd"/>
+<path d="m66.83555,135.56185 20.57193-46.14484 24.31229,62.19517 14.96134,40.12598 5.61059,42.13223-65.45614-98.30854z" fill="url(#linearGradient2246)" fill-rule="evenodd"/>
+<path d="m136.03197,235.87666 26.18242-144.4534 24.31228-18.05669 31.79294,2.00626-82.28764,160.50383z" fill="url(#linearGradient2245)" fill-rule="evenodd"/>
+<path d="m42.12409,63.57105 54.01506-4.24856h31.793l38.72384-4.13053 48.6245,14.16209-39.05371-45.55502-37.51351-11.91989-50.05467,5.78301-46.5345,45.9089z" fill="url(#linearGradient2244)" fill-rule="evenodd"/>
+<path d="m148.07097,6.21158-65.22028,4.00577-20.66139,16.02307-44.80782,50.20565 117.74498,168.50938 93.59858-176.52091-43.0653-50.20565-37.58878-12.01732zm-2.98718,9.8809 32.85906,10.415 37.58879,43.52937-81.89875,152.75336-103.30692-145.81002 39.33131-43.52937 18.17207-13.88667 57.25444-3.47167z" fill-opacity=".25312" fill-rule="evenodd"/>
+<path d="m128.55133,77.37918 1.87014,128.40307-41.14378-110.34639-13.09122,18.05668-33.66314-38.11963 37.40342-10.03147 48.62457,12.03773z" fill="url(#linearGradient2258)" fill-rule="evenodd"/>
+<path d="m146.49105,7.24713c-11.50333.64013-50.24059,2.23661-61.74392,2.87674-41.47259,41.92675-44.01239,46.88248-62.78096,65.76552 .88281.05334-.26555-.04248.63818,0 37.75471,54.30047 75.9211,111.51175 113.6758,165.81221-38.70136-92.92007 33.39985-81.50016-7.17951-164.0542 .75601.03709-.58165-.44433.15955-.39955-3.32991-30.08487 61.42795-1.50972 17.23086-70.00072z" fill="#fff" fill-opacity=".39375" fill-rule="evenodd"/>
+</svg>
