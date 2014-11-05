@@ -2,10 +2,12 @@
 
 %\RequirePackage[usenames,dvipsnames]{xcolor}
 
+\usepackage{accsupp}
+
 \definecolor{codeKeyword} {rgb}{0.00, 0.00, 1.00} 
 \definecolor{codeComment} {rgb}{0.00, 0.50, 0.00} 
-\definecolor{codeBkgnd}   {rgb}{0.96, 0.96, 0.96} 
-\definecolor{codeFrame}   {rgb}{0.92, 0.92, 0.92} 
+\definecolor{codeBkgnd}   {rgb}{0.92, 0.92, 0.92} 
+\definecolor{codeFrame}   {rgb}{0.88, 0.88, 0.88} 
 
 \definecolor{codeKeyword1}{rgb}{0.00, 0.00, 0.75}
 \definecolor{codeKeyword2}{rgb}{0.50, 0.00, 0.00}
@@ -113,6 +115,20 @@
 ,	morecomment=[s][keywordstyle4]{\"}{\"}
 }
 
+% This ensures numbers are not copied, but leading spaces are copied, as taken from
+% http://tex.stackexchange.com/a/30310
+
+\newcommand{\noncopynumber}[1]{%
+    \BeginAccSupp{method=escape,ActualText={}}%
+    #1%
+    \EndAccSupp{}%
+}
+
+
+\makeatletter
+\def\lst@outputspace{{\ifx\lst@bkgcolor\empty\color{white}\else\lst@bkgcolor\fi\lst@visiblespace}}
+\makeatother
+
 \lstset{
 	basicstyle       = \scriptsize\ttfamily
 ,	backgroundcolor  = \color{codeBkgnd}
@@ -127,7 +143,7 @@
 ,	numbersep        = 8pt
 ,	tabsize          =  4          
 ,	numbers          = left
-,	numberstyle      = \tiny
+,	numberstyle      = \tiny\noncopynumber
 ,	frame            = single
 ,	framesep         =  4pt
 , xleftmargin=\parindent
@@ -136,4 +152,6 @@
 ,	abovecaptionskip = \medskipamount
 , firstnumber      = 1
 , stepnumber       = 1
+, columns		 = flexible
+, keepspaces 	 = true
 }
