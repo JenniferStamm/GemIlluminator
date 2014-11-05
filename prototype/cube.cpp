@@ -1,9 +1,3 @@
-#include <QtQuick/qquickwindow.h>
-#include <QtGui/QOpenGLShaderProgram>
-#include <QMediaResource>
-#include <QMediaContent>
-#include <QMediaPlayer>
-
 #include "cube.h"
 
 Cube::Cube()
@@ -84,6 +78,13 @@ static const char *fragmentShaderSource =
     "   gl_FragColor = col;\n"
     "}\n";
 
+CubeRenderer::CubeRenderer(QWindow *parent)
+    : QWindow(parent), m_t(0), m_program(0)
+{
+    setSurfaceType(QWindow::OpenGLSurface);
+    initializeOpenGLFunctions();
+}
+
 void CubeRenderer::paint()
 {
     if(m_visible) {
@@ -120,10 +121,9 @@ void CubeRenderer::paint()
     m_program->bind();
 
     QMatrix4x4 matrix;
-    matrix.perspective(60.0f, 16.0f/9.0f, 0.1f, 100.0f);
+    matrix.perspective(60.0f, (qreal)m_viewportSize.width() / m_viewportSize.height(), 0.1f, 100.0f);
     matrix.translate(0, 0, -2.5);
-    float customRotationWeight = ((float) (m_frame % 360)) / 360;
-    matrix.rotate(m_frame, customRotationWeight, 1 - customRotationWeight, 0.5);
+    matrix.rotate(20.0f * m_frame / screen()->refreshRate(), 1, 1, 0.5);
 
     m_program->setUniformValue(m_matrixUniform, matrix);
 
@@ -215,7 +215,6 @@ void CubeRenderer::paint()
         0.0f, 0.0f, 1.0f
     };
 
-#ifdef __ANDROID__
     glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
@@ -228,7 +227,6 @@ void CubeRenderer::paint()
 
     glDisableVertexAttribArray(1);
     glDisableVertexAttribArray(0);
-#endif
 
     m_program->release();
 

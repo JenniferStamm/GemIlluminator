@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors opengl multimedia
+QT += opengl qml quick widgets sensors multimedia gui
 
 SOURCES += main.cpp \
     cube.cpp
@@ -8,6 +8,8 @@ SOURCES += main.cpp \
 RESOURCES += qml.qrc
 
 QML_IMPORT_PATH =
+
+INCLUDEPATH +=
 
 include(deployment.pri)
 

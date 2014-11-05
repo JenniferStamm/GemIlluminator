@@ -1,13 +1,26 @@
 #ifndef CUBE_H
 #define CUBE_H
 
+// Qt window/quick stuff
+#include <QWindow>
+#include <QtQuick/qquickwindow.h>
 #include <QtQuick/QQuickItem>
+#include <QtGui/QScreen>
+
+// OpenGL stuff
+#include <QOpenGLFunctions>
 #include <QtGui/QOpenGLShaderProgram>
 
-class CubeRenderer : public QObject {
+// Qt sounds
+#include <QMediaResource>
+#include <QMediaContent>
+#include <QMediaPlayer>
+
+class CubeRenderer : public QWindow, protected QOpenGLFunctions
+{
     Q_OBJECT
 public:
-    CubeRenderer() : m_t(0), m_program(0) { }
+    explicit CubeRenderer(QWindow *parent = 0);
     ~CubeRenderer();
 
     void setT(qreal t) { m_t = t; }

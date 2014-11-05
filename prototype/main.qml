@@ -217,19 +217,19 @@ Item {
         property bool rightPressed: false
         //Handling of basic key events
         Keys.onPressed: {
-            if(event.key == Qt.Key_A) {
+            if(event.key == Qt.Key_A && red.x > 0) {
                 leftPressed = true
                 x -= 2
             }
-            if(event.key == Qt.Key_D) {
+            if(event.key == Qt.Key_D && red.x + red.width < parent.width) {
                 rightPressed = true
                 x += 2
             }
-            if(event.key == Qt.Key_W) {
+            if(event.key == Qt.Key_W && red.y > 0) {
                 upPressed = true
                 y -= 2
             }
-            if(event.key == Qt.Key_S) {
+            if(event.key == Qt.Key_S && red.y + red.height < parent.height) {
                 downPressed = true
                 y += 2
             }
