@@ -3,7 +3,9 @@ TEMPLATE = app
 QT += opengl qml quick widgets sensors multimedia gui
 
 SOURCES += main.cpp \
-    cube.cpp
+    cube.cpp \
+    scene.cpp \
+    scenerenderer.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,7 +16,9 @@ INCLUDEPATH +=
 include(deployment.pri)
 
 HEADERS += \
-    cube.h
+    cube.h \
+    scene.h \
+    scenerenderer.h
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 

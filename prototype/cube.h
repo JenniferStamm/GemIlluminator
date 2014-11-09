@@ -1,75 +1,69 @@
+/*
+ * Ein Cube ist aus QML-Sich nur eine Ansammlung von Daten, da es (glaube ich)
+ * von den QQuickITems nicht beachtet wird bei Aktualisierungen usw, da es ein
+ * QObject ist. Die Cubes werden nur auf dem Bildschrim repäsentiert im
+ * Zusammenspiel mit dem Scenerenderer, der im richtigen Moment die paint()-Methode
+ * aufruft.
+*/
+
 #ifndef CUBE_H
 #define CUBE_H
 
-// Qt window/quick stuff
-#include <QWindow>
-#include <QtQuick/qquickwindow.h>
-#include <QtQuick/QQuickItem>
-#include <QtGui/QScreen>
-
-// OpenGL stuff
+#include <QObject>
 #include <QOpenGLFunctions>
-#include <QtGui/QOpenGLShaderProgram>
+#include <QVector3D>
 
-// Qt sounds
-#include <QMediaResource>
-#include <QMediaContent>
-#include <QMediaPlayer>
+class QOpenGLShaderProgram;
 
-class CubeRenderer : public QWindow, protected QOpenGLFunctions
+class Cube : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(qreal x READ x WRITE setX NOTIFY xChanged)
+    Q_PROPERTY(qreal y READ y WRITE setY NOTIFY yChanged)
+    Q_PROPERTY(qreal z READ z WRITE setZ NOTIFY zChanged)
+    Q_PROPERTY(qreal xRotation READ xRotation WRITE setXRotation NOTIFY xRotationChanged)
+    Q_PROPERTY(qreal yRotation READ yRotation WRITE setYRotation NOTIFY yRotationChanged)
+    Q_PROPERTY(qreal zRotation READ zRotation WRITE setZRotation NOTIFY zRotationChanged)
+
 public:
-    explicit CubeRenderer(QWindow *parent = 0);
-    ~CubeRenderer();
+    Cube(QObject *parent = 0);
+    virtual ~Cube();
 
-    void setT(qreal t) { m_t = t; }
-    void setVisible(bool visible) { m_visible = visible; }
-    void setViewportSize(const QSize &size) { m_viewportSize = size; }
+    void paint(QOpenGLFunctions *gl);
 
-public slots:
-    void paint();
+    qreal x();
+    void setX(qreal x);
 
-private:
-    QSize m_viewportSize;
-    qreal m_t;
-    bool m_visible;
+    qreal y();
+    void setY(qreal y);
+
+    qreal z();
+    void setZ(qreal z);
+
+    qreal xRotation();
+    void setXRotation(qreal xRotation);
+
+    qreal yRotation();
+    void setYRotation(qreal yRotation);
+
+    qreal zRotation();
+    void setZRotation(qreal zRotation);
+
+signals:
+    void xChanged();
+    void yChanged();
+    void zChanged();
+    void xRotationChanged();
+    void yRotationChanged();
+    void zRotationChanged();
+
+protected:
+    QVector3D m_position;
+    QVector3D m_rotation;
     QOpenGLShaderProgram *m_program;
     GLuint m_posAttr;
     GLuint m_colAttr;
     GLuint m_matrixUniform;
-    int m_frame;
-};
-
-class Cube : public QQuickItem
-{
-    Q_OBJECT
-    Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
-    Q_PROPERTY(bool visible READ visible WRITE setVisible NOTIFY visibleChanged)
-
-public:
-    Cube();
-
-    qreal t() const { return m_t; }
-    void setT(qreal t);
-    bool visible() const { return m_visible; }
-    void setVisible(bool visible);
-
-signals:
-    void tChanged();
-    void visibleChanged();
-
-public slots:
-    void sync();
-    void cleanup();
-
-private slots:
-    void handleWindowChanged(QQuickWindow *win);
-
-private:
-    qreal m_t;
-    bool m_visible;
-    CubeRenderer *m_renderer;
 };
 
 #endif // CUBE_H

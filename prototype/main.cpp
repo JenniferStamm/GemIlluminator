@@ -1,19 +1,22 @@
-#include <QGuiApplication>
 #include <QtQuick/QQuickView>
+#include <QApplication>
+#include <QQmlApplicationEngine>
+//<QQuickItem> is required for qmlRegisterType<T>()
+#include <QQuickItem>
 
 #include "cube.h"
+#include "scene.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     // Define a C++ object for use in qml
-    qmlRegisterType<Cube>("GPCube", 1, 0, "Cube");
+    qmlRegisterType<Scene>("OpenGLScene", 1, 0, "Scene");
+    qmlRegisterType<Cube>("OpenGLScene", 1, 0, "Cube");
 
-    QQuickView view;
-    view.setResizeMode(QQuickView::SizeRootObjectToView);
-    view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
-    view.show();
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }

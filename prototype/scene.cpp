@@ -4,7 +4,7 @@
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(nullptr)
+  , m_renderer(0)
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
 }
@@ -30,7 +30,7 @@ void Scene::cleanup()
     if(m_renderer)
     {
         delete m_renderer;
-        m_renderer = nullptr;
+        m_renderer = 0;
     }
 }
 

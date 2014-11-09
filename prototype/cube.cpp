@@ -1,65 +1,23 @@
 #include "cube.h"
 
-Cube::Cube()
-    : m_t(0)
-    , m_renderer(0)
-{
-    connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
+#include <QOpenGLShaderProgram>
+#include <QOpenGLFunctions>
+#include <QVector4D>
 
+// Qt sounds
+#include <QMediaResource>
+#include <QMediaContent>
+#include <QMediaPlayer>
+
+Cube::Cube(QObject *parent) :
+    QObject(parent)
+  , m_program(0)
+{
 }
 
-void Cube::setT(qreal t)
+Cube::~Cube()
 {
-    if(t == m_t) {
-        return;
-    }
-    m_t = t;
-    emit tChanged();
-    if(window()) {
-        window()->update();
-    }
-}
-
-void Cube::setVisible(bool visible)
-{
-    if(visible == m_visible) {
-        return;
-    }
-    m_visible = visible;
-    emit visibleChanged();
-    if(window()) {
-        window()->update();
-    }
-}
-
-void Cube::handleWindowChanged(QQuickWindow *win)
-{
-    if(win) {
-        connect(win, SIGNAL(beforeSynchronizing()), this, SLOT(sync()), Qt::DirectConnection);
-        connect(win, SIGNAL(sceneGraphInvalidated()), this, SLOT(cleanup()), Qt::DirectConnection);
-        // If we allow QML to do the clearing, they would clear what we paint
-        // and nothing would show.
-        win->setClearBeforeRendering(false);
-    }
-}
-
-void Cube::cleanup()
-{
-    if(m_renderer) {
-        delete m_renderer;
-        m_renderer = 0;
-    }
-}
-
-void Cube::sync()
-{
-    if(!m_renderer) {
-        m_renderer = new CubeRenderer();
-        connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
-    }
-    m_renderer->setViewportSize(window()->size() * window()->devicePixelRatio());
-    m_renderer->setT(m_t);
-    m_renderer->setVisible(m_visible);
+    delete m_program;
 }
 
 static const char *vertexShaderSource =
@@ -78,27 +36,17 @@ static const char *fragmentShaderSource =
     "   gl_FragColor = col;\n"
     "}\n";
 
-CubeRenderer::CubeRenderer(QWindow *parent)
-    : QWindow(parent), m_t(0), m_program(0)
+void Cube::paint(QOpenGLFunctions *gl)
 {
-    setSurfaceType(QWindow::OpenGLSurface);
-    initializeOpenGLFunctions();
-}
-
-void CubeRenderer::paint()
-{
-    if(m_visible) {
-        if(m_frame % 360 == 359) {
-            // Media resources are a bit tricky to deploy (or at least their url, relative paths will not work)
-            // To make sure the correct url is used console.log(<id>.source) in qml is a quite nice way
-            QMediaResource mediaResource(QUrl("qrc:/data/Camera_Shutter.wav"));
-            QMediaContent mediaContent(mediaResource);
-
-            QMediaPlayer *player = new QMediaPlayer(this);
-            player->setMedia(mediaContent);
-            player->play();
-        }
-    }
+    // Proper way to play sound is needed
+    // ---------------------------------------------------------------------------
+    // Media resources are a bit tricky to deploy (or at least their url, relative paths will not work)
+    // To make sure the correct url is used console.log(<id>.source) in qml is a quite nice way
+    // QMediaResource mediaResource(QUrl("qrc:/data/Camera_Shutter.wav"));
+    // QMediaContent mediaContent(mediaResource);
+    // QMediaPlayer *player = new QMediaPlayer(this);
+    // player->setMedia(mediaContent);
+    // player->play();
 
     if(!m_program) {
         m_program = new QOpenGLShaderProgram(this);
@@ -110,20 +58,22 @@ void CubeRenderer::paint()
     m_colAttr = m_program->attributeLocation("colAttr");
     m_matrixUniform = m_program->uniformLocation("matrix");
 
-    glViewport(0, 0, m_viewportSize.width(), m_viewportSize.height());
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    // Needed to enable the depth test
-    glDepthFunc(GL_LEQUAL);
-    glDepthMask(true);
+    gl->glEnable(GL_DEPTH_TEST);
+    gl->glDepthFunc(GL_LEQUAL);
+    gl->glDepthMask(GL_TRUE);
 
     m_program->bind();
 
     QMatrix4x4 matrix;
-    matrix.perspective(60.0f, (qreal)m_viewportSize.width() / m_viewportSize.height(), 0.1f, 100.0f);
-    matrix.translate(0, 0, -2.5);
-    matrix.rotate(20.0f * m_frame / screen()->refreshRate(), 1, 1, 0.5);
+
+    //Both following lines should be done by a camera and not inside scene elements
+    matrix.perspective(60.0f, 640.f / 480.f, 0.1f, 100.0f);
+    matrix.translate(0.f, 0.f, -10.f);
+
+    matrix.translate(m_position);
+    matrix.rotate(m_rotation.x(), 1.0, 0.0, 0.0);
+    matrix.rotate(m_rotation.y(), 0.0, 1.0, 0.0);
+    matrix.rotate(m_rotation.z(), 0.0, 0.0, 1.0);
 
     m_program->setUniformValue(m_matrixUniform, matrix);
 
@@ -215,27 +165,94 @@ void CubeRenderer::paint()
         0.0f, 0.0f, 1.0f
     };
 
-    glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
+    gl->glVertexAttribPointer(m_posAttr, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    gl->glVertexAttribPointer(m_colAttr, 3, GL_FLOAT, GL_FALSE, 0, colors);
 
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
+    gl->glEnableVertexAttribArray(0);
+    gl->glEnableVertexAttribArray(1);
 
-    if(m_visible) {
-        glDrawArrays(GL_TRIANGLES, 0, 72);
-    }
+    gl->glDrawArrays(GL_TRIANGLES, 0, 72);
 
-    glDisableVertexAttribArray(1);
-    glDisableVertexAttribArray(0);
+    gl->glDisableVertexAttribArray(1);
+    gl->glDisableVertexAttribArray(0);
 
     m_program->release();
-
-    if(m_visible) {
-        ++m_frame;
-    }
 }
 
-CubeRenderer::~CubeRenderer()
+qreal Cube::x()
 {
-    delete m_program;
+    return m_position.x();
+}
+
+void Cube::setX(qreal x)
+{
+    if(m_position.x() == x)
+        return;
+    m_position.setX(x);
+    emit xChanged();
+}
+
+qreal Cube::y()
+{
+    return m_position.y();
+}
+
+void Cube::setY(qreal y)
+{
+    if(m_position.y() == y)
+        return;
+    m_position.setY(y);
+    emit yChanged();
+}
+
+qreal Cube::z()
+{
+    return m_position.z();
+}
+
+void Cube::setZ(qreal z)
+{
+    if(m_position.z() == z)
+        return;
+    m_position.setZ(z);
+    emit zChanged();
+}
+
+qreal Cube::xRotation()
+{
+    return m_rotation.x();
+}
+
+void Cube::setXRotation(qreal xRotation)
+{
+    if(m_rotation.x() == xRotation)
+        return;
+    m_rotation.setX(xRotation);
+    emit xRotationChanged();
+}
+
+qreal Cube::yRotation()
+{
+    return m_rotation.y();
+}
+
+void Cube::setYRotation(qreal yRotation)
+{
+    if(m_rotation.y() == yRotation)
+        return;
+    m_rotation.setY(yRotation);
+    emit yRotationChanged();
+}
+
+qreal Cube::zRotation()
+{
+   return m_rotation.z();
+}
+
+void Cube::setZRotation(qreal zRotation)
+{
+    if(m_rotation.z() == zRotation)
+        return;
+    m_rotation.setZ(zRotation);
+    emit zRotationChanged();
 }

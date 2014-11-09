@@ -2,26 +2,67 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import GPCube 1.0
+import QtQuick 2.3
+import QtQuick.Controls 1.2
+import OpenGLScene 1.0
 import QtSensors 5.0
 import QtMultimedia 5.0
 
-Item {
-    id: mainWindow
-    width: 320
+ApplicationWindow {
+    id: root
+    visible: true
+    width: 640
     height: 480
+    title: qsTr("Hello World")
 
-    Cube {
-        id: cube
-        visible: false
+    property real t;
+    SequentialAnimation on t {
+        NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+        loops: Animation.Infinite
+        running: true
+    }
 
-        SequentialAnimation on t {
-            NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
-            NumberAnimation { to: 0; duration: 2500; easing.type: Easing.OutQuad }
-            loops: Animation.Infinite
-            running: true
-        }
+    Scene {
+        id: scene
+        t: root.t
+
+        cubes: [
+            Cube{
+                id: cube1
+                x: -1.0
+                y: -1.0
+                z: 0.0
+                xRotation: -t * 360;
+                yRotation: -t * 360;
+                zRotation: 0;
+            },
+            Cube{
+                id: cube2
+                x: -1.0
+                y: 1.0
+                z: 0.0
+                xRotation: -t * 360;
+                yRotation: t * 360;
+                zRotation: 0;
+            },
+            Cube{
+                id: cube3
+                x: 1.0
+                y: -1.0
+                z: 0.0
+                xRotation: t * 360;
+                yRotation: -t * 360;
+                zRotation: 0;
+            },
+            Cube {
+                id: cube4
+                x: 1.0
+                y: 1.0
+                z: 0.0
+                xRotation: t * 360;
+                yRotation: t * 360;
+                zRotation: 0;
+            }]
     }
 
     // Demonstrates the use of touch events
@@ -98,10 +139,6 @@ Item {
         else if(green.visible == true) {
             green.visible = false
             timer.stop()
-            cube.visible = true
-        }
-        else if(cube.visible == true) {
-            cube.visible = false
             red.visible = true
         }
     }
@@ -126,16 +163,16 @@ Item {
                 newX = 0
             }
 
-            if(newX > mainWindow.width - blue.width) {
-                newX = mainWindow.width - blue.width
+            if(newX > root.width - blue.width) {
+                newX = root.width - blue.width
             }
 
             if(newY < 0) {
                 newY = 0
             }
 
-            if(newY > mainWindow.height - blue.height) {
-                newY = mainWindow.height - blue.height
+            if(newY > root.height - blue.height) {
+                newY = root.height - blue.height
             }
 
             blue.x = newX
@@ -175,8 +212,8 @@ Item {
             id: timer
             interval: 10; running: false; repeat: true
             onTriggered: {
-                var changeX = 20 * ((green.stopX - green.startX) / mainWindow.width)
-                var changeY = 20 * ((green.stopY - green.startY) / mainWindow.height)
+                var changeX = 20 * ((green.stopX - green.startX) / root.width)
+                var changeY = 20 * ((green.stopY - green.startY) / root.height)
 
                 if(green.x + changeX < 0) {
                     changeX = 0
