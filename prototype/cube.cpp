@@ -4,15 +4,11 @@
 #include <QOpenGLFunctions>
 #include <QVector4D>
 
-// Qt sounds
-#include <QMediaResource>
-#include <QMediaContent>
-#include <QMediaPlayer>
-
 Cube::Cube(QObject *parent) :
     QObject(parent)
   , m_program(0)
 {
+
 }
 
 Cube::~Cube()
@@ -38,16 +34,6 @@ static const char *fragmentShaderSource =
 
 void Cube::paint(QOpenGLFunctions *gl)
 {
-    // Proper way to play sound is needed
-    // ---------------------------------------------------------------------------
-    // Media resources are a bit tricky to deploy (or at least their url, relative paths will not work)
-    // To make sure the correct url is used console.log(<id>.source) in qml is a quite nice way
-    // QMediaResource mediaResource(QUrl("qrc:/data/Camera_Shutter.wav"));
-    // QMediaContent mediaContent(mediaResource);
-    // QMediaPlayer *player = new QMediaPlayer(this);
-    // player->setMedia(mediaContent);
-    // player->play();
-
     if(!m_program) {
         m_program = new QOpenGLShaderProgram(this);
         m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);

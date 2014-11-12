@@ -15,9 +15,9 @@ ApplicationWindow {
     height: 480
     title: qsTr("Hello World")
 
-    property real t;
+    property int t;
     SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+        NumberAnimation { from: 1; to: 360; duration: 2500; easing.type: Easing.InQuad }
         loops: Animation.Infinite
         running: true
     }
@@ -32,8 +32,8 @@ ApplicationWindow {
                 x: -1.0
                 y: -1.0
                 z: 0.0
-                xRotation: -t * 360;
-                yRotation: -t * 360;
+                xRotation: -t;
+                yRotation: -t;
                 zRotation: 0;
             },
             Cube{
@@ -41,8 +41,8 @@ ApplicationWindow {
                 x: -1.0
                 y: 1.0
                 z: 0.0
-                xRotation: -t * 360;
-                yRotation: t * 360;
+                xRotation: -t;
+                yRotation: t;
                 zRotation: 0;
             },
             Cube{
@@ -50,8 +50,8 @@ ApplicationWindow {
                 x: 1.0
                 y: -1.0
                 z: 0.0
-                xRotation: t * 360;
-                yRotation: -t * 360;
+                xRotation: t;
+                yRotation: -t;
                 zRotation: 0;
             },
             Cube {
@@ -59,8 +59,8 @@ ApplicationWindow {
                 x: 1.0
                 y: 1.0
                 z: 0.0
-                xRotation: t * 360;
-                yRotation: t * 360;
+                xRotation: t;
+                yRotation: t;
                 zRotation: 0;
             }]
     }
