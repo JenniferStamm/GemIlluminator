@@ -40,7 +40,7 @@
 !**/logos/*
 
 # Exclude all build files of Qt
-/build-*
+**/build-*
 
 # Exclude user specific project files
 *.pro.user
