@@ -15,7 +15,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("Hello World")
 
-    property real t;
+    property int t;
     SequentialAnimation on t {
         NumberAnimation { from: 1; to: 360; duration: 2500; easing.type: Easing.InQuad }
         loops: Animation.Infinite

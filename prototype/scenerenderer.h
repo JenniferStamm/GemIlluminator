@@ -4,6 +4,11 @@
 #include <QObject>
 #include <QSize>
 
+// Qt sounds
+#include <QMediaResource>
+#include <QMediaContent>
+#include <QMediaPlayer>
+
 #include "cube.h"
 
 class QEvent;
@@ -26,6 +31,7 @@ protected:
     QSize m_viewport;
     QOpenGLFunctions *m_glFunctions;
     unsigned int m_frame;
+    QMediaPlayer *m_player;
 };
 
 #endif // RENDERERIMPLEMENTATION_H

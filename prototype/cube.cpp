@@ -15,6 +15,7 @@ Cube::Cube(QObject *parent) :
     QObject(parent)
   , m_renderer(new CubeRenderer())
 {
+
 }
 
 Cube::~Cube()
