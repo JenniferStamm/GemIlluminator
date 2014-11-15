@@ -17,7 +17,7 @@ ApplicationWindow {
 
     property real t;
     SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 2500; easing.type: Easing.InQuad }
+        NumberAnimation { from: 1; to: 360; duration: 2500; easing.type: Easing.InQuad }
         loops: Animation.Infinite
         running: true
     }
@@ -25,15 +25,14 @@ ApplicationWindow {
     Scene {
         id: scene
         t: root.t
-
         cubes: [
             Cube{
                 id: cube1
                 x: -1.0
                 y: -1.0
                 z: 0.0
-                xRotation: -t * 360;
-                yRotation: -t * 360;
+                xRotation: -t;
+                yRotation: -t;
                 zRotation: 0;
             },
             Cube{
@@ -41,8 +40,8 @@ ApplicationWindow {
                 x: -1.0
                 y: 1.0
                 z: 0.0
-                xRotation: -t * 360;
-                yRotation: t * 360;
+                xRotation: -t;
+                yRotation: t;
                 zRotation: 0;
             },
             Cube{
@@ -50,8 +49,8 @@ ApplicationWindow {
                 x: 1.0
                 y: -1.0
                 z: 0.0
-                xRotation: t * 360;
-                yRotation: -t * 360;
+                xRotation: t;
+                yRotation: -t;
                 zRotation: 0;
             },
             Cube {
@@ -59,8 +58,8 @@ ApplicationWindow {
                 x: 1.0
                 y: 1.0
                 z: 0.0
-                xRotation: t * 360;
-                yRotation: t * 360;
+                xRotation: t;
+                yRotation: t;
                 zRotation: 0;
             }]
     }

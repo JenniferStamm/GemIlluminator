@@ -19,12 +19,13 @@ public:
 
 public slots:
     void paint();
-    bool event(QEvent *event);
+    //bool event(QEvent *event);
 
 protected:
     QList<Cube*> m_cubes;
     QSize m_viewport;
     QOpenGLFunctions *m_glFunctions;
+    unsigned int m_frame;
 };
 
 #endif // RENDERERIMPLEMENTATION_H

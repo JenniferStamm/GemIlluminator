@@ -15,6 +15,8 @@
 
 class QOpenGLShaderProgram;
 
+class CubeRenderer;
+
 class Cube : public QObject
 {
     Q_OBJECT
@@ -30,6 +32,7 @@ public:
     virtual ~Cube();
 
     void paint(QOpenGLFunctions *gl);
+    void synchronize();
 
     qreal x();
     void setX(qreal x);
@@ -60,10 +63,8 @@ signals:
 protected:
     QVector3D m_position;
     QVector3D m_rotation;
-    QOpenGLShaderProgram *m_program;
-    GLuint m_posAttr;
-    GLuint m_colAttr;
-    GLuint m_matrixUniform;
+
+    CubeRenderer *m_renderer;
 };
 
 #endif // CUBE_H

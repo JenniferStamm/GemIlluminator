@@ -4,7 +4,7 @@
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(0)
+  , m_renderer(nullptr)
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
 }
@@ -22,7 +22,11 @@ void Scene::sync()
     }
     m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
     m_renderer->setCubes(m_cubes);
-    QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
+
+    for(QList<Cube*>::iterator i = m_cubes.begin(); i != m_cubes.end(); i++)
+    {
+        (*i)->synchronize();
+    }
 }
 
 void Scene::cleanup()
@@ -69,6 +73,7 @@ void Scene::setT(qreal t)
         return;
     m_t = t;
     emit tChanged();
-    if(window())
+    if(window()){
         window()->update();
+    }
 }
