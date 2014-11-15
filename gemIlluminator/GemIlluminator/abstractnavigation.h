@@ -9,10 +9,6 @@ class AbstractNavigation : public QObject
 public:
     explicit AbstractNavigation(QObject *parent = 0);
 
-signals:
-
-public slots:
-
 };
 
 #endif // ABSTRACTNAVIGATION_H

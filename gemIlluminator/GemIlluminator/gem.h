@@ -1,10 +1,15 @@
 #ifndef GEM_H
 #define GEM_H
 
-class Gem : public Geometry
+#include "abstractgeometry.h"
+
+class Gem : public AbstractGeometry
 {
 public:
-    Gem();
+    explicit Gem(QObject *parent = 0);
+    virtual ~Gem();
+
+    virtual void synchronize() override;
 };
 
 #endif // GEM_H
