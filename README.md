@@ -34,9 +34,11 @@ Should Have
 Details
 --------------
 **Spielfigur**
+
 Das Lichtbündel soll aus Third-Person-Perspektive sichtbar sein. 
 
 **Steuerung**
+
 Das Lichtbündel kann nicht gesteuert werden. Der nächste Kristall, der getroffen wird, soll rotiert werden können.
 
 **Levelgenerierung**
