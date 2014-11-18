@@ -1,56 +1,50 @@
 Game-Programming-WS2014
 =======================
-**Idee**
+Idee
+--------------
+Inspiriert wurden wir von Spielen Mammut (http://gameprogramming.hpi3d.de/201314/mammut/) und Krautscape (http://www.krautscape.net/). Ausgehend von einem abstrakten Spielkonzept hat sich unsere Idee folgendermaßen weiterentwickelt. 
 
-Inspiriert wurden wir von Mammut und Krautscape. Du musst dich bewegen. Du kannst nicht anhalten. Du kennst dein Ziel. Der Weg... existiert noch nicht. Während du dich fortbewegst, wird die Strecke unter deinem Einfluss generiert!
+Plot
+--------------
+Stell dir folgende, fast alltägliche, Situation vor: 
+Ein kleines Mädchen bewundert das für kleine Hände viel zu große Schmuckkästchen ihrer Großmutter. Es kommt, was kommen muss, und der Schmuck rutscht ihr aus der Hand. Sämtliche Kristalle fallen Richtung Boden. Und jetzt Stop. Stell dir genau diesen Moment aus der Sicht des Lichts vor. Ein Abenteuererwartet dich.
 
-=======================
-**Konzept (Anreize, Schwierigkeitsgrad, geforderte Skills...)**
+Play
+--------------
+Der Spieler beeinflusst das Spiel, in dem er den Kristall steuert, auf den dasLichtbündel als nächstes treffen wird. Mit leichter Rotation kann man ansteuern, welcher Kristall als übernächstes vom Lichtbündel getroffen wird. Durch starke Rotation trifft man auf eine andere Oberfläche des Kristalls, und löst damit einen anderen Lichteffekt aus. Der Spieler versucht durch die Lichteffekte die Erzeugung einer ansprechenden (bunten) Kristalllandschaft zu erreichen.
 
-Levelbasiertes Spiel. Ein Level besteht aus Start und Ziel, einem Farbschema und Schwierigkeitsgrad, der sich in verschiedenen Aspekten äußert. Jedes Level soll automatisch generiert werden aus einer Auswahl von Farbschemata und Schwierigkeitsgraden. Der Schwierigkeitsgrad soll von Level zu Level zufällig ansteigen. Wenn der Spieler das Ziel erreicht, wird seine Bewegung pausiert und es kommt zum Levelübergang. Es wird so die Kamera bewegt (gezoomt), dass die gesamte Strecke und der Start zu sehen ist; der Start bleibt erhalten, der Rest der Welt (Ziel und generierte Strecke) wird verzerrt und in den Start gezogen; ist alles verschwunden, erscheint die Spielfigur im Start und das neue Ziel.
+Rules
+--------------
+Das Lichtbündel besitzt ein Energielevel. Er startet mit voller Energie und das Spiel ist beendet, wenn ihm die Energie ausgeht. Die Energie sinkt proportional zu der Zeit und wird von Kristallen zusätzlich beeinflusst. Sämtliche Kristalloberflächen sind mit einem bestimmten Lichteffekt verknüpft.
 
-Schwierigkeitsgrad:
-* Geschwindigkeit der Spielfigur
-* Anzahl Hindernisse
-* Anzahl Löcher in der Bahn
-* Form der Bahn (glatt, halbe Pipeline, Tunnel) 
-* Absturzmöglichkeiten am Rand der Bahn 
-* Anzahl Items (negative, neutrale, positive)
+Must Have
+--------------
+* Einfärben der Kristalle
+* Kristalllandschaft
+* Steuerung des nächsten Kristalls
+* Energielevel des Lichtbündels
 
-Die Geschicklichkeit und die Reaktionsfähigkeit des Spielers sollen herausgefordert werden.
+Should Have
+--------------
+* Abrupte Perspektivenwechsel
+* Berechnung und Hervorhebung des übernächsten Kristalls
+* Hindernisse
+* Verschiedene Kristalle/Kristalleigenschaften
 
-=======================
-**Details**
+Details
+--------------
+**Spielfigur**
+Das Lichtbündel soll aus Third-Person-Perspektive sichtbar sein. 
 
-Spielfigur
-Ein Torus, eventuell mit verschiedenen Skins. 
+**Steuerung**
+Das Lichtbündel kann nicht gesteuert werden. Der nächste Kristall, der getroffen wird, soll rotiert werden können.
 
-Steuerung
-Die Spielfigur soll am Desktop über Pfeiltasten, am mobilen Gerät über Touch gesteuert werden. Die Streckengenerierung soll am Desktop über die Maus, am mobilen Gerät über den Neigungswinkel gesteuert werden. Die Kamera soll vom Spieler nicht steuerbar sein, sondern ist auf die Streckenmitte zentriert.
+**Levelgenerierung**
 
-Streckengenerierung
-Der Spieler soll über die Streckengenerierung das Ziel ansteuern. Das heißt, der Spieler beeinflusst, ob die Strecke eine Links-/Rechtskurve (Steigung/Senkung optional) generiert wird. Das Spiel "entscheidet", wie die Strecke aussieht. Vorstellbar ist alles von einer flache Strecke, über eine halbe Pipeline bis zum Tunnel. Des Weiteren könnte es Hindernisse und Boni jeglicher Art geben.
+Grafik
+--------------
 
-=======================
-**Grafik**
 
-Motion-Blur
-
-=======================
-**Stil**
-
-Geometrische Landschaft, abstrakte Formen. Dunkler Hintergrund. Schwarze Gegenstände, neonfarbene Outlines. Glow-Effekt. 
-
-Ziel als Ring, Portal mit coolen Effekten. 
-Start auf einem Podest.
-
-Der nächste, von der Mausposition abhängige, zu generierende Streckenabschnitt wird angedeutet.
-
-Die Spielfigur glüht und zieht eine Spur hinter sich her.
-
-=======================
-**Sound**
-
-Es soll ein Item geben, bei dem abhängig von der Musik Blendeffekte im Raum erzeugt werden(, um den Nutzer zu überfordern - negatives Item). 
-
-Musik soll vom Nutzer in das Spiel geladen werden können.   
+Sound
+--------------
+Es ist denkbar, dem Nutzer zu erlauben, Musik in das Spiel zu laden.
