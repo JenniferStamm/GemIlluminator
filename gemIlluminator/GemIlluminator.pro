@@ -3,15 +3,15 @@ TEMPLATE = app
 QT += qml quick widgets sensors multimedia
 
 SOURCES += main.cpp \
-    geometry.cpp \
-    geometryrenderer.cpp \
     scene.cpp \
     scenerenderer.cpp \
     abstractnavigation.cpp \
     player.cpp \
     lightray.cpp \
     gem.cpp \
-    gemrenderer.cpp
+    gemrenderer.cpp \
+    abstractgeometry.cpp \
+    abstractgeometryrenderer.cpp
 
 RESOURCES += qml.qrc
 
@@ -26,12 +26,12 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 OTHER_FILES += \
     android/AndroidManifest.xml
 HEADERS += \
-    geometry.h \
-    geometryrenderer.h \
     scene.h \
     scenerenderer.h \
     abstractnavigation.h \
     player.h \
     lightray.h \
     gem.h \
-    gemrenderer.h
+    gemrenderer.h \
+    abstractgeometryrenderer.h \
+    abstractgeometry.h

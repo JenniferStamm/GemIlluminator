@@ -1,5 +1,11 @@
 #include "gemrenderer.h"
 
-GemRenderer::GemRenderer()
+GemRenderer::GemRenderer(QObject *parent):
+    AbstractGeometryRenderer(parent)
 {
+}
+
+void GemRenderer::paint()
+{
+
 }

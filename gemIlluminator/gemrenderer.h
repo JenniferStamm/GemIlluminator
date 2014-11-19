@@ -1,12 +1,14 @@
 #ifndef GEMRENDERER_H
 #define GEMRENDERER_H
 
-#include "geometryrenderer.h"
+#include "abstractgeometryrenderer.h"
 
-class GemRenderer : public GeometryRenderer
+class GemRenderer : public AbstractGeometryRenderer
 {
 public:
-    GemRenderer();
+    explicit GemRenderer(QObject *parent = 0);
+
+    void paint() override;
 };
 
 #endif // GEMRENDERER_H
