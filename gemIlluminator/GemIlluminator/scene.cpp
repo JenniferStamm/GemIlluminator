@@ -24,6 +24,7 @@ void Scene::sync()
         connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
     }
     m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
+    m_renderer->setActive(m_active);
 
     for(QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++)
     {
@@ -68,4 +69,16 @@ void Scene::setT(qreal t)
     if(window()){
         window()->update();
     }
+}
+
+bool Scene::isActive()
+{
+    return m_active;
+}
+
+void Scene::setActive(bool active)
+{
+    m_active = active;
+
+    emit activeChanged();
 }

@@ -11,8 +11,12 @@ public:
     explicit SceneRenderer(QObject *parent = 0);
     void setViewport(QSize viewport);
 
+    bool isActive();
+    void setActive(bool active);
+
 protected:
     QSize m_viewport;
+    bool m_active;
 };
 
 #endif // SCENERENDERER_H

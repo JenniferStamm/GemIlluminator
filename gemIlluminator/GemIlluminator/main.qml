@@ -2,6 +2,7 @@ import QtQuick 2.3
 import QtQuick.Controls 1.2
 import GemIlluminator 1.0
 import QtSensors 5.0
+import QtQml 2.2
 
 ApplicationWindow {
     id: root
@@ -18,6 +19,18 @@ ApplicationWindow {
         onReadingChanged: {
             var pitch = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3
             var roll = calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * .3
+        }
+    }
+
+    Connections {
+        id: stateObserver
+        target: Qt.application
+        onActiveChanged: {
+            if (Qt.application.active) {
+                console.log("Active")
+            } else {
+                console.log("Inactive")
+            }
         }
     }
 
