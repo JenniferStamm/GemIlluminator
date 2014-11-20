@@ -9,12 +9,27 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+
+    Connections {
+        target: Qt.application
+
+        onStateChanged: {
+            switch (Qt.application.state) {
+            case Qt.ApplicationSuspended:
+            case Qt.ApplicationHidden:
+                console.log("Inactive")
+                break
+            case Qt.ApplicationActive:
+                console.log("Active")
+                break
+            }
+       }
+    }
 
     Accelerometer {
         id: accel
         dataRate: 100
-        active: false
+        active: true
 
         onReadingChanged: {
             var pitch = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3

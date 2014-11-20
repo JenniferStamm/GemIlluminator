@@ -146,9 +146,11 @@ ApplicationWindow {
     Accelerometer {
         id: accel
         dataRate: 100
-        active: false
+        active: true
 
         onReadingChanged: {
+            console.log("test")
+            console.log(Qt.application.state)
             // Depending on the screen orientation x and y need to be switched
             // (currently configurated for landscape on S4)
             var newX = (blue.x - calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3)
