@@ -37,18 +37,6 @@ ApplicationWindow {
         }
     }
 
-    Connections {
-        id: stateObserver
-        target: Qt.application
-        onActiveChanged: {
-            if (Qt.application.active) {
-                console.log("Active")
-            } else {
-                console.log("Inactive")
-            }
-        }
-    }
-
     function calcPitch(x,y,z) {
         return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 57.2957795);
     }
