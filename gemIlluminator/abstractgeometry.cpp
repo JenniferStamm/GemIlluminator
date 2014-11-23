@@ -13,10 +13,11 @@ AbstractGeometry::~AbstractGeometry()
     delete m_renderer;
 }
 
-void AbstractGeometry::paint()
+void AbstractGeometry::paint(QOpenGLFunctions *gl)
 {
-    if(m_renderer)
-        m_renderer->paint();
+    if (m_renderer) {
+        m_renderer->paint(gl);
+    }
 }
 
 void AbstractGeometry::synchronize()

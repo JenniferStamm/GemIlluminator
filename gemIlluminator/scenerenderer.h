@@ -5,6 +5,7 @@
 #include <QSize>
 
 class QOpenGLFunctions;
+class AbstractGeometry;
 
 class SceneRenderer : public QObject
 {
@@ -12,6 +13,8 @@ class SceneRenderer : public QObject
 public:
     explicit SceneRenderer(QObject *parent = 0);
     void setViewport(QSize viewport);
+
+    void setGeometries(QList<AbstractGeometry*> geometries);
 
     bool isActive();
     void setActive(bool active);
@@ -21,6 +24,7 @@ public slots:
 
 protected:
     QSize m_viewport;
+    QList<AbstractGeometry*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
 };

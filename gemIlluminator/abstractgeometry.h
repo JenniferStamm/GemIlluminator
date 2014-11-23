@@ -4,6 +4,7 @@
 #include <QObject>
 
 class AbstractGeometryRenderer;
+class QOpenGLFunctions;
 
 class AbstractGeometry : public QObject
 {
@@ -13,7 +14,7 @@ public:
     virtual ~AbstractGeometry();
 
     virtual void synchronize();
-    void paint();
+    void paint(QOpenGLFunctions *gl);
 
 protected:
     AbstractGeometryRenderer *m_renderer;

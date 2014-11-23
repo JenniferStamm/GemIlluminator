@@ -24,18 +24,17 @@ void Scene::sync()
         connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
     }
     m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
+    m_renderer->setGeometries(m_geometries);
     m_renderer->setActive(m_active);
 
-    for(QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++)
-    {
+    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
         (*i)->synchronize();
     }
 }
 
 void Scene::cleanup()
 {
-    if(m_renderer)
-    {
+    if (m_renderer) {
         delete m_renderer;
         m_renderer = 0;
     }

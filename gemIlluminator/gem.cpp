@@ -10,7 +10,6 @@ Gem::Gem(QObject *parent) :
 
 Gem::~Gem()
 {
-
 }
 
 void Gem::synchronize()

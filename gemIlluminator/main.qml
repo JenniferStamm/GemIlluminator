@@ -55,7 +55,8 @@ ApplicationWindow {
         onCrystalCountChanged: {
             for (var i = 0; i < crystalCount; i++) {
                 console.log("New gem" + i)
-                scene.appendGeometry(Gem)
+
+                scene.appendGeometry(Qt.createQmlObject('import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem}', scene, 'gem.qml'))
             }
         }
     }
