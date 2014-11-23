@@ -1,1 +1,9 @@
-TBD
+#include <headerFile>
+
+class aClass
+{
+public:
+	
+private:
+	
+}
