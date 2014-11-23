@@ -18,3 +18,8 @@ void AbstractGeometry::paint()
     if(m_renderer)
         m_renderer->paint();
 }
+
+void AbstractGeometry::synchronize()
+{
+
+}

@@ -12,7 +12,7 @@ public:
     explicit AbstractGeometry(QObject *parent = 0);
     virtual ~AbstractGeometry();
 
-    virtual void synchronize() = 0;
+    virtual void synchronize();
     void paint();
 
 protected:
