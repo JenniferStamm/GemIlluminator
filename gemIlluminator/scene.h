@@ -11,7 +11,7 @@ class Scene : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
-    Q_PROPERTY(QQmlListProperty<AbstractGeometry> geometries READ geometries)
+    Q_PROPERTY(QQmlListProperty<AbstractGeometry> geometries READ geometries NOTIFY geometriesChanged)
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
 
 public:
@@ -19,6 +19,7 @@ public:
     virtual ~Scene();
 
     QQmlListProperty<AbstractGeometry> geometries();
+
     qreal t();
     void setT(qreal t);
 
@@ -29,11 +30,13 @@ public:
 signals:
     void cubesChanged();
     void tChanged();
+    void geometriesChanged();
     void activeChanged();
 
 public slots:
     virtual void sync();
     virtual void cleanup();
+    void appendGeometry(AbstractGeometry *geometry);
 
 protected:
     SceneRenderer *m_renderer;

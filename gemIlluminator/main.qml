@@ -16,11 +16,16 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
+                console.log("Suspended")
+                break
             case Qt.ApplicationHidden:
-                console.log("Inactive")
+                console.log("Hidden")
                 break
             case Qt.ApplicationActive:
                 console.log("Active")
+                break
+            case Qt.ApplicationInactive:
+                console.log("Inactive")
                 break
             }
        }
@@ -42,5 +47,27 @@ ApplicationWindow {
     }
     function calcRoll(x,y,z) {
          return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 57.2957795);
+    }
+
+    Scene {
+        id: scene
+        property int crystalCount
+        onCrystalCountChanged: {
+            for (var i = 0; i < crystalCount; i++) {
+                console.log("New gem" + i)
+                scene.appendGeometry(Gem)
+            }
+        }
+    }
+
+    Rectangle {
+        focus: true
+        Keys.onPressed: {
+            if(event.key == Qt.Key_A) {
+                console.log("Key pressed")
+                scene.crystalCount = 3
+
+            }
+        }
     }
 }

@@ -55,6 +55,12 @@ QQmlListProperty<AbstractGeometry> Scene::geometries()
     return QQmlListProperty<AbstractGeometry>(this, m_geometries);
 }
 
+void Scene::appendGeometry(AbstractGeometry *geometry) {
+    //geometry->setParent(this); TODO: Figure out, why this does not work or if we need it
+    m_geometries.append(geometry);
+    geometriesChanged();
+}
+
 qreal Scene::t()
 {
     return m_t;

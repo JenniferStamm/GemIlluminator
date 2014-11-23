@@ -5,6 +5,7 @@
 #include "gem.h"
 #include "player.h"
 #include "lightray.h"
+#include "abstractgeometry.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<Gem>("GemIlluminator", 1, 0, "Gem");
     qmlRegisterType<Player>("GemIlluminator", 1, 0, "Player");
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
+    qmlRegisterType<AbstractGeometry>("GemIlluminator", 1, 0, "AbstractGeometry");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
