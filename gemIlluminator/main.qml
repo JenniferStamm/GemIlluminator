@@ -51,6 +51,11 @@ ApplicationWindow {
 
     Scene {
         id: scene
+        SequentialAnimation on t {
+            NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
+            loops: Animation.Infinite
+            running: true
+        }
         property int crystalCount
         onCrystalCountChanged: {
             for (var i = 0; i < crystalCount; i++) {
