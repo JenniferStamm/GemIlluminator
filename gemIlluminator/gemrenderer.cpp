@@ -55,12 +55,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     }
     m_vertices->bind();
     m_indices->bind();
-    if (!m_program) {
-        m_program = new QOpenGLShaderProgram(this);
-        m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-        m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
-        m_program->link();
-    }
+    m_program->bind();
 
     QMatrix4x4 mvp;
     mvp.translate(0.f, 0.f, 0.5f);
