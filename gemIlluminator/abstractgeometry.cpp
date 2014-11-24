@@ -25,12 +25,12 @@ void AbstractGeometry::synchronize()
 
 }
 
-QVector3D position()
+QVector3D AbstractGeometry::position()
 {
     return m_position;
 }
 
-void setPosition(QVector3D position)
+void AbstractGeometry::setPosition(QVector3D position)
 {
     if (position == m_position) {
        return;
@@ -40,12 +40,12 @@ void setPosition(QVector3D position)
     emit positionChanged();
 }
 
-QVector3D rotation()
+QVector3D AbstractGeometry::rotation()
 {
     return m_rotation;
 }
 
-void setRotation(QVector3D rotation)
+void AbstractGeometry::setRotation(QVector3D rotation)
 {
     if (rotation == m_rotation) {
        return;

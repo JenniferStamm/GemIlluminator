@@ -41,7 +41,7 @@ GemRenderer::GemRenderer(QObject *parent):
     m_indices->create();
     m_indices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_indices->bind();
-    m_indices->allocate(indexData, sizeof(uint) * 4);
+    m_indices->allocate(indexData, sizeof(uint) * 6);
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
