@@ -1,17 +1,18 @@
 #include "gemrenderer.h"
 
+#include <QMatrix4x4>
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
     static const char *vertexShaderSource =
+            "uniform mat4 modelViewProjection; \n"
             "attribute highp vec3 a_vertex; \n"
             "void main() \n"
             "{ \n"
-            " gl_Position = vec4(a_vertex, 1.0) * 0.5 + 0.5; \n"
+            " gl_Position = modelViewProjection * vec4(a_vertex, 1.0); \n"
             "} \n";
     static const char *fragmentShaderSource =
-            "precision mediump float; \n"
             "void main() \n"
             "{ \n"
             " gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); \n"
@@ -23,7 +24,6 @@ GemRenderer::GemRenderer(QObject *parent):
 ,   m_indices(new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer))
 ,   m_program(nullptr)
 {
-    /*
     float vertexData[12] = {
         -0.5, -0.5, 0.5,
         0.5, -0.5, 0.5,
@@ -31,16 +31,7 @@ GemRenderer::GemRenderer(QObject *parent):
         0.f, 0.5, 0.f};
     uint indexData[6] = {
         0, 2, 3, 1, 0, 2
-    };*/
-
-    float vertexData[12] = {
-        -1.f, -1.f, 0.5,
-        -1.f, 1.f, 0.5,
-        1.f, -1.f, 0.5,
-        1.f, 1.f, 0.5
     };
-    uint indexData[4] = {
-            0,2,1,3};
 
     m_vertices->create();
     m_vertices->setUsagePattern(QOpenGLBuffer::StaticDraw);
@@ -51,11 +42,17 @@ GemRenderer::GemRenderer(QObject *parent):
     m_indices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_indices->bind();
     m_indices->allocate(indexData, sizeof(uint) * 4);
-
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
 {
+    if (!m_program)
+    {
+        m_program = new QOpenGLShaderProgram(this);
+        m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
+        m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
+        m_program->link();
+    }
     m_vertices->bind();
     m_indices->bind();
     if (!m_program) {
@@ -64,6 +61,10 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
         m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
         m_program->link();
     }
+
+    QMatrix4x4 mvp;
+    mvp.translate(0.f, 0.f, 0.5f);
+    m_program->setUniformValue("modelViewProjection", mvp);
 
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     gl->glEnableVertexAttribArray(0);
