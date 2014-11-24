@@ -5,19 +5,6 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
-    static const char *vertexShaderSource =
-            "uniform mat4 modelViewProjection; \n"
-            "attribute highp vec3 a_vertex; \n"
-            "void main() \n"
-            "{ \n"
-            " gl_Position = modelViewProjection * vec4(a_vertex, 1.0); \n"
-            "} \n";
-    static const char *fragmentShaderSource =
-            "void main() \n"
-            "{ \n"
-            " gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); \n"
-            "} \n";
-
 GemRenderer::GemRenderer(QObject *parent):
     AbstractGeometryRenderer(parent)
 ,   m_vertices(new QOpenGLBuffer())
@@ -49,8 +36,8 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     if (!m_program)
     {
         m_program = new QOpenGLShaderProgram(this);
-        m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-        m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
+        m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
+        m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
         m_program->link();
     }
     m_vertices->bind();

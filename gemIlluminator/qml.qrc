@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>shader/gem.frag</file>
+        <file>shader/gem.vert</file>
     </qresource>
 </RCC>
