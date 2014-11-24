@@ -50,19 +50,20 @@ GemRenderer::GemRenderer(QObject *parent):
     m_indices->create();
     m_indices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_indices->bind();
-    m_indices->allocate(indexData, sizeof(uint) * 6);
+    m_indices->allocate(indexData, sizeof(uint) * 4);
 
-    m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
-    m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
-    m_program->link();
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
 {
     m_vertices->bind();
     m_indices->bind();
-    m_program->bind();
+    if (!m_program) {
+        m_program = new QOpenGLShaderProgram(this);
+        m_program->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
+        m_program->addShaderFromSourceCode(QOpenGLShader::Fragment, fragmentShaderSource);
+        m_program->link();
+    }
 
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     gl->glEnableVertexAttribArray(0);
