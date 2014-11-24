@@ -64,6 +64,8 @@ ApplicationWindow {
                 scene.appendGeometry(Qt.createQmlObject('import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem}', scene, 'gem.qml'))
             }
         }
+        Component.onCompleted:
+            scene.crystalCount = 3
     }
 
     Rectangle {
