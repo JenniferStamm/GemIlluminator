@@ -23,7 +23,7 @@ include(deployment.pri)
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-QMAKE_CXXFLAGS += -std=c++0x
+CONFIG += c++11
 
 OTHER_FILES += \
     android/AndroidManifest.xml
