@@ -35,7 +35,7 @@ void GemRenderer::initialize()
     m_indices->bind();
     m_indices->allocate(indexData, sizeof(uint) * 6);
 
-    m_program = new QOpenGLShaderProgram();
+    m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
     m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
     m_program->link();
