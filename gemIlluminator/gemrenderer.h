@@ -14,6 +14,9 @@ public:
 
     void paint(QOpenGLFunctions *gl) override;
 
+protected:
+    virtual void initialize();
+
 private:
     QOpenGLBuffer *m_vertices;
     QOpenGLBuffer *m_indices;

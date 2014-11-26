@@ -11,6 +11,11 @@ GemRenderer::GemRenderer(QObject *parent):
 ,   m_indices(new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer))
 ,   m_program(nullptr)
 {
+
+}
+
+void GemRenderer::initialize()
+{
     float vertexData[12] = {
         -0.5, -0.5, 0.5,
         0.5, -0.5, 0.5,
@@ -29,17 +34,19 @@ GemRenderer::GemRenderer(QObject *parent):
     m_indices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_indices->bind();
     m_indices->allocate(indexData, sizeof(uint) * 6);
+
+    m_program = new QOpenGLShaderProgram(this);
+    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
+    m_program->link();
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
 {
-    if (!m_program)
-    {
-        m_program = new QOpenGLShaderProgram(this);
-        m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
-        m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
-        m_program->link();
+    if (!m_program) {
+        initialize();
     }
+
     m_vertices->bind();
     m_indices->bind();
     m_program->bind();
