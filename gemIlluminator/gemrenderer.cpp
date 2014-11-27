@@ -16,11 +16,52 @@ GemRenderer::GemRenderer(QObject *parent):
 
 void GemRenderer::initialize()
 {
+    /*
     float vertexData[12] = {
         -0.5, -0.5, 0.5,
         0.5, -0.5, 0.5,
         0, -0.5, -0.5,
         0.f, 0.5, 0.f};
+        */
+    /*
+    float vertexData[72] = {
+        // first triangle
+        -0.5, -0.5, 0.5,
+        1.0, 0.0, 0.0,
+        0, -0.5, -0.5,
+        1.0, 0.0, 0.0,
+        0.f, 0.5, 0.f,
+        1.0, 0.0, 0.0,
+        // second triangle
+        0, -0.5, -0.5,
+        0.0, 1.0, 1.0,
+        0.f, 0.5, 0.f,
+        0.0, 1.0, 1.0,
+        0.5, -0.5, 0.5,
+        0.0, 1.0, 1.0,
+        // third triangle
+        0.f, 0.5, 0.f,
+        0.0, 1.0, 0.0,
+        0.5, -0.5, 0.5,
+        0.0, 1.0, 0.0,
+        -0.5, -0.5, 0.5,
+        0.0, 1.0, 0.0,
+        // fourth triangle
+        0.5, -0.5, 0.5,
+        0.0, 0.0, 1.0,
+        -0.5, -0.5, 0.5,
+        0.0, 0.0, 1.0,
+        0, -0.5, -0.5,
+        0.0, 0.0, 1.0}; */
+    float vertexData[18] = {
+        // first triangle
+        -0.5, -0.5, 0.5,
+        1.0, 0.0, 0.0,
+        0, -0.5, -0.5,
+        1.0, 0.0, 0.0,
+        0.f, 0.5, 0.f,
+        1.0, 0.0, 0.0};
+
     uint indexData[6] = {
         0, 2, 3, 1, 0, 2
     };
@@ -28,13 +69,13 @@ void GemRenderer::initialize()
     m_vertices->create();
     m_vertices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_vertices->bind();
-    m_vertices->allocate(vertexData, sizeof(float) * 12);
-
+    m_vertices->allocate(vertexData, sizeof(float) * 18);
+    /*
     m_indices->create();
     m_indices->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_indices->bind();
     m_indices->allocate(indexData, sizeof(uint) * 6);
-
+    */
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
     m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
@@ -50,21 +91,26 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     }
 
     m_vertices->bind();
-    m_indices->bind();
+    //m_indices->bind();
     m_program->bind();
 
     QMatrix4x4 mvp;
     mvp.translate(0.f, 0.f, 0.5f);
     m_program->setUniformValue("modelViewProjection", mvp);
 
-    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     gl->glEnableVertexAttribArray(0);
+    gl->glEnableVertexAttribArray(1);
 
-    gl->glDrawElements(GL_TRIANGLE_STRIP, m_indices->size() / sizeof(uint), GL_UNSIGNED_INT, nullptr);
+    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (const GLvoid*) (3 * sizeof(GLfloat)));
+
+    //gl->glDrawElements(GL_TRIANGLE_STRIP, m_indices->size() / sizeof(uint), GL_UNSIGNED_INT, nullptr);
+    gl->glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
 
     gl->glDisableVertexAttribArray(0);
+    gl->glDisableVertexAttribArray(1);
 
     m_vertices->release();
-    m_indices->release();
+    //m_indices->release();
     m_program->release();
 }
