@@ -36,9 +36,11 @@ void GemRenderer::initialize()
     m_indices->allocate(indexData, sizeof(uint) * 6);
 
     m_program = new QOpenGLShaderProgram(this);
-    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
-    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
-    m_program->link();
+    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
+    if (!m_program->link()) {
+        //close();
+    }
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
