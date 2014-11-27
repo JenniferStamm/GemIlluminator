@@ -20,11 +20,6 @@ void AbstractGeometry::paint(QOpenGLFunctions *gl)
     }
 }
 
-void AbstractGeometry::synchronize()
-{
-
-}
-
 QVector3D AbstractGeometry::position()
 {
     return m_position;

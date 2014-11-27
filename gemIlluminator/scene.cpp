@@ -38,6 +38,9 @@ void Scene::cleanup()
         delete m_renderer;
         m_renderer = 0;
     }
+    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
+        (*i)->cleanup();
+    }
 }
 
 void Scene::handleWindowChanged(QQuickWindow *win)

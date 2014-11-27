@@ -10,6 +10,7 @@ public:
     virtual ~Gem();
 
     virtual void synchronize() override;
+    virtual void cleanup() override;
 };
 
 #endif // GEM_H

@@ -14,7 +14,9 @@ public:
     explicit AbstractGeometry(QObject *parent = 0);
     virtual ~AbstractGeometry();
 
-    virtual void synchronize();
+    virtual void synchronize() = 0;
+    virtual void cleanup() = 0;
+
     void paint(QOpenGLFunctions *gl);
 
     QVector3D position();
