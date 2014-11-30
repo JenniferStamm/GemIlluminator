@@ -19,16 +19,18 @@ Scene::~Scene()
 
 void Scene::sync()
 {
-    if (!m_renderer) {
-        m_renderer = new SceneRenderer();
-        connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
-    }
-    m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
-    m_renderer->setGeometries(m_geometries);
-    m_renderer->setActive(m_active);
+    if (m_active) {
+        if (!m_renderer) {
+            m_renderer = new SceneRenderer();
+            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+        }
+        m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
+        m_renderer->setGeometries(m_geometries);
+        m_renderer->setActive(m_active);
 
-    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
-        (*i)->synchronize();
+        for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
+            (*i)->synchronize();
+        }
     }
 }
 
