@@ -12,6 +12,7 @@ class GemRenderer : public AbstractGeometryRenderer
 {
 public:
     explicit GemRenderer(QObject *parent = 0);
+    virtual ~GemRenderer();
 
     void paint(QOpenGLFunctions *gl) override;
 

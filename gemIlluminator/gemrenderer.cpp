@@ -12,7 +12,11 @@ GemRenderer::GemRenderer(QObject *parent):
 ,   m_vertices(new QOpenGLBuffer())
 ,   m_program(nullptr)
 {
+}
 
+GemRenderer::~GemRenderer()
+{
+    m_vertices->destroy();
 }
 
 void GemRenderer::initialize()
