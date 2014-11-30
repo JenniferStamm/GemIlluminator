@@ -19,6 +19,7 @@ void Gem::synchronize()
     }
 
     m_renderer->setPosition(m_position);
+    m_renderer->setRotation(m_rotation);
 }
 
 void Gem::cleanup()

@@ -11,6 +11,7 @@ class AbstractGeometry : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
+    Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
 public:
     explicit AbstractGeometry(QObject *parent = 0);
     virtual ~AbstractGeometry();

@@ -63,7 +63,13 @@ ApplicationWindow {
                 var x = Math.random() * 2.0 - 1.0
                 var y = Math.random() * 2.0 - 1.0
                 var z = Math.random() * 2.0 - 1.0
-                var creationString = 'import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem' + i + '; position.x: ' + x + '; position.y: ' + y + '; position.z: ' + z + '}'
+                var xAngle = Math.random() * 360 - 180
+                var yAngle = Math.random() * 360 - 180
+                var zAngle = Math.random() * 360 - 180
+                var creationString = 'import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem' + i
+                        + '; position.x: ' + x + '; position.y: ' + y + '; position.z: ' + z
+                        + '; rotation.x: ' + xAngle + '; rotation.y: ' + yAngle + '; rotation.z: ' + zAngle
+                        + '}'
                 scene.appendGeometry(Qt.createQmlObject(creationString, scene, 'gem.qml'))
             }
         }
