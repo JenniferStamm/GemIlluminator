@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import GemIlluminator 1.0
 import QtSensors 5.0
 import QtQml 2.2
+import QtQuick.Window 2.1
 
 ApplicationWindow {
     id: root
@@ -16,15 +17,28 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
+                scene.active = false
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
+                scene.active = false
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
+                if(Qt.platform.os == "android") {
+                    root.showFullScreen()
+                }
+
+                scene.active = true
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
+                scene.active = false
+
+                if(Qt.platform.os == "android") {
+                    root.hide()
+                }
+
                 console.log("Inactive")
                 break
             }
@@ -64,8 +78,9 @@ ApplicationWindow {
                 scene.appendGeometry(Qt.createQmlObject('import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem}', scene, 'gem.qml'))
             }
         }
-        Component.onCompleted:
+        Component.onCompleted: {
             scene.crystalCount = 3
+        }
     }
 
     Rectangle {
