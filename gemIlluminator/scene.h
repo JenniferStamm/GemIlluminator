@@ -6,6 +6,7 @@
 
 class AbstractGeometry;
 class SceneRenderer;
+class AbstractNavigation;
 
 class Scene : public QQuickItem
 {
@@ -37,12 +38,14 @@ public slots:
     virtual void sync();
     virtual void cleanup();
     void appendGeometry(AbstractGeometry *geometry);
+    void registerNavigation(AbstractNavigation *navigation);
 
 protected:
     SceneRenderer *m_renderer;
     QList<AbstractGeometry*> m_geometries;
     qreal m_t;
     bool m_active;
+    AbstractNavigation *m_navigation;
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);

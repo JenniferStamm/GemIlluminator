@@ -47,12 +47,27 @@ ApplicationWindow {
 
     Accelerometer {
         id: accel
-        dataRate: 100
+        dataRate: 15
         active: true
 
+        property int oldY: 0
+        property int oldX: 0
+
         onReadingChanged: {
-            var pitch = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3
-            var roll = calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * .3
+            var rotateX = calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * 2
+            var rotateY = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * 2
+            rotateX = Math.round(rotateX)
+            rotateY = Math.round(rotateY)
+
+            if(Math.abs(oldX - rotateX) > 2) {
+                navigation.rotateX = rotateX
+                oldX = rotateX
+            }
+
+            if(Math.abs(oldY - rotateY) > 2) {
+                navigation.rotateY = rotateY
+                oldY = rotateY
+            }
         }
     }
 
@@ -61,6 +76,10 @@ ApplicationWindow {
     }
     function calcRoll(x,y,z) {
          return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 57.2957795);
+    }
+
+    AbstractNavigation {
+        id: navigation
     }
 
     Scene {
@@ -89,6 +108,7 @@ ApplicationWindow {
         }
         Component.onCompleted: {
             scene.crystalCount = 3
+            scene.registerNavigation(navigation)
         }
     }
 

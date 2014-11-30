@@ -3,6 +3,7 @@
 #include <QQuickWindow>
 
 #include "abstractgeometry.h"
+#include "abstractnavigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -30,6 +31,7 @@ void Scene::sync()
 
         for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
             (*i)->synchronize();
+            (*i)->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
         }
     }
 }
@@ -60,9 +62,14 @@ QQmlListProperty<AbstractGeometry> Scene::geometries()
 }
 
 void Scene::appendGeometry(AbstractGeometry *geometry) {
-    //geometry->setParent(this); TODO: Figure out, why this does not work or if we need it
+    geometry->setParent(m_renderer);
     m_geometries.append(geometry);
     geometriesChanged();
+}
+
+void Scene::registerNavigation(AbstractNavigation *navigation)
+{
+    m_navigation = navigation;
 }
 
 qreal Scene::t()

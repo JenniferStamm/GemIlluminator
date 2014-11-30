@@ -160,6 +160,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
     gl->glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
 
+
     gl->glDrawArrays(GL_TRIANGLE_STRIP, 0, 12);
 
     gl->glDisableVertexAttribArray(0);
