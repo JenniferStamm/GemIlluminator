@@ -4,35 +4,36 @@ precision mediump int;
 precision mediump float;
 #endif
 
-uniform mat4 modelViewProjection;
 attribute highp vec3 a_vertex;
 attribute highp vec3 a_color;
 attribute highp vec3 a_normal;
 
-varying vec3 v_color;
+uniform mat4 modelView;
+uniform mat4 modelViewIT;
 
-const vec3 lightPos = vec3(0.5, 0.8, 1.0);
-const vec3 specColor = vec3(1.0, 1.0, 1.0);
+varying vec3 v_color;
+varying float v_specularIntensity;
+varying float v_diffuseIntensity;
+
+const vec4 lightDirection = vec4(4.0, 8.0, 4.0, 1.0);
 
 void main()
 {
-    gl_Position = modelViewProjection * vec4(a_vertex, 1.0);
+    // TODO: At some point we'll add projection again
+    gl_Position = modelView * vec4(a_vertex, 1.0);
+    v_color = a_color;
 
-    vec4 vertPos4 = modelViewProjection * vec4(a_vertex, 1.0);
-    vec4 normal4 = modelViewProjection * vec4(a_normal, 1.0);
-    vec3 normal = vec3(normal4);
-    vec3 vertPos = vec3(vertPos4) / vertPos4.w;
-    vec3 lightDir = normalize(lightPos - vertPos);
-    vec3 reflectDir = reflect(-lightDir, normal);
-    vec3 viewDir = normalize(-vertPos);
+    vec4 vertexPositionCamera = modelView * vec4(a_vertex, 1.0);
+    vec3 normalCamera = vec3(normalize(modelViewIT * vec4(a_vertex, 1.0)));
+    vec4 lightPositionCamera = modelView * lightDirection;
 
-    float lambertian = max(dot(lightDir, normal), 0.0);
-    float specular = 0.0;
+    vec3 lightVertex = normalize(vec3(lightPositionCamera - vertexPositionCamera));
+    vec3 lightReflection = normalize(reflect(lightVertex, normalCamera));
 
-    if(lambertian > 0.0) {
-        float specAngle = max(dot(reflectDir, viewDir), 0.0);
-        specular = pow(specAngle, 4.0);
-    }
+    // diffuse light
+    v_diffuseIntensity = max(dot(lightVertex, normalCamera), 0.0);
 
-    v_color = lambertian * a_color + specular * specColor;
+    // specular light
+    v_specularIntensity = max(dot(lightReflection, normalize(vec3(vertexPositionCamera))), 0.0);
+    v_specularIntensity = pow(v_specularIntensity, 6.0);
 }

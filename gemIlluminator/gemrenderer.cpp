@@ -140,13 +140,14 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     m_vertices->bind();
     m_program->bind();
 
-    QMatrix4x4 mvp;
-    mvp.scale(0.5);
-    mvp.translate(m_position.x(), m_position.y(), m_position.z());
-    mvp.rotate(m_rotation.x(), QVector3D(1.0, 0.0, 0.0));
-    mvp.rotate(m_rotation.y(), QVector3D(0.0, 1.0, 0.0));
-    mvp.rotate(m_rotation.z(), QVector3D(0.0, 0.0, 1.0));
-    m_program->setUniformValue("modelViewProjection", mvp);
+    QMatrix4x4 mv;
+    mv.scale(0.5);
+    mv.translate(m_position.x(), m_position.y(), m_position.z());
+    mv.rotate(m_rotation.x(), QVector3D(1.0, 0.0, 0.0));
+    mv.rotate(m_rotation.y(), QVector3D(0.0, 1.0, 0.0));
+    mv.rotate(m_rotation.z(), QVector3D(0.0, 0.0, 1.0));
+    m_program->setUniformValue("modelView", mv);
+    m_program->setUniformValue("modelViewIT", mv.inverted().transposed());
 
     gl->glEnableVertexAttribArray(0);
     gl->glEnableVertexAttribArray(1);
