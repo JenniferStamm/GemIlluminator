@@ -141,7 +141,8 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     m_program->bind();
 
     QMatrix4x4 mvp;
-    mvp.translate(0.f, 0.f, 0.5f);
+    mvp.scale(0.5);
+    mvp.translate(m_position.x(), m_position.y(), m_position.z());
     m_program->setUniformValue("modelViewProjection", mvp);
 
     gl->glEnableVertexAttribArray(0);

@@ -10,6 +10,7 @@ class QOpenGLFunctions;
 class AbstractGeometry : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
 public:
     explicit AbstractGeometry(QObject *parent = 0);
     virtual ~AbstractGeometry();
