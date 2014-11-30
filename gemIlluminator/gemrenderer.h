@@ -26,6 +26,10 @@ protected:
             QVector<float> color2,
             QVector<float> color3,
             QVector<float> color4);
+    virtual QVector<float> calculateNormal(
+            QVector<float> vector1,
+            QVector<float> vector2,
+            QVector<float> vector3);
 
 private:
     QOpenGLBuffer *m_vertices;

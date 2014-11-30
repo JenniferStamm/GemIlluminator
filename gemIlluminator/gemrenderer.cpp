@@ -2,6 +2,7 @@
 
 #include <QMatrix4x4>
 #include <QVector>
+#include <QVector3D>
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
@@ -61,37 +62,68 @@ QVector<float> GemRenderer::initializeVertexData(
     QVector<float> vertexData;
 
     // first triangle
+    QVector<float> normal1 = calculateNormal(vector1, vector3, vector4);
     vertexData += vector1;
     vertexData += color1;
+    vertexData += normal1;
     vertexData += vector3;
     vertexData += color1;
+    vertexData += normal1;
     vertexData += vector4;
     vertexData += color1;
+    vertexData += normal1;
 
     // second triangle
+    QVector<float> normal2 = calculateNormal(vector3, vector4, vector2);
     vertexData += vector3;
     vertexData += color2;
+    vertexData += normal2;
     vertexData += vector4;
     vertexData += color2;
+    vertexData += normal2;
     vertexData += vector2;
     vertexData += color2;
+    vertexData += normal2;
 
     // third triangle
+    QVector<float> normal3 = calculateNormal(vector4, vector2, vector1);
     vertexData += vector4;
     vertexData += color3;
+    vertexData += normal3;
     vertexData += vector2;
     vertexData += color3;
+    vertexData += normal3;
     vertexData += vector1;
     vertexData += color3;
+    vertexData += normal3;
 
     // fourth triangle
+    QVector<float> normal4 = calculateNormal(vector2, vector1, vector3);
     vertexData += vector2;
     vertexData += color4;
+    vertexData += normal4;
     vertexData += vector1;
     vertexData += color4;
+    vertexData += normal4;
     vertexData += vector3;
     vertexData += color4;
+    vertexData += normal4;
+
     return vertexData;
+}
+
+QVector<float> GemRenderer::calculateNormal(
+        QVector<float> vector1,
+        QVector<float> vector2,
+        QVector<float> vector3)
+{
+    QVector3D vector3D1(vector1[0], vector1[1], vector1[2]);
+    QVector3D vector3D2(vector2[0], vector2[1], vector2[2]);
+    QVector3D vector3D3(vector3[0], vector3[1], vector3[2]);
+
+    QVector3D normal3D = QVector3D::crossProduct(vector3D2 - vector3D1, vector3D3 - vector3D1);
+    QVector<float> normal{normal3D.x(), normal3D.y(), normal3D.z()};
+    return normal;
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl)
@@ -110,17 +142,21 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
 
     gl->glEnableVertexAttribArray(0);
     gl->glEnableVertexAttribArray(1);
+    gl->glEnableVertexAttribArray(2);
 
     m_program->bindAttributeLocation("a_vertex", 0);
     m_program->bindAttributeLocation("a_color", 1);
+    m_program->bindAttributeLocation("a_normal", 2);
 
-    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
-    gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
+    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
+    gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
+    gl->glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
 
     gl->glDrawArrays(GL_TRIANGLE_STRIP, 0, 12);
 
     gl->glDisableVertexAttribArray(0);
     gl->glDisableVertexAttribArray(1);
+    gl->glDisableVertexAttribArray(2);
 
     m_vertices->release();
     m_program->release();
