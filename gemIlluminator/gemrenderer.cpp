@@ -122,6 +122,7 @@ QVector<float> GemRenderer::calculateNormal(
     QVector3D vector3D3(vector3[0], vector3[1], vector3[2]);
 
     QVector3D normal3D = QVector3D::crossProduct(vector3D2 - vector3D1, vector3D3 - vector3D1);
+    normal3D.normalize();
     QVector<float> normal{normal3D.x(), normal3D.y(), normal3D.z()};
     return normal;
 }
@@ -136,7 +137,6 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     m_program->bind();
 
     QMatrix4x4 mvp;
-
     mvp.translate(0.f, 0.f, 0.5f);
     m_program->setUniformValue("modelViewProjection", mvp);
 
