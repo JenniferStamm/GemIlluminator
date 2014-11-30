@@ -3,7 +3,7 @@
 precision mediump int;
 precision mediump float;
 #endif
-varying vec3 v_vertex;
+
 varying vec3 v_color;
 
 void main()

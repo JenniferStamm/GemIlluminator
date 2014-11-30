@@ -19,7 +19,6 @@ protected:
 
 private:
     QOpenGLBuffer *m_vertices;
-    QOpenGLBuffer *m_indices;
     QOpenGLShaderProgram *m_program;
 };
 
