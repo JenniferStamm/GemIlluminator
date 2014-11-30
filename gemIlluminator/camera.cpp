@@ -29,7 +29,7 @@ void Camera::recalculateViewProjection()
     if (m_isProjectionInvalid){
         recalculateProjection();
     }
-    m_viewProjection = m_view * m_projection;
+    m_viewProjection = m_projection * m_view;
     m_viewProjectionInverted = m_viewProjection.inverted();
 }
 

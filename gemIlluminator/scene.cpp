@@ -3,6 +3,7 @@
 #include <QQuickWindow>
 
 #include "abstractgeometry.h"
+#include "camera.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -26,6 +27,7 @@ void Scene::sync()
     m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
     m_renderer->setGeometries(m_geometries);
     m_renderer->setActive(m_active);
+    m_renderer->setViewProjection(m_camera->viewProjection());
 
     for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
         (*i)->synchronize();
@@ -89,4 +91,14 @@ void Scene::setActive(bool active)
     m_active = active;
 
     emit activeChanged();
+}
+
+Camera* Scene::camera()
+{
+    return m_camera;
+}
+
+void Scene::setCamera(Camera* camera)
+{
+    m_camera = camera;
 }

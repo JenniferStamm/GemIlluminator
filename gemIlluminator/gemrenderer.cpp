@@ -66,7 +66,7 @@ void GemRenderer::initialize()
     }
 }
 
-void GemRenderer::paint(QOpenGLFunctions *gl)
+void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
 {
     if (!m_program) {
         initialize();
@@ -75,9 +75,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     m_vertices->bind();
     m_program->bind();
 
-    QMatrix4x4 mvp;
-
-    mvp.translate(0.f, 0.f, 0.5f);
+    QMatrix4x4 mvp = viewProjection;
     m_program->setUniformValue("modelViewProjection", mvp);
 
     gl->glEnableVertexAttribArray(0);
