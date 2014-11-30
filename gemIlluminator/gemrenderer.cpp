@@ -147,6 +147,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     mv.rotate(m_rotation.y(), QVector3D(0.0, 1.0, 0.0));
     mv.rotate(m_rotation.z(), QVector3D(0.0, 0.0, 1.0));
     m_program->setUniformValue("modelView", mv);
+    m_program->setUniformValue("modelViewIT", mv.inverted().transposed());
 
     gl->glEnableVertexAttribArray(0);
     gl->glEnableVertexAttribArray(1);
