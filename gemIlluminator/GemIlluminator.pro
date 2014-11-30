@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     gem.cpp \
     gemrenderer.cpp \
     abstractgeometry.cpp \
-    abstractgeometryrenderer.cpp
+    abstractgeometryrenderer.cpp \
+    camera.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -37,4 +38,5 @@ HEADERS += \
     gem.h \
     gemrenderer.h \
     abstractgeometryrenderer.h \
-    abstractgeometry.h
+    abstractgeometry.h \
+    camera.h
