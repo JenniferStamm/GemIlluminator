@@ -1,10 +1,11 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <QMatrix4x4>
 #include <QObject>
 #include <QSize>
 #include <QVector3D>
+
+class QMatrix4x4;
 
 class Camera : public QObject
 {
@@ -21,13 +22,14 @@ class Camera : public QObject
 
 public:
     explicit Camera(QObject *parent = 0);
+    virtual ~Camera();
 
-    QMatrix4x4 view();
-    QMatrix4x4 viewInverted();
-    QMatrix4x4 viewProjection();
-    QMatrix4x4 viewProjectionInverted();
-    QMatrix4x4 projection();
-    QMatrix4x4 projectionInverted();
+    QMatrix4x4 const & view();
+    QMatrix4x4 const & viewInverted();
+    QMatrix4x4 const & viewProjection();
+    QMatrix4x4 const & viewProjectionInverted();
+    QMatrix4x4 const & projection();
+    QMatrix4x4 const & projectionInverted();
 
     QVector3D position();
     QVector3D viewDirection();
@@ -63,20 +65,20 @@ protected:
     void recalculateViewProjection();
 
 protected:
-    QVector3D m_eye;
-    QVector3D m_center;
-    QVector3D m_up;
-    QSize m_viewport;
+    QVector3D *m_eye;
+    QVector3D *m_center;
+    QVector3D *m_up;
+    QSize *m_viewport;
     float m_zNear;
     float m_zFar;
     float m_fovy;
 
-    QMatrix4x4 m_view;
-    QMatrix4x4 m_viewInverted;
-    QMatrix4x4 m_projection;
-    QMatrix4x4 m_projectionInverted;
-    QMatrix4x4 m_viewProjection;
-    QMatrix4x4 m_viewProjectionInverted;
+    QMatrix4x4 *m_view;
+    QMatrix4x4 *m_viewInverted;
+    QMatrix4x4 *m_projection;
+    QMatrix4x4 *m_projectionInverted;
+    QMatrix4x4 *m_viewProjection;
+    QMatrix4x4 *m_viewProjectionInverted;
 
     bool m_isViewInvalid;
     bool m_isProjectionInvalid;
