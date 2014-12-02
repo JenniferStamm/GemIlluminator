@@ -36,3 +36,17 @@ void AbstractGeometryRenderer::setRotation(QVector3D rotation)
 
     m_rotation = rotation;
 }
+QVector3D AbstractGeometryRenderer::initialRotation() const
+{
+    return m_initialRotation;
+}
+
+void AbstractGeometryRenderer::setInitialRotation(const QVector3D &initialRotation)
+{
+    if (initialRotation == m_initialRotation) {
+       return;
+    }
+
+    m_initialRotation = initialRotation;
+}
+

@@ -143,9 +143,9 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     QMatrix4x4 mv;
     mv.scale(0.5);
     mv.translate(m_position.x(), m_position.y(), m_position.z());
-    mv.rotate(m_rotation.x(), QVector3D(1.0, 0.0, 0.0));
-    mv.rotate(m_rotation.y(), QVector3D(0.0, 1.0, 0.0));
-    mv.rotate(m_rotation.z(), QVector3D(0.0, 0.0, 1.0));
+    mv.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
+    mv.rotate(m_rotation.y() + m_initialRotation.y(), QVector3D(0.0, 1.0, 0.0));
+    mv.rotate(m_rotation.z() + m_initialRotation.z(), QVector3D(0.0, 0.0, 1.0));
     m_program->setUniformValue("modelView", mv);
     m_program->setUniformValue("modelViewIT", mv.inverted().transposed());
 

@@ -104,7 +104,7 @@ ApplicationWindow {
                 var zAngle = Math.random() * 360 - 180
                 var creationString = 'import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem' + i
                         + '; position.x: ' + x + '; position.y: ' + y + '; position.z: ' + z
-                        + '; rotation.x: ' + xAngle + '; rotation.y: ' + yAngle + '; rotation.z: ' + zAngle
+                        + '; initialRotation.x: ' + xAngle + '; initialRotation.y: ' + yAngle + '; initialRotation.z: ' + zAngle
                         + '}'
                 scene.appendGeometry(Qt.createQmlObject(creationString, scene, 'gem.qml'))
             }

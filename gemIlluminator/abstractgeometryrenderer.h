@@ -21,9 +21,13 @@ public:
     void setPosition(QVector3D position);
     void setRotation(QVector3D rotation);
 
+    QVector3D initialRotation() const;
+    void setInitialRotation(const QVector3D &initialRotation);
+
 protected:
     QVector3D m_position;
     QVector3D m_rotation;
+    QVector3D m_initialRotation;
 };
 
 #endif // GEOMETRYRENDERER_H
