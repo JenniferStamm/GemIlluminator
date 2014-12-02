@@ -80,6 +80,9 @@ ApplicationWindow {
 
     AbstractNavigation {
         id: navigation
+        rotateX: 0.0
+        rotateY: 0.0
+        rotateZ: 0.0
     }
 
     Scene {
