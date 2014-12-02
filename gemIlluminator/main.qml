@@ -72,10 +72,10 @@ ApplicationWindow {
     }
 
     function calcPitch(x,y,z) {
-        return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 57.2957795);
+        return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 180 / Math.PI);
     }
     function calcRoll(x,y,z) {
-         return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 57.2957795);
+         return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 180 / Math.PI);
     }
 
     AbstractNavigation {
