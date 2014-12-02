@@ -34,7 +34,7 @@ signals:
 protected:
     AbstractGeometryRenderer *m_renderer;
     QVector3D m_position;
-    QVector3D m_rotation;
+    QVector3D m_rotation; /*!< Contains the euler angles */
 };
 
 #endif // GEOMETRY_H
