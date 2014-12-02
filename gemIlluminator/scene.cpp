@@ -29,9 +29,9 @@ void Scene::sync()
         m_renderer->setGeometries(m_geometries);
         m_renderer->setActive(m_active);
 
-        for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
-            (*i)->synchronize();
-            (*i)->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
+        for (auto& i : m_geometries) {
+            i->synchronize();
+            i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
         }
     }
 }
@@ -42,8 +42,8 @@ void Scene::cleanup()
         delete m_renderer;
         m_renderer = 0;
     }
-    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
-        (*i)->cleanup();
+    for (auto& i : m_geometries) {
+        i->cleanup();
     }
 }
 
