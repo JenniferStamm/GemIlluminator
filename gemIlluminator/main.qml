@@ -51,8 +51,8 @@ ApplicationWindow {
         dataRate: 15
 
         onReadingChanged: {
-            navigation.rotateX = rotation.reading.y
-            navigation.rotateY = rotation.reading.x
+            navigation.rotateX = rotation.reading.y * 2
+            navigation.rotateY = rotation.reading.x * 2
         }
     }
 
