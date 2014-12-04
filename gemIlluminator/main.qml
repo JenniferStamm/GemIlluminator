@@ -45,29 +45,14 @@ ApplicationWindow {
        }
     }
 
-    Accelerometer {
-        id: accel
-        dataRate: 15
+    RotationSensor {
+        id: rotation
         active: true
-
-        property int oldY: 0
-        property int oldX: 0
+        dataRate: 15
 
         onReadingChanged: {
-            var rotateX = calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * 2
-            var rotateY = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * 2
-            rotateX = Math.round(rotateX)
-            rotateY = Math.round(rotateY)
-
-            if(Math.abs(oldX - rotateX) > 2) {
-                navigation.rotateX = rotateX
-                oldX = rotateX
-            }
-
-            if(Math.abs(oldY - rotateY) > 2) {
-                navigation.rotateY = rotateY
-                oldY = rotateY
-            }
+            navigation.rotateX = rotation.reading.y
+            navigation.rotateY = rotation.reading.x
         }
     }
 
@@ -110,7 +95,7 @@ ApplicationWindow {
             }
         }
         Component.onCompleted: {
-            scene.crystalCount = 3
+            scene.crystalCount = 1
             scene.registerNavigation(navigation)
         }
     }
@@ -120,7 +105,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if(event.key == Qt.Key_A) {
                 console.log("Key pressed")
-                scene.crystalCount = 3
+                scene.crystalCount = 1
 
             }
         }
