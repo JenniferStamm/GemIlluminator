@@ -5,15 +5,26 @@
 Gem::Gem(QObject *parent) :
     AbstractGeometry(parent)
 {
-    m_renderer = new GemRenderer();
 }
 
 Gem::~Gem()
 {
-
 }
 
 void Gem::synchronize()
 {
+    //renderer has to been created in correct thread
+    if (!m_renderer){
+        m_renderer = new GemRenderer();
+    }
 
+    m_renderer->setPosition(m_position);
+    m_renderer->setRotation(m_rotation);
+    m_renderer->setInitialRotation(m_initialRotation);
+}
+
+void Gem::cleanup()
+{
+    delete m_renderer;
+    m_renderer = nullptr;
 }

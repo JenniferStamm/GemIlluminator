@@ -3,6 +3,8 @@
 #include <QQuickWindow>
 
 #include "abstractgeometry.h"
+#include "camera.h"
+#include "abstractnavigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -19,25 +21,30 @@ Scene::~Scene()
 
 void Scene::sync()
 {
-    if (!m_renderer) {
-        m_renderer = new SceneRenderer();
-        connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
-    }
-    m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
-    m_renderer->setActive(m_active);
+    if (m_active) {
+        if (!m_renderer) {
+            m_renderer = new SceneRenderer();
+            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+        }
+        m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
+        m_renderer->setGeometries(m_geometries);
+        m_renderer->setActive(m_active);
 
-    for(QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++)
-    {
-        (*i)->synchronize();
+        for (auto& i : m_geometries) {
+            i->synchronize();
+            i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
+        }
     }
 }
 
 void Scene::cleanup()
 {
-    if(m_renderer)
-    {
+    if (m_renderer) {
         delete m_renderer;
         m_renderer = 0;
+    }
+    for (auto& i : m_geometries) {
+        i->cleanup();
     }
 }
 
@@ -53,6 +60,17 @@ void Scene::handleWindowChanged(QQuickWindow *win)
 QQmlListProperty<AbstractGeometry> Scene::geometries()
 {
     return QQmlListProperty<AbstractGeometry>(this, m_geometries);
+}
+
+void Scene::appendGeometry(AbstractGeometry *geometry) {
+    geometry->setParent(m_renderer);
+    m_geometries.append(geometry);
+    geometriesChanged();
+}
+
+void Scene::registerNavigation(AbstractNavigation *navigation)
+{
+    m_navigation = navigation;
 }
 
 qreal Scene::t()
@@ -81,4 +99,14 @@ void Scene::setActive(bool active)
     m_active = active;
 
     emit activeChanged();
+}
+
+Camera* Scene::camera()
+{
+    return m_camera;
+}
+
+void Scene::setCamera(Camera* camera)
+{
+    m_camera = camera;
 }

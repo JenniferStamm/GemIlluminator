@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors multimedia
+QT += qml quick widgets sensors #multimedia
 
 SOURCES += main.cpp \
     scene.cpp \
@@ -11,9 +11,11 @@ SOURCES += main.cpp \
     gem.cpp \
     gemrenderer.cpp \
     abstractgeometry.cpp \
-    abstractgeometryrenderer.cpp
+    abstractgeometryrenderer.cpp \
+    camera.cpp
 
-RESOURCES += qml.qrc
+RESOURCES += qml.qrc \
+    shader.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -22,6 +24,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+CONFIG += c++11
 
 OTHER_FILES += \
     android/AndroidManifest.xml
@@ -34,4 +38,5 @@ HEADERS += \
     gem.h \
     gemrenderer.h \
     abstractgeometryrenderer.h \
-    abstractgeometry.h
+    abstractgeometry.h \
+    camera.h
