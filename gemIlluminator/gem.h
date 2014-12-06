@@ -3,6 +3,9 @@
 
 #include "abstractgeometry.h"
 
+template <typename T> class QVector;
+class QVector3D;
+
 class Gem : public AbstractGeometry
 {
 public:
@@ -11,6 +14,10 @@ public:
 
     virtual void synchronize() override;
     virtual void cleanup() override;
+
+protected:
+    QVector<QVector3D> *m_vertices;
+    QVector<QVector3D> *m_colors;
 };
 
 #endif // GEM_H

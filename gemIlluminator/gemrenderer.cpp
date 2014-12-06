@@ -7,10 +7,21 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
-GemRenderer::GemRenderer(QObject *parent):
+GemRenderer::GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent):
     AbstractGeometryRenderer(parent)
+,   m_vertexData(new QVector<QVector3D>())
 ,   m_vertexBuffer(new QOpenGLBuffer())
 {
+    m_vertexData = initializeVertexData(
+                vertices->at(0),
+                vertices->at(1),
+                vertices->at(2),
+                vertices->at(3),
+                colors->at(0),
+                colors->at(1),
+                colors->at(2),
+                colors->at(3)
+            );
 }
 
 GemRenderer::~GemRenderer()
@@ -20,29 +31,10 @@ GemRenderer::~GemRenderer()
 
 void GemRenderer::initialize()
 {
-    QVector3D vertex1{-0.5, -0.5, 0.5};
-    QVector3D vertex2{0.5, -0.5, 0.5};
-    QVector3D vertex3{0, -0.5, -0.5};
-    QVector3D vertex4{0.f, 0.5, 0.f};
-    QVector3D color1{1.0, 0.0, 0.0};
-    QVector3D color2{0.0, 1.0, 1.0};
-    QVector3D color3{0.0, 1.0, 0.0};
-    QVector3D color4{0.0, 0.0, 1.0};
-    QVector<QVector3D> vertexData = initializeVertexData(
-                vertex1,
-                vertex2,
-                vertex3,
-                vertex4,
-                color1,
-                color2,
-                color3,
-                color4
-                );
-
     m_vertexBuffer->create();
     m_vertexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_vertexBuffer->bind();
-    m_vertexBuffer->allocate(vertexData.constData(), vertexData.size() * sizeof(float) * 3);
+    m_vertexBuffer->allocate(m_vertexData->constData(), m_vertexData->size() * sizeof(float) * 3);
 
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
@@ -52,7 +44,7 @@ void GemRenderer::initialize()
     }
 }
 
-QVector<QVector3D> GemRenderer::initializeVertexData(
+QVector<QVector3D>* GemRenderer::initializeVertexData(
         QVector3D vector1,
         QVector3D vector2,
         QVector3D vector3,
@@ -62,55 +54,55 @@ QVector<QVector3D> GemRenderer::initializeVertexData(
         QVector3D color3,
         QVector3D color4)
 {
-    QVector<QVector3D> vertexData;
+    QVector<QVector3D> *vertexData = new QVector<QVector3D>();
 
     // first triangle
     QVector3D normal1 = calculateNormal(vector1, vector3, vector4);
-    vertexData += vector1;
-    vertexData += color1;
-    vertexData += normal1;
-    vertexData += vector3;
-    vertexData += color1;
-    vertexData += normal1;
-    vertexData += vector4;
-    vertexData += color1;
-    vertexData += normal1;
+    *vertexData += vector1;
+    *vertexData += color1;
+    *vertexData += normal1;
+    *vertexData += vector3;
+    *vertexData += color1;
+    *vertexData += normal1;
+    *vertexData += vector4;
+    *vertexData += color1;
+    *vertexData += normal1;
 
     // second triangle
     QVector3D normal2 = calculateNormal(vector3, vector4, vector2);
-    vertexData += vector3;
-    vertexData += color2;
-    vertexData += normal2;
-    vertexData += vector4;
-    vertexData += color2;
-    vertexData += normal2;
-    vertexData += vector2;
-    vertexData += color2;
-    vertexData += normal2;
+    *vertexData += vector3;
+    *vertexData += color2;
+    *vertexData += normal2;
+    *vertexData += vector4;
+    *vertexData += color2;
+    *vertexData += normal2;
+    *vertexData += vector2;
+    *vertexData += color2;
+    *vertexData += normal2;
 
     // third triangle
     QVector3D normal3 = calculateNormal(vector4, vector2, vector1);
-    vertexData += vector4;
-    vertexData += color3;
-    vertexData += normal3;
-    vertexData += vector2;
-    vertexData += color3;
-    vertexData += normal3;
-    vertexData += vector1;
-    vertexData += color3;
-    vertexData += normal3;
+    *vertexData += vector4;
+    *vertexData += color3;
+    *vertexData += normal3;
+    *vertexData += vector2;
+    *vertexData += color3;
+    *vertexData += normal3;
+    *vertexData += vector1;
+    *vertexData += color3;
+    *vertexData += normal3;
 
     // fourth triangle
     QVector3D normal4 = calculateNormal(vector2, vector1, vector3);
-    vertexData += vector2;
-    vertexData += color4;
-    vertexData += normal4;
-    vertexData += vector1;
-    vertexData += color4;
-    vertexData += normal4;
-    vertexData += vector3;
-    vertexData += color4;
-    vertexData += normal4;
+    *vertexData += vector2;
+    *vertexData += color4;
+    *vertexData += normal4;
+    *vertexData += vector1;
+    *vertexData += color4;
+    *vertexData += normal4;
+    *vertexData += vector3;
+    *vertexData += color4;
+    *vertexData += normal4;
 
     return vertexData;
 }

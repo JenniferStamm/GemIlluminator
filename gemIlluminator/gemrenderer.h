@@ -12,14 +12,14 @@ class QOpenGLBuffer;
 class GemRenderer : public AbstractGeometryRenderer
 {
 public:
-    explicit GemRenderer(QObject *parent = 0);
+    explicit GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent = 0);
     virtual ~GemRenderer();
 
     void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) override;
 
 protected:
     virtual void initialize();
-    virtual QVector<QVector3D> initializeVertexData(
+    virtual QVector<QVector3D>* initializeVertexData(
             QVector3D vector1,
             QVector3D vector2,
             QVector3D vector3,
@@ -34,6 +34,7 @@ protected:
             QVector3D vector3);
 
 protected:
+    QVector<QVector3D> *m_vertexData;
     QOpenGLBuffer *m_vertexBuffer;
 };
 
