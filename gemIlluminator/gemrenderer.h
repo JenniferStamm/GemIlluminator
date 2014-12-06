@@ -5,9 +5,9 @@
 #include <QMatrix4x4>
 
 template <typename T> class QVector;
+class QVector3D;
 class QOpenGLFunctions;
 class QOpenGLBuffer;
-class QOpenGLShaderProgram;
 
 class GemRenderer : public AbstractGeometryRenderer
 {
@@ -19,23 +19,22 @@ public:
 
 protected:
     virtual void initialize();
-    virtual QVector<float> initializeVertexData(
-            QVector<float> vector1,
-            QVector<float> vector2,
-            QVector<float> vector3,
-            QVector<float> vector4,
-            QVector<float> color1,
-            QVector<float> color2,
-            QVector<float> color3,
-            QVector<float> color4);
-    virtual QVector<float> calculateNormal(
-            QVector<float> vector1,
-            QVector<float> vector2,
-            QVector<float> vector3);
+    virtual QVector<QVector3D> initializeVertexData(
+            QVector3D vector1,
+            QVector3D vector2,
+            QVector3D vector3,
+            QVector3D vector4,
+            QVector3D color1,
+            QVector3D color2,
+            QVector3D color3,
+            QVector3D color4);
+    virtual QVector3D calculateNormal(
+            QVector3D vector1,
+            QVector3D vector2,
+            QVector3D vector3);
 
-private:
-    QOpenGLBuffer *m_vertices;
-    QOpenGLShaderProgram *m_program;
+protected:
+    QOpenGLBuffer *m_vertexBuffer;
 };
 
 #endif // GEMRENDERER_H

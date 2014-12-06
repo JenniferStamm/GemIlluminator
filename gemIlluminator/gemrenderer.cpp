@@ -9,27 +9,26 @@
 
 GemRenderer::GemRenderer(QObject *parent):
     AbstractGeometryRenderer(parent)
-,   m_vertices(new QOpenGLBuffer())
-,   m_program(nullptr)
+,   m_vertexBuffer(new QOpenGLBuffer())
 {
 }
 
 GemRenderer::~GemRenderer()
 {
-    m_vertices->destroy();
+    m_vertexBuffer->destroy();
 }
 
 void GemRenderer::initialize()
 {
-    QVector<float> vertex1{-0.5, -0.5, 0.5};
-    QVector<float> vertex2{0.5, -0.5, 0.5};
-    QVector<float> vertex3{0, -0.5, -0.5};
-    QVector<float> vertex4{0.f, 0.5, 0.f};
-    QVector<float> color1{1.0, 0.0, 0.0};
-    QVector<float> color2{0.0, 1.0, 1.0};
-    QVector<float> color3{0.0, 1.0, 0.0};
-    QVector<float> color4{0.0, 0.0, 1.0};
-    QVector<float> vertexData = initializeVertexData(
+    QVector3D vertex1{-0.5, -0.5, 0.5};
+    QVector3D vertex2{0.5, -0.5, 0.5};
+    QVector3D vertex3{0, -0.5, -0.5};
+    QVector3D vertex4{0.f, 0.5, 0.f};
+    QVector3D color1{1.0, 0.0, 0.0};
+    QVector3D color2{0.0, 1.0, 1.0};
+    QVector3D color3{0.0, 1.0, 0.0};
+    QVector3D color4{0.0, 0.0, 1.0};
+    QVector<QVector3D> vertexData = initializeVertexData(
                 vertex1,
                 vertex2,
                 vertex3,
@@ -40,10 +39,10 @@ void GemRenderer::initialize()
                 color4
                 );
 
-    m_vertices->create();
-    m_vertices->setUsagePattern(QOpenGLBuffer::StaticDraw);
-    m_vertices->bind();
-    m_vertices->allocate(vertexData.constData(), vertexData.size() * sizeof(float));
+    m_vertexBuffer->create();
+    m_vertexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
+    m_vertexBuffer->bind();
+    m_vertexBuffer->allocate(vertexData.constData(), vertexData.size() * sizeof(float) * 3);
 
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
@@ -53,20 +52,20 @@ void GemRenderer::initialize()
     }
 }
 
-QVector<float> GemRenderer::initializeVertexData(
-        QVector<float> vector1,
-        QVector<float> vector2,
-        QVector<float> vector3,
-        QVector<float> vector4,
-        QVector<float> color1,
-        QVector<float> color2,
-        QVector<float> color3,
-        QVector<float> color4)
+QVector<QVector3D> GemRenderer::initializeVertexData(
+        QVector3D vector1,
+        QVector3D vector2,
+        QVector3D vector3,
+        QVector3D vector4,
+        QVector3D color1,
+        QVector3D color2,
+        QVector3D color3,
+        QVector3D color4)
 {
-    QVector<float> vertexData;
+    QVector<QVector3D> vertexData;
 
     // first triangle
-    QVector<float> normal1 = calculateNormal(vector1, vector3, vector4);
+    QVector3D normal1 = calculateNormal(vector1, vector3, vector4);
     vertexData += vector1;
     vertexData += color1;
     vertexData += normal1;
@@ -78,7 +77,7 @@ QVector<float> GemRenderer::initializeVertexData(
     vertexData += normal1;
 
     // second triangle
-    QVector<float> normal2 = calculateNormal(vector3, vector4, vector2);
+    QVector3D normal2 = calculateNormal(vector3, vector4, vector2);
     vertexData += vector3;
     vertexData += color2;
     vertexData += normal2;
@@ -90,7 +89,7 @@ QVector<float> GemRenderer::initializeVertexData(
     vertexData += normal2;
 
     // third triangle
-    QVector<float> normal3 = calculateNormal(vector4, vector2, vector1);
+    QVector3D normal3 = calculateNormal(vector4, vector2, vector1);
     vertexData += vector4;
     vertexData += color3;
     vertexData += normal3;
@@ -102,7 +101,7 @@ QVector<float> GemRenderer::initializeVertexData(
     vertexData += normal3;
 
     // fourth triangle
-    QVector<float> normal4 = calculateNormal(vector2, vector1, vector3);
+    QVector3D normal4 = calculateNormal(vector2, vector1, vector3);
     vertexData += vector2;
     vertexData += color4;
     vertexData += normal4;
@@ -116,18 +115,13 @@ QVector<float> GemRenderer::initializeVertexData(
     return vertexData;
 }
 
-QVector<float> GemRenderer::calculateNormal(
-        QVector<float> vector1,
-        QVector<float> vector2,
-        QVector<float> vector3)
+QVector3D GemRenderer::calculateNormal(
+        QVector3D vector1,
+        QVector3D vector2,
+        QVector3D vector3)
 {
-    QVector3D vector3D1(vector1[0], vector1[1], vector1[2]);
-    QVector3D vector3D2(vector2[0], vector2[1], vector2[2]);
-    QVector3D vector3D3(vector3[0], vector3[1], vector3[2]);
-
-    QVector3D normal3D = QVector3D::crossProduct(vector3D2 - vector3D1, vector3D3 - vector3D1);
-    normal3D.normalize();
-    QVector<float> normal{normal3D.x(), normal3D.y(), normal3D.z()};
+    QVector3D normal = QVector3D::crossProduct(vector2 - vector1, vector3 - vector1);
+    normal.normalize();
     return normal;
 }
 
@@ -137,7 +131,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
         initialize();
     }
 
-    m_vertices->bind();
+    m_vertexBuffer->bind();
     m_program->bind();
 
 
@@ -174,6 +168,6 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
     gl->glDisableVertexAttribArray(1);
     gl->glDisableVertexAttribArray(2);
 
-    m_vertices->release();
+    m_vertexBuffer->release();
     m_program->release();
 }
