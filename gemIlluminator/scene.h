@@ -8,6 +8,7 @@ class AbstractGeometry;
 class SceneRenderer;
 class Camera;
 class AbstractNavigation;
+class QTime;
 
 class Scene : public QQuickItem
 {
@@ -49,6 +50,7 @@ protected:
     SceneRenderer *m_renderer;
     QList<AbstractGeometry*> m_geometries;
     qreal m_t;
+    QTime *m_time;
     bool m_active;
     Camera *m_camera;
     AbstractNavigation *m_navigation;
