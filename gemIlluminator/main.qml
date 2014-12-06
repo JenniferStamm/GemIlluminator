@@ -3,6 +3,7 @@ import QtQuick.Controls 1.2
 import GemIlluminator 1.0
 import QtSensors 5.0
 import QtQml 2.2
+import QtQuick.Window 2.1
 
 ApplicationWindow {
     id: root
@@ -16,37 +17,57 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
+                scene.active = false
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
+                scene.active = false
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
+                if(Qt.platform.os == "android") {
+                    root.showFullScreen()
+                }
+
+                scene.active = true
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
+                scene.active = false
+
+                if(Qt.platform.os == "android") {
+                    root.hide()
+                }
+
                 console.log("Inactive")
                 break
             }
        }
     }
 
-    Accelerometer {
-        id: accel
-        dataRate: 100
+    RotationSensor {
+        id: rotation
         active: true
+        dataRate: 15
 
         onReadingChanged: {
-            var pitch = calcPitch(accel.reading.x, accel.reading.y, accel.reading.z) * .3
-            var roll = calcRoll(accel.reading.x, accel.reading.y, accel.reading.z) * .3
+            navigation.rotateX = rotation.reading.y * 2
+            navigation.rotateY = rotation.reading.x * 2
         }
     }
 
     function calcPitch(x,y,z) {
-        return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 57.2957795);
+        return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 180 / Math.PI);
     }
     function calcRoll(x,y,z) {
-         return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 57.2957795);
+         return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 180 / Math.PI);
+    }
+
+    AbstractNavigation {
+        id: navigation
+        rotateX: 0.0
+        rotateY: 0.0
+        rotateZ: 0.0
     }
 
     Scene {
@@ -72,12 +93,23 @@ ApplicationWindow {
         onCrystalCountChanged: {
             for (var i = 0; i < crystalCount; i++) {
                 console.log("New gem" + i)
-
-                scene.appendGeometry(Qt.createQmlObject('import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem}', scene, 'gem.qml'))
+                var x = Math.random() * 2.0 - 1.0
+                var y = Math.random() * 2.0 - 1.0
+                var z = Math.random() * 2.0 - 1.0
+                var xAngle = Math.random() * 360 - 180
+                var yAngle = Math.random() * 360 - 180
+                var zAngle = Math.random() * 360 - 180
+                var creationString = 'import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem' + i
+                        + '; position.x: ' + x + '; position.y: ' + y + '; position.z: ' + z
+                        + '; initialRotation.x: ' + xAngle + '; initialRotation.y: ' + yAngle + '; initialRotation.z: ' + zAngle
+                        + '}'
+                scene.appendGeometry(Qt.createQmlObject(creationString, scene, 'gem.qml'))
             }
         }
-        Component.onCompleted:
-            scene.crystalCount = 3
+        Component.onCompleted: {
+            scene.crystalCount = 1
+            scene.registerNavigation(navigation)
+        }
     }
 
     Rectangle {
@@ -85,7 +117,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if(event.key == Qt.Key_A) {
                 console.log("Key pressed")
-                scene.crystalCount = 3
+                scene.crystalCount = 1
 
             }
         }

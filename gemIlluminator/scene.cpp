@@ -4,6 +4,7 @@
 
 #include "abstractgeometry.h"
 #include "camera.h"
+#include "abstractnavigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -20,17 +21,19 @@ Scene::~Scene()
 
 void Scene::sync()
 {
-    if (!m_renderer) {
-        m_renderer = new SceneRenderer();
-        connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
-    }
-    m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
-    m_renderer->setGeometries(m_geometries);
-    m_renderer->setActive(m_active);
-    m_renderer->setViewProjection(m_camera->viewProjection());
+    if (m_active) {
+        if (!m_renderer) {
+            m_renderer = new SceneRenderer();
+            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+        }
+        m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
+        m_renderer->setGeometries(m_geometries);
+        m_renderer->setActive(m_active);
 
-    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
-        (*i)->synchronize();
+        for (auto& i : m_geometries) {
+            i->synchronize();
+            i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
+        }
     }
 }
 
@@ -40,8 +43,8 @@ void Scene::cleanup()
         delete m_renderer;
         m_renderer = 0;
     }
-    for (QList<AbstractGeometry*>::iterator i = m_geometries.begin(); i != m_geometries.end(); i++) {
-        (*i)->cleanup();
+    for (auto& i : m_geometries) {
+        i->cleanup();
     }
 }
 
@@ -60,9 +63,14 @@ QQmlListProperty<AbstractGeometry> Scene::geometries()
 }
 
 void Scene::appendGeometry(AbstractGeometry *geometry) {
-    //geometry->setParent(this); TODO: Figure out, why this does not work or if we need it
+    geometry->setParent(m_renderer);
     m_geometries.append(geometry);
     geometriesChanged();
+}
+
+void Scene::registerNavigation(AbstractNavigation *navigation)
+{
+    m_navigation = navigation;
 }
 
 qreal Scene::t()
