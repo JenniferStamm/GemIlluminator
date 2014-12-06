@@ -29,12 +29,12 @@ void Gem::cleanup()
     m_renderer = nullptr;
 }
 
-QVector3D AbstractGeometry::initialRotation() const
+QVector3D Gem::initialRotation() const
 {
     return m_initialRotation;
 }
 
-void AbstractGeometry::setInitialRotation(const QVector3D &initialRotation)
+void Gem::setInitialRotation(const QVector3D &initialRotation)
 {
     if (initialRotation == m_initialRotation) {
        return;
