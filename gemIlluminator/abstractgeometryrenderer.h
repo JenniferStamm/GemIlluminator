@@ -6,6 +6,7 @@
 #include <QVector3D>
 
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 
 class AbstractGeometryRenderer : public QObject
 {
@@ -29,6 +30,7 @@ protected:
     QVector3D m_position;
     QVector3D m_rotation;
     QVector3D m_initialRotation;
+    QOpenGLShaderProgram *m_program;
 };
 
 #endif // GEOMETRYRENDERER_H
