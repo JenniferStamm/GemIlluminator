@@ -27,6 +27,7 @@ ApplicationWindow {
             case Qt.ApplicationActive:
                 if(Qt.platform.os == "android") {
                     root.showFullScreen()
+                    rotation.active = true
                 }
 
                 scene.active = true
@@ -51,8 +52,10 @@ ApplicationWindow {
         dataRate: 15
 
         onReadingChanged: {
-            navigation.rotateX = rotation.reading.y * 2
-            navigation.rotateY = rotation.reading.x * 2
+            if(Qt.platform.os == "android") {
+                navigation.rotateX = rotation.reading.y * 2
+                navigation.rotateY = rotation.reading.x * 2
+            }
         }
     }
 
@@ -68,6 +71,27 @@ ApplicationWindow {
         rotateX: 0.0
         rotateY: 0.0
         rotateZ: 0.0
+    }
+
+    MouseArea {
+        id: mouse
+        acceptedButtons: Qt.RightButton
+        anchors.fill: parent
+
+        property int oldX: 0
+        property int oldY: 0
+
+        onPressed: {
+            oldX = mouseX
+            oldY = mouseY
+        }
+
+        onPositionChanged: {
+            navigation.rotateX += ((mouseY - oldY) / root.height) * 180
+            navigation.rotateY -= ((mouseX - oldX) / root.width) * 180
+            oldY = mouseY
+            oldX = mouseX
+        }
     }
 
     Scene {
