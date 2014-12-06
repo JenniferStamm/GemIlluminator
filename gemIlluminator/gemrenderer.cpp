@@ -131,7 +131,7 @@ QVector<float> GemRenderer::calculateNormal(
     return normal;
 }
 
-void GemRenderer::paint(QOpenGLFunctions *gl)
+void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
 {
     if (!m_program) {
         initialize();
@@ -140,14 +140,20 @@ void GemRenderer::paint(QOpenGLFunctions *gl)
     m_vertices->bind();
     m_program->bind();
 
-    QMatrix4x4 mv;
-    mv.scale(0.5);
-    mv.translate(m_position.x(), m_position.y(), m_position.z());
-    mv.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
-    mv.rotate(m_rotation.y() + m_initialRotation.y(), QVector3D(0.0, 1.0, 0.0));
-    mv.rotate(m_rotation.z() + m_initialRotation.z(), QVector3D(0.0, 0.0, 1.0));
-    m_program->setUniformValue("modelView", mv);
-    m_program->setUniformValue("modelViewIT", mv.inverted().transposed());
+
+    QMatrix4x4 model;
+    model.scale(0.5);
+    model.translate(m_position.x(), m_position.y(), m_position.z());
+    model.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
+    model.rotate(m_rotation.y() + m_initialRotation.y(), QVector3D(0.0, 1.0, 0.0));
+    model.rotate(m_rotation.z() + m_initialRotation.z(), QVector3D(0.0, 0.0, 1.0));
+    m_program->setUniformValue("model", model);
+    m_program->setUniformValue("modelIT", model.inverted().transposed());
+
+    m_program->setUniformValue("viewProjection", viewProjection);
+
+    QMatrix4x4 mvp = viewProjection * model;
+    m_program->setUniformValue("modelViewProjection", mvp);
 
     gl->glEnableVertexAttribArray(0);
     gl->glEnableVertexAttribArray(1);

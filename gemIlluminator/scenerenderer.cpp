@@ -24,7 +24,7 @@ void SceneRenderer::paint()
         m_gl->glDepthMask(GL_TRUE);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(m_gl);
+            geometry->paint(m_gl, m_viewProjection);
         }
     }
 }
@@ -47,4 +47,9 @@ bool SceneRenderer::isActive()
 void SceneRenderer::setActive(bool active)
 {
     m_active = active;
+}
+
+void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
+{
+    m_viewProjection = viewProjection;
 }

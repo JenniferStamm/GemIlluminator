@@ -6,6 +6,7 @@
 
 class AbstractGeometry;
 class SceneRenderer;
+class Camera;
 class AbstractNavigation;
 
 class Scene : public QQuickItem
@@ -14,6 +15,7 @@ class Scene : public QQuickItem
     Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
     Q_PROPERTY(QQmlListProperty<AbstractGeometry> geometries READ geometries NOTIFY geometriesChanged)
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
+    Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
 
 public:
     explicit Scene(QQuickItem *parent = 0);
@@ -27,6 +29,9 @@ public:
     bool isActive();
 
     void setActive(bool active);
+
+    Camera* camera();
+    void setCamera(Camera *camera);
 
 signals:
     void cubesChanged();
@@ -45,6 +50,7 @@ protected:
     QList<AbstractGeometry*> m_geometries;
     qreal m_t;
     bool m_active;
+    Camera *m_camera;
     AbstractNavigation *m_navigation;
 
 private slots:

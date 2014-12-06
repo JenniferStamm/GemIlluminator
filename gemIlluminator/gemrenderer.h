@@ -2,6 +2,7 @@
 #define GEMRENDERER_H
 
 #include "abstractgeometryrenderer.h"
+#include <QMatrix4x4>
 
 template <typename T> class QVector;
 class QOpenGLFunctions;
@@ -14,7 +15,7 @@ public:
     explicit GemRenderer(QObject *parent = 0);
     virtual ~GemRenderer();
 
-    void paint(QOpenGLFunctions *gl) override;
+    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) override;
 
 protected:
     virtual void initialize();

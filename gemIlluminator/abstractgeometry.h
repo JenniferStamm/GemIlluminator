@@ -2,6 +2,7 @@
 #define GEOMETRY_H
 
 #include <QObject>
+#include <QMatrix4x4>
 #include <QVector3D>
 
 class AbstractGeometryRenderer;
@@ -20,7 +21,7 @@ public:
     virtual void synchronize() = 0;
     virtual void cleanup() = 0;
 
-    void paint(QOpenGLFunctions *gl);
+    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection);
 
     QVector3D position();
     void setPosition(QVector3D position);

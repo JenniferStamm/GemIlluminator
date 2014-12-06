@@ -3,6 +3,7 @@
 #include <QQuickWindow>
 
 #include "abstractgeometry.h"
+#include "camera.h"
 #include "abstractnavigation.h"
 #include "scenerenderer.h"
 
@@ -98,4 +99,14 @@ void Scene::setActive(bool active)
     m_active = active;
 
     emit activeChanged();
+}
+
+Camera* Scene::camera()
+{
+    return m_camera;
+}
+
+void Scene::setCamera(Camera* camera)
+{
+    m_camera = camera;
 }

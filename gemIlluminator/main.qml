@@ -96,6 +96,18 @@ ApplicationWindow {
 
     Scene {
         id: scene
+        camera: Camera {
+            id: camera
+            eye: "4, 2, 1"
+            center: "0, 0, 0"
+            up: "0, 1, 0"
+            zNear: 0.1
+            zFar: 100
+            viewport.width: root.width
+            viewport.height: root.height
+            fovy: 60
+        }
+
         SequentialAnimation on t {
             NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
             loops: Animation.Infinite
