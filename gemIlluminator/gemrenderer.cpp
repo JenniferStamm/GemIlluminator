@@ -1,5 +1,7 @@
 #include "gemrenderer.h"
 
+#include <QDebug>
+
 #include <QMatrix4x4>
 #include <QVector>
 #include <QVector3D>
@@ -9,7 +11,7 @@
 
 GemRenderer::GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent):
     AbstractGeometryRenderer(parent)
-,   m_vertexData(new QVector<QVector3D>())
+,   m_vertexData(new QVector<float>())
 ,   m_vertexBuffer(new QOpenGLBuffer())
 {
     m_vertexData = initializeVertexData(
@@ -34,7 +36,7 @@ void GemRenderer::initialize()
     m_vertexBuffer->create();
     m_vertexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_vertexBuffer->bind();
-    m_vertexBuffer->allocate(m_vertexData->constData(), m_vertexData->size() * sizeof(float) * 3);
+    m_vertexBuffer->allocate(m_vertexData->constData(), m_vertexData->size() * sizeof(float));
 
     m_program = new QOpenGLShaderProgram(this);
     m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
@@ -44,7 +46,7 @@ void GemRenderer::initialize()
     }
 }
 
-QVector<QVector3D>* GemRenderer::initializeVertexData(
+QVector<float>* GemRenderer::initializeVertexData(
         QVector3D vector1,
         QVector3D vector2,
         QVector3D vector3,
@@ -54,34 +56,37 @@ QVector<QVector3D>* GemRenderer::initializeVertexData(
         QVector3D color3,
         QVector3D color4)
 {
+    /* Order according to
+     * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
+     */
     QVector<QVector3D> *vertexData = new QVector<QVector3D>();
 
     // first triangle
-    QVector3D normal1 = calculateNormal(vector1, vector3, vector4);
-    *vertexData += vector1;
-    *vertexData += color1;
-    *vertexData += normal1;
+    QVector3D normal1 = calculateNormal(vector2, vector4, vector3);
     *vertexData += vector3;
     *vertexData += color1;
     *vertexData += normal1;
     *vertexData += vector4;
+    *vertexData += color1;
+    *vertexData += normal1;
+    *vertexData += vector2;
     *vertexData += color1;
     *vertexData += normal1;
 
     // second triangle
-    QVector3D normal2 = calculateNormal(vector3, vector4, vector2);
+    QVector3D normal2 = calculateNormal(vector1, vector4, vector3);
+    *vertexData += vector1;
+    *vertexData += color2;
+    *vertexData += normal2;
     *vertexData += vector3;
     *vertexData += color2;
     *vertexData += normal2;
     *vertexData += vector4;
     *vertexData += color2;
     *vertexData += normal2;
-    *vertexData += vector2;
-    *vertexData += color2;
-    *vertexData += normal2;
 
     // third triangle
-    QVector3D normal3 = calculateNormal(vector4, vector2, vector1);
+    QVector3D normal3 = calculateNormal(vector1, vector2, vector4);
     *vertexData += vector4;
     *vertexData += color3;
     *vertexData += normal3;
@@ -93,18 +98,44 @@ QVector<QVector3D>* GemRenderer::initializeVertexData(
     *vertexData += normal3;
 
     // fourth triangle
-    QVector3D normal4 = calculateNormal(vector2, vector1, vector3);
-    *vertexData += vector2;
-    *vertexData += color4;
-    *vertexData += normal4;
+    QVector3D normal4 = calculateNormal(vector1, vector3, vector2);
     *vertexData += vector1;
     *vertexData += color4;
     *vertexData += normal4;
     *vertexData += vector3;
     *vertexData += color4;
     *vertexData += normal4;
+    *vertexData += vector2;
+    *vertexData += color4;
+    *vertexData += normal4;
 
-    return vertexData;
+#ifdef QT_DEBUG
+    qDebug() << "<<<<<<<<<<<<<>>>>>>>>>>>>>";
+    qDebug() << "INITIALIZE VERTEX DATA";
+    auto i = 0;
+    for (auto& vertex : *vertexData) {
+        if ( i%9 == 0)
+            qDebug() << "New triangle: ";
+        if ( i%3 == 0)
+            qDebug() << "Vertex: " << vertex;
+        else if ( i%3 == 1)
+            qDebug() << "Color: " << vertex;
+        else if ( i%3 == 2)
+            qDebug() << "Normal: " << vertex;
+        i++;
+    }
+    qDebug() << "<<<<<<<<<<<<<>>>>>>>>>>>>>";
+#endif
+
+    QVector<float> *vertexDataFloat = new QVector<float>();
+
+    for (auto& i : *vertexData) {
+        vertexDataFloat->append(i.x());
+        vertexDataFloat->append(i.y());
+        vertexDataFloat->append(i.z());
+    }
+
+    return vertexDataFloat;
 }
 
 QVector3D GemRenderer::calculateNormal(

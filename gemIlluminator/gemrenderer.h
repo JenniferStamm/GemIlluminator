@@ -19,7 +19,7 @@ public:
 
 protected:
     virtual void initialize();
-    virtual QVector<QVector3D>* initializeVertexData(
+    virtual QVector<float>* initializeVertexData(
             QVector3D vector1,
             QVector3D vector2,
             QVector3D vector3,
@@ -34,7 +34,7 @@ protected:
             QVector3D vector3);
 
 protected:
-    QVector<QVector3D> *m_vertexData;
+    QVector<float> *m_vertexData;
     QOpenGLBuffer *m_vertexBuffer;
 };
 

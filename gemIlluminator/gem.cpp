@@ -10,15 +10,18 @@ Gem::Gem(QObject *parent) :
 ,   m_vertices(new QVector<QVector3D>())
 ,   m_colors(new QVector<QVector3D>())
 {
-    m_vertices->append(QVector3D(-0.5, -0.5, 0.5));
-    m_vertices->append(QVector3D(0.5, -0.5, 0.5));
-    m_vertices->append(QVector3D(0, -0.5, -0.5));
+    /* Order according to
+     * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
+     */
     m_vertices->append(QVector3D(0.f, 0.5, 0.f));
+    m_vertices->append(QVector3D(-0.5, -0.5, 0.5));
+    m_vertices->append(QVector3D(0, -0.5, -0.5));
+    m_vertices->append(QVector3D(0.5, -0.5, 0.5));
 
-    m_colors->append(QVector3D(1.0, 0.0, 0.0));
-    m_colors->append(QVector3D(0.0, 1.0, 1.0));
-    m_colors->append(QVector3D(0.0, 1.0, 0.0));
     m_colors->append(QVector3D(0.0, 0.0, 1.0));
+    m_colors->append(QVector3D(1.0, 0.0, 0.0));
+    m_colors->append(QVector3D(1.0, 1.0, 0.0));
+    m_colors->append(QVector3D(0.0, 1.0, 1.0));
 }
 
 Gem::~Gem()

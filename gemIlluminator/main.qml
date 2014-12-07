@@ -141,7 +141,7 @@ ApplicationWindow {
         Keys.onPressed: {
             if(event.key == Qt.Key_A) {
                 console.log("Key pressed")
-                scene.crystalCount = 1
+                scene.crystalCount = 3
 
             }
         }
