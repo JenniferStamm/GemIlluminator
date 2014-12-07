@@ -11,6 +11,66 @@ ApplicationWindow {
     width: 640
     height: 480
 
+    Component.onCompleted: {
+        var types = QmlSensors.sensorTypes();
+
+        if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os == "android") {
+            rotationSensor.active = true
+        }
+        else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os == "android") {
+            tiltSensor.active = true
+        }
+        else {
+            mouseArea.enabled = true
+        }
+    }
+
+    RotationSensor {
+        id: rotationSensor
+        dataRate: 15
+
+        onReadingChanged: {
+            if(Qt.platform.os == "android") {
+                navigation.rotateX = rotationSensor.reading.y * 2
+                navigation.rotateY = rotationSensor.reading.x * 2
+            }
+        }
+    }
+
+    TiltSensor {
+        id: tiltSensor
+        dataRate: 15
+
+        onReadingChanged: {
+            if(Qt.platform.os == "android") {
+                navigation.rotateX = tiltSensor.reading.yRotation * 2
+                navigation.rotateY = tiltSensor.reading.xRotation * 2
+            }
+        }
+    }
+
+    MouseArea {
+        id: mouseArea
+        acceptedButtons: Qt.RightButton
+        anchors.fill: parent
+        enabled: false
+
+        property int oldX: 0
+        property int oldY: 0
+
+        onPressed: {
+            oldX = mouseX
+            oldY = mouseY
+        }
+
+        onPositionChanged: {
+            navigation.rotateX += ((mouseY - oldY) / root.height) * 180
+            navigation.rotateY -= ((mouseX - oldX) / root.width) * 180
+            oldY = mouseY
+            oldX = mouseX
+        }
+    }
+
     Connections {
         target: Qt.application
 
@@ -27,7 +87,15 @@ ApplicationWindow {
             case Qt.ApplicationActive:
                 if(Qt.platform.os == "android") {
                     root.showFullScreen()
-                    rotation.active = true
+
+                    var types = QmlSensors.sensorTypes();
+
+                    if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os == "android") {
+                        rotationSensor.active = true
+                    }
+                    else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os == "android") {
+                        tiltSensor.active = true
+                    }
                 }
 
                 scene.active = true
@@ -46,19 +114,6 @@ ApplicationWindow {
        }
     }
 
-    RotationSensor {
-        id: rotation
-        active: true
-        dataRate: 15
-
-        onReadingChanged: {
-            if(Qt.platform.os == "android") {
-                navigation.rotateX = rotation.reading.y * 2
-                navigation.rotateY = rotation.reading.x * 2
-            }
-        }
-    }
-
     function calcPitch(x,y,z) {
         return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 180 / Math.PI);
     }
@@ -71,27 +126,6 @@ ApplicationWindow {
         rotateX: 0.0
         rotateY: 0.0
         rotateZ: 0.0
-    }
-
-    MouseArea {
-        id: mouse
-        acceptedButtons: Qt.RightButton
-        anchors.fill: parent
-
-        property int oldX: 0
-        property int oldY: 0
-
-        onPressed: {
-            oldX = mouseX
-            oldY = mouseY
-        }
-
-        onPositionChanged: {
-            navigation.rotateX += ((mouseY - oldY) / root.height) * 180
-            navigation.rotateY -= ((mouseX - oldX) / root.width) * 180
-            oldY = mouseY
-            oldX = mouseX
-        }
     }
 
     Scene {
@@ -115,19 +149,12 @@ ApplicationWindow {
         }
         property int crystalCount
         onCrystalCountChanged: {
+            var gemComponent = Qt.createComponent("gem.qml");
+
             for (var i = 0; i < crystalCount; i++) {
                 console.log("New gem" + i)
-                var x = Math.random() * 2.0 - 1.0
-                var y = Math.random() * 2.0 - 1.0
-                var z = Math.random() * 2.0 - 1.0
-                var xAngle = Math.random() * 360 - 180
-                var yAngle = Math.random() * 360 - 180
-                var zAngle = Math.random() * 360 - 180
-                var creationString = 'import QtQuick 2.3; import GemIlluminator 1.0; Gem {id: gem' + i
-                        + '; position.x: ' + x + '; position.y: ' + y + '; position.z: ' + z
-                        + '; initialRotation.x: ' + xAngle + '; initialRotation.y: ' + yAngle + '; initialRotation.z: ' + zAngle
-                        + '}'
-                scene.appendGeometry(Qt.createQmlObject(creationString, scene, 'gem.qml'))
+
+                scene.appendGeometry(gemComponent.createObject(scene, {"id": "gem" + i.toString()}))
             }
         }
         Component.onCompleted: {
