@@ -4,7 +4,7 @@
 
 #include "abstractgeometry.h"
 #include "camera.h"
-#include "abstractnavigation.h"
+#include "navigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -68,7 +68,7 @@ void Scene::appendGeometry(AbstractGeometry *geometry) {
     geometriesChanged();
 }
 
-void Scene::registerNavigation(AbstractNavigation *navigation)
+void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
 }

@@ -121,7 +121,7 @@ ApplicationWindow {
          return -(Math.atan(x / Math.sqrt(y * y + z * z)) * 180 / Math.PI);
     }
 
-    AbstractNavigation {
+    Navigation {
         id: navigation
         rotateX: 0.0
         rotateY: 0.0
