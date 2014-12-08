@@ -29,6 +29,7 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_geometries);
         m_renderer->setActive(m_active);
+        m_renderer->setViewProjection(m_camera->viewProjection());
 
         for (auto& i : m_geometries) {
             i->synchronize();
