@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class AbstractNavigation : public QObject
+class Navigation : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(qreal rotateX READ rotateX WRITE setRotateX NOTIFY rotateXChanged)
@@ -11,7 +11,7 @@ class AbstractNavigation : public QObject
     Q_PROPERTY(qreal rotateZ READ rotateZ WRITE setRotateZ NOTIFY rotateZChanged)
 
 public:
-    explicit AbstractNavigation(QObject *parent = 0);
+    explicit Navigation(QObject *parent = 0);
 
     qreal rotateX();
     void setRotateX(qreal rotateX);
