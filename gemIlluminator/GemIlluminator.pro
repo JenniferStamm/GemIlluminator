@@ -5,14 +5,14 @@ QT += qml quick widgets sensors #multimedia
 SOURCES += main.cpp \
     scene.cpp \
     scenerenderer.cpp \
-    abstractnavigation.cpp \
     player.cpp \
     lightray.cpp \
     gem.cpp \
     gemrenderer.cpp \
     abstractgeometry.cpp \
     abstractgeometryrenderer.cpp \
-    camera.cpp
+    camera.cpp \
+    navigation.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -32,11 +32,11 @@ OTHER_FILES += \
 HEADERS += \
     scene.h \
     scenerenderer.h \
-    abstractnavigation.h \
     player.h \
     lightray.h \
     gem.h \
     gemrenderer.h \
     abstractgeometryrenderer.h \
     abstractgeometry.h \
-    camera.h
+    camera.h \
+    navigation.h

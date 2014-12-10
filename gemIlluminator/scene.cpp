@@ -5,7 +5,7 @@
 
 #include "abstractgeometry.h"
 #include "camera.h"
-#include "abstractnavigation.h"
+#include "navigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -33,6 +33,7 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_geometries);
         m_renderer->setActive(m_active);
+        m_renderer->setViewProjection(m_camera->viewProjection());
 
         // As soon as we need time, we'll use this
         // int elapsedTime = m_time->restart();
@@ -75,7 +76,7 @@ void Scene::appendGeometry(AbstractGeometry *geometry) {
     geometriesChanged();
 }
 
-void Scene::registerNavigation(AbstractNavigation *navigation)
+void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
 }
