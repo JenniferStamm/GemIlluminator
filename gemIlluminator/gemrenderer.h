@@ -19,7 +19,7 @@ public:
 
 protected:
     virtual void initialize();
-    virtual QVector<float>* initializeVertexData(
+    virtual QVector<float>* initializeData(
             QVector3D vector1,
             QVector3D vector2,
             QVector3D vector3,
@@ -28,6 +28,12 @@ protected:
             QVector3D color2,
             QVector3D color3,
             QVector3D color4);
+    virtual void addTriangleData(
+            QVector3D vector1,
+            QVector3D vector2,
+            QVector3D vector3,
+            QVector3D color1,
+            QVector<QVector3D>* data);
     virtual QVector3D calculateNormal(
             QVector3D vector1,
             QVector3D vector2,
