@@ -22,6 +22,12 @@ class Camera : public QObject
 
 public:
     explicit Camera(QObject *parent = 0);
+
+    /** \brief Creates a new Camera with matrices copied.
+     *  \param camera Specifies the camera the matrices are copied from.
+     *  \param parent Specifies the parent
+     */
+    Camera(const Camera & camera, QObject *parent = 0);
     virtual ~Camera();
 
     QMatrix4x4 const & view();

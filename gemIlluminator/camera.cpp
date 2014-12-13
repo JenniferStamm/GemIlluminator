@@ -17,6 +17,23 @@ Camera::Camera(QObject *parent) :
 {
 }
 
+Camera::Camera(const Camera & camera, QObject *parent = 0) :
+    QObject(parent)
+  , m_eye(new QVector3D(camera.eye()))
+  , m_center(new QVector3D(camera.center()))
+  , m_up(new QVector3D(camera.up()))
+  , m_viewport(new QSize(camera.viewport()))
+  , m_view(new QMatrix4x4(camera.view()))
+  , m_viewInverted(new QMatrix4x4(camera.viewInverted()))
+  , m_projection(new QMatrix4x4(camera.projection()))
+  , m_projectionInverted(new QMatrix4x4(camera.projectionInverted()))
+  , m_viewProjection(new QMatrix4x4(camera.viewProjection()))
+  , m_viewProjectionInverted(new QMatrix4x4(camera.viewProjectionInverted()))
+  , m_isViewInvalid(false)
+  , m_isProjectionInvalid(false)
+{
+}
+
 Camera::~Camera()
 {
     delete m_view;
