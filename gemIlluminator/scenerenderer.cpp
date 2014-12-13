@@ -2,6 +2,7 @@
 
 #include <QOpenGLFunctions>
 #include <QDebug>
+#include <QString>
 
 #include "abstractgeometry.h"
 
@@ -22,10 +23,30 @@ void SceneRenderer::paint()
         m_gl->glEnable(GL_DEPTH_TEST);
         m_gl->glDepthFunc(GL_LEQUAL);
         m_gl->glDepthMask(GL_TRUE);
+        // Hier enabling von vertexattrib
+        // Program an und ausschalten
+        // hier vertexattrib pointer setzen
 
+        m_gl->glEnableVertexAttribArray(0); // nur einmal
+        m_gl->glEnableVertexAttribArray(1);
+        m_gl->glEnableVertexAttribArray(2);
+
+        m_gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
+        m_gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
+        m_gl->glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
+
+        qDebug() << QString(reinterpret_cast<const char*>(m_gl->glGetString(GL_VENDOR)));
+        qDebug() << QString(reinterpret_cast<const char*>(m_gl->glGetString(GL_RENDERER)));
         for (auto& geometry : m_geometries) {
             geometry->paint(m_gl, m_viewProjection);
         }
+        // State zurücsetzen??
+
+        m_gl->glDisableVertexAttribArray(0);  // nur einmal
+        m_gl->glDisableVertexAttribArray(1);
+        m_gl->glDisableVertexAttribArray(2);
+
+        // Stimmt swapBuffer mit frame anzahl überein?
     }
 }
 

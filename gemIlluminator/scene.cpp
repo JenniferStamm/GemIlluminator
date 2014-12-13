@@ -33,7 +33,7 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_geometries);
         m_renderer->setActive(m_active);
-        m_renderer->setViewProjection(m_camera->viewProjection());
+        //m_renderer->setViewProjection(m_camera->viewProjection());
 
         // As soon as we need time, we'll use this
         // int elapsedTime = m_time->restart();

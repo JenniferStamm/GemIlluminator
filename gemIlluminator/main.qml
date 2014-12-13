@@ -11,7 +11,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-
+    /*
     Component.onCompleted: {
         var types = QmlSensors.sensorTypes();
 
@@ -71,7 +71,8 @@ ApplicationWindow {
             oldX = mouseX
         }
     }
-
+    */
+    /*
     Connections {
         target: Qt.application
 
@@ -114,7 +115,7 @@ ApplicationWindow {
             }
        }
     }
-
+    */
     function calcPitch(x,y,z) {
         return -(Math.atan(y / Math.sqrt(x * x + z * z)) * 180 / Math.PI);
     }
@@ -151,7 +152,7 @@ ApplicationWindow {
         property int crystalCount
         onCrystalCountChanged: {
             var gemComponent = Qt.createComponent("gem.qml");
-            var gems = GemGenerator.generateGems(60, 0.5, -10, 10)
+            var gems = GemGenerator.generateGems(60, 0.5, -5, 5)
 
             for (var i = 0; i < gems.length; i++) {
                 console.log("New gem" + i)

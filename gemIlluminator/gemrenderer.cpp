@@ -144,6 +144,7 @@ QVector3D GemRenderer::calculateNormal(
 void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
 {
     if (!m_program) {
+        // test if this happens only once
         initialize();
     }
 
@@ -151,7 +152,7 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
     m_program->bind();
 
 
-    QMatrix4x4 model;
+    QMatrix4x4 model; // Vorberechnung?
     model.scale(0.5);
     model.translate(m_position.x(), m_position.y(), m_position.z());
     model.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
@@ -166,27 +167,19 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
 
     m_program->setUniformValue("viewProjection", viewProjection);
 
-    QMatrix4x4 mvp = viewProjection * model;
+    QMatrix4x4 mvp = model;
     m_program->setUniformValue("modelViewProjection", mvp);
 
-    gl->glEnableVertexAttribArray(0);
-    gl->glEnableVertexAttribArray(1);
-    gl->glEnableVertexAttribArray(2);
+
 
     m_program->bindAttributeLocation("a_vertex", 0);
     m_program->bindAttributeLocation("a_color", 1);
     m_program->bindAttributeLocation("a_normal", 2);
 
-    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
-    gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
-    gl->glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
 
 
     gl->glDrawArrays(GL_TRIANGLES, 0, 12);
 
-    gl->glDisableVertexAttribArray(0);
-    gl->glDisableVertexAttribArray(1);
-    gl->glDisableVertexAttribArray(2);
 
     m_vertexBuffer->release();
     m_program->release();
