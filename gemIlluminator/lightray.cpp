@@ -1,5 +1,7 @@
 #include "lightray.h"
 
+#include "player.h"
+
 LightRay::LightRay(QObject *parent) :
     AbstractGeometry(parent)
   , m_startPosition(new QVector3D())
@@ -28,7 +30,9 @@ void LightRay::cleanup()
 void LightRay::update(int timeDifference)
 {
     if (m_player){
-        //TODO: set player position based on time
+        QVector3D playerPosition = m_player->position();
+        playerPosition += (direction() * m_player->velocity() * timeDifference) / 1000;
+        m_player->setPosition(playerPosition);
     }
 }
 

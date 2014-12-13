@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     gemrenderer.cpp \
     abstractgeometry.cpp \
     abstractgeometryrenderer.cpp \
-    camera.cpp
+    camera.cpp \
+    lightrayrenderer.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -39,4 +40,5 @@ HEADERS += \
     gemrenderer.h \
     abstractgeometryrenderer.h \
     abstractgeometry.h \
-    camera.h
+    camera.h \
+    lightrayrenderer.h
