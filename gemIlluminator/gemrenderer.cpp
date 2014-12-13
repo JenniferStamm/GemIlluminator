@@ -69,7 +69,6 @@ QVector<float>* GemRenderer::initializeData(
 
     // third triangle
     addTriangleData(vector1, vector2, vector4, color3, data);
-    QVector3D normal3 = calculateNormal(vector1, vector2, vector4);
 
     // fourth triangle
     addTriangleData(vector1, vector3, vector2, color4, data);
