@@ -6,6 +6,7 @@
 #include <QMatrix4x4>
 
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 class AbstractGeometry;
 
 class SceneRenderer : public QObject
@@ -25,11 +26,15 @@ public slots:
     void paint();
 
 protected:
+    void initialize();
+
+protected:
     QSize m_viewport;
     QList<AbstractGeometry*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
     QMatrix4x4 m_viewProjection;
+    QOpenGLShaderProgram *m_program;
 };
 
 #endif // SCENERENDERER_H

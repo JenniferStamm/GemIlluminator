@@ -1,17 +1,20 @@
 #include "scene.h"
 
 #include <QQuickWindow>
+#include <QTime>
 
 #include "abstractgeometry.h"
 #include "camera.h"
-#include "abstractnavigation.h"
+#include "navigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(0)
+,   m_renderer(0)
+,   m_time(new QTime())
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
+    m_time->start();
 }
 
 Scene::~Scene()
@@ -26,9 +29,14 @@ void Scene::sync()
             m_renderer = new SceneRenderer();
             connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
         }
+
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_geometries);
         m_renderer->setActive(m_active);
+        m_renderer->setViewProjection(m_camera->viewProjection());
+
+        // As soon as we need time, we'll use this
+        // int elapsedTime = m_time->restart();
 
         for (auto& i : m_geometries) {
             i->synchronize();
@@ -68,7 +76,7 @@ void Scene::appendGeometry(AbstractGeometry *geometry) {
     geometriesChanged();
 }
 
-void Scene::registerNavigation(AbstractNavigation *navigation)
+void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
 }

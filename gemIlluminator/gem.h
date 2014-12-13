@@ -3,6 +3,9 @@
 
 #include "abstractgeometry.h"
 
+template <typename T> class QVector;
+class QVector3D;
+
 class Gem : public AbstractGeometry
 {
     Q_OBJECT
@@ -24,6 +27,8 @@ signals:
 
 protected:
     QVector3D m_initialRotation;
+    QVector<QVector3D> *m_vertices;
+    QVector<QVector3D> *m_colors;
 };
 
 #endif // GEM_H

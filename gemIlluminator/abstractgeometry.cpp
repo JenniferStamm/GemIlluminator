@@ -13,10 +13,10 @@ AbstractGeometry::~AbstractGeometry()
     delete m_renderer;
 }
 
-void AbstractGeometry::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
+void AbstractGeometry::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)
 {
     if (m_renderer) {
-        m_renderer->paint(gl, viewProjection);
+        m_renderer->paint(gl, viewProjection, program);
     }
 }
 

@@ -6,6 +6,7 @@
 #include <QVector3D>
 
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 
 class AbstractGeometryRenderer : public QObject
 {
@@ -14,7 +15,7 @@ public:
     explicit AbstractGeometryRenderer(QObject *parent = 0);
     virtual ~AbstractGeometryRenderer();
 
-    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) = 0;
+    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program) = 0;
 
     QVector3D position();
     QVector3D rotation();

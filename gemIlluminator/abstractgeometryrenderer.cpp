@@ -1,5 +1,7 @@
 #include "abstractgeometryrenderer.h"
 
+#include <QOpenGLShaderProgram>
+
 AbstractGeometryRenderer::AbstractGeometryRenderer(QObject *parent) :
     QObject(parent)
 {

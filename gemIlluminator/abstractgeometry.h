@@ -7,6 +7,7 @@
 
 class AbstractGeometryRenderer;
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 
 class AbstractGeometry : public QObject
 {
@@ -22,7 +23,7 @@ public:
     virtual void cleanup() = 0;
     virtual void update(int timeDifference) = 0;
 
-    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection);
+    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
 
     QVector3D position();
     void setPosition(QVector3D position);
