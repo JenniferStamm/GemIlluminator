@@ -5,25 +5,29 @@
 #include <QMatrix4x4>
 #include <QVector3D>
 
-class AbstractGeometryRenderer;
+class AbstractGemRenderer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 
-class AbstractGeometry : public QObject
+class AbstractGem : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
 
 public:
-    explicit AbstractGeometry(QObject *parent = 0);
-    virtual ~AbstractGeometry();
+    explicit AbstractGem(QObject *parent = 0);
+    virtual ~AbstractGem();
 
     virtual void synchronize() = 0;
     virtual void cleanup() = 0;
     virtual void update(int timeDifference) = 0;
 
     void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
+
+    QVector3D initialRotation() const;
+    void setInitialRotation(const QVector3D &initialRotation);
 
     QVector3D position();
     void setPosition(QVector3D position);
@@ -32,11 +36,13 @@ public:
     void setRotation(QVector3D rotation);
 
 signals:
+    void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
 
 protected:
-    AbstractGeometryRenderer *m_renderer;
+    AbstractGemRenderer *m_renderer;
+    QVector3D m_initialRotation;
     QVector3D m_position;
     QVector3D m_rotation; /*!< Contains the euler angles */
 };

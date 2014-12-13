@@ -3,7 +3,7 @@
 #include "player.h"
 
 LightRay::LightRay(QObject *parent) :
-    AbstractGeometry(parent)
+    QObject(parent)
   , m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
   , m_direction(new QVector3D())

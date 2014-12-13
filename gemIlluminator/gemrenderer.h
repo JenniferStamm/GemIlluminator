@@ -1,7 +1,7 @@
 #ifndef GEMRENDERER_H
 #define GEMRENDERER_H
 
-#include "abstractgeometryrenderer.h"
+#include "abstractgemrenderer.h"
 #include <QMatrix4x4>
 
 template <typename T> class QVector;
@@ -10,7 +10,7 @@ class QOpenGLFunctions;
 class QOpenGLBuffer;
 class QOpenGLShaderProgram;
 
-class GemRenderer : public AbstractGeometryRenderer
+class GemRenderer : public AbstractGemRenderer
 {
 public:
     explicit GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent = 0);

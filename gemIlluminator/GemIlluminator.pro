@@ -9,11 +9,11 @@ SOURCES += main.cpp \
     lightray.cpp \
     gem.cpp \
     gemrenderer.cpp \
-    abstractgeometry.cpp \
-    abstractgeometryrenderer.cpp \
     camera.cpp \
     lightrayrenderer.cpp \
-    navigation.cpp
+    navigation.cpp \
+    abstractgem.cpp \
+    abstractgemrenderer.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -37,8 +37,8 @@ HEADERS += \
     lightray.h \
     gem.h \
     gemrenderer.h \
-    abstractgeometryrenderer.h \
-    abstractgeometry.h \
     camera.h \
     lightrayrenderer.h \
-    navigation.h
+    navigation.h \
+    abstractgem.h \
+    abstractgemrenderer.h

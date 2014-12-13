@@ -4,7 +4,7 @@
 #include <QOpenGLShaderProgram>
 #include <QDebug>
 
-#include "abstractgeometry.h"
+#include "abstractgem.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
@@ -71,7 +71,7 @@ void SceneRenderer::setViewport(QSize viewport)
     m_viewport = viewport;
 }
 
-void SceneRenderer::setGeometries(QList<AbstractGeometry*> geometries)
+void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
 {
     m_geometries = geometries;
 }

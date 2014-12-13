@@ -1,12 +1,14 @@
 #ifndef LIGHTRAY_H
 #define LIGHTRAY_H
 
-#include "abstractgeometry.h"
+#include <QObject>
+#include <QVector3D>
 
 template <typename T> class QList;
 class Player;
+class QVector3D;
 
-class LightRay : public AbstractGeometry
+class LightRay : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(const QVector3D & startPosition READ startPosition WRITE setStartPosition NOTIFY startPositionChanged)

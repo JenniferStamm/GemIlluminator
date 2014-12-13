@@ -10,7 +10,7 @@
 #include <QOpenGLShaderProgram>
 
 GemRenderer::GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent):
-    AbstractGeometryRenderer(parent)
+    AbstractGemRenderer(parent)
 ,   m_initialized(false)
 ,   m_vertexData(new QVector<float>())
 ,   m_vertexBuffer(new QOpenGLBuffer())
@@ -63,7 +63,6 @@ QVector<float>* GemRenderer::initializeData(
 
     // third triangle
     addTriangleData(vector1, vector2, vector4, color3, data);
-    QVector3D normal3 = calculateNormal(vector1, vector2, vector4);
 
     // fourth triangle
     addTriangleData(vector1, vector3, vector2, color4, data);

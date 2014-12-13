@@ -3,7 +3,7 @@
 #include <QQuickWindow>
 #include <QTime>
 
-#include "abstractgeometry.h"
+#include "abstractgem.h"
 #include "camera.h"
 #include "navigation.h"
 #include "scenerenderer.h"
@@ -65,15 +65,9 @@ void Scene::handleWindowChanged(QQuickWindow *win)
     }
 }
 
-QQmlListProperty<AbstractGeometry> Scene::geometries()
+QQmlListProperty<AbstractGem> Scene::geometries()
 {
-    return QQmlListProperty<AbstractGeometry>(this, m_geometries);
-}
-
-void Scene::appendGeometry(AbstractGeometry *geometry) {
-    geometry->setParent(m_renderer);
-    m_geometries.append(geometry);
-    geometriesChanged();
+    return QQmlListProperty<AbstractGem>(this, m_geometries);
 }
 
 void Scene::registerNavigation(Navigation *navigation)
