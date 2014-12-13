@@ -20,6 +20,21 @@ void AbstractGem::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGL
     }
 }
 
+QVector3D AbstractGem::initialRotation() const
+{
+    return m_initialRotation;
+}
+
+void AbstractGem::setInitialRotation(const QVector3D &initialRotation)
+{
+    if (initialRotation == m_initialRotation) {
+       return;
+    }
+
+    m_initialRotation = initialRotation;
+    emit initialRotationChanged();
+}
+
 QVector3D AbstractGem::position()
 {
     return m_position;

@@ -35,28 +35,13 @@ void Gem::synchronize()
         m_renderer = new GemRenderer(m_vertices, m_colors);
     }
 
+    m_renderer->setInitialRotation(m_initialRotation);
     m_renderer->setPosition(m_position);
     m_renderer->setRotation(m_rotation);
-    m_renderer->setInitialRotation(m_initialRotation);
 }
 
 void Gem::cleanup()
 {
     delete m_renderer;
     m_renderer = nullptr;
-}
-
-QVector3D Gem::initialRotation() const
-{
-    return m_initialRotation;
-}
-
-void Gem::setInitialRotation(const QVector3D &initialRotation)
-{
-    if (initialRotation == m_initialRotation) {
-       return;
-    }
-
-    m_initialRotation = initialRotation;
-    emit initialRotationChanged();
 }
