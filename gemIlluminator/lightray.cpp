@@ -1,12 +1,28 @@
 #include "lightray.h"
 
+#include "lightrayrenderer.h"
 #include "player.h"
+
 
 LightRay::LightRay(QObject *parent) :
     QObject(parent)
+  , m_player(nullptr)
+  , m_renderer(nullptr)
+  , m_successors(new QList<LightRay*>())
   , m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
   , m_direction(new QVector3D())
+{
+}
+
+LightRay::LightRay(LightRay &lightRay, QObject *parent) :
+    QObject(parent)
+  , m_player(nullptr)
+  , m_renderer(nullptr)
+  , m_successors(new QList<LightRay*>())
+  , m_startPosition(new QVector3D(lightRay.startPosition()))
+  , m_endPosition(new QVector3D(lightRay.endPosition()))
+  , m_direction(new QVector3D(lightRay.direction()))
 {
 }
 
@@ -19,12 +35,33 @@ LightRay::~LightRay()
 
 void LightRay::synchronize()
 {
+    if (!m_renderer) {
+        m_renderer = new LightRayRenderer();
+    }
 
+    m_renderer->addLightRay(*this);
+
+    for (auto& successor : *m_successors ) {
+        successor->_synchronize(m_renderer);
+    }
+}
+
+void LightRay::_synchronize(LightRayRenderer *renderer)
+{
+    delete m_renderer;
+    m_renderer = nullptr;
+
+    m_renderer->addLightRay(*this);
+
+    for (auto& successor : *m_successors ) {
+        successor->_synchronize(renderer);
+    }
 }
 
 void LightRay::cleanup()
 {
-
+    delete m_renderer;
+    m_renderer = nullptr;
 }
 
 void LightRay::update(int timeDifference)
@@ -69,4 +106,14 @@ void LightRay::setEndPosition(const QVector3D &position)
 const QVector3D & LightRay::direction()
 {
     return *m_direction;
+}
+
+Player * LightRay::player()
+{
+    return m_player;
+}
+
+void LightRay::setPlayer(Player *attachedPlayer)
+{
+    m_player = attachedPlayer;
 }

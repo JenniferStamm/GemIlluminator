@@ -2,6 +2,8 @@
 
 Player::Player(QObject *parent) :
     QObject(parent)
+  , m_position(new QVector3D())
+  , m_velocity(1.f)
 {
 }
 

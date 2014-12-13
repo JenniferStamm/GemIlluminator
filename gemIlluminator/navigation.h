@@ -1,5 +1,5 @@
-#ifndef ABSTRACTNAVIGATION_H
-#define ABSTRACTNAVIGATION_H
+#ifndef NAVIGATION_H
+#define NAVIGATION_H
 
 #include <QObject>
 
@@ -33,4 +33,4 @@ protected:
     qreal m_rotateZ;
 };
 
-#endif // ABSTRACTNAVIGATION_H
+#endif // NAVIGATION_H

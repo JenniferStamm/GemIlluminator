@@ -129,24 +129,37 @@ ApplicationWindow {
         rotateZ: 0.0
     }
 
+    Camera {
+        id: camera
+        eye: "0, 0, 1"
+        center: "0, 0, 0"
+        up: "0, 1, 0"
+        zNear: 0.1
+        zFar: 100
+        viewport.width: root.width
+        viewport.height: root.height
+        fovy: 60
+    }
+
     Scene {
         id: scene
-        camera: Camera {
-            id: camera
-            eye: "0, 0, 1"
-            center: "0, 0, 0"
-            up: "0, 1, 0"
-            zNear: 0.1
-            zFar: 100
-            viewport.width: root.width
-            viewport.height: root.height
-            fovy: 60
-        }
-
+        camera: camera
         SequentialAnimation on t {
             NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
             loops: Animation.Infinite
             running: true
+        }
+
+        rootLightRay: LightRay {
+            id: lightray
+            startPosition: "0, 0, 0"
+            endPosition: "0, 0, -1"
+            player: Player {
+                id: player
+                velocity: 0.5
+                camera: camera
+            }
+
         }
 
         property int crystalCount

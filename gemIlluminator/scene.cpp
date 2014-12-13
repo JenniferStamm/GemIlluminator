@@ -2,24 +2,30 @@
 
 #include <QQuickWindow>
 #include <QTime>
+#include <QVector3D>
 
 #include "abstractgem.h"
 #include "camera.h"
+#include "lightray.h"
 #include "navigation.h"
 #include "scenerenderer.h"
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-,   m_renderer(0)
-,   m_time(new QTime())
+  , m_renderer(0)
+  , m_time(new QTime())
+  , m_rootLightRay(new LightRay(this))
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
     m_time->start();
+    m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));
+    m_rootLightRay->setEndPosition(QVector3D(0, 1, 0));
 }
 
 Scene::~Scene()
 {
     delete m_renderer;
+    delete m_time;
 }
 
 void Scene::sync()
@@ -32,11 +38,14 @@ void Scene::sync()
 
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_geometries);
+        m_renderer->setRootLightRay(m_rootLightRay);
         m_renderer->setActive(m_active);
         m_renderer->setViewProjection(m_camera->viewProjection());
 
-        // As soon as we need time, we'll use this
-        // int elapsedTime = m_time->restart();
+        int elapsedTime = m_time->restart();
+
+        m_rootLightRay->update(elapsedTime);
+        m_rootLightRay->synchronize();
 
         for (auto& i : m_geometries) {
             i->synchronize();

@@ -7,6 +7,7 @@ class Camera;
 class LightRay;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+template<typename T> class QVector;
 
 class LightRayRenderer : public QObject
 {
@@ -16,7 +17,8 @@ public:
     virtual ~LightRayRenderer();
 
     void setCamera(Camera & camera);
-    void addLightRay(const LightRay & ray);
+
+    void addLightRay(const LightRay & lightRay);
 
     virtual void paint(QOpenGLFunctions *gl);
 
@@ -28,6 +30,7 @@ protected:
     bool m_isInitialized;
     QOpenGLShaderProgram *m_program;
     Camera *m_camera;
+    QVector<LightRay *> *m_rays;
 };
 
 #endif // LIGHTRAYRENDERER_H
