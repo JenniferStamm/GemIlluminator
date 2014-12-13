@@ -5,8 +5,8 @@
 
 class Camera;
 class LightRay;
-class QOpenGLProgram;
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 
 class LightRayRenderer : public QObject
 {
@@ -15,7 +15,7 @@ public:
     explicit LightRayRenderer(QObject *parent = 0);
     virtual ~LightRayRenderer();
 
-    void setCamera(const Camera & camera);
+    void setCamera(Camera & camera);
     void addLightRay(const LightRay & ray);
 
     virtual void paint(QOpenGLFunctions *gl);
@@ -26,7 +26,7 @@ public slots:
 
 protected:
     bool m_isInitialized;
-    QOpenGLProgram *m_program;
+    QOpenGLShaderProgram *m_program;
     Camera *m_camera;
 };
 

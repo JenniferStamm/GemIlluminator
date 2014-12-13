@@ -27,7 +27,7 @@ public:
      *  \param camera Specifies the camera the matrices are copied from.
      *  \param parent Specifies the parent
      */
-    Camera(const Camera & camera, QObject *parent = 0);
+    Camera(Camera & camera, QObject *parent = 0);
     virtual ~Camera();
 
     QMatrix4x4 const & view();

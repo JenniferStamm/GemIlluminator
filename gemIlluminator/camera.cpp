@@ -17,7 +17,7 @@ Camera::Camera(QObject *parent) :
 {
 }
 
-Camera::Camera(const Camera & camera, QObject *parent = 0) :
+Camera::Camera(Camera & camera, QObject *parent) :
     QObject(parent)
   , m_eye(new QVector3D(camera.eye()))
   , m_center(new QVector3D(camera.center()))
