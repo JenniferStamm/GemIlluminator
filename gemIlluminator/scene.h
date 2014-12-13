@@ -43,7 +43,6 @@ signals:
 public slots:
     virtual void sync();
     virtual void cleanup();
-    void appendGeometry(AbstractGeometry *geometry);
     void registerNavigation(Navigation *navigation);
 
 protected:

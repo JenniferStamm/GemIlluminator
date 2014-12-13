@@ -148,21 +148,25 @@ ApplicationWindow {
             loops: Animation.Infinite
             running: true
         }
+
         property int crystalCount
         onCrystalCountChanged: {
             var gemComponent = Qt.createComponent("gem.qml");
-            var gems = GemGenerator.generateGems(60, 0.5, -10, 10)
+            var gems = GemGenerator.generateGems(500, 1, -10, 10)
+
+            var gemsToJSON = []
+            gemsToJSON.push()
 
             for (var i = 0; i < gems.length; i++) {
-                console.log("New gem" + i)
-
-                scene.appendGeometry(gemComponent.createObject(scene,
-                                                               {"id": "gem" + i.toString(),
-                                                                   "position.x": gems[i][0],
-                                                                   "position.y": gems[i][1],
-                                                                   "position.z": gems[i][2],
-                                                               }))
+                gemsToJSON.push(gemComponent.createObject(scene,
+                                                    {"id": "gem" + i.toString(),
+                                                        "position.x": gems[i][0],
+                                                        "position.y": gems[i][1],
+                                                        "position.z": gems[i][2],
+                                                    }))
             }
+
+            scene.geometries = gemsToJSON
         }
         Component.onCompleted: {
             scene.crystalCount = 1

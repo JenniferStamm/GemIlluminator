@@ -70,12 +70,6 @@ QQmlListProperty<AbstractGeometry> Scene::geometries()
     return QQmlListProperty<AbstractGeometry>(this, m_geometries);
 }
 
-void Scene::appendGeometry(AbstractGeometry *geometry) {
-    geometry->setParent(m_renderer);
-    m_geometries.append(geometry);
-    geometriesChanged();
-}
-
 void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
