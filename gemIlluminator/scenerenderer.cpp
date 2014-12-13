@@ -34,6 +34,13 @@ void SceneRenderer::paint()
         m_gl->glDisableVertexAttribArray(0);
         m_gl->glDisableVertexAttribArray(1);
         m_gl->glDisableVertexAttribArray(2);
+
+        // Reset OpenGL state for qml
+        // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp
+        m_gl->glDisable(GL_DEPTH_TEST);
+        m_gl->glClearColor(0, 0, 0, 0);
+        m_gl->glDepthMask(GL_TRUE);
+        m_gl->glDepthFunc(GL_LESS);
     }
 }
 
