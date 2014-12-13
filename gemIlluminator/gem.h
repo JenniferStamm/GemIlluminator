@@ -14,6 +14,7 @@ public:
 
     virtual void synchronize() override;
     virtual void cleanup() override;
+    virtual void update(int timeDifference) override;
 
     QVector3D initialRotation() const;
     void setInitialRotation(const QVector3D &initialRotation);

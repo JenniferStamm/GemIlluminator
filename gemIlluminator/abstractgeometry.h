@@ -20,6 +20,7 @@ public:
 
     virtual void synchronize() = 0;
     virtual void cleanup() = 0;
+    virtual void update(int timeDifference) = 0;
 
     void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection);
 

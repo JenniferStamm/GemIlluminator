@@ -43,3 +43,8 @@ void Gem::setInitialRotation(const QVector3D &initialRotation)
     m_initialRotation = initialRotation;
     emit initialRotationChanged();
 }
+
+void Gem::update(int timeDifference)
+{
+
+}
