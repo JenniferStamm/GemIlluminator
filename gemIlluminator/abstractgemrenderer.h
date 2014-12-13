@@ -6,15 +6,16 @@
 #include <QVector3D>
 
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 
-class AbstractGeometryRenderer : public QObject
+class AbstractGemRenderer : public QObject
 {
     Q_OBJECT
 public:
-    explicit AbstractGeometryRenderer(QObject *parent = 0);
-    virtual ~AbstractGeometryRenderer();
+    explicit AbstractGemRenderer(QObject *parent = 0);
+    virtual ~AbstractGemRenderer();
 
-    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) = 0;
+    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program) = 0;
 
     QVector3D position();
     QVector3D rotation();

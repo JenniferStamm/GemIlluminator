@@ -6,7 +6,8 @@
 #include <QMatrix4x4>
 
 class QOpenGLFunctions;
-class AbstractGeometry;
+class QOpenGLShaderProgram;
+class AbstractGem;
 
 class SceneRenderer : public QObject
 {
@@ -15,7 +16,7 @@ public:
     explicit SceneRenderer(QObject *parent = 0);
     void setViewport(QSize viewport);
 
-    void setGeometries(QList<AbstractGeometry*> geometries);
+    void setGeometries(QList<AbstractGem*> geometries);
     void setViewProjection(QMatrix4x4 viewProjection);
 
     bool isActive();
@@ -25,11 +26,15 @@ public slots:
     void paint();
 
 protected:
+    void initialize();
+
+protected:
     QSize m_viewport;
-    QList<AbstractGeometry*> m_geometries;
+    QList<AbstractGem*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
     QMatrix4x4 m_viewProjection;
+    QOpenGLShaderProgram *m_program;
 };
 
 #endif // SCENERENDERER_H
