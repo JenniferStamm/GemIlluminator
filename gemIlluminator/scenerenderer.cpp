@@ -23,9 +23,17 @@ void SceneRenderer::paint()
         m_gl->glDepthFunc(GL_LEQUAL);
         m_gl->glDepthMask(GL_TRUE);
 
+        m_gl->glEnableVertexAttribArray(0);
+        m_gl->glEnableVertexAttribArray(1);
+        m_gl->glEnableVertexAttribArray(2);
+
         for (auto& geometry : m_geometries) {
             geometry->paint(m_gl, m_viewProjection);
         }
+
+        m_gl->glDisableVertexAttribArray(0);
+        m_gl->glDisableVertexAttribArray(1);
+        m_gl->glDisableVertexAttribArray(2);
     }
 }
 

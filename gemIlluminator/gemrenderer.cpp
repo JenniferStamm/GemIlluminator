@@ -169,10 +169,6 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
     QMatrix4x4 mvp = viewProjection * model;
     m_program->setUniformValue("modelViewProjection", mvp);
 
-    gl->glEnableVertexAttribArray(0);
-    gl->glEnableVertexAttribArray(1);
-    gl->glEnableVertexAttribArray(2);
-
     m_program->bindAttributeLocation("a_vertex", 0);
     m_program->bindAttributeLocation("a_color", 1);
     m_program->bindAttributeLocation("a_normal", 2);
@@ -183,10 +179,6 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection)
 
 
     gl->glDrawArrays(GL_TRIANGLES, 0, 12);
-
-    gl->glDisableVertexAttribArray(0);
-    gl->glDisableVertexAttribArray(1);
-    gl->glDisableVertexAttribArray(2);
 
     m_vertexBuffer->release();
     m_program->release();
