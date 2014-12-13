@@ -8,6 +8,7 @@ class AbstractGeometry;
 class SceneRenderer;
 class Camera;
 class AbstractNavigation;
+class LightRay;
 
 class Scene : public QQuickItem
 {
@@ -16,6 +17,7 @@ class Scene : public QQuickItem
     Q_PROPERTY(QQmlListProperty<AbstractGeometry> geometries READ geometries NOTIFY geometriesChanged)
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
+    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay)
 
 public:
     explicit Scene(QQuickItem *parent = 0);
@@ -32,6 +34,9 @@ public:
 
     Camera* camera();
     void setCamera(Camera *camera);
+
+    LightRay* rootLightRay();
+    void setRootLightRay(LightRay *root);
 
 signals:
     void cubesChanged();
@@ -52,6 +57,8 @@ protected:
     bool m_active;
     Camera *m_camera;
     AbstractNavigation *m_navigation;
+    LightRay *m_rootLightRay;
+    LightRay *m_currentLightRay;
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);

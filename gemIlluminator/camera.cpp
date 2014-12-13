@@ -4,16 +4,16 @@
 
 Camera::Camera(QObject *parent) :
     QObject(parent)
+  , m_eye(new QVector3D())
+  , m_center(new QVector3D())
+  , m_up(new QVector3D())
+  , m_viewport(new QSize())
   , m_view(new QMatrix4x4())
   , m_viewInverted(new QMatrix4x4())
   , m_projection(new QMatrix4x4())
   , m_projectionInverted(new QMatrix4x4())
   , m_viewProjection(new QMatrix4x4())
   , m_viewProjectionInverted(new QMatrix4x4())
-  , m_eye(new QVector3D())
-  , m_center(new QVector3D())
-  , m_up(new QVector3D())
-  , m_viewport(new QSize())
 {
 }
 

@@ -110,3 +110,13 @@ void Scene::setCamera(Camera* camera)
 {
     m_camera = camera;
 }
+
+LightRay* Scene::rootLightRay()
+{
+    return m_rootLightRay;
+}
+
+void Scene::setRootLightRay(LightRay *root)
+{
+    m_rootLightRay = root;
+}

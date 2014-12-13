@@ -10,23 +10,29 @@ class Player : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera NOTIFY cameraChanged)
+    Q_PROPERTY(qreal velocity READ velocity WRITE setVelocity NOTIFY velocityChanged)
 
 public:
     explicit Player(QObject *parent = 0);
     virtual ~Player();
 
     void setPosition(const QVector3D & position);
+    const QVector3D & position();
 
 signals:
     void cameraChanged();
+    void velocityChanged();
 
 public slots:
     Camera* camera();
     void setCamera(Camera *camera);
 
+    qreal velocity();
+    void setVelocity(qreal velocity);
+
 protected:
+    qreal m_velocity;
     QVector3D *m_position;
-    //TODO: m_camera should be reference to a Camera. So the m_camera should be set in constructor, but is it possible with QML?
     Camera *m_camera;
 };
 
