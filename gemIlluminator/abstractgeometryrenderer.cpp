@@ -4,7 +4,6 @@
 
 AbstractGeometryRenderer::AbstractGeometryRenderer(QObject *parent) :
     QObject(parent)
-,   m_program(nullptr)
 {
 }
 

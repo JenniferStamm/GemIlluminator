@@ -8,6 +8,7 @@ template <typename T> class QVector;
 class QVector3D;
 class QOpenGLFunctions;
 class QOpenGLBuffer;
+class QOpenGLShaderProgram;
 
 class GemRenderer : public AbstractGeometryRenderer
 {
@@ -15,7 +16,7 @@ public:
     explicit GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent = 0);
     virtual ~GemRenderer();
 
-    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) override;
+    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program) override;
 
 protected:
     virtual void initialize();
@@ -40,6 +41,7 @@ protected:
             QVector3D vector3);
 
 protected:
+    bool m_initialized;
     QVector<float> *m_vertexData;
     QOpenGLBuffer *m_vertexBuffer;
 };

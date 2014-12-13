@@ -1,6 +1,7 @@
 #include "scenerenderer.h"
 
 #include <QOpenGLFunctions>
+#include <QOpenGLShaderProgram>
 #include <QDebug>
 
 #include "abstractgeometry.h"
@@ -8,8 +9,22 @@
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
 ,   m_gl(new QOpenGLFunctions())
+,   m_program(nullptr)
 {
     m_gl->initializeOpenGLFunctions();
+}
+
+void SceneRenderer::initialize() {
+    m_program = new QOpenGLShaderProgram(this);
+    m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
+    m_program->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
+    if (!m_program->link()) {
+        qDebug() << "Link failed";
+    }
+
+    m_program->bindAttributeLocation("a_vertex", 0);
+    m_program->bindAttributeLocation("a_color", 1);
+    m_program->bindAttributeLocation("a_normal", 2);
 }
 
 void SceneRenderer::paint()
@@ -23,17 +38,24 @@ void SceneRenderer::paint()
         m_gl->glDepthFunc(GL_LEQUAL);
         m_gl->glDepthMask(GL_TRUE);
 
+        if (!m_program) {
+            initialize();
+        }
+        m_program->bind();
+
         m_gl->glEnableVertexAttribArray(0);
         m_gl->glEnableVertexAttribArray(1);
         m_gl->glEnableVertexAttribArray(2);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(m_gl, m_viewProjection);
+            geometry->paint(m_gl, m_viewProjection, *m_program);
         }
 
         m_gl->glDisableVertexAttribArray(0);
         m_gl->glDisableVertexAttribArray(1);
         m_gl->glDisableVertexAttribArray(2);
+
+        m_program->release();
 
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp

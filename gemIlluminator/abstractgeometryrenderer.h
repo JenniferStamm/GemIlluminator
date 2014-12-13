@@ -15,7 +15,7 @@ public:
     explicit AbstractGeometryRenderer(QObject *parent = 0);
     virtual ~AbstractGeometryRenderer();
 
-    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection) = 0;
+    virtual void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program) = 0;
 
     QVector3D position();
     QVector3D rotation();
@@ -30,7 +30,6 @@ protected:
     QVector3D m_position;
     QVector3D m_rotation;
     QVector3D m_initialRotation;
-    QOpenGLShaderProgram *m_program;
 };
 
 #endif // GEOMETRYRENDERER_H
