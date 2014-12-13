@@ -10,7 +10,7 @@
 #include <QOpenGLShaderProgram>
 
 GemRenderer::GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent):
-    AbstractGeometryRenderer(parent)
+    AbstractGemRenderer(parent)
 ,   m_initialized(false)
 ,   m_vertexData(new QVector<float>())
 ,   m_vertexBuffer(new QOpenGLBuffer())

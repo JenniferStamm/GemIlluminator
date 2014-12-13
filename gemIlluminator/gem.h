@@ -1,12 +1,12 @@
 #ifndef GEM_H
 #define GEM_H
 
-#include "abstractgeometry.h"
+#include "abstractgem.h"
 
 template <typename T> class QVector;
 class QVector3D;
 
-class Gem : public AbstractGeometry
+class Gem : public AbstractGem
 {
     Q_OBJECT
     Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)

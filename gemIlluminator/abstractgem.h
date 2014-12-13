@@ -5,19 +5,19 @@
 #include <QMatrix4x4>
 #include <QVector3D>
 
-class AbstractGeometryRenderer;
+class AbstractGemRenderer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 
-class AbstractGeometry : public QObject
+class AbstractGem : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
 
 public:
-    explicit AbstractGeometry(QObject *parent = 0);
-    virtual ~AbstractGeometry();
+    explicit AbstractGem(QObject *parent = 0);
+    virtual ~AbstractGem();
 
     virtual void synchronize() = 0;
     virtual void cleanup() = 0;
@@ -35,7 +35,7 @@ signals:
     void rotationChanged();
 
 protected:
-    AbstractGeometryRenderer *m_renderer;
+    AbstractGemRenderer *m_renderer;
     QVector3D m_position;
     QVector3D m_rotation; /*!< Contains the euler angles */
 };

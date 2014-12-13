@@ -6,7 +6,7 @@
 #include <QVector3D>
 
 Gem::Gem(QObject *parent) :
-    AbstractGeometry(parent)
+    AbstractGem(parent)
 ,   m_vertices(new QVector<QVector3D>())
 ,   m_colors(new QVector<QVector3D>())
 {
