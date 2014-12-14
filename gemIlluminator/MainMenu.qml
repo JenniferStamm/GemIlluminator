@@ -7,83 +7,70 @@ Rectangle {
     id: mainMenu
     color: "#e5ffff"
 
+    property color backgroundBlue: "#75d5f5"
+    property color lightBlue: "#33b5e5"
+    property color blue: "#0099cc"
     property alias startButton: startButton
 
-    Button {
-        id: startButton
-        width: 60 * Screen.pixelDensity
-        height: 15 * Screen.pixelDensity
-        anchors.centerIn: mainMenu
+    Rectangle {
+        color: backgroundBlue
+        width: 70 * Screen.pixelDensity
+        height: 80 + 20 * Screen.pixelDensity
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: 50
 
-        style: ButtonStyle {
-            label: Text {
-                text: "Start the Game!"
-                color: "white"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.pointSize: 16
-            }
+        MenuButton {
+            id: startButton
+            label: "Start the Game!"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 50 + 10 * Screen.pixelDensity
 
-            background: Rectangle{
-                anchors.fill: parent
-                color: control.pressed ? "#0099cc" : "#33b5e5"
-            }
-        }
-
-        onClicked: {
-            mainMenu.visible = false
-        }
-
-        onPressedChanged: {
-            if (pressed) {
-                topBorder.visible = true
-                bottomBorder.visible = false
-
-                leftBorder.color = "#33b5e5"
-                rightBorder.color = "#33b5e5"
-            } else {
-                topBorder.visible = false
-                bottomBorder.visible = true
-
-                leftBorder.color = "#0099cc"
-                rightBorder.color = "#0099cc"
+            onClicked: {
+                mainMenu.visible = false
             }
         }
 
-        Rectangle {
-            id: topBorder
-            anchors.top: startButton.top
-            color: "#33b5e5"
-            height: 1 * Screen.pixelDensity
-            width: startButton.width
-            visible: false
+        MenuButton {
+            id: creditsButton
+            label: "Credits..."
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 30
+
+            onClicked: {
+                credits.visible = true
+            }
         }
 
         Rectangle {
             id: bottomBorder
-            anchors.bottom: startButton.bottom
-            color: "#0099cc"
-            height: 1 * Screen.pixelDensity
-            width: startButton.width
-            visible: true
+            anchors.bottom: parent.bottom
+            color: lightBlue
+            height: 0.75 * Screen.pixelDensity
+            width: parent.width
         }
 
         Rectangle {
             id: leftBorder
-            anchors.left: startButton.left
-            color: "#0099cc"
-            height: startButton.height
-            width: 0.75 * Screen.pixelDensity
-            visible: true
+            anchors.left: parent.left
+            color: lightBlue
+            height: parent.height
+            width: 0.5 * Screen.pixelDensity
         }
 
         Rectangle {
             id: rightBorder
-            anchors.right: startButton.right
-            color: "#0099cc"
-            height: startButton.height
-            width: 0.75 * Screen.pixelDensity
-            visible: true
+            anchors.right: parent.right
+            color: lightBlue
+            height: parent.height
+            width: 0.5 * Screen.pixelDensity
         }
+    }
+
+    Credits {
+        id: credits
+
     }
 }
