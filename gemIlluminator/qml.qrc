@@ -3,5 +3,9 @@
         <file>main.qml</file>
         <file>gem.qml</file>
         <file>gemgenerator.js</file>
+        <file>Scene.qml</file>
+        <file>Navigation.qml</file>
+        <file>SensorInputs.qml</file>
+        <file>MouseInput.qml</file>
     </qresource>
 </RCC>

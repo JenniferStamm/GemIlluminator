@@ -44,3 +44,4 @@
 
 # Exclude user specific project files
 *.pro.user
+*.pro.user*
