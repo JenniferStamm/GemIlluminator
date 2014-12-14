@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtSensors 5.0
 
 Item {
+    visible: false
+
     property var navigation
     property alias rotationSensorId: rotationSensor
     property alias tiltSensorId: tiltSensor
