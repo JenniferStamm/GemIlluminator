@@ -37,7 +37,7 @@ void Scene::sync()
 
         if (!m_renderer) {
             m_renderer = new SceneRenderer();
-            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+            connect(window(), SIGNAL(afterRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
         }
 
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
