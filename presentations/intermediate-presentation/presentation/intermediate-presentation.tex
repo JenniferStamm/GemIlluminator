@@ -17,7 +17,7 @@
 \end{frame}
 
 
-\begin{frame}{Architektur - C++}
+\begin{frame}{Architektur -- C++}
 	\begin{figure}
 		\centering
 		\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{images/klassendiagramm}
@@ -38,7 +38,7 @@
 		\begin{subfigure}{\textwidth}
 			\centering
 			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/60max}
-			\caption{QML-Listenlimit}
+			\caption{QML-Propertylists.append???}
 		\end{subfigure}
 	\end{figure}
 }
@@ -73,7 +73,7 @@
 		\begin{subfigure}{\textwidth}
 			\centering
 			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/60max2}
-			\caption{QML-Listenlimit}
+			\caption{QML-Propertylists.append???}
 		\end{subfigure}
 	\end{figure}
 }
@@ -93,10 +93,30 @@
 	\end{figure}
 }
 
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
 
-\begin{frame}{Detaillierter Lösungsansatz}
-
+\begin{frame}
+{Detaillierter Lösungsansatz -- Akkufresser}
+	\lstinputlisting[language=JavaScript, breaklines, firstline=1, lastline=22]{code/active.js}
 \end{frame}
+\begin{frame}
+{Detaillierter Lösungsansatz -- Akkufresser}
+	\lstinputlisting[language=JavaScript, breaklines, firstline=23, lastline=44, firstnumber=23]{code/active.js}
+\end{frame}
+
 
 
 
@@ -115,9 +135,9 @@
 			Vollständige Implementierung der Steuerung und Berechnung des übernächsten Objekts, auf das die Strahlen treffen würden.}
 			
 		\item Ende der Weihnachtsferien\\
-			Kollisionserkennung und Auswahl des Kristalls, auf den das Lichtbündel trifft.
+			Umstellung von Listen auf Baumstrukturen. Kollisionserkennung.
 		\item Early Access Convention\\
-			Erster Lichteffekt: Spekulare Reflektion.
+			Auswahl des Kristalls, auf den das Lichtbündel trifft. (Erster Lichteffekt: Spekulare Reflektion.)
 	\end{itemize}
 \end{frame}
 
