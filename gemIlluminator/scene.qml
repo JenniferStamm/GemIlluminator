@@ -5,6 +5,7 @@ import "gemgenerator.js" as GemGenerator
 Scene {
     id: scene
     property alias cameraId: camera
+    property var loadScreen: null
 
     camera: Camera {
         id: camera
@@ -56,14 +57,20 @@ Scene {
                                                     }))
             }
 
+            console.log("Gems created: " + gems.length)
+
             scene.geometries = gemsToJSON
             scene.active = true
+
+            if (loadScreen !== null) {
+                loadScreen.visible = false
+            }
         }
     }
 
     Component.onCompleted: {
         scene.active = false
-        gemGenerator.sendMessage({"numGems": 500,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
+        gemGenerator.sendMessage({"numGems": 600,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
     }
 }
 
