@@ -45,3 +45,8 @@ void Gem::cleanup()
     delete m_renderer;
     m_renderer = nullptr;
 }
+
+void Gem::update(int timeDifference)
+{
+
+}

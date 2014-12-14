@@ -16,6 +16,7 @@ public:
 
     virtual void synchronize() override;
     virtual void cleanup() override;
+    virtual void update(int timeDifference) override;
 
 protected:
     QVector<QVector3D> *m_vertices;

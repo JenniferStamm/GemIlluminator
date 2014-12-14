@@ -10,6 +10,7 @@ SOURCES += main.cpp \
     gem.cpp \
     gemrenderer.cpp \
     camera.cpp \
+    lightrayrenderer.cpp \
     navigation.cpp \
     abstractgem.cpp \
     abstractgemrenderer.cpp
@@ -37,6 +38,7 @@ HEADERS += \
     gem.h \
     gemrenderer.h \
     camera.h \
+    lightrayrenderer.h \
     navigation.h \
     abstractgem.h \
     abstractgemrenderer.h

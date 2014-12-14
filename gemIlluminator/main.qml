@@ -71,9 +71,10 @@ ApplicationWindow {
     }
 
     Item {
+        visible: false
         focus: true
 
-        Keys.onPressed: {           
+        Keys.onPressed: {
             if (event.key == Qt.Key_W) {
                 scene.cameraId.eye.z -= 0.1
             }

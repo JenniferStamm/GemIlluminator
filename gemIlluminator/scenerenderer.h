@@ -8,6 +8,7 @@
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class AbstractGem;
+class LightRay;
 
 class SceneRenderer : public QObject
 {
@@ -22,6 +23,9 @@ public:
     bool isActive();
     void setActive(bool active);
 
+    LightRay *rootLightRay() const;
+    void setRootLightRay(LightRay *rootLightRay);
+
 public slots:
     void paint();
 
@@ -29,12 +33,15 @@ protected:
     void initialize();
 
 protected:
+    bool m_initialized;
     QSize m_viewport;
     QList<AbstractGem*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
     QMatrix4x4 m_viewProjection;
-    QOpenGLShaderProgram *m_program;
+    QOpenGLShaderProgram *m_gemProgram;
+    QOpenGLShaderProgram *m_lightProgram;
+    LightRay *m_rootLightRay;
 };
 
 #endif // SCENERENDERER_H

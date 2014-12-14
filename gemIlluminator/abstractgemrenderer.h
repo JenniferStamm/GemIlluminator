@@ -19,11 +19,10 @@ public:
 
     QVector3D position();
     QVector3D rotation();
+    QVector3D initialRotation() const;
 
     void setPosition(QVector3D position);
     void setRotation(QVector3D rotation);
-
-    QVector3D initialRotation() const;
     void setInitialRotation(const QVector3D &initialRotation);
 
 protected:

@@ -38,6 +38,8 @@ void GemRenderer::initialize()
     m_vertexBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
     m_vertexBuffer->bind();
     m_vertexBuffer->allocate(m_vertexData->constData(), m_vertexData->size() * sizeof(float));
+
+    m_initialized = true;
 }
 
 QVector<float>* GemRenderer::initializeData(

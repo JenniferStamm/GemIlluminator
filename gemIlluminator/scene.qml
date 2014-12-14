@@ -18,6 +18,19 @@ Scene {
         fovy: 60
     }
 
+    Player {
+        id: player
+        velocity: 0.5
+        camera: camera
+    }
+
+    rootLightRay: LightRay {
+        id: lightray
+        startPosition: "15, 0, 0"
+        endPosition: "-15, 0, 0"
+        player: player
+    }
+
     SequentialAnimation on t {
         NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
         loops: Animation.Infinite
@@ -33,7 +46,6 @@ Scene {
             var gems = messageObject.gems
 
             var gemsToJSON = []
-            gemsToJSON.push()
 
             for (var i = 0; i < gems.length; i++) {
                 gemsToJSON.push(gemComponent.createObject(scene,
