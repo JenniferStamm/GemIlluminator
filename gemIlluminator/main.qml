@@ -10,17 +10,24 @@ ApplicationWindow {
     width: 640
     height: 480
 
+    property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
+    property var scene: null
+
     Connections {
         target: Qt.application
 
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                scene.active = false
+                if(scene !== null) {
+                    scene.active = false
+                }
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                scene.active = false
+                if(scene !== null) {
+                    scene.active = false
+                }
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
@@ -29,10 +36,10 @@ ApplicationWindow {
 
                     var types = QmlSensors.sensorTypes();
 
-                    if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os == "android") {
+                    if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os === "android") {
                         sensorInputs.rotationSensorId.active = true
                     }
-                    else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os == "android") {
+                    else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os === "android") {
                         sensorInputs.tiltSensorId.active = true
                     }
                     else {
@@ -40,13 +47,17 @@ ApplicationWindow {
                     }
                 }
 
-                scene.active = true
+                if(scene !== null) {
+                    scene.active = true
+                }
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                scene.active = false
+                if(scene !== null) {
+                    scene.active = false
+                }
 
-                if(Qt.platform.os == "android") {
+                if(Qt.platform.os === "android") {
                     root.hide()
                 }
 
@@ -59,10 +70,10 @@ ApplicationWindow {
     Component.onCompleted: {
         var types = QmlSensors.sensorTypes();
 
-        if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os == "android") {
+        if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os === "android") {
             sensorInputs.rotationSensorId.active = true
         }
-        else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os == "android") {
+        else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os === "android") {
             sensorInputs.tiltSensorId.active = true
         }
         else {
@@ -74,35 +85,17 @@ ApplicationWindow {
         visible: false
         focus: true
 
-        Keys.onPressed: {
-            if (event.key == Qt.Key_W) {
-                scene.cameraId.eye.z -= 0.1
-            }
+        Keys.onReleased: {
+            if (((event.key == Qt.Key_Escape && Qt.platform.os !== "android") ||
+                    (event.key == Qt.Key_Back && Qt.platform.os === "android")) &&
+                    scene != null) {
+                event.accepted = true
+                mainMenu.visible = true
 
-            if (event.key == Qt.Key_S) {
-                scene.cameraId.eye.z += 0.1
+                // Simple solution for stop rendering without a crash
+                scene.geometries = []
+                scene.delete
             }
-
-            if (event.key == Qt.Key_Right) {
-                scene.cameraId.eye.x += 0.1
-            }
-            if (event.key == Qt.Key_Left) {
-                scene.cameraId.eye.x -= 0.1
-            }
-            if (event.key == Qt.Key_Up) {
-                scene.cameraId.eye.y += 0.1
-            }
-            if (event.key == Qt.Key_Down) {
-                scene.cameraId.eye.y -= 0.1
-            }
-        }
-    }
-
-    Scene {
-        id: scene
-
-        Component.onCompleted: {
-            scene.registerNavigation(navigation)
         }
     }
 
@@ -118,5 +111,26 @@ ApplicationWindow {
     MouseInput {
         id: mouseInput
         navigation: navigation
+    }
+
+    Rectangle {
+        id: loadScreen
+        anchors.fill: parent
+        visible: false
+        color: "#e5ffff"
+    }
+
+    MainMenu {
+        id: mainMenu
+        anchors.fill: parent
+
+        startButton.onClicked: {
+            loadScreen.visible = true
+            scene = null
+
+            scene = sceneComponent.createObject(root)
+            scene.loadScreen = loadScreen
+            scene.registerNavigation(navigation)
+        }
     }
 }
