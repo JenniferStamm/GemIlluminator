@@ -13,11 +13,10 @@
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_renderer(0)
-  , m_time(new QTime())
+  , m_time(0)
   , m_rootLightRay(new LightRay(this))
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
-    m_time->start();
     m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));
     m_rootLightRay->setEndPosition(QVector3D(0, 1, 0));
 }
@@ -31,6 +30,11 @@ Scene::~Scene()
 void Scene::sync()
 {
     if (m_active) {
+        if (!m_time) {
+            m_time = new QTime();
+            m_time->start();
+        }
+
         if (!m_renderer) {
             m_renderer = new SceneRenderer();
             connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
@@ -108,6 +112,10 @@ bool Scene::isActive()
 void Scene::setActive(bool active)
 {
     m_active = active;
+    if (!m_active) {
+        delete m_time;
+        m_time = nullptr;
+    }
 
     emit activeChanged();
 }

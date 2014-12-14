@@ -2,13 +2,15 @@
 
 Player::Player(QObject *parent) :
     QObject(parent)
-  , m_position(new QVector3D())
   , m_velocity(1.f)
+  , m_position(new QVector3D())
+  , m_camera(nullptr)
 {
 }
 
 Player::~Player()
 {
+    delete m_position;
 }
 
 const QVector3D & Player::position()
@@ -24,6 +26,13 @@ void Player::setPosition(const QVector3D & position)
     *m_position = position;
     if (m_camera){
         m_camera->setPosition(position);
+    }
+}
+
+void Player::setViewDirection(const QVector3D &viewDirection)
+{
+    if (m_camera){
+        m_camera->setViewDirection(viewDirection);
     }
 }
 
@@ -44,7 +53,7 @@ qreal Player::velocity()
 
 void Player::setVelocity(qreal velocity)
 {
-    if (m_velocity = velocity){
+    if (m_velocity == velocity){
         return;
     }
     m_velocity = velocity;

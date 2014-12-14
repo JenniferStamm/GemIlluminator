@@ -18,15 +18,17 @@ Scene {
         fovy: 60
     }
 
+    Player {
+        id: player
+        velocity: 0.5
+        camera: camera
+    }
+
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "0, 0, 0"
-        endPosition: "0, 0, -1"
-        player: Player {
-            id: player
-            velocity: 0.5
-            camera: camera
-        }
+        startPosition: "15, 0, 0"
+        endPosition: "-15, 0, 0"
+        player: player
     }
 
     SequentialAnimation on t {
@@ -36,6 +38,7 @@ Scene {
     }
 
     Component.onCompleted: {
+        scene.active = false
         var gemComponent = Qt.createComponent("gem.qml");
         var gems = GemGenerator.generateGems(500, 1, -10, 10)
 
@@ -52,6 +55,7 @@ Scene {
         }
 
         scene.geometries = gemsToJSON
+        scene.active = true
     }
 }
 

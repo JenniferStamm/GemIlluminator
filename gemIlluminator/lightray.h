@@ -15,6 +15,7 @@ class LightRay : public QObject
     Q_PROPERTY(const QVector3D & startPosition READ startPosition WRITE setStartPosition NOTIFY startPositionChanged)
     Q_PROPERTY(const QVector3D & endPosition READ endPosition WRITE setEndPosition NOTIFY endPositionChanged)
     Q_PROPERTY(const QVector3D & direction READ direction)
+    Q_PROPERTY(const QVector3D & normalizedDirection READ normalizedDirection)
     Q_PROPERTY(Player * player READ player WRITE setPlayer NOTIFY playerChanged)
 
 public:
@@ -46,6 +47,8 @@ public slots:
 
     const QVector3D & direction();
 
+    const QVector3D & normalizedDirection();
+
     Player * player();
     void setPlayer(Player *attachedPlayer);
 
@@ -60,6 +63,10 @@ protected:
     QVector3D *m_startPosition;
     QVector3D *m_endPosition;
     QVector3D *m_direction;
+    QVector3D *m_normalizedDirection;
+
+private:
+    void setDirection(const QVector3D direction);
 };
 
 #endif // LIGHTRAY_H

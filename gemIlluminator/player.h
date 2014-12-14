@@ -16,8 +16,10 @@ public:
     explicit Player(QObject *parent = 0);
     virtual ~Player();
 
-    void setPosition(const QVector3D & position);
+    void setPosition(const QVector3D &position);
     const QVector3D & position();
+
+    void setViewDirection(const QVector3D &viewDirection);
 
 signals:
     void cameraChanged();
