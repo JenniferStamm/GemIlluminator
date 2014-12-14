@@ -37,7 +37,7 @@
 		\end{subfigure}
 		\begin{subfigure}{\textwidth}
 			\centering
-			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/klassendiagramm}
+			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/60max}
 			\caption{QML-Listenlimit}
 		\end{subfigure}
 	\end{figure}
@@ -53,26 +53,72 @@
 		\begin{subfigure}{\textwidth}
 			\centering
 			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/akkufresser}
-			\caption{Akkufresse}
+			\caption{Akkufresser}
 		\end{subfigure}
 	\end{figure}
 }
 
 
-\begin{frame}{Lösungskonzepte}
 
-\end{frame}
+\slideonetoone
+{Lösungskonzepte}
+{	
+	\begin{figure}
+		\centering
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/nogeometry}
+			\caption{Normalenberechnung}
+		\end{subfigure}
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/60max}
+			\caption{QML-Listenlimit}
+		\end{subfigure}
+	\end{figure}
+}
+{
+	\begin{figure}
+		\centering
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/lowFPS}
+			\caption{Niedrige Framerate}
+		\end{subfigure}
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/akkufresser}
+			\caption{Akkufresser}
+		\end{subfigure}
+	\end{figure}
+}
 
-\begin{frame}{Statusupdate zur Entwicklung}
-
-\end{frame}
-
-\begin{frame}{Technische Herausforderungen}
-
-\end{frame}
 
 \begin{frame}{Detaillierter Lösungsansatz}
 
+\end{frame}
+
+
+
+\begin{frame}{Milestones}
+	\begin{itemize}
+		\definecolor{evap@lightgreen}{HTML}{bbd154}
+		
+		\definecolor{evap@darkgreen}{HTML}{88be4a}
+		
+		\definecolor{evap@yellow}{HTML}{efe258}
+
+		\item \textcolor{evap@lightgreen}{Ende November\\
+			Prototyp mit Landschafts-Generierung abstrakter \glqq Kristall\grqq -Objekte im Raum. Idealerweise können wir bereits das zu steuernde Objekt ausfindig machen.}
+			
+		\item \textcolor{evap@yellow}{Zwischenstandspräsentation\\
+			Vollständige Implementierung der Steuerung und Berechnung des übernächsten Objekts, auf das die Strahlen treffen würden.}
+			
+		\item Ende der Weihnachtsferien\\
+			Kollisionserkennung und Auswahl des Kristalls, auf den das Lichtbündel trifft.
+		\item Early Access Convention\\
+			Erster Lichteffekt: Spekulare Reflektion.
+	\end{itemize}
 \end{frame}
 
 %\input{bibliography}
