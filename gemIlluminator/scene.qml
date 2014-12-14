@@ -24,23 +24,34 @@ Scene {
         running: true
     }
 
-    Component.onCompleted: {
-        var gemComponent = Qt.createComponent("gem.qml");
-        var gems = GemGenerator.generateGems(500, 1, -10, 10)
+    WorkerScript {
+        id: gemGenerator
+        source: "gemgenerator.js"
 
-        var gemsToJSON = []
-        gemsToJSON.push()
+        onMessage: {
+            var gemComponent = Qt.createComponent("gem.qml");
+            var gems = messageObject.gems
 
-        for (var i = 0; i < gems.length; i++) {
-            gemsToJSON.push(gemComponent.createObject(scene,
-                                                {"id": "gem" + i.toString(),
-                                                    "position.x": gems[i][0],
-                                                    "position.y": gems[i][1],
-                                                    "position.z": gems[i][2],
-                                                }))
+            var gemsToJSON = []
+            gemsToJSON.push()
+
+            for (var i = 0; i < gems.length; i++) {
+                gemsToJSON.push(gemComponent.createObject(scene,
+                                                    {"id": "gem" + i.toString(),
+                                                        "position.x": gems[i][0],
+                                                        "position.y": gems[i][1],
+                                                        "position.z": gems[i][2],
+                                                    }))
+            }
+
+            scene.geometries = gemsToJSON
+            scene.active = true
         }
+    }
 
-        scene.geometries = gemsToJSON
+    Component.onCompleted: {
+        scene.active = false
+        gemGenerator.sendMessage({"numGems": 500,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
     }
 }
 
