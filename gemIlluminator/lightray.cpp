@@ -30,10 +30,15 @@ LightRay::LightRay(LightRay &lightRay, QObject *parent) :
 
 LightRay::~LightRay()
 {
+    for (auto& successor : *m_successors ) {
+        delete successor;
+    }
+    delete m_successors;
     delete m_startPosition;
     delete m_endPosition;
     delete m_direction;
     delete m_normalizedDirection;
+    delete m_renderer;
 }
 
 void LightRay::synchronize()
@@ -54,7 +59,7 @@ void LightRay::_synchronize(LightRayRenderer *renderer)
     delete m_renderer;
     m_renderer = nullptr;
 
-    m_renderer->addLightRay(*this);
+    renderer->addLightRay(*this);
 
     for (auto& successor : *m_successors ) {
         successor->_synchronize(renderer);
@@ -65,6 +70,10 @@ void LightRay::cleanup()
 {
     delete m_renderer;
     m_renderer = nullptr;
+
+    for (auto& successor : *m_successors) {
+        successor->cleanup;
+    }
 }
 
 void LightRay::update(int timeDifference)
@@ -73,6 +82,10 @@ void LightRay::update(int timeDifference)
         QVector3D playerPosition = m_player->position();
         playerPosition += (normalizedDirection() * m_player->velocity() * timeDifference) / 1000;
         m_player->setPosition(playerPosition);
+    }
+
+    for (auto& successor : *m_successors) {
+        successor->update(timeDifference);
     }
 }
 
