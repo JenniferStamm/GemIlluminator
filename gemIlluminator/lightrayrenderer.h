@@ -12,6 +12,7 @@ template<typename T> class QVector;
 class LightRayRenderer : public QObject
 {
     Q_OBJECT
+
 public:
     explicit LightRayRenderer(QObject *parent = 0);
     virtual ~LightRayRenderer();
