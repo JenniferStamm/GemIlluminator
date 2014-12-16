@@ -48,7 +48,7 @@ Camera::~Camera()
     delete m_viewport;
 }
 
-void Camera::recalculateView()
+void Camera::recalculateView() const
 {
     m_view->setToIdentity();
     m_view->lookAt(eye(), center(), up());
@@ -56,7 +56,7 @@ void Camera::recalculateView()
     m_isViewInvalid = false;
 }
 
-void Camera::recalculateProjection()
+void Camera::recalculateProjection() const
 {
     m_projection->setToIdentity();
     m_projection->perspective(fovy(), viewport().width() / viewport().height(), zNear(), zFar());
@@ -64,7 +64,7 @@ void Camera::recalculateProjection()
     m_isViewInvalid = false;
 }
 
-void Camera::recalculateViewProjection()
+void Camera::recalculateViewProjection() const
 {
     if (m_isViewInvalid){
         recalculateView();
@@ -76,7 +76,7 @@ void Camera::recalculateViewProjection()
     *m_viewProjectionInverted = m_viewProjection->inverted();
 }
 
-QMatrix4x4 const & Camera::view()
+QMatrix4x4 const & Camera::view() const
 {
     if (m_isViewInvalid){
         recalculateView();
@@ -84,7 +84,7 @@ QMatrix4x4 const & Camera::view()
     return *m_view;
 }
 
-QMatrix4x4 const & Camera::viewInverted()
+QMatrix4x4 const & Camera::viewInverted() const
 {
     if (m_isViewInvalid){
         recalculateView();
@@ -92,7 +92,7 @@ QMatrix4x4 const & Camera::viewInverted()
     return *m_viewInverted;
 }
 
-QMatrix4x4 const & Camera::viewProjection()
+QMatrix4x4 const & Camera::viewProjection() const
 {
     if (m_isViewInvalid || m_isProjectionInvalid){
         recalculateViewProjection();
@@ -100,7 +100,7 @@ QMatrix4x4 const & Camera::viewProjection()
     return *m_viewProjection;
 }
 
-QMatrix4x4 const & Camera::viewProjectionInverted()
+QMatrix4x4 const & Camera::viewProjectionInverted() const
 {
     if (m_isViewInvalid || m_isProjectionInvalid){
         recalculateViewProjection();
@@ -108,7 +108,7 @@ QMatrix4x4 const & Camera::viewProjectionInverted()
     return *m_viewProjectionInverted;
 }
 
-QMatrix4x4 const & Camera::projection()
+QMatrix4x4 const & Camera::projection() const
 {
     if (m_isProjectionInvalid){
         recalculateProjection();
@@ -116,7 +116,7 @@ QMatrix4x4 const & Camera::projection()
     return *m_projection;
 }
 
-QMatrix4x4 const & Camera::projectionInverted()
+QMatrix4x4 const & Camera::projectionInverted() const
 {
     if (m_isProjectionInvalid){
         recalculateProjection();
@@ -124,47 +124,47 @@ QMatrix4x4 const & Camera::projectionInverted()
     return *m_projectionInverted;
 }
 
-QVector3D Camera::position()
+QVector3D Camera::position() const
 {
     return *m_eye;
 }
 
-QVector3D Camera::viewDirection()
+QVector3D Camera::viewDirection() const
 {
     return *m_center - *m_eye;
 }
 
-QVector3D Camera::center()
+QVector3D Camera::center() const
 {
     return *m_center;
 }
 
-QVector3D Camera::eye()
+QVector3D Camera::eye() const
 {
     return *m_eye;
 }
 
-QVector3D Camera::up()
+QVector3D Camera::up() const
 {
     return *m_up;
 }
 
-QSize Camera::viewport()
+QSize Camera::viewport() const
 {
     return *m_viewport;
 }
 
-float Camera::fovy()
+float Camera::fovy() const
 {
     return m_fovy;
 }
 
-float Camera::zNear()
+float Camera::zNear() const
 {
     return m_zNear;
 }
 
-float Camera::zFar()
+float Camera::zFar() const
 {
     return m_zFar;
 }

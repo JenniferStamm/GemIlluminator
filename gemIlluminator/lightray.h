@@ -33,21 +33,23 @@ public:
     virtual void cleanup();
     virtual void update(int timeDifference);
 
+    bool operator ==(const LightRay &anotherLightRay);
+
 signals:
     void startPositionChanged();
     void endPositionChanged();
     void playerChanged();
 
 public slots:
-    const QVector3D & startPosition();
+    const QVector3D & startPosition() const;
     void setStartPosition(const QVector3D & position);
 
-    const QVector3D & endPosition();
+    const QVector3D & endPosition() const;
     void setEndPosition(const QVector3D & position);
 
-    const QVector3D & direction();
+    const QVector3D & direction() const;
 
-    const QVector3D & normalizedDirection();
+    const QVector3D & normalizedDirection() const;
 
     Player * player();
     void setPlayer(Player *attachedPlayer);

@@ -41,6 +41,15 @@ LightRay::~LightRay()
     delete m_renderer;
 }
 
+bool LightRay::operator ==(const LightRay &anotherLightRay)
+{
+    if ((this->startPosition() == anotherLightRay.startPosition())
+            && (this->endPosition() == anotherLightRay.endPosition())) {
+        return true;
+    }
+    return false;
+}
+
 void LightRay::synchronize()
 {
     if (!m_renderer) {
@@ -72,7 +81,7 @@ void LightRay::cleanup()
     m_renderer = nullptr;
 
     for (auto& successor : *m_successors) {
-        successor->cleanup;
+        successor->cleanup();
     }
 }
 
@@ -89,7 +98,7 @@ void LightRay::update(int timeDifference)
     }
 }
 
-const QVector3D & LightRay::startPosition()
+const QVector3D & LightRay::startPosition() const
 {
     return *m_startPosition;
 }
@@ -104,7 +113,7 @@ void LightRay::setStartPosition(const QVector3D &position)
     emit startPositionChanged();
 }
 
-const QVector3D & LightRay::endPosition()
+const QVector3D & LightRay::endPosition() const
 {
     return *m_endPosition;
 }
@@ -119,7 +128,7 @@ void LightRay::setEndPosition(const QVector3D &position)
     emit endPositionChanged();
 }
 
-const QVector3D & LightRay::direction()
+const QVector3D & LightRay::direction() const
 {
     return *m_direction;
 }
@@ -136,7 +145,7 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player->setViewDirection(direction());
 }
 
-const QVector3D & LightRay::normalizedDirection()
+const QVector3D & LightRay::normalizedDirection() const
 {
     return *m_normalizedDirection;
 }
