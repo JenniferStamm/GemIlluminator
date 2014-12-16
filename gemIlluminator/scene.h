@@ -5,11 +5,11 @@
 #include <QQmlListProperty>
 
 class AbstractGem;
-class SceneRenderer;
 class Camera;
 class LightRay;
 class Navigation;
 class QTime;
+class SceneRenderer;
 
 class Scene : public QQuickItem
 {
@@ -30,7 +30,6 @@ public:
     void setT(qreal t);
 
     bool isActive();
-
     void setActive(bool active);
 
     Camera* camera();
