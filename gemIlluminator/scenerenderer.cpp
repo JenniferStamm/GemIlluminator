@@ -70,32 +70,32 @@ void SceneRenderer::paint()
         /* Paint gems */
         m_gemProgram->bind();
 
-        m_gl->glEnableVertexAttribArray(0);
-        m_gl->glEnableVertexAttribArray(1);
-        m_gl->glEnableVertexAttribArray(2);
+        m_gemProgram->enableAttributeArray(0);
+        m_gemProgram->enableAttributeArray(1);
+        m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
             geometry->paint(m_gl, m_viewProjection, *m_gemProgram);
         }
 
-        m_gl->glDisableVertexAttribArray(0);
-        m_gl->glDisableVertexAttribArray(1);
-        m_gl->glDisableVertexAttribArray(2);
+        m_gemProgram->disableAttributeArray(0);
+        m_gemProgram->disableAttributeArray(1);
+        m_gemProgram->disableAttributeArray(2);
 
         m_gemProgram->release();
 
         /* Paint light */
         m_lightProgram->bind();
 
-        m_gl->glEnableVertexAttribArray(0);
-        m_gl->glEnableVertexAttribArray(1);
-        m_gl->glEnableVertexAttribArray(2);
+        m_lightProgram->enableAttributeArray(0);
+        m_lightProgram->enableAttributeArray(1);
+        m_lightProgram->enableAttributeArray(2);
 
         // light paint
 
-        m_gl->glDisableVertexAttribArray(0);
-        m_gl->glDisableVertexAttribArray(1);
-        m_gl->glDisableVertexAttribArray(2);
+        m_lightProgram->disableAttributeArray(0);
+        m_lightProgram->disableAttributeArray(1);
+        m_lightProgram->disableAttributeArray(2);
 
         m_lightProgram->release();
 
