@@ -36,15 +36,15 @@ ApplicationWindow {
 
                     var types = QmlSensors.sensorTypes();
 
-                    if (types.indexOf("QRotationSensor") !== -1 && Qt.platform.os === "android") {
+                    if (types.indexOf("QRotationSensor") !== -1) {
                         sensorInputs.rotationSensorId.active = true
                     }
-                    else if (types.indexOf("QTiltSensor") !== -1 && Qt.platform.os === "android") {
+                    else if (types.indexOf("QTiltSensor") !== -1) {
                         sensorInputs.tiltSensorId.active = true
-                    }
-                    else {
-                        mouseInput.enabled = true
-                    }
+                    }  
+                }
+                else {
+                    mouseInput.enabled = true
                 }
 
                 if(scene !== null) {
