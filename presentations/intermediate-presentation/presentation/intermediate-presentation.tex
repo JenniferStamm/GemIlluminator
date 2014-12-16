@@ -10,10 +10,18 @@
 
 \begin{frame}{Demo}
 	%TODO Aktueller Screenshot/Video
-	\begin{figure}
-		\centering
-		\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{images/500_gems_intel}
-	\end{figure}
+	\centering
+	\includemedia[
+	width=0.8\textwidth,height=0.8\textheight,
+	activate=pageopen,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=0 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{http://www.youtube.com/v/xjydH4cF-D4}
 \end{frame}
 
 
