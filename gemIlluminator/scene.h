@@ -51,7 +51,7 @@ public slots:
 
 protected:
     SceneRenderer *m_renderer;
-    QList<AbstractGem*> m_geometries;
+    QList<AbstractGem*> m_gem;
     qreal m_t;
     QTime *m_time;
     bool m_active;
