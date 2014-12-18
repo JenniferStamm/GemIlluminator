@@ -16,9 +16,9 @@ class Camera : public QObject
     Q_PROPERTY(QVector3D position READ position WRITE setPosition)
     Q_PROPERTY(QVector3D viewDirection READ viewDirection WRITE setViewDirection)
     Q_PROPERTY(QSize viewport READ viewport WRITE setViewport)
+    Q_PROPERTY(qreal fovy READ fovy WRITE setFovy)
     Q_PROPERTY(qreal zNear READ zNear WRITE setZNear)
     Q_PROPERTY(qreal zFar READ zFar WRITE setZFar)
-    Q_PROPERTY(qreal fovy READ fovy WRITE setFovy)
 
 public:
     explicit Camera(QObject *parent = 0);
@@ -32,16 +32,16 @@ public:
 
     QMatrix4x4 const & view();
     QMatrix4x4 const & viewInverted();
-    QMatrix4x4 const & viewProjection();
-    QMatrix4x4 const & viewProjectionInverted();
     QMatrix4x4 const & projection();
     QMatrix4x4 const & projectionInverted();
+    QMatrix4x4 const & viewProjection();
+    QMatrix4x4 const & viewProjectionInverted();
 
+    QVector3D eye();
+    QVector3D center();
+    QVector3D up();
     QVector3D position();
     QVector3D viewDirection();
-    QVector3D center();
-    QVector3D eye();
-    QVector3D up();
 
     QSize viewport();
     float fovy();
@@ -52,12 +52,13 @@ signals:
     void viewChanged();
 
 public slots:
-    void setPosition(QVector3D position);
-    void setViewDirection(QVector3D viewDirection);
+    void setView(QVector3D eye, QVector3D center, QVector3D up);
+
     void setEye(QVector3D eye);
     void setCenter(QVector3D center);
     void setUp(QVector3D up);
-    void setView(QVector3D eye, QVector3D center, QVector3D up);
+    void setPosition(QVector3D position);
+    void setViewDirection(QVector3D viewDirection);
 
     void setViewport(QSize viewport);
     void setViewport(int x, int y);
@@ -75,9 +76,9 @@ protected:
     QVector3D *m_center;
     QVector3D *m_up;
     QSize *m_viewport;
+    float m_fovy;
     float m_zNear;
     float m_zFar;
-    float m_fovy;
 
     QMatrix4x4 *m_view;
     QMatrix4x4 *m_viewInverted;
