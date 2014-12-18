@@ -13,7 +13,7 @@
 %\usepackage{textpos}
 \usepackage{tikz}
 \usetikzlibrary{spy}
-%\usepackage{media9}
+\usepackage{media9}
 %\usepackage{array}
 %\usepackage{multirow}
 %\usepackage{csquotes}
@@ -24,6 +24,7 @@
 \usepackage{calc}
 \usepackage{etoolbox}
 \usepackage{animate}
+\usepackage{color}
 
 
 \deftranslation[to=German]{Table of Contents}{Inhaltsverzeichnis}
@@ -102,7 +103,7 @@
   \smallskip
 	\usebeamerfont{institute}\usebeamercolor[fg]{subtitle}
 	\renewcommand{\dateseparator}{}
-	\insertinstitute \quad \usebeamerfont{date}\insertdate \quad v\mmddyyyydate\today\par
+	Daniel Limberger \quad \insertinstitute \quad \usebeamerfont{date}\insertdate\par
 }
 
 \defbeamertemplate*{frametitle}{cgs}
@@ -130,7 +131,7 @@
 		\insertpagenumber \quad \insertsubtitle~\slash~\insertsectionhead
 		\hfill
 		\renewcommand{\dateseparator}{}
-		\insertshorttitle \quad \insertshortdate \quad v\mmddyyyydate\today\par
+		\insertshorttitle \quad \insertshortdate\par
 	\end{beamercolorbox}
 }
 }
