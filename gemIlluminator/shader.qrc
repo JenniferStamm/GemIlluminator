@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>shader/fgem.glsl</file>
         <file>shader/vgem.glsl</file>
+        <file>shader/lightray.frag</file>
+        <file>shader/lightray.vert</file>
     </qresource>
 </RCC>

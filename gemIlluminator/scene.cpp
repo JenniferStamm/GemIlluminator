@@ -138,4 +138,5 @@ LightRay* Scene::rootLightRay()
 void Scene::setRootLightRay(LightRay *root)
 {
     m_rootLightRay = root;
+    m_rootLightRay->setStatic();
 }

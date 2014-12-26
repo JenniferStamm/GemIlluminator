@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     lightrayrenderer.cpp \
     navigation.cpp \
     abstractgem.cpp \
-    abstractgemrenderer.cpp
+    abstractgemrenderer.cpp \
+    lightraydata.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -41,4 +42,5 @@ HEADERS += \
     lightrayrenderer.h \
     navigation.h \
     abstractgem.h \
-    abstractgemrenderer.h
+    abstractgemrenderer.h \
+    lightraydata.h

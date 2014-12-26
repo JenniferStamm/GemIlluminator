@@ -8,6 +8,7 @@
 template <typename T> class QList;
 class QVector3D;
 class LightRayRenderer;
+class QOpenGLFunctions;
 
 class LightRay : public QObject
 {
@@ -33,8 +34,6 @@ public:
     virtual void cleanup();
     virtual void update(int timeDifference);
 
-    bool operator ==(const LightRay &anotherLightRay);
-
 signals:
     void startPositionChanged();
     void endPositionChanged();
@@ -54,12 +53,18 @@ public slots:
     Player * player();
     void setPlayer(Player *attachedPlayer);
 
+    bool isStatic() const;
+    void setStatic();
+
+    void paint(QOpenGLFunctions *gl);
+
 protected:
     virtual void _synchronize(LightRayRenderer *renderer);
 
 protected:
     QList<LightRay *> *m_successors;
     LightRayRenderer *m_renderer;
+    bool m_isStatic;
 
     Player *m_player;
     QVector3D *m_startPosition;

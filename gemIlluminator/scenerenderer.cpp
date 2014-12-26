@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "abstractgem.h"
+#include "lightray.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
@@ -84,20 +85,8 @@ void SceneRenderer::paint()
 
         m_gemProgram->release();
 
-        /* Paint light */
-        m_lightProgram->bind();
-
-        m_gl->glEnableVertexAttribArray(0);
-        m_gl->glEnableVertexAttribArray(1);
-        m_gl->glEnableVertexAttribArray(2);
-
-        // light paint
-
-        m_gl->glDisableVertexAttribArray(0);
-        m_gl->glDisableVertexAttribArray(1);
-        m_gl->glDisableVertexAttribArray(2);
-
-        m_lightProgram->release();
+        /* Paint lightrays */
+        m_rootLightRay->paint(m_gl);
 
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp

@@ -41,21 +41,13 @@ LightRay::~LightRay()
     delete m_renderer;
 }
 
-bool LightRay::operator ==(const LightRay &anotherLightRay)
-{
-    if ((this->startPosition() == anotherLightRay.startPosition())
-            && (this->endPosition() == anotherLightRay.endPosition())) {
-        return true;
-    }
-    return false;
-}
-
 void LightRay::synchronize()
 {
     if (!m_renderer) {
         m_renderer = new LightRayRenderer();
     }
 
+    m_renderer->setCamera(*m_player->camera());
     m_renderer->addLightRay(*this);
 
     for (auto& successor : *m_successors ) {
@@ -143,6 +135,23 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player = attachedPlayer;
     m_player->setPosition(startPosition());
     m_player->setViewDirection(direction());
+}
+
+bool LightRay::isStatic() const
+{
+    return m_isStatic;
+}
+
+void LightRay::setStatic()
+{
+    m_isStatic = true;
+}
+
+void LightRay::paint(QOpenGLFunctions *gl)
+{
+    if (m_renderer) {
+        m_renderer->paint(gl);
+    }
 }
 
 const QVector3D & LightRay::normalizedDirection() const

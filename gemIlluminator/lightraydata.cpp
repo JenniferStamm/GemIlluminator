@@ -10,6 +10,12 @@ LightRayData::LightRayData(const LightRay &ray) :
 {
 }
 
+LightRayData::LightRayData(const LightRayData &ray) :
+    m_startPosition(new QVector3D(ray.startPosition()))
+  , m_endPosition(new QVector3D(ray.endPosition()))
+{
+}
+
 LightRayData::~LightRayData()
 {
     delete m_startPosition;
@@ -24,6 +30,18 @@ const QVector3D & LightRayData::startPosition() const
 const QVector3D & LightRayData::endPosition() const
 {
     return *m_endPosition;
+}
+
+LightRayData & LightRayData::operator=(const LightRayData &lightRay)
+{
+    if (this != &lightRay)
+    {
+        delete m_startPosition;
+        delete m_endPosition;
+        m_startPosition = new QVector3D(lightRay.startPosition());
+        m_endPosition = new QVector3D(lightRay.endPosition());
+    }
+    return *this;
 }
 
 
