@@ -25,7 +25,7 @@ void Player::setPosition(const QVector3D & position)
     }
     *m_position = position;
     if (m_camera){
-        m_camera->setPosition(position + QVector3D(0.f, 1.f, 0.f));
+        m_camera->setPosition(position + QVector3D(0.f, .1f, 0.f));
     }
 }
 

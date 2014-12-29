@@ -5,9 +5,11 @@
 #include <QMatrix4x4>
 #include <QVector3D>
 
-class AbstractGemRenderer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+
+class AbstractGemRenderer;
+class LightRay;
 
 class AbstractGem : public QObject
 {
@@ -35,10 +37,15 @@ public:
     QVector3D rotation();
     void setRotation(QVector3D rotation);
 
+    float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+
 signals:
     void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
+
+protected:
+    int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
 
 protected:
     AbstractGemRenderer *m_renderer;
