@@ -1,5 +1,7 @@
 #include "scene.h"
 
+#include <limits>
+
 #include <QQuickWindow>
 #include <QTime>
 #include <QVector3D>
@@ -139,4 +141,26 @@ void Scene::setRootLightRay(LightRay *root)
 {
     m_rootLightRay = root;
     m_rootLightRay->setStatic();
+}
+
+AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint)
+{
+    AbstractGem *result = nullptr;
+    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
+    }
+    float distance = std::numeric_limits<float>::max();
+    for( auto& gem : m_geometries ){
+        QVector3D temp;
+        float collisionDistance = gem->rayIntersect(ray, &temp);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = temp;
+            }
+            result = gem;
+        }
+    }
+    return result;
 }

@@ -39,6 +39,8 @@ public:
     LightRay* rootLightRay();
     void setRootLightRay(LightRay *root);
 
+    AbstractGem* rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+
 signals:
     void cubesChanged();
     void tChanged();
