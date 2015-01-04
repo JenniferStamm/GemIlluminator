@@ -9,6 +9,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
+    color: "red"
 
     property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
     property var scene: null
