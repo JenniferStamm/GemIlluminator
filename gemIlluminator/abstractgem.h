@@ -1,8 +1,8 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include <QObject>
 #include <QMatrix4x4>
+#include <QObject>
 #include <QVector3D>
 
 class AbstractGemRenderer;

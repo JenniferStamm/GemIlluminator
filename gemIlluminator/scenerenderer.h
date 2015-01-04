@@ -1,9 +1,9 @@
 #ifndef SCENERENDERER_H
 #define SCENERENDERER_H
 
+#include <QMatrix4x4>
 #include <QObject>
 #include <QSize>
-#include <QMatrix4x4>
 
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
@@ -13,6 +13,7 @@ class LightRay;
 class SceneRenderer : public QObject
 {
     Q_OBJECT
+
 public:
     explicit SceneRenderer(QObject *parent = 0);
     void setViewport(QSize viewport);

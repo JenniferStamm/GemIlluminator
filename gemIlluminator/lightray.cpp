@@ -111,6 +111,11 @@ const QVector3D & LightRay::direction()
     return *m_direction;
 }
 
+const QVector3D & LightRay::normalizedDirection()
+{
+    return *m_normalizedDirection;
+}
+
 Player * LightRay::player()
 {
     return m_player;
@@ -121,11 +126,6 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player = attachedPlayer;
     m_player->setPosition(startPosition());
     m_player->setViewDirection(direction());
-}
-
-const QVector3D & LightRay::normalizedDirection()
-{
-    return *m_normalizedDirection;
 }
 
 void LightRay::setDirection(const QVector3D direction)

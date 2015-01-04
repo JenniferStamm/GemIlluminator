@@ -41,6 +41,7 @@ void SceneRenderer::initialize() {
 
     m_initialized = true;
 }
+
 LightRay *SceneRenderer::rootLightRay() const
 {
     return m_rootLightRay;
@@ -51,6 +52,30 @@ void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
     m_rootLightRay = rootLightRay;
 }
 
+void SceneRenderer::setViewport(QSize viewport)
+{
+    m_viewport = viewport;
+}
+
+void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
+{
+    m_geometries = geometries;
+}
+
+void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
+{
+    m_viewProjection = viewProjection;
+}
+
+bool SceneRenderer::isActive()
+{
+    return m_active;
+}
+
+void SceneRenderer::setActive(bool active)
+{
+    m_active = active;
+}
 
 void SceneRenderer::paint()
 {
@@ -70,32 +95,32 @@ void SceneRenderer::paint()
         /* Paint gems */
         m_gemProgram->bind();
 
-        m_gl->glEnableVertexAttribArray(0);
-        m_gl->glEnableVertexAttribArray(1);
-        m_gl->glEnableVertexAttribArray(2);
+        m_gemProgram->enableAttributeArray(0);
+        m_gemProgram->enableAttributeArray(1);
+        m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
             geometry->paint(m_gl, m_viewProjection, *m_gemProgram);
         }
 
-        m_gl->glDisableVertexAttribArray(0);
-        m_gl->glDisableVertexAttribArray(1);
-        m_gl->glDisableVertexAttribArray(2);
+        m_gemProgram->disableAttributeArray(0);
+        m_gemProgram->disableAttributeArray(1);
+        m_gemProgram->disableAttributeArray(2);
 
         m_gemProgram->release();
 
         /* Paint light */
         m_lightProgram->bind();
 
-        m_gl->glEnableVertexAttribArray(0);
-        m_gl->glEnableVertexAttribArray(1);
-        m_gl->glEnableVertexAttribArray(2);
+        m_lightProgram->enableAttributeArray(0);
+        m_lightProgram->enableAttributeArray(1);
+        m_lightProgram->enableAttributeArray(2);
 
         // light paint
 
-        m_gl->glDisableVertexAttribArray(0);
-        m_gl->glDisableVertexAttribArray(1);
-        m_gl->glDisableVertexAttribArray(2);
+        m_lightProgram->disableAttributeArray(0);
+        m_lightProgram->disableAttributeArray(1);
+        m_lightProgram->disableAttributeArray(2);
 
         m_lightProgram->release();
 
@@ -106,29 +131,4 @@ void SceneRenderer::paint()
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
     }
-}
-
-void SceneRenderer::setViewport(QSize viewport)
-{
-    m_viewport = viewport;
-}
-
-void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
-{
-    m_geometries = geometries;
-}
-
-bool SceneRenderer::isActive()
-{
-    return m_active;
-}
-
-void SceneRenderer::setActive(bool active)
-{
-    m_active = active;
-}
-
-void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
-{
-    m_viewProjection = viewProjection;
 }
