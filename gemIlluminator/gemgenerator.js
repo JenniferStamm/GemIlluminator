@@ -43,6 +43,7 @@ WorkerScript.onMessage = function(message)
 
         if (isValidNewGem) {
             gems.push(new Array(newX, newY, newZ))
+            WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
             curGemNum++
         }
