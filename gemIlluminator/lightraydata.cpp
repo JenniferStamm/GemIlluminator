@@ -4,6 +4,12 @@
 
 #include "lightray.h"
 
+LightRayData::LightRayData() :
+    m_startPosition(new QVector3D())
+  , m_endPosition(new QVector3D())
+{
+}
+
 LightRayData::LightRayData(const LightRay &ray) :
     m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
@@ -43,7 +49,6 @@ LightRayData & LightRayData::operator=(const LightRayData &lightRay)
     }
     return *this;
 }
-
 
 bool operator==(const LightRayData &ray1, const LightRayData &ray2)
 {

@@ -15,18 +15,23 @@ LightRayRenderer::LightRayRenderer(QObject *parent) :
   , m_isInitialized(false)
   , m_program(nullptr)
   , m_camera(nullptr)
-  , m_dynamicRays(new QVector<LightRay *>)
+  , m_dynamicRays(new QVector<LightRayData>)
   , m_staticRays(new QSet<LightRayData>)
   , m_isStaticVBOUpdateRequired(true)
-  , m_vertexBuffer(nullptr)
-  , m_indexBuffer(nullptr)
+  , m_staticVertexBuffer(nullptr)
+  , m_staticIndexBuffer(nullptr)
+  , m_dynamicVertexBuffer(nullptr)
+  , m_dynamicIndexBuffer(nullptr)
 {
 }
 
 LightRayRenderer::~LightRayRenderer()
 {
     delete m_program;
-    delete m_vertexBuffer;
+    delete m_staticVertexBuffer;
+    delete m_staticIndexBuffer;
+    delete m_dynamicVertexBuffer;
+    delete m_dynamicIndexBuffer;
     delete m_dynamicRays;
     delete m_staticRays;
 }
@@ -49,7 +54,7 @@ void LightRayRenderer::addLightRay(const LightRay & ray)
     }
     else
     {
-        //m_dynamicRays->push_back(ray);
+        m_dynamicRays->push_back(LightRayData(ray));
     }
 }
 
@@ -88,86 +93,120 @@ QVector3D calculateOrthogonalVectorTo(const QVector3D &vector)
     }
 }
 
+void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices)
+{
+    float offset = 0.01f;
+    QVector3D direction = (rayData.endPosition() - rayData.startPosition()).normalized();
+    QVector3D upVector = calculateOrthogonalVectorTo(direction);
+    QVector3D rightVector = QVector3D::crossProduct(direction, upVector).normalized();
+
+    //s-start, e-end, t-top, b-bottom, r-right, l-left
+    int valuesPerVertex = 3;
+    unsigned int startTop = vertices.count() / valuesPerVertex;
+    unsigned int startRight =  startTop + 1;
+    unsigned int startBottom = startTop + 2;
+    unsigned int startLeft =   startTop + 3;
+    unsigned int endTop =      startTop + 4;
+    unsigned int endRight =    startTop + 5;
+    unsigned int endBottom =   startTop + 6;
+    unsigned int endLeft =     startTop + 7;
+
+    vertices.push_back((rayData.startPosition() + upVector * offset).x());
+    vertices.push_back((rayData.startPosition() + upVector * offset).y());
+    vertices.push_back((rayData.startPosition() + upVector * offset).z());
+    vertices.push_back((rayData.startPosition() + rightVector * offset).x());
+    vertices.push_back((rayData.startPosition() + rightVector * offset).y());
+    vertices.push_back((rayData.startPosition() + rightVector * offset).z());
+    vertices.push_back((rayData.startPosition() - upVector * offset).x());
+    vertices.push_back((rayData.startPosition() - upVector * offset).y());
+    vertices.push_back((rayData.startPosition() - upVector * offset).z());
+    vertices.push_back((rayData.startPosition() - rightVector * offset).x());
+    vertices.push_back((rayData.startPosition() - rightVector * offset).y());
+    vertices.push_back((rayData.startPosition() - rightVector * offset).z());
+    vertices.push_back((rayData.endPosition() + upVector * offset).x());
+    vertices.push_back((rayData.endPosition() + upVector * offset).y());
+    vertices.push_back((rayData.endPosition() + upVector * offset).z());
+    vertices.push_back((rayData.endPosition() + rightVector * offset).x());
+    vertices.push_back((rayData.endPosition() + rightVector * offset).y());
+    vertices.push_back((rayData.endPosition() + rightVector * offset).z());
+    vertices.push_back((rayData.endPosition() - upVector * offset).x());
+    vertices.push_back((rayData.endPosition() - upVector * offset).y());
+    vertices.push_back((rayData.endPosition() - upVector * offset).z());
+    vertices.push_back((rayData.endPosition() - rightVector * offset).x());
+    vertices.push_back((rayData.endPosition() - rightVector * offset).y());
+    vertices.push_back((rayData.endPosition() - rightVector * offset).z());
+
+    indices.push_back(startBottom);
+    indices.push_back(startRight);
+    indices.push_back(startLeft);
+    indices.push_back(startTop);
+    indices.push_back(endTop);
+    indices.push_back(startRight);
+    indices.push_back(endRight);
+    indices.push_back(endBottom);
+    indices.push_back(endTop);
+    indices.push_back(endLeft);
+    indices.push_back(startLeft);
+    indices.push_back(endBottom);
+    indices.push_back(startBottom);
+    indices.push_back(startRight);
+}
+
 void LightRayRenderer::updateStaticVBO()
 {
-    if (m_vertexBuffer) {
-        m_vertexBuffer->destroy();
+    if (m_staticVertexBuffer) {
+        m_staticVertexBuffer->destroy();
     }
-    if (m_indexBuffer) {
-        m_indexBuffer->destroy();
+    if (m_staticIndexBuffer) {
+        m_staticIndexBuffer->destroy();
     }
-    delete m_vertexBuffer;
-    delete m_indexBuffer;
-    m_vertexBuffer = new QOpenGLBuffer();
-    m_indexBuffer = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-    m_vertexBuffer->create();
-    m_indexBuffer->create();
-    m_vertexBuffer->bind();
-    m_indexBuffer->bind();
+    delete m_staticVertexBuffer;
+    delete m_staticIndexBuffer;
+    m_staticVertexBuffer = new QOpenGLBuffer();
+    m_staticIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    m_staticVertexBuffer->create();
+    m_staticIndexBuffer->create();
+    m_staticVertexBuffer->bind();
+    m_staticIndexBuffer->bind();
 
     QVector<float> vertexData;
     QVector<unsigned int> indexData;
 
     for (auto& rayData : *m_staticRays) {
-        float offset = 0.01f;
-        QVector3D direction = (rayData.endPosition() - rayData.startPosition()).normalized();
-        QVector3D upVector = calculateOrthogonalVectorTo(direction);
-        QVector3D rightVector = QVector3D::crossProduct(direction, upVector).normalized();
-
-        //s-start, e-end, t-top, b-bottom, r-right, l-left
-        unsigned int startTop = vertexData.count();
-        unsigned int startRight =  startTop + 1;
-        unsigned int startBottom = startTop + 2;
-        unsigned int startLeft =   startTop + 3;
-        unsigned int endTop =      startTop + 4;
-        unsigned int endRight =    startTop + 5;
-        unsigned int endBottom =   startTop + 6;
-        unsigned int endLeft =     startTop + 7;
-
-        vertexData.push_back((rayData.startPosition() + upVector * offset).x());
-        vertexData.push_back((rayData.startPosition() + upVector * offset).y());
-        vertexData.push_back((rayData.startPosition() + upVector * offset).z());
-        vertexData.push_back((rayData.startPosition() + rightVector * offset).x());
-        vertexData.push_back((rayData.startPosition() + rightVector * offset).y());
-        vertexData.push_back((rayData.startPosition() + rightVector * offset).z());
-        vertexData.push_back((rayData.startPosition() - upVector * offset).x());
-        vertexData.push_back((rayData.startPosition() - upVector * offset).y());
-        vertexData.push_back((rayData.startPosition() - upVector * offset).z());
-        vertexData.push_back((rayData.startPosition() - rightVector * offset).x());
-        vertexData.push_back((rayData.startPosition() - rightVector * offset).y());
-        vertexData.push_back((rayData.startPosition() - rightVector * offset).z());
-        vertexData.push_back((rayData.endPosition() + upVector * offset).x());
-        vertexData.push_back((rayData.endPosition() + upVector * offset).y());
-        vertexData.push_back((rayData.endPosition() + upVector * offset).z());
-        vertexData.push_back((rayData.endPosition() + rightVector * offset).x());
-        vertexData.push_back((rayData.endPosition() + rightVector * offset).y());
-        vertexData.push_back((rayData.endPosition() + rightVector * offset).z());
-        vertexData.push_back((rayData.endPosition() - upVector * offset).x());
-        vertexData.push_back((rayData.endPosition() - upVector * offset).y());
-        vertexData.push_back((rayData.endPosition() - upVector * offset).z());
-        vertexData.push_back((rayData.endPosition() - rightVector * offset).x());
-        vertexData.push_back((rayData.endPosition() - rightVector * offset).y());
-        vertexData.push_back((rayData.endPosition() - rightVector * offset).z());
-
-        indexData.push_back(startBottom);
-        indexData.push_back(startRight);
-        indexData.push_back(startLeft);
-        indexData.push_back(startTop);
-        indexData.push_back(endTop);
-        indexData.push_back(startRight);
-        indexData.push_back(endRight);
-        indexData.push_back(endBottom);
-        indexData.push_back(endTop);
-        indexData.push_back(endLeft);
-        indexData.push_back(startLeft);
-        indexData.push_back(endBottom);
-        indexData.push_back(startBottom);
-        indexData.push_back(startRight);
+        calculateVertexDataFor(rayData, vertexData, indexData);
     }
 
-    m_vertexBuffer->allocate(vertexData.data(), vertexData.count() * 3 * sizeof(float));
-    m_indexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
+    m_staticVertexBuffer->allocate(vertexData.data(), vertexData.count() * 3 * sizeof(float));
+    m_staticIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
     m_isStaticVBOUpdateRequired = false;
+}
+
+void LightRayRenderer::updateDynamicVBO()
+{
+    if (m_dynamicVertexBuffer) {
+        m_dynamicVertexBuffer->destroy();
+    }
+    if (m_dynamicIndexBuffer) {
+        m_dynamicIndexBuffer->destroy();
+    }
+    delete m_dynamicVertexBuffer;
+    delete m_dynamicIndexBuffer;
+    m_dynamicVertexBuffer = new QOpenGLBuffer();
+    m_dynamicIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
+    m_dynamicVertexBuffer->create();
+    m_dynamicIndexBuffer->create();
+    m_dynamicVertexBuffer->bind();
+    m_dynamicIndexBuffer->bind();
+
+    QVector<float> vertexData;
+    QVector<unsigned int> indexData;
+
+    for (auto& rayData : *m_dynamicRays) {
+        calculateVertexDataFor(rayData, vertexData, indexData);
+    }
+
+    m_dynamicVertexBuffer->allocate(vertexData.data(), vertexData.count() * 3 * sizeof(float));
+    m_dynamicIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
 }
 
 void LightRayRenderer::paint(QOpenGLFunctions *gl)
@@ -180,20 +219,34 @@ void LightRayRenderer::paint(QOpenGLFunctions *gl)
         updateStaticVBO();
     }
 
-    m_vertexBuffer->bind();
-    m_indexBuffer->bind();
-
     m_program->bind();
     m_program->enableAttributeArray(0);
     m_program->setUniformValue("modelViewProjection", m_camera->viewProjection());
 
-    gl->glDisable(GL_CULL_FACE);
+    m_staticVertexBuffer->bind();
+    m_staticIndexBuffer->bind();
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    gl->glDrawElements(GL_TRIANGLE_STRIP, m_indexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
+    int indicesPerRay = 14;
+    for (unsigned int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerRay) {
+        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i * sizeof(unsigned int)));
+    }
 
-    m_vertexBuffer->release();
-    m_indexBuffer->release();
+    m_staticVertexBuffer->release();
+    m_staticIndexBuffer->release();
+
+    updateDynamicVBO();
+    m_dynamicVertexBuffer->bind();
+    m_dynamicIndexBuffer->bind();
+
+    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+    for (unsigned int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerRay) {
+        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i * sizeof(unsigned int)));
+    }
+
+    m_dynamicVertexBuffer->release();
+    m_dynamicIndexBuffer->release();
 
     m_program->disableAttributeArray(0);
     m_program->release();

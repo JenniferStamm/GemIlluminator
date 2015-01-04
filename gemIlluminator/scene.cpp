@@ -14,8 +14,8 @@
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(0)
-  , m_time(0)
+  , m_renderer(nullptr)
+  , m_time(nullptr)
   , m_rootLightRay(new LightRay(this))
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
@@ -140,7 +140,6 @@ LightRay* Scene::rootLightRay()
 void Scene::setRootLightRay(LightRay *root)
 {
     m_rootLightRay = root;
-    m_rootLightRay->setStatic();
 }
 
 AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint)

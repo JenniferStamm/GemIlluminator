@@ -128,8 +128,8 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGL
     program.bind(); // Ask Daniel why we need this here
 
     QMatrix4x4 model;
-    model.scale(0.5);
     model.translate(m_position.x(), m_position.y(), m_position.z());
+    model.scale(0.5);
     model.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
     model.rotate(m_rotation.y() + m_initialRotation.y(), QVector3D(0.0, 1.0, 0.0));
     model.rotate(m_rotation.z() + m_initialRotation.z(), QVector3D(0.0, 0.0, 1.0));

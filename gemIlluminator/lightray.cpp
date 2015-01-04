@@ -2,29 +2,19 @@
 
 #include "lightrayrenderer.h"
 #include "player.h"
-
+#include "scene.h"
 
 LightRay::LightRay(QObject *parent) :
     QObject(parent)
   , m_successors(new QList<LightRay*>())
   , m_renderer(nullptr)
+  , m_isStatic(false)
   , m_player(nullptr)
+  , m_scene(nullptr)
   , m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
   , m_direction(new QVector3D())
   , m_normalizedDirection(new QVector3D())
-{
-}
-
-LightRay::LightRay(LightRay &lightRay, QObject *parent) :
-    QObject(parent)
-  , m_successors(new QList<LightRay*>())
-  , m_renderer(nullptr)
-  , m_player(nullptr)
-  , m_startPosition(new QVector3D(lightRay.startPosition()))
-  , m_endPosition(new QVector3D(lightRay.endPosition()))
-  , m_direction(new QVector3D(lightRay.direction()))
-  , m_normalizedDirection(new QVector3D(lightRay.normalizedDirection()))
 {
 }
 
@@ -79,6 +69,13 @@ void LightRay::cleanup()
 
 void LightRay::update(int timeDifference)
 {
+    if (!isStatic() && m_scene) {
+        QVector3D collisionPoint;
+        if (m_scene->rayIntersection(*this, &collisionPoint)) {
+            setEndPosition(collisionPoint);
+        }
+    }
+
     if (m_player) {
         QVector3D playerPosition = m_player->position();
         playerPosition += (normalizedDirection() * m_player->velocity() * timeDifference) / 1000;
@@ -135,6 +132,21 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player = attachedPlayer;
     m_player->setPosition(startPosition());
     m_player->setViewDirection(direction());
+}
+
+Scene *LightRay::scene()
+{
+    return m_scene;
+}
+
+void LightRay::setScene(Scene *owningScene)
+{
+    if (m_scene == owningScene) {
+        return;
+    }
+
+    m_scene = owningScene;
+    emit sceneChanged();
 }
 
 bool LightRay::isStatic() const

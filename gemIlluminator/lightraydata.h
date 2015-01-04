@@ -12,6 +12,7 @@ class LightRay;
 class LightRayData
 {
 public:
+    LightRayData();
     LightRayData(const LightRay &lightRay);
     LightRayData(const LightRayData &lightRay);
     ~LightRayData();

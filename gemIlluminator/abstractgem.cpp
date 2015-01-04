@@ -101,7 +101,7 @@ float positiveMinimum(const float &a, const float &b)
 
 float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
 {
-    float expectedRadius = 1.f;
+    float expectedRadius = 0.5f;
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
 
