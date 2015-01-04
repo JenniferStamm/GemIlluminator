@@ -92,10 +92,10 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
 
 float positiveMinimum(const float &a, const float &b)
 {
-    if (a >= 0.f) {
+    if (a > 0.f) {
         return a <= b ? a : b;
     } else {
-        return b >= 0.f ? b : std::numeric_limits<float>::max();
+        return b > 0.f ? b : std::numeric_limits<float>::max();
     }
 }
 

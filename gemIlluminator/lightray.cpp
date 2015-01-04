@@ -79,6 +79,13 @@ void LightRay::update(int timeDifference)
     if (m_player) {
         QVector3D playerPosition = m_player->position();
         playerPosition += (normalizedDirection() * m_player->velocity() * timeDifference) / 1000;
+
+        QVector3D difference = playerPosition - endPosition();
+        if (difference.x() < 0.f || difference.y() < 0.f || difference.z() < 0.f)
+        {
+            playerPosition = endPosition();
+        }
+
         m_player->setPosition(playerPosition);
     }
 

@@ -29,6 +29,7 @@ Scene {
         startPosition: "15, 0, 0"
         endPosition: "-15, 0, 0"
         player: player
+        scene: scene
     }
 
     SequentialAnimation on t {
