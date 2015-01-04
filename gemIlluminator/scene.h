@@ -60,7 +60,6 @@ protected:
     bool m_active;
     Camera *m_camera;
     LightRay *m_rootLightRay;
-    LightRay *m_currentLightRay;
     Navigation *m_navigation;
 
 private slots:
