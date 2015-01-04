@@ -43,34 +43,38 @@ Scene {
         source: "gemgenerator.js"
 
         onMessage: {
-            var gemComponent = Qt.createComponent("gem.qml");
-            var gems = messageObject.gems
+            if(messageObject.gems) {
+                var gemComponent = Qt.createComponent("gem.qml");
+                var gems = messageObject.gems
 
-            var gemsToJSON = []
+                var gemsToJSON = []
 
-            for (var i = 0; i < gems.length; i++) {
-                gemsToJSON.push(gemComponent.createObject(scene,
-                                                    {"id": "gem" + i.toString(),
-                                                        "position.x": gems[i][0],
-                                                        "position.y": gems[i][1],
-                                                        "position.z": gems[i][2],
-                                                    }))
-            }
+                for (var i = 0; i < gems.length; i++) {
+                    gemsToJSON.push(gemComponent.createObject(scene,
+                                                        {"id": "gem" + i.toString(),
+                                                            "position.x": gems[i][0],
+                                                            "position.y": gems[i][1],
+                                                            "position.z": gems[i][2],
+                                                        }))
+                }
 
-            console.log("Gems created: " + gems.length)
+                console.log("Gems created: " + gems.length)
 
-            scene.geometries = gemsToJSON
-            scene.active = true
+                scene.geometries = gemsToJSON
+                scene.active = true
 
-            if (loadScreen !== null) {
-                loadScreen.visible = false
+                if (loadScreen !== null) {
+                    loadScreen.visible = false
+                }
+            } else if (messageObject.currentProgress) {
+                loadScreen.currentProgress = messageObject.currentProgress
             }
         }
     }
 
     Component.onCompleted: {
         scene.active = false
-        gemGenerator.sendMessage({"numGems": 600,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
+        gemGenerator.sendMessage({"numGems": 500,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
     }
 }
 
