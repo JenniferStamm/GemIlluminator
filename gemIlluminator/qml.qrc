@@ -10,5 +10,6 @@
         <file>MainMenu.qml</file>
         <file>MenuButton.qml</file>
         <file>Credits.qml</file>
+        <file>LoadScreen.qml</file>
     </qresource>
 </RCC>
