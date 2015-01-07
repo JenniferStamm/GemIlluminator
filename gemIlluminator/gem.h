@@ -3,6 +3,7 @@
 
 #include "abstractgem.h"
 
+class Triangle;
 template <typename T> class QVector;
 class QVector3D;
 
@@ -19,6 +20,7 @@ public:
     virtual void update(int timeDifference) override;
 
 protected:
+    Triangle *m_triangles[4];
     QVector<QVector3D> *m_vertices;
     QVector<QVector3D> *m_colors;
 };

@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     navigation.cpp \
     abstractgem.cpp \
     abstractgemrenderer.cpp \
-    lightraydata.cpp
+    lightraydata.cpp \
+    triangle.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -43,4 +44,5 @@ HEADERS += \
     navigation.h \
     abstractgem.h \
     abstractgemrenderer.h \
-    lightraydata.h
+    lightraydata.h \
+    triangle.h
