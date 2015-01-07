@@ -114,11 +114,9 @@ ApplicationWindow {
         navigation: navigation
     }
 
-    Rectangle {
+    LoadScreen {
         id: loadScreen
         anchors.fill: parent
-        visible: false
-        color: "#e5ffff"
     }
 
     MainMenu {
