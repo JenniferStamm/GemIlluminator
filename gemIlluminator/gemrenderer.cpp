@@ -43,17 +43,9 @@ QVector<float>* GemRenderer::initializeData(
      */
     QVector<QVector3D> *data = new QVector<QVector3D>();
 
-    // first triangle
-    addTriangleData(triangles[0], data);
-
-    // second triangle
-    addTriangleData(triangles[1], data);
-
-    // third triangle
-    addTriangleData(triangles[2], data);
-
-    // fourth triangle
-    addTriangleData(triangles[3], data);
+    for (int i = 0; i < 4; i++) {
+        addTriangleData(triangles[i], data);
+    }
 
     QVector<float> *dataFloat = new QVector<float>();
 
