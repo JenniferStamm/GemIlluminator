@@ -72,32 +72,11 @@ void LightRayRenderer::initialize()
     m_isInitialized = true;
 }
 
-QVector3D calculateOrthogonalVectorTo(const QVector3D &vector)
-{
-    if (vector.x() != 0.f) {
-        if (vector.z() != 0.f) {
-            return QVector3D(1.f, 0.f, - vector.x() / vector.z()).normalized();
-        } else {
-            return QVector3D(0.f, 1.f, 0.f);
-        }
-    } else if (vector.y() != 0.f) {
-        if (vector.z() != 0.f) {
-            return QVector3D(0.f, 1.f, - vector.y() / vector.z()).normalized();
-        } else {
-            return QVector3D(1.f, 0.f, 0.f);
-        }
-    } else if (vector.z() != 0.f) {
-        return QVector3D(1.f, 0.f, 0.f);
-    } else {
-        return QVector3D(0.f, 0.f, 0.f);
-    }
-}
-
 void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices)
 {
     float offset = 0.01f;
     QVector3D direction = (rayData.endPosition() - rayData.startPosition()).normalized();
-    QVector3D upVector = calculateOrthogonalVectorTo(direction);
+    QVector3D upVector = rayData.normalizedOrthogonalVector();
     QVector3D rightVector = QVector3D::crossProduct(direction, upVector).normalized();
 
     //s-start, e-end, t-top, b-bottom, r-right, l-left

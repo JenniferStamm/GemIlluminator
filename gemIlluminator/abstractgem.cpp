@@ -90,12 +90,12 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
     }
 }
 
-float positiveMinimum(const float &a, const float &b)
+float minimumWithLowerBound(const float &a, const float &b, const float &lowerBound)
 {
-    if (a > 0.f) {
+    if (a > lowerBound) {
         return a <= b ? a : b;
     } else {
-        return b > 0.f ? b : std::numeric_limits<float>::max();
+        return b > lowerBound ? b : std::numeric_limits<float>::max();
     }
 }
 
@@ -123,7 +123,7 @@ float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
         }
         return std::numeric_limits<float>::max();
     } else {
-        float t = positiveMinimum(t1, t2);
+        float t = minimumWithLowerBound(t1, t2, 0.01f);
         if (collisionPoint) {
             if (t != std::numeric_limits<float>::max()) {
                 *collisionPoint = ray.startPosition() + t * ray.direction();

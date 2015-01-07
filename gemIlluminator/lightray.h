@@ -9,6 +9,7 @@ template <typename T> class QList;
 class QOpenGLFunctions;
 class QVector3D;
 
+class LightRayData;
 class LightRayRenderer;
 class Scene;
 
@@ -30,6 +31,8 @@ public:
     virtual void cleanup();
     virtual void update(int timeDifference);
 
+    QVector3D normalizedOrthogonalVector() const;
+
 signals:
     void startPositionChanged();
     void endPositionChanged();
@@ -42,9 +45,7 @@ public slots:
 
     const QVector3D & endPosition() const;
     void setEndPosition(const QVector3D & position);
-
     const QVector3D & direction() const;
-
     const QVector3D & normalizedDirection() const;
 
     Player * player();
@@ -56,25 +57,25 @@ public slots:
     bool isStatic() const;
     void setStatic();
 
+    LightRay * selectedSuccessor();
+    void setSelectedSuccessor(LightRay * successor);
+
     void paint(QOpenGLFunctions *gl);
 
 protected:
     virtual void _synchronize(LightRayRenderer *renderer);
+    void calculateSuccessors();
 
 protected:
+    LightRayData *m_data;
+
     QList<LightRay *> *m_successors;
+    LightRay *m_selectedSuccessor;
     LightRayRenderer *m_renderer;
     bool m_isStatic;
 
     Player *m_player;
     Scene *m_scene;
-    QVector3D *m_startPosition;
-    QVector3D *m_endPosition;
-    QVector3D *m_direction;
-    QVector3D *m_normalizedDirection;
-
-private:
-    void setDirection(const QVector3D direction);
 };
 
 #endif // LIGHTRAY_H

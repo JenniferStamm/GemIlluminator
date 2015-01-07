@@ -2,6 +2,7 @@
 #define LIGHTRAYDATA_H
 
 #include <QObject>
+#include <QVector3D>    //TODO: Remove as soon as I know how to return a calculated QVector3D in best practice
 
 class QVector3D;
 class LightRay;
@@ -17,13 +18,24 @@ public:
     LightRayData(const LightRayData &lightRay);
     ~LightRayData();
 
+    QVector3D normalizedOrthogonalVector() const;
+
     const QVector3D & startPosition() const;
+    void setStartPosition(const QVector3D & position);
     const QVector3D & endPosition() const;
+    void setEndPosition(const QVector3D & position);
+    const QVector3D & direction() const;
+    const QVector3D & normalizedDirection() const;
 
     LightRayData & operator=(const LightRayData &lightRay);
 protected:
     QVector3D *m_startPosition;
     QVector3D *m_endPosition;
+    QVector3D *m_direction;
+    QVector3D *m_normalizedDirection;
+
+private:
+    void setDirection(const QVector3D direction);
 };
 
 bool operator==(const LightRayData &ray1, const LightRayData &ray2);
