@@ -78,31 +78,19 @@ void GemRenderer::addTriangleData(
         #endif
         return;
     }
-    const QVector3D vector1 = *triangle->a();
-    const QVector3D vector2 = *triangle->b();
-    const QVector3D vector3 = *triangle->c();
+
     const QVector3D color = *triangle->color();
+    QVector3D normal = triangle->normalizedNormal();
 
-    QVector3D normal = calculateNormal(vector1, vector2, vector3);
-    *data += vector1;
+    *data += *triangle->a();
     *data += color;
     *data += normal;
-    *data += vector2;
+    *data += *triangle->b();
     *data += color;
     *data += normal;
-    *data += vector3;
+    *data += *triangle->c();
     *data += color;
     *data += normal;
-}
-
-QVector3D GemRenderer::calculateNormal(
-        QVector3D vector1,
-        QVector3D vector2,
-        QVector3D vector3)
-{
-    QVector3D normal = QVector3D::crossProduct(vector2 - vector1, vector3 - vector1);
-    normal.normalize();
-    return normal;
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)

@@ -25,10 +25,6 @@ protected:
     virtual void addTriangleData(
             Triangle *triangle,
             QVector<QVector3D>* data);
-    virtual QVector3D calculateNormal(
-            QVector3D vector1,
-            QVector3D vector2,
-            QVector3D vector3);
 
 protected:
     bool m_initialized;

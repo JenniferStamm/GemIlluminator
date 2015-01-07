@@ -1,5 +1,7 @@
 #include "triangle.h"
 
+#include <QVector3D>
+
 Triangle::Triangle(QObject *parent) :
     QObject(parent)
 {
@@ -13,6 +15,7 @@ Triangle::Triangle(const QVector3D *a,
   , m_b(b)
   , m_c(c)
   , m_color(color)
+  , m_normal(nullptr)
 {
 }
 
@@ -55,3 +58,27 @@ void Triangle::setColor(const QVector3D *color)
     m_color = color;
 }
 
+QVector3D *Triangle::normal()
+{
+    if (!m_normal)
+        calculateNormal();
+    return m_normal;
+}
+
+void Triangle::setNormal(QVector3D *normal)
+{
+    m_normal = normal;
+}
+
+QVector3D Triangle::normalizedNormal()
+{
+    if (!m_normal)
+        calculateNormal();
+    return m_normal->normalized();
+}
+
+void Triangle::calculateNormal()
+{
+    QVector3D normal = QVector3D::crossProduct(*m_b - *m_a, *m_c - *m_a);
+    m_normal = &normal;
+}
