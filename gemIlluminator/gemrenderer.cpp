@@ -1,5 +1,7 @@
 #include "gemrenderer.h"
 
+#include "triangle.h"
+
 #include <QDebug>
 
 #include <QMatrix4x4>
@@ -9,22 +11,13 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
-GemRenderer::GemRenderer(QVector<QVector3D> *vertices, QVector<QVector3D> *colors, QObject *parent):
+GemRenderer::GemRenderer(Triangle *triangles[4], QObject *parent):
     AbstractGemRenderer(parent)
 ,   m_initialized(false)
 ,   m_vertexData(new QVector<float>())
 ,   m_vertexBuffer(new QOpenGLBuffer())
 {
-    m_vertexData = initializeData(
-                vertices->at(0),
-                vertices->at(1),
-                vertices->at(2),
-                vertices->at(3),
-                colors->at(0),
-                colors->at(1),
-                colors->at(2),
-                colors->at(3)
-            );
+    m_vertexData = initializeData(triangles);
 }
 
 GemRenderer::~GemRenderer()
@@ -43,14 +36,7 @@ void GemRenderer::initialize()
 }
 
 QVector<float>* GemRenderer::initializeData(
-        QVector3D vector1,
-        QVector3D vector2,
-        QVector3D vector3,
-        QVector3D vector4,
-        QVector3D color1,
-        QVector3D color2,
-        QVector3D color3,
-        QVector3D color4)
+        Triangle *triangles[4])
 {
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
@@ -58,16 +44,16 @@ QVector<float>* GemRenderer::initializeData(
     QVector<QVector3D> *data = new QVector<QVector3D>();
 
     // first triangle
-    addTriangleData(vector2, vector4, vector3, color1, data);
+    addTriangleData(triangles[0], data);
 
     // second triangle
-    addTriangleData(vector1, vector4, vector3, color2, data);
+    addTriangleData(triangles[1], data);
 
     // third triangle
-    addTriangleData(vector1, vector2, vector4, color3, data);
+    addTriangleData(triangles[2], data);
 
     // fourth triangle
-    addTriangleData(vector1, vector3, vector2, color4, data);
+    addTriangleData(triangles[3], data);
 
     QVector<float> *dataFloat = new QVector<float>();
 
@@ -81,10 +67,7 @@ QVector<float>* GemRenderer::initializeData(
 }
 
 void GemRenderer::addTriangleData(
-            QVector3D vector1,
-            QVector3D vector2,
-            QVector3D vector3,
-            QVector3D color,
+            Triangle *triangle,
             QVector<QVector3D>* data) {
     if (data == nullptr) {
         #ifdef QT_DEBUG
@@ -95,6 +78,10 @@ void GemRenderer::addTriangleData(
         #endif
         return;
     }
+    const QVector3D vector1 = *triangle->a();
+    const QVector3D vector2 = *triangle->b();
+    const QVector3D vector3 = *triangle->c();
+    const QVector3D color = *triangle->color();
 
     QVector3D normal = calculateNormal(vector1, vector2, vector3);
     *data += vector1;

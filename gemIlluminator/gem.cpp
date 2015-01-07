@@ -55,7 +55,7 @@ void Gem::synchronize()
 {
     //renderer has to been created in correct thread
     if (!m_renderer){
-        m_renderer = new GemRenderer(m_vertices, m_colors);
+        m_renderer = new GemRenderer(m_triangles);
     }
 
     m_renderer->setInitialRotation(m_initialRotation);
