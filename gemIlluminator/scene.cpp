@@ -168,7 +168,7 @@ AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPo
 AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint)
 {
     AbstractGem *result = nullptr;
-    int *triangleIndex = nullptr;
+    int triangleIndex = -1;
     const float maxFloat = std::numeric_limits<float>::max();
     QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
     if (collisionPoint) {
@@ -177,7 +177,7 @@ AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collis
     float distance = maxFloat;
     for (auto& gem : m_geometries){
         QVector3D tempCollisionPoint;
-        float collisionDistance = gem->rayIntersect(ray, triangleIndex, &tempCollisionPoint);
+        float collisionDistance = gem->rayIntersect(ray, &triangleIndex, &tempCollisionPoint);
         if (collisionDistance < distance) {
             distance = collisionDistance;
             if (collisionPoint) {

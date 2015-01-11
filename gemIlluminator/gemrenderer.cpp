@@ -11,7 +11,7 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
-GemRenderer::GemRenderer(Triangle *triangles[4], QObject *parent):
+GemRenderer::GemRenderer(const QVector<Triangle *> &triangles, QObject *parent):
     AbstractGemRenderer(parent)
 ,   m_initialized(false)
 ,   m_vertexData(new QVector<float>())
@@ -36,20 +36,20 @@ void GemRenderer::initialize()
 }
 
 QVector<float>* GemRenderer::initializeData(
-        Triangle *triangles[4])
+        const QVector<Triangle *> &triangles)
 {
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */
-    QVector<QVector3D> *data = new QVector<QVector3D>();
+    QVector<QVector3D> data = QVector<QVector3D>();
 
-    for (int i = 0; i < 4; i++) {
-        addTriangleData(triangles[i], data);
+    for (auto i = 0; i < 4; i++) {
+        addTriangleData(*(triangles[i]), data);
     }
 
     QVector<float> *dataFloat = new QVector<float>();
 
-    for (auto& i : *data) {
+    for (auto& i : data) {
         dataFloat->append(i.x());
         dataFloat->append(i.y());
         dataFloat->append(i.z());
@@ -59,30 +59,21 @@ QVector<float>* GemRenderer::initializeData(
 }
 
 void GemRenderer::addTriangleData(
-            Triangle *triangle,
-            QVector<QVector3D>* data) {
-    if (data == nullptr) {
-        #ifdef QT_DEBUG
-            qDebug() << "<<<<<<<<<<<<<>>>>>>>>>>>>>";
-            qDebug() << "ADD TRIANGLE DATA";
-            qDebug() << "Something went very wrong, if data is a nullptr";
-            qDebug() << "<<<<<<<<<<<<<>>>>>>>>>>>>>";
-        #endif
-        return;
-    }
+            Triangle &triangle,
+            QVector<QVector3D> &data)
+{
+    const QVector3D color = triangle.color();
+    QVector3D normal = triangle.normalizedNormal();
 
-    const QVector3D color = *triangle->color();
-    QVector3D normal = triangle->normalizedNormal();
-
-    *data += *triangle->a();
-    *data += color;
-    *data += normal;
-    *data += *triangle->b();
-    *data += color;
-    *data += normal;
-    *data += *triangle->c();
-    *data += color;
-    *data += normal;
+    data.append(triangle.a());
+    data.append(color);
+    data.append(normal);
+    data.append(triangle.b());
+    data.append(color);
+    data.append(normal);
+    data.append(triangle.c());
+    data.append(color);
+    data.append(normal);
 }
 
 void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)

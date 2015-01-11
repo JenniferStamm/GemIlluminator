@@ -9,7 +9,7 @@
 
 Gem::Gem(QObject *parent) :
     AbstractGem(parent)
-  , m_triangles()
+  , m_triangles(new QVector<Triangle *>())
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
@@ -26,26 +26,26 @@ Gem::Gem(QObject *parent) :
     m_colors->append(QVector3D(1.0, 1.0, 0.0));
     m_colors->append(QVector3D(0.0, 1.0, 1.0));
 
-    m_triangles[0] = new Triangle(
-                &m_vertices->at(1),
-                &m_vertices->at(3),
-                &m_vertices->at(2),
-                &m_colors->at(0));
-    m_triangles[1] = new Triangle(
-                &m_vertices->at(0),
-                &m_vertices->at(3),
-                &m_vertices->at(2),
-                &m_colors->at(1));
-    m_triangles[2] = new Triangle(
-                &m_vertices->at(0),
-                &m_vertices->at(1),
-                &m_vertices->at(3),
-                &m_colors->at(2));
-    m_triangles[3] = new Triangle(
-                &m_vertices->at(0),
-                &m_vertices->at(2),
-                &m_vertices->at(1),
-                &m_colors->at(3));
+    m_triangles->append(new Triangle(
+                m_vertices->at(1),
+                m_vertices->at(3),
+                m_vertices->at(2),
+                m_colors->at(0)));
+    m_triangles->append(new Triangle(
+                m_vertices->at(0),
+                m_vertices->at(3),
+                m_vertices->at(2),
+                m_colors->at(1)));
+    m_triangles->append(new Triangle(
+                m_vertices->at(0),
+                m_vertices->at(1),
+                m_vertices->at(3),
+                m_colors->at(2)));
+    m_triangles->append(new Triangle(
+                m_vertices->at(0),
+                m_vertices->at(2),
+                m_vertices->at(1),
+                m_colors->at(3)));
 }
 
 Gem::~Gem()
@@ -56,7 +56,7 @@ void Gem::synchronize()
 {
     //renderer has to been created in correct thread
     if (!m_renderer){
-        m_renderer = new GemRenderer(m_triangles);
+        m_renderer = new GemRenderer(*m_triangles);
     }
 
     m_renderer->setInitialRotation(m_initialRotation);
@@ -83,18 +83,18 @@ float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *coll
     // Calculate collision according to
     // http://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
     // http://www.cs.virginia.edu/~gfx/Courses/2003/ImageSynthesis/papers/Acceleration/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
-    const float epsilon = 0.000001;
+    const float epsilon = 0.000001f;
     float tPrevious = maxFloat;
     float t, u, v;
     QVector3D edge1, edge2, tvec, pvec, qvec;
     float det, invDet;
 
     for (int i = 0; i < 4; i++) {
-        Triangle *triangle = m_triangles[i];
+        Triangle *triangle = m_triangles->at(1);
         //QVector3D normal = triangle->normalizedNormal();
 
-        edge1 = *triangle->b() - *triangle->a();
-        edge2 = *triangle->c() - *triangle->a();
+        edge1 = triangle->b() - triangle->a();
+        edge2 = triangle->c() - triangle->a();
 
         // Calculate determinant
         pvec = QVector3D::crossProduct(ray.direction(), edge2);
@@ -107,7 +107,7 @@ float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *coll
             invDet = 1.f / det;
 
             // Calculate distance from vert0 to ray origin
-            tvec = ray.startPosition() - *triangle->a();
+            tvec = ray.startPosition() - triangle->a();
 
             // Calculate u and test bounds
             u = QVector3D::dotProduct(tvec, pvec) * invDet;
@@ -124,7 +124,7 @@ float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *coll
                 } else {
                     // Calculate t, ray intersects triangle
                     t = QVector3D::dotProduct(edge2, qvec) * invDet;
-                    if (t < tPrevious) {
+                    if (t < tPrevious && t > 0.0 + epsilon) {
                         tPrevious = t;
                         *triangleIndex = i;
                         *collisionPoint = ray.startPosition() + t * ray.direction();
@@ -134,5 +134,5 @@ float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *coll
             }
         }
     }
-    return t;
+    return tPrevious;
 }

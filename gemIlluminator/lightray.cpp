@@ -206,12 +206,11 @@ void LightRay::setStatic()
 
 LightRay *LightRay::selectedSuccessor()
 {
-    if (m_selectedSuccessor) {
-        return m_selectedSuccessor;
-    } else {
+    if (!m_selectedSuccessor) {
         calculateSuccessors();
-        return m_successors->at(0);
+        m_selectedSuccessor = m_successors->at(0);
     }
+    return m_selectedSuccessor;
 }
 
 void LightRay::setSelectedSuccessor(LightRay *successor)

@@ -22,7 +22,7 @@ public:
     virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr);
 
 protected:
-    Triangle *m_triangles[4];
+    QVector<Triangle*> *m_triangles;
     QVector<QVector3D> *m_vertices;
     QVector<QVector3D> *m_colors;
 };
