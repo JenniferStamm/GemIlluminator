@@ -14,7 +14,7 @@ Button {
     style: ButtonStyle {
         background: Rectangle{
             anchors.fill: parent
-            color: control.pressed ? blue : lightBlue
+            color: lightBlue
         }
     }
 
@@ -29,13 +29,13 @@ Button {
 
     onPressedChanged: {
         if (pressed) {
-            bottomBorder.color = lightBlue
-            leftBorder.color = lightBlue
-            rightBorder.color = lightBlue
+            bottomBorder.visible = false
+            leftBorder.visible = false
+            rightBorder.visible = false
         } else {
-            bottomBorder.color = blue
-            leftBorder.color = blue
-            rightBorder.color = blue
+            bottomBorder.visible = true
+            leftBorder.visible = true
+            rightBorder.visible = true
         }
     }
 
