@@ -40,11 +40,11 @@ void Scene::sync()
 
         if (!m_renderer) {
             m_renderer = new SceneRenderer();
-            connect(window(), SIGNAL(afterRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
         }
 
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
-        m_renderer->setGeometries(m_geometries);
+        m_renderer->setGeometries(m_gem);
         m_renderer->setRootLightRay(m_rootLightRay);
         m_renderer->setActive(m_active);
         m_renderer->setViewProjection(m_camera->viewProjection());
@@ -54,7 +54,7 @@ void Scene::sync()
         m_rootLightRay->update(elapsedTime);
         m_rootLightRay->synchronize();
 
-        for (auto& i : m_geometries) {
+        for (auto& i : m_gem) {
             i->synchronize();
             i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
         }
@@ -67,7 +67,7 @@ void Scene::cleanup()
         delete m_renderer;
         m_renderer = 0;
     }
-    for (auto& i : m_geometries) {
+    for (auto& i : m_gem) {
         i->cleanup();
     }
 }
@@ -83,7 +83,7 @@ void Scene::handleWindowChanged(QQuickWindow *win)
 
 QQmlListProperty<AbstractGem> Scene::geometries()
 {
-    return QQmlListProperty<AbstractGem>(this, m_geometries);
+    return QQmlListProperty<AbstractGem>(this, m_gem);
 }
 
 void Scene::registerNavigation(Navigation *navigation)
@@ -151,7 +151,7 @@ AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPo
         *collisionPoint = noCollisionPoint;
     }
     float distance = std::numeric_limits<float>::max();
-    for( auto& gem : m_geometries ){
+    for( auto& gem : m_gem ){
         QVector3D temp;
         float collisionDistance = gem->rayIntersect(ray, &temp);
         if (collisionDistance < distance) {
@@ -175,7 +175,7 @@ AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collis
         *collisionPoint = noCollisionPoint;
     }
     float distance = maxFloat;
-    for (auto& gem : m_geometries){
+    for (auto& gem : m_gem){
         QVector3D tempCollisionPoint;
         float collisionDistance = gem->rayIntersect(ray, &triangleIndex, &tempCollisionPoint);
         if (collisionDistance < distance) {

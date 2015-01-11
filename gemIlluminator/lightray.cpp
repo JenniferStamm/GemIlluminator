@@ -167,6 +167,11 @@ const QVector3D & LightRay::direction() const
     return m_data->direction();
 }
 
+const QVector3D & LightRay::normalizedDirection() const
+{
+    return m_data->normalizedDirection();
+}
+
 Player * LightRay::player()
 {
     return m_player;
@@ -223,9 +228,4 @@ void LightRay::paint(QOpenGLFunctions *gl)
     if (m_renderer) {
         m_renderer->paint(gl);
     }
-}
-
-const QVector3D & LightRay::normalizedDirection() const
-{
-    return m_data->normalizedDirection();
 }

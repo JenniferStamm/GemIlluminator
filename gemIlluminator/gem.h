@@ -23,8 +23,9 @@ public:
 
 protected:
     QVector<Triangle*> *m_triangles;
-    QVector<QVector3D> *m_vertices;
     QVector<QVector3D> *m_colors;
+    QVector<QVector3D> *m_vertices;
+
 };
 
 #endif // GEM_H

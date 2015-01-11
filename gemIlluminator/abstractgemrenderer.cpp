@@ -16,6 +16,20 @@ QVector3D AbstractGemRenderer::position()
     return m_position;
 }
 
+QVector3D AbstractGemRenderer::initialRotation() const
+{
+    return m_initialRotation;
+}
+
+void AbstractGemRenderer::setInitialRotation(const QVector3D &initialRotation)
+{
+    if (initialRotation == m_initialRotation) {
+       return;
+    }
+
+    m_initialRotation = initialRotation;
+}
+
 void AbstractGemRenderer::setPosition(QVector3D position)
 {
     if (position == m_position) {
@@ -38,17 +52,3 @@ void AbstractGemRenderer::setRotation(QVector3D rotation)
 
     m_rotation = rotation;
 }
-QVector3D AbstractGemRenderer::initialRotation() const
-{
-    return m_initialRotation;
-}
-
-void AbstractGemRenderer::setInitialRotation(const QVector3D &initialRotation)
-{
-    if (initialRotation == m_initialRotation) {
-       return;
-    }
-
-    m_initialRotation = initialRotation;
-}
-

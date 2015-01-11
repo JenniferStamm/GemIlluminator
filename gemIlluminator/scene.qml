@@ -5,6 +5,7 @@ import "gemgenerator.js" as GemGenerator
 Scene {
     id: scene
     property alias cameraId: camera
+    property var loadScreen: null
 
     camera: Camera {
         id: camera
@@ -38,25 +39,39 @@ Scene {
         running: true
     }
 
+    WorkerScript {
+        id: gemGenerator
+        source: "gemgenerator.js"
+
+        onMessage: {
+            var gemComponent = Qt.createComponent("gem.qml");
+            var gems = messageObject.gems
+
+            var gemsToJSON = []
+
+            for (var i = 0; i < gems.length; i++) {
+                gemsToJSON.push(gemComponent.createObject(scene,
+                                                    {"id": "gem" + i.toString(),
+                                                        "position.x": gems[i][0],
+                                                        "position.y": gems[i][1],
+                                                        "position.z": gems[i][2],
+                                                    }))
+            }
+
+            console.log("Gems created: " + gems.length)
+
+            scene.geometries = gemsToJSON
+            scene.active = true
+
+            if (loadScreen !== null) {
+                loadScreen.visible = false
+            }
+        }
+    }
+
     Component.onCompleted: {
         scene.active = false
-        var gemComponent = Qt.createComponent("gem.qml");
-        var gems = GemGenerator.generateGems(500, 1, -10, 10)
-
-        var gemsToJSON = []
-        gemsToJSON.push()
-
-        for (var i = 0; i < gems.length; i++) {
-            gemsToJSON.push(gemComponent.createObject(scene,
-                                                {"id": "gem" + i.toString(),
-                                                    "position.x": gems[i][0],
-                                                    "position.y": gems[i][1],
-                                                    "position.z": gems[i][2],
-                                                }))
-        }
-
-        scene.geometries = gemsToJSON
-        scene.active = true
+        gemGenerator.sendMessage({"numGems": 600,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
     }
 }
 
