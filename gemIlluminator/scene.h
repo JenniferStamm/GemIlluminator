@@ -5,11 +5,12 @@
 #include <QQmlListProperty>
 
 class AbstractGem;
-class SceneRenderer;
 class Camera;
 class LightRay;
 class Navigation;
 class QTime;
+class SceneRenderer;
+class Triangle;
 
 class Scene : public QQuickItem
 {
@@ -30,7 +31,6 @@ public:
     void setT(qreal t);
 
     bool isActive();
-
     void setActive(bool active);
 
     Camera* camera();
@@ -38,6 +38,9 @@ public:
 
     LightRay* rootLightRay();
     void setRootLightRay(LightRay *root);
+
+    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
 
 signals:
     void cubesChanged();
@@ -52,13 +55,12 @@ public slots:
 
 protected:
     SceneRenderer *m_renderer;
-    QList<AbstractGem*> m_geometries;
+    QList<AbstractGem*> m_gem;
     qreal m_t;
     QTime *m_time;
     bool m_active;
     Camera *m_camera;
     LightRay *m_rootLightRay;
-    LightRay *m_currentLightRay;
     Navigation *m_navigation;
 
 private slots:

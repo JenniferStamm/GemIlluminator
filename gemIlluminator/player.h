@@ -6,6 +6,8 @@
 
 class QVector3D;
 
+class LightRay;
+
 class Player : public QObject
 {
     Q_OBJECT
@@ -15,6 +17,10 @@ class Player : public QObject
 public:
     explicit Player(QObject *parent = 0);
     virtual ~Player();
+
+    void moveOnRay(const LightRay & ray, int timeDifferenceInMilliseconds);
+    void moveToStartPointOnRay(const LightRay & ray);
+    void moveToEndPointOnRay(const LightRay & ray);
 
     void setPosition(const QVector3D &position);
     const QVector3D & position();
@@ -31,6 +37,9 @@ public slots:
 
     qreal velocity();
     void setVelocity(qreal velocity);
+
+protected:
+    void updateCameraForPointOnRay(const QVector3D &point, const LightRay & ray);
 
 protected:
     qreal m_velocity;

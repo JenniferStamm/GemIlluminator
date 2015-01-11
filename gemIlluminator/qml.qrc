@@ -7,5 +7,9 @@
         <file>Navigation.qml</file>
         <file>SensorInputs.qml</file>
         <file>MouseInput.qml</file>
+        <file>MainMenu.qml</file>
+        <file>MenuButton.qml</file>
+        <file>Credits.qml</file>
+        <file>LoadScreen.qml</file>
     </qresource>
 </RCC>

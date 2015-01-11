@@ -5,6 +5,7 @@ import "gemgenerator.js" as GemGenerator
 Scene {
     id: scene
     property alias cameraId: camera
+    property var loadScreen: null
 
     camera: Camera {
         id: camera
@@ -20,7 +21,7 @@ Scene {
 
     Player {
         id: player
-        velocity: 0.5
+        velocity: 2.5
         camera: camera
     }
 
@@ -29,6 +30,7 @@ Scene {
         startPosition: "15, 0, 0"
         endPosition: "-15, 0, 0"
         player: player
+        scene: scene
     }
 
     SequentialAnimation on t {
@@ -42,22 +44,32 @@ Scene {
         source: "gemgenerator.js"
 
         onMessage: {
-            var gemComponent = Qt.createComponent("gem.qml");
-            var gems = messageObject.gems
+            if(messageObject.gems) {
+                var gemComponent = Qt.createComponent("gem.qml");
+                var gems = messageObject.gems
 
-            var gemsToJSON = []
+                var gemsToJSON = []
 
-            for (var i = 0; i < gems.length; i++) {
-                gemsToJSON.push(gemComponent.createObject(scene,
-                                                    {"id": "gem" + i.toString(),
-                                                        "position.x": gems[i][0],
-                                                        "position.y": gems[i][1],
-                                                        "position.z": gems[i][2],
-                                                    }))
+                for (var i = 0; i < gems.length; i++) {
+                    gemsToJSON.push(gemComponent.createObject(scene,
+                                                        {"id": "gem" + i.toString(),
+                                                            "position.x": gems[i][0],
+                                                            "position.y": gems[i][1],
+                                                            "position.z": gems[i][2],
+                                                        }))
+                }
+
+                console.log("Gems created: " + gems.length)
+
+                scene.geometries = gemsToJSON
+                scene.active = true
+
+                if (loadScreen !== null) {
+                    loadScreen.visible = false
+                }
+            } else if (messageObject.currentProgress) {
+                loadScreen.currentProgress = messageObject.currentProgress
             }
-
-            scene.geometries = gemsToJSON
-            scene.active = true
         }
     }
 
