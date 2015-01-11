@@ -115,6 +115,8 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     vertices.push_back((rayData.endPosition() - rightVector * offset).y());
     vertices.push_back((rayData.endPosition() - rightVector * offset).z());
 
+    //Repeat first and last index in order to draw all rays at once connected by degenerate triangles
+    indices.push_back(startBottom);
     indices.push_back(startBottom);
     indices.push_back(startRight);
     indices.push_back(startLeft);
@@ -129,22 +131,19 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     indices.push_back(endBottom);
     indices.push_back(startBottom);
     indices.push_back(startRight);
+    indices.push_back(startRight);
 }
 
 void LightRayRenderer::updateStaticVBO()
 {
-    if (m_staticVertexBuffer) {
-        m_staticVertexBuffer->destroy();
+    if (!m_staticVertexBuffer) {
+        m_staticVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
+        m_staticVertexBuffer->create();
     }
-    if (m_staticIndexBuffer) {
-        m_staticIndexBuffer->destroy();
+    if (!m_staticIndexBuffer) {
+        m_staticIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
+        m_staticIndexBuffer->create();
     }
-    delete m_staticVertexBuffer;
-    delete m_staticIndexBuffer;
-    m_staticVertexBuffer = new QOpenGLBuffer();
-    m_staticIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-    m_staticVertexBuffer->create();
-    m_staticIndexBuffer->create();
     m_staticVertexBuffer->bind();
     m_staticIndexBuffer->bind();
 
@@ -162,18 +161,14 @@ void LightRayRenderer::updateStaticVBO()
 
 void LightRayRenderer::updateDynamicVBO()
 {
-    if (m_dynamicVertexBuffer) {
-        m_dynamicVertexBuffer->destroy();
+    if (!m_dynamicVertexBuffer) {
+        m_dynamicVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
+        m_dynamicVertexBuffer->create();
     }
-    if (m_dynamicIndexBuffer) {
-        m_dynamicIndexBuffer->destroy();
+    if (!m_dynamicIndexBuffer) {
+        m_dynamicIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
+        m_dynamicIndexBuffer->create();
     }
-    delete m_dynamicVertexBuffer;
-    delete m_dynamicIndexBuffer;
-    m_dynamicVertexBuffer = new QOpenGLBuffer();
-    m_dynamicIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::IndexBuffer);
-    m_dynamicVertexBuffer->create();
-    m_dynamicIndexBuffer->create();
     m_dynamicVertexBuffer->bind();
     m_dynamicIndexBuffer->bind();
 
@@ -206,10 +201,7 @@ void LightRayRenderer::paint(QOpenGLFunctions *gl)
     m_staticIndexBuffer->bind();
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    int indicesPerRay = 14;
-    for (unsigned int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerRay) {
-        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i * sizeof(unsigned int)));
-    }
+    gl->glDrawElements(GL_TRIANGLE_STRIP, m_staticIndexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
 
     m_staticVertexBuffer->release();
     m_staticIndexBuffer->release();
@@ -220,9 +212,7 @@ void LightRayRenderer::paint(QOpenGLFunctions *gl)
 
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    for (unsigned int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerRay) {
-        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i * sizeof(unsigned int)));
-    }
+    gl->glDrawElements(GL_TRIANGLE_STRIP, m_dynamicIndexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
 
     m_dynamicVertexBuffer->release();
     m_dynamicIndexBuffer->release();
