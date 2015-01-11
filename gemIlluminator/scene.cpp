@@ -11,6 +11,7 @@
 #include "lightray.h"
 #include "navigation.h"
 #include "scenerenderer.h"
+#include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
@@ -157,6 +158,30 @@ AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPo
             distance = collisionDistance;
             if (collisionPoint) {
                 *collisionPoint = temp;
+            }
+            result = gem;
+        }
+    }
+    return result;
+}
+
+AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint)
+{
+    AbstractGem *result = nullptr;
+    int *triangleIndex = nullptr;
+    const float maxFloat = std::numeric_limits<float>::max();
+    QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
+    }
+    float distance = maxFloat;
+    for (auto& gem : m_geometries){
+        QVector3D tempCollisionPoint;
+        float collisionDistance = gem->rayIntersect(ray, triangleIndex, &tempCollisionPoint);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = tempCollisionPoint;
             }
             result = gem;
         }

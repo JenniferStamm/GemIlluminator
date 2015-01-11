@@ -5,11 +5,12 @@
 #include <QQmlListProperty>
 
 class AbstractGem;
-class SceneRenderer;
 class Camera;
 class LightRay;
 class Navigation;
 class QTime;
+class SceneRenderer;
+class Triangle;
 
 class Scene : public QQuickItem
 {
@@ -39,7 +40,8 @@ public:
     LightRay* rootLightRay();
     void setRootLightRay(LightRay *root);
 
-    AbstractGem* rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
 
 signals:
     void cubesChanged();

@@ -4,6 +4,7 @@
 
 #include "abstractgemrenderer.h"
 #include "lightray.h"
+#include "triangle.h"
 
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
@@ -121,11 +122,11 @@ float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
         if (collisionPoint) {
             *collisionPoint = noCollisionPoint;
         }
-        return std::numeric_limits<float>::max();
+        return maxFloat;
     } else {
         float t = minimumWithLowerBound(t1, t2, 0.01f);
         if (collisionPoint) {
-            if (t != std::numeric_limits<float>::max()) {
+            if (t != maxFloat) {
                 *collisionPoint = ray.startPosition() + t * ray.direction();
             } else {
                 *collisionPoint = noCollisionPoint;

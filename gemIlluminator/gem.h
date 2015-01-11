@@ -19,6 +19,8 @@ public:
     virtual void cleanup() override;
     virtual void update(int timeDifference) override;
 
+    virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr);
+
 protected:
     Triangle *m_triangles[4];
     QVector<QVector3D> *m_vertices;

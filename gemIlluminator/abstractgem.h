@@ -10,6 +10,7 @@ class QOpenGLShaderProgram;
 
 class AbstractGemRenderer;
 class LightRay;
+class Triangle;
 
 class AbstractGem : public QObject
 {
@@ -38,6 +39,7 @@ public:
     void setRotation(QVector3D rotation);
 
     float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
 
 signals:
     void initialRotationChanged();

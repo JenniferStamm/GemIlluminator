@@ -69,7 +69,7 @@ void LightRay::calculateSuccessors()
         temp->setStartPosition(endPosition());
         temp->setEndPosition(QVector3D(rand() % 21 - 10, rand() % 21 - 10, rand() % 21 - 10));
         QVector3D collisionPoint;
-        if (m_scene->rayIntersection(*temp, &collisionPoint)) {
+        if (m_scene->rayIntersectsTriangle(*temp, &collisionPoint)) {
             temp->setEndPosition(collisionPoint);
         }
         m_successors->push_back(temp);
