@@ -21,7 +21,7 @@ Scene {
 
     Player {
         id: player
-        velocity: 0.5
+        velocity: 2.5
         camera: camera
     }
 
@@ -30,6 +30,7 @@ Scene {
         startPosition: "15, 0, 0"
         endPosition: "-15, 0, 0"
         player: player
+        scene: scene
     }
 
     SequentialAnimation on t {

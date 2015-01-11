@@ -5,9 +5,12 @@
 #include <QObject>
 #include <QVector3D>
 
-class AbstractGemRenderer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+
+class AbstractGemRenderer;
+class LightRay;
+class Triangle;
 
 class AbstractGem : public QObject
 {
@@ -35,10 +38,16 @@ public:
     QVector3D rotation();
     void setRotation(QVector3D rotation);
 
+    float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
+
 signals:
     void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
+
+protected:
+    int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
 
 protected:
     AbstractGemRenderer *m_renderer;

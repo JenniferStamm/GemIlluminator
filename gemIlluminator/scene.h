@@ -10,6 +10,7 @@ class LightRay;
 class Navigation;
 class QTime;
 class SceneRenderer;
+class Triangle;
 
 class Scene : public QQuickItem
 {
@@ -38,6 +39,9 @@ public:
     LightRay* rootLightRay();
     void setRootLightRay(LightRay *root);
 
+    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+
 signals:
     void cubesChanged();
     void tChanged();
@@ -57,7 +61,6 @@ protected:
     bool m_active;
     Camera *m_camera;
     LightRay *m_rootLightRay;
-    LightRay *m_currentLightRay;
     Navigation *m_navigation;
 
 private slots:

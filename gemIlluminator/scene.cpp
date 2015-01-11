@@ -1,5 +1,7 @@
 #include "scene.h"
 
+#include <limits>
+
 #include <QQuickWindow>
 #include <QTime>
 #include <QVector3D>
@@ -9,11 +11,12 @@
 #include "lightray.h"
 #include "navigation.h"
 #include "scenerenderer.h"
+#include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(0)
-  , m_time(0)
+  , m_renderer(nullptr)
+  , m_time(nullptr)
   , m_rootLightRay(new LightRay(this))
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
@@ -138,4 +141,50 @@ LightRay* Scene::rootLightRay()
 void Scene::setRootLightRay(LightRay *root)
 {
     m_rootLightRay = root;
+}
+
+AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint)
+{
+    AbstractGem *result = nullptr;
+    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
+    }
+    float distance = std::numeric_limits<float>::max();
+    for( auto& gem : m_gem ){
+        QVector3D temp;
+        float collisionDistance = gem->rayIntersect(ray, &temp);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = temp;
+            }
+            result = gem;
+        }
+    }
+    return result;
+}
+
+AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint)
+{
+    AbstractGem *result = nullptr;
+    int triangleIndex = -1;
+    const float maxFloat = std::numeric_limits<float>::max();
+    QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
+    }
+    float distance = maxFloat;
+    for (auto& gem : m_gem){
+        QVector3D tempCollisionPoint;
+        float collisionDistance = gem->rayIntersect(ray, &triangleIndex, &tempCollisionPoint);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = tempCollisionPoint;
+            }
+            result = gem;
+        }
+    }
+    return result;
 }

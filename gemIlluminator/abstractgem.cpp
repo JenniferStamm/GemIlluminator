@@ -1,6 +1,10 @@
 #include "abstractgem.h"
 
+#include <limits>
+
 #include "abstractgemrenderer.h"
+#include "lightray.h"
+#include "triangle.h"
 
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
@@ -63,4 +67,71 @@ void AbstractGem::setRotation(QVector3D rotation)
 
     m_rotation = rotation;
     emit rotationChanged();
+}
+
+int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float &x2)
+{
+    float p = b / a;
+    float q = c / a;
+
+    x1 = std::numeric_limits<float>::max();
+    x2 = std::numeric_limits<float>::max();
+
+    float discriminant = p * p * 0.25 - q;
+    if (discriminant < 0) {
+        return 0;
+    } else {
+        x1 = p * -0.5 - sqrt(discriminant);
+        x2 = p * -0.5 + sqrt(discriminant);
+        if (x1 == x2) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+}
+
+float minimumWithLowerBound(const float &a, const float &b, const float &lowerBound)
+{
+    if (a > lowerBound) {
+        return a <= b ? a : b;
+    } else {
+        return b > lowerBound ? b : std::numeric_limits<float>::max();
+    }
+}
+
+float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
+{
+    float expectedRadius = 0.5f;
+    const float maxFloat = std::numeric_limits<float>::max();
+    const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+
+    //|(ray.position + t * ray.direction - position)|^2 = radius^2
+    float a;
+    float b;
+    float c;
+    a = ray.direction().lengthSquared();
+    QVector3D bVector = (ray.startPosition() - position()) * ray.direction();
+    b = 2 * (bVector.x() + bVector.y() + bVector.z());
+    c = (ray.startPosition() - position()).lengthSquared() - expectedRadius * expectedRadius;
+
+    float t1;
+    float t2;
+    int numberOfCollisions = solveQuadricFormula(a, b, c, t1, t2);
+    if (numberOfCollisions == 0) {
+        if (collisionPoint) {
+            *collisionPoint = noCollisionPoint;
+        }
+        return maxFloat;
+    } else {
+        float t = minimumWithLowerBound(t1, t2, 0.01f);
+        if (collisionPoint) {
+            if (t != maxFloat) {
+                *collisionPoint = ray.startPosition() + t * ray.direction();
+            } else {
+                *collisionPoint = noCollisionPoint;
+            }
+        }
+        return t;
+    }
 }
