@@ -27,7 +27,7 @@ public:
     virtual void cleanup() = 0;
     virtual void update(int timeDifference) = 0;
 
-    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
+    void paint(QOpenGLFunctions &gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
 
     QVector3D initialRotation() const;
     void setInitialRotation(const QVector3D &initialRotation);

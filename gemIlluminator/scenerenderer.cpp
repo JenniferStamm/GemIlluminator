@@ -66,7 +66,7 @@ void SceneRenderer::paint()
         m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(m_gl, m_viewProjection, *m_gemProgram);
+            geometry->paint(*m_gl, m_viewProjection, *m_gemProgram);
         }
 
         m_gemProgram->disableAttributeArray(0);

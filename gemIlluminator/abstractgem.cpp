@@ -17,7 +17,7 @@ AbstractGem::~AbstractGem()
     delete m_renderer;
 }
 
-void AbstractGem::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)
+void AbstractGem::paint(QOpenGLFunctions &gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)
 {
     if (m_renderer) {
         m_renderer->paint(gl, viewProjection, program);
