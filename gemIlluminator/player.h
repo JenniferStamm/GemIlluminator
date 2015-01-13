@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <QObject>
+
 #include "camera.h"
 
 class QVector3D;
@@ -18,12 +19,12 @@ public:
     explicit Player(QObject *parent = 0);
     virtual ~Player();
 
-    void moveOnRay(const LightRay & ray, int timeDifferenceInMilliseconds);
-    void moveToStartPointOnRay(const LightRay & ray);
-    void moveToEndPointOnRay(const LightRay & ray);
+    void moveOnRay(const LightRay &ray, int timeDifferenceInMilliseconds);
+    void moveToStartPointOnRay(const LightRay &ray);
+    void moveToEndPointOnRay(const LightRay &ray);
 
+    const QVector3D &position() const;
     void setPosition(const QVector3D &position);
-    const QVector3D & position();
 
     void setViewDirection(const QVector3D &viewDirection);
 
@@ -32,10 +33,10 @@ signals:
     void velocityChanged();
 
 public slots:
-    Camera* camera();
+    Camera* camera() const;
     void setCamera(Camera *camera);
 
-    qreal velocity();
+    qreal velocity() const;
     void setVelocity(qreal velocity);
 
 protected:

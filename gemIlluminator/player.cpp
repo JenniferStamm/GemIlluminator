@@ -33,12 +33,12 @@ void Player::moveToEndPointOnRay(const LightRay &ray)
     updateCameraForPointOnRay(*m_position, ray);
 }
 
-const QVector3D & Player::position()
+const QVector3D & Player::position() const
 {
     return *m_position;
 }
 
-void Player::setPosition(const QVector3D & position)
+void Player::setPosition(const QVector3D &position)
 {
     if (*m_position == position) {
         return;
@@ -56,7 +56,7 @@ void Player::setViewDirection(const QVector3D &viewDirection)
     }
 }
 
-Camera* Player::camera()
+Camera* Player::camera() const
 {
     return m_camera;
 }
@@ -66,7 +66,7 @@ void Player::setCamera(Camera *camera)
     m_camera = camera;
 }
 
-qreal Player::velocity()
+qreal Player::velocity() const
 {
     return m_velocity;
 }
