@@ -33,14 +33,16 @@ public:
     bool isActive();
     void setActive(bool active);
 
-    Camera* camera();
+    Camera *camera();
     void setCamera(Camera *camera);
 
-    LightRay* rootLightRay();
+    LightRay *rootLightRay();
     void setRootLightRay(LightRay *root);
 
     AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+
+    void setCurrentGem(AbstractGem *currentGem);
 
 signals:
     void cubesChanged();
@@ -62,6 +64,7 @@ protected:
     Camera *m_camera;
     LightRay *m_rootLightRay;
     Navigation *m_navigation;
+    AbstractGem *m_currentGem;
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);
