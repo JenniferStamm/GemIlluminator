@@ -1,10 +1,10 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include <QMatrix4x4>
 #include <QObject>
 #include <QVector3D>
 
+class QMatrix4x4;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 
@@ -27,19 +27,19 @@ public:
     virtual void cleanup() = 0;
     virtual void update(int timeDifference) = 0;
 
-    void paint(QOpenGLFunctions &gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
-    QVector3D initialRotation() const;
+    const QVector3D &initialRotation() const;
     void setInitialRotation(const QVector3D &initialRotation);
 
-    QVector3D position();
-    void setPosition(QVector3D position);
+    const QVector3D &position() const;
+    void setPosition(const QVector3D &position);
 
-    QVector3D rotation();
-    void setRotation(QVector3D rotation);
+    const QVector3D &rotation() const;
+    void setRotation(const QVector3D &rotation);
 
     float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
+    virtual float rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
 
 signals:
     void initialRotationChanged();
@@ -51,9 +51,9 @@ protected:
 
 protected:
     AbstractGemRenderer *m_renderer;
-    QVector3D m_initialRotation;
-    QVector3D m_position;
-    QVector3D m_rotation; /*!< Contains the euler angles */
+    QVector3D *m_initialRotation;
+    QVector3D *m_position;
+    QVector3D *m_rotation; /*!< Contains the euler angles */
 };
 
 #endif // GEOMETRY_H

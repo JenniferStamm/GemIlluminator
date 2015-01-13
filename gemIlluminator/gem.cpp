@@ -59,9 +59,9 @@ void Gem::synchronize()
         m_renderer = new GemRenderer(*m_triangles);
     }
 
-    m_renderer->setInitialRotation(m_initialRotation);
-    m_renderer->setPosition(m_position);
-    m_renderer->setRotation(m_rotation);
+    m_renderer->setInitialRotation(*m_initialRotation);
+    m_renderer->setPosition(*m_position);
+    m_renderer->setRotation(*m_rotation);
 }
 
 void Gem::cleanup()
@@ -75,7 +75,7 @@ void Gem::update(int timeDifference)
 
 }
 
-float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint)
+float Gem::rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
 {
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
@@ -126,7 +126,7 @@ float Gem::rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *coll
                     t = QVector3D::dotProduct(edge2, qvec) * invDet;
                     if (t < tPrevious && t > 0.0 + epsilon) {
                         tPrevious = t;
-                        *triangleIndex = i;
+                        triangleIndex = i;
                         *collisionPoint = ray.startPosition() + t * ray.direction();
                     }
                 }
