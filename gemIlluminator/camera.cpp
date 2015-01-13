@@ -59,7 +59,7 @@ void Camera::recalculateView() const
 void Camera::recalculateProjection() const
 {
     m_projection->setToIdentity();
-    m_projection->perspective(fovy(), viewport().width() / viewport().height(), zNear(), zFar());
+    m_projection->perspective(fovy(), static_cast<float>(viewport().width()) / viewport().height(), zNear(), zFar());
     *m_projectionInverted = m_projection->inverted();
     m_isViewInvalid = false;
 }

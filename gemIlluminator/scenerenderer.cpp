@@ -43,41 +43,6 @@ void SceneRenderer::initialize() {
     m_initialized = true;
 }
 
-LightRay *SceneRenderer::rootLightRay() const
-{
-    return m_rootLightRay;
-}
-
-void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
-{
-    m_rootLightRay = rootLightRay;
-}
-
-void SceneRenderer::setViewport(QSize viewport)
-{
-    m_viewport = viewport;
-}
-
-void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
-{
-    m_geometries = geometries;
-}
-
-void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
-{
-    m_viewProjection = viewProjection;
-}
-
-bool SceneRenderer::isActive()
-{
-    return m_active;
-}
-
-void SceneRenderer::setActive(bool active)
-{
-    m_active = active;
-}
-
 void SceneRenderer::paint()
 {
     if (m_active) {
@@ -120,4 +85,48 @@ void SceneRenderer::paint()
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
     }
+}
+
+/**
+ * @brief SceneRenderer::setViewport Only set within sync()
+ * @param viewport
+ */
+void SceneRenderer::setViewport(QSize viewport)
+{
+    if (m_viewport == viewport) {
+        return;
+    }
+    m_viewport = viewport;
+    m_gl->glViewport(0, 0, viewport.width(), viewport.height());
+}
+
+void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
+{
+    m_geometries = geometries;
+}
+
+void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
+{
+    m_viewProjection = viewProjection;
+}
+
+bool SceneRenderer::isActive()
+{
+    return m_active;
+}
+
+void SceneRenderer::setActive(bool active)
+{
+    m_active = active;
+}
+
+
+LightRay *SceneRenderer::rootLightRay() const
+{
+    return m_rootLightRay;
+}
+
+void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
+{
+    m_rootLightRay = rootLightRay;
 }

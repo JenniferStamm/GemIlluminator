@@ -115,8 +115,6 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     vertices.push_back((rayData.endPosition() - rightVector * offset).y());
     vertices.push_back((rayData.endPosition() - rightVector * offset).z());
 
-    //Repeat first and last index in order to draw all rays at once connected by degenerate triangles
-    indices.push_back(startBottom);
     indices.push_back(startBottom);
     indices.push_back(startRight);
     indices.push_back(startLeft);
@@ -130,7 +128,6 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     indices.push_back(startLeft);
     indices.push_back(endBottom);
     indices.push_back(startBottom);
-    indices.push_back(startRight);
     indices.push_back(startRight);
 }
 
@@ -201,7 +198,10 @@ void LightRayRenderer::paint(QOpenGLFunctions *gl)
     m_staticIndexBuffer->bind();
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    gl->glDrawElements(GL_TRIANGLE_STRIP, m_staticIndexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
+    int indicesPerLightRay = 14;
+    for (int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
+    }
 
     m_staticVertexBuffer->release();
     m_staticIndexBuffer->release();
@@ -212,7 +212,9 @@ void LightRayRenderer::paint(QOpenGLFunctions *gl)
 
     gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    gl->glDrawElements(GL_TRIANGLE_STRIP, m_dynamicIndexBuffer->size() / sizeof(unsigned int), GL_UNSIGNED_INT, nullptr);
+    for (int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+        gl->glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
+    }
 
     m_dynamicVertexBuffer->release();
     m_dynamicIndexBuffer->release();
