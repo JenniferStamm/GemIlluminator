@@ -43,16 +43,16 @@ void LightRay::synchronize()
     m_renderer->addLightRay(*this);
 
     for (auto& successor : *m_successors ) {
-        successor->_synchronize(m_renderer);
+        successor->_synchronize(*m_renderer);
     }
 }
 
-void LightRay::_synchronize(LightRayRenderer *renderer)
+void LightRay::_synchronize(LightRayRenderer &renderer)
 {
     delete m_renderer;
     m_renderer = nullptr;
 
-    renderer->addLightRay(*this);
+    renderer.addLightRay(*this);
 
     for (auto& successor : *m_successors ) {
         successor->_synchronize(renderer);
@@ -62,17 +62,15 @@ void LightRay::_synchronize(LightRayRenderer *renderer)
 void LightRay::calculateSuccessors()
 {
     if (m_successors->isEmpty()) {
-        LightRay *temp = new LightRay();
-        temp->setScene(m_scene);
-        //temp->setStartPosition(QVector3D(0.f, 0.f, 10.f));
-        //temp->setEndPosition(QVector3D(0.f, 0.f, -10.f));
-        temp->setStartPosition(endPosition());
-        temp->setEndPosition(QVector3D(rand() % 21 - 10, rand() % 21 - 10, rand() % 21 - 10));
+        LightRay *nextRay = new LightRay();
+        nextRay->setScene(m_scene);
+        nextRay->setStartPosition(endPosition());
+        nextRay->setEndPosition(QVector3D(rand() % 21 - 10, rand() % 21 - 10, rand() % 21 - 10));
         QVector3D collisionPoint;
-        if (m_scene->rayIntersectsTriangle(*temp, &collisionPoint)) {
-            temp->setEndPosition(collisionPoint);
+        if (m_scene->rayIntersectsTriangle(*nextRay, &collisionPoint)) {
+            nextRay->setEndPosition(collisionPoint);
         }
-        m_successors->push_back(temp);
+        m_successors->push_back(nextRay);
     }
 }
 
@@ -130,8 +128,7 @@ void LightRay::update(int timeDifference)
 
 QVector3D LightRay::normalizedOrthogonalVector() const
 {
-    LightRayData temp(*this);
-    return temp.normalizedOrthogonalVector();
+    return m_data->normalizedOrthogonalVector();
 }
 
 const QVector3D & LightRay::startPosition() const
@@ -162,12 +159,12 @@ void LightRay::setEndPosition(const QVector3D &position)
     emit endPositionChanged();
 }
 
-const QVector3D & LightRay::direction() const
+QVector3D LightRay::direction() const
 {
     return m_data->direction();
 }
 
-const QVector3D & LightRay::normalizedDirection() const
+QVector3D LightRay::normalizedDirection() const
 {
     return m_data->normalizedDirection();
 }
@@ -223,7 +220,7 @@ void LightRay::setSelectedSuccessor(LightRay *successor)
     m_selectedSuccessor = successor;
 }
 
-void LightRay::paint(QOpenGLFunctions *gl)
+void LightRay::paint(QOpenGLFunctions &gl)
 {
     if (m_renderer) {
         m_renderer->paint(gl);

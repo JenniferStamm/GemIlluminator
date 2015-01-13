@@ -76,7 +76,7 @@ void SceneRenderer::paint()
         m_gemProgram->release();
 
         /* Paint lightrays */
-        m_rootLightRay->paint(m_gl);
+        m_rootLightRay->paint(*m_gl);
 
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp

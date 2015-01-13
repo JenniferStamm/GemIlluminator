@@ -1,9 +1,10 @@
 #ifndef LIGHTRAY_H
 #define LIGHTRAY_H
 
+#include "player.h"
+
 #include <QObject>
 #include <QVector3D>
-#include "player.h"
 
 template <typename T> class QList;
 class QOpenGLFunctions;
@@ -16,12 +17,12 @@ class Scene;
 class LightRay : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(const QVector3D & startPosition READ startPosition WRITE setStartPosition NOTIFY startPositionChanged)
-    Q_PROPERTY(const QVector3D & endPosition READ endPosition WRITE setEndPosition NOTIFY endPositionChanged)
-    Q_PROPERTY(const QVector3D & direction READ direction)
-    Q_PROPERTY(const QVector3D & normalizedDirection READ normalizedDirection)
-    Q_PROPERTY(Player * player READ player WRITE setPlayer NOTIFY playerChanged)
-    Q_PROPERTY(Scene * scene READ scene WRITE setScene NOTIFY sceneChanged)
+    Q_PROPERTY(const QVector3D &startPosition READ startPosition WRITE setStartPosition NOTIFY startPositionChanged)
+    Q_PROPERTY(const QVector3D &endPosition READ endPosition WRITE setEndPosition NOTIFY endPositionChanged)
+    Q_PROPERTY(const QVector3D &direction READ direction)
+    Q_PROPERTY(const QVector3D &normalizedDirection READ normalizedDirection)
+    Q_PROPERTY(Player *player READ player WRITE setPlayer NOTIFY playerChanged)
+    Q_PROPERTY(Scene *scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
     explicit LightRay(QObject *parent = 0);
@@ -40,30 +41,29 @@ signals:
     void sceneChanged();
 
 public slots:
-    const QVector3D & startPosition() const;
-    void setStartPosition(const QVector3D & position);
+    const QVector3D &startPosition() const;
+    void setStartPosition(const QVector3D &position);
+    const QVector3D &endPosition() const;
+    void setEndPosition(const QVector3D &position);
+    QVector3D direction() const;
+    QVector3D normalizedDirection() const;
 
-    const QVector3D & endPosition() const;
-    void setEndPosition(const QVector3D & position);
-    const QVector3D & direction() const;
-    const QVector3D & normalizedDirection() const;
-
-    Player * player();
+    Player *player();
     void setPlayer(Player *attachedPlayer);
 
-    Scene * scene();
+    Scene *scene();
     void setScene(Scene *owningScene);
 
     bool isStatic() const;
     void setStatic();
 
-    LightRay * selectedSuccessor();
-    void setSelectedSuccessor(LightRay * successor);
+    LightRay *selectedSuccessor();
+    void setSelectedSuccessor(LightRay *successor);
 
-    void paint(QOpenGLFunctions *gl);
+    void paint(QOpenGLFunctions &gl);
 
 protected:
-    virtual void _synchronize(LightRayRenderer *renderer);
+    virtual void _synchronize(LightRayRenderer &renderer);
     void calculateSuccessors();
 
 protected:
