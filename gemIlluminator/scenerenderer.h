@@ -1,12 +1,13 @@
 #ifndef SCENERENDERER_H
 #define SCENERENDERER_H
 
-#include <QMatrix4x4>
 #include <QObject>
-#include <QSize>
 
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+class QMatrix4x4;
+class QSize;
+
 class AbstractGem;
 class LightRay;
 
@@ -16,12 +17,14 @@ class SceneRenderer : public QObject
 
 public:
     explicit SceneRenderer(QObject *parent = 0);
-    void setViewport(QSize viewport);
+    virtual ~SceneRenderer();
+
+    void setViewport(const QSize &viewport);
 
     void setGeometries(QList<AbstractGem*> geometries);
-    void setViewProjection(QMatrix4x4 viewProjection);
+    void setViewProjection(const QMatrix4x4 &viewProjection);
 
-    bool isActive();
+    bool isActive() const;
     void setActive(bool active);
 
     LightRay *rootLightRay() const;
@@ -35,11 +38,11 @@ protected:
 
 protected:
     bool m_initialized;
-    QSize m_viewport;
+    QSize *m_viewport;
     QList<AbstractGem*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
-    QMatrix4x4 m_viewProjection;
+    QMatrix4x4 *m_viewProjection;
     QOpenGLShaderProgram *m_gemProgram;
     QOpenGLShaderProgram *m_lightProgram;
     LightRay *m_rootLightRay;

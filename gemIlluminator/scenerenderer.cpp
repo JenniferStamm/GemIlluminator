@@ -2,6 +2,8 @@
 
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
+#include <QMatrix4x4>
+#include <QSize>
 #include <QDebug>
 
 #include "abstractgem.h"
@@ -9,12 +11,21 @@
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
-,   m_initialized(false)
-,   m_gl(new QOpenGLFunctions())
-,   m_gemProgram(nullptr)
-,   m_lightProgram(nullptr)
+  , m_initialized(false)
+  , m_viewport(new QSize())
+  , m_gl(new QOpenGLFunctions())
+  , m_viewProjection(new QMatrix4x4())
+  , m_gemProgram(nullptr)
+  , m_lightProgram(nullptr)
 {
     m_gl->initializeOpenGLFunctions();
+}
+
+SceneRenderer::~SceneRenderer()
+{
+    delete m_gl;
+    delete m_viewport;
+    delete m_viewProjection;
 }
 
 void SceneRenderer::initialize() {
@@ -66,7 +77,7 @@ void SceneRenderer::paint()
         m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(*m_gl, m_viewProjection, *m_gemProgram);
+            geometry->paint(*m_gl, *m_viewProjection, *m_gemProgram);
         }
 
         m_gemProgram->disableAttributeArray(0);
@@ -91,12 +102,12 @@ void SceneRenderer::paint()
  * @brief SceneRenderer::setViewport Only set within sync()
  * @param viewport
  */
-void SceneRenderer::setViewport(QSize viewport)
+void SceneRenderer::setViewport(const QSize &viewport)
 {
-    if (m_viewport == viewport) {
+    if (*m_viewport == viewport) {
         return;
     }
-    m_viewport = viewport;
+    *m_viewport = viewport;
     m_gl->glViewport(0, 0, viewport.width(), viewport.height());
 }
 
@@ -105,12 +116,12 @@ void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
     m_geometries = geometries;
 }
 
-void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
+void SceneRenderer::setViewProjection(const QMatrix4x4 &viewProjection)
 {
-    m_viewProjection = viewProjection;
+    *m_viewProjection = viewProjection;
 }
 
-bool SceneRenderer::isActive()
+bool SceneRenderer::isActive() const
 {
     return m_active;
 }
