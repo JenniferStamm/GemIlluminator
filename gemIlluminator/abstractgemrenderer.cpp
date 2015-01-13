@@ -13,6 +13,9 @@ AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
 
 AbstractGemRenderer::~AbstractGemRenderer()
 {
+    delete m_initialRotation;
+    delete m_position;
+    delete m_rotation;
 }
 
 const QVector3D &AbstractGemRenderer::initialRotation() const
