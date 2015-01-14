@@ -11,5 +11,11 @@
         <file>MenuButton.qml</file>
         <file>Credits.qml</file>
         <file>LoadScreen.qml</file>
+        <file>data/env_cube_nx.png</file>
+        <file>data/env_cube_ny.png</file>
+        <file>data/env_cube_nz.png</file>
+        <file>data/env_cube_px.png</file>
+        <file>data/env_cube_py.png</file>
+        <file>data/env_cube_pz.png</file>
     </qresource>
 </RCC>
