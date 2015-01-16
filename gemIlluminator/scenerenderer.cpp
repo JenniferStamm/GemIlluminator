@@ -66,12 +66,12 @@ void SceneRenderer::initialize() {
 
     // Initialize Cube Map
     QMap<GLenum, QImage> images;
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(QString(":/data/env_cube_px.png")).convertToFormat(QImage::Format_ARGB32);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(QString(":/data/env_cube_nx.png")).convertToFormat(QImage::Format_ARGB32);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(QString(":/data/env_cube_py.png")).convertToFormat(QImage::Format_ARGB32);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(QString(":/data/env_cube_ny.png")).convertToFormat(QImage::Format_ARGB32);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(QString(":/data/env_cube_pz.png")).convertToFormat(QImage::Format_ARGB32);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(QString(":/data/env_cube_nz.png")).convertToFormat(QImage::Format_ARGB32);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/env_cube_px.png");
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/env_cube_nx.png");
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/env_cube_py.png");
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/env_cube_ny.png");
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/env_cube_pz.png");
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/env_cube_nz.png");
 
     m_gl->glGenTextures(1, &m_envmap);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
@@ -81,7 +81,7 @@ void SceneRenderer::initialize() {
 
     m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    //m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
@@ -92,8 +92,7 @@ void SceneRenderer::initialize() {
 
     foreach(GLenum face, faces) {
             const QImage &image(images[face]);
-
-            m_gl->glTexImage2D(face, 0, GL_RGB, image.width(), image.height(), 0, GL_BGRA, GL_UNSIGNED_BYTE, image.bits());
+            m_gl->glTexImage2D(face, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
         }
 
     m_envmapProgram = new QOpenGLShaderProgram();
