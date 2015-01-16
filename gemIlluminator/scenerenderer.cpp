@@ -61,6 +61,13 @@ void SceneRenderer::initialize() {
     m_lightProgram->bindAttributeLocation("a_color", 1);
     m_lightProgram->bindAttributeLocation("a_normal", 2);
 
+    initializeEnvmap();
+
+    m_initialized = true;
+}
+
+void SceneRenderer::initializeEnvmap()
+{
     // Initialize squad
     m_quad = new ScreenAlignedQuad(*m_gl);
 
@@ -104,8 +111,6 @@ void SceneRenderer::initialize() {
     }
 
     m_envmapProgram->bindAttributeLocation("a_vertex", 0);
-
-    m_initialized = true;
 }
 
 void SceneRenderer::paint()
@@ -123,26 +128,7 @@ void SceneRenderer::paint()
             initialize();
         }
 
-        // Paint cubemap
-        m_envmapProgram->bind();
-
-        m_envmapProgram->setUniformValue("view", *m_view);
-        m_envmapProgram->setUniformValue("projectionInverse", *m_projectionInverted);
-
-        m_envmapProgram->setUniformValue("cubemap", 0);
-
-        m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glEnable(GL_TEXTURE_CUBE_MAP);
-        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
-
-        m_envmapProgram->bind();
-        m_quad->draw(*m_gl);
-        m_envmapProgram->release();
-
-        m_gl->glDepthMask(GL_TRUE);
-        m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-        m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
+        paintEnvmap();
 
         /* Paint gems */
         m_gemProgram->bind();
@@ -171,6 +157,29 @@ void SceneRenderer::paint()
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
     }
+}
+
+void SceneRenderer::paintEnvmap()
+{
+    m_envmapProgram->bind();
+
+    m_envmapProgram->setUniformValue("view", *m_view);
+    m_envmapProgram->setUniformValue("projectionInverse", *m_projectionInverted);
+
+    m_envmapProgram->setUniformValue("cubemap", 0);
+
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glEnable(GL_TEXTURE_CUBE_MAP);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
+
+    m_envmapProgram->bind();
+    m_quad->draw(*m_gl);
+    m_envmapProgram->release();
+
+    m_gl->glDepthMask(GL_TRUE);
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+    m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
 }
 
 /**

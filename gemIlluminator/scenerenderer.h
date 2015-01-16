@@ -38,6 +38,9 @@ public slots:
 
 protected:
     void initialize();
+    void initializeEnvmap();
+
+    void paintEnvmap();
 
 protected:
     bool m_initialized;
