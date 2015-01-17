@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<AbstractGem>();
     qmlRegisterType<Scene>("GemIlluminator", 1, 0, "Scene");
     qmlRegisterType<Gem>("GemIlluminator", 1, 0, "Gem");
+    qmlRegisterType<Gem>("GemIlluminator", 1, 0, "TetrahedronGem");
     qmlRegisterType<Player>("GemIlluminator", 1, 0, "Player");
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
