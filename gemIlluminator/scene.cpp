@@ -17,8 +17,8 @@ Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_renderer(nullptr)
   , m_time(nullptr)
-  , m_currentGem(nullptr)
   , m_rootLightRay(new LightRay(this))
+  , m_currentGem(nullptr)
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
     m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));

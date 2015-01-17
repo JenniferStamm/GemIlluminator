@@ -13,15 +13,15 @@
 LightRayRenderer::LightRayRenderer(QObject *parent) :
     QObject(parent)
   , m_isInitialized(false)
-  , m_program(nullptr)
-  , m_camera(nullptr)
-  , m_dynamicRays(new QVector<LightRayData>)
-  , m_staticRays(new QSet<LightRayData>)
   , m_isStaticVBOUpdateRequired(true)
+  , m_program(nullptr)
   , m_staticVertexBuffer(nullptr)
   , m_staticIndexBuffer(nullptr)
   , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
+  , m_camera(nullptr)
+  , m_dynamicRays(new QVector<LightRayData>)
+  , m_staticRays(new QSet<LightRayData>)
 {
 }
 
@@ -199,7 +199,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl)
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
     int indicesPerLightRay = 14;
-    for (int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+    for (unsigned int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
         gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
     }
 
@@ -212,7 +212,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl)
 
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    for (int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+    for (unsigned int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
         gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
     }
 

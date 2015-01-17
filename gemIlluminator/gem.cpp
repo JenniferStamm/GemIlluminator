@@ -10,8 +10,8 @@
 Gem::Gem(QObject *parent) :
     AbstractGem(parent)
   , m_triangles(new QVector<Triangle *>())
-  , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
+  , m_vertices(new QVector<QVector3D>())
 {
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
