@@ -101,8 +101,7 @@ float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D 
     float det, invDet;
 
     for (int i = 0; i < 4; i++) {
-        Triangle *triangle = m_triangles->at(1);
-        //QVector3D normal = triangle->normalizedNormal();
+        Triangle *triangle = m_triangles->at(i);
 
         edge1 = triangle->b() - triangle->a();
         edge2 = triangle->c() - triangle->a();
