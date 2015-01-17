@@ -1,7 +1,7 @@
 import QtQuick 2.3
 import GemIlluminator 1.0
 
-Gem {
+TetrahedronGem {
     Component.onCompleted: {
         var xAngle = Math.random() * 360 - 180
         var yAngle = Math.random() * 360 - 180

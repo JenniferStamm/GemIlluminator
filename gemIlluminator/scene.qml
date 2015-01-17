@@ -53,6 +53,7 @@ Scene {
 
                 for (var i = 0; i < gems.length; i++) {
                     curGemType = gems[i][3].toString()
+                    console.log(curGemType)
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
@@ -79,7 +80,8 @@ Scene {
             // Improve the solution when a configuration file is available
             var gemTypes = {}
 
-            gemTypes["gem"] = Qt.createComponent("gem.qml")
+            gemTypes["TetrahedronGem"] = Qt.createComponent("TetrahedronGem.qml")
+            gemTypes["CubeGem"] = Qt.createComponent("CubeGem.qml")
             return gemTypes
         }
     }
