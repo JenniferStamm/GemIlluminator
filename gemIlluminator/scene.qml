@@ -75,7 +75,7 @@ Scene {
 
     Component.onCompleted: {
         scene.active = false
-        gemGenerator.sendMessage({"numGems": 500,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
+        gemGenerator.sendMessage({"numGems": 1200,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
     }
 }
 

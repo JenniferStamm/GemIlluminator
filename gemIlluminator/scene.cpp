@@ -17,6 +17,7 @@ Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_renderer(nullptr)
   , m_time(nullptr)
+  , m_currentGem(nullptr)
   , m_rootLightRay(new LightRay(this))
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
@@ -58,7 +59,12 @@ void Scene::sync()
 
         for (auto& i : m_gem) {
             i->synchronize();
-            i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
+        }
+
+        if (m_currentGem) {
+            m_currentGem->setRotation(QVector3D(m_navigation->rotateX(),
+                                                        m_navigation->rotateY(),
+                                                        m_navigation->rotateZ()));
         }
     }
 }
@@ -189,4 +195,9 @@ AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collis
         }
     }
     return result;
+}
+
+void Scene::setCurrentGem(AbstractGem *currentGem)
+{
+    m_currentGem = currentGem;
 }

@@ -2,9 +2,7 @@ WorkerScript.onMessage = function(message)
 {
     var gems = new Array();
 
-    gems.push(new Array(Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart,
-                        Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart,
-                        Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart))
+    gems.push(new Array(0,0,0))
 
     var trys = 0
     var curGemNum = 0
