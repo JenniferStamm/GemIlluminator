@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     abstractgem.cpp \
     abstractgemrenderer.cpp \
     lightraydata.cpp \
-    triangle.cpp
+    triangle.cpp \
+    screenalignedquad.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -47,4 +48,5 @@ HEADERS += \
     abstractgem.h \
     abstractgemrenderer.h \
     lightraydata.h \
-    triangle.h
+    triangle.h \
+    screenalignedquad.h
