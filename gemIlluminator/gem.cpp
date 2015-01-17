@@ -13,14 +13,15 @@ Gem::Gem(QObject *parent) :
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
-    m_radius = 1.f;
+    m_radius = sqrt(3.f);
+    m_scale = 0.3f;
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */
-    m_vertices->append(QVector3D(0.f, 0.5, 0.f));
-    m_vertices->append(QVector3D(-0.5, -0.5, 0.5));
-    m_vertices->append(QVector3D(0, -0.5, -0.5));
-    m_vertices->append(QVector3D(0.5, -0.5, 0.5));
+    m_vertices->append(QVector3D( 1.f, -1.f, -1.f));
+    m_vertices->append(QVector3D(-1.f, -1.f,  1.f));
+    m_vertices->append(QVector3D( 1.f,  1.f,  1.f));
+    m_vertices->append(QVector3D(-1.f,  1.f, -1.f));
 
     m_colors->append(QVector3D(0.0, 0.0, 1.0));
     m_colors->append(QVector3D(1.0, 0.0, 0.0));
@@ -82,7 +83,7 @@ float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D 
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
 
-    if (intersectedBy(ray, collisionPoint) < - radius() / ray.direction().length()) {
+    if (intersectedBy(ray, collisionPoint) == maxFloat) {
         triangleIndex = -1;
         if (collisionPoint) {
             *collisionPoint = noCollisionPoint;

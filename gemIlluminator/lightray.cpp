@@ -125,6 +125,7 @@ void LightRay::update(int timeDifference)
             setStatic();
         } else {
             m_player->setPosition(playerPosition);
+            m_scene->setCurrentGem(m_scene->findGemIntersectedBy(*this));
         }
     }
 }
