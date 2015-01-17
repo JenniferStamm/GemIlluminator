@@ -42,6 +42,8 @@ public:
     AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
     AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
+    void setCurrentGem(AbstractGem *currentGem);
+
 signals:
     void cubesChanged();
     void tChanged();
@@ -62,6 +64,7 @@ protected:
     Camera *m_camera;
     LightRay *m_rootLightRay;
     Navigation *m_navigation;
+    AbstractGem *m_currentGem;
 
 private slots:
     void handleWindowChanged(QQuickWindow *win);

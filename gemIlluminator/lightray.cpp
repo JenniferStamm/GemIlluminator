@@ -115,6 +115,7 @@ void LightRay::update(int timeDifference)
         }
         if (factors.x() > 1.f || factors.y() > 1.f || factors.z() > 1.f)
         {
+            m_scene->setCurrentGem(m_scene->rayIntersection(*selectedSuccessor()));
             playerPosition = endPosition();
             m_player->setPosition(playerPosition);
             selectedSuccessor()->setPlayer(m_player);
