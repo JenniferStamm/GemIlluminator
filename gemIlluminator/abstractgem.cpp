@@ -12,6 +12,8 @@ AbstractGem::AbstractGem(QObject *parent) :
   , m_initialRotation(new QVector3D())
   , m_position(new QVector3D())
   , m_rotation(new QVector3D())
+  , m_scale(1.f)
+  , m_radius(0.f)
 {
 }
 
@@ -72,6 +74,25 @@ void AbstractGem::setRotation(const QVector3D &rotation)
     emit rotationChanged();
 }
 
+qreal AbstractGem::scale() const
+{
+    return m_scale;
+}
+
+void AbstractGem::setScale(qreal scaleFactor)
+{
+    if (scaleFactor == m_scale) {
+       return;
+    }
+    m_scale = scaleFactor;
+    emit scaleChanged();
+}
+
+qreal AbstractGem::radius() const
+{
+    return m_radius * m_scale;
+}
+
 int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float &x2)
 {
     float p = b / a;
@@ -105,7 +126,6 @@ float minimumWithLowerBound(float a, float b, float lowerBound)
 
 float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
 {
-    float expectedRadius = 0.5f;
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
 
@@ -116,7 +136,7 @@ float AbstractGem::rayIntersect(const LightRay &ray, QVector3D *collisionPoint)
     a = ray.direction().lengthSquared();
     QVector3D bVector = (ray.startPosition() - position()) * ray.direction();
     b = 2 * (bVector.x() + bVector.y() + bVector.z());
-    c = (ray.startPosition() - position()).lengthSquared() - expectedRadius * expectedRadius;
+    c = (ray.startPosition() - position()).lengthSquared() - radius() * radius();
 
     float t1;
     float t2;

@@ -13,6 +13,7 @@ Gem::Gem(QObject *parent) :
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
+    m_radius = 1.f;
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */
@@ -62,6 +63,7 @@ void Gem::synchronize()
     m_renderer->setInitialRotation(*m_initialRotation);
     m_renderer->setPosition(*m_position);
     m_renderer->setRotation(*m_rotation);
+    m_renderer->setScale(m_scale);
 }
 
 void Gem::cleanup()

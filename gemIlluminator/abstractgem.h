@@ -18,6 +18,7 @@ class AbstractGem : public QObject
     Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
 
 public:
     explicit AbstractGem(QObject *parent = 0);
@@ -38,6 +39,11 @@ public:
     const QVector3D &rotation() const;
     void setRotation(const QVector3D &rotation);
 
+    qreal scale() const;
+    void setScale(qreal scaleFactor);
+
+    qreal radius() const;
+
     float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     virtual float rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
 
@@ -45,6 +51,7 @@ signals:
     void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
+    void scaleChanged();
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
@@ -54,6 +61,8 @@ protected:
     QVector3D *m_initialRotation;
     QVector3D *m_position;
     QVector3D *m_rotation; /*!< Contains the euler angles */
+    qreal m_scale;
+    qreal m_radius;
 };
 
 #endif // GEOMETRY_H

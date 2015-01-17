@@ -8,6 +8,7 @@ AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
   , m_initialRotation(new QVector3D)
   , m_position(new QVector3D())
   , m_rotation(new QVector3D())
+  , m_scale(1.f)
 {
 }
 
@@ -55,4 +56,17 @@ void AbstractGemRenderer::setRotation(const QVector3D &rotation)
        return;
     }
     *m_rotation = rotation;
+}
+
+qreal AbstractGemRenderer::scale() const
+{
+    return m_scale;
+}
+
+void AbstractGemRenderer::setScale(qreal scale)
+{
+    if (scale == m_scale) {
+       return;
+    }
+    m_scale = scale;
 }
