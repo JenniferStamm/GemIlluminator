@@ -30,5 +30,5 @@ void main()
     // TODO: At some point we'll add projection again
     gl_Position = modelViewProjection * vec4(a_vertex, 1.0);
     v_color = a_color;
-    v_color = tnorm;
+    v_color = tnorm * 0.5 + 0.5;
 }
