@@ -107,7 +107,7 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
     gl.glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
 
-    gl.glDrawArrays(GL_TRIANGLES, 0, 12);
+    gl.glDrawArrays(GL_TRIANGLES, 0, m_vertexData->size() / 9);
 
     m_vertexBuffer->release();
     program.release();
