@@ -9,13 +9,13 @@
 
 LightRay::LightRay(QObject *parent) :
     QObject(parent)
+  , m_data(new LightRayData())
   , m_successors(new QList<LightRay *>)
   , m_selectedSuccessor(nullptr)
   , m_renderer(nullptr)
   , m_isStatic(false)
   , m_player(nullptr)
   , m_scene(nullptr)
-  , m_data(new LightRayData())
 {
 }
 
