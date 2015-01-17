@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>gem.qml</file>
+        <file>TetrahedronGem.qml</file>
         <file>gemgenerator.js</file>
         <file>Scene.qml</file>
         <file>Navigation.qml</file>
@@ -11,6 +11,7 @@
         <file>MenuButton.qml</file>
         <file>Credits.qml</file>
         <file>LoadScreen.qml</file>
+        <file>CubeGem.qml</file>
         <file>data/env_cube_nx.png</file>
         <file>data/env_cube_ny.png</file>
         <file>data/env_cube_nz.png</file>

@@ -45,13 +45,15 @@ Scene {
 
         onMessage: {
             if(messageObject.gems) {
-                var gemComponent = Qt.createComponent("gem.qml");
                 var gems = messageObject.gems
+                var gemTypes = initGemTypes()
 
                 var gemsToJSON = []
+                var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    gemsToJSON.push(gemComponent.createObject(scene,
+                    curGemType = gems[i][3].toString()
+                    gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
@@ -70,6 +72,16 @@ Scene {
             } else if (messageObject.currentProgress) {
                 loadScreen.currentProgress = messageObject.currentProgress
             }
+        }
+
+        function initGemTypes()
+        {
+            // Improve the solution when a configuration file is available
+            var gemTypes = {}
+
+            gemTypes["TetrahedronGem"] = Qt.createComponent("TetrahedronGem.qml")
+            gemTypes["CubeGem"] = Qt.createComponent("CubeGem.qml")
+            return gemTypes
         }
     }
 

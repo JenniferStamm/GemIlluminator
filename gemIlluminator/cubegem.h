@@ -8,13 +8,13 @@ class QVector3D;
 
 class Triangle;
 
-class Gem : public AbstractGem
+class CubeGem : public AbstractGem
 {
     Q_OBJECT
 
 public:
-    explicit Gem(QObject *parent = 0);
-    virtual ~Gem();
+    explicit CubeGem(QObject *parent = 0);
+    virtual ~CubeGem();
 
     virtual void synchronize() override;
     virtual void cleanup() override;

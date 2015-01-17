@@ -2,7 +2,7 @@ WorkerScript.onMessage = function(message)
 {
     var gems = new Array();
 
-    gems.push(new Array(0,0,0))
+    gems.push(new Array(0, 0, 0, "TetrahedronGem"))
 
     var trys = 0
     var curGemNum = 0
@@ -40,7 +40,8 @@ WorkerScript.onMessage = function(message)
         }
 
         if (isValidNewGem) {
-            gems.push(new Array(newX, newY, newZ))
+            var newGem = new Array(newX, newY, newZ, getRandomGemType())
+            gems.push(newGem)
             WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
             curGemNum++
@@ -48,4 +49,15 @@ WorkerScript.onMessage = function(message)
     }
 
     WorkerScript.sendMessage({"gems": gems})
+}
+
+function getRandomGemType()
+{
+    var gemTreshold = Math.random()
+
+    if (gemTreshold <= 0.5) {
+        return "TetrahedronGem"
+    } else if (gemTreshold > 0.5) {
+        return "CubeGem"
+    }
 }
