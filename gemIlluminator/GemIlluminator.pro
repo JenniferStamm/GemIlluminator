@@ -7,7 +7,6 @@ SOURCES += main.cpp \
     scenerenderer.cpp \
     player.cpp \
     lightray.cpp \
-    gem.cpp \
     gemrenderer.cpp \
     camera.cpp \
     lightrayrenderer.cpp \
@@ -16,7 +15,8 @@ SOURCES += main.cpp \
     abstractgemrenderer.cpp \
     lightraydata.cpp \
     triangle.cpp \
-    tetrahedrongem.cpp
+    tetrahedrongem.cpp \
+    cubegem.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -40,7 +40,6 @@ HEADERS += \
     scenerenderer.h \
     player.h \
     lightray.h \
-    gem.h \
     gemrenderer.h \
     camera.h \
     lightrayrenderer.h \
@@ -49,4 +48,5 @@ HEADERS += \
     abstractgemrenderer.h \
     lightraydata.h \
     triangle.h \
-    tetrahedrongem.h
+    tetrahedrongem.h \
+    cubegem.h

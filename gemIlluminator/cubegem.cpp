@@ -1,4 +1,4 @@
-#include "gem.h"
+#include "cubegem.h"
 
 #include "gemrenderer.h"
 #include "lightray.h"
@@ -7,24 +7,25 @@
 #include <QVector>
 #include <QVector3D>
 
-Gem::Gem(QObject *parent) :
+CubeGem::CubeGem(QObject *parent) :
     AbstractGem(parent)
   , m_triangles(new QVector<Triangle *>())
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
-    /* Order according to
-     * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
-     */
-    m_vertices->append(QVector3D(0.f, 0.5, 0.f));
-    m_vertices->append(QVector3D(-0.5, -0.5, 0.5));
-    m_vertices->append(QVector3D(0, -0.5, -0.5));
-    m_vertices->append(QVector3D(0.5, -0.5, 0.5));
+    m_vertices->append(QVector3D(-0.5f, -0.5f, -0.5f)); // front bottom left
+    m_vertices->append(QVector3D(-0.5f, -0.5f, 0.5f));  // front bottom right
+    m_vertices->append(QVector3D(-0.5f, 0.5f, -0.5f));  // front top left
+    m_vertices->append(QVector3D(-0.5f, 0.5f, 0.5f));   // front top right
+    m_vertices->append(QVector3D(0.5f, -0.5f, -0.5f));  // back bottom left
+    m_vertices->append(QVector3D(0.5f, -0.5f, 0.5f));   // back bottom right
+    m_vertices->append(QVector3D(0.5f, 0.5f, -0.5f));   // back top left
+    m_vertices->append(QVector3D(0.5f, 0.5f, 0.5f));    // back top right
 
-    m_colors->append(QVector3D(0.0, 0.0, 1.0));
-    m_colors->append(QVector3D(1.0, 0.0, 0.0));
-    m_colors->append(QVector3D(1.0, 1.0, 0.0));
-    m_colors->append(QVector3D(0.0, 1.0, 1.0));
+    m_colors->append(QVector3D(0.0f, 0.0f, 1.0f));
+    m_colors->append(QVector3D(1.0f, 0.0f, 0.0f));
+    m_colors->append(QVector3D(1.0f, 1.0f, 0.0f));
+    m_colors->append(QVector3D(0.0f, 1.0f, 1.0f));
 
     m_triangles->append(new Triangle(
                 m_vertices->at(1),
@@ -48,11 +49,11 @@ Gem::Gem(QObject *parent) :
                 m_colors->at(3)));
 }
 
-Gem::~Gem()
+CubeGem::~CubeGem()
 {
 }
 
-void Gem::synchronize()
+void CubeGem::synchronize()
 {
     //renderer has to been created in correct thread
     if (!m_renderer){
@@ -64,18 +65,18 @@ void Gem::synchronize()
     m_renderer->setRotation(*m_rotation);
 }
 
-void Gem::cleanup()
+void CubeGem::cleanup()
 {
     delete m_renderer;
     m_renderer = nullptr;
 }
 
-void Gem::update(int timeDifference)
+void CubeGem::update(int timeDifference)
 {
 
 }
 
-float Gem::rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
+float CubeGem::rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
 {
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
