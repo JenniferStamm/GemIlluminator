@@ -32,22 +32,26 @@ Gem::Gem(QObject *parent) :
                 m_vertices->at(1),
                 m_vertices->at(3),
                 m_vertices->at(2),
-                m_colors->at(0)));
+                m_colors->at(0),
+                this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(3),
                 m_vertices->at(2),
-                m_colors->at(1)));
+                m_colors->at(1),
+                this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(1),
                 m_vertices->at(3),
-                m_colors->at(2)));
+                m_colors->at(2),
+                this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(2),
                 m_vertices->at(1),
-                m_colors->at(3)));
+                m_colors->at(3),
+                this));
 }
 
 Gem::~Gem()
@@ -83,7 +87,10 @@ float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D 
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
 
-    if (intersectedBy(ray, collisionPoint) == maxFloat) {
+    //triangleIndex = -1;
+    //return intersectedBy(ray, collisionPoint);
+
+    if (intersectedBy(ray) == maxFloat) {
         triangleIndex = -1;
         if (collisionPoint) {
             *collisionPoint = noCollisionPoint;
@@ -101,43 +108,38 @@ float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D 
     float det, invDet;
 
     for (int i = 0; i < 4; i++) {
-        Triangle *triangle = m_triangles->at(i);
+        Triangle *objectSpaceTriangle = m_triangles->at(i);
+        Triangle worldSpaceTriangle = objectSpaceTriangle->inWorldCoordinates();
 
-        edge1 = triangle->b() - triangle->a();
-        edge2 = triangle->c() - triangle->a();
+        edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();
+        edge2 = worldSpaceTriangle.c() - worldSpaceTriangle.a();
 
         // Calculate determinant
-        pvec = QVector3D::crossProduct(ray.direction(), edge2);
+        pvec = QVector3D::crossProduct(ray.normalizedDirection(), edge2);
         det = QVector3D::dotProduct(edge1, pvec);
 
         // Non-culling branch
-        if (-epsilon < det && det < epsilon) {
-            *collisionPoint = noCollisionPoint;
-        } else {
+        if (det < -epsilon || det > epsilon) {
             invDet = 1.f / det;
 
             // Calculate distance from vert0 to ray origin
-            tvec = ray.startPosition() - triangle->a();
+            tvec = ray.startPosition() - worldSpaceTriangle.a();
 
             // Calculate u and test bounds
             u = QVector3D::dotProduct(tvec, pvec) * invDet;
-            if (u < 0.f || u > 1.f) {
-                *collisionPoint = noCollisionPoint;
-            } else {
+            if (u >= 0.f && u <= 1.f) {
                 // Prepare to test v
                 qvec = QVector3D::crossProduct(tvec, edge1);
 
                 // Calculate v and test bounds
-                v = QVector3D::dotProduct(ray.direction(), qvec) * invDet;
-                if ( v < 0.f || u + v > 1.0) {
-                    *collisionPoint = noCollisionPoint;
-                } else {
+                v = QVector3D::dotProduct(ray.normalizedDirection(), qvec) * invDet;
+                if ( v >= 0.f && u + v <= 1.0) {
                     // Calculate t, ray intersects triangle
                     t = QVector3D::dotProduct(edge2, qvec) * invDet;
                     if (t < tPrevious && t > 0.0 + epsilon) {
                         tPrevious = t;
                         triangleIndex = i;
-                        *collisionPoint = ray.startPosition() + t * ray.direction();
+                        *collisionPoint = ray.startPosition() + t * ray.normalizedDirection();
                     }
                 }
 

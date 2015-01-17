@@ -192,6 +192,8 @@ AbstractGem *Scene::findGemFaceIntersectedBy(const LightRay &ray, int &faceIndex
             result = gem;
         }
     }
+    if (result)
+        qDebug() << *collisionPoint;
     return result;
 }
 
