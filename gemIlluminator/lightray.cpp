@@ -88,7 +88,7 @@ void LightRay::update(int timeDifference)
 {
     if (!isStatic() && m_scene) {
         QVector3D collisionPoint;
-        if (m_scene->rayIntersection(*this, &collisionPoint)) {
+        if (m_scene->rayIntersectsTriangle(*this, &collisionPoint)) {
             setEndPosition(collisionPoint);
         }
     }
