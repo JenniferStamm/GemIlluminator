@@ -2,7 +2,7 @@ WorkerScript.onMessage = function(message)
 {
     var gems = new Array();
 
-    gems.push(new Array(0,0,0))
+    gems.push(new Array(0, 0, 0, "gem"))
 
     var trys = 0
     var curGemNum = 0
@@ -40,7 +40,8 @@ WorkerScript.onMessage = function(message)
         }
 
         if (isValidNewGem) {
-            gems.push(new Array(newX, newY, newZ))
+            var newGem = new Array(newX, newY, newZ, "gem")
+            gems.push(newGem)
             WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
             curGemNum++
