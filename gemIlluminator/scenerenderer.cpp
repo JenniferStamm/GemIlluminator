@@ -73,12 +73,12 @@ void SceneRenderer::initializeEnvmap()
 
     // Initialize Cube Map
     QMap<GLenum, QImage> images;
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/env_cube_px.png");
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/env_cube_nx.png");
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/env_cube_py.png");
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/env_cube_ny.png");
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/env_cube_pz.png");
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/env_cube_nz.png");
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/env_cube_py.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/env_cube_ny.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
 
     m_gl->glGenTextures(1, &m_envmap);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
