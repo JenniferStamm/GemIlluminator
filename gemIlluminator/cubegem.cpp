@@ -14,39 +14,93 @@ CubeGem::CubeGem(QObject *parent) :
   , m_colors(new QVector<QVector3D>())
 {
     m_vertices->append(QVector3D(-0.5f, -0.5f, -0.5f)); // front bottom left
-    m_vertices->append(QVector3D(-0.5f, -0.5f, 0.5f));  // front bottom right
+    m_vertices->append(QVector3D(0.5f, -0.5f, -0.5f));  // front bottom right
     m_vertices->append(QVector3D(-0.5f, 0.5f, -0.5f));  // front top left
-    m_vertices->append(QVector3D(-0.5f, 0.5f, 0.5f));   // front top right
-    m_vertices->append(QVector3D(0.5f, -0.5f, -0.5f));  // back bottom left
+    m_vertices->append(QVector3D(0.5f, 0.5f, -0.5f));   // front top right
+    m_vertices->append(QVector3D(-0.5f, -0.5f, 0.5f));  // back bottom left
     m_vertices->append(QVector3D(0.5f, -0.5f, 0.5f));   // back bottom right
-    m_vertices->append(QVector3D(0.5f, 0.5f, -0.5f));   // back top left
+    m_vertices->append(QVector3D(-0.5f, 0.5f, 0.5f));   // back top left
     m_vertices->append(QVector3D(0.5f, 0.5f, 0.5f));    // back top right
 
     m_colors->append(QVector3D(0.0f, 0.0f, 1.0f));
-    m_colors->append(QVector3D(1.0f, 0.0f, 0.0f));
-    m_colors->append(QVector3D(1.0f, 1.0f, 0.0f));
+    m_colors->append(QVector3D(0.0f, 1.0f, 0.0f));
     m_colors->append(QVector3D(0.0f, 1.0f, 1.0f));
+    m_colors->append(QVector3D(1.0f, 0.0f, 0.0f));
+    m_colors->append(QVector3D(1.0f, 0.0f, 1.0f));
+    m_colors->append(QVector3D(1.0f, 1.0f, 0.0f));
 
+    // front-face top-left triangle
     m_triangles->append(new Triangle(
-                m_vertices->at(1),
+                m_vertices->at(0),
                 m_vertices->at(3),
                 m_vertices->at(2),
                 m_colors->at(0)));
+    // front-face bottom-right triangle
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
+                m_vertices->at(1),
                 m_vertices->at(3),
-                m_vertices->at(2),
+                m_colors->at(0)));
+    // right-face top-left triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(1),
+                m_vertices->at(7),
+                m_vertices->at(3),
                 m_colors->at(1)));
+    // right-face bottom-right triangle
     m_triangles->append(new Triangle(
-                m_vertices->at(0),
                 m_vertices->at(1),
-                m_vertices->at(3),
-                m_colors->at(2)));
+                m_vertices->at(5),
+                m_vertices->at(7),
+                m_colors->at(1)));
+    // back-face top-left triangle
     m_triangles->append(new Triangle(
+                m_vertices->at(5),
+                m_vertices->at(6),
+                m_vertices->at(7),
+                m_colors->at(2)));
+    // back-face bottom-right triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(5),
+                m_vertices->at(4),
+                m_vertices->at(6),
+                m_colors->at(2)));
+    // left-face top-left triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(4),
+                m_vertices->at(2),
+                m_vertices->at(6),
+                m_colors->at(3)));
+    // left-face bottom-right triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(4),
                 m_vertices->at(0),
                 m_vertices->at(2),
-                m_vertices->at(1),
                 m_colors->at(3)));
+    // top-face top-left triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(2),
+                m_vertices->at(7),
+                m_vertices->at(6),
+                m_colors->at(4)));
+    // top-face bottom-right triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(2),
+                m_vertices->at(3),
+                m_vertices->at(7),
+                m_colors->at(4)));
+    // bottom-face top-left triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(4),
+                m_vertices->at(1),
+                m_vertices->at(0),
+                m_colors->at(5)));
+    // bottom-face bottom-right triangle
+    m_triangles->append(new Triangle(
+                m_vertices->at(4),
+                m_vertices->at(5),
+                m_vertices->at(1),
+                m_colors->at(5)));
 }
 
 CubeGem::~CubeGem()
