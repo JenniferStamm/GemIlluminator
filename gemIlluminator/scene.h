@@ -39,8 +39,22 @@ public:
     LightRay* rootLightRay() const;
     void setRootLightRay(LightRay *root);
 
-    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
-    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+    /**
+     * @brief Finds the nearest gem with bounding sphere intersected by given ray.
+     * @param ray Ray send into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     */
+    AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+
+    /**
+     * @brief Finds the nearest gem intersected by given ray.
+     * @param ray Ray send into scene to find gem.
+     * @param faceIndex The index of intersected face of returned gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     */
+    AbstractGem *findGemFaceIntersectedBy(const LightRay &ray, int &faceIndex, QVector3D *collisionPoint = nullptr) const;
 
     void setCurrentGem(AbstractGem *currentGem);
 

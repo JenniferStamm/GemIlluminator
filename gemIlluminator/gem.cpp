@@ -77,10 +77,18 @@ void Gem::update(int timeDifference)
 
 }
 
-float Gem::rayIntersect(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
+float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
 {
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+
+    if (intersectedBy(ray, collisionPoint) < - radius() / ray.direction().length()) {
+        triangleIndex = -1;
+        if (collisionPoint) {
+            *collisionPoint = noCollisionPoint;
+        }
+        return maxFloat;
+    }
 
     // Calculate collision according to
     // http://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
