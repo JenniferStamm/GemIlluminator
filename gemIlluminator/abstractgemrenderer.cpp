@@ -1,54 +1,58 @@
 #include "abstractgemrenderer.h"
 
 #include <QOpenGLShaderProgram>
+#include <QVector3D>
 
 AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
     QObject(parent)
+  , m_initialRotation(new QVector3D)
+  , m_position(new QVector3D())
+  , m_rotation(new QVector3D())
 {
 }
 
 AbstractGemRenderer::~AbstractGemRenderer()
 {
+    delete m_initialRotation;
+    delete m_position;
+    delete m_rotation;
 }
 
-QVector3D AbstractGemRenderer::position()
+const QVector3D &AbstractGemRenderer::initialRotation() const
 {
-    return m_position;
-}
-
-QVector3D AbstractGemRenderer::initialRotation() const
-{
-    return m_initialRotation;
+    return *m_initialRotation;
 }
 
 void AbstractGemRenderer::setInitialRotation(const QVector3D &initialRotation)
 {
-    if (initialRotation == m_initialRotation) {
+    if (initialRotation == *m_initialRotation) {
        return;
     }
-
-    m_initialRotation = initialRotation;
+    *m_initialRotation = initialRotation;
 }
 
-void AbstractGemRenderer::setPosition(QVector3D position)
+const QVector3D &AbstractGemRenderer::position() const
 {
-    if (position == m_position) {
+    return *m_position;
+}
+
+void AbstractGemRenderer::setPosition(const QVector3D &position)
+{
+    if (position == *m_position) {
        return;
     }
-
-    m_position = position;
+    *m_position = position;
 }
 
-QVector3D AbstractGemRenderer::rotation()
+const QVector3D &AbstractGemRenderer::rotation() const
 {
-    return m_rotation;
+    return *m_rotation;
 }
 
-void AbstractGemRenderer::setRotation(QVector3D rotation)
+void AbstractGemRenderer::setRotation(const QVector3D &rotation)
 {
-    if (rotation == m_rotation) {
+    if (rotation == *m_rotation) {
        return;
     }
-
-    m_rotation = rotation;
+    *m_rotation = rotation;
 }

@@ -76,7 +76,7 @@ void GemRenderer::addTriangleData(
     data.append(normal);
 }
 
-void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)
+void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
 {
     if (!m_initialized) {
         initialize();
@@ -86,11 +86,11 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGL
     program.bind(); // Ask Daniel why we need this here
 
     QMatrix4x4 model;
-    model.translate(m_position.x(), m_position.y(), m_position.z());
+    model.translate(position().x(), position().y(), position().z());
     model.scale(0.5);
-    model.rotate(m_rotation.x() + m_initialRotation.x(), QVector3D(1.0, 0.0, 0.0));
-    model.rotate(m_rotation.y() + m_initialRotation.y(), QVector3D(0.0, 1.0, 0.0));
-    model.rotate(m_rotation.z() + m_initialRotation.z(), QVector3D(0.0, 0.0, 1.0));
+    model.rotate(rotation().x() + initialRotation().x(), QVector3D(1.0, 0.0, 0.0));
+    model.rotate(rotation().y() + initialRotation().y(), QVector3D(0.0, 1.0, 0.0));
+    model.rotate(rotation().z() + initialRotation().z(), QVector3D(0.0, 0.0, 1.0));
     program.setUniformValue("model", model);
 
     QMatrix4x4 normalMatrix(model);
@@ -103,13 +103,12 @@ void GemRenderer::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGL
     QMatrix4x4 mvp = viewProjection * model;
     program.setUniformValue("modelViewProjection", mvp);
 
-    gl->glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
-    gl->glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
-    gl->glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
+    gl.glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
 
-    gl->glDrawArrays(GL_TRIANGLES, 0, 12);
+    gl.glDrawArrays(GL_TRIANGLES, 0, 12);
 
     m_vertexBuffer->release();
     program.release();
-
 }

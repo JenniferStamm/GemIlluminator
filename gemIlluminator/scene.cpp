@@ -97,7 +97,7 @@ void Scene::registerNavigation(Navigation *navigation)
     m_navigation = navigation;
 }
 
-qreal Scene::t()
+qreal Scene::t() const
 {
     return m_t;
 }
@@ -113,7 +113,7 @@ void Scene::setT(qreal t)
     }
 }
 
-bool Scene::isActive()
+bool Scene::isActive() const
 {
     return m_active;
 }
@@ -129,7 +129,7 @@ void Scene::setActive(bool active)
     emit activeChanged();
 }
 
-Camera* Scene::camera()
+Camera* Scene::camera() const
 {
     return m_camera;
 }
@@ -139,7 +139,7 @@ void Scene::setCamera(Camera* camera)
     m_camera = camera;
 }
 
-LightRay* Scene::rootLightRay()
+LightRay* Scene::rootLightRay() const
 {
     return m_rootLightRay;
 }
@@ -149,7 +149,7 @@ void Scene::setRootLightRay(LightRay *root)
     m_rootLightRay = root;
 }
 
-AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint)
+AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint) const
 {
     AbstractGem *result = nullptr;
     QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
@@ -171,7 +171,7 @@ AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPo
     return result;
 }
 
-AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint)
+AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint) const
 {
     AbstractGem *result = nullptr;
     int triangleIndex = -1;
@@ -183,7 +183,7 @@ AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collis
     float distance = maxFloat;
     for (auto& gem : m_gem){
         QVector3D tempCollisionPoint;
-        float collisionDistance = gem->rayIntersect(ray, &triangleIndex, &tempCollisionPoint);
+        float collisionDistance = gem->rayIntersect(ray, triangleIndex, &tempCollisionPoint);
         if (collisionDistance < distance) {
             distance = collisionDistance;
             if (collisionPoint) {

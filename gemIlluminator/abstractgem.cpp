@@ -8,64 +8,67 @@
 
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
-  , m_renderer(0)
+  , m_renderer(nullptr)
+  , m_initialRotation(new QVector3D())
+  , m_position(new QVector3D())
+  , m_rotation(new QVector3D())
 {
 }
 
 AbstractGem::~AbstractGem()
 {
     delete m_renderer;
+    delete m_initialRotation;
+    delete m_position;
+    delete m_rotation;
 }
 
-void AbstractGem::paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program)
+void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
 {
     if (m_renderer) {
         m_renderer->paint(gl, viewProjection, program);
     }
 }
 
-QVector3D AbstractGem::initialRotation() const
+const QVector3D &AbstractGem::initialRotation() const
 {
-    return m_initialRotation;
+    return *m_initialRotation;
 }
 
 void AbstractGem::setInitialRotation(const QVector3D &initialRotation)
 {
-    if (initialRotation == m_initialRotation) {
+    if (initialRotation == *m_initialRotation) {
        return;
     }
-
-    m_initialRotation = initialRotation;
+    *m_initialRotation = initialRotation;
     emit initialRotationChanged();
 }
 
-QVector3D AbstractGem::position()
+const QVector3D &AbstractGem::position() const
 {
-    return m_position;
+    return *m_position;
 }
 
-void AbstractGem::setPosition(QVector3D position)
+void AbstractGem::setPosition(const QVector3D &position)
 {
-    if (position == m_position) {
+    if (position == *m_position) {
        return;
     }
-
-    m_position = position;
+    *m_position = position;
     emit positionChanged();
 }
 
-QVector3D AbstractGem::rotation()
+const QVector3D &AbstractGem::rotation() const
 {
-    return m_rotation;
+    return *m_rotation;
 }
 
-void AbstractGem::setRotation(QVector3D rotation)
+void AbstractGem::setRotation(const QVector3D &rotation)
 {
-    if (rotation == m_rotation) {
+    if (rotation == *m_rotation) {
        return;
     }
-
-    m_rotation = rotation;
+    *m_rotation = rotation;
     emit rotationChanged();
 }
 
@@ -91,7 +94,7 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
     }
 }
 
-float minimumWithLowerBound(const float &a, const float &b, const float &lowerBound)
+float minimumWithLowerBound(float a, float b, float lowerBound)
 {
     if (a > lowerBound) {
         return a <= b ? a : b;

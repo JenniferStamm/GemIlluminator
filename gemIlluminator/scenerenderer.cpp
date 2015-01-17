@@ -2,6 +2,8 @@
 
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
+#include <QMatrix4x4>
+#include <QSize>
 #include <QDebug>
 
 #include "abstractgem.h"
@@ -9,12 +11,21 @@
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
-,   m_initialized(false)
-,   m_gl(new QOpenGLFunctions())
-,   m_gemProgram(nullptr)
-,   m_lightProgram(nullptr)
+  , m_initialized(false)
+  , m_viewport(new QSize())
+  , m_gl(new QOpenGLFunctions())
+  , m_viewProjection(new QMatrix4x4())
+  , m_gemProgram(nullptr)
+  , m_lightProgram(nullptr)
 {
     m_gl->initializeOpenGLFunctions();
+}
+
+SceneRenderer::~SceneRenderer()
+{
+    delete m_gl;
+    delete m_viewport;
+    delete m_viewProjection;
 }
 
 void SceneRenderer::initialize() {
@@ -43,41 +54,6 @@ void SceneRenderer::initialize() {
     m_initialized = true;
 }
 
-LightRay *SceneRenderer::rootLightRay() const
-{
-    return m_rootLightRay;
-}
-
-void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
-{
-    m_rootLightRay = rootLightRay;
-}
-
-void SceneRenderer::setViewport(QSize viewport)
-{
-    m_viewport = viewport;
-}
-
-void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
-{
-    m_geometries = geometries;
-}
-
-void SceneRenderer::setViewProjection(QMatrix4x4 viewProjection)
-{
-    m_viewProjection = viewProjection;
-}
-
-bool SceneRenderer::isActive()
-{
-    return m_active;
-}
-
-void SceneRenderer::setActive(bool active)
-{
-    m_active = active;
-}
-
 void SceneRenderer::paint()
 {
     if (m_active) {
@@ -101,7 +77,7 @@ void SceneRenderer::paint()
         m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(m_gl, m_viewProjection, *m_gemProgram);
+            geometry->paint(*m_gl, *m_viewProjection, *m_gemProgram);
         }
 
         m_gemProgram->disableAttributeArray(0);
@@ -111,7 +87,7 @@ void SceneRenderer::paint()
         m_gemProgram->release();
 
         /* Paint lightrays */
-        m_rootLightRay->paint(m_gl);
+        m_rootLightRay->paint(*m_gl);
 
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp
@@ -120,4 +96,48 @@ void SceneRenderer::paint()
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
     }
+}
+
+/**
+ * @brief SceneRenderer::setViewport Only set within sync()
+ * @param viewport
+ */
+void SceneRenderer::setViewport(const QSize &viewport)
+{
+    if (*m_viewport == viewport) {
+        return;
+    }
+    *m_viewport = viewport;
+    m_gl->glViewport(0, 0, viewport.width(), viewport.height());
+}
+
+void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
+{
+    m_geometries = geometries;
+}
+
+void SceneRenderer::setViewProjection(const QMatrix4x4 &viewProjection)
+{
+    *m_viewProjection = viewProjection;
+}
+
+bool SceneRenderer::isActive() const
+{
+    return m_active;
+}
+
+void SceneRenderer::setActive(bool active)
+{
+    m_active = active;
+}
+
+
+LightRay *SceneRenderer::rootLightRay() const
+{
+    return m_rootLightRay;
+}
+
+void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
+{
+    m_rootLightRay = rootLightRay;
 }

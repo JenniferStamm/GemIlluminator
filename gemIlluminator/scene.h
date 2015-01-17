@@ -27,20 +27,20 @@ public:
 
     QQmlListProperty<AbstractGem> geometries();
 
-    qreal t();
+    qreal t() const;
     void setT(qreal t);
 
-    bool isActive();
+    bool isActive() const;
     void setActive(bool active);
 
-    Camera *camera();
+    Camera* camera() const;
     void setCamera(Camera *camera);
 
-    LightRay *rootLightRay();
+    LightRay* rootLightRay() const;
     void setRootLightRay(LightRay *root);
 
-    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     void setCurrentGem(AbstractGem *currentGem);
 

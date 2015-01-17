@@ -21,7 +21,7 @@ public:
     explicit GemRenderer(const QVector<Triangle *> &triangles, QObject *parent = 0);
     virtual ~GemRenderer();
 
-    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program) override;
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) override;
 
 protected:
     virtual void initialize();

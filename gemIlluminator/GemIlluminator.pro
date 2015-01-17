@@ -28,7 +28,9 @@ include(deployment.pri)
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
-CONFIG += c++11
+CONFIG += \
+    c++11 \
+    warn_on
 
 OTHER_FILES += \
     android/AndroidManifest.xml

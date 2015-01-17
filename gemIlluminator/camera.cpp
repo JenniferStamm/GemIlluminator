@@ -59,7 +59,7 @@ void Camera::recalculateView() const
 void Camera::recalculateProjection() const
 {
     m_projection->setToIdentity();
-    m_projection->perspective(fovy(), viewport().width() / viewport().height(), zNear(), zFar());
+    m_projection->perspective(fovy(), static_cast<float>(viewport().width()) / viewport().height(), zNear(), zFar());
     *m_projectionInverted = m_projection->inverted();
     m_isViewInvalid = false;
 }
@@ -124,32 +124,32 @@ QMatrix4x4 const & Camera::projectionInverted() const
     return *m_projectionInverted;
 }
 
-QVector3D Camera::position() const
+const QVector3D &Camera::position() const
 {
     return *m_eye;
 }
 
-QVector3D Camera::viewDirection() const
+const QVector3D &Camera::viewDirection() const
 {
     return *m_center - *m_eye;
 }
 
-QVector3D Camera::center() const
+const QVector3D &Camera::center() const
 {
     return *m_center;
 }
 
-QVector3D Camera::eye() const
+const QVector3D &Camera::eye() const
 {
     return *m_eye;
 }
 
-QVector3D Camera::up() const
+const QVector3D &Camera::up() const
 {
     return *m_up;
 }
 
-QSize Camera::viewport() const
+const QSize &Camera::viewport() const
 {
     return *m_viewport;
 }
@@ -169,7 +169,7 @@ float Camera::zFar() const
     return m_zFar;
 }
 
-void Camera::setPosition(QVector3D position)
+void Camera::setPosition(const QVector3D &position)
 {
     if (eye() == position) {
         return;
@@ -181,7 +181,7 @@ void Camera::setPosition(QVector3D position)
     m_isViewInvalid = true;
 }
 
-void Camera::setViewDirection(QVector3D viewDirection)
+void Camera::setViewDirection(const QVector3D &viewDirection)
 {
     if (center() == eye() + viewDirection){
         return;
@@ -190,7 +190,7 @@ void Camera::setViewDirection(QVector3D viewDirection)
     m_isViewInvalid = true;
 }
 
-void Camera::setEye(QVector3D eye)
+void Camera::setEye(const QVector3D &eye)
 {
     if (this->eye() == eye) {
         return;
@@ -199,7 +199,7 @@ void Camera::setEye(QVector3D eye)
     m_isViewInvalid = true;
 }
 
-void Camera::setCenter(QVector3D center)
+void Camera::setCenter(const QVector3D &center)
 {
     if (this->center() == center) {
         return;
@@ -208,7 +208,7 @@ void Camera::setCenter(QVector3D center)
     m_isViewInvalid = true;
 }
 
-void Camera::setUp(QVector3D up)
+void Camera::setUp(const QVector3D &up)
 {
     if (this->up() == up) {
         return;
@@ -217,16 +217,16 @@ void Camera::setUp(QVector3D up)
     m_isViewInvalid = true;
 }
 
-void Camera::setView(QVector3D eye, QVector3D center, QVector3D up)
+void Camera::setView(const QVector3D &eye, const QVector3D &center, const QVector3D &up)
 {
     setEye(eye);
     setCenter(center);
     setUp(up);
 }
 
-void Camera::setViewport(QSize viewport)
+void Camera::setViewport(const QSize &viewport)
 {
-    if (this->viewport() == viewport) {
+    if (*m_viewport == viewport) {
         return;
     }
     *m_viewport = viewport;

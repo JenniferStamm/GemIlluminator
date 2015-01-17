@@ -21,15 +21,11 @@ public:
     explicit LightRayRenderer(QObject *parent = 0);
     virtual ~LightRayRenderer();
 
-    void setCamera(Camera & camera);
+    void setCamera(Camera &camera);
 
-    void addLightRay(const LightRay & lightRay);
+    void addLightRay(const LightRay &lightRay);
 
-    virtual void paint(QOpenGLFunctions *gl);
-
-signals:
-
-public slots:
+    virtual void paint(QOpenGLFunctions &gl);
 
 protected:
     void initialize();

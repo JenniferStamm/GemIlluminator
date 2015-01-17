@@ -1,30 +1,25 @@
 #include "lightraydata.h"
 
 #include <QHash>
+#include <QVector3D>
 
 #include "lightray.h"
 
 LightRayData::LightRayData() :
     m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
-  , m_direction(new QVector3D())
-  , m_normalizedDirection(new QVector3D())
 {
 }
 
 LightRayData::LightRayData(const LightRay &ray) :
     m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
-  , m_direction(new QVector3D(ray.direction()))
-  , m_normalizedDirection(new QVector3D(ray.normalizedDirection()))
 {
 }
 
 LightRayData::LightRayData(const LightRayData &ray) :
     m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
-  , m_direction(new QVector3D(ray.direction()))
-  , m_normalizedDirection(new QVector3D(ray.normalizedDirection()))
 {
 }
 
@@ -32,8 +27,6 @@ LightRayData::~LightRayData()
 {
     delete m_startPosition;
     delete m_endPosition;
-    delete m_direction;
-    delete m_normalizedDirection;
 }
 
 QVector3D LightRayData::normalizedOrthogonalVector() const
@@ -68,7 +61,6 @@ void LightRayData::setStartPosition(const QVector3D &position)
         return;
     }
     *m_startPosition = position;
-    setDirection(*m_endPosition - *m_startPosition);
 }
 
 const QVector3D & LightRayData::endPosition() const
@@ -82,17 +74,16 @@ void LightRayData::setEndPosition(const QVector3D &position)
         return;
     }
     *m_endPosition = position;
-    setDirection(*m_endPosition - *m_startPosition);
 }
 
-const QVector3D &LightRayData::direction() const
+QVector3D LightRayData::direction() const
 {
-    return *m_direction;
+    return endPosition() - startPosition();
 }
 
-const QVector3D &LightRayData::normalizedDirection() const
+QVector3D LightRayData::normalizedDirection() const
 {
-    return *m_normalizedDirection;
+    return direction().normalized();
 }
 
 LightRayData & LightRayData::operator=(const LightRayData &lightRay)
@@ -105,12 +96,6 @@ LightRayData & LightRayData::operator=(const LightRayData &lightRay)
         m_endPosition = new QVector3D(lightRay.endPosition());
     }
     return *this;
-}
-
-void LightRayData::setDirection(const QVector3D direction)
-{
-    *m_direction = direction;
-    *m_normalizedDirection = direction.normalized();
 }
 
 bool operator==(const LightRayData &ray1, const LightRayData &ray2)
