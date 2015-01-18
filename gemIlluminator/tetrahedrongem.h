@@ -1,5 +1,5 @@
-#ifndef GEM_H
-#define GEM_H
+#ifndef TETRAHEDRON_H
+#define TETRAHEDRON_H
 
 #include "abstractgem.h"
 
@@ -8,13 +8,12 @@ class QVector3D;
 
 class Triangle;
 
-class Gem : public AbstractGem
+class TetrahedronGem : public AbstractGem
 {
     Q_OBJECT
-
 public:
-    explicit Gem(QObject *parent = 0);
-    virtual ~Gem();
+    explicit TetrahedronGem(QObject *parent = 0);
+    virtual ~TetrahedronGem();
 
     virtual void synchronize() override;
     virtual void cleanup() override;
@@ -25,4 +24,4 @@ protected:
     QVector<QVector3D> *m_vertices;
 };
 
-#endif // GEM_H
+#endif // TETRAHEDRON_H

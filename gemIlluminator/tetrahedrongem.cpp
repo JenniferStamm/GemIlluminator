@@ -1,4 +1,4 @@
-#include "gem.h"
+#include "tetrahedrongem.h"
 
 #include "gemrenderer.h"
 #include "lightray.h"
@@ -7,7 +7,7 @@
 #include <QVector>
 #include <QVector3D>
 
-Gem::Gem(QObject *parent) :
+TetrahedronGem::TetrahedronGem(QObject *parent) :
     AbstractGem(parent)
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
@@ -53,11 +53,11 @@ Gem::Gem(QObject *parent) :
                 this));
 }
 
-Gem::~Gem()
+TetrahedronGem::~TetrahedronGem()
 {
 }
 
-void Gem::synchronize()
+void TetrahedronGem::synchronize()
 {
     //renderer has to been created in correct thread
     if (!m_renderer){
@@ -70,13 +70,13 @@ void Gem::synchronize()
     m_renderer->setScale(m_scale);
 }
 
-void Gem::cleanup()
+void TetrahedronGem::cleanup()
 {
     delete m_renderer;
     m_renderer = nullptr;
 }
 
-void Gem::update(int timeDifference)
+void TetrahedronGem::update(int timeDifference)
 {
 
 }

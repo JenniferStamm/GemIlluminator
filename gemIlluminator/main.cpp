@@ -3,7 +3,8 @@
 
 #include "abstractgem.h"
 #include "scene.h"
-#include "gem.h"
+#include "cubegem.h"
+#include "tetrahedrongem.h"
 #include "player.h"
 #include "lightray.h"
 #include "camera.h"
@@ -16,7 +17,8 @@ int main(int argc, char *argv[])
     // Define a C++ object for use in qml
     qmlRegisterType<AbstractGem>();
     qmlRegisterType<Scene>("GemIlluminator", 1, 0, "Scene");
-    qmlRegisterType<Gem>("GemIlluminator", 1, 0, "Gem");
+    qmlRegisterType<CubeGem>("GemIlluminator", 1, 0, "CubeGem");
+    qmlRegisterType<TetrahedronGem>("GemIlluminator", 1, 0, "TetrahedronGem");
     qmlRegisterType<Player>("GemIlluminator", 1, 0, "Player");
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
