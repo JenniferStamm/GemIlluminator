@@ -44,8 +44,9 @@ public:
 
     qreal radius() const;
 
+    float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    virtual float faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
+    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
 
 signals:
     void initialRotationChanged();
@@ -57,6 +58,7 @@ protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
 
 protected:
+    QVector<Triangle*> *m_triangles;
     AbstractGemRenderer *m_renderer;
     QVector3D *m_initialRotation;
     QVector3D *m_position;

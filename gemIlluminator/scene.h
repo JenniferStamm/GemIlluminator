@@ -40,21 +40,28 @@ public:
     void setRootLightRay(LightRay *root);
 
     /**
+     * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
+     * @param ray Ray send into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
+     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     */
+    AbstractGem *findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+
+    /**
      * @brief Finds the nearest gem with bounding sphere intersected by given ray.
      * @param ray Ray send into scene to find gem.
-     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
      * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
      */
     AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
-     * @brief Finds the nearest gem intersected by given ray.
-     * @param ray Ray send into scene to find gem.
-     * @param faceIndex The index of intersected face of returned gem.
-     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @brief Finds intersected face of nearest gem intersected by given ray.
+     * @param ray Ray send into scene to find gem face.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
      * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
      */
-    AbstractGem *findGemFaceIntersectedBy(const LightRay &ray, int &faceIndex, QVector3D *collisionPoint = nullptr) const;
+    Triangle *findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     void setCurrentGem(AbstractGem *currentGem);
 

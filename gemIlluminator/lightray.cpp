@@ -67,8 +67,7 @@ void LightRay::calculateSuccessors()
         nextRay->setStartPosition(endPosition());
         nextRay->setEndPosition(QVector3D(rand() % 21 - 10, rand() % 21 - 10, rand() % 21 - 10));
         QVector3D collisionPoint;
-        int temp;
-        if (m_scene->findGemFaceIntersectedBy(*nextRay, temp, &collisionPoint)) {
+        if (m_scene->findGemIntersectedBy(*nextRay, &collisionPoint)) {
             nextRay->setEndPosition(collisionPoint);
         }
         m_successors->push_back(nextRay);
@@ -89,8 +88,7 @@ void LightRay::update(int timeDifference)
 {
     if (!isStatic() && m_scene) {
         QVector3D collisionPoint;
-        int temp;
-        if (m_scene->findGemFaceIntersectedBy(*this, temp, &collisionPoint)) {
+        if (m_scene->findGemIntersectedBy(*this, &collisionPoint)) {
             setEndPosition(collisionPoint);
         }
     }

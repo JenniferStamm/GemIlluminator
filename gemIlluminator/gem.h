@@ -20,10 +20,7 @@ public:
     virtual void cleanup() override;
     virtual void update(int timeDifference) override;
 
-    virtual float faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint = nullptr);
-
 protected:
-    QVector<Triangle*> *m_triangles;
     QVector<QVector3D> *m_colors;
     QVector<QVector3D> *m_vertices;
 };

@@ -9,7 +9,6 @@
 
 Gem::Gem(QObject *parent) :
     AbstractGem(parent)
-  , m_triangles(new QVector<Triangle *>())
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
@@ -80,71 +79,4 @@ void Gem::cleanup()
 void Gem::update(int timeDifference)
 {
 
-}
-
-float Gem::faceIntersectedBy(const LightRay &ray, int &triangleIndex, QVector3D *collisionPoint)
-{
-    const float maxFloat = std::numeric_limits<float>::max();
-    const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
-
-    //triangleIndex = -1;
-    //return intersectedBy(ray, collisionPoint);
-
-    if (intersectedBy(ray) == maxFloat) {
-        triangleIndex = -1;
-        if (collisionPoint) {
-            *collisionPoint = noCollisionPoint;
-        }
-        return maxFloat;
-    }
-
-    // Calculate collision according to
-    // http://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
-    // http://www.cs.virginia.edu/~gfx/Courses/2003/ImageSynthesis/papers/Acceleration/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
-    const float epsilon = 0.000001f;
-    float tPrevious = maxFloat;
-    float t, u, v;
-    QVector3D edge1, edge2, tvec, pvec, qvec;
-    float det, invDet;
-
-    for (int i = 0; i < 4; i++) {
-        Triangle *objectSpaceTriangle = m_triangles->at(i);
-        Triangle worldSpaceTriangle = objectSpaceTriangle->inWorldCoordinates();
-
-        edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();
-        edge2 = worldSpaceTriangle.c() - worldSpaceTriangle.a();
-
-        // Calculate determinant
-        pvec = QVector3D::crossProduct(ray.normalizedDirection(), edge2);
-        det = QVector3D::dotProduct(edge1, pvec);
-
-        // Non-culling branch
-        if (det < -epsilon || det > epsilon) {
-            invDet = 1.f / det;
-
-            // Calculate distance from vert0 to ray origin
-            tvec = ray.startPosition() - worldSpaceTriangle.a();
-
-            // Calculate u and test bounds
-            u = QVector3D::dotProduct(tvec, pvec) * invDet;
-            if (u >= 0.f && u <= 1.f) {
-                // Prepare to test v
-                qvec = QVector3D::crossProduct(tvec, edge1);
-
-                // Calculate v and test bounds
-                v = QVector3D::dotProduct(ray.normalizedDirection(), qvec) * invDet;
-                if ( v >= 0.f && u + v <= 1.0) {
-                    // Calculate t, ray intersects triangle
-                    t = QVector3D::dotProduct(edge2, qvec) * invDet;
-                    if (t < tPrevious && t > 0.0 + epsilon) {
-                        tPrevious = t;
-                        triangleIndex = i;
-                        *collisionPoint = ray.startPosition() + t * ray.normalizedDirection();
-                    }
-                }
-
-            }
-        }
-    }
-    return tPrevious;
 }

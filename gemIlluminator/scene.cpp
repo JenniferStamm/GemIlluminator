@@ -171,29 +171,50 @@ AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisi
     return result;
 }
 
-AbstractGem *Scene::findGemFaceIntersectedBy(const LightRay &ray, int &faceIndex, QVector3D *collisionPoint) const
+AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
     AbstractGem *result = nullptr;
-    faceIndex = -1;
+    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
+    }
+    float distance = std::numeric_limits<float>::max();
+    for( auto& gem : m_gem ){
+        QVector3D temp;
+        float collisionDistance = gem->boundingSphereIntersectedBy(ray, &temp);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = temp;
+            }
+            result = gem;
+        }
+    }
+    return result;
+}
+
+Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
+{
     const float maxFloat = std::numeric_limits<float>::max();
     QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+
+    Triangle *result = nullptr;
     if (collisionPoint) {
         *collisionPoint = noCollisionPoint;
     }
     float distance = maxFloat;
     for (auto& gem : m_gem){
         QVector3D tempCollisionPoint;
-        float collisionDistance = gem->faceIntersectedBy(ray, faceIndex, &tempCollisionPoint);
+        Triangle *tempResultTriangle;
+        float collisionDistance = gem->faceIntersectedBy(ray, tempResultTriangle, &tempCollisionPoint);
         if (collisionDistance < distance) {
             distance = collisionDistance;
             if (collisionPoint) {
                 *collisionPoint = tempCollisionPoint;
             }
-            result = gem;
+            result = tempResultTriangle;
         }
     }
-    if (result)
-        qDebug() << *collisionPoint;
     return result;
 }
 
