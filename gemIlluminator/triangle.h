@@ -42,6 +42,8 @@ public:
 
     AbstractGem *owningGem() const;
 
+    QVector3D reflect(const QVector3D &incidentVector) const;
+
 protected:
     void calculateNormal() const;
 

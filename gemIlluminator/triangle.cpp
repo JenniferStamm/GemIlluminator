@@ -151,6 +151,11 @@ AbstractGem *Triangle::owningGem() const
     return m_gem;
 }
 
+QVector3D Triangle::reflect(const QVector3D &incidentVector) const
+{
+    return incidentVector.normalized() - 2.0 * QVector3D::dotProduct(normalizedNormal(), incidentVector.normalized()) * normalizedNormal();
+}
+
 void Triangle::calculateNormal() const
 {
     QVector3D normal = QVector3D::crossProduct(*m_b - *m_a, *m_c - *m_a);
