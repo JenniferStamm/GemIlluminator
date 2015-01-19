@@ -33,6 +33,9 @@ Scene::~Scene()
 
 void Scene::sync()
 {
+    if (m_renderer) {
+        m_renderer->setActive(m_active);
+    }
     if (m_active) {
         if (!m_time) {
             m_time = new QTime();
@@ -42,12 +45,11 @@ void Scene::sync()
         if (!m_renderer) {
             m_renderer = new SceneRenderer();
             connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
+            m_renderer->setActive(m_active);
         }
-
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_gem);
         m_renderer->setRootLightRay(m_rootLightRay);
-        m_renderer->setActive(m_active);
         m_renderer->setViewProjection(m_camera->viewProjection());
 
         int elapsedTime = m_time->restart();
