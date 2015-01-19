@@ -12,7 +12,7 @@ CubeGem::CubeGem(QObject *parent) :
   , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
 {
-    m_radius = sqrt(3.f);
+    m_radius = sqrt(0.5f * 0.5f * 3.f);
     m_scale = 0.3f;
 
     m_vertices->append(QVector3D(-0.5f, -0.5f, -0.5f)); // front bottom left

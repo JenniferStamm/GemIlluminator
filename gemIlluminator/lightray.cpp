@@ -98,11 +98,18 @@ void LightRay::cleanup()
 
 void LightRay::update(int timeDifference)
 {
-    if (!isStatic() && m_scene) {
+    if (m_player) {
         QVector3D collisionPoint;
-        if (m_scene->findGemIntersectedBy(*this, &collisionPoint)) {
+        LightRay collisionTestRay;
+        Triangle *intersectedTriangle;
+        collisionTestRay.setStartPosition(m_player->position());
+        collisionTestRay.setEndPosition(endPosition());
+        intersectedTriangle = m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
+        if(intersectedTriangle) {
+            intersectedTriangle->setColor(QVector3D(0.f, 0.f, 0.f));
             setEndPosition(collisionPoint);
-        }
+        };
+        qDebug() << endPosition();
     }
 
     //update before collision detection avoids problem of stack overflow while debugging
@@ -135,8 +142,11 @@ void LightRay::update(int timeDifference)
             m_player = nullptr;
             setStatic();
         } else {
+            LightRay collisionTestRay;
+            collisionTestRay.setStartPosition(m_player->position());
+            collisionTestRay.setEndPosition(endPosition());
             m_player->setPosition(playerPosition);
-            m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*this));
+            m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         }
     }
 }
