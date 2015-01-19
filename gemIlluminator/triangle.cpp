@@ -153,7 +153,9 @@ AbstractGem *Triangle::owningGem() const
 
 QVector3D Triangle::reflect(const QVector3D &incidentVector) const
 {
-    return incidentVector.normalized() - 2.0 * QVector3D::dotProduct(normalizedNormal(), incidentVector.normalized()) * normalizedNormal();
+    QVector3D N = inWorldCoordinates().normalizedNormal();
+    QVector3D I = incidentVector.normalized();
+    return I - 2.0 * QVector3D::dotProduct(N, I) * N;
 }
 
 void Triangle::calculateNormal() const
