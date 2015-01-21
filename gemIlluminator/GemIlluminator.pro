@@ -16,7 +16,7 @@ SOURCES += main.cpp \
     lightraydata.cpp \
     triangle.cpp \
     tetrahedrongem.cpp \
-    cubegem.cpp
+    cubegem.cpp \
     screenalignedquad.cpp
 
 RESOURCES += qml.qrc \
@@ -50,5 +50,5 @@ HEADERS += \
     lightraydata.h \
     triangle.h \
     tetrahedrongem.h \
-    cubegem.h
+    cubegem.h \
     screenalignedquad.h
