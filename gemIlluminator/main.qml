@@ -132,4 +132,8 @@ ApplicationWindow {
             scene.registerNavigation(navigation)
         }
     }
+
+    Config {
+        id: config
+    }
 }

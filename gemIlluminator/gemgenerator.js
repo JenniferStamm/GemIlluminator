@@ -1,8 +1,10 @@
 WorkerScript.onMessage = function(message)
 {
     var gems = new Array();
+    var gemTypes = message.gemTypes
 
-    gems.push(new Array(0, 0, 0, "TetrahedronGem"))
+    // Always generate the first available at the position (0, 0, 0)
+    gems.push(new Array(0, 0, 0, gemTypes[0]))
 
     var trys = 0
     var curGemNum = 0
@@ -40,7 +42,7 @@ WorkerScript.onMessage = function(message)
         }
 
         if (isValidNewGem) {
-            var newGem = new Array(newX, newY, newZ, getRandomGemType())
+            var newGem = new Array(newX, newY, newZ, getRandomGemType(gemTypes))
             gems.push(newGem)
             WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
@@ -51,13 +53,9 @@ WorkerScript.onMessage = function(message)
     WorkerScript.sendMessage({"gems": gems})
 }
 
-function getRandomGemType()
+function getRandomGemType(gemTypes)
 {
     var gemTreshold = Math.random()
 
-    if (gemTreshold <= 0.5) {
-        return "TetrahedronGem"
-    } else if (gemTreshold > 0.5) {
-        return "CubeGem"
-    }
+    return gemTypes[Math.floor(Math.random() * gemTypes.length)]
 }

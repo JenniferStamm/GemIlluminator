@@ -17,10 +17,11 @@ SOURCES += main.cpp \
     triangle.cpp \
     tetrahedrongem.cpp \
     cubegem.cpp \
-    screenalignedquad.cpp
+    screenalignedquad.cpp \
 
 RESOURCES += qml.qrc \
-    shader.qrc
+    shader.qrc \
+    data.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -51,4 +52,4 @@ HEADERS += \
     triangle.h \
     tetrahedrongem.h \
     cubegem.h \
-    screenalignedquad.h
+    screenalignedquad.h \
