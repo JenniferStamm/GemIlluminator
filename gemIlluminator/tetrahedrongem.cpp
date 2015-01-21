@@ -9,8 +9,8 @@
 
 TetrahedronGem::TetrahedronGem(QObject *parent) :
     AbstractGem(parent)
-  , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
+  , m_vertices(new QVector<QVector3D>())
 {
     m_radius = sqrt(3.f);
     m_scale = 0.3f;

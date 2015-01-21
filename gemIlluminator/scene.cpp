@@ -17,8 +17,8 @@ Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_renderer(nullptr)
   , m_time(nullptr)
-  , m_currentGem(nullptr)
   , m_rootLightRay(new LightRay(this))
+  , m_currentGem(nullptr)
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
     m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));
@@ -50,6 +50,8 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_gem);
         m_renderer->setRootLightRay(m_rootLightRay);
+        m_renderer->setProjectionInverted(m_camera->projectionInverted());
+        m_renderer->setView(m_camera->view());
         m_renderer->setViewProjection(m_camera->viewProjection());
 
         int elapsedTime = m_time->restart();

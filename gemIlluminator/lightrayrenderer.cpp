@@ -13,15 +13,15 @@
 LightRayRenderer::LightRayRenderer(QObject *parent) :
     QObject(parent)
   , m_isInitialized(false)
-  , m_program(nullptr)
-  , m_camera(nullptr)
-  , m_dynamicRays(new QVector<LightRayData>)
-  , m_staticRays(new QSet<LightRayData>)
   , m_isStaticVBOUpdateRequired(true)
+  , m_program(nullptr)
   , m_staticVertexBuffer(nullptr)
   , m_staticIndexBuffer(nullptr)
   , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
+  , m_camera(nullptr)
+  , m_dynamicRays(new QVector<LightRayData>)
+  , m_staticRays(new QSet<LightRayData>)
 {
 }
 

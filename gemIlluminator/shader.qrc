@@ -4,5 +4,7 @@
         <file>shader/vgem.glsl</file>
         <file>shader/lightray.frag</file>
         <file>shader/lightray.vert</file>
+        <file>shader/envmap.frag</file>
+        <file>shader/envmap.vert</file>
     </qresource>
 </RCC>
