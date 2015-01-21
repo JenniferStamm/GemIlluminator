@@ -129,7 +129,7 @@ const QVector3D &Camera::position() const
     return *m_eye;
 }
 
-const QVector3D &Camera::viewDirection() const
+QVector3D Camera::viewDirection() const
 {
     return *m_center - *m_eye;
 }
