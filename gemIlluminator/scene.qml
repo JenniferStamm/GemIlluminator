@@ -79,15 +79,18 @@ Scene {
             // Improve the solution when a configuration file is available
             var gemTypes = {}
 
-            gemTypes["TetrahedronGem"] = Qt.createComponent("TetrahedronGem.qml")
-            gemTypes["CubeGem"] = Qt.createComponent("CubeGem.qml")
+            config.gemTypes.forEach(function(type) {
+                gemTypes[type] = Qt.createComponent(type + ".qml")
+            })
+
             return gemTypes
         }
     }
 
     Component.onCompleted: {
         scene.active = false
-        gemGenerator.sendMessage({"numGems": 1200,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemSize": config.gemSize, "rangeStart": -10,
+                                     "rangeEnd": 10, "gemTypes": config.gemTypes})
     }
 }
 
