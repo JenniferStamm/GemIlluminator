@@ -109,7 +109,6 @@ void LightRay::update(int timeDifference)
             intersectedTriangle->setColor(QVector3D(0.f, 0.f, 0.f));
             setEndPosition(collisionPoint);
         };
-        qDebug() << endPosition();
     }
 
     //update before collision detection avoids problem of stack overflow while debugging
