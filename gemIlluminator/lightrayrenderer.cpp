@@ -199,7 +199,8 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl)
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
     int indicesPerLightRay = 14;
-    for (unsigned int i = 0; i < m_staticIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+    int bytesPerLightRay = indicesPerLightRay * sizeof(unsigned int);
+    for (int i = 0; i < m_staticIndexBuffer->size(); i += bytesPerLightRay) {
         gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
     }
 
@@ -212,7 +213,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl)
 
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-    for (unsigned int i = 0; i < m_dynamicIndexBuffer->size() / sizeof(unsigned int); i += indicesPerLightRay) {
+    for (int i = 0; i < m_dynamicIndexBuffer->size(); i += bytesPerLightRay) {
         gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
     }
 

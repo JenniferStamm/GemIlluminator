@@ -28,10 +28,14 @@ public:
     const QVector3D &rotation() const;
     void setRotation(const QVector3D &rotation);
 
+    qreal scale() const;
+    void setScale(qreal scaleFactor);
+
 protected:
     QVector3D *m_initialRotation;
     QVector3D *m_position;
     QVector3D *m_rotation;
+    qreal m_scale;
 };
 
 #endif // GEOMETRYRENDERER_H
