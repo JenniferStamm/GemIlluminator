@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 
+#include "abstractgem.h"
 #include "lightraydata.h"
 #include "lightrayrenderer.h"
 #include "player.h"
@@ -72,17 +73,12 @@ void LightRay::calculateSuccessors()
     nextRay->setStartPosition(endPosition());
 
     Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
+    QVector3D reflectedDirection = intersectedFace->reflect(direction());
+    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
 
-    if (intersectedFace) {
-        QVector3D reflectedDirection = intersectedFace->reflect(direction());
-        nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
-    } else {
-        nextRay->setEndPosition(QVector3D(rand() % 21 - 10, rand() % 21 - 10, rand() % 21 - 10));
-    }
     QVector3D nextCollisionPoint;
-    if (m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint)) {
-            nextRay->setEndPosition(nextCollisionPoint);
-        }
+    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
+    nextRay->setEndPosition(nextCollisionPoint);
     m_successors->push_back(nextRay);
 }
 
@@ -101,14 +97,11 @@ void LightRay::update(int timeDifference)
     if (m_player) {
         QVector3D collisionPoint;
         LightRay collisionTestRay;
-        Triangle *intersectedTriangle;
         collisionTestRay.setStartPosition(m_player->position());
         collisionTestRay.setEndPosition(endPosition());
-        intersectedTriangle = m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
-        if(intersectedTriangle) {
-            intersectedTriangle->setColor(QVector3D(0.f, 0.f, 0.f));
-            setEndPosition(collisionPoint);
-        };
+        Triangle *intersectedTriangle = m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
+        intersectedTriangle->setColor(QVector3D(0.f, 0.f, 0.f));
+        setEndPosition(collisionPoint);
     }
 
     //update before collision detection avoids problem of stack overflow while debugging

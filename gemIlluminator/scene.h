@@ -9,6 +9,7 @@ class Camera;
 class LightRay;
 class Navigation;
 class QTime;
+class SceneBounds;
 class SceneRenderer;
 class Triangle;
 
@@ -43,15 +44,15 @@ public:
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
      * @param ray Ray send into scene to find gem.
      * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     * @return Returns the nearst intersected gem. Returns never nullptr.
      */
     AbstractGem *findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
      * @brief Finds the nearest gem with bounding sphere intersected by given ray.
      * @param ray Ray send into scene to find gem.
-     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @return Returns the nearst intersected gem. Returns never a nullptr;
      */
     AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
@@ -59,7 +60,7 @@ public:
      * @brief Finds intersected face of nearest gem intersected by given ray.
      * @param ray Ray send into scene to find gem face.
      * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected gem. Returns nullptr if no gem was intersected.
+     * @return Returns the nearst intersected face of a gem. Returns never nullptr.
      */
     Triangle *findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
@@ -85,6 +86,7 @@ protected:
     Camera *m_camera;
     LightRay *m_rootLightRay;
     Navigation *m_navigation;
+    SceneBounds *m_bounds;
     AbstractGem *m_currentGem;
 
 private slots:

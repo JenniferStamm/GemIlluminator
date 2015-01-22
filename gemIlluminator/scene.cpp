@@ -1,5 +1,6 @@
 #include "scene.h"
 
+#include <cassert>
 #include <limits>
 
 #include <QQuickWindow>
@@ -10,6 +11,7 @@
 #include "camera.h"
 #include "lightray.h"
 #include "navigation.h"
+#include "scenebounds.h"
 #include "scenerenderer.h"
 #include "triangle.h"
 
@@ -18,7 +20,8 @@ Scene::Scene(QQuickItem *parent) :
   , m_renderer(nullptr)
   , m_time(nullptr)
   , m_rootLightRay(new LightRay(this))
-  , m_currentGem(nullptr)
+  , m_bounds(new SceneBounds())
+  , m_currentGem(m_bounds)
 {
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
     m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));
@@ -27,6 +30,7 @@ Scene::Scene(QQuickItem *parent) :
 
 Scene::~Scene()
 {
+    delete m_bounds;
     delete m_renderer;
     delete m_time;
 }
@@ -63,11 +67,9 @@ void Scene::sync()
             i->synchronize();
         }
 
-        if (m_currentGem) {
-            m_currentGem->setRotation(QVector3D(m_navigation->rotateX(),
-                                                        m_navigation->rotateY(),
-                                                        m_navigation->rotateZ()));
-        }
+        m_currentGem->setRotation(QVector3D(m_navigation->rotateX(),
+            m_navigation->rotateY(),
+            m_navigation->rotateZ()));
     }
 }
 
@@ -155,12 +157,8 @@ void Scene::setRootLightRay(LightRay *root)
 
 AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
-    AbstractGem *result = nullptr;
-    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
-    if (collisionPoint) {
-        *collisionPoint = noCollisionPoint;
-    }
-    float distance = std::numeric_limits<float>::max();
+    AbstractGem *result = m_bounds;
+    float distance = m_bounds->intersectedBy(ray, collisionPoint);
     for( auto& gem : m_gem ){
         QVector3D temp;
         float collisionDistance = gem->intersectedBy(ray, &temp);
@@ -172,17 +170,14 @@ AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisi
             result = gem;
         }
     }
+    assert(result);
     return result;
 }
 
 AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
-    AbstractGem *result = nullptr;
-    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
-    if (collisionPoint) {
-        *collisionPoint = noCollisionPoint;
-    }
-    float distance = std::numeric_limits<float>::max();
+    AbstractGem *result = m_bounds;
+    float distance = m_bounds->boundingSphereIntersectedBy(ray, collisionPoint);
     for( auto& gem : m_gem ){
         QVector3D temp;
         float collisionDistance = gem->boundingSphereIntersectedBy(ray, &temp);
@@ -194,19 +189,14 @@ AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, 
             result = gem;
         }
     }
+    assert(result);
     return result;
 }
 
 Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
-    const float maxFloat = std::numeric_limits<float>::max();
-    QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
-
-    Triangle *result = nullptr;
-    if (collisionPoint) {
-        *collisionPoint = noCollisionPoint;
-    }
-    float distance = maxFloat;
+    Triangle *result;
+    float distance = m_bounds->faceIntersectedBy(ray, result, collisionPoint);
     for (auto& gem : m_gem){
         QVector3D tempCollisionPoint;
         Triangle *tempResultTriangle;
@@ -219,10 +209,14 @@ Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collis
             result = tempResultTriangle;
         }
     }
+    assert(result);
     return result;
 }
 
 void Scene::setCurrentGem(AbstractGem *currentGem)
 {
+    if (currentGem == nullptr) {
+        return;
+    }
     m_currentGem = currentGem;
 }

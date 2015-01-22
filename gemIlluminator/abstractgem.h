@@ -28,16 +28,16 @@ public:
     virtual void cleanup() = 0;
     virtual void update(int timeDifference) = 0;
 
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
+    virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
     const QVector3D &initialRotation() const;
-    void setInitialRotation(const QVector3D &initialRotation);
+    virtual void setInitialRotation(const QVector3D &initialRotation);
 
     const QVector3D &position() const;
-    void setPosition(const QVector3D &position);
+    virtual void setPosition(const QVector3D &position);
 
     const QVector3D &rotation() const;
-    void setRotation(const QVector3D &rotation);
+    virtual void setRotation(const QVector3D &rotation);
 
     qreal scale() const;
     void setScale(qreal scaleFactor);
