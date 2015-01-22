@@ -16,5 +16,5 @@ protected:
     static void strip(QOpenGLBuffer &vertices);
 
 private:
-	QOpenGLBuffer m_vertices;
+    QOpenGLBuffer *m_vertices;
 };
