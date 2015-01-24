@@ -72,13 +72,14 @@ void AbstractGemRenderer::setScale(qreal scale)
     }
     m_scale = scale;
 }
-QVector3D *AbstractGemRenderer::color() const
+
+const QVector3D &AbstractGemRenderer::color() const
 {
-    return m_color;
+    return *m_color;
 }
 
-void AbstractGemRenderer::setColor(QVector3D *color)
+void AbstractGemRenderer::setColor(const QVector3D &color)
 {
-    m_color = color;
+    *m_color = color;
 }
 

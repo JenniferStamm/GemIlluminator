@@ -4,7 +4,7 @@ WorkerScript.onMessage = function(message)
     var gemTypes = message.gemTypes
 
     // Always generate the first available at the position (0, 0, 0)
-    gems.push(new Array(0, 0, 0, gemTypes[0]))
+    gems.push(new Array(0.5, 0.5, 0, gemTypes[0]))
 
     var trys = 0
     var curGemNum = 0

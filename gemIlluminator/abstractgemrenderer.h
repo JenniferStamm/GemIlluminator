@@ -31,8 +31,8 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
-    QVector3D *color() const;
-    void setColor(QVector3D *color);
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
 
 protected:
     QVector3D *m_initialRotation;

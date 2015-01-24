@@ -58,7 +58,7 @@ void TetrahedronGem::synchronize()
     m_renderer->setPosition(*m_position);
     m_renderer->setRotation(*m_rotation);
     m_renderer->setScale(m_scale);
-    m_renderer->setColor((m_color));
+    m_renderer->setColor(*m_color);
 }
 
 void TetrahedronGem::cleanup()
