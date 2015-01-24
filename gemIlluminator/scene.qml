@@ -52,12 +52,13 @@ Scene {
                 var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    curGemType = gems[i][3].toString()
+                    curGemType = gems[i][4].toString()
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
                                                             "position.z": gems[i][2],
+                                                            "scale": gems[i][3],
                                                         }))
                 }
 
@@ -89,8 +90,8 @@ Scene {
 
     Component.onCompleted: {
         scene.active = false
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemSize": config.gemSize, "rangeStart": -10,
-                                     "rangeEnd": 10, "gemTypes": config.gemTypes})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
+                                     "rangeEnd": 20, "gemTypes": config.gemTypes})
     }
 }
 
