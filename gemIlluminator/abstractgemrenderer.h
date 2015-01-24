@@ -31,11 +31,15 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
+
 protected:
     QVector3D *m_initialRotation;
     QVector3D *m_position;
     QVector3D *m_rotation;
     qreal m_scale;
+    QVector3D *m_color;
 };
 
 #endif // GEOMETRYRENDERER_H

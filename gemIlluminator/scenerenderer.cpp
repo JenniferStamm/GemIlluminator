@@ -47,8 +47,7 @@ void SceneRenderer::initialize() {
     }
 
     m_gemProgram->bindAttributeLocation("a_vertex", 0);
-    m_gemProgram->bindAttributeLocation("a_color", 1);
-    m_gemProgram->bindAttributeLocation("a_normal", 2);
+    m_gemProgram->bindAttributeLocation("a_normal", 1);
 
     m_lightProgram = new QOpenGLShaderProgram(this);
     m_lightProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
@@ -135,7 +134,6 @@ void SceneRenderer::paint()
 
         m_gemProgram->enableAttributeArray(0);
         m_gemProgram->enableAttributeArray(1);
-        m_gemProgram->enableAttributeArray(2);
 
         for (auto& geometry : m_geometries) {
             geometry->paint(*m_gl, *m_viewProjection, *m_gemProgram);
@@ -143,7 +141,6 @@ void SceneRenderer::paint()
 
         m_gemProgram->disableAttributeArray(0);
         m_gemProgram->disableAttributeArray(1);
-        m_gemProgram->disableAttributeArray(2);
 
         m_gemProgram->release();
 

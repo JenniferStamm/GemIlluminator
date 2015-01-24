@@ -20,7 +20,6 @@ public:
     virtual void update(int timeDifference) override;
 
 protected:
-    QVector<QVector3D> *m_colors;
     QVector<QVector3D> *m_vertices;
 };
 
