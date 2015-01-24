@@ -69,7 +69,7 @@ void SceneRenderer::initialize() {
 void SceneRenderer::initializeEnvmap()
 {
     // Initialize squad
-    m_quad = new ScreenAlignedQuad(*m_gl);
+    m_quad = new ScreenAlignedQuad();
 
     // Initialize Cube Map
     QMap<GLenum, QImage> images;
