@@ -1,13 +1,14 @@
 #include "abstractgemrenderer.h"
 
 #include <QOpenGLShaderProgram>
+#include <QQuaternion>
 #include <QVector3D>
 
 AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
     QObject(parent)
   , m_initialRotation(new QVector3D)
   , m_position(new QVector3D())
-  , m_rotation(new QVector3D())
+  , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_color(new QVector3D())
 {
@@ -47,12 +48,12 @@ void AbstractGemRenderer::setPosition(const QVector3D &position)
     *m_position = position;
 }
 
-const QVector3D &AbstractGemRenderer::rotation() const
+const QQuaternion &AbstractGemRenderer::rotation() const
 {
     return *m_rotation;
 }
 
-void AbstractGemRenderer::setRotation(const QVector3D &rotation)
+void AbstractGemRenderer::setRotation(const QQuaternion &rotation)
 {
     if (rotation == *m_rotation) {
        return;

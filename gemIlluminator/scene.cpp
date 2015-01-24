@@ -65,9 +65,7 @@ void Scene::sync()
             i->synchronize();
         }
 
-        m_currentGem->setRotation(QVector3D(m_navigation->rotateX(),
-            m_navigation->rotateY(),
-            m_navigation->rotateZ()));
+        m_currentGem->setRotation(m_navigation->rotateX() * m_navigation->rotateY() * m_navigation->rotateZ());
     }
 }
 

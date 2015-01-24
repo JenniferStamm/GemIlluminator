@@ -108,6 +108,6 @@ void SceneBounds::setPosition(const QVector3D &/*position*/)
 {
 }
 
-void SceneBounds::setRotation(const QVector3D &/*rotation*/)
+void SceneBounds::setRotation(const QQuaternion &/*rotation*/)
 {
 }

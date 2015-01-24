@@ -7,6 +7,7 @@
 
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+class QQuaternion;
 class QVector3D;
 
 class AbstractGemRenderer : public QObject
@@ -25,8 +26,8 @@ public:
     const QVector3D &position() const;
     void setPosition(const QVector3D &position);
 
-    const QVector3D &rotation() const;
-    void setRotation(const QVector3D &rotation);
+    const QQuaternion &rotation() const;
+    void setRotation(const QQuaternion &rotation);
 
     qreal scale() const;
     void setScale(qreal scaleFactor);
@@ -37,7 +38,7 @@ public:
 protected:
     QVector3D *m_initialRotation;
     QVector3D *m_position;
-    QVector3D *m_rotation;
+    QQuaternion *m_rotation;
     qreal m_scale;
     QVector3D *m_color;
 };

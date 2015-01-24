@@ -2,25 +2,26 @@
 #define NAVIGATION_H
 
 #include <QObject>
+#include <QQuaternion>
 
 class Navigation : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(qreal rotateX READ rotateX WRITE setRotateX NOTIFY rotateXChanged)
-    Q_PROPERTY(qreal rotateY READ rotateY WRITE setRotateY NOTIFY rotateYChanged)
-    Q_PROPERTY(qreal rotateZ READ rotateZ WRITE setRotateZ NOTIFY rotateZChanged)
+    Q_PROPERTY(QQuaternion rotateX READ rotateX WRITE setRotateX NOTIFY rotateXChanged)
+    Q_PROPERTY(QQuaternion rotateY READ rotateY WRITE setRotateY NOTIFY rotateYChanged)
+    Q_PROPERTY(QQuaternion rotateZ READ rotateZ WRITE setRotateZ NOTIFY rotateZChanged)
 
 public:
     explicit Navigation(QObject *parent = 0);
 
-    qreal rotateX();
-    void setRotateX(qreal rotateX);
+    QQuaternion rotateX();
+    void setRotateX(QQuaternion rotateX);
 
-    qreal rotateY();
-    void setRotateY(qreal rotateY);
+    QQuaternion rotateY();
+    void setRotateY(QQuaternion rotateY);
 
-    qreal rotateZ();
-    void setRotateZ(qreal rotateZ);
+    QQuaternion rotateZ();
+    void setRotateZ(QQuaternion rotateZ);
 
 signals:
     void rotateXChanged();
@@ -28,9 +29,9 @@ signals:
     void rotateZChanged();
 
 protected:
-    qreal m_rotateX;
-    qreal m_rotateY;
-    qreal m_rotateZ;
+    QQuaternion m_rotateX;
+    QQuaternion m_rotateY;
+    QQuaternion m_rotateZ;
 };
 
 #endif // NAVIGATION_H

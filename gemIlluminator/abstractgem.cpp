@@ -2,6 +2,8 @@
 
 #include <limits>
 
+#include <QQuaternion>
+
 #include "abstractgemrenderer.h"
 #include "lightray.h"
 #include "triangle.h"
@@ -13,7 +15,7 @@ AbstractGem::AbstractGem(QObject *parent) :
   , m_renderer(nullptr)
   , m_initialRotation(new QVector3D())
   , m_position(new QVector3D())
-  , m_rotation(new QVector3D())
+  , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_radius(0.f)
 {
@@ -67,12 +69,12 @@ void AbstractGem::setPosition(const QVector3D &position)
     emit positionChanged();
 }
 
-const QVector3D &AbstractGem::rotation() const
+const QQuaternion &AbstractGem::rotation() const
 {
     return *m_rotation;
 }
 
-void AbstractGem::setRotation(const QVector3D &rotation)
+void AbstractGem::setRotation(const QQuaternion &rotation)
 {
     if (rotation == *m_rotation) {
        return;

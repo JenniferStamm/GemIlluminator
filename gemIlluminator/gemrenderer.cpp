@@ -7,6 +7,7 @@
 #include <QMatrix4x4>
 #include <QVector>
 #include <QVector3D>
+#include <QQuaternion>
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
@@ -84,9 +85,12 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     QMatrix4x4 model;
     model.translate(position().x(), position().y(), position().z());
     model.scale(m_scale);
-    model.rotate(rotation().x() + initialRotation().x(), QVector3D(1.0, 0.0, 0.0));
-    model.rotate(rotation().y() + initialRotation().y(), QVector3D(0.0, 1.0, 0.0));
-    model.rotate(rotation().z() + initialRotation().z(), QVector3D(0.0, 0.0, 1.0));
+    QQuaternion initialRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1,0,0), m_initialRotation->x());
+    QQuaternion initialRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0,1,0), m_initialRotation->y());
+    QQuaternion initialRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0,0,1), m_initialRotation->z());
+    QQuaternion rotation = initialRotationX * initialRotationY * initialRotationZ * (*m_rotation);
+
+    model.rotate(rotation);
     program.setUniformValue("model", model);
 
     QMatrix4x4 normalMatrix(model);

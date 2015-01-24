@@ -7,8 +7,8 @@ CubeGem {
         var yAngle = Math.random() * 360 - 180
         var zAngle = Math.random() * 360 - 180
 
-        initialRotation.x = xAngle
-        initialRotation.y = yAngle
-        initialRotation.z = zAngle
+        initialRotation.x = 45
+        initialRotation.y = 45
+        initialRotation.z = 45
     }
 }

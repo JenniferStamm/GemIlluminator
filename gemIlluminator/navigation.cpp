@@ -6,32 +6,32 @@ Navigation::Navigation(QObject *parent) :
 
 }
 
-qreal Navigation::rotateX()
+QQuaternion Navigation::rotateX()
 {
     return m_rotateX;
 }
 
-void Navigation::setRotateX(qreal rotateX)
+void Navigation::setRotateX(QQuaternion rotateX)
 {
     m_rotateX = rotateX;
 }
 
-qreal Navigation::rotateY()
+QQuaternion Navigation::rotateY()
 {
     return m_rotateY;
 }
 
-void Navigation::setRotateY(qreal rotateY)
+void Navigation::setRotateY(QQuaternion rotateY)
 {
     m_rotateY = rotateY;
 }
 
-qreal Navigation::rotateZ()
+QQuaternion Navigation::rotateZ()
 {
     return m_rotateZ;
 }
 
-void Navigation::setRotateZ(qreal rotateZ)
+void Navigation::setRotateZ(QQuaternion rotateZ)
 {
     m_rotateZ = rotateZ;
 }

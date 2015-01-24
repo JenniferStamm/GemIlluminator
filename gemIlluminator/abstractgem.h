@@ -2,11 +2,13 @@
 #define GEOMETRY_H
 
 #include <QObject>
+#include <QQuaternion>
 #include <QVector3D>
 
 class QMatrix4x4;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+class QQuaternion;
 
 class AbstractGemRenderer;
 class LightRay;
@@ -17,7 +19,7 @@ class AbstractGem : public QObject
     Q_OBJECT
     Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
-    Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(QQuaternion rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
     Q_PROPERTY(QVector3D color READ color WRITE setColor NOTIFY colorChanged)
 
@@ -37,8 +39,8 @@ public:
     const QVector3D &position() const;
     virtual void setPosition(const QVector3D &position);
 
-    const QVector3D &rotation() const;
-    virtual void setRotation(const QVector3D &rotation);
+    const QQuaternion &rotation() const;
+    virtual void setRotation(const QQuaternion &rotation);
 
     qreal scale() const;
     void setScale(qreal scaleFactor);
@@ -68,7 +70,7 @@ protected:
     AbstractGemRenderer *m_renderer;
     QVector3D *m_initialRotation;
     QVector3D *m_position;
-    QVector3D *m_rotation; /*!< Contains the euler angles */
+    QQuaternion *m_rotation;
     qreal m_scale;
     qreal m_radius;
 };
