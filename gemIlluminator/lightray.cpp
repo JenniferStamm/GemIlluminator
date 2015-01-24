@@ -99,8 +99,7 @@ void LightRay::update(int timeDifference)
         LightRay collisionTestRay;
         collisionTestRay.setStartPosition(m_player->position());
         collisionTestRay.setEndPosition(endPosition());
-        Triangle *intersectedTriangle = m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
-        intersectedTriangle->setColor(QVector3D(0.f, 0.f, 0.f));
+        m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
         setEndPosition(collisionPoint);
     }
 

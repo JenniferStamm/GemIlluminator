@@ -24,5 +24,5 @@ void main()
 
     vec3 fresnel = mix(reflectColor, refractColor, clamp(dot(v_normal, v_eyeVector), 0.0, 1.0));
 
-    gl_FragColor = vec4(fresnel, 1.0);
+    gl_FragColor = vec4(mix(fresnel, v_color, 0.2), 1.0);
 }

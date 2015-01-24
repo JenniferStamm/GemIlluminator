@@ -19,6 +19,7 @@ class AbstractGem : public QObject
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
+    Q_PROPERTY(QVector3D color READ color WRITE setColor NOTIFY colorChanged)
 
 public:
     explicit AbstractGem(QObject *parent = 0);
@@ -42,6 +43,9 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
+    QVector3D &color() const;
+    void setColor(QVector3D &color);
+
     qreal radius() const;
 
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
@@ -53,12 +57,14 @@ signals:
     void positionChanged();
     void rotationChanged();
     void scaleChanged();
+    void colorChanged();
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
 
 protected:
     QVector<Triangle*> *m_triangles;
+    QVector3D *m_color;
     AbstractGemRenderer *m_renderer;
     QVector3D *m_initialRotation;
     QVector3D *m_position;
