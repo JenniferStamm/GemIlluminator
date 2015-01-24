@@ -54,9 +54,7 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_gem);
         m_renderer->setRootLightRay(m_rootLightRay);
-        m_renderer->setProjectionInverted(m_camera->projectionInverted());
-        m_renderer->setView(m_camera->view());
-        m_renderer->setViewProjection(m_camera->viewProjection());
+        m_renderer->setCamera(*m_camera);
 
         int elapsedTime = m_time->restart();
 
