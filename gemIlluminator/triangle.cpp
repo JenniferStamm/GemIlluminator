@@ -11,7 +11,6 @@ Triangle::Triangle(AbstractGem *owningGem) :
     m_a(new QVector3D())
   , m_b(new QVector3D())
   , m_c(new QVector3D())
-  , m_color(new QVector3D())
   , m_normal(nullptr)
   , m_gem(owningGem)
 {
@@ -21,12 +20,10 @@ Triangle::Triangle(AbstractGem *owningGem) :
 Triangle::Triangle(const QVector3D &a,
                    const QVector3D &b,
                    const QVector3D &c,
-                   const QVector3D &color,
                    AbstractGem *gem) :
     m_a(new QVector3D(a))
   , m_b(new QVector3D(b))
   , m_c(new QVector3D(c))
-  , m_color(new QVector3D(color))
   , m_normal(nullptr)
   , m_gem(gem)
 {
@@ -37,7 +34,6 @@ Triangle::Triangle(const Triangle &triangle):
     m_a(new QVector3D(triangle.a()))
   , m_b(new QVector3D(triangle.b()))
   , m_c(new QVector3D(triangle.c()))
-  , m_color(new QVector3D(triangle.color()))
   , m_normal(nullptr)
   , m_gem(triangle.owningGem())
 {
@@ -49,13 +45,11 @@ Triangle &Triangle::operator=(const Triangle &triangle)
     delete m_a;
     delete m_b;
     delete m_c;
-    delete m_color;
     delete m_normal;
 
     m_a = new QVector3D(triangle.a());
     m_b = new QVector3D(triangle.b());
     m_c = new QVector3D(triangle.c());
-    m_color = new QVector3D(triangle.color());
     m_normal = nullptr;
     m_gem = triangle.owningGem();
 
@@ -67,7 +61,6 @@ Triangle::~Triangle()
     delete m_a;
     delete m_b;
     delete m_c;
-    delete m_color;
     delete m_normal;
 }
 
@@ -99,15 +92,6 @@ const QVector3D &Triangle::c() const
 void Triangle::setC(const QVector3D &c)
 {
     *m_c = c;
-}
-const QVector3D &Triangle::color() const
-{
-    return *m_color;
-}
-
-void Triangle::setColor(const QVector3D &color)
-{
-    *m_color = color;
 }
 
 const QVector3D &Triangle::normal() const
@@ -142,7 +126,6 @@ Triangle Triangle::inWorldCoordinates() const
     result.setA(model * a());
     result.setB(model * b());
     result.setC(model * c());
-    result.setColor(color());
     return result;
 }
 

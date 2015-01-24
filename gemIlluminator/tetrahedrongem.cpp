@@ -9,7 +9,6 @@
 
 TetrahedronGem::TetrahedronGem(QObject *parent) :
     AbstractGem(parent)
-  , m_colors(new QVector<QVector3D>())
   , m_vertices(new QVector<QVector3D>())
 {
     m_radius = sqrt(3.f);
@@ -22,34 +21,25 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
     m_vertices->append(QVector3D( 1.f,  1.f,  1.f));
     m_vertices->append(QVector3D(-1.f,  1.f, -1.f));
 
-    m_colors->append(QVector3D(0.0, 0.0, 1.0));
-    m_colors->append(QVector3D(1.0, 0.0, 0.0));
-    m_colors->append(QVector3D(1.0, 1.0, 0.0));
-    m_colors->append(QVector3D(0.0, 1.0, 1.0));
-
     m_triangles->append(new Triangle(
                 m_vertices->at(1),
                 m_vertices->at(3),
                 m_vertices->at(2),
-                m_colors->at(0),
                 this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(3),
                 m_vertices->at(2),
-                m_colors->at(1),
                 this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(1),
                 m_vertices->at(3),
-                m_colors->at(2),
                 this));
     m_triangles->append(new Triangle(
                 m_vertices->at(0),
                 m_vertices->at(2),
                 m_vertices->at(1),
-                m_colors->at(3),
                 this));
 }
 
@@ -68,6 +58,7 @@ void TetrahedronGem::synchronize()
     m_renderer->setPosition(*m_position);
     m_renderer->setRotation(*m_rotation);
     m_renderer->setScale(m_scale);
+    m_renderer->setColor((m_color));
 }
 
 void TetrahedronGem::cleanup()

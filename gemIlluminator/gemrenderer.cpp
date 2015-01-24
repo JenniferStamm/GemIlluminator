@@ -62,17 +62,13 @@ void GemRenderer::addTriangleData(
             Triangle &triangle,
             QVector<QVector3D> &data)
 {
-    const QVector3D color = triangle.color();
     QVector3D normal = triangle.normalizedNormal();
 
     data.append(triangle.a());
-    data.append(color);
     data.append(normal);
     data.append(triangle.b());
-    data.append(color);
     data.append(normal);
     data.append(triangle.c());
-    data.append(color);
     data.append(normal);
 }
 
@@ -103,11 +99,12 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     QMatrix4x4 mvp = viewProjection * model;
     program.setUniformValue("modelViewProjection", mvp);
 
-    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), nullptr);
-    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (3 * sizeof(float)));
-    gl.glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *) (6 * sizeof(float)));
+    program.setUniformValue("color", *m_color);
 
-    gl.glDrawArrays(GL_TRIANGLES, 0, m_vertexData->size() / 9);
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *) (3 * sizeof(float)));
+
+    gl.glDrawArrays(GL_TRIANGLES, 0, m_vertexData->size() / 6);
 
     m_vertexBuffer->release();
     program.release();

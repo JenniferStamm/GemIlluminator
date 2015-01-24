@@ -9,6 +9,7 @@
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
   , m_triangles(new QVector<Triangle *>)
+  , m_color(new QVector3D(1.f, 1.f, 1.f))
   , m_renderer(nullptr)
   , m_initialRotation(new QVector3D())
   , m_position(new QVector3D())
@@ -24,6 +25,7 @@ AbstractGem::~AbstractGem()
         delete triangle;
     }
     delete m_triangles;
+    delete m_color;
     delete m_renderer;
     delete m_initialRotation;
     delete m_position;
@@ -91,6 +93,17 @@ void AbstractGem::setScale(qreal scaleFactor)
     }
     m_scale = scaleFactor;
     emit scaleChanged();
+}
+
+QVector3D &AbstractGem::color() const
+{
+    return *m_color;
+}
+
+void AbstractGem::setColor(QVector3D &color)
+{
+    *m_color = color;
+    emit colorChanged();
 }
 
 qreal AbstractGem::radius() const

@@ -16,78 +16,66 @@ SceneBounds::SceneBounds(QObject *parent) :
                             QVector3D(-15.f,  15.f,  15.f),
                             QVector3D( 15.f,  15.f,  15.f),
                             QVector3D( 15.f, -15.f,  15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f,  15.f),
                             QVector3D( 15.f, -15.f,  15.f),
                             QVector3D(-15.f, -15.f,  15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     //back
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f, -15.f),
                             QVector3D(-15.f, -15.f, -15.f),
                             QVector3D( 15.f, -15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f, -15.f),
                             QVector3D( 15.f, -15.f, -15.f),
                             QVector3D(+15.f, +15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     //left
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f,  -15.f),
                             QVector3D(-15.f,  15.f,   15.f),
                             QVector3D(-15.f, -15.f,   15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f, -15.f),
                             QVector3D(-15.f, -15.f,  15.f),
                             QVector3D(-15.f, -15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     //right
     m_triangles->append(new Triangle(
                             QVector3D( 15.f,  15.f,  -15.f),
                             QVector3D( 15.f, -15.f,  -15.f),
                             QVector3D( 15.f, -15.f,   15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D( 15.f,  15.f, -15.f),
                             QVector3D( 15.f, -15.f,  15.f),
                             QVector3D( 15.f,  15.f,  15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     //top
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f,  15.f),
                             QVector3D(-15.f,  15.f, -15.f),
                             QVector3D( 15.f,  15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D(-15.f,  15.f, -15.f),
                             QVector3D( 15.f,  15.f, -15.f),
                             QVector3D( 15.f,  15.f,  15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     //bottom
     m_triangles->append(new Triangle(
                             QVector3D(-15.f, -15.f,  15.f),
                             QVector3D( 15.f, -15.f,  15.f),
                             QVector3D( 15.f, -15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
     m_triangles->append(new Triangle(
                             QVector3D(-15.f, -15.f,  15.f),
                             QVector3D( 15.f, -15.f, -15.f),
                             QVector3D(-15.f, -15.f, -15.f),
-                            QVector3D( 0.f, 0.f, 0.f),
                             this));
 }
 

@@ -9,6 +9,7 @@ AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
   , m_position(new QVector3D())
   , m_rotation(new QVector3D())
   , m_scale(1.f)
+  , m_color(new QVector3D())
 {
 }
 
@@ -17,6 +18,7 @@ AbstractGemRenderer::~AbstractGemRenderer()
     delete m_initialRotation;
     delete m_position;
     delete m_rotation;
+    delete m_color;
 }
 
 const QVector3D &AbstractGemRenderer::initialRotation() const
@@ -70,3 +72,13 @@ void AbstractGemRenderer::setScale(qreal scale)
     }
     m_scale = scale;
 }
+QVector3D *AbstractGemRenderer::color() const
+{
+    return m_color;
+}
+
+void AbstractGemRenderer::setColor(QVector3D *color)
+{
+    m_color = color;
+}
+
