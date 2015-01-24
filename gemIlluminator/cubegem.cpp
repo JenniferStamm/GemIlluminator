@@ -9,8 +9,8 @@
 
 CubeGem::CubeGem(QObject *parent) :
     AbstractGem(parent)
-  , m_vertices(new QVector<QVector3D>())
   , m_colors(new QVector<QVector3D>())
+  , m_vertices(new QVector<QVector3D>())
 {
     m_radius = sqrt(0.5f * 0.5f * 3.f);
     m_scale = 0.3f;

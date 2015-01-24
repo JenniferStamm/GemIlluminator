@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     scenebounds.cpp
 
 RESOURCES += qml.qrc \
-    shader.qrc
+    shader.qrc \
+    data.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

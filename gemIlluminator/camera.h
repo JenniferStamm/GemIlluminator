@@ -38,7 +38,7 @@ public:
     const QMatrix4x4 &projectionInverted() const;
 
     const QVector3D &position() const;
-    const QVector3D &viewDirection() const;
+    QVector3D viewDirection() const;
     const QVector3D &center() const;
     const QVector3D &eye() const;
     const QVector3D &up() const;
