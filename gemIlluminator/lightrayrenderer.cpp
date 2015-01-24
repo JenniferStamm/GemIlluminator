@@ -151,7 +151,7 @@ void LightRayRenderer::updateStaticVBO()
         calculateVertexDataFor(rayData, vertexData, indexData);
     }
 
-    m_staticVertexBuffer->allocate(vertexData.data(), vertexData.count() * 3 * sizeof(float));
+    m_staticVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
     m_staticIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
     m_isStaticVBOUpdateRequired = false;
 }
@@ -176,7 +176,7 @@ void LightRayRenderer::updateDynamicVBO()
         calculateVertexDataFor(rayData, vertexData, indexData);
     }
 
-    m_dynamicVertexBuffer->allocate(vertexData.data(), vertexData.count() * 3 * sizeof(float));
+    m_dynamicVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
     m_dynamicIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
 }
 
