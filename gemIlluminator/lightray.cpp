@@ -99,6 +99,7 @@ void LightRay::update(int timeDifference)
         LightRay collisionTestRay;
         collisionTestRay.setStartPosition(m_player->position());
         collisionTestRay.setEndPosition(endPosition());
+        m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
         setEndPosition(collisionPoint);
     }
 
