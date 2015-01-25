@@ -6,32 +6,25 @@ Navigation::Navigation(QObject *parent) :
 
 }
 
-QQuaternion Navigation::rotateX()
+QQuaternion Navigation::rotation()
 {
-    return m_rotateX;
+    return m_rotation;
 }
 
-void Navigation::setRotateX(QQuaternion rotateX)
+void Navigation::setRotation(QQuaternion rotation)
 {
-    m_rotateX = rotateX;
+    if (m_rotation == rotation) {
+        return;
+    }
+    m_rotation = rotation;
+    emit rotationChanged();
 }
 
-QQuaternion Navigation::rotateY()
+void Navigation::setRotationFromEuler(const QVector3D &eulerAngles)
 {
-    return m_rotateY;
-}
-
-void Navigation::setRotateY(QQuaternion rotateY)
-{
-    m_rotateY = rotateY;
-}
-
-QQuaternion Navigation::rotateZ()
-{
-    return m_rotateZ;
-}
-
-void Navigation::setRotateZ(QQuaternion rotateZ)
-{
-    m_rotateZ = rotateZ;
+    QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), eulerAngles.x());
+    QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), eulerAngles.y());
+    QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), eulerAngles.z());
+    QQuaternion newRoation = newRotationZ * newRotationX * newRotationY;
+    setRotation(newRoation);
 }

@@ -7,31 +7,21 @@
 class Navigation : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQuaternion rotateX READ rotateX WRITE setRotateX NOTIFY rotateXChanged)
-    Q_PROPERTY(QQuaternion rotateY READ rotateY WRITE setRotateY NOTIFY rotateYChanged)
-    Q_PROPERTY(QQuaternion rotateZ READ rotateZ WRITE setRotateZ NOTIFY rotateZChanged)
+    Q_PROPERTY(QQuaternion rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
 
 public:
     explicit Navigation(QObject *parent = 0);
 
-    QQuaternion rotateX();
-    void setRotateX(QQuaternion rotateX);
+    QQuaternion rotation();
+    void setRotation(QQuaternion rotation);
 
-    QQuaternion rotateY();
-    void setRotateY(QQuaternion rotateY);
-
-    QQuaternion rotateZ();
-    void setRotateZ(QQuaternion rotateZ);
+    Q_INVOKABLE void setRotationFromEuler(const QVector3D &eulerAngles);
 
 signals:
-    void rotateXChanged();
-    void rotateYChanged();
-    void rotateZChanged();
+    void rotationChanged();
 
 protected:
-    QQuaternion m_rotateX;
-    QQuaternion m_rotateY;
-    QQuaternion m_rotateZ;
+    QQuaternion m_rotation;
 };
 
 #endif // NAVIGATION_H

@@ -50,6 +50,8 @@ public:
 
     qreal radius() const;
 
+    const QMatrix4x4 &model() const;
+
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
@@ -66,6 +68,7 @@ signals:
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
+    void calculateModelMatrix() const;
 
 protected:
     QVector<Triangle*> *m_triangles;
@@ -76,6 +79,8 @@ protected:
     QQuaternion *m_rotation;
     qreal m_scale;
     qreal m_radius;
+    mutable QMatrix4x4 *m_model;
+    mutable bool m_isModelInvalid;
 };
 
 #endif // GEOMETRY_H

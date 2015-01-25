@@ -11,6 +11,7 @@ AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_color(new QVector3D())
+  , m_model(new QMatrix4x4())
 {
 }
 
@@ -82,5 +83,15 @@ const QVector3D &AbstractGemRenderer::color() const
 void AbstractGemRenderer::setColor(const QVector3D &color)
 {
     *m_color = color;
+}
+
+const QMatrix4x4 &AbstractGemRenderer::model() const
+{
+    return *m_model;
+}
+
+void AbstractGemRenderer::setModel(const QMatrix4x4 &model)
+{
+    *m_model = model;
 }
 

@@ -113,6 +113,7 @@ void CubeGem::synchronize()
     m_renderer->setRotation(*m_rotation);
     m_renderer->setScale(m_scale);
     m_renderer->setColor(*m_color);
+    m_renderer->setModel(*m_model);
 }
 
 void CubeGem::cleanup()
