@@ -1,5 +1,5 @@
 {
     "GemTypes": ["CubeGem", "TetrahedronGem"],
-    "NumGems": 1000,
+    "NumGems": 500,
     "GemRangeSize": [0.1, 2]
 }
