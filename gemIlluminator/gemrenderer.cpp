@@ -85,10 +85,7 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     QMatrix4x4 model;
     model.translate(position().x(), position().y(), position().z());
     model.scale(m_scale);
-    QQuaternion initialRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1,0,0), m_initialRotation->x());
-    QQuaternion initialRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0,1,0), m_initialRotation->y());
-    QQuaternion initialRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0,0,1), m_initialRotation->z());
-    QQuaternion rotation = initialRotationX * initialRotationY * initialRotationZ * (*m_rotation);
+    QQuaternion rotation = (*m_initialRotation) * (*m_rotation);
 
     model.rotate(rotation);
     program.setUniformValue("model", model);

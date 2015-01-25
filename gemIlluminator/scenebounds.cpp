@@ -100,7 +100,7 @@ void SceneBounds::paint(QOpenGLFunctions &/*gl*/, const QMatrix4x4 &/*viewprojec
 {
 }
 
-void SceneBounds::setInitialRotation(const QVector3D &/*initialRotation*/)
+void SceneBounds::setInitialRotation(const QQuaternion &/*initialRotation*/)
 {
 }
 

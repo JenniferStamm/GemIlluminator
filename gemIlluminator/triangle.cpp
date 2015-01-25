@@ -118,11 +118,7 @@ Triangle Triangle::inWorldCoordinates() const
     QMatrix4x4 model;
     model.translate(m_gem->position().x(), m_gem->position().y(), m_gem->position().z());
     model.scale(m_gem->scale());
-    QQuaternion initialRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1,0,0), m_gem->initialRotation().x());
-    QQuaternion initialRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0,1,0), m_gem->initialRotation().y());
-    QQuaternion initialRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0,0,1), m_gem->initialRotation().z());
-    model.rotate(initialRotationX * initialRotationY * initialRotationZ * m_gem->rotation());
-
+    model.rotate(m_gem->rotation() * m_gem->rotation());
     Triangle result(m_gem);
     result.setA(model * a());
     result.setB(model * b());

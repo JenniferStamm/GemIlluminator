@@ -13,7 +13,7 @@ AbstractGem::AbstractGem(QObject *parent) :
   , m_triangles(new QVector<Triangle *>)
   , m_color(new QVector3D(1.f, 1.f, 1.f))
   , m_renderer(nullptr)
-  , m_initialRotation(new QVector3D())
+  , m_initialRotation(new QQuaternion())
   , m_position(new QVector3D())
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
@@ -41,18 +41,27 @@ void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     }
 }
 
-const QVector3D &AbstractGem::initialRotation() const
+const QQuaternion &AbstractGem::initialRotation() const
 {
     return *m_initialRotation;
 }
 
-void AbstractGem::setInitialRotation(const QVector3D &initialRotation)
+void AbstractGem::setInitialRotation(const QQuaternion &initialRotation)
 {
     if (initialRotation == *m_initialRotation) {
        return;
     }
     *m_initialRotation = initialRotation;
     emit initialRotationChanged();
+}
+
+void AbstractGem::setInitialRotationFromEuler(const QVector3D &initialEulerRotation)
+{
+    QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), initialEulerRotation.x());
+    QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), initialEulerRotation.y());
+    QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), initialEulerRotation.z());
+    QQuaternion newInitialRoation = newRotationX * newRotationY * newRotationZ;
+    setInitialRotation(newInitialRoation);
 }
 
 const QVector3D &AbstractGem::position() const

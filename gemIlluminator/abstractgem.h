@@ -17,7 +17,7 @@ class Triangle;
 class AbstractGem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
+    Q_PROPERTY(QQuaternion initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
     Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(QQuaternion rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
@@ -33,8 +33,8 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
-    const QVector3D &initialRotation() const;
-    virtual void setInitialRotation(const QVector3D &initialRotation);
+    const QQuaternion &initialRotation() const;
+    virtual void setInitialRotation(const QQuaternion &initialRotation);
 
     const QVector3D &position() const;
     virtual void setPosition(const QVector3D &position);
@@ -54,6 +54,9 @@ public:
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
 
+public slots:
+    void setInitialRotationFromEuler(const QVector3D &initialEulerRotation);
+
 signals:
     void initialRotationChanged();
     void positionChanged();
@@ -68,7 +71,7 @@ protected:
     QVector<Triangle*> *m_triangles;
     QVector3D *m_color;
     AbstractGemRenderer *m_renderer;
-    QVector3D *m_initialRotation;
+    QQuaternion *m_initialRotation;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     qreal m_scale;

@@ -6,7 +6,7 @@
 
 AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
     QObject(parent)
-  , m_initialRotation(new QVector3D)
+  , m_initialRotation(new QQuaternion())
   , m_position(new QVector3D())
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
@@ -22,12 +22,12 @@ AbstractGemRenderer::~AbstractGemRenderer()
     delete m_color;
 }
 
-const QVector3D &AbstractGemRenderer::initialRotation() const
+const QQuaternion &AbstractGemRenderer::initialRotation() const
 {
     return *m_initialRotation;
 }
 
-void AbstractGemRenderer::setInitialRotation(const QVector3D &initialRotation)
+void AbstractGemRenderer::setInitialRotation(const QQuaternion &initialRotation)
 {
     if (initialRotation == *m_initialRotation) {
        return;

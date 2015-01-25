@@ -20,8 +20,8 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) = 0;
 
-    const QVector3D &initialRotation() const;
-    void setInitialRotation(const QVector3D &initialRotation);
+    const QQuaternion &initialRotation() const;
+    void setInitialRotation(const QQuaternion &initialRotation);
 
     const QVector3D &position() const;
     void setPosition(const QVector3D &position);
@@ -36,7 +36,7 @@ public:
     void setColor(const QVector3D &color);
 
 protected:
-    QVector3D *m_initialRotation;
+    QQuaternion *m_initialRotation;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     qreal m_scale;
