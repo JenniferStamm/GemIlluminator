@@ -65,7 +65,7 @@ void Scene::sync()
             i->synchronize();
         }
 
-        m_currentGem->setRotation(m_navigation->rotation());
+        m_currentGem->setRotation(m_navigation->worldSpaceRotation());
     }
 }
 
@@ -97,6 +97,7 @@ QQmlListProperty<AbstractGem> Scene::geometries()
 void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
+    m_navigation->setCamera(m_camera);
 }
 
 qreal Scene::t() const

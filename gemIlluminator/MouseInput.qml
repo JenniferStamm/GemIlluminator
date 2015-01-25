@@ -16,9 +16,9 @@ MouseArea {
     onPositionChanged: {
         var hackie = Math.min(root.width, root.height);
         mouseVector = Qt.vector3d(mouseX, -mouseY, 0)
-        var xAngle = (-mouseY / hackie) * 360 - 180 //move mouse in x direction leads to rotation to left or right
+        var xAngle = (mouseY / hackie) * 360 - 180 //move mouse in x direction leads to rotation to left or right
         var yAngle = (mouseX / hackie) * 360 - 180  //move mouse in y direction leads to rotation to top or bottom
-        navigation.setRotationFromEuler(Qt.vector3d(xAngle, yAngle, 0))
+        navigation.eulerRotation = Qt.vector3d(xAngle, yAngle, 0)
     }
 }
 
