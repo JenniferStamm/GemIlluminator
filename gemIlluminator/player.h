@@ -3,10 +3,9 @@
 
 #include <QObject>
 
-#include "camera.h"
-
 class QVector3D;
 
+class Camera;
 class LightRay;
 
 class Player : public QObject

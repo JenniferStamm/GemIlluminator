@@ -2,6 +2,7 @@
 
 #include <QtMath>
 #include <QMatrix4x4>
+#include <QQuaternion>
 
 #include "camera.h"
 

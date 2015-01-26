@@ -17,11 +17,11 @@ class Triangle;
 class AbstractGem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQuaternion initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
-    Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
-    Q_PROPERTY(QQuaternion rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(const QQuaternion &initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
+    Q_PROPERTY(const QVector3D &position READ position WRITE setPosition NOTIFY positionChanged)
+    Q_PROPERTY(const QQuaternion &rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
-    Q_PROPERTY(QVector3D color READ color WRITE setColor NOTIFY colorChanged)
+    Q_PROPERTY(const QVector3D &color READ color WRITE setColor NOTIFY colorChanged)
 
 public:
     explicit AbstractGem(QObject *parent = 0);

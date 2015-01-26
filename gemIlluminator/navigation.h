@@ -2,7 +2,9 @@
 #define NAVIGATION_H
 
 #include <QObject>
-#include <QQuaternion>
+#include <QVector3D>
+
+class QQuaternion;
 
 class Camera;
 
