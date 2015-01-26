@@ -3,11 +3,6 @@
 
 #include "abstractgem.h"
 
-template <typename T> class QVector;
-class QVector3D;
-
-class Triangle;
-
 class TetrahedronGem : public AbstractGem
 {
     Q_OBJECT
@@ -18,9 +13,6 @@ public:
     virtual void synchronize() override;
     virtual void cleanup() override;
     virtual void update(int timeDifference) override;
-
-protected:
-    QVector<QVector3D> *m_vertices;
 };
 
 #endif // TETRAHEDRON_H
