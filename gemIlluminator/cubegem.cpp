@@ -11,17 +11,16 @@ CubeGem::CubeGem(QObject *parent) :
     AbstractGem(parent)
   , m_vertices(new QVector<QVector3D>())
 {
-    m_radius = sqrt(0.5f * 0.5f * 3.f);
-    m_scale = 0.3f;
+    m_radius = sqrt(3.f);
 
-    m_vertices->append(QVector3D(-0.5f, -0.5f, -0.5f)); // front bottom left
-    m_vertices->append(QVector3D(0.5f, -0.5f, -0.5f));  // front bottom right
-    m_vertices->append(QVector3D(-0.5f, 0.5f, -0.5f));  // front top left
-    m_vertices->append(QVector3D(0.5f, 0.5f, -0.5f));   // front top right
-    m_vertices->append(QVector3D(-0.5f, -0.5f, 0.5f));  // back bottom left
-    m_vertices->append(QVector3D(0.5f, -0.5f, 0.5f));   // back bottom right
-    m_vertices->append(QVector3D(-0.5f, 0.5f, 0.5f));   // back top left
-    m_vertices->append(QVector3D(0.5f, 0.5f, 0.5f));    // back top right
+    m_vertices->append(QVector3D(-1.0f, -1.0f, -1.0f)); // front bottom left
+    m_vertices->append(QVector3D( 1.0f, -1.0f, -1.0f)); // front bottom right
+    m_vertices->append(QVector3D(-1.0f,  1.0f, -1.0f)); // front top left
+    m_vertices->append(QVector3D( 1.0f,  1.0f, -1.0f)); // front top right
+    m_vertices->append(QVector3D(-1.0f, -1.0f,  1.0f)); // back bottom left
+    m_vertices->append(QVector3D( 1.0f, -1.0f,  1.0f)); // back bottom right
+    m_vertices->append(QVector3D(-1.0f,  1.0f,  1.0f)); // back top left
+    m_vertices->append(QVector3D( 1.0f,  1.0f,  1.0f)); // back top right
 
     // front-face top-left triangle
     m_triangles->append(new Triangle(

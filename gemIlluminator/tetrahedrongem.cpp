@@ -12,7 +12,6 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
   , m_vertices(new QVector<QVector3D>())
 {
     m_radius = sqrt(3.f);
-    m_scale = 0.3f;
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */
