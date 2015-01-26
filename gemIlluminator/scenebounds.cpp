@@ -58,14 +58,14 @@ SceneBounds::SceneBounds(QObject *parent) :
                             this));
     //top
     m_triangles->append(new Triangle(
-                            QVector3D(-value,  value,  value),
-                            QVector3D(-value,  value, -value),
-                            QVector3D( value,  value, -value),
-                            this));
-    m_triangles->append(new Triangle(
                             QVector3D(-value,  value, -value),
                             QVector3D( value,  value, -value),
                             QVector3D( value,  value,  value),
+                            this));
+    m_triangles->append(new Triangle(
+                            QVector3D( value,  value,  value),
+                            QVector3D(-value,  value,  value),
+                            QVector3D(-value,  value, -value),
                             this));
     //bottom
     m_triangles->append(new Triangle(
