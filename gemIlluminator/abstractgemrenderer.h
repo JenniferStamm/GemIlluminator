@@ -6,7 +6,6 @@
 class QMatrix4x4;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
-class QQuaternion;
 class QVector3D;
 
 class AbstractGemRenderer : public QObject
@@ -19,18 +18,6 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) = 0;
 
-    const QQuaternion &initialRotation() const;
-    void setInitialRotation(const QQuaternion &initialRotation);
-
-    const QVector3D &position() const;
-    void setPosition(const QVector3D &position);
-
-    const QQuaternion &rotation() const;
-    void setRotation(const QQuaternion &rotation);
-
-    qreal scale() const;
-    void setScale(qreal scaleFactor);
-
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
 
@@ -39,10 +26,6 @@ public:
 
 protected:
     QMatrix4x4 *m_model;
-    QQuaternion *m_initialRotation;
-    QVector3D *m_position;
-    QQuaternion *m_rotation;
-    qreal m_scale;
     QVector3D *m_color;
 };
 

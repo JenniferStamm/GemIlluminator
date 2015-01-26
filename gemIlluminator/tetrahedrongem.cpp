@@ -53,10 +53,6 @@ void TetrahedronGem::synchronize()
         m_renderer = new GemRenderer(*m_triangles);
     }
 
-    m_renderer->setInitialRotation(*m_initialRotation);
-    m_renderer->setPosition(*m_position);
-    m_renderer->setRotation(*m_rotation);
-    m_renderer->setScale(m_scale);
     m_renderer->setColor(*m_color);
     m_renderer->setModel(model());
 }
