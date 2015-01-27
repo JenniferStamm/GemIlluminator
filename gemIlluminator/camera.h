@@ -66,6 +66,8 @@ public slots:
     void setZFar(float zFar);
 
 protected:
+    void invalidateView() const;
+    void invalidateProjection() const;
     void recalculateView() const;
     void recalculateProjection() const;
     void recalculateViewProjection() const;
@@ -87,7 +89,8 @@ protected:
     mutable QMatrix4x4 *m_viewProjectionInverted;
 
     mutable bool m_isViewInvalid;
-    bool m_isProjectionInvalid;
+    mutable bool m_isProjectionInvalid;
+    mutable bool m_isViewProjectionInvalid;
 };
 
 #endif // CAMERA_H

@@ -2,6 +2,9 @@
 
 #include <limits>
 
+#include <QQuaternion>
+#include <QMatrix4x4>
+
 #include "abstractgemrenderer.h"
 #include "lightray.h"
 #include "triangle.h"
@@ -11,11 +14,13 @@ AbstractGem::AbstractGem(QObject *parent) :
   , m_triangles(new QVector<Triangle *>)
   , m_color(new QVector3D(1.f, 1.f, 1.f))
   , m_renderer(nullptr)
-  , m_initialRotation(new QVector3D())
+  , m_initialRotation(new QQuaternion())
   , m_position(new QVector3D())
-  , m_rotation(new QVector3D())
+  , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_radius(0.f)
+  , m_model(new QMatrix4x4())
+  , m_isModelInvalid(true)
 {
 }
 
@@ -39,18 +44,27 @@ void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     }
 }
 
-const QVector3D &AbstractGem::initialRotation() const
+const QQuaternion &AbstractGem::initialRotation() const
 {
     return *m_initialRotation;
 }
 
-void AbstractGem::setInitialRotation(const QVector3D &initialRotation)
+void AbstractGem::setInitialRotation(const QQuaternion &initialRotation)
 {
     if (initialRotation == *m_initialRotation) {
        return;
     }
     *m_initialRotation = initialRotation;
     emit initialRotationChanged();
+}
+
+void AbstractGem::setInitialRotationFromEuler(const QVector3D &initialEulerRotation)
+{
+    QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), initialEulerRotation.x());
+    QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), initialEulerRotation.y());
+    QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), initialEulerRotation.z());
+    QQuaternion newInitialRoation = newRotationX * newRotationY * newRotationZ;
+    setInitialRotation(newInitialRoation);
 }
 
 const QVector3D &AbstractGem::position() const
@@ -64,20 +78,22 @@ void AbstractGem::setPosition(const QVector3D &position)
        return;
     }
     *m_position = position;
+    m_isModelInvalid = true;
     emit positionChanged();
 }
 
-const QVector3D &AbstractGem::rotation() const
+const QQuaternion &AbstractGem::rotation() const
 {
     return *m_rotation;
 }
 
-void AbstractGem::setRotation(const QVector3D &rotation)
+void AbstractGem::setRotation(const QQuaternion &rotation)
 {
     if (rotation == *m_rotation) {
        return;
     }
     *m_rotation = rotation;
+    m_isModelInvalid = true;
     emit rotationChanged();
 }
 
@@ -92,6 +108,7 @@ void AbstractGem::setScale(qreal scaleFactor)
        return;
     }
     m_scale = scaleFactor;
+    m_isModelInvalid = true;
     emit scaleChanged();
 }
 
@@ -109,6 +126,14 @@ void AbstractGem::setColor(QVector3D &color)
 qreal AbstractGem::radius() const
 {
     return m_radius * m_scale;
+}
+
+const QMatrix4x4 &AbstractGem::model() const
+{
+    if (m_isModelInvalid) {
+        calculateModelMatrix();
+    }
+    return *m_model;
 }
 
 float minimumWithLowerBound(float a, float b, float lowerBound)
@@ -175,6 +200,15 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
             return 2;
         }
     }
+}
+
+void AbstractGem::calculateModelMatrix() const
+{
+    m_model->setToIdentity();
+    m_model->translate(position());
+    m_model->scale(scale());
+    m_model->rotate(rotation() * initialRotation());
+    m_isModelInvalid = false;
 }
 
 float AbstractGem::intersectedBy(const LightRay &ray, QVector3D *collisionPoint)

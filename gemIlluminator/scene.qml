@@ -27,8 +27,8 @@ Scene {
 
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "15, 0, 0"
-        endPosition: "-15, 0, 0"
+        startPosition: "0, 0, -15"
+        endPosition: "0, 0, 15"
         player: player
         scene: scene
     }

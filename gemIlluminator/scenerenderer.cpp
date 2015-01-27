@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "abstractgem.h"
+#include "camera.h"
 #include "lightray.h"
 #include "screenalignedquad.h"
 

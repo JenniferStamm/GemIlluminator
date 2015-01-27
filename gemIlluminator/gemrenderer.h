@@ -3,10 +3,7 @@
 
 #include "abstractgemrenderer.h"
 
-#include <QMatrix4x4>
-
-#include "triangle.h"
-
+class QMatrix4x4;
 class QOpenGLBuffer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;

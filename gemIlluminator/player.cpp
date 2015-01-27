@@ -1,5 +1,6 @@
 #include "player.h"
 
+#include "camera.h"
 #include "lightray.h"
 
 Player::Player(QObject *parent) :

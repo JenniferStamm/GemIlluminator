@@ -22,7 +22,7 @@ void main()
     vec3 refractVector = refract(v_eyeVector, v_normal, 1.4);
     vec4 refractColor = textureCube(envmap, refractVector);
 
-    vec3 fresnel = mix(reflectColor, refractColor, clamp(dot(v_normal, v_eyeVector), 0.0, 1.0));
+    vec3 fresnel = mix(reflectColor.xyz, refractColor.xyz, clamp(dot(v_normal, v_eyeVector), 0.0, 1.0));
 
     gl_FragColor = vec4(mix(fresnel, v_color, 0.2), 1.0);
 }

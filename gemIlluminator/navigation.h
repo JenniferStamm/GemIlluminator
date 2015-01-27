@@ -2,35 +2,39 @@
 #define NAVIGATION_H
 
 #include <QObject>
+#include <QVector3D>
+
+class QQuaternion;
+
+class Camera;
 
 class Navigation : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(qreal rotateX READ rotateX WRITE setRotateX NOTIFY rotateXChanged)
-    Q_PROPERTY(qreal rotateY READ rotateY WRITE setRotateY NOTIFY rotateYChanged)
-    Q_PROPERTY(qreal rotateZ READ rotateZ WRITE setRotateZ NOTIFY rotateZChanged)
+    Q_PROPERTY(const QVector3D &eulerRotation READ eulerRotation WRITE setEulerRotation NOTIFY eulerRotationChanged)
 
 public:
     explicit Navigation(QObject *parent = 0);
+    virtual ~Navigation();
 
-    qreal rotateX();
-    void setRotateX(qreal rotateX);
+    QQuaternion rotation() const;
+    QQuaternion worldSpaceRotation() const;
 
-    qreal rotateY();
-    void setRotateY(qreal rotateY);
+    void setCamera(Camera *camera);
 
-    qreal rotateZ();
-    void setRotateZ(qreal rotateZ);
+    const QVector3D &eulerRotation() const;
+    void setEulerRotation(const QVector3D &angles);
 
 signals:
-    void rotateXChanged();
-    void rotateYChanged();
-    void rotateZChanged();
+    void rotationChanged();
+    void eulerRotationChanged();
 
 protected:
-    qreal m_rotateX;
-    qreal m_rotateY;
-    qreal m_rotateZ;
+    QQuaternion fromEulerAngleQuaternions(const QQuaternion &x, const QQuaternion &y, const QQuaternion &z) const;
+
+protected:
+    Camera *m_camera;
+    QVector3D *m_eulerRotation;
 };
 
 #endif // NAVIGATION_H

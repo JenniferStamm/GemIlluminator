@@ -115,13 +115,7 @@ QVector3D Triangle::normalizedNormal() const
 Triangle Triangle::inWorldCoordinates() const
 {
     assert(m_gem);
-    QMatrix4x4 model;
-    model.translate(m_gem->position().x(), m_gem->position().y(), m_gem->position().z());
-    model.scale(m_gem->scale());
-    model.rotate(m_gem->rotation().x() + m_gem->initialRotation().x(), QVector3D(1.0, 0.0, 0.0));
-    model.rotate(m_gem->rotation().y() + m_gem->initialRotation().y(), QVector3D(0.0, 1.0, 0.0));
-    model.rotate(m_gem->rotation().z() + m_gem->initialRotation().z(), QVector3D(0.0, 0.0, 1.0));
-
+    QMatrix4x4 model = m_gem->model();
     Triangle result(m_gem);
     result.setA(model * a());
     result.setB(model * b());
