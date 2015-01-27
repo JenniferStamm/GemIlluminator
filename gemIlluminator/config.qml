@@ -1,12 +1,11 @@
 import QtQuick 2.0
-import QtQuick.LocalStorage 2.0
 
 Item {
     id: config
     visible: false
     property var gemTypes: null
     property int numGems: 0
-    property real gemSize: 0
+    property var gemRangeSize: null
 
     Component.onCompleted: {
         loadConfig()
@@ -28,7 +27,7 @@ Item {
     {
         gemTypes = config["GemTypes"]
         numGems = config["NumGems"]
-        gemSize = config["GemSize"]
+        gemRangeSize = config["GemRangeSize"]
     }
 }
 

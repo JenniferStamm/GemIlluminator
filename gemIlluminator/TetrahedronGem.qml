@@ -6,9 +6,6 @@ TetrahedronGem {
         var xAngle = Math.random() * 360 - 180
         var yAngle = Math.random() * 360 - 180
         var zAngle = Math.random() * 360 - 180
-
-        initialRotation.x = xAngle
-        initialRotation.y = yAngle
-        initialRotation.z = zAngle
+        setInitialRotationFromEuler(Qt.vector3d(xAngle, yAngle, zAngle))
     }
 }

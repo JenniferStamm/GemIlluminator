@@ -1,72 +1,38 @@
 #include "abstractgemrenderer.h"
 
 #include <QOpenGLShaderProgram>
+#include <QQuaternion>
 #include <QVector3D>
 
 AbstractGemRenderer::AbstractGemRenderer(QObject *parent) :
     QObject(parent)
-  , m_initialRotation(new QVector3D)
-  , m_position(new QVector3D())
-  , m_rotation(new QVector3D())
-  , m_scale(1.f)
+  , m_color(new QVector3D())
+  , m_model(new QMatrix4x4())
 {
 }
 
 AbstractGemRenderer::~AbstractGemRenderer()
 {
-    delete m_initialRotation;
-    delete m_position;
-    delete m_rotation;
+    delete m_color;
+    delete m_model;
 }
 
-const QVector3D &AbstractGemRenderer::initialRotation() const
+const QVector3D &AbstractGemRenderer::color() const
 {
-    return *m_initialRotation;
+    return *m_color;
 }
 
-void AbstractGemRenderer::setInitialRotation(const QVector3D &initialRotation)
+void AbstractGemRenderer::setColor(const QVector3D &color)
 {
-    if (initialRotation == *m_initialRotation) {
-       return;
-    }
-    *m_initialRotation = initialRotation;
+    *m_color = color;
 }
 
-const QVector3D &AbstractGemRenderer::position() const
+const QMatrix4x4 &AbstractGemRenderer::model() const
 {
-    return *m_position;
+    return *m_model;
 }
 
-void AbstractGemRenderer::setPosition(const QVector3D &position)
+void AbstractGemRenderer::setModel(const QMatrix4x4 &model)
 {
-    if (position == *m_position) {
-       return;
-    }
-    *m_position = position;
-}
-
-const QVector3D &AbstractGemRenderer::rotation() const
-{
-    return *m_rotation;
-}
-
-void AbstractGemRenderer::setRotation(const QVector3D &rotation)
-{
-    if (rotation == *m_rotation) {
-       return;
-    }
-    *m_rotation = rotation;
-}
-
-qreal AbstractGemRenderer::scale() const
-{
-    return m_scale;
-}
-
-void AbstractGemRenderer::setScale(qreal scale)
-{
-    if (scale == m_scale) {
-       return;
-    }
-    m_scale = scale;
+    *m_model = model;
 }

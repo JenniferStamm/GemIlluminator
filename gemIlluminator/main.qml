@@ -95,7 +95,8 @@ ApplicationWindow {
 
                 // Simple solution for stop rendering without a crash
                 scene.geometries = []
-                scene.delete
+                scene.destroy(5)
+                scene = null
             }
         }
     }
@@ -125,7 +126,6 @@ ApplicationWindow {
 
         startButton.onClicked: {
             loadScreen.visible = true
-            scene = null
 
             scene = sceneComponent.createObject(root)
             scene.loadScreen = loadScreen

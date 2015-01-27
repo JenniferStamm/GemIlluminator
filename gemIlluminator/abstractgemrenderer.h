@@ -1,10 +1,9 @@
 #ifndef GEOMETRYRENDERER_H
 #define GEOMETRYRENDERER_H
 
-#include <QMatrix4x4>
 #include <QObject>
-#include <QVector3D>
 
+class QMatrix4x4;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class QVector3D;
@@ -19,23 +18,15 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) = 0;
 
-    const QVector3D &initialRotation() const;
-    void setInitialRotation(const QVector3D &initialRotation);
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
 
-    const QVector3D &position() const;
-    void setPosition(const QVector3D &position);
-
-    const QVector3D &rotation() const;
-    void setRotation(const QVector3D &rotation);
-
-    qreal scale() const;
-    void setScale(qreal scaleFactor);
+    const QMatrix4x4 &model() const;
+    void setModel(const QMatrix4x4 &model);
 
 protected:
-    QVector3D *m_initialRotation;
-    QVector3D *m_position;
-    QVector3D *m_rotation;
-    qreal m_scale;
+    QMatrix4x4 *m_model;
+    QVector3D *m_color;
 };
 
 #endif // GEOMETRYRENDERER_H

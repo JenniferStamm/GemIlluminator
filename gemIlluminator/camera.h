@@ -27,7 +27,7 @@ public:
      *  \param camera Specifies the camera the matrices are copied from.
      *  \param parent Specifies the parent
      */
-    Camera(Camera & camera, QObject *parent = 0);
+    Camera(const Camera &camera, QObject *parent = 0);
     virtual ~Camera();
 
     const QMatrix4x4 &view() const;
@@ -66,6 +66,8 @@ public slots:
     void setZFar(float zFar);
 
 protected:
+    void invalidateView() const;
+    void invalidateProjection() const;
     void recalculateView() const;
     void recalculateProjection() const;
     void recalculateViewProjection() const;
@@ -87,7 +89,8 @@ protected:
     mutable QMatrix4x4 *m_viewProjectionInverted;
 
     mutable bool m_isViewInvalid;
-    bool m_isProjectionInvalid;
+    mutable bool m_isProjectionInvalid;
+    mutable bool m_isViewProjectionInvalid;
 };
 
 #endif // CAMERA_H

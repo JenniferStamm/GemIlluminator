@@ -9,6 +9,7 @@ class QMatrix4x4;
 class QSize;
 
 class AbstractGem;
+class Camera;
 class LightRay;
 class ScreenAlignedQuad;
 
@@ -21,11 +22,8 @@ public:
     virtual ~SceneRenderer();
 
     void setViewport(const QSize &viewport);
-
     void setGeometries(QList<AbstractGem*> geometries);
-    void setProjectionInverted(const QMatrix4x4 &projectionInverted);
-    void setView(const QMatrix4x4 &view);
-    void setViewProjection(const QMatrix4x4 &viewProjection);
+    void setCamera(const Camera &camera);
 
     bool isActive() const;
     void setActive(bool active);
@@ -48,9 +46,7 @@ protected:
     QList<AbstractGem*> m_geometries;
     bool m_active;
     QOpenGLFunctions * m_gl;
-    QMatrix4x4 *m_projectionInverted;
-    QMatrix4x4 *m_view;
-    QMatrix4x4 *m_viewProjection;
+    Camera *m_camera;
     QOpenGLShaderProgram *m_gemProgram;
     QOpenGLShaderProgram *m_lightProgram;
     LightRay *m_rootLightRay;

@@ -14,8 +14,7 @@ Item {
 
         onReadingChanged: {
             if(Qt.platform.os == "android") {
-                navigation.rotateX = rotationSensor.reading.y * 2
-                navigation.rotateY = rotationSensor.reading.x * 2
+                navigation.eulerRotation = Qt.vector3d(rotationSensor.reading.y * 2, rotationSensor.reading.x, 0)
             }
         }
     }
@@ -26,8 +25,7 @@ Item {
 
         onReadingChanged: {
             if(Qt.platform.os == "android") {
-                navigation.rotateX = tiltSensor.reading.yRotation * 2
-                navigation.rotateY = tiltSensor.reading.xRotation * 2
+                navigation.eulerRotation = Qt.vector3d(tiltSensor.reading.y * 2, tiltSensor.reading.x, 0)
             }
         }
     }

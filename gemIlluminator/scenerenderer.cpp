@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "abstractgem.h"
+#include "camera.h"
 #include "lightray.h"
 #include "screenalignedquad.h"
 
@@ -17,13 +18,11 @@ SceneRenderer::SceneRenderer(QObject *parent) :
   , m_initialized(false)
   , m_viewport(new QSize())
   , m_gl(new QOpenGLFunctions())
-  , m_projectionInverted(new QMatrix4x4())
-  , m_view(new QMatrix4x4())
-  , m_viewProjection(new QMatrix4x4())
   , m_gemProgram(nullptr)
   , m_lightProgram(nullptr)
   , m_envmapProgram(nullptr)
   , m_quad(nullptr)
+  , m_camera(nullptr)
 {
     m_gl->initializeOpenGLFunctions();
 }
@@ -31,11 +30,9 @@ SceneRenderer::SceneRenderer(QObject *parent) :
 SceneRenderer::~SceneRenderer()
 {
     delete m_gl;
-    delete m_projectionInverted;
     delete m_quad;
-    delete m_view;
+    delete m_camera;
     delete m_viewport;
-    delete m_viewProjection;
 }
 
 void SceneRenderer::initialize() {
@@ -47,8 +44,7 @@ void SceneRenderer::initialize() {
     }
 
     m_gemProgram->bindAttributeLocation("a_vertex", 0);
-    m_gemProgram->bindAttributeLocation("a_color", 1);
-    m_gemProgram->bindAttributeLocation("a_normal", 2);
+    m_gemProgram->bindAttributeLocation("a_normal", 1);
 
     m_lightProgram = new QOpenGLShaderProgram(this);
     m_lightProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
@@ -135,15 +131,18 @@ void SceneRenderer::paint()
 
         m_gemProgram->enableAttributeArray(0);
         m_gemProgram->enableAttributeArray(1);
-        m_gemProgram->enableAttributeArray(2);
+
+        m_gemProgram->setUniformValue("envmap", 0);
+        m_gemProgram->setUniformValue("eye", m_camera->eye());
+        m_gl->glActiveTexture(GL_TEXTURE0);
+        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
         for (auto& geometry : m_geometries) {
-            geometry->paint(*m_gl, *m_viewProjection, *m_gemProgram);
+            geometry->paint(*m_gl, m_camera->viewProjection(), *m_gemProgram);
         }
 
         m_gemProgram->disableAttributeArray(0);
         m_gemProgram->disableAttributeArray(1);
-        m_gemProgram->disableAttributeArray(2);
 
         m_gemProgram->release();
 
@@ -163,8 +162,8 @@ void SceneRenderer::paintEnvmap()
 {
     m_envmapProgram->bind();
 
-    m_envmapProgram->setUniformValue("view", *m_view);
-    m_envmapProgram->setUniformValue("projectionInverse", *m_projectionInverted);
+    m_envmapProgram->setUniformValue("view", m_camera->view());
+    m_envmapProgram->setUniformValue("projectionInverse", m_camera->projectionInverted());
 
     m_envmapProgram->setUniformValue("cubemap", 0);
 
@@ -200,22 +199,11 @@ void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
     m_geometries = geometries;
 }
 
-void SceneRenderer::setProjectionInverted(const QMatrix4x4 &projectionInverted)
+void SceneRenderer::setCamera(const Camera &camera)
 {
-    *m_projectionInverted = projectionInverted;
+    delete m_camera;
+    m_camera = new Camera(camera);
 }
-
-void SceneRenderer::setView(const QMatrix4x4 &view)
-{
-    *m_view = view;
-}
-
-void SceneRenderer::setViewProjection(const QMatrix4x4 &viewProjection)
-{
-    *m_viewProjection = viewProjection;
-}
-
-
 
 bool SceneRenderer::isActive() const
 {

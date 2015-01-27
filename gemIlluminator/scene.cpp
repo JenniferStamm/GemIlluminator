@@ -54,9 +54,7 @@ void Scene::sync()
         m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
         m_renderer->setGeometries(m_gem);
         m_renderer->setRootLightRay(m_rootLightRay);
-        m_renderer->setProjectionInverted(m_camera->projectionInverted());
-        m_renderer->setView(m_camera->view());
-        m_renderer->setViewProjection(m_camera->viewProjection());
+        m_renderer->setCamera(*m_camera);
 
         int elapsedTime = m_time->restart();
 
@@ -67,9 +65,7 @@ void Scene::sync()
             i->synchronize();
         }
 
-        m_currentGem->setRotation(QVector3D(m_navigation->rotateX(),
-            m_navigation->rotateY(),
-            m_navigation->rotateZ()));
+        m_currentGem->setRotation(m_navigation->worldSpaceRotation());
     }
 }
 
@@ -101,6 +97,7 @@ QQmlListProperty<AbstractGem> Scene::geometries()
 void Scene::registerNavigation(Navigation *navigation)
 {
     m_navigation = navigation;
+    m_navigation->setCamera(m_camera);
 }
 
 qreal Scene::t() const

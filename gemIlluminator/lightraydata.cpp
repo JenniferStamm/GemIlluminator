@@ -44,7 +44,7 @@ QVector3D LightRayData::normalizedOrthogonalVector() const
             return QVector3D(1.f, 0.f, 0.f);
         }
     } else if (direction().z() != 0.f) {
-        return QVector3D(1.f, 0.f, 0.f);
+        return QVector3D(0.f, 1.f, 0.f);
     } else {
         return QVector3D(0.f, 0.f, 0.f);
     }
