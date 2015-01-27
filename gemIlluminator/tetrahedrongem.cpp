@@ -22,8 +22,8 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
 
     m_triangles->append(new Triangle(
                 vertices.at(1),
-                vertices.at(3),
                 vertices.at(2),
+                vertices.at(3),
                 this));
     m_triangles->append(new Triangle(
                 vertices.at(0),
