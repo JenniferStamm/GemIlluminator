@@ -233,7 +233,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     // Calculate collision according to
     // http://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
     // http://www.cs.virginia.edu/~gfx/Courses/2003/ImageSynthesis/papers/Acceleration/Fast%20MinimumStorage%20RayTriangle%20Intersection.pdf
-    const float epsilon = 0.000001f;
+    const float epsilon = 0.0001f;
     float tPrevious = maxFloat;
     float t, u, v;
     QVector3D edge1, edge2, tvec, pvec, qvec;
@@ -267,7 +267,8 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
                 if ( v >= 0.f && u + v <= 1.0) {
                     // Calculate t, ray intersects triangle
                     t = QVector3D::dotProduct(edge2, qvec) * invDet;
-                    if (t < tPrevious && t > 0.0 + epsilon) {
+                    //Use !qFuzzyIsNull(t) to ensure, that length of calculated vector is not treated as zero by qFuzzyIsEqual (required if calculated vectors should be normalized)
+                    if (t < tPrevious && t > 0.0 + epsilon && !qFuzzyIsNull(t)) {
                         tPrevious = t;
                         intersectedTriangle = objectSpaceTriangle;
                         if (collisionPoint) {
