@@ -63,7 +63,7 @@ void AbstractGem::setInitialRotationFromEuler(const QVector3D &initialEulerRotat
     QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), initialEulerRotation.x());
     QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), initialEulerRotation.y());
     QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), initialEulerRotation.z());
-    QQuaternion newInitialRoation = newRotationX * newRotationY * newRotationZ;
+    QQuaternion newInitialRoation = newRotationY * newRotationX * newRotationZ;
     setInitialRotation(newInitialRoation);
 }
 
@@ -281,4 +281,9 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
         }
     }
     return tPrevious;
+}
+
+void AbstractGem::rotate(const QQuaternion &quaternion)
+{
+    setRotation(quaternion * rotation());
 }

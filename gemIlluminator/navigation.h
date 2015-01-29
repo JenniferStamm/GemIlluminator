@@ -26,8 +26,9 @@ public:
     void setEulerRotation(const QVector3D &angles);
 
 signals:
-    void rotationChanged();
-    void eulerRotationChanged();
+    void eulerRotationChanged(const QVector3D &rotation);
+    void rotationChanged(const QQuaternion &rotation);
+    void worldSpaceRotationChanged(const QQuaternion &rotation);
 
 protected:
     QQuaternion fromEulerAngleQuaternions(const QQuaternion &x, const QQuaternion &y, const QQuaternion &z) const;
