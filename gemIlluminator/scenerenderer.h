@@ -48,7 +48,6 @@ protected:
     QOpenGLFunctions * m_gl;
     Camera *m_camera;
     QOpenGLShaderProgram *m_gemProgram;
-    QOpenGLShaderProgram *m_lightProgram;
     LightRay *m_rootLightRay;
 
     uint m_envmap;

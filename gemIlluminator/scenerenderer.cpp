@@ -19,7 +19,6 @@ SceneRenderer::SceneRenderer(QObject *parent) :
   , m_viewport(new QSize())
   , m_gl(new QOpenGLFunctions())
   , m_gemProgram(nullptr)
-  , m_lightProgram(nullptr)
   , m_envmapProgram(nullptr)
   , m_quad(nullptr)
   , m_camera(nullptr)
@@ -45,17 +44,6 @@ void SceneRenderer::initialize() {
 
     m_gemProgram->bindAttributeLocation("a_vertex", 0);
     m_gemProgram->bindAttributeLocation("a_normal", 1);
-
-    m_lightProgram = new QOpenGLShaderProgram(this);
-    m_lightProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
-    m_lightProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
-    if (!m_lightProgram->link()) {
-        qDebug() << "Light: Link failed";
-    }
-
-    m_lightProgram->bindAttributeLocation("a_vertex", 0);
-    m_lightProgram->bindAttributeLocation("a_color", 1);
-    m_lightProgram->bindAttributeLocation("a_normal", 2);
 
     initializeEnvmap();
 
