@@ -20,15 +20,13 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                if(scene !== null) {
-                    scene.active = false
-                }
+                painter.active = false
+
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                if(scene !== null) {
-                    scene.active = false
-                }
+                painter.active = false
+
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
@@ -48,15 +46,12 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                if(scene !== null) {
-                    scene.active = true
-                }
+                painter.active = true
+
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                if(scene !== null) {
-                    scene.active = false
-                }
+                painter.active = false
 
                 if(Qt.platform.os === "android") {
                     root.hide()
@@ -95,8 +90,9 @@ ApplicationWindow {
 
                 // Simple solution for stop rendering without a crash
                 scene.geometries = []
-                scene.destroy(5)
+                scene.destroy(20)
                 scene = null
+                painter.sceneId = scene
             }
         }
     }
@@ -120,6 +116,10 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    Painter {
+        id: painter
+    }
+
     MainMenu {
         id: mainMenu
         anchors.fill: parent
@@ -130,6 +130,7 @@ ApplicationWindow {
             scene = sceneComponent.createObject(root)
             scene.loadScreen = loadScreen
             scene.registerNavigation(navigation)
+            painter.sceneId = scene
         }
     }
 
