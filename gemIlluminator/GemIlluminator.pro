@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
     scenebounds.cpp \
-    painter.cpp
+    painter.cpp \
+    painterqml.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -56,4 +57,5 @@ HEADERS += \
     cubegem.h \
     screenalignedquad.h \
     scenebounds.h \
-    painter.h
+    painter.h \
+    painterqml.h
