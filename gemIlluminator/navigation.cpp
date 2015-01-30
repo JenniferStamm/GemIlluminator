@@ -37,9 +37,9 @@ QQuaternion Navigation::worldSpaceRotation() const
     QVector3D yAxisView(0.f, 1.f, 0.f);
     QVector3D zAxisView(0.f, 0.f, 1.f);
 
-    QVector3D xAxisWorld = m_camera->view().transposed() * xAxisView;
-    QVector3D yAxisWorld = m_camera->view().transposed() * yAxisView;
-    QVector3D zAxisWorld = m_camera->view().transposed() * zAxisView;
+    QVector3D xAxisWorld = m_camera->viewInverted() * xAxisView - m_camera->eye();
+    QVector3D yAxisWorld = m_camera->viewInverted() * yAxisView - m_camera->eye();
+    QVector3D zAxisWorld = m_camera->viewInverted() * zAxisView - m_camera->eye();
 
     QQuaternion xRotation = QQuaternion::fromAxisAndAngle(xAxisWorld, m_eulerRotation->x());
     QQuaternion yRotation = QQuaternion::fromAxisAndAngle(yAxisWorld, m_eulerRotation->y());
@@ -64,10 +64,12 @@ void Navigation::setEulerRotation(const QVector3D &angles)
         return;
 
     *m_eulerRotation = angles;
-    emit eulerRotationChanged();
+    emit eulerRotationChanged(eulerRotation());
+    emit rotationChanged(rotation());
+    emit worldSpaceRotationChanged(worldSpaceRotation());
 }
 
 QQuaternion Navigation::fromEulerAngleQuaternions(const QQuaternion &x, const QQuaternion &y, const QQuaternion &z) const
 {
-    return z * x * y;
+    return y * x * z;
 }

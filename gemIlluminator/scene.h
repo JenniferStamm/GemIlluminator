@@ -76,6 +76,7 @@ public slots:
     virtual void sync();
     virtual void cleanup();
     void registerNavigation(Navigation *navigation);
+    void rotateCurrentGem(const QQuaternion &quaternion);
 
 protected:
     SceneRenderer *m_renderer;

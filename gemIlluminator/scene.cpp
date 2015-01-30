@@ -20,6 +20,7 @@ Scene::Scene(QQuickItem *parent) :
   , m_renderer(nullptr)
   , m_time(nullptr)
   , m_rootLightRay(new LightRay(this))
+  , m_navigation(nullptr)
   , m_bounds(new SceneBounds())
   , m_currentGem(m_bounds)
 {
@@ -64,8 +65,6 @@ void Scene::sync()
         for (auto& i : m_gem) {
             i->synchronize();
         }
-
-        m_currentGem->setRotation(m_navigation->worldSpaceRotation());
     }
 }
 
@@ -96,8 +95,17 @@ QQmlListProperty<AbstractGem> Scene::geometries()
 
 void Scene::registerNavigation(Navigation *navigation)
 {
+    if (m_navigation) {
+        disconnect(m_navigation, &Navigation::worldSpaceRotationChanged, this, &Scene::rotateCurrentGem);
+    }
     m_navigation = navigation;
     m_navigation->setCamera(m_camera);
+    connect(m_navigation, &Navigation::worldSpaceRotationChanged, this, &Scene::rotateCurrentGem);
+}
+
+void Scene::rotateCurrentGem(const QQuaternion &quaternion)
+{
+    m_currentGem->rotate(quaternion);
 }
 
 qreal Scene::t() const
