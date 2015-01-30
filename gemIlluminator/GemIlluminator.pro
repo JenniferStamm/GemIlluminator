@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     tetrahedrongem.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
-    scenebounds.cpp
+    scenebounds.cpp \
+    painter.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -54,4 +55,5 @@ HEADERS += \
     tetrahedrongem.h \
     cubegem.h \
     screenalignedquad.h \
-    scenebounds.h
+    scenebounds.h \
+    painter.h
