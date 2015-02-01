@@ -4,9 +4,9 @@ import GemIlluminator 1.0
 Painter {
     id: painter
     visible: false
+    scene: null
 
     property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
-    property var sceneTemp: null
 
     SequentialAnimation on t {
         NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
@@ -16,18 +16,16 @@ Painter {
 
     function generateScene()
     {
-        sceneTemp = sceneComponent.createObject(root)
-        sceneTemp.loadScreen = loadScreen
-        sceneTemp.registerNavigation(navigation)
-        painter.scene = sceneTemp
+        scene = sceneComponent.createObject(root)
+        scene.loadScreen = loadScreen
+        scene.registerNavigation(navigation)
     }
 
     function clearScene()
     {
         // Simple solution for stop rendering without a crash
-        painter.scene.geometries = []
-        painter.scene.destroy(5)
-        sceneTemp = null
-        painter.scene = null
+        scene.geometries = []
+        scene.destroy()
+        scene = null
     }
 }

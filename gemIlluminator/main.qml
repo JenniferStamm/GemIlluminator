@@ -17,13 +17,13 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                if(painter.sceneTemp !== null) {
+                if(painter.scene !== null) {
                     painter.active = false
                 }
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                if(painter.sceneTemp !== null) {
+                if(painter.scene !== null) {
                     painter.active = false
                 }
                 console.log("Hidden")
@@ -45,13 +45,13 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                if(painter.sceneTemp !== null) {
+                if(painter.scene !== null) {
                     painter.active = true
                 }
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                if(painter.sceneTemp !== null) {
+                if(painter.scene !== null) {
                     painter.active = false
                 }
 
@@ -84,9 +84,9 @@ ApplicationWindow {
         focus: true
 
         Keys.onReleased: {
-            if (((event.key == Qt.Key_Escape && Qt.platform.os !== "android") ||
-                    (event.key == Qt.Key_Back && Qt.platform.os === "android")) &&
-                    scene != null) {
+            if (((event.key === Qt.Key_Escape && Qt.platform.os !== "android") ||
+                    (event.key === Qt.Key_Back && Qt.platform.os === "android")) &&
+                    painter.scene !== null) {
                 event.accepted = true
                 mainMenu.visible = true
 
