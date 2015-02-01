@@ -16,11 +16,10 @@
 Painter::Painter(QObject *parent) :
     QObject(parent)
   , m_active(false)
-  , m_envmapProgram(nullptr)
-  , m_gemProgram(nullptr)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
   , m_quad(nullptr)
+  , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_viewport(new QSize())
 {
     m_gl->initializeOpenGLFunctions();
@@ -30,6 +29,10 @@ Painter::~Painter()
 {
     delete m_gl;
     delete m_quad;
+    for (auto i : *m_shaderPrograms) {
+        delete i;
+    }
+    delete m_shaderPrograms;
     delete m_viewport;
 }
 
@@ -90,26 +93,23 @@ void Painter::paint()
         paintEnvmap();
 
         /* Paint gems */
-        m_gemProgram->bind();
+        QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
+        gemProgram->bind();
 
-        m_gemProgram->enableAttributeArray(0);
-        m_gemProgram->enableAttributeArray(1);
+        gemProgram->enableAttributeArray(0);
+        gemProgram->enableAttributeArray(1);
 
-        m_gemProgram->setUniformValue("envmap", 0);
-        m_gemProgram->setUniformValue("eye", m_scene->camera()->eye());
+        gemProgram->setUniformValue("envmap", 0);
+        gemProgram->setUniformValue("eye", m_scene->camera()->eye());
         m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
-        QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
-        shaderPrograms.insert(ShaderPrograms::GemProgram, m_gemProgram);
-        shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_gemProgram);
+        m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), *m_shaderPrograms);
 
-        m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), shaderPrograms);
+        gemProgram->disableAttributeArray(0);
+        gemProgram->disableAttributeArray(1);
 
-        m_gemProgram->disableAttributeArray(0);
-        m_gemProgram->disableAttributeArray(1);
-
-        m_gemProgram->release();
+        gemProgram->release();
 
 
         // Reset OpenGL state for qml
@@ -122,15 +122,18 @@ void Painter::paint()
 }
 
 void Painter::initialize() {
-    m_gemProgram = new QOpenGLShaderProgram(this);
-    m_gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
-    m_gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
-    if (!m_gemProgram->link()) {
+    QOpenGLShaderProgram *gemProgram = new QOpenGLShaderProgram(this);
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
+    if (!gemProgram->link()) {
         qDebug() << "Gem: Link failed";
     }
 
-    m_gemProgram->bindAttributeLocation("a_vertex", 0);
-    m_gemProgram->bindAttributeLocation("a_normal", 1);
+    gemProgram->bindAttributeLocation("a_vertex", 0);
+    gemProgram->bindAttributeLocation("a_normal", 1);
+
+    m_shaderPrograms->insert(ShaderPrograms::GemProgram, gemProgram);
+    m_shaderPrograms->insert(ShaderPrograms::LighRayProgram, new QOpenGLShaderProgram(this));
 
     initializeEnvmap();
 
@@ -173,33 +176,36 @@ void Painter::initializeEnvmap()
             m_gl->glTexImage2D(face, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
         }
 
-    m_envmapProgram = new QOpenGLShaderProgram();
-    m_envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
-    m_envmapProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");
+    QOpenGLShaderProgram *envmapProgram = new QOpenGLShaderProgram();
+    envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
+    envmapProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");
 
-    if (!m_envmapProgram->link()) {
+    if (!envmapProgram->link()) {
         qDebug() << "Light: Link failed";
     }
 
-    m_envmapProgram->bindAttributeLocation("a_vertex", 0);
+    envmapProgram->bindAttributeLocation("a_vertex", 0);
+
+    m_shaderPrograms->insert(ShaderPrograms::EnvMapProgram, envmapProgram);
 }
 
 void Painter::paintEnvmap()
 {
-    m_envmapProgram->bind();
+    QOpenGLShaderProgram *envmapProgram = (*m_shaderPrograms)[ShaderPrograms::EnvMapProgram];
+    envmapProgram->bind();
 
-    m_envmapProgram->setUniformValue("view", m_scene->camera()->view());
-    m_envmapProgram->setUniformValue("projectionInverse", m_scene->camera()->projectionInverted());
+    envmapProgram->setUniformValue("view", m_scene->camera()->view());
+    envmapProgram->setUniformValue("projectionInverse", m_scene->camera()->projectionInverted());
 
-    m_envmapProgram->setUniformValue("cubemap", 0);
+    envmapProgram->setUniformValue("cubemap", 0);
 
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glEnable(GL_TEXTURE_CUBE_MAP);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
-    m_envmapProgram->bind();
+    envmapProgram->bind();
     m_quad->draw(*m_gl);
-    m_envmapProgram->release();
+    envmapProgram->release();
 
     m_gl->glDepthMask(GL_TRUE);
     m_gl->glActiveTexture(GL_TEXTURE0);

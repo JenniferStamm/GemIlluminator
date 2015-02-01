@@ -19,7 +19,8 @@ class Triangle;
 
 enum class ShaderPrograms {
     GemProgram,
-    LighRayProgram
+    LighRayProgram,
+    EnvMapProgram
 };
 
 class Scene : public QQuickItem

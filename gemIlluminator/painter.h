@@ -10,6 +10,7 @@ class QSize;
 class Camera;
 class ScreenAlignedQuad;
 class Scene;
+enum class ShaderPrograms;
 
 /**
  * @brief The Painter class
@@ -47,12 +48,11 @@ protected:
     bool m_active;
     Camera *m_camera;
     uint m_envmap;
-    QOpenGLShaderProgram *m_envmapProgram;
-    QOpenGLShaderProgram *m_gemProgram;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
+    QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_viewport;
 };
 
