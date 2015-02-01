@@ -16,7 +16,7 @@ SceneRenderer::~SceneRenderer()
 {
 }
 
-void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms)
+void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
     paintGems(gl, viewProjection, *shaderPrograms[ShaderPrograms::GemProgram]);
     paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);

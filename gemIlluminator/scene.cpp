@@ -58,7 +58,7 @@ void Scene::cleanup()
     }
 }
 
-void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms)
+void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
     m_renderer->paint(gl, viewProjection, shaderPrograms);
 }

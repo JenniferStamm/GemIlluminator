@@ -104,6 +104,11 @@ void Painter::paint()
         m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
+        QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
+        shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
+        shaderPrograms.insert(ShaderPrograms::EnvMapProgram, m_shaderPrograms->value(ShaderPrograms::EnvMapProgram));
+        shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
+
         m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), *m_shaderPrograms);
 
         gemProgram->disableAttributeArray(0);
