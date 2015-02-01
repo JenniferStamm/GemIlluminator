@@ -13,7 +13,6 @@ class PainterQML : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
-    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
     Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
 
@@ -23,9 +22,6 @@ public:
 
     bool isActive() const;
     void setActive(bool active);
-
-    LightRay *rootLightRay() const;
-    void setRootLightRay(LightRay *rootLightRay);
 
     Scene *scene() const;
     void setScene(Scene *scene);
@@ -45,7 +41,6 @@ public slots:
 protected:
     bool m_active;
     Painter *m_painter;
-    LightRay *m_rootLightRay;
     Scene *m_scene;
     qreal m_t;
     QTime *m_time;

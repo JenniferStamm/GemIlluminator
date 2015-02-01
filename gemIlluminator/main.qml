@@ -20,13 +20,15 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                painter.active = false
-
+                if(scene !== null) {
+                    scene.active = false
+                }
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                painter.active = false
-
+                if(scene !== null) {
+                    scene.active = false
+                }
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
@@ -46,12 +48,15 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                painter.active = true
-
+                if(scene !== null) {
+                    scene.active = true
+                }
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                painter.active = false
+                if(scene !== null) {
+                    scene.active = false
+                }
 
                 if(Qt.platform.os === "android") {
                     root.hide()
@@ -88,11 +93,12 @@ ApplicationWindow {
                 event.accepted = true
                 mainMenu.visible = true
 
+                painter.active = false
+
                 // Simple solution for stop rendering without a crash
                 scene.geometries = []
-                scene.destroy(20)
+                scene.destroy(5)
                 scene = null
-                painter.sceneId = scene
             }
         }
     }
@@ -116,10 +122,6 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    Painter {
-        id: painter
-    }
-
     MainMenu {
         id: mainMenu
         anchors.fill: parent
@@ -130,7 +132,9 @@ ApplicationWindow {
             scene = sceneComponent.createObject(root)
             scene.loadScreen = loadScreen
             scene.registerNavigation(navigation)
-            painter.sceneId = scene
+
+            painter.scene = scene
+            painter.active = true
         }
     }
 

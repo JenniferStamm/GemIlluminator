@@ -9,8 +9,8 @@
 
 PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
+  , m_active(false)
   , m_painter(nullptr)
-  , m_rootLightRay(nullptr)
   , m_time(nullptr)
 {
     connect(this, &PainterQML::windowChanged, this, &PainterQML::handleWindowChanged);
@@ -47,16 +47,6 @@ void PainterQML::setActive(bool active)
     emit activeChanged();
 }
 
-LightRay* PainterQML::rootLightRay() const
-{
-    return m_rootLightRay;
-}
-
-void PainterQML::setRootLightRay(LightRay *rootLightRay)
-{
-    m_rootLightRay = rootLightRay;
-}
-
 Scene* PainterQML::scene() const
 {
     return m_scene;
@@ -91,7 +81,7 @@ void PainterQML::synchronize()
 
     if (m_active) {
         if (!m_painter) {
-            m_painter = new Painter(m_scene->sceneRenderer());
+            m_painter = new Painter();
             connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
         }
 
@@ -100,12 +90,9 @@ void PainterQML::synchronize()
             m_time->start();
         }
 
-        m_painter->setRootLightRay(m_rootLightRay);
-
         int elapsedTime = m_time->restart();
 
-        m_rootLightRay->update(elapsedTime);
-        m_rootLightRay->synchronize();
+        m_scene->sync(elapsedTime);
     }
 }
 
@@ -113,4 +100,6 @@ void PainterQML::cleanup()
 {
     delete m_painter;
     m_painter = nullptr;
+
+    m_scene->cleanup();
 }

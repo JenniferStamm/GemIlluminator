@@ -8,9 +8,8 @@ class QOpenGLShaderProgram;
 class QSize;
 
 class Camera;
-class LightRay;
 class ScreenAlignedQuad;
-class SceneRenderer;
+class Scene;
 
 /**
  * @brief The Painter class
@@ -21,18 +20,16 @@ class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(SceneRenderer &sceneRenderer, QObject *parent = 0);
+    Painter(QObject *parent = 0);
     virtual ~Painter();
-
-    void setCamera(const Camera &camera);
 
     bool isActive() const;
     void setActive(bool active);
 
-    SceneRenderer &sceneRenderer() const;
+    void setCamera(const Camera &camera);
 
-    LightRay *rootLightRay() const;
-    void setRootLightRay(LightRay *rootLightRay);
+    Scene *scene() const;
+    void setScene(Scene *scene);
 
     void setViewport(const QSize &viewport);
 
@@ -55,8 +52,7 @@ protected:
     QOpenGLFunctions * m_gl;
     bool m_initialized;
     ScreenAlignedQuad *m_quad;
-    LightRay *m_rootLightRay;
-    SceneRenderer &m_sceneRenderer;
+    Scene *m_scene;
     QSize *m_viewport;
 };
 

@@ -29,7 +29,7 @@ Scene::~Scene()
     delete m_renderer;
 }
 
-void Scene::sync()
+void Scene::sync(int elapsedTime)
 {
     if (!m_renderer) {
         m_renderer = new SceneRenderer();
@@ -40,6 +40,9 @@ void Scene::sync()
         i->synchronize();
     }
 
+    m_renderer->setRootLightRay(m_rootLightRay);
+    m_rootLightRay->update(elapsedTime);
+    m_rootLightRay->synchronize();
 }
 
 void Scene::cleanup()
@@ -51,6 +54,11 @@ void Scene::cleanup()
     for (auto& i : m_gem) {
         i->cleanup();
     }
+}
+
+void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram)
+{
+    m_renderer->paint(gl, viewProjection, gemProgram);
 }
 
 QQmlListProperty<AbstractGem> Scene::geometries()
@@ -81,6 +89,16 @@ Camera* Scene::camera() const
 void Scene::setCamera(Camera* camera)
 {
     m_camera = camera;
+}
+
+LightRay* Scene::rootLightRay() const
+{
+    return m_rootLightRay;
+}
+
+void Scene::setRootLightRay(LightRay *rootLightRay)
+{
+    m_rootLightRay = rootLightRay;
 }
 
 SceneRenderer& Scene::sceneRenderer() const

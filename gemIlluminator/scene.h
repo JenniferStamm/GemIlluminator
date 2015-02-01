@@ -4,6 +4,10 @@
 #include <QQuickItem>
 #include <QQmlListProperty>
 
+class QOpenGLFunctions;
+class QOpenGLShaderProgram;
+class QMatrix4x4;
+
 class AbstractGem;
 class Camera;
 class LightRay;
@@ -17,6 +21,7 @@ class Scene : public QQuickItem
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
+    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
 
 public:
     explicit Scene(QQuickItem *parent = 0);
@@ -56,13 +61,18 @@ public:
 
     void setCurrentGem(AbstractGem *currentGem);
 
+    LightRay *rootLightRay() const;
+    void setRootLightRay(LightRay *rootLightRay);
+
 signals:
     void cubesChanged();
     void geometriesChanged();
+    void rootLightRayChanged();
 
 public slots:
-    virtual void sync();
+    virtual void sync(int elapsedTime);
     virtual void cleanup();
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 
@@ -73,6 +83,7 @@ protected:
     Navigation *m_navigation;
     SceneBounds *m_bounds;
     AbstractGem *m_currentGem;
+    LightRay *m_rootLightRay;
 };
 
 #endif // SCENE_H

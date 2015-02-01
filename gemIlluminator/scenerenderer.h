@@ -26,11 +26,15 @@ public:
 
     void setGeometries(QList<AbstractGem*> geometries);
 
+    LightRay *rootLightRay() const;
+    void setRootLightRay(LightRay *rootLightRay);
+
 public slots:
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram);
 
 protected:
     QList<AbstractGem*> m_geometries;
+    LightRay *m_rootLightRay;
 };
 
 #endif // SCENERENDERER_H

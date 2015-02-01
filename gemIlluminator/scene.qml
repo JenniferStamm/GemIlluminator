@@ -25,6 +25,15 @@ Scene {
         camera: camera
     }
 
+
+    rootLightRay: LightRay {
+        id: lightray
+        startPosition: "0, 0, -15"
+        endPosition: "0, 0, 15"
+        player: player
+        scene: parent
+    }
+
     SequentialAnimation on t {
         NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
         loops: Animation.Infinite

@@ -8,17 +8,17 @@
 
 #include "camera.h"
 #include "lightray.h"
-#include "screenalignedquad.h"
+#include "scene.h"
 #include "scenerenderer.h"
+#include "screenalignedquad.h"
 
-Painter::Painter(SceneRenderer &sceneRenderer, QObject *parent) :
+Painter::Painter(QObject *parent) :
     QObject(parent)
   , m_envmapProgram(nullptr)
   , m_gemProgram(nullptr)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
   , m_quad(nullptr)
-  , m_sceneRenderer(sceneRenderer)
   , m_viewport(new QSize())
 {
     m_gl->initializeOpenGLFunctions();
@@ -48,14 +48,14 @@ void Painter::setCamera(const Camera &camera)
     m_camera = new Camera(camera);
 }
 
-LightRay* Painter::rootLightRay() const
+Scene* Painter::scene() const
 {
-    return m_rootLightRay;
+    return m_scene;
 }
 
-void Painter::setRootLightRay(LightRay *rootLightRay)
+void Painter::setScene(Scene *scene)
 {
-    m_rootLightRay = rootLightRay;
+    m_scene = scene;
 }
 
 /**
@@ -99,15 +99,12 @@ void Painter::paint()
         m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
-        m_sceneRenderer.paint(*m_gl, m_camera->viewProjection(), *m_gemProgram);
+        m_scene->paint(*m_gl, m_camera->viewProjection(), *m_gemProgram);
 
         m_gemProgram->disableAttributeArray(0);
         m_gemProgram->disableAttributeArray(1);
 
         m_gemProgram->release();
-
-        /* Paint lightrays */
-        m_rootLightRay->paint(*m_gl);
 
 
         // Reset OpenGL state for qml
