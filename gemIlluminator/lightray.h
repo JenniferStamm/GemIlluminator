@@ -29,7 +29,6 @@ public:
     virtual ~LightRay();
 
     virtual void synchronize();
-    virtual void cleanup();
     virtual void update(int timeDifference);
 
     QVector3D normalizedOrthogonalVector() const;
@@ -50,6 +49,8 @@ public slots:
 
     Player *player();
     void setPlayer(Player *attachedPlayer);
+
+    void setRenderer(LightRayRenderer *renderer);
 
     Scene *scene();
     void setScene(Scene *owningScene);
@@ -73,7 +74,6 @@ protected:
     LightRay *m_selectedSuccessor;
     LightRayRenderer *m_renderer;
     bool m_isStatic;
-
     Player *m_player;
     Scene *m_scene;
 };

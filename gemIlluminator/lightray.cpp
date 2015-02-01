@@ -30,15 +30,10 @@ LightRay::~LightRay()
     }
     delete m_successors;
     delete m_data;
-    delete m_renderer;
 }
 
 void LightRay::synchronize()
 {
-    if (!m_renderer) {
-        m_renderer = new LightRayRenderer();
-    }
-
     if (m_scene) {
         m_renderer->setCamera(*m_scene->camera());
     }
@@ -80,16 +75,6 @@ void LightRay::calculateSuccessors()
     m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
     nextRay->setEndPosition(nextCollisionPoint);
     m_successors->push_back(nextRay);
-}
-
-void LightRay::cleanup()
-{
-    delete m_renderer;
-    m_renderer = nullptr;
-
-    for (auto& successor : *m_successors) {
-        successor->cleanup();
-    }
 }
 
 void LightRay::update(int timeDifference)
@@ -195,6 +180,15 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player = attachedPlayer;
     m_player->setPosition(startPosition());
     m_player->setViewDirection(direction());
+}
+
+void LightRay::setRenderer(LightRayRenderer *renderer)
+{
+    m_renderer = renderer;
+
+    for (auto& successor : *m_successors ) {
+        successor->setRenderer(renderer);
+    }
 }
 
 Scene *LightRay::scene()

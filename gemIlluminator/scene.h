@@ -12,6 +12,7 @@ class QMatrix4x4;
 class AbstractGem;
 class Camera;
 class LightRay;
+class LightRayRenderer;
 class Navigation;
 class SceneBounds;
 class SceneRenderer;
@@ -88,6 +89,7 @@ protected:
     Camera *m_camera;
     AbstractGem *m_currentGem;
     QList<AbstractGem*> m_gem;
+    LightRayRenderer *m_lightRayRenderer;
     Navigation *m_navigation;
     SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;

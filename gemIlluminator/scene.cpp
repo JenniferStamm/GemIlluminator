@@ -9,6 +9,7 @@
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightray.h"
+#include "lightrayrenderer.h"
 #include "navigation.h"
 #include "scenebounds.h"
 #include "scenerenderer.h"
@@ -19,6 +20,7 @@ Scene::Scene(QQuickItem *parent) :
   , m_bounds(new SceneBounds())
   , m_camera(nullptr)
   , m_currentGem(m_bounds)
+  , m_lightRayRenderer(nullptr)
   , m_navigation(nullptr)
   , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
@@ -28,6 +30,7 @@ Scene::Scene(QQuickItem *parent) :
 Scene::~Scene()
 {
     delete m_bounds;
+    delete m_lightRayRenderer;
     delete m_renderer;
 }
 
@@ -36,6 +39,11 @@ void Scene::sync(int elapsedTime)
     if (!m_renderer) {
         m_renderer = new SceneRenderer();
     }
+
+    if (!m_lightRayRenderer) {
+        m_lightRayRenderer = new LightRayRenderer();
+    }
+
     m_renderer->setGeometries(m_gem);
 
     for (auto& i : m_gem) {
@@ -51,8 +59,14 @@ void Scene::cleanup()
 {
     if (m_renderer) {
         delete m_renderer;
-        m_renderer = 0;
+        m_renderer = nullptr;
     }
+
+    if (m_lightRayRenderer) {
+        delete m_lightRayRenderer;
+        m_lightRayRenderer = nullptr;
+    }
+
     for (auto& i : m_gem) {
         i->cleanup();
     }
