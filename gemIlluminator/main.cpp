@@ -9,6 +9,7 @@
 #include "lightray.h"
 #include "camera.h"
 #include "navigation.h"
+#include "config.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
+    qmlRegisterType<Config>("GemIlluminator", 1, 0, "Config");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

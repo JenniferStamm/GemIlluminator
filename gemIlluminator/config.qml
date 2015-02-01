@@ -1,26 +1,15 @@
 import QtQuick 2.0
+import GemIlluminator 1.0
 
-Item {
+Config {
     id: config
-    visible: false
+    source: "config.json"
     property var gemTypes: null
     property int numGems: 0
     property var gemRangeSize: null
 
     Component.onCompleted: {
-        loadConfig()
-    }
-
-    function loadConfig()
-    {
-        var request = new XMLHttpRequest()
-        request.open('GET', 'config.json')
-        request.onreadystatechange = function(event) {
-            if (request.readyState == XMLHttpRequest.DONE) {
-                _parseConfig(JSON.parse(request.responseText))
-            }
-        }
-        request.send()
+        console.log(read())
     }
 
     function _parseConfig(config)

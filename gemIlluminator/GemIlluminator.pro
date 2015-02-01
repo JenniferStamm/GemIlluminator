@@ -18,17 +18,22 @@ SOURCES += main.cpp \
     tetrahedrongem.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
-    scenebounds.cpp
+    scenebounds.cpp \
+    config.cpp
 
 RESOURCES += qml.qrc \
-    shader.qrc \
-    data.qrc
+    shader.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
+
+config.sources = "config.json"
+config.path = .
+DEPLOYMENT += config
+
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
@@ -54,4 +59,5 @@ HEADERS += \
     tetrahedrongem.h \
     cubegem.h \
     screenalignedquad.h \
-    scenebounds.h
+    scenebounds.h \
+    config.h
