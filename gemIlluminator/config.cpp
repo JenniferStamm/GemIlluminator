@@ -19,7 +19,6 @@ QString Config::read()
 
     QFile file;
     file.setFileName(QApplication::applicationDirPath() + "/" + m_source);
-    qDebug() << QApplication::applicationDirPath() + "/" + m_source;
     QString fileContent;
     if (file.open(QIODevice::ReadOnly)) {
         QString line;
@@ -27,7 +26,7 @@ QString Config::read()
         do {
             line = t.readLine();
             fileContent += line;
-         } while (!line.isNull());
+        } while (!line.isNull());
 
         file.close();
     } else {

@@ -30,10 +30,9 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-config.sources = "config.json"
-config.path = .
-DEPLOYMENT += config
-
+#config.sources = config.json
+#config.path = .
+#DEPLOYMENT += config
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
@@ -61,3 +60,11 @@ HEADERS += \
     screenalignedquad.h \
     scenebounds.h \
     config.h
+
+release: DESTDIR = $$OUT_PWD/release
+debug:   DESTDIR = $$OUT_PWD/debug
+
+install_it.path = $$DESTDIR
+install_it.files = config.json
+
+INSTALLS += install_it

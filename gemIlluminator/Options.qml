@@ -16,6 +16,7 @@ Rectangle {
 
         onClicked: {
             options.visible = false
+            config.loadConfig()
         }
     }
 }

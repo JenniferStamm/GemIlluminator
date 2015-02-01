@@ -9,14 +9,15 @@ Config {
     property var gemRangeSize: null
 
     Component.onCompleted: {
-        console.log(read())
+        loadConfig()
     }
 
-    function _parseConfig(config)
+    function loadConfig()
     {
-        gemTypes = config["GemTypes"]
-        numGems = config["NumGems"]
-        gemRangeSize = config["GemRangeSize"]
+        var configJSON = JSON.parse(read())
+        gemTypes = configJSON["GemTypes"]
+        numGems = configJSON["NumGems"]
+        gemRangeSize = configJSON["GemRangeSize"]
     }
 }
 
