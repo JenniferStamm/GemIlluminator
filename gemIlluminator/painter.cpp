@@ -3,6 +3,7 @@
 #include <QImage>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
+#include <QMap>
 #include <QMatrix4x4>
 #include <QSize>
 
@@ -14,6 +15,7 @@
 
 Painter::Painter(QObject *parent) :
     QObject(parent)
+  , m_active(false)
   , m_envmapProgram(nullptr)
   , m_gemProgram(nullptr)
   , m_gl(new QOpenGLFunctions())
@@ -26,7 +28,6 @@ Painter::Painter(QObject *parent) :
 
 Painter::~Painter()
 {
-    delete m_camera;
     delete m_gl;
     delete m_quad;
     delete m_viewport;
@@ -95,11 +96,15 @@ void Painter::paint()
         m_gemProgram->enableAttributeArray(1);
 
         m_gemProgram->setUniformValue("envmap", 0);
-        m_gemProgram->setUniformValue("eye", m_camera->eye());
+        m_gemProgram->setUniformValue("eye", m_scene->camera()->eye());
         m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
-        m_scene->paint(*m_gl, m_camera->viewProjection(), *m_gemProgram);
+        QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
+        shaderPrograms.insert(ShaderPrograms::GemProgram, m_gemProgram);
+        shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_gemProgram);
+
+        m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), shaderPrograms);
 
         m_gemProgram->disableAttributeArray(0);
         m_gemProgram->disableAttributeArray(1);
@@ -183,8 +188,8 @@ void Painter::paintEnvmap()
 {
     m_envmapProgram->bind();
 
-    m_envmapProgram->setUniformValue("view", m_camera->view());
-    m_envmapProgram->setUniformValue("projectionInverse", m_camera->projectionInverted());
+    m_envmapProgram->setUniformValue("view", m_scene->camera()->view());
+    m_envmapProgram->setUniformValue("projectionInverse", m_scene->camera()->projectionInverted());
 
     m_envmapProgram->setUniformValue("cubemap", 0);
 

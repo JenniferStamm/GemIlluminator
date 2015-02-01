@@ -1,10 +1,13 @@
 #ifndef SCENERENDERER_H
 #define SCENERENDERER_H
 
+#include <QMap>
 #include <QObject>
+#include <QOpenGLShaderProgram>
+
+#include "scene.h"
 
 class QOpenGLFunctions;
-class QOpenGLShaderProgram;
 class QMatrix4x4;
 
 
@@ -30,7 +33,11 @@ public:
     void setRootLightRay(LightRay *rootLightRay);
 
 public slots:
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms);
+
+protected:
+    void paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram& shaderProgram);
+    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram& shaderProgram);
 
 protected:
     QList<AbstractGem*> m_geometries;

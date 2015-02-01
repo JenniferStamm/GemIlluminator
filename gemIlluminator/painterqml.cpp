@@ -85,6 +85,8 @@ void PainterQML::synchronize()
             connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
         }
 
+        m_painter->setScene(m_scene);
+
         if (!m_time) {
             m_time = new QTime();
             m_time->start();

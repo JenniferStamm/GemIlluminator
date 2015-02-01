@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <QMap>
 #include <QQuickItem>
 #include <QQmlListProperty>
 
@@ -15,6 +16,11 @@ class Navigation;
 class SceneBounds;
 class SceneRenderer;
 class Triangle;
+
+enum class ShaderPrograms {
+    GemProgram,
+    LighRayProgram
+};
 
 class Scene : public QQuickItem
 {
@@ -72,7 +78,7 @@ signals:
 public slots:
     virtual void sync(int elapsedTime);
     virtual void cleanup();
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 

@@ -11,23 +11,20 @@ ApplicationWindow {
     height: 480
     color: "red"
 
-    property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
-    property var scene: null
-
     Connections {
         target: Qt.application
 
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.sceneTemp !== null) {
+                    painter.active = false
                 }
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.sceneTemp !== null) {
+                    painter.active = false
                 }
                 console.log("Hidden")
                 break
@@ -48,14 +45,14 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                if(scene !== null) {
-                    scene.active = true
+                if(painter.sceneTemp !== null) {
+                    painter.active = true
                 }
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.sceneTemp !== null) {
+                    painter.active = false
                 }
 
                 if(Qt.platform.os === "android") {
@@ -94,11 +91,7 @@ ApplicationWindow {
                 mainMenu.visible = true
 
                 painter.active = false
-
-                // Simple solution for stop rendering without a crash
-                scene.geometries = []
-                scene.destroy(5)
-                scene = null
+                painter.clearScene()
             }
         }
     }
@@ -129,16 +122,16 @@ ApplicationWindow {
         startButton.onClicked: {
             loadScreen.visible = true
 
-            scene = sceneComponent.createObject(root)
-            scene.loadScreen = loadScreen
-            scene.registerNavigation(navigation)
-
-            painter.scene = scene
+            painter.generateScene()
             painter.active = true
         }
     }
 
     Config {
         id: config
+    }
+
+    Painter {
+        id: painter
     }
 }

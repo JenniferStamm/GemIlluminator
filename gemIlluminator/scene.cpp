@@ -17,9 +17,11 @@
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_renderer(nullptr)
+  , m_camera(nullptr)
   , m_navigation(nullptr)
   , m_bounds(new SceneBounds())
   , m_currentGem(m_bounds)
+  , m_rootLightRay(nullptr)
 {
 }
 
@@ -56,9 +58,9 @@ void Scene::cleanup()
     }
 }
 
-void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &gemProgram)
+void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms)
 {
-    m_renderer->paint(gl, viewProjection, gemProgram);
+    m_renderer->paint(gl, viewProjection, shaderPrograms);
 }
 
 QQmlListProperty<AbstractGem> Scene::geometries()
