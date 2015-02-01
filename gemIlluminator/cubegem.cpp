@@ -116,8 +116,3 @@ void CubeGem::cleanup()
     delete m_renderer;
     m_renderer = nullptr;
 }
-
-void CubeGem::update(int timeDifference)
-{
-
-}

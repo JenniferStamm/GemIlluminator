@@ -8,6 +8,7 @@
 
 template <typename T> class QList;
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 class QVector3D;
 
 class LightRayData;
@@ -29,7 +30,6 @@ public:
     virtual ~LightRay();
 
     virtual void synchronize();
-    virtual void cleanup();
     virtual void update(int timeDifference);
 
     QVector3D normalizedOrthogonalVector() const;
@@ -51,6 +51,8 @@ public slots:
     Player *player();
     void setPlayer(Player *attachedPlayer);
 
+    void setRenderer(LightRayRenderer *renderer);
+
     Scene *scene();
     void setScene(Scene *owningScene);
 
@@ -60,11 +62,11 @@ public slots:
     LightRay *selectedSuccessor();
     void setSelectedSuccessor(LightRay *successor);
 
-    void paint(QOpenGLFunctions &gl);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
-    virtual void _synchronize(LightRayRenderer &renderer);
     void calculateSuccessors();
+    bool isPlayerBeforeCollisionPoint();
 
 protected:
     LightRayData *m_data;
@@ -73,7 +75,6 @@ protected:
     LightRay *m_selectedSuccessor;
     LightRayRenderer *m_renderer;
     bool m_isStatic;
-
     Player *m_player;
     Scene *m_scene;
 };

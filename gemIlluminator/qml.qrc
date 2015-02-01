@@ -19,5 +19,6 @@
         <file>data/env_cube_py.png</file>
         <file>data/env_cube_pz.png</file>
         <file>Config.qml</file>
+        <file>Painter.qml</file>
     </qresource>
 </RCC>

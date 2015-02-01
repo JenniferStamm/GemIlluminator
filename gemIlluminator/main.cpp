@@ -2,13 +2,14 @@
 #include <QQmlApplicationEngine>
 
 #include "abstractgem.h"
-#include "scene.h"
-#include "cubegem.h"
-#include "tetrahedrongem.h"
-#include "player.h"
-#include "lightray.h"
 #include "camera.h"
+#include "cubegem.h"
+#include "lightray.h"
 #include "navigation.h"
+#include "painterqml.h"
+#include "player.h"
+#include "scene.h"
+#include "tetrahedrongem.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
+    qmlRegisterType<PainterQML>("GemIlluminator", 1, 0, "Painter");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
