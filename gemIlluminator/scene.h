@@ -84,12 +84,12 @@ public slots:
     void rotateCurrentGem(const QQuaternion &quaternion);
 
 protected:
-    SceneRenderer *m_renderer;
-    QList<AbstractGem*> m_gem;
-    Camera *m_camera;
-    Navigation *m_navigation;
     SceneBounds *m_bounds;
+    Camera *m_camera;
     AbstractGem *m_currentGem;
+    QList<AbstractGem*> m_gem;
+    Navigation *m_navigation;
+    SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;
 };
 

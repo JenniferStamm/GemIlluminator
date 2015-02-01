@@ -16,11 +16,11 @@
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_renderer(nullptr)
-  , m_camera(nullptr)
-  , m_navigation(nullptr)
   , m_bounds(new SceneBounds())
+  , m_camera(nullptr)
   , m_currentGem(m_bounds)
+  , m_navigation(nullptr)
+  , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
 {
 }
