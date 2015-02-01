@@ -30,10 +30,6 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-#config.sources = config.json
-#config.path = .
-#DEPLOYMENT += config
-
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 CONFIG += \
@@ -64,7 +60,10 @@ HEADERS += \
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
 
-install_it.path = $$DESTDIR
-install_it.files = config.json
 
-INSTALLS += install_it
+win32 {
+    install_it.path = $$DESTDIR/assets
+    install_it.files = config.json
+
+    INSTALLS += install_it
+}

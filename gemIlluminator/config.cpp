@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 
 Config::Config(QObject *parent) : QObject(parent)
@@ -17,20 +18,27 @@ QString Config::read()
         return QString();
     }
 
-    QFile file;
-    file.setFileName(QApplication::applicationDirPath() + "/" + m_source);
+    QFile *file = new QFile();
+
+#ifdef __ANDROID__
+    file->setFileName("assets:/" + m_source);
+#endif
+#ifdef __WIN32__
+    file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
+#endif
+
     QString fileContent;
-    if (file.open(QIODevice::ReadOnly)) {
+    if (file->open(QIODevice::ReadOnly)) {
         QString line;
-        QTextStream t(&file);
+        QTextStream t(file);
         do {
             line = t.readLine();
             fileContent += line;
         } while (!line.isNull());
 
-        file.close();
+        file->close();
+        delete file;
     } else {
-        qDebug() << "test";
         emit error("Unable to open the file.");
         return QString();
     }
