@@ -137,8 +137,18 @@ void Painter::initialize() {
     gemProgram->bindAttributeLocation("a_vertex", 0);
     gemProgram->bindAttributeLocation("a_normal", 1);
 
+    QOpenGLShaderProgram *lightRayProgram = new QOpenGLShaderProgram(this);
+    lightRayProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/lightray.vert");
+    lightRayProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/lightray.frag");
+
+    if (!lightRayProgram->link()) {
+        qDebug() << "LightRay: Link failed";
+    }
+
+    lightRayProgram->bindAttributeLocation("a_vertex", 0);
+
     m_shaderPrograms->insert(ShaderPrograms::GemProgram, gemProgram);
-    m_shaderPrograms->insert(ShaderPrograms::LighRayProgram, new QOpenGLShaderProgram(this));
+    m_shaderPrograms->insert(ShaderPrograms::LighRayProgram, lightRayProgram);
 
     initializeEnvmap();
 

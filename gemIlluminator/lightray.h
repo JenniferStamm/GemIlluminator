@@ -8,6 +8,7 @@
 
 template <typename T> class QList;
 class QOpenGLFunctions;
+class QOpenGLShaderProgram;
 class QVector3D;
 
 class LightRayData;
@@ -61,7 +62,7 @@ public slots:
     LightRay *selectedSuccessor();
     void setSelectedSuccessor(LightRay *successor);
 
-    void paint(QOpenGLFunctions &gl);
+    void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
 
 protected:
     void calculateSuccessors();

@@ -25,18 +25,15 @@ public:
 
     void addLightRay(const LightRay &lightRay);
 
-    virtual void paint(QOpenGLFunctions &gl);
+    virtual void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
 
 protected:
-    void initialize();
     void updateStaticVBO();
     void updateDynamicVBO();
     void calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices);
 
 protected:
-    bool m_isInitialized;
     bool m_isStaticVBOUpdateRequired;
-    QOpenGLShaderProgram *m_program;
     QOpenGLBuffer *m_staticVertexBuffer;
     QOpenGLBuffer *m_staticIndexBuffer;
     QOpenGLBuffer *m_dynamicVertexBuffer;
