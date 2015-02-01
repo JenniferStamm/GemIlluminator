@@ -62,7 +62,7 @@ public slots:
     LightRay *selectedSuccessor();
     void setSelectedSuccessor(LightRay *successor);
 
-    void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
     void calculateSuccessors();

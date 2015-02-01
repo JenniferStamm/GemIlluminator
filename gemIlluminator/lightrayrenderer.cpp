@@ -6,7 +6,6 @@
 #include <QSet>
 #include <QVector>
 
-#include "camera.h"
 #include "lightray.h"
 #include "lightraydata.h"
 
@@ -17,7 +16,6 @@ LightRayRenderer::LightRayRenderer(QObject *parent) :
   , m_staticIndexBuffer(nullptr)
   , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
-  , m_camera(nullptr)
   , m_dynamicRays(new QVector<LightRayData>)
   , m_staticRays(new QSet<LightRayData>)
 {
@@ -31,12 +29,6 @@ LightRayRenderer::~LightRayRenderer()
     delete m_dynamicIndexBuffer;
     delete m_dynamicRays;
     delete m_staticRays;
-}
-
-void LightRayRenderer::setCamera(Camera & camera)
-{
-    delete m_camera;
-    m_camera = new Camera(camera, this);
 }
 
 void LightRayRenderer::addLightRay(const LightRay & ray)
@@ -163,7 +155,7 @@ void LightRayRenderer::updateDynamicVBO()
     m_dynamicIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
 }
 
-void LightRayRenderer::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram)
+void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
     if (m_isStaticVBOUpdateRequired) {
         updateStaticVBO();
@@ -171,7 +163,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderP
 
     shaderProgram.bind();
     shaderProgram.enableAttributeArray(0);
-    shaderProgram.setUniformValue("modelViewProjection", m_camera->viewProjection());
+    shaderProgram.setUniformValue("modelViewProjection", viewProjection);
 
     m_staticVertexBuffer->bind();
     m_staticIndexBuffer->bind();

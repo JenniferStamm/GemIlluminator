@@ -215,9 +215,9 @@ void LightRay::setSelectedSuccessor(LightRay *successor)
     m_selectedSuccessor = successor;
 }
 
-void LightRay::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram)
+void LightRay::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
     if (m_renderer) {
-        m_renderer->paint(gl, shaderProgram);
+        m_renderer->paint(gl, viewProjection, shaderProgram);
     }
 }

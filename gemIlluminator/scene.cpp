@@ -46,8 +46,6 @@ void Scene::sync(int elapsedTime)
 
     m_renderer->setGeometries(m_gem);
 
-    m_lightRayRenderer->setCamera(*m_camera);
-
     for (auto& i : m_gem) {
         i->synchronize();
     }

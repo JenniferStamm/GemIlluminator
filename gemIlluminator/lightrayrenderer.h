@@ -9,7 +9,6 @@ class QOpenGLShaderProgram;
 template<typename T> class QSet;
 template<typename T> class QVector;
 
-class Camera;
 class LightRay;
 class LightRayData;
 
@@ -21,11 +20,9 @@ public:
     explicit LightRayRenderer(QObject *parent = 0);
     virtual ~LightRayRenderer();
 
-    void setCamera(Camera &camera);
-
     void addLightRay(const LightRay &lightRay);
 
-    virtual void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
+    virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
     void updateStaticVBO();
@@ -38,7 +35,6 @@ protected:
     QOpenGLBuffer *m_staticIndexBuffer;
     QOpenGLBuffer *m_dynamicVertexBuffer;
     QOpenGLBuffer *m_dynamicIndexBuffer;
-    Camera *m_camera;
     QVector<LightRayData> *m_dynamicRays;
     QSet<LightRayData> *m_staticRays;
 };

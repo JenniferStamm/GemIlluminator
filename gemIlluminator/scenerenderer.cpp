@@ -31,7 +31,7 @@ void SceneRenderer::paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjec
 
 void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
-    m_rootLightRay->paint(gl, shaderProgram);
+    m_rootLightRay->paint(gl, viewProjection, shaderProgram);
 }
 
 void SceneRenderer::setGeometries(QList<AbstractGem*> geometries)
