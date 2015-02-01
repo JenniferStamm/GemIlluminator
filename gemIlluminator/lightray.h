@@ -66,6 +66,7 @@ public slots:
 
 protected:
     void calculateSuccessors();
+    bool isPlayerBeforeCollisionPoint();
 
 protected:
     LightRayData *m_data;

@@ -41,27 +41,6 @@ void LightRay::synchronize()
     }
 }
 
-void LightRay::calculateSuccessors()
-{
-    for (auto& successor : *m_successors) {
-        delete successor;
-    }
-    m_successors->clear();
-
-    LightRay *nextRay = new LightRay();
-    nextRay->setScene(m_scene);
-    nextRay->setStartPosition(endPosition());
-
-    Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
-    QVector3D reflectedDirection = intersectedFace->reflect(direction());
-    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
-
-    QVector3D nextCollisionPoint;
-    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
-    nextRay->setEndPosition(nextCollisionPoint);
-    m_successors->push_back(nextRay);
-}
-
 void LightRay::update(int timeDifference)
 {
     if (m_player) {
@@ -82,23 +61,11 @@ void LightRay::update(int timeDifference)
     if (m_player) {
         calculateSuccessors();
         m_player->moveOnRay(*this, timeDifference);
-        QVector3D playerPosition = m_player->position();
-        QVector3D difference = playerPosition - startPosition();
-        QVector3D factors;
-        if (direction().x() != 0.f) {
-            factors.setX(difference.x() / direction().x());
-        }
-        if (direction().y() != 0.f) {
-            factors.setY(difference.y() / direction().y());
-        }
-        if (direction().z() != 0.f) {
-            factors.setZ(difference.z() / direction().z());
-        }
-        if (factors.x() > 1.f || factors.y() > 1.f || factors.z() > 1.f)
+
+        if (isPlayerBeforeCollisionPoint())
         {
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
-            playerPosition = endPosition();
-            m_player->setPosition(playerPosition);
+            m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
             setStatic();
@@ -106,7 +73,6 @@ void LightRay::update(int timeDifference)
             LightRay collisionTestRay;
             collisionTestRay.setStartPosition(m_player->position());
             collisionTestRay.setEndPosition(endPosition());
-            m_player->setPosition(playerPosition);
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         }
     }
@@ -220,4 +186,42 @@ void LightRay::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOp
     if (m_renderer) {
         m_renderer->paint(gl, viewProjection, shaderProgram);
     }
+}
+
+void LightRay::calculateSuccessors()
+{
+    for (auto& successor : *m_successors) {
+        delete successor;
+    }
+    m_successors->clear();
+
+    LightRay *nextRay = new LightRay();
+    nextRay->setScene(m_scene);
+    nextRay->setStartPosition(endPosition());
+
+    Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
+    QVector3D reflectedDirection = intersectedFace->reflect(direction());
+    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
+
+    QVector3D nextCollisionPoint;
+    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
+    nextRay->setEndPosition(nextCollisionPoint);
+    m_successors->push_back(nextRay);
+}
+
+bool LightRay::isPlayerBeforeCollisionPoint()
+{
+    QVector3D playerPosition = m_player->position();
+    QVector3D difference = playerPosition - startPosition();
+    QVector3D factors;
+    if (direction().x() != 0.f) {
+        factors.setX(difference.x() / direction().x());
+    }
+    if (direction().y() != 0.f) {
+        factors.setY(difference.y() / direction().y());
+    }
+    if (direction().z() != 0.f) {
+        factors.setZ(difference.z() / direction().z());
+    }
+    return factors.x() > 1.f || factors.y() > 1.f || factors.z() > 1.f;
 }
