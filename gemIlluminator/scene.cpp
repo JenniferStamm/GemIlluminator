@@ -46,12 +46,15 @@ void Scene::sync(int elapsedTime)
 
     m_renderer->setGeometries(m_gem);
 
+    m_lightRayRenderer->setCamera(*m_camera);
+
     for (auto& i : m_gem) {
         i->synchronize();
     }
 
     m_renderer->setRootLightRay(m_rootLightRay);
     m_rootLightRay->update(elapsedTime);
+    m_rootLightRay->setRenderer(m_lightRayRenderer);
     m_rootLightRay->synchronize();
 }
 

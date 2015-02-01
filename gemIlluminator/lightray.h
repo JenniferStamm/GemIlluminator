@@ -64,7 +64,6 @@ public slots:
     void paint(QOpenGLFunctions &gl);
 
 protected:
-    virtual void _synchronize(LightRayRenderer &renderer);
     void calculateSuccessors();
 
 protected:

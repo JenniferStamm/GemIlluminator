@@ -34,25 +34,10 @@ LightRay::~LightRay()
 
 void LightRay::synchronize()
 {
-    if (m_scene) {
-        m_renderer->setCamera(*m_scene->camera());
-    }
     m_renderer->addLightRay(*this);
 
     for (auto& successor : *m_successors ) {
-        successor->_synchronize(*m_renderer);
-    }
-}
-
-void LightRay::_synchronize(LightRayRenderer &renderer)
-{
-    delete m_renderer;
-    m_renderer = nullptr;
-
-    renderer.addLightRay(*this);
-
-    for (auto& successor : *m_successors ) {
-        successor->_synchronize(renderer);
+        successor->synchronize();
     }
 }
 
