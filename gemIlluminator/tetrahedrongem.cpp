@@ -62,8 +62,3 @@ void TetrahedronGem::cleanup()
     delete m_renderer;
     m_renderer = nullptr;
 }
-
-void TetrahedronGem::update(int timeDifference)
-{
-
-}

@@ -92,10 +92,6 @@ void SceneBounds::cleanup()
 {
 }
 
-void SceneBounds::update(int timeDifference)
-{
-}
-
 void SceneBounds::paint(QOpenGLFunctions &/*gl*/, const QMatrix4x4 &/*viewprojection*/, QOpenGLShaderProgram &/*program*/)
 {
 }

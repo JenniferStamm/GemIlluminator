@@ -29,7 +29,6 @@ public:
 
     virtual void synchronize() = 0;
     virtual void cleanup() = 0;
-    virtual void update(int timeDifference) = 0;
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
