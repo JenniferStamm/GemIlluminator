@@ -25,8 +25,8 @@ public:
     void setModel(const QMatrix4x4 &model);
 
 protected:
-    QMatrix4x4 *m_model;
     QVector3D *m_color;
+    QMatrix4x4 *m_model;
 };
 
 #endif // GEOMETRYRENDERER_H
