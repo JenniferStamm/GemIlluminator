@@ -20,7 +20,9 @@ SOURCES += main.cpp \
     screenalignedquad.cpp \
     scenebounds.cpp \
     painter.cpp \
-    painterqml.cpp
+    painterqml.cpp \
+    gemrenderernew.cpp \
+    gemdata.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -58,4 +60,6 @@ HEADERS += \
     screenalignedquad.h \
     scenebounds.h \
     painter.h \
-    painterqml.h
+    painterqml.h \
+    gemrenderernew.h \
+    gemdata.h
