@@ -14,7 +14,6 @@ AbstractGem::AbstractGem(QObject *parent) :
   , m_triangles(new QList<Triangle *>)
   , m_color(new QVector3D(1.f, 1.f, 1.f))
   , m_renderer(nullptr)
-  , m_initialRotation(new QQuaternion())
   , m_position(new QVector3D())
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
@@ -32,7 +31,6 @@ AbstractGem::~AbstractGem()
     delete m_triangles;
     delete m_color;
     delete m_renderer;
-    delete m_initialRotation;
     delete m_position;
     delete m_rotation;
 }
@@ -44,27 +42,13 @@ void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     }
 }
 
-const QQuaternion &AbstractGem::initialRotation() const
+void AbstractGem::setRotationFromEuler(const QVector3D &eulerRotation)
 {
-    return *m_initialRotation;
-}
-
-void AbstractGem::setInitialRotation(const QQuaternion &initialRotation)
-{
-    if (initialRotation == *m_initialRotation) {
-       return;
-    }
-    *m_initialRotation = initialRotation;
-    emit initialRotationChanged();
-}
-
-void AbstractGem::setInitialRotationFromEuler(const QVector3D &initialEulerRotation)
-{
-    QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), initialEulerRotation.x());
-    QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), initialEulerRotation.y());
-    QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), initialEulerRotation.z());
-    QQuaternion newInitialRoation = newRotationY * newRotationX * newRotationZ;
-    setInitialRotation(newInitialRoation);
+    QQuaternion newRotationX = QQuaternion::fromAxisAndAngle(QVector3D(1.f, 0.f, 0.f), eulerRotation.x());
+    QQuaternion newRotationY = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 1.f, 0.f), eulerRotation.y());
+    QQuaternion newRotationZ = QQuaternion::fromAxisAndAngle(QVector3D(0.f, 0.f, 1.f), eulerRotation.z());
+    QQuaternion newRoation = newRotationY * newRotationX * newRotationZ;
+    setRotation(newRoation);
 }
 
 const QVector3D &AbstractGem::position() const
@@ -217,7 +201,7 @@ void AbstractGem::calculateModelMatrix() const
     m_model->setToIdentity();
     m_model->translate(position());
     m_model->scale(scale());
-    m_model->rotate(rotation() * initialRotation());
+    m_model->rotate(rotation());
     m_isModelInvalid = false;
 }
 

@@ -26,7 +26,6 @@ public:
      */
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) override;
 
-    virtual void setInitialRotation(const QQuaternion &initialRotation) override;
     virtual void setPosition(const QVector3D &position) override;
     virtual void setRotation(const QQuaternion &rotation) override;
 };

@@ -96,10 +96,6 @@ void SceneBounds::paint(QOpenGLFunctions &/*gl*/, const QMatrix4x4 &/*viewprojec
 {
 }
 
-void SceneBounds::setInitialRotation(const QQuaternion &/*initialRotation*/)
-{
-}
-
 void SceneBounds::setPosition(const QVector3D &/*position*/)
 {
 }

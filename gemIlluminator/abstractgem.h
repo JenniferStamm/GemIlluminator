@@ -25,7 +25,6 @@ enum class Type {
 class AbstractGem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(const QQuaternion &initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
     Q_PROPERTY(const QVector3D &position READ position WRITE setPosition NOTIFY positionChanged)
     Q_PROPERTY(const QQuaternion &rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
     Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
@@ -42,9 +41,6 @@ public:
 
     QVector3D &color() const;
     void setColor(QVector3D &color);
-
-    const QQuaternion &initialRotation() const;
-    virtual void setInitialRotation(const QQuaternion &initialRotation);
 
     const QMatrix4x4 &model() const;
 
@@ -68,10 +64,9 @@ public:
     void rotate(const QQuaternion &quaternion);
 
 public slots:
-    void setInitialRotationFromEuler(const QVector3D &initialEulerRotation);
+    void setRotationFromEuler(const QVector3D &eulerRotation);
 
 signals:
-    void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
     void scaleChanged();
@@ -85,7 +80,6 @@ protected:
     QList<Triangle*> *m_triangles;
     QVector3D *m_color;
     AbstractGemRenderer *m_renderer;
-    QQuaternion *m_initialRotation;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     qreal m_scale;
