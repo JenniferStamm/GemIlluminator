@@ -11,6 +11,7 @@ CubeGem::CubeGem(QObject *parent) :
     AbstractGem(parent)
 {
     m_radius = sqrt(3.f);
+    m_type = Gem::Type::Cube;
 
     QVector<QVector3D> vertices;
     vertices.append(QVector3D(-1.0f, -1.0f, -1.0f)); // back bottom left

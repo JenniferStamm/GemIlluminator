@@ -11,6 +11,10 @@ class QVector3D;
 class AbstractGem;
 class Triangle;
 
+namespace Gem {
+    enum class Type;
+}
+
 class GemData
 {
 public:
@@ -36,12 +40,19 @@ public:
     const QList<Triangle *> &triangles() const;
     void setTriangles(const QList<Triangle *> &triangles);
 
+    Gem::Type type() const;
+    void setType(Gem::Type type);
+
+protected:
+    void copyTriangles(const QList<Triangle *> &triangles);
+
 protected:
     QVector3D *m_color;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     float m_scale;
     QList<Triangle *> *m_triangles;
+    Gem::Type m_type;
 };
 
 bool operator==(const GemData &lhs, const GemData &rhs);

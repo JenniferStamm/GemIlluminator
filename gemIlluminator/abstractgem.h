@@ -14,6 +14,14 @@ class AbstractGemRenderer;
 class LightRay;
 class Triangle;
 
+namespace Gem {
+
+enum class Type {
+    Abstract,
+    Cube,
+    Tetrahedron};
+}
+
 class AbstractGem : public QObject
 {
     Q_OBJECT
@@ -43,6 +51,8 @@ public:
 
     qreal scale() const;
     void setScale(qreal scaleFactor);
+
+    Gem::Type type() const;
 
     QVector3D &color() const;
     void setColor(QVector3D &color);
@@ -79,6 +89,7 @@ protected:
     QQuaternion *m_rotation;
     qreal m_scale;
     qreal m_radius;
+    Gem::Type m_type;
     mutable QMatrix4x4 *m_model;
     mutable bool m_isModelInvalid;
 };

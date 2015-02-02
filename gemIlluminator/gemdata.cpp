@@ -3,6 +3,8 @@
 #include <QVector3D>
 #include <QQuaternion>
 
+#include "abstractgem.h"
+
 GemData::GemData() :
     m_color(new QVector3D())
   , m_position(new QVector3D())
@@ -19,7 +21,7 @@ GemData::GemData(const GemData &otherGemData) :
   , m_scale(otherGemData.scale())
   , m_triangles(new QList<Triangle *>())
 {
-    //TODO: Copy Triangles
+    copyTriangles(otherGemData.triangles());
 }
 
 GemData::GemData(const AbstractGem &gem) :
@@ -29,6 +31,7 @@ GemData::GemData(const AbstractGem &gem) :
   , m_scale(gem.scale())
   , m_triangles(new QList<Triangle *>())
 {
+    //copyTriangles(gem.);
     //TODO: Copy Triangles
 }
 
@@ -48,7 +51,7 @@ GemData &GemData::operator=(const GemData &rhs)
     *m_color = rhs.color();
     *m_position = rhs.position();
     *m_rotation = rhs.rotation();
-    //TODO: Copy triangles
+    copyTriangles(rhs.triangles());
 }
 
 const QVector3D &GemData::color() const
@@ -111,11 +114,35 @@ const QList<Triangle *> &GemData::triangles() const
 
 void GemData::setTriangles(const QList<Triangle *> &triangles)
 {
-    //TODO: Copy triangles
+    copyTriangles(triangles);
+}
+
+Gem::Type GemData::type() const
+{
+    return m_type;
+}
+
+void GemData::setType(Gem::Type type)
+{
+    if (m_type == type) {
+        return;
+    }
+    m_type = type;
+}
+
+void GemData::copyTriangles(const QList<Triangle *> &triangles)
+{
+    m_triangles->clear();
+    for (auto triangle : triangles) {
+        m_triangles->append(new Triangle(*triangle));
+    }
 }
 
 bool operator==(const GemData &lhs, const GemData &rhs)
 {
+    if (lhs.type() != rhs.type()) {
+        return false;
+    }
     if (!qFuzzyCompare(lhs.color(), rhs.color())) {
         return false;
     }
@@ -128,12 +155,6 @@ bool operator==(const GemData &lhs, const GemData &rhs)
     if (!qFuzzyCompare(lhs.scale(), rhs.scale())) {
         return false;
     }
-    QList<Triangle *> lhsTriangles = lhs.triangles();
-    QList<Triangle *> rhsTriangles = rhs.triangles();
-    if (lhsTriangles.count() != rhsTriangles.count()) {
-        return false;
-    }
-    //TODO: Compare Triangles
     return true;
 }
 

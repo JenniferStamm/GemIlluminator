@@ -11,6 +11,7 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
     AbstractGem(parent)
 {
     m_radius = sqrt(3.f);
+    m_type = Gem::Type::Tetrahedron;
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */

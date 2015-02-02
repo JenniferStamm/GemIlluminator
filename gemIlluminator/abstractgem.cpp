@@ -112,6 +112,11 @@ void AbstractGem::setScale(qreal scaleFactor)
     emit scaleChanged();
 }
 
+Gem::Type AbstractGem::type() const
+{
+    return m_type;
+}
+
 QVector3D &AbstractGem::color() const
 {
     return *m_color;
