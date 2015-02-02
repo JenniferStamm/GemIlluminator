@@ -12,7 +12,7 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLShaderProgram>
 
-GemRenderer::GemRenderer(const QVector<Triangle *> &triangles, QObject *parent):
+GemRenderer::GemRenderer(const QList<Triangle *> &triangles, QObject *parent):
     AbstractGemRenderer(parent)
 ,   m_initialized(false)
 ,   m_vertexData(new QVector<float>())
@@ -37,15 +37,15 @@ void GemRenderer::initialize()
 }
 
 QVector<float>* GemRenderer::initializeData(
-        const QVector<Triangle *> &triangles)
+        const QList<Triangle *> &triangles)
 {
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */
     QVector<QVector3D> data = QVector<QVector3D>();
 
-    for (auto i = 0; i < triangles.size(); i++) {
-        addTriangleData(*(triangles[i]), data);
+    for (auto triangle : triangles) {
+        addTriangleData(*triangle, data);
     }
 
     QVector<float> *dataFloat = new QVector<float>();

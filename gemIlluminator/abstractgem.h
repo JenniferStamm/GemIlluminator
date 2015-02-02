@@ -81,7 +81,7 @@ protected:
     void calculateModelMatrix() const;
 
 protected:
-    QVector<Triangle*> *m_triangles;
+    QList<Triangle*> *m_triangles;
     QVector3D *m_color;
     AbstractGemRenderer *m_renderer;
     QQuaternion *m_initialRotation;

@@ -11,7 +11,7 @@
 
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
-  , m_triangles(new QVector<Triangle *>)
+  , m_triangles(new QList<Triangle *>)
   , m_color(new QVector3D(1.f, 1.f, 1.f))
   , m_renderer(nullptr)
   , m_initialRotation(new QQuaternion())

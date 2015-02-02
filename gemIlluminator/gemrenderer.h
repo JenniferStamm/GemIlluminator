@@ -15,14 +15,14 @@ class Triangle;
 class GemRenderer : public AbstractGemRenderer
 {
 public:
-    explicit GemRenderer(const QVector<Triangle *> &triangles, QObject *parent = 0);
+    explicit GemRenderer(const QList<Triangle *> &triangles, QObject *parent = 0);
     virtual ~GemRenderer();
 
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) override;
 
 protected:
     virtual void initialize();
-    virtual QVector<float>* initializeData(const QVector<Triangle *> &triangles);
+    virtual QVector<float>* initializeData(const QList<Triangle *> &triangles);
     virtual void addTriangleData(
             Triangle &triangle,
             QVector<QVector3D> &data);
