@@ -31,8 +31,7 @@ GemData::GemData(const AbstractGem &gem) :
   , m_scale(gem.scale())
   , m_triangles(new QList<Triangle *>())
 {
-    //copyTriangles(gem.);
-    //TODO: Copy Triangles
+    copyTriangles(gem.triangles());
 }
 
 GemData::~GemData()
@@ -108,7 +107,6 @@ void GemData::setScale(float scale)
 
 const QList<Triangle *> &GemData::triangles() const
 {
-    //TODO: Do I really want that to do? Or return a copy would be better?
     return *m_triangles;
 }
 

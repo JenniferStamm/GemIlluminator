@@ -112,6 +112,11 @@ void AbstractGem::setScale(qreal scaleFactor)
     emit scaleChanged();
 }
 
+const QList<Triangle *> &AbstractGem::triangles() const
+{
+    return *m_triangles;
+}
+
 Gem::Type AbstractGem::type() const
 {
     return m_type;

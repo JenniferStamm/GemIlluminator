@@ -40,11 +40,18 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
+    QVector3D &color() const;
+    void setColor(QVector3D &color);
+
     const QQuaternion &initialRotation() const;
     virtual void setInitialRotation(const QQuaternion &initialRotation);
 
+    const QMatrix4x4 &model() const;
+
     const QVector3D &position() const;
     virtual void setPosition(const QVector3D &position);
+
+    qreal radius() const;
 
     const QQuaternion &rotation() const;
     virtual void setRotation(const QQuaternion &rotation);
@@ -52,14 +59,8 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
+    const QList<Triangle *> &triangles() const;
     Gem::Type type() const;
-
-    QVector3D &color() const;
-    void setColor(QVector3D &color);
-
-    qreal radius() const;
-
-    const QMatrix4x4 &model() const;
 
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
