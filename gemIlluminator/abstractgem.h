@@ -43,6 +43,8 @@ public:
     const QVector3D &color() const;
     void setColor(QVector3D &color);
 
+    const GemData &data() const;
+
     const QMatrix4x4 &model() const;
 
     const QVector3D &position() const;

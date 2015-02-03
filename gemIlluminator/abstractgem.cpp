@@ -119,6 +119,11 @@ void AbstractGem::setColor(QVector3D &color)
     emit colorChanged();
 }
 
+const GemData &AbstractGem::data() const
+{
+    return *m_data;
+}
+
 qreal AbstractGem::radius() const
 {
     return m_radius * m_data->scale();
