@@ -1,12 +1,16 @@
 #include "gemdata.h"
 
+#include <QMatrix4x4>
 #include <QVector3D>
 #include <QQuaternion>
 
 #include "abstractgem.h"
+#include "triangle.h"
 
 GemData::GemData() :
     m_color(new QVector3D())
+  , m_isModelInvalid(true)
+  , m_model(new QMatrix4x4())
   , m_position(new QVector3D())
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
@@ -17,6 +21,8 @@ GemData::GemData() :
 
 GemData::GemData(const GemData &otherGemData) :
     m_color(new QVector3D(otherGemData.color()))
+  , m_isModelInvalid(true)
+  , m_model(new QMatrix4x4())
   , m_position(new QVector3D(otherGemData.position()))
   , m_rotation(new QQuaternion(otherGemData.rotation()))
   , m_scale(otherGemData.scale())
@@ -28,6 +34,8 @@ GemData::GemData(const GemData &otherGemData) :
 
 GemData::GemData(const AbstractGem &gem) :
     m_color(new QVector3D(gem.color()))
+  , m_isModelInvalid(true)
+  , m_model(new QMatrix4x4())
   , m_position(new QVector3D(gem.position()))
   , m_rotation(new QQuaternion(gem.rotation()))
   , m_scale(gem.scale())
@@ -40,6 +48,7 @@ GemData::GemData(const AbstractGem &gem) :
 GemData::~GemData()
 {
     delete m_color;
+    delete m_model;
     delete m_position;
     delete m_rotation;
     for (auto triangle : *m_triangles) {
@@ -51,11 +60,13 @@ GemData::~GemData()
 GemData &GemData::operator=(const GemData &rhs)
 {
     *m_color = rhs.color();
+    m_isModelInvalid = true;
     *m_position = rhs.position();
     *m_rotation = rhs.rotation();
     m_scale = rhs.scale();
     copyTriangles(rhs.triangles());
     m_type = rhs.type();
+    return *this;
 }
 
 const QVector3D &GemData::color() const
@@ -71,6 +82,14 @@ void GemData::setColor(const QVector3D &color)
     *m_color = color;
 }
 
+const QMatrix4x4 &GemData::model() const
+{
+    if (m_isModelInvalid) {
+        calculateModelMatrix();
+    }
+    return *m_model;
+}
+
 const QVector3D &GemData::position() const
 {
     return *m_position;
@@ -82,9 +101,10 @@ void GemData::setPosition(const QVector3D &position)
         return;
     }
     *m_position = position;
+    m_isModelInvalid = true;
 }
 
-const GemData::QQuaternion &rotation() const
+const QQuaternion &GemData::rotation() const
 {
     return *m_rotation;
 }
@@ -95,6 +115,7 @@ void GemData::setRotation(const QQuaternion &rotation)
         return;
     }
     *m_rotation = rotation;
+    m_isModelInvalid = true;
 }
 
 float GemData::scale() const
@@ -108,6 +129,7 @@ void GemData::setScale(float scale)
         return;
     }
     m_scale = scale;
+    m_isModelInvalid = true;
 }
 
 const QList<Triangle *> &GemData::triangles() const
@@ -139,6 +161,15 @@ void GemData::copyTriangles(const QList<Triangle *> &triangles)
     for (auto triangle : triangles) {
         m_triangles->append(new Triangle(*triangle));
     }
+}
+
+void GemData::calculateModelMatrix() const
+{
+    m_model->setToIdentity();
+    m_model->translate(position());
+    m_model->scale(scale());
+    m_model->rotate(rotation());
+    m_isModelInvalid = false;
 }
 
 bool operator==(const GemData &lhs, const GemData &rhs)

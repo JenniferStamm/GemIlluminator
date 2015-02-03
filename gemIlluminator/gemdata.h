@@ -12,7 +12,9 @@ class AbstractGem;
 class Triangle;
 
 namespace Gem {
-    enum class Type;
+
+enum class Type;
+
 }
 
 class GemData
@@ -27,6 +29,8 @@ public:
 
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
+
+    const QMatrix4x4 &model() const;
 
     const QVector3D &position() const;
     void setPosition(const QVector3D &position);
@@ -45,6 +49,7 @@ public:
 
 protected:
     void copyTriangles(const QList<Triangle *> &triangles);
+    void calculateModelMatrix() const;
 
 protected:
     QVector3D *m_color;
@@ -53,6 +58,8 @@ protected:
     float m_scale;
     QList<Triangle *> *m_triangles;
     Gem::Type m_type;
+    mutable QMatrix4x4 *m_model;
+    mutable bool m_isModelInvalid;
 };
 
 bool operator==(const GemData &lhs, const GemData &rhs);

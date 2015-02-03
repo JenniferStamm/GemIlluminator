@@ -6,33 +6,35 @@
 #include <QMatrix4x4>
 
 #include "abstractgemrenderer.h"
+#include "gemdata.h"
 #include "lightray.h"
 #include "triangle.h"
 
+namespace {
+
+float minimumWithLowerBound(float a, float b, float lowerBound)
+{
+    if (a > lowerBound) {
+        return a <= b ? a : b;
+    } else {
+        return b > lowerBound ? b : std::numeric_limits<float>::max();
+    }
+}
+
+}
+
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
-  , m_triangles(new QList<Triangle *>)
-  , m_color(new QVector3D(1.f, 1.f, 1.f))
+  , m_data(new GemData())
   , m_renderer(nullptr)
-  , m_position(new QVector3D())
-  , m_rotation(new QQuaternion())
-  , m_scale(1.f)
   , m_radius(0.f)
-  , m_model(new QMatrix4x4())
-  , m_isModelInvalid(true)
 {
 }
 
 AbstractGem::~AbstractGem()
 {
-    for (auto& triangle : *m_triangles) {
-        delete triangle;
-    }
-    delete m_triangles;
-    delete m_color;
+    delete m_data;
     delete m_renderer;
-    delete m_position;
-    delete m_rotation;
 }
 
 void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
@@ -53,90 +55,78 @@ void AbstractGem::setRotationFromEuler(const QVector3D &eulerRotation)
 
 const QVector3D &AbstractGem::position() const
 {
-    return *m_position;
+    return m_data->position();
 }
 
 void AbstractGem::setPosition(const QVector3D &position)
 {
-    if (position == *m_position) {
+    if (position == m_data->position()) {
        return;
     }
-    *m_position = position;
-    m_isModelInvalid = true;
+    m_data->setPosition(position);
     emit positionChanged();
 }
 
 const QQuaternion &AbstractGem::rotation() const
 {
-    return *m_rotation;
+    return m_data->rotation();
 }
 
 void AbstractGem::setRotation(const QQuaternion &rotation)
 {
-    if (rotation == *m_rotation) {
+    if (rotation == m_data->rotation()) {
        return;
     }
-    *m_rotation = rotation;
-    m_isModelInvalid = true;
+    m_data->setRotation(rotation);
     emit rotationChanged();
 }
 
 qreal AbstractGem::scale() const
 {
-    return m_scale;
+    return m_data->scale();
 }
 
 void AbstractGem::setScale(qreal scaleFactor)
 {
-    if (scaleFactor == m_scale) {
+    if (scaleFactor == m_data->scale()) {
        return;
     }
-    m_scale = scaleFactor;
-    m_isModelInvalid = true;
+    m_data->setScale(scaleFactor);
     emit scaleChanged();
 }
 
 const QList<Triangle *> &AbstractGem::triangles() const
 {
-    return *m_triangles;
+    return m_data->triangles();
 }
 
 Gem::Type AbstractGem::type() const
 {
-    return m_type;
+    return m_data->type();
 }
 
-QVector3D &AbstractGem::color() const
+const QVector3D &AbstractGem::color() const
 {
-    return *m_color;
+    return m_data->color();
 }
 
 void AbstractGem::setColor(QVector3D &color)
 {
-    *m_color = color;
+    if (color == m_data->color()) {
+        return;
+    }
+    m_data->setColor(color);
     emit colorChanged();
 }
 
 qreal AbstractGem::radius() const
 {
-    return m_radius * m_scale;
+    return m_radius * m_data->scale();
 }
 
 const QMatrix4x4 &AbstractGem::model() const
 {
-    if (m_isModelInvalid) {
-        calculateModelMatrix();
-    }
-    return *m_model;
-}
-
-float minimumWithLowerBound(float a, float b, float lowerBound)
-{
-    if (a > lowerBound) {
-        return a <= b ? a : b;
-    } else {
-        return b > lowerBound ? b : std::numeric_limits<float>::max();
-    }
+    return m_data->model();
 }
 
 float AbstractGem::boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint)
@@ -196,15 +186,6 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
     }
 }
 
-void AbstractGem::calculateModelMatrix() const
-{
-    m_model->setToIdentity();
-    m_model->translate(position());
-    m_model->scale(scale());
-    m_model->rotate(rotation());
-    m_isModelInvalid = false;
-}
-
 float AbstractGem::intersectedBy(const LightRay &ray, QVector3D *collisionPoint)
 {
     Triangle *intersectedTriangle;
@@ -233,7 +214,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     QVector3D edge1, edge2, tvec, pvec, qvec;
     float det, invDet;
 
-    for (auto objectSpaceTriangle : *m_triangles) {
+    for (auto objectSpaceTriangle : triangles()) {
         Triangle worldSpaceTriangle = objectSpaceTriangle->inWorldCoordinates();
 
         edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();

@@ -11,6 +11,7 @@ class QOpenGLShaderProgram;
 class QQuaternion;
 
 class AbstractGemRenderer;
+class GemData;
 class LightRay;
 class Triangle;
 
@@ -39,7 +40,7 @@ public:
 
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
-    QVector3D &color() const;
+    const QVector3D &color() const;
     void setColor(QVector3D &color);
 
     const QMatrix4x4 &model() const;
@@ -74,19 +75,11 @@ signals:
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
-    void calculateModelMatrix() const;
 
 protected:
-    QList<Triangle*> *m_triangles;
-    QVector3D *m_color;
+    GemData *m_data;
     AbstractGemRenderer *m_renderer;
-    QVector3D *m_position;
-    QQuaternion *m_rotation;
-    qreal m_scale;
     qreal m_radius;
-    Gem::Type m_type;
-    mutable QMatrix4x4 *m_model;
-    mutable bool m_isModelInvalid;
 };
 
 #endif // GEOMETRY_H
