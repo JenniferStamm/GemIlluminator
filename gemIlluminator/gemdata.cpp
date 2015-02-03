@@ -11,6 +11,7 @@ GemData::GemData() :
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_triangles(new QList<Triangle *>())
+  , m_type(Gem::Type::Abstract)
 {
 }
 
@@ -20,6 +21,7 @@ GemData::GemData(const GemData &otherGemData) :
   , m_rotation(new QQuaternion(otherGemData.rotation()))
   , m_scale(otherGemData.scale())
   , m_triangles(new QList<Triangle *>())
+  , m_type(otherGemData.type())
 {
     copyTriangles(otherGemData.triangles());
 }
@@ -30,6 +32,7 @@ GemData::GemData(const AbstractGem &gem) :
   , m_rotation(new QQuaternion(gem.rotation()))
   , m_scale(gem.scale())
   , m_triangles(new QList<Triangle *>())
+  , m_type(gem.type())
 {
     copyTriangles(gem.triangles());
 }
@@ -50,7 +53,9 @@ GemData &GemData::operator=(const GemData &rhs)
     *m_color = rhs.color();
     *m_position = rhs.position();
     *m_rotation = rhs.rotation();
+    m_scale = rhs.scale();
     copyTriangles(rhs.triangles());
+    m_type = rhs.type();
 }
 
 const QVector3D &GemData::color() const
