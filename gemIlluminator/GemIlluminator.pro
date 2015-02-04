@@ -19,7 +19,9 @@ SOURCES += main.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
     scenebounds.cpp \
-    config.cpp
+    config.cpp \
+    painter.cpp \
+    painterqml.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc
@@ -55,7 +57,9 @@ HEADERS += \
     cubegem.h \
     screenalignedquad.h \
     scenebounds.h \
-    config.h
+    config.h \
+    painter.h \
+    painterqml.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug

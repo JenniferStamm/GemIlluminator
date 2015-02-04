@@ -1,26 +1,35 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <QMap>
 #include <QQuickItem>
 #include <QQmlListProperty>
+
+class QOpenGLFunctions;
+class QOpenGLShaderProgram;
+class QMatrix4x4;
 
 class AbstractGem;
 class Camera;
 class LightRay;
+class LightRayRenderer;
 class Navigation;
-class QTime;
 class SceneBounds;
 class SceneRenderer;
 class Triangle;
 
+enum class ShaderPrograms {
+    GemProgram,
+    LighRayProgram,
+    EnvMapProgram
+};
+
 class Scene : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
     Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
-    Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
-    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay)
+    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
 
 public:
     explicit Scene(QQuickItem *parent = 0);
@@ -28,17 +37,11 @@ public:
 
     QQmlListProperty<AbstractGem> geometries();
 
-    qreal t() const;
-    void setT(qreal t);
-
-    bool isActive() const;
-    void setActive(bool active);
-
     Camera* camera() const;
     void setCamera(Camera *camera);
 
-    LightRay* rootLightRay() const;
-    void setRootLightRay(LightRay *root);
+    SceneRenderer& sceneRenderer() const;
+
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
@@ -66,32 +69,30 @@ public:
 
     void setCurrentGem(AbstractGem *currentGem);
 
+    LightRay *rootLightRay() const;
+    void setRootLightRay(LightRay *rootLightRay);
+
 signals:
     void cubesChanged();
-    void tChanged();
     void geometriesChanged();
-    void activeChanged();
+    void rootLightRayChanged();
 
 public slots:
-    virtual void sync();
+    virtual void sync(int elapsedTime);
     virtual void cleanup();
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 
 protected:
-    SceneRenderer *m_renderer;
-    QList<AbstractGem*> m_gem;
-    qreal m_t;
-    QTime *m_time;
-    bool m_active;
-    Camera *m_camera;
-    LightRay *m_rootLightRay;
-    Navigation *m_navigation;
     SceneBounds *m_bounds;
+    Camera *m_camera;
     AbstractGem *m_currentGem;
-
-private slots:
-    void handleWindowChanged(QQuickWindow *win);
+    QList<AbstractGem*> m_gem;
+    LightRayRenderer *m_lightRayRenderer;
+    Navigation *m_navigation;
+    SceneRenderer *m_renderer;
+    LightRay *m_rootLightRay;
 };
 
 #endif // SCENE_H

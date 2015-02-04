@@ -13,7 +13,6 @@ public:
 
     virtual void synchronize() override;
     virtual void cleanup() override;
-    virtual void update(int timeDifference) override;
 };
 
 #endif // GEM_H

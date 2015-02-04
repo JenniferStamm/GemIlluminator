@@ -17,7 +17,6 @@ public:
 
     virtual void synchronize() override;
     virtual void cleanup() override;
-    virtual void update(int timeDifference) override;
 
     /**
      * @brief Method does nothing, because bounds are invisible. But method has to be implemented, because no renderer exists.

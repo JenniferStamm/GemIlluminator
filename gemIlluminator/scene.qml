@@ -25,18 +25,13 @@ Scene {
         camera: camera
     }
 
+
     rootLightRay: LightRay {
         id: lightray
         startPosition: "0, 0, -15"
         endPosition: "0, 0, 15"
         player: player
         scene: scene
-    }
-
-    SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
-        loops: Animation.Infinite
-        running: true
     }
 
     WorkerScript {
@@ -65,7 +60,6 @@ Scene {
                 console.log("Gems created: " + gems.length)
 
                 scene.geometries = gemsToJSON
-                scene.active = true
 
                 if (loadScreen !== null) {
                     loadScreen.visible = false
@@ -89,7 +83,6 @@ Scene {
     }
 
     Component.onCompleted: {
-        scene.active = false
         gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
                                      "rangeEnd": 20, "gemTypes": config.gemTypes})
     }
