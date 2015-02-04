@@ -8,12 +8,6 @@ Painter {
 
     property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
 
-    SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
-        loops: Animation.Infinite
-        running: true
-    }
-
     function generateScene()
     {
         scene = sceneComponent.createObject(root)

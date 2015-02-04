@@ -8,6 +8,7 @@ class QOpenGLShaderProgram;
 class QSize;
 
 class Camera;
+class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
 enum class ShaderPrograms;
@@ -21,7 +22,7 @@ class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(QObject *parent = 0);
+    Painter(PainterQML *painter, QObject *parent = 0);
     virtual ~Painter();
 
     bool isActive() const;
@@ -50,6 +51,7 @@ protected:
     uint m_envmap;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
+    PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;

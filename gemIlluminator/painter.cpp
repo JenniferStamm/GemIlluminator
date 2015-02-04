@@ -1,5 +1,6 @@
 #include "painter.h"
 
+#include <QEvent>
 #include <QImage>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
@@ -9,15 +10,17 @@
 
 #include "camera.h"
 #include "lightray.h"
+#include "painterqml.h"
 #include "scene.h"
 #include "scenerenderer.h"
 #include "screenalignedquad.h"
 
-Painter::Painter(QObject *parent) :
+Painter::Painter(PainterQML *painter, QObject *parent) :
     QObject(parent)
   , m_active(false)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
+  , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_viewport(new QSize())
@@ -123,6 +126,8 @@ void Painter::paint()
         m_gl->glClearColor(0, 0, 0, 0);
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
+
+        QCoreApplication::postEvent(m_painterQML, new QEvent(m_painterQML->paintingDoneEventType()), Qt::HighEventPriority);
     }
 }
 
