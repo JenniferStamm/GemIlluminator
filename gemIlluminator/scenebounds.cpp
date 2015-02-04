@@ -86,18 +86,6 @@ SceneBounds::~SceneBounds()
 {
 }
 
-void SceneBounds::synchronize()
-{
-}
-
-void SceneBounds::cleanup()
-{
-}
-
-void SceneBounds::paint(QOpenGLFunctions &/*gl*/, const QMatrix4x4 &/*viewprojection*/, QOpenGLShaderProgram &/*program*/)
-{
-}
-
 void SceneBounds::setPosition(const QVector3D &/*position*/)
 {
 }

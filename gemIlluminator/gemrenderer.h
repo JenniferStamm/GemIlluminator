@@ -1,36 +1,60 @@
-#ifndef GEMRENDERER_H
-#define GEMRENDERER_H
+#ifndef GEMRENDERERNEW_H
+#define GEMRENDERERNEW_H
 
-#include "abstractgemrenderer.h"
-
+template<typename T> class QList;
+template<typename Key, typename T> class QHash;
 class QMatrix4x4;
 class QOpenGLBuffer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
-template <typename T> class QVector;
-class QVector3D;
 
-class Triangle;
+class AbstractGem;
+class GemData;
 
-class GemRenderer : public AbstractGemRenderer
+class GemRenderer
 {
+    class GemDataInfo
+    {
+    public:
+        GemDataInfo();
+        ~GemDataInfo();
+
+        const GemData &data() const;
+        void setData(const GemData &data);
+
+        int index() const;
+        void setIndex(int index);
+
+        int numberOfVertices();
+
+        //single draw related stuff
+        QOpenGLBuffer &buffer();
+
+    protected:
+        //single draw related stuff
+        QOpenGLBuffer *m_buffer;
+
+        //packed draw related stuff
+        int m_index;
+
+        //stuff needed everytime
+        GemData *m_data;
+    };
+
 public:
-    explicit GemRenderer(const QList<Triangle *> &triangles, QObject *parent = 0);
-    virtual ~GemRenderer();
+    GemRenderer();
+    ~GemRenderer();
 
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) override;
-
-protected:
-    virtual void initialize();
-    virtual QVector<float>* initializeData(const QList<Triangle *> &triangles);
-    virtual void addTriangleData(
-            Triangle &triangle,
-            QVector<QVector3D> &data);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
+    void updateGem(AbstractGem *gem);
 
 protected:
-    bool m_initialized;
-    QVector<float> *m_vertexData;
-    QOpenGLBuffer *m_vertexBuffer;
+    void initialize();
+    void paintAllGemsWithOwnDrawCall(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
+
+protected:
+    bool m_isInitialized;
+    QHash<AbstractGem *, GemDataInfo*> *m_gemMap;
 };
 
-#endif // GEMRENDERER_H
+#endif // GEMRENDERERNEW_H

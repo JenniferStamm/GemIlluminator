@@ -5,7 +5,6 @@
 #include <QQuaternion>
 #include <QMatrix4x4>
 
-#include "abstractgemrenderer.h"
 #include "gemdata.h"
 #include "lightray.h"
 #include "triangle.h"
@@ -26,7 +25,6 @@ float minimumWithLowerBound(float a, float b, float lowerBound)
 AbstractGem::AbstractGem(QObject *parent) :
     QObject(parent)
   , m_data(new GemData())
-  , m_renderer(nullptr)
   , m_radius(0.f)
 {
 }
@@ -34,14 +32,6 @@ AbstractGem::AbstractGem(QObject *parent) :
 AbstractGem::~AbstractGem()
 {
     delete m_data;
-    delete m_renderer;
-}
-
-void AbstractGem::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
-{
-    if (m_renderer) {
-        m_renderer->paint(gl, viewProjection, program);
-    }
 }
 
 void AbstractGem::setRotationFromEuler(const QVector3D &eulerRotation)

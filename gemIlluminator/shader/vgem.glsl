@@ -8,7 +8,7 @@ attribute highp vec3 a_vertex;
 attribute highp vec3 a_normal;
 
 uniform mat4 model;
-uniform mat4 normalMatrix;
+uniform mat3 normalMatrix;
 uniform mat4 modelViewProjection;
 uniform vec3 eye;
 uniform vec3 color;
@@ -24,7 +24,7 @@ const vec3 lD = vec3(0.8, 0.8, 0.8);
 
 void main()
 {
-    v_normal = normalize(mat3(normalMatrix) * a_normal);
+    v_normal = normalize(normalMatrix * a_normal);
     vec4 eyeCoords = model * vec4(a_vertex, 1.0);
     v_eyeVector = eyeCoords.xyz - eye;
 

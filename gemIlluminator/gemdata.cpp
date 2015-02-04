@@ -157,6 +157,9 @@ void GemData::setType(Gem::Type type)
 
 void GemData::copyTriangles(const QList<Triangle *> &triangles)
 {
+    for (auto triangle : *m_triangles) {
+        delete triangle;
+    }
     m_triangles->clear();
     for (auto triangle : triangles) {
         m_triangles->append(new Triangle(*triangle));

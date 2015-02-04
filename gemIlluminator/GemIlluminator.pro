@@ -7,12 +7,10 @@ SOURCES += main.cpp \
     scenerenderer.cpp \
     player.cpp \
     lightray.cpp \
-    gemrenderer.cpp \
     camera.cpp \
     lightrayrenderer.cpp \
     navigation.cpp \
     abstractgem.cpp \
-    abstractgemrenderer.cpp \
     lightraydata.cpp \
     triangle.cpp \
     tetrahedrongem.cpp \
@@ -21,8 +19,8 @@ SOURCES += main.cpp \
     scenebounds.cpp \
     painter.cpp \
     painterqml.cpp \
-    gemrenderernew.cpp \
-    gemdata.cpp
+    gemdata.cpp \
+    gemrenderer.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -47,12 +45,10 @@ HEADERS += \
     scenerenderer.h \
     player.h \
     lightray.h \
-    gemrenderer.h \
     camera.h \
     lightrayrenderer.h \
     navigation.h \
     abstractgem.h \
-    abstractgemrenderer.h \
     lightraydata.h \
     triangle.h \
     tetrahedrongem.h \
@@ -61,5 +57,5 @@ HEADERS += \
     scenebounds.h \
     painter.h \
     painterqml.h \
-    gemrenderernew.h \
-    gemdata.h
+    gemdata.h \
+    gemrenderer.h

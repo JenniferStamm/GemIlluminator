@@ -50,20 +50,3 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
 TetrahedronGem::~TetrahedronGem()
 {
 }
-
-void TetrahedronGem::synchronize()
-{
-    //renderer has to been created in correct thread
-    if (!m_renderer){
-        m_renderer = new GemRenderer(triangles());
-    }
-
-    m_renderer->setColor(color());
-    m_renderer->setModel(model());
-}
-
-void TetrahedronGem::cleanup()
-{
-    delete m_renderer;
-    m_renderer = nullptr;
-}

@@ -10,8 +10,8 @@
 class QOpenGLFunctions;
 class QMatrix4x4;
 
-
 class AbstractGem;
+class GemRenderer;
 class LightRay;
 
 /**
@@ -40,6 +40,7 @@ protected:
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
+    GemRenderer *m_gemRenderer;
     QList<AbstractGem*> m_geometries;
     LightRay *m_rootLightRay;
 };

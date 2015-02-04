@@ -35,11 +35,6 @@ public:
     explicit AbstractGem(QObject *parent = 0);
     virtual ~AbstractGem();
 
-    virtual void synchronize() = 0;
-    virtual void cleanup() = 0;
-
-    virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
-
     const QVector3D &color() const;
     void setColor(QVector3D &color);
 
@@ -80,7 +75,6 @@ protected:
 
 protected:
     GemData *m_data;
-    AbstractGemRenderer *m_renderer;
     qreal m_radius;
 };
 

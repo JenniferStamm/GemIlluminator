@@ -15,17 +15,6 @@ public:
     explicit SceneBounds(QObject *parent = 0);
     virtual ~SceneBounds();
 
-    virtual void synchronize() override;
-    virtual void cleanup() override;
-
-    /**
-     * @brief Method does nothing, because bounds are invisible. But method has to be implemented, because no renderer exists.
-     * @param gl Unused
-     * @param viewProjection Unused
-     * @param program Unused
-     */
-    virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program) override;
-
     virtual void setPosition(const QVector3D &position) override;
     virtual void setRotation(const QQuaternion &rotation) override;
 };

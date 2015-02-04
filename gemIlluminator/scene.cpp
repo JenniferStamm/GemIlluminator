@@ -46,10 +46,6 @@ void Scene::sync(int elapsedTime)
 
     m_renderer->setGeometries(m_gem);
 
-    for (auto& i : m_gem) {
-        i->synchronize();
-    }
-
     m_renderer->setRootLightRay(m_rootLightRay);
     m_rootLightRay->update(elapsedTime);
     m_rootLightRay->setRenderer(m_lightRayRenderer);
@@ -66,10 +62,6 @@ void Scene::cleanup()
     if (m_lightRayRenderer) {
         delete m_lightRayRenderer;
         m_lightRayRenderer = nullptr;
-    }
-
-    for (auto& i : m_gem) {
-        i->cleanup();
     }
 }
 

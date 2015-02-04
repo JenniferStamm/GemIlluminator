@@ -103,20 +103,3 @@ CubeGem::CubeGem(QObject *parent) :
 CubeGem::~CubeGem()
 {
 }
-
-void CubeGem::synchronize()
-{
-    //renderer has to been created in correct thread
-    if (!m_renderer){
-        m_renderer = new GemRenderer(triangles());
-    }
-
-    m_renderer->setColor(color());
-    m_renderer->setModel(model());
-}
-
-void CubeGem::cleanup()
-{
-    delete m_renderer;
-    m_renderer = nullptr;
-}
