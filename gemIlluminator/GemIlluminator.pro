@@ -19,12 +19,12 @@ SOURCES += main.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
     scenebounds.cpp \
+    config.cpp \
     painter.cpp \
     painterqml.cpp
 
 RESOURCES += qml.qrc \
-    shader.qrc \
-    data.qrc
+    shader.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -57,5 +57,17 @@ HEADERS += \
     cubegem.h \
     screenalignedquad.h \
     scenebounds.h \
+    config.h \
     painter.h \
     painterqml.h
+
+release: DESTDIR = $$OUT_PWD/release
+debug:   DESTDIR = $$OUT_PWD/debug
+
+
+win32 {
+    install_it.path = $$DESTDIR/assets
+    install_it.files = config.json
+
+    INSTALLS += install_it
+}

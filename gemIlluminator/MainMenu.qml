@@ -15,7 +15,7 @@ Rectangle {
     Rectangle {
         color: backgroundBlue
         width: 70 * Screen.pixelDensity
-        height: 80 + 20 * Screen.pixelDensity
+        height: 100 + 30 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 50
@@ -25,10 +25,22 @@ Rectangle {
             label: "Start the Game!"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 50 + 10 * Screen.pixelDensity
+            anchors.bottomMargin: 70 + 20 * Screen.pixelDensity
 
             onClicked: {
                 mainMenu.visible = false
+            }
+        }
+
+        MenuButton {
+            id: optionsButton
+            label: "Options"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 50 + 10 * Screen.pixelDensity
+
+            onClicked: {
+                options.visible = true
             }
         }
 
@@ -67,6 +79,11 @@ Rectangle {
             height: parent.height
             width: 0.5 * Screen.pixelDensity
         }
+    }
+
+    Options {
+        id: options
+
     }
 
     Credits {

@@ -3,6 +3,7 @@
 
 #include "abstractgem.h"
 #include "camera.h"
+#include "config.h"
 #include "cubegem.h"
 #include "lightray.h"
 #include "navigation.h"
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
+    qmlRegisterType<Config>("GemIlluminator", 1, 0, "Config");
     qmlRegisterType<PainterQML>("GemIlluminator", 1, 0, "Painter");
 
     QQmlApplicationEngine engine;
