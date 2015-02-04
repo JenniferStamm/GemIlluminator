@@ -6,7 +6,8 @@
 #include "lightray.h"
 
 LightRayData::LightRayData() :
-    m_startPosition(new QVector3D())
+    m_color(new QVector3D(0.f, 1.f, 0.f))
+  , m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
 {
 }
@@ -25,6 +26,7 @@ LightRayData::LightRayData(const LightRayData &ray) :
 
 LightRayData::~LightRayData()
 {
+    delete m_color;
     delete m_startPosition;
     delete m_endPosition;
 }
@@ -48,6 +50,16 @@ QVector3D LightRayData::normalizedOrthogonalVector() const
     } else {
         return QVector3D(0.f, 0.f, 0.f);
     }
+}
+
+QVector3D *LightRayData::color() const
+{
+    return m_color;
+}
+
+void LightRayData::setColor(QVector3D *color)
+{
+    m_color = color;
 }
 
 const QVector3D & LightRayData::startPosition() const
