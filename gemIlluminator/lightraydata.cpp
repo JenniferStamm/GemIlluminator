@@ -13,14 +13,14 @@ LightRayData::LightRayData() :
 }
 
 LightRayData::LightRayData(const LightRay &ray) :
-    m_color(new QVector3D(0.f, 1.f, 0.f))
+    m_color(new QVector3D(ray.color()))
   , m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
 {
 }
 
 LightRayData::LightRayData(const LightRayData &ray) :
-  m_color(new QVector3D(0.f, 1.f, 0.f))
+    m_color(new QVector3D(ray.color()))
   , m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
 {
@@ -54,14 +54,14 @@ QVector3D LightRayData::normalizedOrthogonalVector() const
     }
 }
 
-QVector3D *LightRayData::color() const
+const QVector3D & LightRayData::color() const
 {
-    return m_color;
+    return *m_color;
 }
 
-void LightRayData::setColor(QVector3D *color)
+void LightRayData::setColor(const QVector3D &color)
 {
-    m_color = color;
+    *m_color = color;
 }
 
 const QVector3D & LightRayData::startPosition() const

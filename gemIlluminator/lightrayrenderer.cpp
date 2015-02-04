@@ -167,6 +167,13 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
 
     m_staticVertexBuffer->bind();
     m_staticIndexBuffer->bind();
+
+    if (!m_staticRays->isEmpty()) {
+        shaderProgram.setUniformValue(
+                    "color",
+                    m_staticRays->values().first().color());
+    }
+
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
     int indicesPerLightRay = 14;
@@ -181,6 +188,12 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
     updateDynamicVBO();
     m_dynamicVertexBuffer->bind();
     m_dynamicIndexBuffer->bind();
+
+    if (!m_dynamicRays->isEmpty()) {
+        shaderProgram.setUniformValue(
+                    "color",
+                    m_dynamicRays->first().color());
+    }
 
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 

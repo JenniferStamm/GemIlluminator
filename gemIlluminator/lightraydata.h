@@ -19,8 +19,8 @@ public:
 
     QVector3D normalizedOrthogonalVector() const;
 
-    QVector3D *color() const;
-    void setColor(QVector3D *color);
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
 
     const QVector3D &startPosition() const;
     void setStartPosition(const QVector3D &position);

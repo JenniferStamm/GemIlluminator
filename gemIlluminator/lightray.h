@@ -52,6 +52,8 @@ public slots:
     AbstractGem *collidingGem() const;
     void setCollidingGem(AbstractGem *gem);
 
+    const QVector3D &color() const;
+
     Player *player() const;
     void setPlayer(Player *attachedPlayer);
 

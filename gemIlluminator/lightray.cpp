@@ -49,7 +49,7 @@ void LightRay::update(int timeDifference)
         LightRay collisionTestRay;
         collisionTestRay.setStartPosition(m_player->position());
         collisionTestRay.setEndPosition(endPosition());
-        m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
+        setCollidingGem(m_scene->findGemIntersectedBy(collisionTestRay, &collisionPoint));
         setEndPosition(collisionPoint);
     }
 
@@ -67,15 +67,16 @@ void LightRay::update(int timeDifference)
             LightRay collisionTestRay;
             collisionTestRay.setStartPosition(m_player->position());
             collisionTestRay.setEndPosition(endPosition());
-            setCollidingGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
+            m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay);
             m_scene->setCurrentGem(m_collidingGem);
         } else {
-            m_collidingGem->setColor(*m_data->color());
+            m_collidingGem->setColor(m_data->color());
 
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
+            m_data->setColor(QVector3D(0.f, 0.f, 1.f));
             setStatic();
         }
     }
@@ -132,6 +133,11 @@ AbstractGem *LightRay::collidingGem() const
 void LightRay::setCollidingGem(AbstractGem *gem)
 {
     m_collidingGem = gem;
+}
+
+const QVector3D & LightRay::color() const
+{
+    return m_data->color();
 }
 
 Player * LightRay::player() const
