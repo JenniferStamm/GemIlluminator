@@ -11,6 +11,7 @@ class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class QVector3D;
 
+class AbstractGem;
 class LightRayData;
 class LightRayRenderer;
 class Scene;
@@ -48,12 +49,15 @@ public slots:
     QVector3D direction() const;
     QVector3D normalizedDirection() const;
 
-    Player *player();
+    AbstractGem *collidingGem() const;
+    void setCollidingGem(AbstractGem *gem);
+
+    Player *player() const;
     void setPlayer(Player *attachedPlayer);
 
     void setRenderer(LightRayRenderer *renderer);
 
-    Scene *scene();
+    Scene *scene() const;
     void setScene(Scene *owningScene);
 
     bool isStatic() const;
@@ -69,8 +73,8 @@ protected:
     bool isPlayerBeforeCollisionPoint();
 
 protected:
+    AbstractGem *m_collidingGem;
     LightRayData *m_data;
-
     QList<LightRay *> *m_successors;
     LightRay *m_selectedSuccessor;
     LightRayRenderer *m_renderer;
