@@ -13,13 +13,15 @@ LightRayData::LightRayData() :
 }
 
 LightRayData::LightRayData(const LightRay &ray) :
-    m_startPosition(new QVector3D(ray.startPosition()))
+    m_color(new QVector3D(0.f, 1.f, 0.f))
+  , m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
 {
 }
 
 LightRayData::LightRayData(const LightRayData &ray) :
-    m_startPosition(new QVector3D(ray.startPosition()))
+  m_color(new QVector3D(0.f, 1.f, 0.f))
+  , m_startPosition(new QVector3D(ray.startPosition()))
   , m_endPosition(new QVector3D(ray.endPosition()))
 {
 }
