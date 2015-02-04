@@ -70,7 +70,7 @@ void LightRay::update(int timeDifference)
             setCollidingGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
             m_scene->setCurrentGem(m_collidingGem);
         } else {
-            m_collidingGem->setColor(QVector3D(0.f, 1.f, 0.f));
+            m_collidingGem->setColor(*m_data->color());
 
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
