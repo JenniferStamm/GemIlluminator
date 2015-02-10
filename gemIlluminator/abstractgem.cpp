@@ -90,7 +90,7 @@ const QList<Triangle *> &AbstractGem::triangles() const
     return m_data->triangles();
 }
 
-Gem::Type AbstractGem::type() const
+GemType AbstractGem::type() const
 {
     return m_data->type();
 }
@@ -256,4 +256,10 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
 void AbstractGem::rotate(const QQuaternion &quaternion)
 {
     setRotation(quaternion * rotation());
+}
+
+
+uint qHash(GemType key, uint seed)
+{
+    return qHash(static_cast<uint>(key), seed);
 }

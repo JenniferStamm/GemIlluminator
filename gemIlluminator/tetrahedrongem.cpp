@@ -12,7 +12,7 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
     AbstractGem(parent)
 {
     m_radius = sqrt(3.f);
-    m_data->setType(Gem::Type::Tetrahedron);
+    m_data->setType(GemType::Tetrahedron);
     /* Order according to
      * http://math.stackexchange.com/questions/183030/given-a-tetrahedron-how-to-find-the-outward-surface-normals-for-each-side
      */

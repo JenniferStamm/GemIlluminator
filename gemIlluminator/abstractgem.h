@@ -15,13 +15,11 @@ class GemData;
 class LightRay;
 class Triangle;
 
-namespace Gem {
-
-enum class Type {
+enum class GemType {
     Abstract,
     Cube,
     Tetrahedron};
-}
+uint qHash(GemType key, uint seed);
 
 class AbstractGem : public QObject
 {
@@ -54,7 +52,7 @@ public:
     void setScale(qreal scaleFactor);
 
     const QList<Triangle *> &triangles() const;
-    Gem::Type type() const;
+    GemType type() const;
 
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);

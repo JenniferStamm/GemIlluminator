@@ -9,13 +9,8 @@ class QQuaternion;
 class QVector3D;
 
 class AbstractGem;
+enum class GemType;
 class Triangle;
-
-namespace Gem {
-
-enum class Type;
-
-}
 
 class GemData
 {
@@ -44,8 +39,8 @@ public:
     const QList<Triangle *> &triangles() const;
     void setTriangles(const QList<Triangle *> &triangles);
 
-    Gem::Type type() const;
-    void setType(Gem::Type type);
+    GemType type() const;
+    void setType(GemType type);
 
 protected:
     void copyTriangles(const QList<Triangle *> &triangles);
@@ -57,7 +52,7 @@ protected:
     QQuaternion *m_rotation;
     float m_scale;
     QList<Triangle *> *m_triangles;
-    Gem::Type m_type;
+    GemType m_type;
     mutable QMatrix4x4 *m_model;
     mutable bool m_isModelInvalid;
 };

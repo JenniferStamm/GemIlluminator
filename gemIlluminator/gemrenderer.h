@@ -1,15 +1,17 @@
 #ifndef GEMRENDERERNEW_H
 #define GEMRENDERERNEW_H
 
-template<typename T> class QList;
 template<typename Key, typename T> class QHash;
+template<typename T> class QList;
 class QMatrix4x4;
 class QOpenGLBuffer;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+template<typename T> class QVector;
 
 class AbstractGem;
 class GemData;
+enum class GemType;
 
 class GemRenderer
 {
@@ -30,6 +32,9 @@ class GemRenderer
         //single draw related stuff
         QOpenGLBuffer &buffer();
 
+        //packed draw related stuff
+        void appendVerticesTo(QVector<float> &vector) const;
+
     protected:
         //single draw related stuff
         QOpenGLBuffer *m_buffer;
@@ -49,12 +54,21 @@ public:
     void updateGem(AbstractGem *gem);
 
 protected:
-    void initialize();
+    void initialize(QOpenGLFunctions &gl);
     void paintAllGemsWithOwnDrawCall(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
+    void paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
+
+    void updateGemForOwnDrawCall(AbstractGem *gem);
+    void updateGemForUniformDrawCall(AbstractGem *gem);
 
 protected:
     bool m_isInitialized;
-    QHash<AbstractGem *, GemDataInfo*> *m_gemMap;
+    int m_maxUniformVectorSize;
+    QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
+    QHash<GemType, QList<QOpenGLBuffer *> *> *m_gemBuffers;
+    QHash<QOpenGLBuffer *, QList<GemDataInfo *> *> *m_bufferDataLinkage;
+    bool *m_isGemBufferUpdateRequired;
+    QList<GemDataInfo *> *m_newGems;
 };
 
 #endif // GEMRENDERERNEW_H

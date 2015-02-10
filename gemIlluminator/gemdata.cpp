@@ -15,7 +15,7 @@ GemData::GemData() :
   , m_rotation(new QQuaternion())
   , m_scale(1.f)
   , m_triangles(new QList<Triangle *>())
-  , m_type(Gem::Type::Abstract)
+  , m_type(GemType::Abstract)
 {
 }
 
@@ -142,12 +142,12 @@ void GemData::setTriangles(const QList<Triangle *> &triangles)
     copyTriangles(triangles);
 }
 
-Gem::Type GemData::type() const
+GemType GemData::type() const
 {
     return m_type;
 }
 
-void GemData::setType(Gem::Type type)
+void GemData::setType(GemType type)
 {
     if (m_type == type) {
         return;

@@ -104,6 +104,7 @@ void Painter::paint()
 
         gemProgram->setUniformValue("envmap", 0);
         gemProgram->setUniformValue("eye", m_scene->camera()->eye());
+        gemProgram->setUniformValue("viewProjection", m_scene->camera()->viewProjection());
         m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
