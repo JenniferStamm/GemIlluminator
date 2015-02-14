@@ -1,11 +1,14 @@
 import QtQuick 2.0
+import GemIlluminator 1.0
 
-Item {
+Config {
     id: config
-    visible: false
+    source: "config.json"
     property var gemTypes: null
     property int numGems: 0
     property var gemRangeSize: null
+    property var availableEnvMaps: null
+    property string envMap: ""
 
     Component.onCompleted: {
         loadConfig()
@@ -13,21 +16,24 @@ Item {
 
     function loadConfig()
     {
-        var request = new XMLHttpRequest()
-        request.open('GET', 'config.json')
-        request.onreadystatechange = function(event) {
-            if (request.readyState == XMLHttpRequest.DONE) {
-                _parseConfig(JSON.parse(request.responseText))
-            }
-        }
-        request.send()
+        var configJSON = JSON.parse(read())
+        gemTypes = configJSON["GemTypes"]
+        numGems = configJSON["NumGems"]
+        gemRangeSize = configJSON["GemRangeSize"]
+        availableEnvMaps = configJSON["AvailableEnvMaps"]
+        envMap = configJSON["EnvMap"]
     }
 
-    function _parseConfig(config)
+    function saveConfig()
     {
-        gemTypes = config["GemTypes"]
-        numGems = config["NumGems"]
-        gemRangeSize = config["GemRangeSize"]
+        var convertedConfig = '{\n'
+        convertedConfig += '\t"GemTypes": ["' + gemTypes.join('", "') + '"],\n'
+        convertedConfig += '\t"NumGems": ' + numGems + ',\n'
+        convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
+        convertedConfig += '\t"AvailableEnvMaps": ["' + availableEnvMaps.join('", "') + '"],\n'
+        convertedConfig += '\t"EnvMap": "' + envMap + '"\n'
+        convertedConfig += '}\n'
+        write(convertedConfig)
     }
 }
 

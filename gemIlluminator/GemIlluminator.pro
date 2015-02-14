@@ -17,6 +17,7 @@ SOURCES += main.cpp \
     cubegem.cpp \
     screenalignedquad.cpp \
     scenebounds.cpp \
+    config.cpp \
     painter.cpp \
     painterqml.cpp \
     gemdata.cpp \
@@ -55,7 +56,19 @@ HEADERS += \
     cubegem.h \
     screenalignedquad.h \
     scenebounds.h \
+    config.h \
     painter.h \
     painterqml.h \
     gemdata.h \
     gemrenderer.h
+
+release: DESTDIR = $$OUT_PWD/release
+debug:   DESTDIR = $$OUT_PWD/debug
+
+
+win32 {
+    install_it.path = $$DESTDIR/assets
+    install_it.files = assets/config.json
+
+    INSTALLS += install_it
+}
