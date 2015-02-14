@@ -46,7 +46,6 @@ public slots:
 
 protected:
     void initialize();
-    void initializeEnvmap();
     void paintEnvmap(const Camera &camera);
     void renderPreviewScene();
     void renderScene();
