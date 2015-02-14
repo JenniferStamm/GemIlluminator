@@ -1,11 +1,14 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.2
 
 Rectangle {
     id: options
     color: "#e5ffff"
     anchors.fill: parent
     visible: false
+
+    property int curEnvMapIndex: -1
 
     MenuButton {
         id: back
@@ -22,23 +25,49 @@ Rectangle {
         }
     }
 
-    Image {
+    Button {
         x: envButton.x - 12.5 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
         width: 7.5 * Screen.pixelDensity
-        source: "qrc:/data/arrow-left.png"
         anchors.bottomMargin: 35 * Screen.pixelDensity
         anchors.bottom: parent.bottom
-     }
 
-    Image {
+        Image {
+            height: 10 * Screen.pixelDensity
+            width: 7.5 * Screen.pixelDensity
+            source: "qrc:/data/arrow-left.png"
+        }
+
+        onClicked: {
+            if (curEnvMapIndex > 0) {
+                curEnvMapIndex--
+                config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = config.envMap
+            }
+        }
+    }
+
+    Button {
         x: envButton.x + 65 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
         width: 7.5 * Screen.pixelDensity
-        source: "qrc:/data/arrow-right.png"
         anchors.bottomMargin: 35 * Screen.pixelDensity
         anchors.bottom: parent.bottom
-     }
+
+        Image {
+            height: 10 * Screen.pixelDensity
+            width: 7.5 * Screen.pixelDensity
+            source: "qrc:/data/arrow-right.png"
+        }
+
+        onClicked: {
+            if (curEnvMapIndex < config.availableEnvMaps.length - 1) {
+                curEnvMapIndex++
+                config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = config.envMap
+            }
+        }
+    }
 
     Rectangle {
         id: envButton
@@ -48,6 +77,16 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 35 * Screen.pixelDensity
+
+        Text {
+            id: envMapInput
+            text: config.envMap
+            anchors.fill: parent
+            font.pointSize: 16
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
     }
 
     Rectangle {
@@ -67,6 +106,12 @@ Rectangle {
             color: "white"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+        }
+    }
+
+    onVisibleChanged: {
+        if (visible == true) {
+            curEnvMapIndex = config.availableEnvMaps.indexOf(config.envMap)
         }
     }
 }

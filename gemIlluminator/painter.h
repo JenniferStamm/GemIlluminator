@@ -24,6 +24,8 @@ public:
     Painter(QObject *parent = 0);
     virtual ~Painter();
 
+    void initializeEnvmap();
+
     bool isActive() const;
     void setActive(bool active);
 
@@ -34,6 +36,9 @@ public:
 
     void setViewport(const QSize &viewport);
 
+    QString envMapPrefix() const;
+    void setEnvMapPrefix(const QString &envMapPrefix);
+
 signals:
 
 public slots:
@@ -41,13 +46,13 @@ public slots:
 
 protected:
     void initialize();
-    void initializeEnvmap();
     void paintEnvmap();
 
 protected:
     bool m_active;
     Camera *m_camera;
     uint m_envmap;
+    QString m_envMapPrefix;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
     ScreenAlignedQuad *m_quad;
