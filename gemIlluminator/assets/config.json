@@ -2,5 +2,6 @@
     "GemTypes": ["CubeGem", "TetrahedronGem"],
     "NumGems": 200,
     "GemRangeSize": [0.1, 2],
-	"EnvMap": "cube"
+	"EnvMap": "cube",
+    "ViewportRatio": 4
 }
