@@ -194,6 +194,7 @@ void LightRay::calculateSuccessors()
         delete successor;
     }
     m_successors->clear();
+    m_selectedSuccessor = nullptr;
 
     LightRay *nextRay = new LightRay();
     nextRay->setScene(m_scene);
