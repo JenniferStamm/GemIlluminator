@@ -117,7 +117,7 @@ QVector3D &AbstractGem::color() const
     return *m_color;
 }
 
-void AbstractGem::setColor(QVector3D &color)
+void AbstractGem::setColor(const QVector3D &color)
 {
     *m_color = color;
     emit colorChanged();
