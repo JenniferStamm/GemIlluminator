@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "abstractgem.h"
+#include "camera.h"
 #include "lightraydata.h"
 #include "lightrayrenderer.h"
 #include "player.h"
@@ -75,6 +76,11 @@ void LightRay::update(int timeDifference)
             collisionTestRay.setEndPosition(endPosition());
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         }
+
+        QVector3D up = selectedSuccessor()->normalizedOrthogonalVector();
+        m_scene->previewCamera()->setUp(up);
+        m_scene->previewCamera()->setPosition(endPosition() + up * 0.1f);
+        m_scene->previewCamera()->setViewDirection(selectedSuccessor()->endPosition() - selectedSuccessor()->startPosition());
     }
 }
 
