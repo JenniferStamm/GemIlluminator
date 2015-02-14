@@ -19,6 +19,18 @@ Scene {
         fovy: 60
     }
 
+    previewCamera: Camera {
+        id: previewCamera
+        eye: "0, 0, 1"
+        center: "0, 0, 0"
+        up: "0, 1, 0"
+        zNear: 0.1
+        zFar: 100
+        viewport.width: root.width
+        viewport.height: root.height
+        fovy: 60
+    }
+
     Player {
         id: player
         velocity: 2.5
