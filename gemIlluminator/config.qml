@@ -7,6 +7,7 @@ Config {
     property var gemTypes: null
     property int numGems: 0
     property var gemRangeSize: null
+    property var availableEnvMaps: null
     property string envMap: ""
     property int viewportRatio: 0
 
@@ -20,6 +21,7 @@ Config {
         gemTypes = configJSON["GemTypes"]
         numGems = configJSON["NumGems"]
         gemRangeSize = configJSON["GemRangeSize"]
+        availableEnvMaps = configJSON["AvailableEnvMaps"]
         envMap = configJSON["EnvMap"]
         viewportRatio = configJSON["ViewportRatio"]
     }
@@ -30,6 +32,7 @@ Config {
         convertedConfig += '\t"GemTypes": ["' + gemTypes.join('", "') + '"],\n'
         convertedConfig += '\t"NumGems": ' + numGems + ',\n'
         convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
+        convertedConfig += '\t"AvailableEnvMaps": ["' + availableEnvMaps.join('", "') + '"],\n'
         convertedConfig += '\t"EnvMap": "' + envMap + '",\n'
         convertedConfig += '\t"ViewportRatio": ' + viewportRatio + '\n'
         convertedConfig += '}\n'

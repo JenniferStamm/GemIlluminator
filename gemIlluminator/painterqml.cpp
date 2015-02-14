@@ -10,6 +10,7 @@
 PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
   , m_active(false)
+  , m_isEnvMapInvalidated(true)
   , m_painter(nullptr)
   , m_time(nullptr)
 {
@@ -77,6 +78,12 @@ void PainterQML::synchronize()
 {
     if (m_painter) {
         m_painter->setActive(m_active);
+
+        if (!m_isEnvMapInvalidated) {
+            m_painter->setEnvMapPrefix(m_envMapPrefix);
+            m_painter->initializeEnvmap();
+            m_isEnvMapInvalidated = true;
+        }
     }
 
     if (m_active) {
@@ -85,6 +92,7 @@ void PainterQML::synchronize()
             connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
         }
 
+        m_painter->setEnvMapPrefix(m_envMapPrefix);
         m_painter->setScene(m_scene);
 
         if (!m_time) {
@@ -106,4 +114,15 @@ void PainterQML::cleanup()
     if (m_scene) {
         m_scene->cleanup();
     }
+}
+
+QString PainterQML::envMapPrefix() const
+{
+    return m_envMapPrefix;
+}
+
+void PainterQML::setEnvMapPrefix(const QString &envMapPrefix)
+{
+    m_envMapPrefix = envMapPrefix;
+    m_isEnvMapInvalidated = false;
 }
