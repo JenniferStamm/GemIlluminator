@@ -21,5 +21,7 @@
         <file>Config.qml</file>
         <file>Options.qml</file>
         <file>Painter.qml</file>
+        <file>data/arrow-left.png</file>
+        <file>data/arrow-right.png</file>
     </qresource>
 </RCC>

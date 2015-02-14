@@ -67,7 +67,7 @@ debug:   DESTDIR = $$OUT_PWD/debug
 
 win32 {
     install_it.path = $$DESTDIR/assets
-    install_it.files = config.json
+    install_it.files = assets/config.json
 
     INSTALLS += install_it
 }
