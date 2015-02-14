@@ -94,19 +94,16 @@ void Painter::paint()
         int viewportHeight = m_scene->camera()->viewport().height();
         int viewportWidth = m_scene->camera()->viewport().width();
 
-        GLuint FramebufferName = 0;
-        m_gl->glGenFramebuffers(1, &FramebufferName);
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+        GLuint sceneFB = 0;
+        m_gl->glGenFramebuffers(1, &sceneFB);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
 
-        // The texture we're going to render to
-        GLuint renderedTexture;
-        m_gl->glGenTextures(1, &renderedTexture);
+        GLuint sceneTexture;
+        m_gl->glGenTextures(1, &sceneTexture);
 
-        // "Bind" the newly created texture : all future texture functions will modify this texture
-        m_gl->glBindTexture(GL_TEXTURE_2D, renderedTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, sceneTexture);
 
-        // Give an empty image to OpenGL ( the last "0" means "empty" )
-        m_gl->glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, viewportWidth, viewportHeight, 0,GL_RGB, GL_UNSIGNED_BYTE, 0);
+        m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
         // Poor filtering
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -114,20 +111,14 @@ void Painter::paint()
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-        // Set "renderedTexture" as our colour attachement #0
-        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderedTexture, 0);
+        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, sceneTexture, 0);
 
-        // Set the list of draw buffers.
-        //GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
-        //m_gl->glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-
-        // Always check that our framebuffer is ok
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
                 return;
 
-        // Render to our framebuffer
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-        m_gl->glViewport(0,0,viewportWidth,viewportHeight); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+        // Render to framebuffer
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
+        m_gl->glViewport(0, 0, viewportWidth,viewportHeight);
 
         // Clear the screen
         m_gl->glClear(GL_COLOR_BUFFER_BIT);
@@ -136,24 +127,22 @@ void Painter::paint()
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        m_gl->glViewport(0,0,viewportWidth,viewportHeight); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+        m_gl->glViewport(0, 0, viewportWidth,viewportHeight);
 
         // Clear the screen
-        m_gl->glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        m_gl->glClear( GL_COLOR_BUFFER_BIT);
 
         // Bind our texture in Texture Unit 0
         m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_2D, renderedTexture);
-        // Set our "renderedTexture" sampler to user Texture Unit 0
-        // m_gl->glUniform1i(texID, 0);
+        m_gl->glBindTexture(GL_TEXTURE_2D, sceneTexture);
 
         QOpenGLShaderProgram *sceneProgram = (*m_shaderPrograms)[ShaderPrograms::SceneProgram];
         sceneProgram->bind();
         m_quad->draw(*m_gl);
         sceneProgram->release();
 
-        m_gl->glDeleteFramebuffers(1, &FramebufferName);
-        m_gl->glDeleteTextures(1, &renderedTexture);
+        m_gl->glDeleteFramebuffers(1, &sceneFB);
+        m_gl->glDeleteTextures(1, &sceneTexture);
 
 
         // Reset OpenGL state for qml
