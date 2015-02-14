@@ -1,6 +1,7 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
+template<typename T> class QList;
 class QVector3D;
 
 class AbstractGem;
@@ -37,6 +38,8 @@ public:
     Triangle inWorldCoordinates() const;
 
     AbstractGem *owningGem() const;
+
+    QList<QVector3D> vertices() const;
 
     QVector3D reflect(const QVector3D &incidentVector) const;
 

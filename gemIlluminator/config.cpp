@@ -23,7 +23,7 @@ QString Config::read()
 #ifdef __ANDROID__
     file->setFileName("assets:/" + m_source);
 #endif
-#ifdef __WIN32__
+#ifdef _WIN32
     file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
 #endif
 

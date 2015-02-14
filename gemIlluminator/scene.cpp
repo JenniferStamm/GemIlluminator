@@ -44,11 +44,7 @@ void Scene::sync(int elapsedTime)
         m_lightRayRenderer = new LightRayRenderer();
     }
 
-    m_renderer->setGeometries(m_gem);
-
-    for (auto& i : m_gem) {
-        i->synchronize();
-    }
+    m_renderer->synchronizeGeometries(m_gem);
 
     m_renderer->setRootLightRay(m_rootLightRay);
     m_rootLightRay->update(elapsedTime);
@@ -56,9 +52,10 @@ void Scene::sync(int elapsedTime)
     m_rootLightRay->synchronize();
 }
 
-void Scene::cleanup()
+void Scene::cleanupGL(QOpenGLFunctions &gl)
 {
     if (m_renderer) {
+        m_renderer->cleanup(gl);
         delete m_renderer;
         m_renderer = nullptr;
     }
@@ -66,10 +63,6 @@ void Scene::cleanup()
     if (m_lightRayRenderer) {
         delete m_lightRayRenderer;
         m_lightRayRenderer = nullptr;
-    }
-
-    for (auto& i : m_gem) {
-        i->cleanup();
     }
 }
 

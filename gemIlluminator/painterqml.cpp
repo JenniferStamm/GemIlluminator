@@ -1,5 +1,8 @@
 #include "painterqml.h"
 
+#include <cassert>
+
+#include <QEvent>
 #include <QQuickWindow>
 #include <QTime>
 
@@ -10,8 +13,10 @@
 PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
   , m_active(false)
+  , m_isUpdatePending(false)
   , m_isEnvMapInvalidated(true)
   , m_painter(nullptr)
+  , m_paintingDoneEventType(-1)
   , m_time(nullptr)
 {
     connect(this, &PainterQML::windowChanged, this, &PainterQML::handleWindowChanged);
@@ -21,6 +26,28 @@ PainterQML::~PainterQML()
 {
     delete m_painter;
     delete m_time;
+}
+
+bool PainterQML::event(QEvent *ev)
+{
+    if (ev->type() == paintingDoneEventType()) {
+        m_isUpdatePending = false;
+        return true;
+    }
+    switch (ev->type()) {
+    case QEvent::UpdateRequest: {
+        if (m_active && !m_isUpdatePending && window()) {
+            window()->update();
+            m_isUpdatePending = true;
+        }
+        if (m_active) {
+            QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
+        }
+        return QQuickItem::event(ev);
+    }
+    default:
+        return QQuickItem::event(ev);
+    }
 }
 
 void PainterQML::handleWindowChanged(QQuickWindow *win)
@@ -40,12 +67,22 @@ bool PainterQML::isActive() const
 void PainterQML::setActive(bool active)
 {
     m_active = active;
-    if (!m_active) {
+    if (m_active) {
+        QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
+    } else {
         delete m_time;
         m_time = nullptr;
     }
-
     emit activeChanged();
+}
+
+QEvent::Type PainterQML::paintingDoneEventType()
+{
+    if (m_paintingDoneEventType == -1) {
+        m_paintingDoneEventType = QEvent::registerEventType();
+    }
+
+    return static_cast<QEvent::Type>(m_paintingDoneEventType);
 }
 
 Scene* PainterQML::scene() const
@@ -56,22 +93,6 @@ Scene* PainterQML::scene() const
 void PainterQML::setScene(Scene *scene)
 {
     m_scene = scene;
-}
-
-qreal PainterQML::t() const
-{
-    return m_t;
-}
-
-void PainterQML::setT(qreal t)
-{
-    if(m_t == t)
-        return;
-    m_t = t;
-    emit tChanged();
-    if(window()){
-        window()->update();
-    }
 }
 
 void PainterQML::synchronize()
@@ -88,7 +109,7 @@ void PainterQML::synchronize()
 
     if (m_active) {
         if (!m_painter) {
-            m_painter = new Painter();
+            m_painter = new Painter(this, nullptr);
             connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
         }
 
@@ -108,12 +129,11 @@ void PainterQML::synchronize()
 
 void PainterQML::cleanup()
 {
+    if (m_scene) {
+        m_scene->cleanupGL(m_painter->gl());
+    }
     delete m_painter;
     m_painter = nullptr;
-
-    if (m_scene) {
-        m_scene->cleanup();
-    }
 }
 
 QString PainterQML::envMapPrefix() const

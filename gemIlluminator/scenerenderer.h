@@ -10,8 +10,8 @@
 class QOpenGLFunctions;
 class QMatrix4x4;
 
-
 class AbstractGem;
+class GemRenderer;
 class LightRay;
 
 /**
@@ -27,7 +27,10 @@ public:
     explicit SceneRenderer(QObject *parent = 0);
     virtual ~SceneRenderer();
 
-    void setGeometries(QList<AbstractGem*> geometries);
+    void cleanup(QOpenGLFunctions &gl);
+
+    void synchronizeGeometries(QList<AbstractGem*> geometries);
+    void setSceneExtent(float extent);
 
     LightRay *rootLightRay() const;
     void setRootLightRay(LightRay *rootLightRay);
@@ -40,8 +43,10 @@ protected:
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
+    GemRenderer *m_gemRenderer;
     QList<AbstractGem*> m_geometries;
     LightRay *m_rootLightRay;
+    float m_sceneExtent;
 };
 
 #endif // SCENERENDERER_H
