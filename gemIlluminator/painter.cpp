@@ -30,6 +30,9 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
 
 Painter::~Painter()
 {
+    if (m_scene) {
+        m_scene->cleanupGL(*m_gl);
+    }
     delete m_gl;
     delete m_quad;
     for (auto i : *m_shaderPrograms) {

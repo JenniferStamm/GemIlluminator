@@ -58,6 +58,7 @@ protected:
 };
 
 bool operator==(const GemData &lhs, const GemData &rhs);
+bool operator!=(const GemData &lhs, const GemData &rhs);
 uint qHash(const GemData &key, uint seed);
 
 #endif // GEMDATA_H

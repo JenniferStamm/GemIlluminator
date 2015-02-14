@@ -202,3 +202,9 @@ uint qHash(const GemData &key, uint seed)
                  key.rotation().x() + key.rotation().y() + key.rotation().z() + key.rotation().scalar() +
                  key.scale(), seed);
 }
+
+
+bool operator!=(const GemData &lhs, const GemData &rhs)
+{
+    return !(lhs == rhs);
+}

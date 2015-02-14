@@ -6,7 +6,7 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QPair>
+#include <QOpenGLTexture>
 #include <QVector>
 #include <QVector3D>
 
@@ -16,7 +16,8 @@
 
 namespace{
     static const bool useOwnDrawCallForEachGem = false;
-    static const bool useFewDrawCallsWithUniformArrays = true;
+    static const bool useFewDrawCallsWithUniformArrays = false;
+    static const bool useTextureBasedOtimization = true;
 }
 
 GemRenderer::GemRenderer() :
@@ -27,13 +28,18 @@ GemRenderer::GemRenderer() :
   , m_bufferDataLinkage(new QHash<QOpenGLBuffer *, QList<GemDataInfo *> *>())
   , m_isGemBufferUpdateRequired(false)
   , m_newGems(new QList<GemDataInfo *>())
+  , m_sceneExtent(1.f)
+  , m_isGemDataBufferInvalid(false)
+  , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
 {
 }
 
 GemRenderer::~GemRenderer()
 {
-    for (auto gem : m_gemMap->values()) {
-        delete gem;
+    if (!useTextureBasedOtimization) {
+        for (auto gem : m_gemMap->values()) {
+            delete gem;
+        }
     }
     delete m_gemMap;
 
@@ -50,6 +56,16 @@ GemRenderer::~GemRenderer()
         //m_bufferDataLinkage links gpu with cpu data, therefore it owns neither buffers nor gem data
     }
     delete m_bufferDataLinkage;
+
+    for (auto renderData : m_gemBuffersTex->values()) {
+        delete renderData;
+    }
+    delete m_gemBuffersTex;
+}
+
+void GemRenderer::cleanup(QOpenGLFunctions &gl)
+{
+    //TODO
 }
 
 void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
@@ -57,12 +73,19 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     if (!m_isInitialized) {
         initialize(gl);
     }
-
     if (useOwnDrawCallForEachGem) {
         paintAllGemsWithOwnDrawCall(gl, viewProjection, program);
     } else if (useFewDrawCallsWithUniformArrays) {
         paintGemsPackedUsingUniformArays(gl, viewProjection, program);
+    } else if (useTextureBasedOtimization) {
+        paintGemsOptimizedWithTexture(gl, viewProjection, program);
     }
+}
+
+void GemRenderer::setSceneExtent(float extent)
+{
+    m_sceneExtent = extent;
+    m_isGemDataBufferInvalid = true;
 }
 
 void GemRenderer::updateGem(AbstractGem *gem)
@@ -71,6 +94,8 @@ void GemRenderer::updateGem(AbstractGem *gem)
        updateGemForOwnDrawCall(gem);
    } else if (useFewDrawCallsWithUniformArrays) {
        updateGemForUniformDrawCall(gem);
+   } else if (useTextureBasedOtimization) {
+       updateGemForTextureOptimization(gem);
    }
 }
 
@@ -110,10 +135,14 @@ void GemRenderer::paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const Q
     if (!m_newGems->isEmpty()) {
         //update required data structures
         for (auto gem : *m_newGems) {
+            bool isNewBufferNeeded = false;
             QOpenGLBuffer *drawBuffer;
             QList<QOpenGLBuffer *> *typeBuffers = m_gemBuffers->value(gem->data().type());
-            bool isNewBufferNeeded = (typeBuffers == nullptr);
-            if (typeBuffers) {
+            if (!typeBuffers) {
+                typeBuffers = new QList<QOpenGLBuffer *>();
+                m_gemBuffers->insert(gem->data().type(), typeBuffers);
+                isNewBufferNeeded = true;
+            } else {
                 drawBuffer = typeBuffers->last();
                 if (m_bufferDataLinkage->value(drawBuffer)->size() > m_maxUniformVectorSize) {
                     isNewBufferNeeded = true;
@@ -124,6 +153,7 @@ void GemRenderer::paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const Q
                 drawBuffer->setUsagePattern(QOpenGLBuffer::StaticDraw);
                 drawBuffer->create();
                 m_bufferDataLinkage->insert(drawBuffer,  new QList<GemDataInfo *>());
+                typeBuffers->append(drawBuffer);
             }
             m_bufferDataLinkage->value(drawBuffer)->append(gem);
         }
@@ -135,17 +165,30 @@ void GemRenderer::paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const Q
                 buffer->bind();
                 QVector<float> vertices;
                 for (auto gemInfo : *(m_bufferDataLinkage->value(buffer))) {
-                    gemInfo->appendVerticesTo(vertices);
-                    vertices.append(index++);
+                    //gemInfo->appendVerticesTo(vertices);
+                    for (auto triangle : gemInfo->data().triangles()) {
+                        for (auto vertex : triangle->vertices()) {
+                            vertices.append(vertex.x());
+                            vertices.append(vertex.y());
+                            vertices.append(vertex.z());
+                            vertices.append(triangle->normalizedNormal().x());
+                            vertices.append(triangle->normalizedNormal().y());
+                            vertices.append(triangle->normalizedNormal().z());
+                            vertices.append(index);
+                        }
+                    }
+                    ++index;
                 }
                 buffer->allocate(vertices.data(), vertices.size() * sizeof(float));
                 buffer->release();
             }
         }
+        m_newGems->clear();
     }
 
     program.bind();
     program.setUniformValue("u_viewProjection", viewProjection);
+    program.enableAttributeArray(2);
 
     for (auto bufferList : m_gemBuffers->values()) {
         for (auto buffer : *bufferList) {
@@ -187,6 +230,27 @@ void GemRenderer::paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const Q
     }
 }
 
+void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
+{
+    if (!m_newGems->isEmpty()) {
+        for (auto gem : *m_newGems) {
+            GemRenderData *typeRenderData = m_gemBuffersTex->value(gem->data().type());
+            if (!typeRenderData) {
+                typeRenderData = new GemRenderData();
+                typeRenderData->setVerticesPerGem(gem->numberOfVertices());
+                typeRenderData->setSceneExtent(m_sceneExtent);
+                m_gemBuffersTex->insert(gem->data().type(), typeRenderData);
+            }
+            typeRenderData->addOrUpdateGem(gem, gl);
+        }
+
+        m_newGems->clear();
+    }
+    for (auto renderData : m_gemBuffersTex->values()) {
+        renderData->paint(gl, program);
+    }
+}
+
 void GemRenderer::updateGemForOwnDrawCall(AbstractGem *gem)
 {
     if (m_gemMap->contains(gem)) {
@@ -210,6 +274,22 @@ void GemRenderer::updateGemForUniformDrawCall(AbstractGem *gem)
     }
 }
 
+void GemRenderer::updateGemForTextureOptimization(AbstractGem *gem)
+{
+    GemDataInfo *gemInfo = m_gemMap->value(gem);
+    if (gemInfo) {
+        if (gemInfo->data() != gem->data()) {
+            gemInfo->setData(gem->data());
+            m_newGems->append(gemInfo);
+        }
+    } else {
+        gemInfo = new GemDataInfo();
+        gemInfo->setData(gem->data());
+        m_gemMap->insert(gem, gemInfo);
+        m_newGems->append(gemInfo);
+    }
+}
+
 GemRenderer::GemDataInfo::GemDataInfo() :
     m_data(new GemData())
   , m_buffer(nullptr)
@@ -230,6 +310,16 @@ const GemData &GemRenderer::GemDataInfo::data() const
 void GemRenderer::GemDataInfo::setData(const GemData &data)
 {
     *m_data = data;
+}
+
+int GemRenderer::GemDataInfo::index() const
+{
+    return m_index;
+}
+
+void GemRenderer::GemDataInfo::setIndex(int index)
+{
+    m_index = index;
 }
 
 int GemRenderer::GemDataInfo::numberOfVertices()
@@ -273,4 +363,194 @@ void GemRenderer::GemDataInfo::appendVerticesTo(QVector<float> &vector) const
             vector.append(triangle->normal().z());
         }
     }
+}
+
+
+GemRenderer::GemRenderData::GemRenderData() :
+    m_allocatedGems(0)
+  , m_allocatedAndUsedGems(0)
+  , m_dataBuffer(0)
+  , m_gems(new QList<GemDataInfo *>())
+  , m_isInitialized(false)
+  , m_lowestUnusedIndex(0)
+  , m_vertexBuffer(nullptr)
+{
+}
+
+GemRenderer::GemRenderData::~GemRenderData()
+{
+    delete m_vertexBuffer;
+
+    for (auto gem : *m_gems) {
+        delete gem;
+    }
+    delete m_gems;
+}
+
+void GemRenderer::GemRenderData::cleanup(QOpenGLFunctions &gl)
+{
+    if (!m_isInitialized) {
+        return;
+    }
+    m_vertexBuffer->destroy();
+    gl.glDeleteTextures(1, &m_dataBuffer);
+}
+
+void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program)
+{
+    if (!m_isInitialized) {
+        initialize(gl);
+    }
+    program.bind();
+    program.setUniformValue("u_data", 7);
+    program.setUniformValue("u_sceneExtent", m_sceneExtent);
+    program.setUniformValue("u_maxNumberOfGems", static_cast<float>(m_allocatedGems));
+
+    gl.glActiveTexture(GL_TEXTURE7);
+    gl.glEnable(GL_TEXTURE_2D);
+    gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+    m_vertexBuffer->bind();
+
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void *) (3 * sizeof(float)));
+    gl.glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 7 * sizeof(float), (void *) (6 * sizeof(float)));
+    gl.glDrawArrays(GL_TRIANGLES, 0, m_allocatedAndUsedGems * m_verticesPerGem);
+
+    gl.glBindTexture(GL_TEXTURE_2D, 0);
+    gl.glDisable(GL_TEXTURE_2D);
+    m_vertexBuffer->release();
+}
+
+void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
+{
+    m_isInitialized = true;
+    m_vertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+    m_vertexBuffer->setUsagePattern(QOpenGLBuffer::DynamicDraw);
+    m_vertexBuffer->create();
+
+    gl.glGenTextures(1, &m_dataBuffer);
+    gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+    gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+}
+
+void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
+{
+    if (!m_isInitialized) {
+        initialize(gl);
+    }
+    if (!m_gems->contains(gem)) {
+        addGem(gem, gl);
+    } else {
+        updateGem(gem, gl);
+    }
+}
+
+void GemRenderer::GemRenderData::setVerticesPerGem(int numberOfVertices)
+{
+    m_verticesPerGem = numberOfVertices;
+}
+
+void GemRenderer::GemRenderData::setSceneExtent(float extent)
+{
+    m_sceneExtent = extent;
+}
+
+GLubyte asNormalizedGLubyte(float value, float maxExtent)
+{
+    //move value from [-maxExtent;maxExtent] to [0;1]
+    float scaleDown = 1.f / (2.f * maxExtent);
+    float valueZeroToOne = value * scaleDown + 0.5f;
+    //move value from [0;1] to [0;255]
+    return static_cast<GLubyte>(valueZeroToOne * 255);
+}
+
+void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
+{
+    if (m_allocatedAndUsedGems == m_allocatedGems) {
+        m_allocatedGems += 256;
+        m_vertexBuffer->bind();
+        m_vertexBuffer->allocate(m_allocatedGems * m_verticesPerGem * 7 * sizeof(float));
+        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+        gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 3, m_allocatedGems, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+        QVector<float> vertices;
+        QVector<GLubyte> data;
+        for (GemDataInfo *gem : *m_gems) {
+            GemData gemData = gem->data();
+            for (auto triangle : gemData.triangles()) {
+                for (auto vertex : triangle->vertices()) {
+                    vertices.append(vertex.x());
+                    vertices.append(vertex.y());
+                    vertices.append(vertex.z());
+                    vertices.append(triangle->normalizedNormal().x());
+                    vertices.append(triangle->normalizedNormal().y());
+                    vertices.append(triangle->normalizedNormal().z());
+                    vertices.append(gem->index());
+                }
+            }
+            data.append(asNormalizedGLubyte(gemData.position().x(), m_sceneExtent));
+            data.append(asNormalizedGLubyte(gemData.position().y(), m_sceneExtent));
+            data.append(asNormalizedGLubyte(gemData.position().z(), m_sceneExtent));
+            data.append(asNormalizedGLubyte(gemData.scale(), m_sceneExtent));
+            data.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
+            data.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
+            data.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
+            data.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
+            data.append(static_cast<GLubyte>(gemData.color().x() * 255));
+            data.append(static_cast<GLubyte>(gemData.color().y() * 255));
+            data.append(static_cast<GLubyte>(gemData.color().z() * 255));
+            data.append(255);   //padding
+        }
+        gl.glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+        //m_vertexBuffer->write(0, vertices.data(), vertices.size() * sizeof(float));
+        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 3, m_allocatedAndUsedGems, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
+        m_vertexBuffer->release();
+        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+    }
+
+    gem->setIndex(m_allocatedAndUsedGems++);
+    m_gems->append(gem);
+
+    QVector<float> verticesNew;
+    for (auto triangle : gem->data().triangles()) {
+        for (auto vertex : triangle->vertices()) {
+            verticesNew.append(vertex.x());
+            verticesNew.append(vertex.y());
+            verticesNew.append(vertex.z());
+            verticesNew.append(triangle->normalizedNormal().x());
+            verticesNew.append(triangle->normalizedNormal().y());
+            verticesNew.append(triangle->normalizedNormal().z());
+            verticesNew.append(gem->index());
+        }
+    }
+    m_vertexBuffer->bind();
+    m_vertexBuffer->write(gem->index() * m_verticesPerGem * 7 * sizeof(float), verticesNew.data(), verticesNew.size() * sizeof(float));
+    m_vertexBuffer->release();
+
+    updateGem(gem, gl);
+}
+
+void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
+{
+    QVector<GLubyte> dataNew;
+    GemData gemData = gem->data();
+
+    dataNew.append(asNormalizedGLubyte(gemData.position().x(), m_sceneExtent));
+    dataNew.append(asNormalizedGLubyte(gemData.position().y(), m_sceneExtent));
+    dataNew.append(asNormalizedGLubyte(gemData.position().z(), m_sceneExtent));
+    dataNew.append(asNormalizedGLubyte(gemData.scale(), m_sceneExtent));
+    dataNew.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
+    dataNew.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
+    dataNew.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
+    dataNew.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
+    dataNew.append(static_cast<GLubyte>(gemData.color().x() * 255));
+    dataNew.append(static_cast<GLubyte>(gemData.color().y() * 255));
+    dataNew.append(static_cast<GLubyte>(gemData.color().z() * 255));
+    dataNew.append(255);   //padding
+
+    gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+    gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, gem->index(), 3, 1, GL_RGBA, GL_UNSIGNED_BYTE, dataNew.data());
+    gl.glBindTexture(GL_TEXTURE_2D, 0);
 }

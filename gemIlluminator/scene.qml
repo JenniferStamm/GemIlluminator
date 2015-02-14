@@ -21,7 +21,7 @@ Scene {
 
     Player {
         id: player
-        velocity: 2.5
+        velocity: 0.25
         camera: camera
     }
 
