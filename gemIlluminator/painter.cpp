@@ -83,7 +83,7 @@ void Painter::paint()
         }
 
         m_gl->glClearColor(0.9f, 1.f, 1.f, 1.f);
-        m_gl->glClear(GL_COLOR_BUFFER_BIT);
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         m_gl->glDisable(GL_CULL_FACE);
 
         m_gl->glEnable(GL_DEPTH_TEST);
@@ -105,23 +105,27 @@ void Painter::paint()
 
         m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
-        // Poor filtering
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+        GLuint sceneDepthRB;
+        m_gl->glGenRenderbuffers(1, &sceneDepthRB);
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, sceneDepthRB);
+        m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+
+        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sceneDepthRB);
         m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, sceneTexture, 0);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-                return;
+            return;
 
         // Render to framebuffer
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
         m_gl->glViewport(0, 0, viewportWidth,viewportHeight);
 
-        // Clear the screen
-        m_gl->glClear(GL_COLOR_BUFFER_BIT);
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderScene();
 
@@ -129,8 +133,7 @@ void Painter::paint()
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
         m_gl->glViewport(0, 0, viewportWidth,viewportHeight);
 
-        // Clear the screen
-        m_gl->glClear( GL_COLOR_BUFFER_BIT);
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Bind our texture in Texture Unit 0
         m_gl->glActiveTexture(GL_TEXTURE0);
@@ -138,11 +141,13 @@ void Painter::paint()
 
         QOpenGLShaderProgram *sceneProgram = (*m_shaderPrograms)[ShaderPrograms::SceneProgram];
         sceneProgram->bind();
+        sceneProgram->setUniformValue("u_sceneTexture", 0);
         m_quad->draw(*m_gl);
         sceneProgram->release();
 
         m_gl->glDeleteFramebuffers(1, &sceneFB);
         m_gl->glDeleteTextures(1, &sceneTexture);
+        m_gl->glDeleteRenderbuffers(1, &sceneDepthRB);
 
 
         // Reset OpenGL state for qml
@@ -321,29 +326,29 @@ void Painter::renderPreviewScene()
 
 void Painter::renderScene()
 {
-        paintEnvmap();
+    paintEnvmap();
 
-        /* Paint gems */
-        QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
-        gemProgram->bind();
+    /* Paint gems */
+    QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
+    gemProgram->bind();
 
-        gemProgram->enableAttributeArray(0);
-        gemProgram->enableAttributeArray(1);
+    gemProgram->enableAttributeArray(0);
+    gemProgram->enableAttributeArray(1);
 
-        gemProgram->setUniformValue("envmap", 0);
-        gemProgram->setUniformValue("eye", m_scene->camera()->eye());
-        m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
+    gemProgram->setUniformValue("envmap", 0);
+    gemProgram->setUniformValue("eye", m_scene->camera()->eye());
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
-        QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
-        shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
-        shaderPrograms.insert(ShaderPrograms::EnvMapProgram, m_shaderPrograms->value(ShaderPrograms::EnvMapProgram));
-        shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
+    QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
+    shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
+    shaderPrograms.insert(ShaderPrograms::EnvMapProgram, m_shaderPrograms->value(ShaderPrograms::EnvMapProgram));
+    shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
 
-        m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), *m_shaderPrograms);
+    m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), *m_shaderPrograms);
 
-        gemProgram->disableAttributeArray(0);
-        gemProgram->disableAttributeArray(1);
+    gemProgram->disableAttributeArray(0);
+    gemProgram->disableAttributeArray(1);
 
-        gemProgram->release();
+    gemProgram->release();
 }
