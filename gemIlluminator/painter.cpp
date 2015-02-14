@@ -286,13 +286,13 @@ void Painter::initializeEnvmap()
     m_shaderPrograms->insert(ShaderPrograms::EnvMapProgram, envmapProgram);
 }
 
-void Painter::paintEnvmap()
+void Painter::paintEnvmap(const Camera &camera)
 {
     QOpenGLShaderProgram *envmapProgram = (*m_shaderPrograms)[ShaderPrograms::EnvMapProgram];
     envmapProgram->bind();
 
-    envmapProgram->setUniformValue("view", m_scene->camera()->view());
-    envmapProgram->setUniformValue("projectionInverse", m_scene->camera()->projectionInverted());
+    envmapProgram->setUniformValue("view",camera.view());
+    envmapProgram->setUniformValue("projectionInverse", camera.projectionInverted());
 
     envmapProgram->setUniformValue("cubemap", 0);
 
@@ -313,7 +313,7 @@ void Painter::paintEnvmap()
 
 void Painter::renderPreviewScene()
 {
-    paintEnvmap();
+    paintEnvmap(*m_scene->previewCamera());
 
     /* Paint gems */
     QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
@@ -342,7 +342,7 @@ void Painter::renderPreviewScene()
 
 void Painter::renderScene()
 {
-    paintEnvmap();
+    paintEnvmap(*m_scene->camera());
 
     /* Paint gems */
     QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
