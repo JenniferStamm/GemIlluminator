@@ -103,5 +103,7 @@ void PainterQML::cleanup()
     delete m_painter;
     m_painter = nullptr;
 
-    m_scene->cleanup();
+    if (m_scene) {
+        m_scene->cleanup();
+    }
 }

@@ -50,14 +50,23 @@ bool Config::write(const QString& data)
     if (m_source.isEmpty())
         return false;
 
-    QFile file(m_source);
-    if (!file.open(QFile::WriteOnly | QFile::Truncate))
+    QFile *file = new QFile();
+
+#ifdef __ANDROID__
+    file->setFileName("assets:/" + m_source);
+#endif
+#ifdef __WIN32__
+    file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
+#endif
+
+    if (!file->open(QFile::WriteOnly | QFile::Truncate))
         return false;
 
-    QTextStream out(&file);
+    QTextStream out(file);
     out << data;
 
-    file.close();
+    file->close();
+    delete file;
 
     return true;
 }
