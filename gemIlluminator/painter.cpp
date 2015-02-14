@@ -88,21 +88,19 @@ void Painter::paint()
 
         m_gl->glEnable(GL_DEPTH_TEST);
         m_gl->glDepthFunc(GL_LEQUAL);
-        m_gl->glDepthMask(GL_FALSE);
+        m_gl->glDepthMask(GL_TRUE);
 
         // Render to texture
         int viewportHeight = m_scene->camera()->viewport().height();
         int viewportWidth = m_scene->camera()->viewport().width();
 
-        GLuint sceneFB = 0;
+        GLuint sceneFB;
         m_gl->glGenFramebuffers(1, &sceneFB);
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
 
         GLuint sceneTexture;
         m_gl->glGenTextures(1, &sceneTexture);
-
         m_gl->glBindTexture(GL_TEXTURE_2D, sceneTexture);
-
         m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -115,8 +113,8 @@ void Painter::paint()
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, sceneDepthRB);
         m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
 
-        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sceneDepthRB);
         m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, sceneTexture, 0);
+        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sceneDepthRB);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return;
@@ -259,6 +257,7 @@ void Painter::paintEnvmap()
 
     envmapProgram->setUniformValue("cubemap", 0);
 
+    m_gl->glDepthMask(GL_FALSE);
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glEnable(GL_TEXTURE_CUBE_MAP);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
