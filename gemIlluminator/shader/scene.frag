@@ -4,14 +4,11 @@ precision mediump int;
 precision mediump float;
 #endif
 
-uniform samplerCube cubemap;
+uniform sampler2D sceneTexture;
 
-// attribute vec4 fragColor;
-
-varying vec3 v_eye;
+varying vec2 v_uv;
 
 void main()
 {
-	vec3 eye = normalize(v_eye);
-        gl_FragColor = textureCube(cubemap, eye);
+        gl_FragColor = texture2D(sceneTexture, v_uv);
 }

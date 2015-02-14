@@ -43,6 +43,8 @@ protected:
     void initialize();
     void initializeEnvmap();
     void paintEnvmap();
+    void renderPreviewScene();
+    void renderScene();
 
 protected:
     bool m_active;
