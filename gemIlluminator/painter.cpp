@@ -95,6 +95,7 @@ void Painter::paint()
         int viewportWidth = m_scene->camera()->viewport().width();
         int previewViewportHeight = m_scene->previewCamera()->viewport().height();
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
+        float previewSize = 1.f / (viewportWidth / previewViewportWidth);
 
         GLuint sceneFB;
         m_gl->glGenFramebuffers(1, &sceneFB);
@@ -178,6 +179,7 @@ void Painter::paint()
         sceneProgram->bind();
         sceneProgram->setUniformValue("u_sceneTexture", 0);
         sceneProgram->setUniformValue("u_previewSceneTexture", 1);
+        sceneProgram->setUniformValue("u_previewSize", previewSize);
         m_quad->draw(*m_gl);
         sceneProgram->release();
 

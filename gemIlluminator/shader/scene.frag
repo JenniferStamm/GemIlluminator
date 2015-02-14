@@ -6,12 +6,13 @@ precision mediump float;
 
 uniform sampler2D u_sceneTexture;
 uniform sampler2D u_previewSceneTexture;
+uniform float u_previewSize;
 
 varying vec2 v_uv;
 
 void main()
 {
-    if (v_uv.s <= 0.5 && v_uv.t > 0.5) {
+    if (v_uv.s <= u_previewSize && v_uv.t > (1.0 - u_previewSize)) {
         float preview_u = v_uv.s * 2;
         float preview_v = (v_uv.t - 0.5) * 2;
         gl_FragColor = texture2D(u_previewSceneTexture, vec2(preview_u, preview_v));
