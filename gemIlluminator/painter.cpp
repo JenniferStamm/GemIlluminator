@@ -91,6 +91,9 @@ void Painter::paint()
         m_gl->glDepthMask(GL_FALSE);
 
         // Render to texture
+        int viewportHeight = m_scene->camera()->viewport().height();
+        int viewportWidth = m_scene->camera()->viewport().width();
+
         GLuint FramebufferName = 0;
         m_gl->glGenFramebuffers(1, &FramebufferName);
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
@@ -103,7 +106,7 @@ void Painter::paint()
         m_gl->glBindTexture(GL_TEXTURE_2D, renderedTexture);
 
         // Give an empty image to OpenGL ( the last "0" means "empty" )
-        m_gl->glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, 1024, 768, 0,GL_RGB, GL_UNSIGNED_BYTE, 0);
+        m_gl->glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, viewportWidth, viewportHeight, 0,GL_RGB, GL_UNSIGNED_BYTE, 0);
 
         // Poor filtering
         m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -124,7 +127,7 @@ void Painter::paint()
 
         // Render to our framebuffer
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-        m_gl->glViewport(0,0,1024,768); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+        m_gl->glViewport(0,0,viewportWidth,viewportHeight); // Render on the whole framebuffer, complete from the lower left corner to the upper right
 
         // Clear the screen
         m_gl->glClear(GL_COLOR_BUFFER_BIT);
@@ -133,7 +136,7 @@ void Painter::paint()
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        m_gl->glViewport(0,0,1024,768); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+        m_gl->glViewport(0,0,viewportWidth,viewportHeight); // Render on the whole framebuffer, complete from the lower left corner to the upper right
 
         // Clear the screen
         m_gl->glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
