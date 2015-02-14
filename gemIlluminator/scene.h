@@ -1,25 +1,35 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <QMap>
 #include <QQuickItem>
 #include <QQmlListProperty>
+
+class QOpenGLFunctions;
+class QOpenGLShaderProgram;
+class QMatrix4x4;
 
 class AbstractGem;
 class Camera;
 class LightRay;
+class LightRayRenderer;
 class Navigation;
-class QTime;
+class SceneBounds;
 class SceneRenderer;
 class Triangle;
+
+enum class ShaderPrograms {
+    GemProgram,
+    LighRayProgram,
+    EnvMapProgram
+};
 
 class Scene : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
     Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
-    Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
-    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay)
+    Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
 
 public:
     explicit Scene(QQuickItem *parent = 0);
@@ -27,44 +37,62 @@ public:
 
     QQmlListProperty<AbstractGem> geometries();
 
-    qreal t();
-    void setT(qreal t);
-
-    bool isActive();
-    void setActive(bool active);
-
-    Camera* camera();
+    Camera* camera() const;
     void setCamera(Camera *camera);
 
-    LightRay* rootLightRay();
-    void setRootLightRay(LightRay *root);
+    SceneRenderer& sceneRenderer() const;
 
-    AbstractGem *rayIntersection(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    AbstractGem *rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+
+    /**
+     * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
+     * @param ray Ray send into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
+     * @return Returns the nearst intersected gem. Returns never nullptr.
+     */
+    AbstractGem *findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+
+    /**
+     * @brief Finds the nearest gem with bounding sphere intersected by given ray.
+     * @param ray Ray send into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into.
+     * @return Returns the nearst intersected gem. Returns never a nullptr;
+     */
+    AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+
+    /**
+     * @brief Finds intersected face of nearest gem intersected by given ray.
+     * @param ray Ray send into scene to find gem face.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
+     * @return Returns the nearst intersected face of a gem. Returns never nullptr.
+     */
+    Triangle *findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
+
+    void setCurrentGem(AbstractGem *currentGem);
+
+    LightRay *rootLightRay() const;
+    void setRootLightRay(LightRay *rootLightRay);
 
 signals:
     void cubesChanged();
-    void tChanged();
     void geometriesChanged();
-    void activeChanged();
+    void rootLightRayChanged();
 
 public slots:
-    virtual void sync();
-    virtual void cleanup();
+    virtual void sync(int elapsedTime);
+    virtual void cleanupGL(QOpenGLFunctions &gl);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
     void registerNavigation(Navigation *navigation);
+    void rotateCurrentGem(const QQuaternion &quaternion);
 
 protected:
-    SceneRenderer *m_renderer;
-    QList<AbstractGem*> m_gem;
-    qreal m_t;
-    QTime *m_time;
-    bool m_active;
+    SceneBounds *m_bounds;
     Camera *m_camera;
-    LightRay *m_rootLightRay;
+    AbstractGem *m_currentGem;
+    QList<AbstractGem*> m_gem;
+    LightRayRenderer *m_lightRayRenderer;
     Navigation *m_navigation;
-
-private slots:
-    void handleWindowChanged(QQuickWindow *win);
+    SceneRenderer *m_renderer;
+    LightRay *m_rootLightRay;
 };
 
 #endif // SCENE_H

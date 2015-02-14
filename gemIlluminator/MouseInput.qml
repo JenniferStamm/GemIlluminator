@@ -8,19 +8,18 @@ MouseArea {
 
     property var navigation
 
-    property int oldX: 0
-    property int oldY: 0
+    property point referencePoint: Qt.point(0, 0)
 
     onPressed: {
-        oldX = mouseX
-        oldY = mouseY
+        referencePoint = Qt.point(mouse.x, mouse.y)
     }
 
     onPositionChanged: {
-        navigation.rotateX += ((mouseY - oldY) / root.height) * 180
-        navigation.rotateY -= ((mouseX - oldX) / root.width) * 180
-        oldY = mouseY
-        oldX = mouseX
+        var scale = Math.min(root.width, root.height);
+        var xAngle = ((mouseY - referencePoint.y) / scale) * 180 //move mouse in x direction leads to rotation to left or right
+        var yAngle = ((mouseX - referencePoint.x) / scale) * 180 //move mouse in y direction leads to rotation to top or bottom
+        navigation.eulerRotation = Qt.vector3d(xAngle, yAngle, 0)
+        referencePoint = Qt.point(mouse.x, mouse.y)
     }
 }
 

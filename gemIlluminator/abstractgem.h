@@ -1,59 +1,79 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include <QMatrix4x4>
 #include <QObject>
+#include <QQuaternion>
 #include <QVector3D>
 
+class QMatrix4x4;
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
+class QQuaternion;
 
 class AbstractGemRenderer;
+class GemData;
 class LightRay;
 class Triangle;
+
+enum class GemType {
+    Abstract,
+    Cube,
+    Tetrahedron};
+uint qHash(GemType key, uint seed);
 
 class AbstractGem : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QVector3D initialRotation READ initialRotation WRITE setInitialRotation NOTIFY initialRotationChanged)
-    Q_PROPERTY(QVector3D position READ position WRITE setPosition NOTIFY positionChanged)
-    Q_PROPERTY(QVector3D rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(const QVector3D &position READ position WRITE setPosition NOTIFY positionChanged)
+    Q_PROPERTY(const QQuaternion &rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(qreal scale READ scale WRITE setScale NOTIFY scaleChanged)
+    Q_PROPERTY(const QVector3D &color READ color WRITE setColor NOTIFY colorChanged)
 
 public:
     explicit AbstractGem(QObject *parent = 0);
     virtual ~AbstractGem();
 
-    virtual void synchronize() = 0;
-    virtual void cleanup() = 0;
-    virtual void update(int timeDifference) = 0;
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
 
-    void paint(QOpenGLFunctions *gl, QMatrix4x4 viewProjection, QOpenGLShaderProgram &program);
+    const GemData &data() const;
 
-    QVector3D initialRotation() const;
-    void setInitialRotation(const QVector3D &initialRotation);
+    const QMatrix4x4 &model() const;
 
-    QVector3D position();
-    void setPosition(QVector3D position);
+    const QVector3D &position() const;
+    virtual void setPosition(const QVector3D &position);
 
-    QVector3D rotation();
-    void setRotation(QVector3D rotation);
+    qreal radius() const;
 
-    float rayIntersect(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    virtual float rayIntersect(const LightRay &ray, int *triangleIndex, QVector3D *collisionPoint = nullptr) = 0;
+    const QQuaternion &rotation() const;
+    virtual void setRotation(const QQuaternion &rotation);
+
+    qreal scale() const;
+    void setScale(qreal scaleFactor);
+
+    const QList<Triangle *> &triangles() const;
+    GemType type() const;
+
+    float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
+    void rotate(const QQuaternion &quaternion);
+
+public slots:
+    void setRotationFromEuler(const QVector3D &eulerRotation);
 
 signals:
-    void initialRotationChanged();
     void positionChanged();
     void rotationChanged();
+    void scaleChanged();
+    void colorChanged();
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
 
 protected:
-    AbstractGemRenderer *m_renderer;
-    QVector3D m_initialRotation;
-    QVector3D m_position;
-    QVector3D m_rotation; /*!< Contains the euler angles */
+    GemData *m_data;
+    qreal m_radius;
 };
 
 #endif // GEOMETRY_H

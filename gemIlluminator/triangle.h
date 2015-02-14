@@ -1,19 +1,26 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
-#include <QObject>
-
+template<typename T> class QList;
 class QVector3D;
 
-class Triangle : public QObject
+class AbstractGem;
+
+class Triangle
 {
-    Q_OBJECT
 public:
-    explicit Triangle(QObject *parent = 0);
+    Triangle(AbstractGem *owningGem);
+
     Triangle(const QVector3D &a,
              const QVector3D &b,
              const QVector3D &c,
-             const QVector3D &color);
+             AbstractGem *owningGem);
+
+    Triangle(const Triangle &triangle);
+
+    ~Triangle();
+
+    Triangle &operator=(const Triangle &triangle);
 
     const QVector3D &a() const;
     void setA(const QVector3D &a);
@@ -24,22 +31,27 @@ public:
     const QVector3D &c() const;
     void setC(const QVector3D &c);
 
-    const QVector3D &color() const;
-    void setColor(const QVector3D &color);
+    const QVector3D &normal() const;
 
-    const QVector3D &normal();
+    QVector3D normalizedNormal() const;
 
-    QVector3D normalizedNormal();
+    Triangle inWorldCoordinates() const;
+
+    AbstractGem *owningGem() const;
+
+    QList<QVector3D> vertices() const;
+
+    QVector3D reflect(const QVector3D &incidentVector) const;
 
 protected:
-    void calculateNormal();
+    void calculateNormal() const;
 
 protected:
     QVector3D *m_a;
     QVector3D *m_b;
     QVector3D *m_c;
-    QVector3D *m_color;
-    QVector3D *m_normal;
+    mutable QVector3D *m_normal;
+    AbstractGem *m_gem;
 };
 
 #endif // TRIANGLE_H

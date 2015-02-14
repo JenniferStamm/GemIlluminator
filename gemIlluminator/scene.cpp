@@ -1,84 +1,74 @@
 #include "scene.h"
 
+#include <cassert>
 #include <limits>
 
 #include <QQuickWindow>
-#include <QTime>
 #include <QVector3D>
 
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightray.h"
+#include "lightrayrenderer.h"
 #include "navigation.h"
+#include "scenebounds.h"
 #include "scenerenderer.h"
 #include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
+  , m_bounds(new SceneBounds())
+  , m_camera(nullptr)
+  , m_currentGem(m_bounds)
+  , m_lightRayRenderer(nullptr)
+  , m_navigation(nullptr)
   , m_renderer(nullptr)
-  , m_time(nullptr)
-  , m_rootLightRay(new LightRay(this))
+  , m_rootLightRay(nullptr)
 {
-    connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(handleWindowChanged(QQuickWindow*)));
-    m_rootLightRay->setStartPosition(QVector3D(0, 0, 0));
-    m_rootLightRay->setEndPosition(QVector3D(0, 1, 0));
 }
 
 Scene::~Scene()
 {
+    delete m_bounds;
+    delete m_lightRayRenderer;
     delete m_renderer;
-    delete m_time;
 }
 
-void Scene::sync()
+void Scene::sync(int elapsedTime)
 {
-    if (m_active) {
-        if (!m_time) {
-            m_time = new QTime();
-            m_time->start();
-        }
-
-        if (!m_renderer) {
-            m_renderer = new SceneRenderer();
-            connect(window(), SIGNAL(beforeRendering()), m_renderer, SLOT(paint()), Qt::DirectConnection);
-        }
-
-        m_renderer->setViewport(window()->size() * window()->devicePixelRatio());
-        m_renderer->setGeometries(m_gem);
-        m_renderer->setRootLightRay(m_rootLightRay);
-        m_renderer->setActive(m_active);
-        m_renderer->setViewProjection(m_camera->viewProjection());
-
-        int elapsedTime = m_time->restart();
-
-        m_rootLightRay->update(elapsedTime);
-        m_rootLightRay->synchronize();
-
-        for (auto& i : m_gem) {
-            i->synchronize();
-            i->setRotation(QVector3D(m_navigation->rotateX(), m_navigation->rotateY(), m_navigation->rotateZ()));
-        }
+    if (!m_renderer) {
+        m_renderer = new SceneRenderer();
     }
+
+    if (!m_lightRayRenderer) {
+        m_lightRayRenderer = new LightRayRenderer();
+    }
+
+    m_renderer->synchronizeGeometries(m_gem);
+
+    m_renderer->setRootLightRay(m_rootLightRay);
+    m_rootLightRay->update(elapsedTime);
+    m_rootLightRay->setRenderer(m_lightRayRenderer);
+    m_rootLightRay->synchronize();
 }
 
-void Scene::cleanup()
+void Scene::cleanupGL(QOpenGLFunctions &gl)
 {
     if (m_renderer) {
+        m_renderer->cleanup(gl);
         delete m_renderer;
-        m_renderer = 0;
+        m_renderer = nullptr;
     }
-    for (auto& i : m_gem) {
-        i->cleanup();
+
+    if (m_lightRayRenderer) {
+        delete m_lightRayRenderer;
+        m_lightRayRenderer = nullptr;
     }
 }
 
-void Scene::handleWindowChanged(QQuickWindow *win)
+void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
-    if (win) {
-        connect(win, SIGNAL(beforeSynchronizing()), this, SLOT(sync()), Qt::DirectConnection);
-        connect(win, SIGNAL(sceneGraphInvalidated()), this, SLOT(cleanup()), Qt::DirectConnection);
-        win->setClearBeforeRendering(false);
-    }
+    m_renderer->paint(gl, viewProjection, shaderPrograms);
 }
 
 QQmlListProperty<AbstractGem> Scene::geometries()
@@ -88,42 +78,20 @@ QQmlListProperty<AbstractGem> Scene::geometries()
 
 void Scene::registerNavigation(Navigation *navigation)
 {
+    if (m_navigation) {
+        disconnect(m_navigation, &Navigation::worldSpaceRotationChanged, this, &Scene::rotateCurrentGem);
+    }
     m_navigation = navigation;
+    m_navigation->setCamera(m_camera);
+    connect(m_navigation, &Navigation::worldSpaceRotationChanged, this, &Scene::rotateCurrentGem);
 }
 
-qreal Scene::t()
+void Scene::rotateCurrentGem(const QQuaternion &quaternion)
 {
-    return m_t;
+    m_currentGem->rotate(quaternion);
 }
 
-void Scene::setT(qreal t)
-{
-    if(m_t == t)
-        return;
-    m_t = t;
-    emit tChanged();
-    if(window()){
-        window()->update();
-    }
-}
-
-bool Scene::isActive()
-{
-    return m_active;
-}
-
-void Scene::setActive(bool active)
-{
-    m_active = active;
-    if (!m_active) {
-        delete m_time;
-        m_time = nullptr;
-    }
-
-    emit activeChanged();
-}
-
-Camera* Scene::camera()
+Camera* Scene::camera() const
 {
     return m_camera;
 }
@@ -133,27 +101,29 @@ void Scene::setCamera(Camera* camera)
     m_camera = camera;
 }
 
-LightRay* Scene::rootLightRay()
+LightRay* Scene::rootLightRay() const
 {
     return m_rootLightRay;
 }
 
-void Scene::setRootLightRay(LightRay *root)
+void Scene::setRootLightRay(LightRay *rootLightRay)
 {
-    m_rootLightRay = root;
+    m_rootLightRay = rootLightRay;
 }
 
-AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPoint)
+SceneRenderer& Scene::sceneRenderer() const
 {
-    AbstractGem *result = nullptr;
-    QVector3D noCollisionPoint(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
-    if (collisionPoint) {
-        *collisionPoint = noCollisionPoint;
-    }
-    float distance = std::numeric_limits<float>::max();
+    assert(m_renderer);
+    return *m_renderer;
+}
+
+AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
+{
+    AbstractGem *result = m_bounds;
+    float distance = m_bounds->intersectedBy(ray, collisionPoint);
     for( auto& gem : m_gem ){
         QVector3D temp;
-        float collisionDistance = gem->rayIntersect(ray, &temp);
+        float collisionDistance = gem->intersectedBy(ray, &temp);
         if (collisionDistance < distance) {
             distance = collisionDistance;
             if (collisionPoint) {
@@ -162,29 +132,53 @@ AbstractGem * Scene::rayIntersection(const LightRay &ray, QVector3D *collisionPo
             result = gem;
         }
     }
+    assert(result);
     return result;
 }
 
-AbstractGem *Scene::rayIntersectsTriangle(const LightRay &ray, QVector3D *collisionPoint)
+AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
-    AbstractGem *result = nullptr;
-    int triangleIndex = -1;
-    const float maxFloat = std::numeric_limits<float>::max();
-    QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
-    if (collisionPoint) {
-        *collisionPoint = noCollisionPoint;
+    AbstractGem *result = m_bounds;
+    float distance = m_bounds->boundingSphereIntersectedBy(ray, collisionPoint);
+    for( auto& gem : m_gem ){
+        QVector3D temp;
+        float collisionDistance = gem->boundingSphereIntersectedBy(ray, &temp);
+        if (collisionDistance < distance) {
+            distance = collisionDistance;
+            if (collisionPoint) {
+                *collisionPoint = temp;
+            }
+            result = gem;
+        }
     }
-    float distance = maxFloat;
+    assert(result);
+    return result;
+}
+
+Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
+{
+    Triangle *result;
+    float distance = m_bounds->faceIntersectedBy(ray, result, collisionPoint);
     for (auto& gem : m_gem){
         QVector3D tempCollisionPoint;
-        float collisionDistance = gem->rayIntersect(ray, &triangleIndex, &tempCollisionPoint);
+        Triangle *tempResultTriangle;
+        float collisionDistance = gem->faceIntersectedBy(ray, tempResultTriangle, &tempCollisionPoint);
         if (collisionDistance < distance) {
             distance = collisionDistance;
             if (collisionPoint) {
                 *collisionPoint = tempCollisionPoint;
             }
-            result = gem;
+            result = tempResultTriangle;
         }
     }
+    assert(result);
     return result;
+}
+
+void Scene::setCurrentGem(AbstractGem *currentGem)
+{
+    if (currentGem == nullptr) {
+        return;
+    }
+    m_currentGem = currentGem;
 }

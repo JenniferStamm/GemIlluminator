@@ -12,10 +12,13 @@ Item {
         id: rotationSensor
         dataRate: 15
 
+        property vector3d lastReading : Qt.vector3d(0, 0, 0)
+
         onReadingChanged: {
             if(Qt.platform.os == "android") {
-                navigation.rotateX = rotationSensor.reading.y * 2
-                navigation.rotateY = rotationSensor.reading.x * 2
+                var eulerAngle = Qt.vector3d(-rotationSensor.reading.y, rotationSensor.reading.x, 0).minus(lastReading)
+                lastReading = Qt.vector3d(-rotationSensor.reading.y, rotationSensor.reading.x, 0)
+                navigation.eulerRotation = eulerAngle
             }
         }
     }
@@ -24,10 +27,13 @@ Item {
         id: tiltSensor
         dataRate: 15
 
+        property vector3d lastReading: Qt.vector3d(0, 0, 0)
+
         onReadingChanged: {
             if(Qt.platform.os == "android") {
-                navigation.rotateX = tiltSensor.reading.yRotation * 2
-                navigation.rotateY = tiltSensor.reading.xRotation * 2
+                var eulerAngle = Qt.vector3d(-tiltSensor.reading.yRotation, tiltSensor.reading.xRotation, 0).minus(lastReading)
+                lastReading = Qt.vector3d(-tiltSensor.reading.yRotation, tiltSensor.reading.xRotation, 0)
+                navigation.eulerRotation = eulerAngle
             }
         }
     }

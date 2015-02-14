@@ -25,18 +25,13 @@ Scene {
         camera: camera
     }
 
+
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "15, 0, 0"
-        endPosition: "-15, 0, 0"
+        startPosition: "0, 0, -15"
+        endPosition: "0, 0, 15"
         player: player
         scene: scene
-    }
-
-    SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
-        loops: Animation.Infinite
-        running: true
     }
 
     WorkerScript {
@@ -45,24 +40,26 @@ Scene {
 
         onMessage: {
             if(messageObject.gems) {
-                var gemComponent = Qt.createComponent("gem.qml");
                 var gems = messageObject.gems
+                var gemTypes = initGemTypes()
 
                 var gemsToJSON = []
+                var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    gemsToJSON.push(gemComponent.createObject(scene,
+                    curGemType = gems[i][4].toString()
+                    gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
                                                             "position.z": gems[i][2],
+                                                            "scale": gems[i][3],
                                                         }))
                 }
 
                 console.log("Gems created: " + gems.length)
 
                 scene.geometries = gemsToJSON
-                scene.active = true
 
                 if (loadScreen !== null) {
                     loadScreen.visible = false
@@ -71,11 +68,23 @@ Scene {
                 loadScreen.currentProgress = messageObject.currentProgress
             }
         }
+
+        function initGemTypes()
+        {
+            // Improve the solution when a configuration file is available
+            var gemTypes = {}
+
+            config.gemTypes.forEach(function(type) {
+                gemTypes[type] = Qt.createComponent(type + ".qml")
+            })
+
+            return gemTypes
+        }
     }
 
     Component.onCompleted: {
-        scene.active = false
-        gemGenerator.sendMessage({"numGems": 500,"gemSize": 1, "rangeStart": -10, "rangeEnd": 10})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
+                                     "rangeEnd": 20, "gemTypes": config.gemTypes})
     }
 }
 

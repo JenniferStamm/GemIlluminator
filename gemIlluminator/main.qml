@@ -11,23 +11,20 @@ ApplicationWindow {
     height: 480
     color: "red"
 
-    property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
-    property var scene: null
-
     Connections {
         target: Qt.application
 
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.scene !== null) {
+                    painter.active = false
                 }
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.scene !== null) {
+                    painter.active = false
                 }
                 console.log("Hidden")
                 break
@@ -48,14 +45,14 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                if(scene !== null) {
-                    scene.active = true
+                if(painter.scene !== null) {
+                    painter.active = true
                 }
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                if(scene !== null) {
-                    scene.active = false
+                if(painter.scene !== null) {
+                    painter.active = false
                 }
 
                 if(Qt.platform.os === "android") {
@@ -83,19 +80,19 @@ ApplicationWindow {
     }
 
     Item {
+        id: inputElement
         visible: false
         focus: true
 
         Keys.onReleased: {
-            if (((event.key == Qt.Key_Escape && Qt.platform.os !== "android") ||
-                    (event.key == Qt.Key_Back && Qt.platform.os === "android")) &&
-                    scene != null) {
+            if (((event.key === Qt.Key_Escape && Qt.platform.os !== "android") ||
+                    (event.key === Qt.Key_Back && Qt.platform.os === "android")) &&
+                    painter.scene !== null) {
                 event.accepted = true
                 mainMenu.visible = true
 
-                // Simple solution for stop rendering without a crash
-                scene.geometries = []
-                scene.delete
+                painter.active = false
+                painter.clearScene()
             }
         }
     }
@@ -125,11 +122,17 @@ ApplicationWindow {
 
         startButton.onClicked: {
             loadScreen.visible = true
-            scene = null
 
-            scene = sceneComponent.createObject(root)
-            scene.loadScreen = loadScreen
-            scene.registerNavigation(navigation)
+            painter.generateScene()
+            painter.active = true
         }
+    }
+
+    Config {
+        id: config
+    }
+
+    Painter {
+        id: painter
     }
 }

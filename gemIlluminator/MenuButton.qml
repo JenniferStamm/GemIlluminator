@@ -43,7 +43,7 @@ Button {
         id: bottomBorder
         anchors.bottom: parent.bottom
         color: blue
-        height: 1 * Screen.pixelDensity
+        height: getBorderHeight()
         width: parent.width
         visible: true
     }
@@ -53,7 +53,7 @@ Button {
         anchors.left: parent.left
         color: blue
         height: parent.height
-        width: 0.75 * Screen.pixelDensity
+        width: getBorderWidth()
         visible: true
     }
 
@@ -62,8 +62,17 @@ Button {
         anchors.right: parent.right
         color: blue
         height: parent.height
-        width: 0.75 * Screen.pixelDensity
+        width: getBorderWidth()
         visible: true
     }
-}
 
+    function getBorderWidth()
+    {
+        return Math.floor(root.width / 300)
+    }
+
+    function getBorderHeight()
+    {
+        return Math.floor(root.height / 150)
+    }
+}
