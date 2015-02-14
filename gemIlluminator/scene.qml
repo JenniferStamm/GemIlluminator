@@ -26,8 +26,8 @@ Scene {
         up: "0, 1, 0"
         zNear: 0.1
         zFar: 100
-        viewport.width: root.width
-        viewport.height: root.height
+        viewport.width: root.width / 4
+        viewport.height: root.height / 4
         fovy: 60
     }
 
