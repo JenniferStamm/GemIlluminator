@@ -246,6 +246,7 @@ void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMat
 
         m_newGems->clear();
     }
+    program.enableAttributeArray(2);
     for (auto renderData : m_gemBuffersTex->values()) {
         renderData->paint(gl, program);
     }
