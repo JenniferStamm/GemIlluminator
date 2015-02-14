@@ -11,6 +11,7 @@
 
 LightRay::LightRay(QObject *parent) :
     QObject(parent)
+  , m_collidingGem(nullptr)
   , m_data(new LightRayData())
   , m_successors(new QList<LightRay *>)
   , m_selectedSuccessor(nullptr)
@@ -48,7 +49,7 @@ void LightRay::update(int timeDifference)
         LightRay collisionTestRay;
         collisionTestRay.setStartPosition(m_player->position());
         collisionTestRay.setEndPosition(endPosition());
-        m_scene->findGemFaceIntersectedBy(collisionTestRay, &collisionPoint);
+        setCollidingGem(m_scene->findGemIntersectedBy(collisionTestRay, &collisionPoint));
         setEndPosition(collisionPoint);
     }
 
@@ -62,18 +63,21 @@ void LightRay::update(int timeDifference)
         calculateSuccessors();
         m_player->moveOnRay(*this, timeDifference);
 
-        if (isPlayerBeforeCollisionPoint())
-        {
+        if (isPlayerBeforeCollisionPoint()) {
+            LightRay collisionTestRay;
+            collisionTestRay.setStartPosition(m_player->position());
+            collisionTestRay.setEndPosition(endPosition());
+            m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay);
+            m_scene->setCurrentGem(m_collidingGem);
+        } else {
+            m_collidingGem->setColor(m_data->color());
+
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
+            m_data->setColor(QVector3D(0.f, 0.f, 1.f));
             setStatic();
-        } else {
-            LightRay collisionTestRay;
-            collisionTestRay.setStartPosition(m_player->position());
-            collisionTestRay.setEndPosition(endPosition());
-            m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         }
     }
 }
@@ -121,7 +125,22 @@ QVector3D LightRay::normalizedDirection() const
     return m_data->normalizedDirection();
 }
 
-Player * LightRay::player()
+AbstractGem *LightRay::collidingGem() const
+{
+    return m_collidingGem;
+}
+
+void LightRay::setCollidingGem(AbstractGem *gem)
+{
+    m_collidingGem = gem;
+}
+
+const QVector3D & LightRay::color() const
+{
+    return m_data->color();
+}
+
+Player * LightRay::player() const
 {
     return m_player;
 }
@@ -142,7 +161,7 @@ void LightRay::setRenderer(LightRayRenderer *renderer)
     }
 }
 
-Scene *LightRay::scene()
+Scene *LightRay::scene() const
 {
     return m_scene;
 }
@@ -223,5 +242,5 @@ bool LightRay::isPlayerBeforeCollisionPoint()
     if (direction().z() != 0.f) {
         factors.setZ(difference.z() / direction().z());
     }
-    return factors.x() > 1.f || factors.y() > 1.f || factors.z() > 1.f;
+    return !(factors.x() > 1.f || factors.y() > 1.f || factors.z() > 1.f);
 }

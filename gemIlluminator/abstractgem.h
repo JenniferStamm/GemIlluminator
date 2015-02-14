@@ -45,7 +45,7 @@ public:
     void setScale(qreal scaleFactor);
 
     QVector3D &color() const;
-    void setColor(QVector3D &color);
+    void setColor(const QVector3D &color);
 
     qreal radius() const;
 
