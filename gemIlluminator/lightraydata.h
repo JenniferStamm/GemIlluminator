@@ -19,6 +19,9 @@ public:
 
     QVector3D normalizedOrthogonalVector() const;
 
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
+
     const QVector3D &startPosition() const;
     void setStartPosition(const QVector3D &position);
     const QVector3D &endPosition() const;
@@ -28,6 +31,7 @@ public:
 
     LightRayData & operator=(const LightRayData &lightRay);
 protected:
+    QVector3D *m_color;
     QVector3D *m_startPosition;
     QVector3D *m_endPosition;
 };

@@ -34,7 +34,7 @@ public:
     virtual ~AbstractGem();
 
     const QVector3D &color() const;
-    void setColor(QVector3D &color);
+    void setColor(const QVector3D &color);
 
     const GemData &data() const;
 

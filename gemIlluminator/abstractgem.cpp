@@ -100,7 +100,7 @@ const QVector3D &AbstractGem::color() const
     return m_data->color();
 }
 
-void AbstractGem::setColor(QVector3D &color)
+void AbstractGem::setColor(const QVector3D &color)
 {
     if (color == m_data->color()) {
         return;
