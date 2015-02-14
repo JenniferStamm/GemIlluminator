@@ -129,13 +129,11 @@ void PainterQML::synchronize()
 
 void PainterQML::cleanup()
 {
+    if (m_scene) {
+        m_scene->cleanupGL(m_painter->gl());
+    }
     delete m_painter;
     m_painter = nullptr;
-
-    //m_scene->cleanupGL();
-    //if (m_scene) {
-    //    m_scene->cleanup();
-    //}
 }
 
 QString PainterQML::envMapPrefix() const

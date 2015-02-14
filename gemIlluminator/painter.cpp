@@ -246,3 +246,8 @@ void Painter::setEnvMapPrefix(const QString &envMapPrefix)
     m_envMapPrefix = envMapPrefix;
 }
 
+QOpenGLFunctions &Painter::gl() const
+{
+    return *m_gl;
+}
+

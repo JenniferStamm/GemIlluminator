@@ -40,6 +40,8 @@ public:
     QString envMapPrefix() const;
     void setEnvMapPrefix(const QString &envMapPrefix);
 
+    QOpenGLFunctions &gl() const;
+
 signals:
 
 public slots:
