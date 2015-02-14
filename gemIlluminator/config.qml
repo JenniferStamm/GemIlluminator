@@ -7,6 +7,7 @@ Config {
     property var gemTypes: null
     property int numGems: 0
     property var gemRangeSize: null
+    property string envMap: ""
 
     Component.onCompleted: {
         loadConfig()
@@ -18,6 +19,18 @@ Config {
         gemTypes = configJSON["GemTypes"]
         numGems = configJSON["NumGems"]
         gemRangeSize = configJSON["GemRangeSize"]
+        envMap = configJSON["EnvMap"]
+    }
+
+    function saveConfig()
+    {
+        var convertedConfig = '{\n'
+        convertedConfig += '\t"GemTypes": ["' + gemTypes.join('", "') + '"],\n'
+        convertedConfig += '\t"NumGems": ' + numGems + ',\n'
+        convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
+        convertedConfig += '\t"EnvMap": "' + envMap + '"\n'
+        convertedConfig += '}\n'
+        write(convertedConfig)
     }
 }
 

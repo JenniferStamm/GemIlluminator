@@ -80,6 +80,7 @@ ApplicationWindow {
     }
 
     Item {
+        id: inputElement
         visible: false
         focus: true
 
