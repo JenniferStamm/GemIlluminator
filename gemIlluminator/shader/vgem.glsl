@@ -72,15 +72,25 @@ void packedGemsWithUniforms()
     gl_Position = viewProjection * vec4(worldCoord, 1.0);
 }
 
+vec4 decode(vec4 high, vec4 low, float minBorder, float maxBorder)
+{
+    float scaleHigh = maxBorder - minBorder;
+    float scaleLow = (maxBorder - minBorder) / 256;
+
+    vec4 scaled = high * scaleHigh + low * scaleLow;
+    return scaled + minBorder;
+}
+
 void drawOptimizedWithTexture()
 {
-    //texture coordinates have to point to center of texel not border (u-coordinates: precalculated for width of three)
+    //texture coordinates have to point to center of texel not border (u-coordinates: precalculated for width)
     float index = (a_index + 0.5) / (u_maxNumberOfGems);
-    vec4 xyzs = texture2D(u_data, vec2(0.1667, index));
-    xyzs = xyzs * 2.0 * u_sceneExtent - u_sceneExtent;
-    vec4 rotation = texture2D(u_data, vec2(0.5, index));
+    vec4 xyzsHigh = texture2D(u_data, vec2(0.125, index));
+    vec4 xyzsLow = texture2D(u_data, vec2(0.375, index));
+    vec4 xyzs = decode(xyzsHigh, xyzsLow, -u_sceneExtent, u_sceneExtent);
+    vec4 rotation = texture2D(u_data, vec2(0.625, index));
     rotation = rotation * 2.0 - 1.0;
-    vec4 rgb_ = texture2D(u_data, vec2(0.8333, index));
+    vec4 rgb_ = texture2D(u_data, vec2(0.875, index));
 
     vec3 scaledCoord = a_vertex * xyzs.w;
     vec3 rotatedCoord = rotateVector(rotation, scaledCoord);
