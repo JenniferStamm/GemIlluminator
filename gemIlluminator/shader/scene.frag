@@ -13,8 +13,8 @@ varying vec2 v_uv;
 void main()
 {
     if (v_uv.s <= u_previewSize && v_uv.t > (1.0 - u_previewSize)) {
-        float preview_u = v_uv.s * 2;
-        float preview_v = (v_uv.t - 0.5) * 2;
+        float preview_u = v_uv.s * (1.0 / u_previewSize);
+        float preview_v = (v_uv.t - (1.0 - u_previewSize)) * (1.0 / u_previewSize);
         gl_FragColor = texture2D(u_previewSceneTexture, vec2(preview_u, preview_v));
     } else {
         gl_FragColor = texture2D(u_sceneTexture, v_uv);
