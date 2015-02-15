@@ -2,8 +2,8 @@
 #define PAINTER_H
 
 #include <QObject>
+#include <QOpenGLFunctions>
 
-class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class QSize;
 
@@ -46,6 +46,9 @@ public slots:
 
 protected:
     void initialize();
+    void initializeBuffers();
+    void initializeShaderPrograms();
+    void initializeTextures();
     void paintEnvmap(const Camera &camera);
     void renderPreviewScene();
     void renderScene();
@@ -55,10 +58,15 @@ protected:
     Camera *m_camera;
     uint m_envmap;
     QString m_envMapPrefix;
+    GLuint m_fbo;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
+    GLuint m_previewSceneDepthRB;
+    GLuint m_previewSceneTexture;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
+    GLuint m_sceneDepthRB;
+    GLuint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_viewport;
 };

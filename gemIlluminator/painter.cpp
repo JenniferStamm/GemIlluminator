@@ -27,6 +27,12 @@ Painter::Painter(QObject *parent) :
 
 Painter::~Painter()
 {
+    m_gl->glDeleteTextures(1, &m_sceneTexture);
+    m_gl->glDeleteTextures(1, &m_previewSceneTexture);
+    m_gl->glDeleteRenderbuffers(1, &m_sceneDepthRB);
+    m_gl->glDeleteRenderbuffers(1, &m_previewSceneDepthRB);
+    m_gl->glDeleteFramebuffers(1, &m_fbo);
+
     delete m_gl;
     delete m_quad;
     for (auto i : *m_shaderPrograms) {
@@ -97,50 +103,29 @@ void Painter::paint()
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
         float previewSize = 1.f / (viewportWidth / previewViewportWidth);
 
-        GLuint sceneFB;
-        m_gl->glGenFramebuffers(1, &sceneFB);
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
 
-        GLuint sceneTexture;
-        m_gl->glGenTextures(1, &sceneTexture);
-        m_gl->glBindTexture(GL_TEXTURE_2D, sceneTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
         m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-        GLuint previewSceneTexture;
-        m_gl->glGenTextures(1, &previewSceneTexture);
-        m_gl->glBindTexture(GL_TEXTURE_2D, previewSceneTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
         m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-        GLuint sceneDepthRB;
-        m_gl->glGenRenderbuffers(1, &sceneDepthRB);
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, sceneDepthRB);
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_sceneDepthRB);
         m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
 
-        GLuint previewSceneDepthRB;
-        m_gl->glGenRenderbuffers(1, &previewSceneDepthRB);
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, previewSceneDepthRB);
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_previewSceneDepthRB);
         m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
 
 
         // scene
-        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, sceneTexture, 0);
-        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sceneDepthRB);
+        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_sceneTexture, 0);
+        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sceneDepthRB);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return;
 
-        // Render to framebuffer
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
         m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -148,15 +133,13 @@ void Painter::paint()
         renderScene();
 
         // preview scene
-
-        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, previewSceneTexture, 0);
-        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, previewSceneDepthRB);
+        m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_previewSceneTexture, 0);
+        m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_previewSceneDepthRB);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return;
 
-        // Render to framebuffer
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
         m_gl->glViewport(0, 0, previewViewportWidth, previewViewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -169,11 +152,10 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Bind textures
         m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_2D, sceneTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
         m_gl->glActiveTexture(GL_TEXTURE1);
-        m_gl->glBindTexture(GL_TEXTURE_2D, previewSceneTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
 
         QOpenGLShaderProgram *sceneProgram = (*m_shaderPrograms)[ShaderPrograms::SceneProgram];
         sceneProgram->bind();
@@ -182,12 +164,6 @@ void Painter::paint()
         sceneProgram->setUniformValue("u_previewSize", previewSize);
         m_quad->draw(*m_gl);
         sceneProgram->release();
-
-        m_gl->glDeleteFramebuffers(1, &sceneFB);
-        m_gl->glDeleteTextures(1, &sceneTexture);
-        m_gl->glDeleteTextures(1, &previewSceneTexture);
-        m_gl->glDeleteRenderbuffers(1, &previewSceneDepthRB);
-
 
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp
@@ -198,7 +174,24 @@ void Painter::paint()
     }
 }
 
-void Painter::initialize() {
+void Painter::initialize()
+{
+    initializeShaderPrograms();
+    initializeBuffers();
+    initializeTextures();
+    m_initialized = true;
+}
+
+void Painter::initializeBuffers()
+{
+    m_gl->glGenFramebuffers(1, &m_fbo);
+
+    m_gl->glGenRenderbuffers(1, &m_sceneDepthRB);
+    m_gl->glGenRenderbuffers(1, &m_previewSceneDepthRB);
+}
+
+void Painter::initializeShaderPrograms()
+{
     QOpenGLShaderProgram *gemProgram = new QOpenGLShaderProgram(this);
     gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
     gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
@@ -235,8 +228,23 @@ void Painter::initialize() {
     sceneProgram->bindAttributeLocation("a_vertex", 0);
 
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
+}
 
-    m_initialized = true;
+void Painter::initializeTextures()
+{
+    m_gl->glGenTextures(1, &m_sceneTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    m_gl->glGenTextures(1, &m_previewSceneTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 
 void Painter::initializeEnvmap()
