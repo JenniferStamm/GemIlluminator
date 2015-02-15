@@ -3,59 +3,38 @@ WorkerScript.onMessage = function(message)
     var gems = new Array();
     var gemTypes = message.gemTypes
     var gemRangeSize = message.gemRangeSize
+    var range = message.rangeEnd - message.rangeStart
 
+    var numGemsPerDim = Math.ceil(Math.pow(message.numGems, 1/3));
+    var x, y, z
+    var gemsCompleted = false
+    var gemInterval = gemRangeSize[1] * 2 * Math.sqrt(3)
 
-    // Always generate the first available at the position (0, 0, 0)
-    gems.push(new Array(0, 0, 0, getGemSize(gemRangeSize), gemTypes[0]))
+    for (var i = 1; i <= numGemsPerDim && !gemsCompleted; i++) {
+        for (var j = 1; j <= numGemsPerDim && !gemsCompleted; j++) {
+            for (var k = 1; k <= numGemsPerDim && !gemsCompleted; k++) {
+                x = i * gemInterval - (range / 2)
+                y = j * gemInterval - (range / 2)
+                z = k * gemInterval - (range / 2)
+                gems.push([x, y, z, gemRangeSize[1], getRandomGemType(gemTypes)])
 
-    var trys = 0
-    var curGemNum = 0
-    var oldGemNum = 0
+                WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
-    while (gems.length < message.numGems) {
-        if (curGemNum != oldGemNum) {
-            trys = 0
-            oldGemNum = curGemNum
-        }
-
-        if (trys == 50) {
-            break
-        }
-
-        trys++
-
-        var newX = Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart
-        var newY = Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart
-        var newZ = Math.random() * (message.rangeEnd - message.rangeStart) + message.rangeStart
-        var isValidNewGem = true
-
-        // Prevent gems from spawing next to each other
-        var variance = 0.2
-        var curSize = 0
-
-        for (var i = 0; i < gems.length; i++) {
-            curSize = getGemSize(gemRangeSize)
-
-            if (gems[i][0] + gems[i][3] * Math.sqrt(3) > newX &&
-                    gems[i][0] - gems[i][3] * Math.sqrt(3) < newX &&
-                    gems[i][1] + gems[i][3] * Math.sqrt(3) > newY &&
-                    gems[i][1] - gems[i][3] * Math.sqrt(3) < newY &&
-                    gems[i][2] + gems[i][3] * Math.sqrt(3) > newZ &&
-                    gems[i][2] - gems[i][3] * Math.sqrt(3) < newZ) {
-                isValidNewGem = false
+                if (gems.length === message.numGems) {
+                    gemsCompleted = true
+                }
             }
-        }
-
-        if (isValidNewGem) {
-            var newGem = new Array(newX, newY, newZ, curSize, getRandomGemType(gemTypes))
-            gems.push(newGem)
-            WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
-
-            curGemNum++
         }
     }
 
+    console.log(gems)
+
     WorkerScript.sendMessage({"gems": gems})
+}
+
+function random(seed) {
+    var x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
 }
 
 function getRandomGemType(gemTypes)
