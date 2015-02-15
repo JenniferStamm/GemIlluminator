@@ -128,6 +128,15 @@ AbstractGem *Triangle::owningGem() const
     return m_gem;
 }
 
+QList<QVector3D> Triangle::vertices() const
+{
+    QList<QVector3D> result;
+    result.append(a());
+    result.append(b());
+    result.append(c());
+    return result;
+}
+
 QVector3D Triangle::reflect(const QVector3D &incidentVector) const
 {
     QVector3D N = inWorldCoordinates().normalizedNormal();

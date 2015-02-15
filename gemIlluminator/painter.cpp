@@ -1,5 +1,6 @@
 #include "painter.h"
 
+#include <QEvent>
 #include <QImage>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
@@ -9,15 +10,17 @@
 
 #include "camera.h"
 #include "lightray.h"
+#include "painterqml.h"
 #include "scene.h"
 #include "scenerenderer.h"
 #include "screenalignedquad.h"
 
-Painter::Painter(QObject *parent) :
+Painter::Painter(PainterQML *painter, QObject *parent) :
     QObject(parent)
   , m_active(false)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
+  , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_viewport(new QSize())
@@ -32,6 +35,10 @@ Painter::~Painter()
     m_gl->glDeleteRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glDeleteRenderbuffers(1, &m_previewSceneDepthRB);
     m_gl->glDeleteFramebuffers(1, &m_fbo);
+
+    if (m_scene) {
+        m_scene->cleanupGL(*m_gl);
+    }
 
     delete m_gl;
     delete m_quad;
@@ -171,6 +178,8 @@ void Painter::paint()
         m_gl->glClearColor(0, 0, 0, 0);
         m_gl->glDepthMask(GL_TRUE);
         m_gl->glDepthFunc(GL_LESS);
+
+        QCoreApplication::postEvent(m_painterQML, new QEvent(m_painterQML->paintingDoneEventType()), Qt::HighEventPriority);
     }
 }
 
@@ -334,6 +343,7 @@ void Painter::renderPreviewScene()
 
     gemProgram->setUniformValue("envmap", 0);
     gemProgram->setUniformValue("eye", m_scene->previewCamera()->eye());
+    gemProgram->setUniformValue("viewProjection", m_scene->previewCamera()->viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
@@ -363,6 +373,7 @@ void Painter::renderScene()
 
     gemProgram->setUniformValue("envmap", 0);
     gemProgram->setUniformValue("eye", m_scene->camera()->eye());
+    gemProgram->setUniformValue("viewProjection", m_scene->camera()->viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
@@ -387,4 +398,9 @@ QString Painter::envMapPrefix() const
 void Painter::setEnvMapPrefix(const QString &envMapPrefix)
 {
     m_envMapPrefix = envMapPrefix;
+}
+
+QOpenGLFunctions &Painter::gl() const
+{
+    return *m_gl;
 }

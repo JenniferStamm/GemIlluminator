@@ -8,6 +8,7 @@ class QOpenGLShaderProgram;
 class QSize;
 
 class Camera;
+class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
 enum class ShaderPrograms;
@@ -21,7 +22,7 @@ class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(QObject *parent = 0);
+    Painter(PainterQML *painter, QObject *parent = 0);
     virtual ~Painter();
 
     void initializeEnvmap();
@@ -38,6 +39,8 @@ public:
 
     QString envMapPrefix() const;
     void setEnvMapPrefix(const QString &envMapPrefix);
+
+    QOpenGLFunctions &gl() const;
 
 signals:
 
@@ -63,6 +66,7 @@ protected:
     bool m_initialized;
     GLuint m_previewSceneDepthRB;
     GLuint m_previewSceneTexture;
+    PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
     GLuint m_sceneDepthRB;

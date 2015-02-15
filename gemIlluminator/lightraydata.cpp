@@ -6,7 +6,7 @@
 #include "lightray.h"
 
 LightRayData::LightRayData() :
-    m_color(new QVector3D(0.f, 1.f, 0.f))
+    m_color(new QVector3D(0.f, 0.5f, 0.f))
   , m_startPosition(new QVector3D())
   , m_endPosition(new QVector3D())
 {

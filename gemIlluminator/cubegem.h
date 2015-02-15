@@ -10,9 +10,6 @@ class CubeGem : public AbstractGem
 public:
     explicit CubeGem(QObject *parent = 0);
     virtual ~CubeGem();
-
-    virtual void synchronize() override;
-    virtual void cleanup() override;
 };
 
 #endif // GEM_H

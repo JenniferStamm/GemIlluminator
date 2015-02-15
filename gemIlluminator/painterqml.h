@@ -15,7 +15,6 @@ class PainterQML : public QQuickItem
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
     Q_PROPERTY(QString envMapPrefix READ envMapPrefix WRITE setEnvMapPrefix NOTIFY envMapPrefixChanged)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
-    Q_PROPERTY(qreal t READ t WRITE setT NOTIFY tChanged)
 
 public:
     explicit PainterQML(QQuickItem *parent = 0);
@@ -23,20 +22,19 @@ public:
 
     QString envMapPrefix() const;
     void setEnvMapPrefix(const QString &envMapPrefix);
+    bool event(QEvent *ev) override;
 
     bool isActive() const;
     void setActive(bool active);
 
+    QEvent::Type paintingDoneEventType();
+
     Scene *scene() const;
     void setScene(Scene *scene);
-
-    qreal t() const;
-    void setT(qreal t);
 
 signals:
     void activeChanged();
     void sceneChanged();
-    void tChanged();
     void envMapPrefixChanged();
 
 public slots:
@@ -45,11 +43,12 @@ public slots:
 
 protected:
     bool m_active;
+    bool m_isUpdatePending;
     QString m_envMapPrefix;
     bool m_isEnvMapInvalidated;
     Painter *m_painter;
+    int m_paintingDoneEventType;
     Scene *m_scene;
-    qreal m_t;
     QTime *m_time;
 
 private slots:
