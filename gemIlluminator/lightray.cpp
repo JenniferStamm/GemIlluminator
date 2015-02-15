@@ -84,7 +84,7 @@ void LightRay::update(int timeDifference)
         QVector3D up = selectedSuccessor()->normalizedOrthogonalVector();
         m_scene->previewCamera()->setUp(up);
         m_scene->previewCamera()->setPosition(endPosition() + up * 0.1f);
-        m_scene->previewCamera()->setViewDirection(selectedSuccessor()->endPosition() - selectedSuccessor()->startPosition());
+        m_scene->previewCamera()->setViewDirection(selectedSuccessor()->direction());
     }
 }
 
