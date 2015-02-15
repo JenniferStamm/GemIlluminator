@@ -3,6 +3,6 @@
     "NumGems": 200,
     "GemRangeSize": [0.1, 2],
     "AvailableEnvMaps": ["gold", "sky"],
-	"EnvMap": "sky",
+    "EnvMap": "sky",
     "ViewportRatio": 4
 }
