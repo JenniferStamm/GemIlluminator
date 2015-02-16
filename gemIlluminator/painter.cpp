@@ -186,17 +186,30 @@ void Painter::paint()
 void Painter::initialize()
 {
     initializeShaderPrograms();
-    initializeBuffers();
-    initializeTextures();
+    initializeFBOs();
     m_initialized = true;
 }
 
-void Painter::initializeBuffers()
+void Painter::initializeFBOs()
 {
     m_gl->glGenFramebuffers(1, &m_fbo);
 
     m_gl->glGenRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glGenRenderbuffers(1, &m_previewSceneDepthRB);
+
+    m_gl->glGenTextures(1, &m_sceneTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    m_gl->glGenTextures(1, &m_previewSceneTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 
 void Painter::initializeShaderPrograms()
@@ -237,23 +250,6 @@ void Painter::initializeShaderPrograms()
     sceneProgram->bindAttributeLocation("a_vertex", 0);
 
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
-}
-
-void Painter::initializeTextures()
-{
-    m_gl->glGenTextures(1, &m_sceneTexture);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-    m_gl->glGenTextures(1, &m_previewSceneTexture);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }
 
 void Painter::initializeEnvmap()

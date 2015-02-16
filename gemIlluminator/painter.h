@@ -49,9 +49,8 @@ public slots:
 
 protected:
     void initialize();
-    void initializeBuffers();
+    void initializeFBOs();
     void initializeShaderPrograms();
-    void initializeTextures();
     void paintEnvmap(const Camera &camera);
     void renderPreviewScene();
     void renderScene();
