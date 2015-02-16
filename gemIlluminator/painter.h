@@ -35,8 +35,6 @@ public:
     Scene *scene() const;
     void setScene(Scene *scene);
 
-    void setViewport(const QSize &viewport);
-
     QString envMapPrefix() const;
     void setEnvMapPrefix(const QString &envMapPrefix);
 
@@ -71,7 +69,6 @@ protected:
     uint m_sceneDepthRB;
     uint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
-    QSize *m_viewport;
 };
 
 #endif // PAINTER_H

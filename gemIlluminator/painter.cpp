@@ -23,7 +23,6 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
-  , m_viewport(new QSize())
 {
     m_gl->initializeOpenGLFunctions();
 }
@@ -47,7 +46,6 @@ Painter::~Painter()
         delete i;
     }
     delete m_shaderPrograms;
-    delete m_viewport;
 }
 
 bool Painter::isActive() const
@@ -74,19 +72,6 @@ Scene* Painter::scene() const
 void Painter::setScene(Scene *scene)
 {
     m_scene = scene;
-}
-
-/**
- * @brief SceneRenderer::setViewport Only set within sync()
- * @param viewport
- */
-void Painter::setViewport(const QSize &viewport)
-{
-    if (*m_viewport == viewport) {
-        return;
-    }
-    *m_viewport = viewport;
-    m_gl->glViewport(0, 0, viewport.width(), viewport.height());
 }
 
 void Painter::paint()
