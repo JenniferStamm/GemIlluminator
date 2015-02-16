@@ -4,12 +4,10 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileInfo>
+#include <QMutex>
 #include <QTextStream>
 
-Config::Config(QObject *parent) : QObject(parent)
-{
-
-}
+Config* Config::m_instance = 0;
 
 QString Config::read()
 {
@@ -81,8 +79,27 @@ void Config::setSource(const QString &source)
     m_source = source;
 }
 
-Config::~Config()
+void Config::drop()
 {
-
+    static QMutex mutex;
+    mutex.lock();
+    delete m_instance;
+    m_instance = 0;
+    mutex.unlock();
 }
 
+Config *Config::instance()
+{
+    static QMutex mutex;
+    if (!m_instance)
+    {
+        mutex.lock();
+
+        if (!m_instance)
+            m_instance = new Config;
+
+        mutex.unlock();
+    }
+
+    return m_instance;
+}
