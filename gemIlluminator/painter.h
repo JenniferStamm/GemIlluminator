@@ -69,6 +69,7 @@ protected:
     uint m_sceneDepthRB;
     uint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
+    QSize *m_usedViewport;
 };
 
 #endif // PAINTER_H

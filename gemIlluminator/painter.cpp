@@ -23,6 +23,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
+  , m_usedViewport(new QSize())
 {
     m_gl->initializeOpenGLFunctions();
 }
@@ -46,6 +47,7 @@ Painter::~Painter()
         delete i;
     }
     delete m_shaderPrograms;
+    delete m_usedViewport;
 }
 
 bool Painter::isActive() const
@@ -94,17 +96,28 @@ void Painter::paint()
         int viewportWidth = m_scene->camera()->viewport().width();
         int previewViewportHeight = m_scene->previewCamera()->viewport().height();
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
-        float previewSize = 1.f / (viewportWidth / previewViewportWidth);
+        float previewSize = 1.f / (static_cast<float>(viewportWidth) / previewViewportWidth);
+
+        bool viewportChanged = false;
+        if (m_usedViewport->height() != viewportHeight
+                && m_usedViewport->width() != viewportWidth) {
+            *m_usedViewport = m_scene->camera()->viewport();
+            viewportChanged = true;
+        }
 
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
-        m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        if (viewportChanged) {
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        }
+
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_sceneDepthRB);
-        m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
-
+        if (viewportChanged) {
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+        }
         m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -115,10 +128,14 @@ void Painter::paint()
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
-        m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        if (viewportChanged) {
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        }
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_previewSceneDepthRB);
-        m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
+        if (viewportChanged) {
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
+        }
 
         m_gl->glViewport(0, 0, previewViewportWidth, previewViewportHeight);
 
