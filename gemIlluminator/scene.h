@@ -21,7 +21,8 @@ class Triangle;
 enum class ShaderPrograms {
     GemProgram,
     LighRayProgram,
-    EnvMapProgram
+    EnvMapProgram,
+    SceneProgram
 };
 
 class Scene : public QQuickItem
@@ -29,6 +30,7 @@ class Scene : public QQuickItem
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
+    Q_PROPERTY(Camera* previewCamera READ previewCamera WRITE setPreviewCamera)
     Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
 
 public:
@@ -39,6 +41,9 @@ public:
 
     Camera* camera() const;
     void setCamera(Camera *camera);
+
+    Camera* previewCamera() const;
+    void setPreviewCamera(Camera *camera);
 
     SceneRenderer& sceneRenderer() const;
 
@@ -87,6 +92,7 @@ public slots:
 protected:
     SceneBounds *m_bounds;
     Camera *m_camera;
+    Camera *m_previewCamera;
     AbstractGem *m_currentGem;
     QList<AbstractGem*> m_gem;
     LightRayRenderer *m_lightRayRenderer;

@@ -9,6 +9,7 @@ Config {
     property var gemRangeSize: null
     property var availableEnvMaps: null
     property string envMap: ""
+    property int viewportRatio: 0
 
     Component.onCompleted: {
         loadConfig()
@@ -22,6 +23,7 @@ Config {
         gemRangeSize = configJSON["GemRangeSize"]
         availableEnvMaps = configJSON["AvailableEnvMaps"]
         envMap = configJSON["EnvMap"]
+        viewportRatio = configJSON["ViewportRatio"]
     }
 
     function saveConfig()
@@ -31,7 +33,8 @@ Config {
         convertedConfig += '\t"NumGems": ' + numGems + ',\n'
         convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
         convertedConfig += '\t"AvailableEnvMaps": ["' + availableEnvMaps.join('", "') + '"],\n'
-        convertedConfig += '\t"EnvMap": "' + envMap + '"\n'
+        convertedConfig += '\t"EnvMap": "' + envMap + '",\n'
+        convertedConfig += '\t"ViewportRatio": ' + viewportRatio + '\n'
         convertedConfig += '}\n'
         write(convertedConfig)
     }

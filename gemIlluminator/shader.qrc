@@ -6,5 +6,7 @@
         <file>shader/lightray.vert</file>
         <file>shader/envmap.frag</file>
         <file>shader/envmap.vert</file>
+        <file>shader/scene.frag</file>
+        <file>shader/scene.vert</file>
     </qresource>
 </RCC>
