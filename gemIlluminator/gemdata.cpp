@@ -8,7 +8,7 @@
 #include "triangle.h"
 
 GemData::GemData() :
-    m_color(new QVector3D())
+    m_color(new QVector3D(0.5f, 0.5f, 0.5f))
   , m_isModelInvalid(true)
   , m_model(new QMatrix4x4())
   , m_position(new QVector3D())

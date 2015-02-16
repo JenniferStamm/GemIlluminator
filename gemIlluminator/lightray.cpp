@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "abstractgem.h"
+#include "camera.h"
 #include "lightraydata.h"
 #include "lightrayrenderer.h"
 #include "player.h"
@@ -79,6 +80,11 @@ void LightRay::update(int timeDifference)
             m_data->setColor(QVector3D(0.f, 0.f, 1.f));
             setStatic();
         }
+
+        QVector3D up = selectedSuccessor()->normalizedOrthogonalVector();
+        m_scene->previewCamera()->setUp(up);
+        m_scene->previewCamera()->setPosition(endPosition() + up * 0.1f);
+        m_scene->previewCamera()->setViewDirection(selectedSuccessor()->direction());
     }
 }
 
@@ -213,6 +219,7 @@ void LightRay::calculateSuccessors()
         delete successor;
     }
     m_successors->clear();
+    m_selectedSuccessor = nullptr;
 
     LightRay *nextRay = new LightRay();
     nextRay->setScene(m_scene);

@@ -4,5 +4,6 @@
 	"AxisRange": 20,
 	"GemRangeSize": [0.1, 1.5],
 	"AvailableEnvMaps": ["gold", "sky"],
-	"EnvMap": "gold"
+	"EnvMap": "gold",
+	"ViewportRatio": 4
 }
