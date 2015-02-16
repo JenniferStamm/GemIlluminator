@@ -60,14 +60,15 @@ protected:
     Camera *m_camera;
     uint m_envmap;
     QString m_envMapPrefix;
-    uint m_fbo;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
+    uint m_previewSceneFBO;
     uint m_previewSceneDepthRB;
     uint m_previewSceneTexture;
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
+    uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;

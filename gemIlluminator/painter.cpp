@@ -34,7 +34,8 @@ Painter::~Painter()
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
     m_gl->glDeleteRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glDeleteRenderbuffers(1, &m_previewSceneDepthRB);
-    m_gl->glDeleteFramebuffers(1, &m_fbo);
+    m_gl->glDeleteFramebuffers(1, &m_sceneFBO);
+    m_gl->glDeleteFramebuffers(1, &m_previewSceneFBO);
 
     if (m_scene) {
         m_scene->cleanupGL(*m_gl);
@@ -110,29 +111,22 @@ void Painter::paint()
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
         float previewSize = 1.f / (viewportWidth / previewViewportWidth);
 
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+        // scene
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
         m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
-        m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_sceneDepthRB);
         m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
 
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_previewSceneDepthRB);
-        m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
-
-
-        // scene
         m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_sceneTexture, 0);
         m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sceneDepthRB);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return;
 
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
         m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -140,13 +134,21 @@ void Painter::paint()
         renderScene();
 
         // preview scene
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
+
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
+        m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_previewSceneDepthRB);
+        m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
+
         m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_previewSceneTexture, 0);
         m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_previewSceneDepthRB);
 
         if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return;
 
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
         m_gl->glViewport(0, 0, previewViewportWidth, previewViewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -192,7 +194,8 @@ void Painter::initialize()
 
 void Painter::initializeFBOs()
 {
-    m_gl->glGenFramebuffers(1, &m_fbo);
+    m_gl->glGenFramebuffers(1, &m_sceneFBO);
+    m_gl->glGenFramebuffers(1, &m_previewSceneFBO);
 
     m_gl->glGenRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glGenRenderbuffers(1, &m_previewSceneDepthRB);
