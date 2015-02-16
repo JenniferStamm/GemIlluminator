@@ -5,15 +5,8 @@ Painter {
     id: painter
     visible: false
     scene: null
-    envMapPrefix: config.envMap
 
     property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
-
-    SequentialAnimation on t {
-        NumberAnimation { to: 1; duration: 1000; easing.type: Easing.InQuad }
-        loops: Animation.Infinite
-        running: true
-    }
 
     function generateScene()
     {

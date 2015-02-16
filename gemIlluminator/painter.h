@@ -8,6 +8,7 @@ class QOpenGLShaderProgram;
 class QSize;
 
 class Camera;
+class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
 enum class ShaderPrograms;
@@ -21,7 +22,7 @@ class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(QObject *parent = 0);
+    Painter(PainterQML *painter, QObject *parent = 0);
     virtual ~Painter();
 
     void initializeEnvmap();
@@ -29,15 +30,10 @@ public:
     bool isActive() const;
     void setActive(bool active);
 
-    void setCamera(const Camera &camera);
-
     Scene *scene() const;
     void setScene(Scene *scene);
 
-    void setViewport(const QSize &viewport);
-
-    QString envMapPrefix() const;
-    void setEnvMapPrefix(const QString &envMapPrefix);
+    QOpenGLFunctions &gl() const;
 
 signals:
 
@@ -46,19 +42,27 @@ public slots:
 
 protected:
     void initialize();
-    void paintEnvmap();
+    void initializeFBOs();
+    void initializeShaderPrograms();
+    void paintEnvmap(const Camera &camera);
+    void renderScene(const Camera &camera);
 
 protected:
     bool m_active;
-    Camera *m_camera;
     uint m_envmap;
-    QString m_envMapPrefix;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
+    uint m_previewSceneFBO;
+    uint m_previewSceneDepthRB;
+    uint m_previewSceneTexture;
+    PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
     Scene *m_scene;
+    uint m_sceneFBO;
+    uint m_sceneDepthRB;
+    uint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
-    QSize *m_viewport;
+    QSize *m_usedViewport;
 };
 
 #endif // PAINTER_H

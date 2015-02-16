@@ -19,6 +19,18 @@ Scene {
         fovy: 60
     }
 
+    previewCamera: Camera {
+        id: previewCamera
+        eye: "0, 0, 1"
+        center: "0, 0, 0"
+        up: "0, 1, 0"
+        zNear: 0.1
+        zFar: 100
+        viewport.width: root.width / config.viewportRatio
+        viewport.height: root.height / config.viewportRatio
+        fovy: 60
+    }
+
     Player {
         id: player
         velocity: 2.5
@@ -83,8 +95,8 @@ Scene {
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
-                                     "rangeEnd": 20, "gemTypes": config.gemTypes})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
+                                     "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
     }
 }
 

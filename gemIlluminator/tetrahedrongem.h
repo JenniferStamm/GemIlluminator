@@ -9,9 +9,6 @@ class TetrahedronGem : public AbstractGem
 public:
     explicit TetrahedronGem(QObject *parent = 0);
     virtual ~TetrahedronGem();
-
-    virtual void synchronize() override;
-    virtual void cleanup() override;
 };
 
 #endif // TETRAHEDRON_H

@@ -4,12 +4,10 @@
 #include <QDebug>
 #include <QFile>
 #include <QFileInfo>
+#include <QMutex>
 #include <QTextStream>
 
-Config::Config(QObject *parent) : QObject(parent)
-{
-
-}
+Config* Config::m_instance = 0;
 
 QString Config::read()
 {
@@ -23,7 +21,7 @@ QString Config::read()
 #ifdef __ANDROID__
     file->setFileName("assets:/" + m_source);
 #endif
-#ifdef __WIN32__
+#ifdef _WIN32
     file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
 #endif
 
@@ -55,7 +53,7 @@ bool Config::write(const QString& data)
 #ifdef __ANDROID__
     file->setFileName("assets:/" + m_source);
 #endif
-#ifdef __WIN32__
+#ifdef _WIN32
     file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
 #endif
 
@@ -71,6 +69,12 @@ bool Config::write(const QString& data)
     return true;
 }
 
+void Config::setAxisRange(int &axisRange)
+{
+    m_axisRange = axisRange;
+    emit axisRangeChanged();
+}
+
 QString Config::source()
 {
     return m_source;
@@ -80,9 +84,44 @@ void Config::setSource(const QString &source)
 {
     m_source = source;
 }
-
-Config::~Config()
+QString Config::envMap() const
 {
-
+    return m_envMap;
 }
 
+void Config::setEnvMap(const QString &envMap)
+{
+    m_envMap = envMap;
+    emit envMapChanged();
+}
+
+
+int Config::axisRange()
+{
+    return m_axisRange;
+}
+
+void Config::drop()
+{
+    static QMutex mutex;
+    mutex.lock();
+    delete m_instance;
+    m_instance = 0;
+    mutex.unlock();
+}
+
+Config *Config::instance()
+{
+    static QMutex mutex;
+    if (!m_instance)
+    {
+        mutex.lock();
+
+        if (!m_instance)
+            m_instance = new Config;
+
+        mutex.unlock();
+    }
+
+    return m_instance;
+}
