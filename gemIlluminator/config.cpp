@@ -69,6 +69,12 @@ bool Config::write(const QString& data)
     return true;
 }
 
+void Config::setAxisRange(int &axisRange)
+{
+    m_axisRange = axisRange;
+    emit axisRangeChanged();
+}
+
 QString Config::source()
 {
     return m_source;
@@ -77,6 +83,22 @@ QString Config::source()
 void Config::setSource(const QString &source)
 {
     m_source = source;
+}
+QString Config::envMap() const
+{
+    return m_envMap;
+}
+
+void Config::setEnvMap(const QString &envMap)
+{
+    m_envMap = envMap;
+    emit envMapChanged();
+}
+
+
+int Config::axisRange()
+{
+    return m_axisRange;
 }
 
 void Config::drop()
