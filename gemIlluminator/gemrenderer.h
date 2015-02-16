@@ -30,16 +30,10 @@ class GemRenderer
 
         int numberOfVertices();
 
-        //single draw related stuff
-        QOpenGLBuffer &buffer();
-
         //packed draw related stuff
         void appendVerticesTo(QVector<float> &vector) const;
 
     protected:
-        //single draw related stuff
-        QOpenGLBuffer *m_buffer;
-
         //packed draw related stuff
         int m_index;
 
@@ -89,20 +83,14 @@ public:
 
 protected:
     void initialize(QOpenGLFunctions &gl);
-    void paintAllGemsWithOwnDrawCall(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
-    void paintGemsPackedUsingUniformArays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
     void paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
 
-    void updateGemForOwnDrawCall(AbstractGem *gem);
-    void updateGemForUniformDrawCall(AbstractGem *gem);
     void updateGemForTextureOptimization(AbstractGem *gem);
 
 protected:
     bool m_isInitialized;
-    int m_maxUniformVectorSize;
     QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
     QHash<GemType, QList<QOpenGLBuffer *> *> *m_gemBuffers;
-    QHash<QOpenGLBuffer *, QList<GemDataInfo *> *> *m_bufferDataLinkage;
     bool m_isGemBufferUpdateRequired;
     bool m_isGemDataBufferInvalid;
     QList<GemDataInfo *> *m_newGems;
