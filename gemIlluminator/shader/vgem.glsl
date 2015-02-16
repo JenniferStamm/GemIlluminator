@@ -75,7 +75,7 @@ void packedGemsWithUniforms()
 vec4 decode(vec4 high, vec4 low, float minBorder, float maxBorder)
 {
     float scaleHigh = maxBorder - minBorder;
-    float scaleLow = (maxBorder - minBorder) / 256;
+    float scaleLow = (maxBorder - minBorder) / 256.0;
 
     vec4 scaled = high * scaleHigh + low * scaleLow;
     return scaled + minBorder;

@@ -97,25 +97,21 @@ void PainterQML::setScene(Scene *scene)
 
 void PainterQML::synchronize()
 {
-    if (m_painter) {
-        m_painter->setActive(m_active);
+    if (!m_painter) {
+        m_painter = new Painter(this, nullptr);
+        connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
+    }
 
-        if (!m_isEnvMapInvalidated) {
-            m_painter->setEnvMapPrefix(m_envMapPrefix);
-            m_painter->initializeEnvmap();
-            m_isEnvMapInvalidated = true;
-        }
+    m_painter->setActive(m_active);
+    m_painter->setScene(m_scene);
+
+    if (!m_isEnvMapInvalidated) {
+        m_painter->setEnvMapPrefix(m_envMapPrefix);
+        m_painter->initializeEnvmap();
+        m_isEnvMapInvalidated = true;
     }
 
     if (m_active) {
-        if (!m_painter) {
-            m_painter = new Painter(this, nullptr);
-            connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
-        }
-
-        m_painter->setEnvMapPrefix(m_envMapPrefix);
-        m_painter->setScene(m_scene);
-
         if (!m_time) {
             m_time = new QTime();
             m_time->start();
