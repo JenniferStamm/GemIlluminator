@@ -2,7 +2,7 @@
     "GemTypes": ["CubeGem", "TetrahedronGem"],
     "NumGems": 200,
     "GemRangeSize": [0.1, 2],
-    "AvailableEnvMaps": ["gold", "sky"],
-    "EnvMap": "sky"
+    "AvailableEnvMaps": ["gold", "sky", "refraction"],
+    "EnvMap": "sky",
     "ViewportRatio": 4
 }

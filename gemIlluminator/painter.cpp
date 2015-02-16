@@ -173,6 +173,7 @@ void Painter::paint()
 
 void Painter::initialize()
 {
+    initializeRefractionEnvmap();
     initializeShaderPrograms();
     initializeFBOs();
     m_initialized = true;
@@ -265,22 +266,18 @@ void Painter::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
 }
 
-void Painter::initializeEnvmap()
+void Painter::initializeCubeMap(QString cubemapPrefix, uint &cubemapTexture)
 {
-    // Initialize squad
-    m_quad = new ScreenAlignedQuad();
-
-    // Initialize Cube Map
     QMap<GLenum, QImage> images;
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/" + m_envMapPrefix + "_env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/" + m_envMapPrefix + "_env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/" + m_envMapPrefix + "_env_cube_py.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/" + m_envMapPrefix + "_env_cube_ny.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/" + m_envMapPrefix + "_env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/" + m_envMapPrefix + "_env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/" + cubemapPrefix + "_env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/" + cubemapPrefix + "_env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/" + cubemapPrefix + "_env_cube_py.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/" + cubemapPrefix + "_env_cube_ny.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/" + cubemapPrefix + "_env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/" + cubemapPrefix + "_env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
 
-    m_gl->glGenTextures(1, &m_envmap);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
+    m_gl->glGenTextures(1, &cubemapTexture);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
 
     m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -289,7 +286,7 @@ void Painter::initializeEnvmap()
     m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     //m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
 
     QList<GLenum> faces = QList<GLenum>()
             << GL_TEXTURE_CUBE_MAP_POSITIVE_X << GL_TEXTURE_CUBE_MAP_NEGATIVE_X
@@ -299,7 +296,15 @@ void Painter::initializeEnvmap()
     foreach(GLenum face, faces) {
             const QImage &image(images[face]);
             m_gl->glTexImage2D(face, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
-        }
+    }
+}
+
+void Painter::initializeEnvmap()
+{
+    // Initialize squad
+    m_quad = new ScreenAlignedQuad();
+
+    initializeCubeMap(m_envMapPrefix, m_envmap);
 
     QOpenGLShaderProgram *envmapProgram = new QOpenGLShaderProgram();
     envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
@@ -312,6 +317,11 @@ void Painter::initializeEnvmap()
     envmapProgram->bindAttributeLocation("a_vertex", 0);
 
     m_shaderPrograms->insert(ShaderPrograms::EnvMapProgram, envmapProgram);
+}
+
+void Painter::initializeRefractionEnvmap()
+{
+    initializeCubeMap(QString::fromStdString("refraction"), m_refractionMap);
 }
 
 void Painter::paintEnvmap(const Camera &camera)
@@ -351,10 +361,13 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->enableAttributeArray(1);
 
     gemProgram->setUniformValue("envmap", 0);
+    gemProgram->setUniformValue("refractionMap", 1);
     gemProgram->setUniformValue("eye", camera.eye());
     gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
+    m_gl->glActiveTexture(GL_TEXTURE1);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_refractionMap);
 
     QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
     shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
@@ -362,6 +375,11 @@ void Painter::renderScene(const Camera &camera)
     shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
 
     m_scene->paint(*m_gl, camera.viewProjection(), *m_shaderPrograms);
+
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+    m_gl->glActiveTexture(GL_TEXTURE1);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
     gemProgram->disableAttributeArray(0);
     gemProgram->disableAttributeArray(1);
