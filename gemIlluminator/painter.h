@@ -52,8 +52,7 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
-    void renderPreviewScene();
-    void renderScene();
+    void renderScene(const Camera &camera);
 
 protected:
     bool m_active;

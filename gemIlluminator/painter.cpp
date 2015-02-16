@@ -124,7 +124,7 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderScene();
+        renderScene(*m_scene->camera());
 
         // preview scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
@@ -139,7 +139,7 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderPreviewScene();
+        renderScene(*m_scene->previewCamera());
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -339,9 +339,9 @@ void Painter::paintEnvmap(const Camera &camera)
     m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
 }
 
-void Painter::renderPreviewScene()
+void Painter::renderScene(const Camera &camera)
 {
-    paintEnvmap(*m_scene->previewCamera());
+    paintEnvmap(camera);
 
     /* Paint gems */
     QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
@@ -351,8 +351,8 @@ void Painter::renderPreviewScene()
     gemProgram->enableAttributeArray(1);
 
     gemProgram->setUniformValue("envmap", 0);
-    gemProgram->setUniformValue("eye", m_scene->previewCamera()->eye());
-    gemProgram->setUniformValue("viewProjection", m_scene->previewCamera()->viewProjection());
+    gemProgram->setUniformValue("eye", camera.eye());
+    gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
 
@@ -361,37 +361,7 @@ void Painter::renderPreviewScene()
     shaderPrograms.insert(ShaderPrograms::EnvMapProgram, m_shaderPrograms->value(ShaderPrograms::EnvMapProgram));
     shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
 
-    m_scene->paint(*m_gl, m_scene->previewCamera()->viewProjection(), *m_shaderPrograms);
-
-    gemProgram->disableAttributeArray(0);
-    gemProgram->disableAttributeArray(1);
-
-    gemProgram->release();
-}
-
-void Painter::renderScene()
-{
-    paintEnvmap(*m_scene->camera());
-
-    /* Paint gems */
-    QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
-    gemProgram->bind();
-
-    gemProgram->enableAttributeArray(0);
-    gemProgram->enableAttributeArray(1);
-
-    gemProgram->setUniformValue("envmap", 0);
-    gemProgram->setUniformValue("eye", m_scene->camera()->eye());
-    gemProgram->setUniformValue("viewProjection", m_scene->camera()->viewProjection());
-    m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
-
-    QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
-    shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
-    shaderPrograms.insert(ShaderPrograms::EnvMapProgram, m_shaderPrograms->value(ShaderPrograms::EnvMapProgram));
-    shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
-
-    m_scene->paint(*m_gl, m_scene->camera()->viewProjection(), *m_shaderPrograms);
+    m_scene->paint(*m_gl, camera.viewProjection(), *m_shaderPrograms);
 
     gemProgram->disableAttributeArray(0);
     gemProgram->disableAttributeArray(1);
