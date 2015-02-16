@@ -60,12 +60,6 @@ void Painter::setActive(bool active)
     m_active = active;
 }
 
-void Painter::setCamera(const Camera &camera)
-{
-    delete m_camera;
-    m_camera = new Camera(camera);
-}
-
 Scene* Painter::scene() const
 {
     return m_scene;

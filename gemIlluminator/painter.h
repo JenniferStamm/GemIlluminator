@@ -30,8 +30,6 @@ public:
     bool isActive() const;
     void setActive(bool active);
 
-    void setCamera(const Camera &camera);
-
     Scene *scene() const;
     void setScene(Scene *scene);
 
@@ -54,7 +52,6 @@ protected:
 
 protected:
     bool m_active;
-    Camera *m_camera;
     uint m_envmap;
     QString m_envMapPrefix;
     QOpenGLFunctions * m_gl;
