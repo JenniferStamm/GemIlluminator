@@ -37,9 +37,6 @@ public:
 
     void setViewport(const QSize &viewport);
 
-    QString envMapPrefix() const;
-    void setEnvMapPrefix(const QString &envMapPrefix);
-
     QOpenGLFunctions &gl() const;
 
 signals:
@@ -55,7 +52,6 @@ protected:
     bool m_active;
     Camera *m_camera;
     uint m_envmap;
-    QString m_envMapPrefix;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
     PainterQML *m_painterQML;
