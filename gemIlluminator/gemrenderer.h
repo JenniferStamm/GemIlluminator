@@ -29,16 +29,11 @@ class GemRenderer
         void setIndex(int index);
 
         int numberOfVertices();
-
-        //packed draw related stuff
-        void appendVerticesTo(QVector<float> &vector) const;
+        void appendVerticesWithIndexTo(QVector<float> &vector) const;
 
     protected:
-        //packed draw related stuff
-        int m_index;
-
-        //stuff needed everytime
         GemData *m_data;
+        int m_index;
     };
 
     class GemRenderData
@@ -90,7 +85,6 @@ protected:
 protected:
     bool m_isInitialized;
     QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
-    QHash<GemType, QList<QOpenGLBuffer *> *> *m_gemBuffers;
     bool m_isGemBufferUpdateRequired;
     bool m_isGemDataBufferInvalid;
     QList<GemDataInfo *> *m_newGems;

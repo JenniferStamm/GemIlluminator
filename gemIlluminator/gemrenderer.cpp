@@ -142,7 +142,7 @@ int GemRenderer::GemDataInfo::numberOfVertices()
     return m_data->triangles().count() * 3;
 }
 
-void GemRenderer::GemDataInfo::appendVerticesTo(QVector<float> &vector) const
+void GemRenderer::GemDataInfo::appendVerticesWithIndexTo(QVector<float> &vector) const
 {
     for (auto triangle : m_data->triangles()) {
         for (auto& vertex : triangle->vertices()) {
@@ -152,6 +152,7 @@ void GemRenderer::GemDataInfo::appendVerticesTo(QVector<float> &vector) const
             vector.append(triangle->normal().x());
             vector.append(triangle->normal().y());
             vector.append(triangle->normal().z());
+            vector.append(static_cast<float>(index()));
         }
     }
 }
@@ -281,18 +282,8 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
         QVector<float> vertices;
         QVector<GLubyte> data;
         for (GemDataInfo *gem : *m_gems) {
+            gem->appendVerticesWithIndexTo(vertices);
             GemData gemData = gem->data();
-            for (auto triangle : gemData.triangles()) {
-                for (auto vertex : triangle->vertices()) {
-                    vertices.append(vertex.x());
-                    vertices.append(vertex.y());
-                    vertices.append(vertex.z());
-                    vertices.append(triangle->normalizedNormal().x());
-                    vertices.append(triangle->normalizedNormal().y());
-                    vertices.append(triangle->normalizedNormal().z());
-                    vertices.append(gem->index());
-                }
-            }
             QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
             QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
             QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
@@ -315,8 +306,7 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
             data.append(static_cast<GLubyte>(gemData.color().z() * 255));
             data.append(255);   //padding
         }
-        gl.glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
-        //m_vertexBuffer->write(0, vertices.data(), vertices.size() * sizeof(float));
+        m_vertexBuffer->write(0, vertices.data(), vertices.size() * sizeof(float));
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 4, m_allocatedAndUsedGems, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
         m_vertexBuffer->release();
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
@@ -326,17 +316,8 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
     m_gems->append(gem);
 
     QVector<float> verticesNew;
-    for (auto triangle : gem->data().triangles()) {
-        for (auto vertex : triangle->vertices()) {
-            verticesNew.append(vertex.x());
-            verticesNew.append(vertex.y());
-            verticesNew.append(vertex.z());
-            verticesNew.append(triangle->normalizedNormal().x());
-            verticesNew.append(triangle->normalizedNormal().y());
-            verticesNew.append(triangle->normalizedNormal().z());
-            verticesNew.append(gem->index());
-        }
-    }
+    gem->appendVerticesWithIndexTo(verticesNew);
+
     m_vertexBuffer->bind();
     m_vertexBuffer->write(gem->index() * m_verticesPerGem * 7 * sizeof(float), verticesNew.data(), verticesNew.size() * sizeof(float));
     m_vertexBuffer->release();
