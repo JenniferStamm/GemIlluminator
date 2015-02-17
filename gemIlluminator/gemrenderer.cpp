@@ -19,6 +19,7 @@ namespace{
     static const bool useOwnDrawCallForEachGem = false;
     static const bool useFewDrawCallsWithUniformArrays = false;
     static const bool useTextureBasedOtimization = true;
+    static const unsigned int FRAMES = 600;
 }
 
 GemRenderer::GemRenderer() :
@@ -32,6 +33,7 @@ GemRenderer::GemRenderer() :
   , m_sceneExtent(1.f)
   , m_isGemDataBufferInvalid(false)
   , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
+  , m_counter(0)
 {
 }
 
@@ -71,6 +73,11 @@ void GemRenderer::cleanup(QOpenGLFunctions &gl)
 
 void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
 {
+    if (m_counter == 0)
+        m_initTime.start();
+    if (m_counter == 1)
+        m_time.start();
+
     if (!m_isInitialized) {
         initialize(gl);
     }
@@ -80,6 +87,14 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
         paintGemsPackedUsingUniformArays(gl, viewProjection, program);
     } else if (useTextureBasedOtimization) {
         paintGemsOptimizedWithTexture(gl, viewProjection, program);
+    }
+
+    if (++m_counter == FRAMES) {
+        m_elapsedTime = m_initTime.elapsed();
+    }
+    if (m_counter == (FRAMES + 1)) {
+        qDebug() << "Time with init:" << m_time.elapsed();
+        qDebug() << "Time without init:" << m_elapsedTime;
     }
 }
 

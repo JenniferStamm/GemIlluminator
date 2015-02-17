@@ -1,6 +1,8 @@
 #ifndef GEMRENDERERNEW_H
 #define GEMRENDERERNEW_H
 
+#include <QTime>
+
 template<typename Key, typename T> class QHash;
 template<typename T> class QList;
 class QMatrix4x4;
@@ -108,6 +110,11 @@ protected:
     QList<GemDataInfo *> *m_newGems;
     QHash<GemType, GemRenderData *> *m_gemBuffersTex;
     float m_sceneExtent;
+
+    unsigned int m_counter;
+    int m_elapsedTime;
+    QTime m_initTime;
+    QTime m_time;
 };
 
 #endif // GEMRENDERERNEW_H
