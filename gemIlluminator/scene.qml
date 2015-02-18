@@ -58,6 +58,7 @@ Scene {
                 }
 
                 console.log("Gems created: " + gems.length)
+                painter.active = true
 
                 scene.geometries = gemsToJSON
 

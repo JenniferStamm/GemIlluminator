@@ -79,6 +79,7 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
         m_time.start();
 
     if (!m_isInitialized) {
+        qDebug() << "Start rendering";
         initialize(gl);
     }
     if (useOwnDrawCallForEachGem) {

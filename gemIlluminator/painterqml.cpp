@@ -95,6 +95,19 @@ void PainterQML::setScene(Scene *scene)
     m_scene = scene;
 }
 
+bool PainterQML::isAppActive() const
+{
+    return m_isAppActive;
+}
+
+void PainterQML::setIsAppActive(bool active)
+{
+    if (m_isAppActive == active) {
+        return;
+    }
+    m_isAppActive = active;
+}
+
 void PainterQML::synchronize()
 {
     if (!m_painter) {
@@ -102,7 +115,7 @@ void PainterQML::synchronize()
         connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
     }
 
-    m_painter->setActive(m_active);
+    m_painter->setActive(m_active && m_isAppActive);
     m_painter->setScene(m_scene);
 
     if (!m_isEnvMapInvalidated) {
@@ -111,7 +124,7 @@ void PainterQML::synchronize()
         m_isEnvMapInvalidated = true;
     }
 
-    if (m_active) {
+    if (m_active && m_isAppActive) {
         if (!m_time) {
             m_time = new QTime();
             m_time->start();
