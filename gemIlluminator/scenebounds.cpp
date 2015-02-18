@@ -10,7 +10,7 @@ SceneBounds::SceneBounds(QObject *parent) :
     AbstractGem(parent)
 {
     m_radius = sqrt(1.0f * 1.0f * 3.f);
-    setScale(25.f);
+    setScale(105.f);
 
     //front
     QList<Triangle *> triangles;

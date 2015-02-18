@@ -84,8 +84,8 @@ Scene {
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
-                                     "rangeEnd": 20, "gemTypes": config.gemTypes})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -100,
+                                     "rangeEnd": 100, "gemTypes": config.gemTypes})
     }
 }
 

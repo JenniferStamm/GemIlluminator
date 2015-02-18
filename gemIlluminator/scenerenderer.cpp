@@ -11,7 +11,7 @@
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
   , m_gemRenderer(new GemRenderer())
-  , m_sceneExtent(25.f)
+  , m_sceneExtent(100.f)
 {
     m_gemRenderer->setSceneExtent(m_sceneExtent);
 }
