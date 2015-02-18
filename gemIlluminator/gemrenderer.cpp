@@ -94,8 +94,8 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
         m_elapsedTime = m_initTime.elapsed();
     }
     if (m_counter == (FRAMES + 1)) {
-        qDebug() << "Time with init:" << m_time.elapsed();
-        qDebug() << "Time without init:" << m_elapsedTime;
+        qDebug() << "Time without init:" << m_time.elapsed();
+        qDebug() << "Time with init:" << m_elapsedTime;
     }
 }
 
