@@ -19,6 +19,7 @@ Painter {
     function clearScene()
     {
         // Simple solution for stop rendering without a crash
+        active = false
         scene.geometries = []
         scene.destroy()
         scene = null

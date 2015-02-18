@@ -72,6 +72,7 @@ void GemRenderer::cleanup(QOpenGLFunctions &gl)
 void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
 {
     if (!m_isInitialized) {
+        qDebug() << "Start rendering";
         initialize(gl);
     }
     if (useOwnDrawCallForEachGem) {
