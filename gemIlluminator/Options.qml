@@ -1,3 +1,4 @@
+import GemIlluminator 1.0
 import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
@@ -21,6 +22,7 @@ Rectangle {
             options.visible = false
             config.numGems = numGemsInput.text
             config.saveConfig()
+            painter.reloadEnvMap()
             inputElement.focus = true
         }
     }
@@ -41,8 +43,8 @@ Rectangle {
         onClicked: {
             if (curEnvMapIndex > 0) {
                 curEnvMapIndex--
-                config.envMap = config.availableEnvMaps[curEnvMapIndex]
-                envMapInput.text = config.envMap
+                Config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = Config.envMap
             }
         }
     }
@@ -63,8 +65,8 @@ Rectangle {
         onClicked: {
             if (curEnvMapIndex < config.availableEnvMaps.length - 1) {
                 curEnvMapIndex++
-                config.envMap = config.availableEnvMaps[curEnvMapIndex]
-                envMapInput.text = config.envMap
+                Config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = Config.envMap
             }
         }
     }
@@ -80,7 +82,7 @@ Rectangle {
 
         Text {
             id: envMapInput
-            text: config.envMap
+            text: Config.envMap
             anchors.fill: parent
             font.pointSize: 16
             color: "white"

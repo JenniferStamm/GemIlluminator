@@ -19,6 +19,7 @@ Scene::Scene(QQuickItem *parent) :
     QQuickItem(parent)
   , m_bounds(new SceneBounds())
   , m_camera(nullptr)
+  , m_previewCamera(nullptr)
   , m_currentGem(m_bounds)
   , m_lightRayRenderer(nullptr)
   , m_navigation(nullptr)
@@ -99,6 +100,16 @@ Camera* Scene::camera() const
 void Scene::setCamera(Camera* camera)
 {
     m_camera = camera;
+}
+
+Camera* Scene::previewCamera() const
+{
+    return m_previewCamera;
+}
+
+void Scene::setPreviewCamera(Camera* camera)
+{
+    m_previewCamera = camera;
 }
 
 LightRay* Scene::rootLightRay() const

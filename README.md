@@ -45,7 +45,8 @@ Das Lichtbündel kann nicht gesteuert werden. Der nächste Kristall, der getroff
 
 Grafik
 --------------
-
+![Gem Illuminator Gold](/data/gemilluminatorgold.png)
+![Gem Illuminator Sky](/data/gemilluminatorsky.png)
 
 Sound
 --------------
