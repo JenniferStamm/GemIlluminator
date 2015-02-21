@@ -48,6 +48,10 @@ class GemRenderer
         void addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl);
         void setVerticesPerGem(int numberOfVertices);
         void setSceneExtent(float extent);
+        void setCoreFloatTexturesEnabled(bool enable);
+        void setExtensionFloatTexturesEnabled(bool enable);
+        void appendAttributesToVector(GemDataInfo *gem, QVector<float> &vector);
+        void appendAttributesToVector(GemDataInfo *gem, QVector<unsigned char> &vector);
 
     protected:
         void addGem(GemDataInfo *gem, QOpenGLFunctions &gl);
@@ -57,6 +61,8 @@ class GemRenderer
     protected:
         int m_allocatedGems;
         int m_allocatedAndUsedGems;
+        bool m_areFloatTexturesCoreAvailable;
+        bool m_areFloatTexturesExtensionAvailable;
         unsigned int m_dataBuffer;
         QList<GemDataInfo *> *m_gems;
         bool m_isInitialized;
@@ -84,6 +90,8 @@ protected:
 
 protected:
     bool m_isInitialized;
+    bool m_areFloatTexturesCoreAvailable;
+    bool m_areFloatTexturesExtensionAvailable;
     QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
     bool m_isGemBufferUpdateRequired;
     bool m_isGemDataBufferInvalid;

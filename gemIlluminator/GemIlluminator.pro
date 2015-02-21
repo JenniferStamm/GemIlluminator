@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors #multimedia
+QT += qml quick widgets sensors opengl openglextensions #multimedia
 
 SOURCES += main.cpp \
     scene.cpp \
