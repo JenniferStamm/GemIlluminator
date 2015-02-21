@@ -26,7 +26,9 @@ uniform vec3 color;
 varying vec3 v_color;
 varying vec3 v_lightIntensity;
 varying vec3 v_eyeVector;
+varying float v_index;
 varying vec3 v_normal;
+varying vec3 v_vertex;
 
 const bool drawSingleGem = false;
 const bool drawPackedGemsWithUiforms = false;
@@ -39,7 +41,7 @@ void singleGem()
 {
     v_normal = normalize(normalMatrix * a_normal);
     vec4 eyeCoords = model * vec4(a_vertex, 1.0);
-    v_eyeVector = eyeCoords.xyz - eye;
+    v_eyeVector = normalize(eyeCoords.xyz - eye);
 
     vec3 s = normalize(vec3(lightPosition - eyeCoords));
     v_lightIntensity = lD * kD * max(dot(s, v_normal), 0.0);
@@ -63,7 +65,7 @@ void packedGemsWithUniforms()
     vec3 worldCoord = rotatedCoord + u_xyzs[index].xyz;
 
     v_normal = normalize(rotateVector(u_rotation[index], a_normal));
-    v_eyeVector = worldCoord - eye;
+    v_eyeVector = normalize(worldCoord - eye);
 
     vec3 s = normalize(lightPosition.xyz - worldCoord);
     v_lightIntensity = lD * kD * max(dot(s, v_normal), 0.0);
@@ -97,7 +99,7 @@ void drawOptimizedWithTexture()
     vec3 worldCoord = rotatedCoord + xyzs.xyz;
 
     v_normal = normalize(rotateVector(rotation, a_normal));
-    v_eyeVector = worldCoord - eye;
+    v_eyeVector = normalize(worldCoord - eye);
 
     vec3 s = normalize(lightPosition.xyz - worldCoord);
     v_lightIntensity = lD * kD * max(dot(s, v_normal), 0.0);
@@ -115,4 +117,6 @@ void main()
     } else if (drawTextureOptimization) {
         drawOptimizedWithTexture();
     }
+    v_index = a_index;
+    v_vertex = a_vertex;
 }

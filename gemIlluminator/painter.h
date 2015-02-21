@@ -46,7 +46,8 @@ public slots:
 protected:
     void initialize();
     void initializeCubeMap(QString cubemapPrefix, uint &cubemapTexture);
-    void initializeRefractionEnvmap();
+    void initializeRainbowCubemap();
+    void initializeRefractionCubemap();
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
@@ -63,6 +64,7 @@ protected:
     uint m_previewSceneTexture;
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
+    uint m_rainbowMap;
     uint m_refractionMap;
     Scene *m_scene;
     uint m_sceneFBO;

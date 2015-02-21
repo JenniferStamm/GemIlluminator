@@ -173,7 +173,8 @@ void Painter::paint()
 
 void Painter::initialize()
 {
-    initializeRefractionEnvmap();
+    initializeRefractionCubemap();
+    initializeRainbowCubemap();
     initializeShaderPrograms();
     initializeFBOs();
     m_initialized = true;
@@ -319,9 +320,14 @@ void Painter::initializeEnvmap()
     m_shaderPrograms->insert(ShaderPrograms::EnvMapProgram, envmapProgram);
 }
 
-void Painter::initializeRefractionEnvmap()
+void Painter::initializeRefractionCubemap()
 {
     initializeCubeMap(QString::fromStdString("refraction"), m_refractionMap);
+}
+
+void Painter::initializeRainbowCubemap()
+{
+    initializeCubeMap(QString::fromStdString("rainbow"), m_rainbowMap);
 }
 
 void Painter::paintEnvmap(const Camera &camera)
@@ -362,12 +368,15 @@ void Painter::renderScene(const Camera &camera)
 
     gemProgram->setUniformValue("envmap", 0);
     gemProgram->setUniformValue("refractionMap", 1);
+    gemProgram->setUniformValue("rainbowMap", 2);
     gemProgram->setUniformValue("eye", camera.eye());
     gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envmap);
     m_gl->glActiveTexture(GL_TEXTURE1);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_refractionMap);
+    m_gl->glActiveTexture(GL_TEXTURE2);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_rainbowMap);
 
     QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
     shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
