@@ -323,12 +323,12 @@ void Painter::initializeEnvmap()
 
 void Painter::initializeRefractionCubemap()
 {
-    initializeCubeMap(QString::fromStdString("refraction"), m_refractionMap);
+    initializeCubeMap("refraction", m_refractionMap);
 }
 
 void Painter::initializeRainbowCubemap()
 {
-    initializeCubeMap(QString::fromStdString("rainbow"), m_rainbowMap);
+    initializeCubeMap("rainbow", m_rainbowMap);
 }
 
 void Painter::paintEnvmap(const Camera &camera)
