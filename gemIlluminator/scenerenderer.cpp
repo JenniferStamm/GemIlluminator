@@ -5,15 +5,15 @@
 #include <QDebug>
 
 #include "abstractgem.h"
+#include "config.h"
 #include "gemrenderer.h"
 #include "lightray.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
   , m_gemRenderer(new GemRenderer())
-  , m_sceneExtent(25.f)
 {
-    m_gemRenderer->setSceneExtent(m_sceneExtent);
+    m_gemRenderer->setSceneExtent(Config::instance()->axisRange());
 }
 
 SceneRenderer::~SceneRenderer()
@@ -50,11 +50,6 @@ void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
         m_gemRenderer->updateGem(gem);
     }
     m_geometries = geometries;
-}
-
-void SceneRenderer::setSceneExtent(float extent)
-{
-
 }
 
 LightRay* SceneRenderer::rootLightRay() const

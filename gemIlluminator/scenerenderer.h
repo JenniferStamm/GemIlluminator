@@ -30,7 +30,6 @@ public:
     void cleanup(QOpenGLFunctions &gl);
 
     void synchronizeGeometries(QList<AbstractGem*> geometries);
-    void setSceneExtent(float extent);
 
     LightRay *rootLightRay() const;
     void setRootLightRay(LightRay *rootLightRay);
@@ -46,7 +45,6 @@ protected:
     GemRenderer *m_gemRenderer;
     QList<AbstractGem*> m_geometries;
     LightRay *m_rootLightRay;
-    float m_sceneExtent;
 };
 
 #endif // SCENERENDERER_H
