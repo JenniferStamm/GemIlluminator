@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QtQml>
 #include <QQmlApplicationEngine>
 
 #include "abstractgem.h"
@@ -15,6 +16,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    QQmlApplicationEngine engine;
 
     // Define a C++ object for use in qml
     qmlRegisterType<AbstractGem>();
@@ -25,10 +27,9 @@ int main(int argc, char *argv[])
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
-    qmlRegisterType<Config>("GemIlluminator", 1, 0, "Config");
+    qmlRegisterSingletonType<Config>("GemIlluminator", 1, 0, "Config", singletontype_provider);
     qmlRegisterType<PainterQML>("GemIlluminator", 1, 0, "Painter");
 
-    QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

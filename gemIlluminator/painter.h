@@ -33,9 +33,6 @@ public:
     Scene *scene() const;
     void setScene(Scene *scene);
 
-    QString envMapPrefix() const;
-    void setEnvMapPrefix(const QString &envMapPrefix);
-
     QOpenGLFunctions &gl() const;
 
 signals:
@@ -56,7 +53,6 @@ protected:
 protected:
     bool m_active;
     uint m_envmap;
-    QString m_envMapPrefix;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
     uint m_previewSceneFBO;

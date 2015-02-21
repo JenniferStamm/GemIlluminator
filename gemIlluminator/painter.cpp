@@ -9,6 +9,7 @@
 #include <QSize>
 
 #include "camera.h"
+#include "config.h"
 #include "lightray.h"
 #include "painterqml.h"
 #include "scene.h"
@@ -305,7 +306,7 @@ void Painter::initializeEnvmap()
     // Initialize squad
     m_quad = new ScreenAlignedQuad();
 
-    initializeCubeMap(m_envMapPrefix, m_envmap);
+    initializeCubeMap(Config::instance()->envMap(), m_envmap);
 
     QOpenGLShaderProgram *envmapProgram = new QOpenGLShaderProgram();
     envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
@@ -394,16 +395,6 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->disableAttributeArray(1);
 
     gemProgram->release();
-}
-
-QString Painter::envMapPrefix() const
-{
-    return m_envMapPrefix;
-}
-
-void Painter::setEnvMapPrefix(const QString &envMapPrefix)
-{
-    m_envMapPrefix = envMapPrefix;
 }
 
 QOpenGLFunctions &Painter::gl() const

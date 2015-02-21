@@ -70,6 +70,7 @@ Scene {
                 }
 
                 console.log("Gems created: " + gems.length)
+                painter.active = true
 
                 scene.geometries = gemsToJSON
 
@@ -95,8 +96,8 @@ Scene {
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -20,
-                                     "rangeEnd": 20, "gemTypes": config.gemTypes})
+        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
+                                     "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
     }
 }
 
