@@ -34,7 +34,7 @@ vec3 transmissionTerm(vec3 eyeVector)
     vec3 refractColor = textureCube(refractionMap, refractVector1).xyz;
     refractColor += textureCube(refractionMap, refractVector2.yxz).xyz;
 
-    refractColor = pow(refractColor, 4.0);
+    refractColor = pow(refractColor, vec3(4.0));
 
     return refractColor * brightness;
 }
@@ -49,11 +49,11 @@ vec3 reflectionTerm(vec3 eyeVector)
 
     float fresnel = pow(1.0 - clamp(dot(v_normal, eyeVector), 0.0, 1.0), 2.0);
 
-    vec3 environmentColor = textureCube(envmap, r_face); // could use r_curved
-    vec3 rainbowColor = textureCube(rainbowMap, r_face); // could use r_curved
+    vec3 environmentColor = textureCube(envmap, r_face).xyz; // could use r_curved
+    vec3 rainbowColor = textureCube(rainbowMap, r_face).xyz; // could use r_curved
 
-    rainbowColor = mix(1.0, rainbowColor, dispersionStrength);
-    environmentColor = mix(environmentColor, rainbowColor, 0.1) * fresnel;
+    rainbowColor = mix(vec3(1.0), rainbowColor, dispersionStrength);
+    environmentColor = mix(environmentColor, rainbowColor, vec3(0.1)) * fresnel;
 
     return clamp(specular, 0.0, 1.0) + environmentColor;
 }
@@ -61,6 +61,6 @@ vec3 reflectionTerm(vec3 eyeVector)
 void main()
 {
     vec3 eyeVector = normalize(v_eyeVector);
-    vec3 color = mix(reflectionTerm(eyeVector), transmissionTerm(eyeVector), 0.1);
+    vec3 color = mix(reflectionTerm(eyeVector), transmissionTerm(eyeVector), vec3(0.1));
     gl_FragColor = vec4(mix(color, v_color, 0.5), 1.0);
 }
