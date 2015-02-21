@@ -1,27 +1,30 @@
 import QtQuick 2.0
 import GemIlluminator 1.0
 
-Config {
+Item {
     id: config
-    source: "config.json"
     property var gemTypes: null
     property int numGems: 0
     property var gemRangeSize: null
     property var availableEnvMaps: null
-    property string envMap: ""
+    property int viewportRatio: 0
 
     Component.onCompleted: {
+        Config.source = "config.json"
         loadConfig()
     }
 
     function loadConfig()
     {
-        var configJSON = JSON.parse(read())
+        var configJSON = JSON.parse(Config.read())
         gemTypes = configJSON["GemTypes"]
         numGems = configJSON["NumGems"]
         gemRangeSize = configJSON["GemRangeSize"]
         availableEnvMaps = configJSON["AvailableEnvMaps"]
-        envMap = configJSON["EnvMap"]
+        viewportRatio = configJSON["ViewportRatio"]
+
+        Config.axisRange = configJSON["AxisRange"]
+        Config.envMap = configJSON["EnvMap"]
     }
 
     function saveConfig()
@@ -29,11 +32,13 @@ Config {
         var convertedConfig = '{\n'
         convertedConfig += '\t"GemTypes": ["' + gemTypes.join('", "') + '"],\n'
         convertedConfig += '\t"NumGems": ' + numGems + ',\n'
+        convertedConfig += '\t"AxisRange": ' + Config.axisRange + ',\n'
         convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
         convertedConfig += '\t"AvailableEnvMaps": ["' + availableEnvMaps.join('", "') + '"],\n'
-        convertedConfig += '\t"EnvMap": "' + envMap + '"\n'
+        convertedConfig += '\t"EnvMap": "' + Config.envMap + ',"\n'
+        convertedConfig += '\t"ViewportRatio": ' + viewportRatio + '\n'
         convertedConfig += '}\n'
-        write(convertedConfig)
+        Config.write(convertedConfig)
     }
 }
 
