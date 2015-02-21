@@ -8,15 +8,28 @@ WorkerScript.onMessage = function(message)
     var numGemsPerDim = Math.ceil(Math.pow(message.numGems, 1/3));
     var x, y, z
     var gemsCompleted = false
-    var gemInterval = gemRangeSize[1] * 2 * Math.sqrt(3)
+    var gemInterval = gemRangeSize[1] * 2 //* Math.sqrt(3)
+    var gapFactor = (range - (numGemsPerDim * gemInterval)) / numGemsPerDim
+    gemInterval += gapFactor
+
+    var newGem = null
+    var randomGemTypeIndex = null
+    var gemSize = 0
+    var posVariance = 0
 
     for (var i = 1; i <= numGemsPerDim && !gemsCompleted; i++) {
         for (var j = 1; j <= numGemsPerDim && !gemsCompleted; j++) {
             for (var k = 1; k <= numGemsPerDim && !gemsCompleted; k++) {
-                x = i * gemInterval - (range / 2)
-                y = j * gemInterval - (range / 2)
-                z = k * gemInterval - (range / 2)
-                gems.push([x, y, z, gemRangeSize[1], getRandomGemType(gemTypes)])
+                gemSize = getGemSize(gemRangeSize)
+                posVariance = (gemRangeSize[1] - gemSize) / 2
+
+                x = getRandomPos(i, posVariance, gemInterval, range)
+                y = getRandomPos(j, posVariance, gemInterval, range)
+                z = getRandomPos(k, posVariance, gemInterval, range)
+
+                randomGemTypeIndex = getRandomGemTypeIndex(gemTypes)
+                newGem = [x, y, z, gemSize, gemTypes[randomGemTypeIndex]]
+                gems.push(newGem)
 
                 WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)})
 
@@ -27,8 +40,6 @@ WorkerScript.onMessage = function(message)
         }
     }
 
-    console.log(gems)
-
     WorkerScript.sendMessage({"gems": gems})
 }
 
@@ -37,12 +48,18 @@ function random(seed) {
     return x - Math.floor(x);
 }
 
-function getRandomGemType(gemTypes)
+function getRandomPos(posIndex, posVariance, gemInterval, range)
 {
-    var gemTreshold = Math.random()
-    gemTreshold = Math.floor(Math.random() * gemTypes.length)
+    if (Math.random() - 0.5 > 0) {
+        return (((posIndex - 0.5) * gemInterval - (range / 2)) + posVariance * Math.random())
+    } else {
+        return (((posIndex - 0.5) * gemInterval - (range / 2)) - posVariance * Math.random())
+    }
+}
 
-    return gemTypes[gemTreshold]
+function getRandomGemTypeIndex(gemTypes)
+{
+    return Math.min(Math.floor(Math.random() * gemTypes.length), 1)
 }
 
 function getGemSize(gemRangeSize)
