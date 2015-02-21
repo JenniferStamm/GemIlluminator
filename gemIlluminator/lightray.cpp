@@ -68,11 +68,9 @@ void LightRay::update(int timeDifference)
             LightRay collisionTestRay;
             collisionTestRay.setStartPosition(m_player->position());
             collisionTestRay.setEndPosition(endPosition());
-            m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay);
-            m_scene->setCurrentGem(m_collidingGem);
+            m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         } else {
             m_collidingGem->setColor(m_data->color());
-
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);

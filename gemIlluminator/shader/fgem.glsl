@@ -7,12 +7,8 @@ precision mediump float;
 uniform samplerCube envmap;
 
 varying vec3 v_color;
-varying vec3 v_lightIntensity;
 varying vec3 v_eyeVector;
 varying vec3 v_normal;
-
-const vec4 lightDirection = vec4(4.0, 8.0, 4.0, 1.0);
-const vec3 specularColor = vec3(1.0, 1.0, 1.0);
 
 void main()
 {

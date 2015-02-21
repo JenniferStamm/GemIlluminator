@@ -13,6 +13,7 @@ class PainterQML : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
+    Q_PROPERTY(bool isAppActive READ isAppActive WRITE setIsAppActive)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
@@ -31,6 +32,9 @@ public:
     Scene *scene() const;
     void setScene(Scene *scene);
 
+    bool isAppActive() const;
+    void setIsAppActive(bool active);
+
 signals:
     void activeChanged();
     void sceneChanged();
@@ -41,6 +45,7 @@ public slots:
 
 protected:
     bool m_active;
+    bool m_isAppActive;
     bool m_isUpdatePending;
     Painter *m_painter;
     int m_paintingDoneEventType;
