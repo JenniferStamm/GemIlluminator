@@ -62,5 +62,5 @@ void main()
 {
     vec3 eyeVector = normalize(v_eyeVector);
     vec3 color = mix(reflectionTerm(eyeVector), transmissionTerm(eyeVector), 0.1);
-    gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(mix(color, v_color, 0.5), 1.0);
 }
