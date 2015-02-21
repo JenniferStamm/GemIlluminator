@@ -390,6 +390,8 @@ void Painter::renderScene(const Camera &camera)
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     m_gl->glActiveTexture(GL_TEXTURE1);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+    m_gl->glActiveTexture(GL_TEXTURE2);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
 
     gemProgram->disableAttributeArray(0);
     gemProgram->disableAttributeArray(1);
