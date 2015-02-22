@@ -95,6 +95,23 @@ void Config::setEnvMap(const QString &envMap)
     emit envMapChanged();
 }
 
+void Config::setMaxGemSize(float maxGemSize)
+{
+    if (m_maxGemSize == maxGemSize) {
+        return;
+    }
+    m_maxGemSize = maxGemSize;
+    emit maxGemSizeChanged();
+}
+
+void Config::setMinGemSize(float minGemSize)
+{
+    if (m_minGemSize == minGemSize) {
+        return;
+    }
+    m_minGemSize = minGemSize;
+    emit minGemSizeChanged();
+}
 
 int Config::axisRange()
 {
@@ -125,3 +142,14 @@ Config *Config::instance()
 
     return m_instance;
 }
+
+float Config::maxGemSize() const
+{
+    return m_maxGemSize;
+}
+
+float Config::minGemSize() const
+{
+    return m_minGemSize;
+}
+

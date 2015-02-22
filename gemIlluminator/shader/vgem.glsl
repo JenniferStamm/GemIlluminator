@@ -12,6 +12,8 @@ uniform float u_maxNumberOfGems;
 uniform float u_sceneExtent;
 uniform sampler2D u_data;
 uniform bool u_isFloatTextureAvailable;
+uniform float u_maxGemSize;
+uniform float u_minGemSize;
 
 uniform mat4 viewProjection;
 uniform vec3 eye;
@@ -48,7 +50,8 @@ void drawOptimizedWithTexture()
     } else {
         vec4 xyzsHigh = texture2D(u_data, vec2(0.125, index));
         vec4 xyzsLow = texture2D(u_data, vec2(0.375, index));
-        xyzs = decode(xyzsHigh, xyzsLow, -u_sceneExtent, u_sceneExtent);
+        xyzs.xyz = decode(xyzsHigh, xyzsLow, -u_sceneExtent, u_sceneExtent).xyz;
+        xyzs.w = decode(xyzsHigh, xyzsLow, u_minGemSize, u_maxGemSize).w;
         rotation = texture2D(u_data, vec2(0.625, index));
         rotation = rotation * 2.0 - 1.0;
         rgb_ = texture2D(u_data, vec2(0.875, index));

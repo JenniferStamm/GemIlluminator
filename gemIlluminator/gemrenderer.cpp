@@ -15,6 +15,7 @@
 #include <QVector3D>
 
 #include "abstractgem.h"
+#include "config.h"
 #include "gemdata.h"
 #include "triangle.h"
 
@@ -216,6 +217,8 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
     program.setUniformValue("u_sceneExtent", m_sceneExtent);
     program.setUniformValue("u_isFloatTextureAvailable", m_areFloatTexturesAvailable);
     program.setUniformValue("u_maxNumberOfGems", static_cast<float>(m_allocatedGems));
+    program.setUniformValue("u_maxGemSize", Config::instance()->maxGemSize());
+    program.setUniformValue("u_minGemSize", Config::instance()->minGemSize());
 
     gl.glActiveTexture(GL_TEXTURE7);
     gl.glEnable(GL_TEXTURE_2D);
@@ -319,7 +322,7 @@ void GemRenderer::GemRenderData::appendAttributesToVector(GemRenderer::GemDataIn
     QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
     QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
     QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), -m_sceneExtent, m_sceneExtent);
+    QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), Config::instance()->minGemSize(), Config::instance()->maxGemSize());
 
     vector.append(encodedValueX.first);
     vector.append(encodedValueY.first);
@@ -348,7 +351,7 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
         QVector<float> vertices;
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
         if (m_areFloatTexturesAvailable) {
-#ifdef __android__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
+#ifdef __ANDROID__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 3, m_allocatedGems, 0, GL_RGBA, GL_OES_texture_float, nullptr);
             QVector<float> data;
             for (GemDataInfo *gem : *m_gems) {
@@ -396,7 +399,7 @@ void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &g
         QVector<float> data;
         appendAttributesToVector(gem, data);
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
-#ifdef __android__
+#ifdef __ANDROID__
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, gem->index(), 3, 1, GL_RGBA, GL_OES_texture_float, data.data());
 #else
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, gem->index(), 3, 1, GL_RGBA, GL_FLOAT, data.data());
