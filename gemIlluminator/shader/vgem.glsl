@@ -8,7 +8,8 @@ attribute highp vec3 a_vertex;
 attribute highp vec3 a_normal;
 attribute highp float a_index;
 
-uniform float u_maxNumberOfGems;
+uniform float u_texWidth;
+uniform float u_texHeight;
 uniform float u_sceneExtent;
 uniform sampler2D u_data;
 uniform bool u_isFloatTextureAvailable;
@@ -21,6 +22,22 @@ uniform vec3 eye;
 varying vec3 v_color;
 varying vec3 v_eyeVector;
 varying vec3 v_normal;
+
+vec2 getUVOfGemAttribute(float gemIndex, float attributeIndex)
+{
+    float texelPerGem;
+    if (u_isFloatTextureAvailable) {
+        texelPerGem = 3.0;
+    } else {
+        texelPerGem = 4.0;
+    }
+    float bufferPosX = mod(gemIndex * texelPerGem, u_texWidth) + attributeIndex;
+    float bufferPosY = floor((gemIndex * texelPerGem) / u_texWidth);
+    vec2 result = vec2(bufferPosX, bufferPosY);
+    result += vec2(0.5);
+    result /= vec2(u_texWidth, u_texHeight);
+    return result;
+}
 
 vec3 rotateVector( vec4 quat, vec3 vec )
 {
@@ -39,22 +56,21 @@ vec4 decode(vec4 high, vec4 low, float minBorder, float maxBorder)
 void drawOptimizedWithTexture()
 {
     //texture coordinates have to point to center of texel not border (u-coordinates: precalculated for width)
-    float index = (a_index + 0.5) / (u_maxNumberOfGems);
     vec4 xyzs;
     vec4 rotation;
     vec4 rgb_;
     if (u_isFloatTextureAvailable) {
-        xyzs = texture2D(u_data, vec2(0.167, index));
-        rotation = texture2D(u_data, vec2(0.5, index));
-        rgb_ = texture2D(u_data, vec2(0.833, index));
+        xyzs = texture2D(u_data, getUVOfGemAttribute(a_index, 0.0));
+        rotation = texture2D(u_data, getUVOfGemAttribute(a_index, 1.0));
+        rgb_ = texture2D(u_data, getUVOfGemAttribute(a_index, 2.0));
     } else {
-        vec4 xyzsHigh = texture2D(u_data, vec2(0.125, index));
-        vec4 xyzsLow = texture2D(u_data, vec2(0.375, index));
+        vec4 xyzsHigh = texture2D(u_data, getUVOfGemAttribute(a_index, 0.0));
+        vec4 xyzsLow = texture2D(u_data, getUVOfGemAttribute(a_index, 1.0));
         xyzs.xyz = decode(xyzsHigh, xyzsLow, -u_sceneExtent, u_sceneExtent).xyz;
         xyzs.w = decode(xyzsHigh, xyzsLow, u_minGemSize, u_maxGemSize).w;
-        rotation = texture2D(u_data, vec2(0.625, index));
+        rotation = texture2D(u_data, getUVOfGemAttribute(a_index, 2.0));
         rotation = rotation * 2.0 - 1.0;
-        rgb_ = texture2D(u_data, vec2(0.875, index));
+        rgb_ = texture2D(u_data, getUVOfGemAttribute(a_index, 3.0));
     }
     vec3 scaledCoord = a_vertex * xyzs.w;
     vec3 rotatedCoord = rotateVector(rotation, scaledCoord);

@@ -63,11 +63,14 @@ class GemRenderer
         bool m_areFloatTexturesAvailable;
         unsigned int m_dataBuffer;
         QList<GemDataInfo *> *m_gems;
+        bool m_hasErrorOccured;
         bool m_isInitialized;
         unsigned int m_lowestUnusedIndex;
         QOpenGLBuffer *m_vertexBuffer;
         int m_verticesPerGem;
         float m_sceneExtent;
+        int m_maxTextureSize;
+        int m_texelPerGem;
     };
 
 
