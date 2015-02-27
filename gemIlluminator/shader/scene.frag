@@ -15,6 +15,7 @@ const float previewWindowBorderColor = 0.8;
 
 void main()
 {
+    /* Original Shader Code
     if (v_uv.s <= u_previewSize && v_uv.t > (1.0 - u_previewSize)) {
         float preview_u = v_uv.s * (1.0 / u_previewSize);
         float preview_v = (v_uv.t - (1.0 - u_previewSize)) * (1.0 / u_previewSize);
@@ -29,5 +30,23 @@ void main()
     } else {
         gl_FragColor = texture2D(u_sceneTexture, v_uv);
     }
-    // gl_FragColor = texture2D(u_sceneTexture, v_uv);
+    */
+
+    /* Shader Code without Conditional Branching */
+    float preview_u = v_uv.s / u_previewSize;
+    float preview_v = (v_uv.t - 1.0) / u_previewSize + 1.0;
+    vec4 previewColor = texture2D(u_previewSceneTexture, vec2(preview_u, preview_v));
+    vec4 previewBorderColor = vec4(vec3(previewWindowBorderColor), 1.0 );
+    vec4 sceneColor = texture2D(u_sceneTexture, v_uv);
+
+    float previewMix = ceil((
+                step(preview_u, previewWindowBorder) +
+                step(1.0 - previewWindowBorder, preview_u) +
+                step(preview_v, previewWindowBorder) +
+                step(1.0 - previewWindowBorder, preview_v)) / 4.0
+                );
+    previewColor = mix(previewColor, previewBorderColor, previewMix);
+
+    float sceneMix = step(v_uv.s, u_previewSize) * step(1.0 - u_previewSize, v_uv.t);
+    gl_FragColor = mix(sceneColor, previewColor, sceneMix);;
 }
