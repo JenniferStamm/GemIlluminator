@@ -9,6 +9,6 @@
         <file>shader/scene.frag</file>
         <file>shader/scene.vert</file>
         <file>shader/gausshorizontal.frag</file>
-        <file>shader/gaussertical.frag</file>
+        <file>shader/gaussvertical.frag</file>
     </qresource>
 </RCC>
