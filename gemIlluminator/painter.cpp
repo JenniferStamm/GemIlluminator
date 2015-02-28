@@ -141,7 +141,7 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderGaussHorizontal(*m_scene->camera());
-
+        /*
         // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
 
@@ -159,7 +159,7 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderGaussVertical(*m_scene->camera());
-
+        */
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 
@@ -292,8 +292,8 @@ void Painter::initializeFBOs()
 
     m_gl->glGenTextures(1, &m_lightRayTexture);
     m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
@@ -311,8 +311,8 @@ void Painter::initializeFBOs()
 
     m_gl->glGenTextures(1, &m_secondaryLightRayTexture);
     m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
@@ -470,9 +470,12 @@ void Painter::renderGaussHorizontal(const Camera &camera)
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
     m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_lightRayTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
 
     m_quad->draw(*m_gl);
+
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_2D, 0);
 
     shaderProgram->release();
 }
@@ -486,9 +489,12 @@ void Painter::renderGaussVertical(const Camera &camera)
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
     m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_secondaryLightRayTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
 
     m_quad->draw(*m_gl);
+
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_2D, 0);
 
     shaderProgram->release();
 }
@@ -521,6 +527,9 @@ void Painter::renderScene(const Camera &camera)
     shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
 
     m_scene->paint(*m_gl, camera.viewProjection(), *m_shaderPrograms);
+
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_2D, 0);
 
     gemProgram->disableAttributeArray(0);
     gemProgram->disableAttributeArray(1);
