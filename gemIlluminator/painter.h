@@ -45,6 +45,8 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
+    void renderGaussHorizontal(const Camera &camera);
+    void renderGaussVertical(const Camera &camera);
     void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
 

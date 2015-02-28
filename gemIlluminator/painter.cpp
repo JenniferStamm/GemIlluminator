@@ -125,10 +125,40 @@ void Painter::paint()
 
         // Smooth lightRayTexture
         // Gauss Horizontal - lightRayTexture to secondaryLightRayTexture
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_secondaryLightRayFBO);
 
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
+        if (viewportChanged) {
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        }
+
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+        if (viewportChanged) {
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+        }
+        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        renderGaussHorizontal(*m_scene->camera());
 
         // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
 
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+        if (viewportChanged) {
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        }
+
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+        if (viewportChanged) {
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+        }
+        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        renderGaussVertical(*m_scene->camera());
 
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
@@ -174,7 +204,7 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
         m_gl->glActiveTexture(GL_TEXTURE1);
         m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
 
@@ -336,20 +366,22 @@ void Painter::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
 
     auto gaussHorizontalProgram = new QOpenGLShaderProgram(this);
-    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gaussHorizontal.vert");
-    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussHorizontal.frag");
+    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/screenquad.vert");
+    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gausshorizontal.frag");
     if (!gaussHorizontalProgram->link()) {
         qDebug() << "Gauss horizontal: Link failed";
     }
+    gaussHorizontalProgram->bindAttributeLocation("a_vertex", 0);
     m_shaderPrograms->insert(ShaderPrograms::GaussHorizontalProgram, gaussHorizontalProgram);
 
     auto gaussVerticalProgram = new QOpenGLShaderProgram(this);
-    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gaussVertical.vert");
-    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussVertical.frag");
+    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/screenquad.vert");
+    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussvertical.frag");
     if (!gaussVerticalProgram->link()) {
         qDebug() << "Gauss horizontal: Link failed";
     }
-    m_shaderPrograms->insert(ShaderPrograms::gaussVerticalProgram, gaussVerticalProgram);
+    gaussVerticalProgram->bindAttributeLocation("a_vertex", 0);
+    m_shaderPrograms->insert(ShaderPrograms::GaussVerticalProgram, gaussVerticalProgram);
 
 
 }
@@ -392,7 +424,7 @@ void Painter::initializeEnvmap()
         }
 
     QOpenGLShaderProgram *envmapProgram = new QOpenGLShaderProgram();
-    envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
+    envmapProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/screenquad.vert");
     envmapProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");
 
     if (!envmapProgram->link()) {
@@ -427,6 +459,38 @@ void Painter::paintEnvmap(const Camera &camera)
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
+}
+
+void Painter::renderGaussHorizontal(const Camera &camera)
+{
+    auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
+    shaderProgram->bind();
+
+    shaderProgram->setUniformValue("view",camera.view());
+    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
+    shaderProgram->setUniformValue("lightRays", 0);
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_lightRayTexture);
+
+    m_quad->draw(*m_gl);
+
+    shaderProgram->release();
+}
+
+void Painter::renderGaussVertical(const Camera &camera)
+{
+    auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
+    shaderProgram->bind();
+
+    shaderProgram->setUniformValue("view",camera.view());
+    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
+    shaderProgram->setUniformValue("lightRays", 0);
+    m_gl->glActiveTexture(GL_TEXTURE0);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_secondaryLightRayTexture);
+
+    m_quad->draw(*m_gl);
+
+    shaderProgram->release();
 }
 
 void Painter::renderLightRays(const Camera &camera)
