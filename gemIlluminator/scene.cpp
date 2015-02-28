@@ -128,6 +128,11 @@ SceneRenderer& Scene::sceneRenderer() const
     return *m_renderer;
 }
 
+void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+{
+    m_renderer->paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
+}
+
 AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
     AbstractGem *result = m_bounds;

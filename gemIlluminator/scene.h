@@ -47,6 +47,8 @@ public:
 
     SceneRenderer& sceneRenderer() const;
 
+    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
