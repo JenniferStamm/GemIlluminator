@@ -92,7 +92,10 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
 
     shaderProgram.disableAttributeArray(0);
     shaderProgram.release();
+}
 
+void LightRayRenderer::resetDynamicRays()
+{
     m_dynamicRays->clear();
 }
 

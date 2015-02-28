@@ -71,8 +71,9 @@ public slots:
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
-    void calculateSuccessors();
     bool isPlayerBeforeCollisionPoint();
+    void calculateSuccessors();
+    virtual void _synchronize();
 
 protected:
     AbstractGem *m_collidingGem;

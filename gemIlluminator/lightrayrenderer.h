@@ -22,6 +22,7 @@ public:
 
     void addLightRay(const LightRay &lightRay);
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
+    void resetDynamicRays();
 
 protected:
     void calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices);
