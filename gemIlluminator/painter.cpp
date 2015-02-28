@@ -33,8 +33,12 @@ Painter::~Painter()
 {
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
+    m_gl->glDeleteTextures(1, &m_lightRayTexture);
+    m_gl->glDeleteTextures(1, &m_secondaryLightRayTexture);
     m_gl->glDeleteRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glDeleteRenderbuffers(1, &m_previewSceneDepthRB);
+    m_gl->glDeleteRenderbuffers(1, &m_lightRayDepthRB);
+    m_gl->glDeleteFramebuffers(1, &m_lightRayFBO);
     m_gl->glDeleteFramebuffers(1, &m_sceneFBO);
     m_gl->glDeleteFramebuffers(1, &m_previewSceneFBO);
 
@@ -100,6 +104,31 @@ void Painter::paint()
             viewportChanged = true;
         }
 
+        // lightray glow
+        // Render lightrays to lightRayTextures
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
+
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+        if (viewportChanged) {
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        }
+
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+        if (viewportChanged) {
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+        }
+        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+
+        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        renderLightRays(*m_scene->camera());
+
+        // Smooth lightRayTexture
+        // Gauss Horizontal - lightRayTexture to secondaryLightRayTexture
+
+        // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
+
+
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 
@@ -107,7 +136,6 @@ void Painter::paint()
         if (viewportChanged) {
             m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
-
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_sceneDepthRB);
         if (viewportChanged) {
@@ -199,7 +227,7 @@ void Painter::initializeFBOs()
     m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_sceneDepthRB);
     m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
-    if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+    if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;
     }
 
@@ -221,7 +249,48 @@ void Painter::initializeFBOs()
     m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_previewSceneDepthRB);
     m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
-    if(m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+    if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        return;
+    }
+
+    m_gl->glGenFramebuffers(1, &m_lightRayFBO);
+    m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
+
+    m_gl->glGenRenderbuffers(1, &m_lightRayDepthRB);
+    m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+
+    m_gl->glGenTextures(1, &m_lightRayTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+    m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_lightRayTexture, 0);
+    m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_lightRayDepthRB);
+    m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
+
+    if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        return;
+    }
+
+    m_gl->glGenFramebuffers(1, &m_secondaryLightRayFBO);
+    m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_secondaryLightRayFBO);
+
+    m_gl->glGenTextures(1, &m_secondaryLightRayTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+    m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_secondaryLightRayTexture, 0);
+    m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_lightRayDepthRB);
+    m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
+
+    if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;
     }
 }
@@ -339,6 +408,11 @@ void Painter::paintEnvmap(const Camera &camera)
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
+}
+
+void Painter::renderLightRays(const Camera &camera)
+{
+    m_scene->paintLightRays(*m_gl, camera.viewProjection(), *m_shaderPrograms);
 }
 
 void Painter::renderScene(const Camera &camera)

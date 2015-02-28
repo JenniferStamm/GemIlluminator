@@ -45,6 +45,7 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
+    void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
 
 protected:
@@ -52,6 +53,11 @@ protected:
     uint m_envmap;
     QOpenGLFunctions * m_gl;
     bool m_initialized;
+    uint m_lightRayFBO;
+    uint m_lightRayDepthRB;
+    uint m_lightRayTexture;
+    uint m_secondaryLightRayFBO;
+    uint m_secondaryLightRayTexture;
     uint m_previewSceneFBO;
     uint m_previewSceneDepthRB;
     uint m_previewSceneTexture;
