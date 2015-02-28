@@ -42,7 +42,7 @@ protected:
     QString m_source;
 };
 
-static QObject *singletontype_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+static QObject *configSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)

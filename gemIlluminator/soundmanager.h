@@ -26,7 +26,7 @@ protected:
     static Soundmanager* m_instance;
 };
 
-static QObject *singletontype_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+static QObject *soundmanagerSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)
