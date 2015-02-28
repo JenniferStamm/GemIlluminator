@@ -13,6 +13,7 @@
 PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
   , m_active(false)
+  , m_isAppActive(true)
   , m_isUpdatePending(false)
   , m_painter(nullptr)
   , m_paintingDoneEventType(-1)
@@ -39,7 +40,7 @@ bool PainterQML::event(QEvent *ev)
             window()->update();
             m_isUpdatePending = true;
         }
-        if (m_active) {
+        if (m_active && m_isAppActive) {
             QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
         }
         return QQuickItem::event(ev);
@@ -65,8 +66,12 @@ bool PainterQML::isActive() const
 
 void PainterQML::setActive(bool active)
 {
+    if (m_active == active) {
+        return;
+    }
     m_active = active;
-    if (m_active) {
+    if (m_active && m_isAppActive) {
+        m_isUpdatePending = false;
         QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
     } else {
         delete m_time;
@@ -112,6 +117,13 @@ void PainterQML::setIsAppActive(bool active)
         return;
     }
     m_isAppActive = active;
+    if (m_active && m_isAppActive) {
+        m_isUpdatePending = false;
+        QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
+    } else {
+        delete m_time;
+        m_time = nullptr;
+    }
 }
 
 void PainterQML::synchronize()

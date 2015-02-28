@@ -25,6 +25,8 @@ Item {
 
         Config.axisRange = configJSON["AxisRange"]
         Config.envMap = configJSON["EnvMap"]
+        Config.maxGemSize = gemRangeSize[1]
+        Config.minGemSize = gemRangeSize[0]
     }
 
     function saveConfig()
