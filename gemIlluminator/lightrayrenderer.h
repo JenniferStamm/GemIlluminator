@@ -21,22 +21,21 @@ public:
     virtual ~LightRayRenderer();
 
     void addLightRay(const LightRay &lightRay);
-
     virtual void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
-    void updateStaticVBO();
-    void updateDynamicVBO();
     void calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices);
+    void updateDynamicVBO();
+    void updateStaticVBO();
 
 protected:
-    bool m_isStaticVBOUpdateRequired;
-    QOpenGLBuffer *m_staticVertexBuffer;
-    QOpenGLBuffer *m_staticIndexBuffer;
-    QOpenGLBuffer *m_dynamicVertexBuffer;
     QOpenGLBuffer *m_dynamicIndexBuffer;
     QVector<LightRayData> *m_dynamicRays;
+    QOpenGLBuffer *m_dynamicVertexBuffer;
+    bool m_isStaticVBOUpdateRequired;
+    QOpenGLBuffer *m_staticIndexBuffer;
     QSet<LightRayData> *m_staticRays;
+    QOpenGLBuffer *m_staticVertexBuffer;
 };
 
 #endif // LIGHTRAYRENDERER_H
