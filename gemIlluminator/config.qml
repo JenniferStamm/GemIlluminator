@@ -8,6 +8,7 @@ Item {
     property var gemRangeSize: null
     property var availableEnvMaps: null
     property int viewportRatio: 0
+    property double smoothnessFactor: 0
 
     Component.onCompleted: {
         Config.source = "config.json"
@@ -22,6 +23,7 @@ Item {
         gemRangeSize = configJSON["GemRangeSize"]
         availableEnvMaps = configJSON["AvailableEnvMaps"]
         viewportRatio = configJSON["ViewportRatio"]
+        smoothnessFactor = configJSON["NavigationSmoothnessFactor"]
 
         Config.axisRange = configJSON["AxisRange"]
         Config.envMap = configJSON["EnvMap"]
