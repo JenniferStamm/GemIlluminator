@@ -81,8 +81,8 @@ void Painter::paint()
         if (!m_initialized) {
             initialize();
         }
-
-        m_gl->glClearColor(0.9f, 1.f, 1.f, 1.f);
+        float clearColor[4] = {0.9f, 1.f, 1.f, 1.f};
+        m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         m_gl->glDisable(GL_CULL_FACE);
 
@@ -119,7 +119,9 @@ void Painter::paint()
         }
         m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
+        m_gl->glClearColor(1.0, 0.0, 0.0, 0.0);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 
         renderLightRays(*m_scene->camera());
 
@@ -141,7 +143,7 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderGaussHorizontal(*m_scene->camera());
-        /*
+
         // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
 
@@ -159,7 +161,7 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderGaussVertical(*m_scene->camera());
-        */
+
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 
@@ -174,6 +176,7 @@ void Painter::paint()
         }
         m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
+        m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderScene(*m_scene->camera());
@@ -204,14 +207,17 @@ void Painter::paint()
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_sceneTexture);
         m_gl->glActiveTexture(GL_TEXTURE1);
         m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
+        m_gl->glActiveTexture(GL_TEXTURE2);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
 
         QOpenGLShaderProgram *sceneProgram = (*m_shaderPrograms)[ShaderPrograms::SceneProgram];
         sceneProgram->bind();
         sceneProgram->setUniformValue("u_sceneTexture", 0);
         sceneProgram->setUniformValue("u_previewSceneTexture", 1);
+        sceneProgram->setUniformValue("u_lightRayTexture", 2);
         sceneProgram->setUniformValue("u_previewSize", previewSize);
         m_quad->draw(*m_gl);
         sceneProgram->release();
@@ -220,6 +226,10 @@ void Painter::paint()
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp
         m_gl->glEnable(GL_TEXTURE_2D);
         m_gl->glActiveTexture(GL_TEXTURE0);
+        m_gl->glBindTexture(GL_TEXTURE_2D, 0);
+        m_gl->glActiveTexture(GL_TEXTURE1);
+        m_gl->glBindTexture(GL_TEXTURE_2D, 0);
+        m_gl->glActiveTexture(GL_TEXTURE2);
         m_gl->glBindTexture(GL_TEXTURE_2D, 0);
         m_gl->glDisable(GL_TEXTURE_2D);
         m_gl->glDisable(GL_DEPTH_TEST);

@@ -6,12 +6,14 @@ precision mediump float;
 
 uniform sampler2D u_sceneTexture;
 uniform sampler2D u_previewSceneTexture;
+uniform sampler2D u_lightRayTexture;
 uniform float u_previewSize;
 
 varying vec2 v_uv;
 
 const float previewWindowBorder = 0.02;
 const float previewWindowBorderColor = 0.8;
+const float glowFactor = 1.0;
 
 void main()
 {
@@ -37,7 +39,10 @@ void main()
     float preview_v = (v_uv.t - 1.0) / u_previewSize + 1.0;
     vec4 previewColor = texture2D(u_previewSceneTexture, vec2(preview_u, preview_v));
     vec4 previewBorderColor = vec4(vec3(previewWindowBorderColor), 1.0 );
+
     vec4 sceneColor = texture2D(u_sceneTexture, v_uv);
+    vec4 lightRayColor = texture2D(u_lightRayTexture, v_uv);
+    sceneColor += lightRayColor * glowFactor * lightRayColor.a;
 
     float previewMix = ceil((
                 step(preview_u, previewWindowBorder) +
@@ -48,5 +53,6 @@ void main()
     previewColor = mix(previewColor, previewBorderColor, previewMix);
 
     float sceneMix = step(v_uv.s, u_previewSize) * step(1.0 - u_previewSize, v_uv.t);
-    gl_FragColor = mix(sceneColor, previewColor, sceneMix);;
+    gl_FragColor = vec4(mix(sceneColor, previewColor, sceneMix).xyz, 1.0);
+   // gl_FragColor = vec4(lightRayColor.a, 0.0, 0.0, 1.0);
 }
