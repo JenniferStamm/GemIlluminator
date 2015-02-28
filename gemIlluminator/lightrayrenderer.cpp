@@ -16,7 +16,7 @@ LightRayRenderer::LightRayRenderer(QObject *parent) :
   , m_staticIndexBuffer(nullptr)
   , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
-  , m_dynamicRays(new QVector<LightRayData>)
+  , m_dynamicRays(new QSet<LightRayData>)
   , m_staticRays(new QSet<LightRayData>)
 {
 }
@@ -43,7 +43,7 @@ void LightRayRenderer::addLightRay(const LightRay & ray)
     }
     else
     {
-        m_dynamicRays->push_back(LightRayData(ray));
+        m_dynamicRays->insert(LightRayData(ray));
     }
 }
 
@@ -79,7 +79,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
     m_dynamicIndexBuffer->bind();
 
     if (!m_dynamicRays->isEmpty()) {
-        shaderProgram.setUniformValue("color", m_dynamicRays->first().color());
+        shaderProgram.setUniformValue("color", m_dynamicRays->values().first().color());
     }
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
@@ -158,51 +158,41 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     indices.push_back(startRight);
 }
 
-void LightRayRenderer::updateDynamicVBO()
+void LightRayRenderer::updateRayVBO(
+        QOpenGLBuffer *&vertexBuffer,
+        QOpenGLBuffer *&indexBuffer,
+        const QSet<LightRayData> &data)
 {
-    if (!m_dynamicVertexBuffer) {
-        m_dynamicVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
-        m_dynamicVertexBuffer->create();
+    if (!vertexBuffer) {
+        vertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
+        vertexBuffer->create();
     }
-    if (!m_dynamicIndexBuffer) {
-        m_dynamicIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
-        m_dynamicIndexBuffer->create();
+    if (!indexBuffer) {
+        indexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
+        indexBuffer->create();
     }
-    m_dynamicVertexBuffer->bind();
-    m_dynamicIndexBuffer->bind();
+
+    vertexBuffer->bind();
+    indexBuffer->bind();
 
     QVector<float> vertexData;
     QVector<unsigned int> indexData;
 
-    for (auto& rayData : *m_dynamicRays) {
+    for (auto& rayData : data) {
         calculateVertexDataFor(rayData, vertexData, indexData);
     }
 
-    m_dynamicVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
-    m_dynamicIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
+    vertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
+    indexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
+}
+
+void LightRayRenderer::updateDynamicVBO()
+{
+    updateRayVBO(m_dynamicVertexBuffer, m_dynamicIndexBuffer, *m_dynamicRays);
 }
 
 void LightRayRenderer::updateStaticVBO()
 {
-    if (!m_staticVertexBuffer) {
-        m_staticVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
-        m_staticVertexBuffer->create();
-    }
-    if (!m_staticIndexBuffer) {
-        m_staticIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
-        m_staticIndexBuffer->create();
-    }
-    m_staticVertexBuffer->bind();
-    m_staticIndexBuffer->bind();
-
-    QVector<float> vertexData;
-    QVector<unsigned int> indexData;
-
-    for (auto& rayData : *m_staticRays) {
-        calculateVertexDataFor(rayData, vertexData, indexData);
-    }
-
-    m_staticVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
-    m_staticIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
+    updateRayVBO(m_staticVertexBuffer, m_staticIndexBuffer, *m_staticRays);
     m_isStaticVBOUpdateRequired = false;
 }

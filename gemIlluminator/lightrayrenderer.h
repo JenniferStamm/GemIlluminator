@@ -28,10 +28,11 @@ protected:
     void calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices);
     void updateDynamicVBO();
     void updateStaticVBO();
+    void updateRayVBO(QOpenGLBuffer *&vertexBuffer, QOpenGLBuffer *&indexBuffer, const QSet<LightRayData> &data);
 
 protected:
     QOpenGLBuffer *m_dynamicIndexBuffer;
-    QVector<LightRayData> *m_dynamicRays;
+    QSet<LightRayData> *m_dynamicRays;
     QOpenGLBuffer *m_dynamicVertexBuffer;
     bool m_isStaticVBOUpdateRequired;
     QOpenGLBuffer *m_staticIndexBuffer;
