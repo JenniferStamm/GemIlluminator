@@ -1,12 +1,31 @@
 #include "soundmanager.h"
 
-soundmanager::soundmanager(QObject *parent) : QObject(parent)
-{
+#include <QMutex>
 
+Soundmanager* Soundmanager::m_instance = 0;
+
+void Soundmanager::drop()
+{
+    static QMutex mutex;
+    mutex.lock();
+    delete m_instance;
+    m_instance = 0;
+    mutex.unlock();
 }
 
-soundmanager::~soundmanager()
+Soundmanager *Soundmanager::instance()
 {
+    static QMutex mutex;
+    if (!m_instance)
+    {
+        mutex.lock();
 
+        if (!m_instance)
+            m_instance = new Soundmanager;
+
+        mutex.unlock();
+    }
+
+    return m_instance;
 }
 
