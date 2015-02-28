@@ -126,6 +126,7 @@ void Painter::paint()
         // Smooth lightRayTexture
         // Gauss Horizontal - lightRayTexture to secondaryLightRayTexture
 
+
         // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
 
 
@@ -297,7 +298,7 @@ void Painter::initializeFBOs()
 
 void Painter::initializeShaderPrograms()
 {
-    QOpenGLShaderProgram *gemProgram = new QOpenGLShaderProgram(this);
+    auto gemProgram = new QOpenGLShaderProgram(this);
     gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
     gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
     if (!gemProgram->link()) {
@@ -307,7 +308,7 @@ void Painter::initializeShaderPrograms()
     gemProgram->bindAttributeLocation("a_vertex", 0);
     gemProgram->bindAttributeLocation("a_normal", 1);
 
-    QOpenGLShaderProgram *lightRayProgram = new QOpenGLShaderProgram(this);
+    auto lightRayProgram = new QOpenGLShaderProgram(this);
     lightRayProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/lightray.vert");
     lightRayProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/lightray.frag");
 
@@ -322,7 +323,7 @@ void Painter::initializeShaderPrograms()
 
     initializeEnvmap();
 
-    QOpenGLShaderProgram *sceneProgram = new QOpenGLShaderProgram(this);
+    auto sceneProgram = new QOpenGLShaderProgram(this);
     sceneProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/scene.vert");
     sceneProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/scene.frag");
 
@@ -333,6 +334,24 @@ void Painter::initializeShaderPrograms()
     sceneProgram->bindAttributeLocation("a_vertex", 0);
 
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
+
+    auto gaussHorizontalProgram = new QOpenGLShaderProgram(this);
+    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gaussHorizontal.vert");
+    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussHorizontal.frag");
+    if (!gaussHorizontalProgram->link()) {
+        qDebug() << "Gauss horizontal: Link failed";
+    }
+    m_shaderPrograms->insert(ShaderPrograms::GaussHorizontalProgram, gaussHorizontalProgram);
+
+    auto gaussVerticalProgram = new QOpenGLShaderProgram(this);
+    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gaussVertical.vert");
+    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussVertical.frag");
+    if (!gaussVerticalProgram->link()) {
+        qDebug() << "Gauss horizontal: Link failed";
+    }
+    m_shaderPrograms->insert(ShaderPrograms::gaussVerticalProgram, gaussVerticalProgram);
+
+
 }
 
 void Painter::initializeEnvmap()

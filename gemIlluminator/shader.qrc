@@ -8,5 +8,9 @@
         <file>shader/envmap.vert</file>
         <file>shader/scene.frag</file>
         <file>shader/scene.vert</file>
+        <file>shader/gaussHorizontal.frag</file>
+        <file>shader/gaussHorizontal.vert</file>
+        <file>shader/gaussVertical.frag</file>
+        <file>shader/gaussVertical.vert</file>
     </qresource>
 </RCC>

@@ -22,7 +22,9 @@ enum class ShaderPrograms {
     GemProgram,
     LighRayProgram,
     EnvMapProgram,
-    SceneProgram
+    SceneProgram,
+    GaussHorizontalProgram,
+    GaussVerticalProgram
 };
 
 class Scene : public QQuickItem
