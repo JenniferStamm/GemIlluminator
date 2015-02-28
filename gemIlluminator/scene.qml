@@ -95,6 +95,15 @@ Scene {
         }
     }
 
+    PauseButton {
+        id: pause
+        onPressedChanged: {
+            if (pressed) {
+                painter.active = !painter.active
+            }
+        }
+    }
+
     Component.onCompleted: {
         gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
                                      "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
