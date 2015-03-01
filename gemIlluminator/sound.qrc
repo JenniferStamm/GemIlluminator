@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/sound/collision1.mp3</file>
+        <file>data/sound/collision2.mp3</file>
+        <file>data/sound/collision3.mp3</file>
+        <file>data/sound/collision4.mp3</file>
+        <file>data/sound/collision5.mp3</file>
+        <file>data/sound/collision6.mp3</file>
+        <file>data/sound/collision7.mp3</file>
+    </qresource>
+</RCC>
