@@ -15,10 +15,10 @@ class GlowEffect : public QObject
 {
     Q_OBJECT
 public:
-    GlowEffect(QOpenGLFunctions &gl, QObject *parent = nullptr);
+    GlowEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
     virtual ~GlowEffect();
 
-    void renderGlowToTexture( const Camera &camera, uint glowTexture);
+    void renderGlowToTexture(const Camera &camera);
 
 protected:
     void initialize();
@@ -32,11 +32,11 @@ protected:
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     bool m_initialized;
 
-    uint m_lightRayFBO;
-    uint m_lightRayDepthRB;
-    uint m_lightRayTexture;
-    uint m_secondaryLightRayFBO;
-    uint m_secondaryLightRayTexture;
+    uint m_blurFBO;
+    uint m_blurDepthRB;
+    uint m_blurTexture;
+    uint m_secondaryBlurFBO;
+    uint m_secondaryBlurTexture;
 
     QSize *m_usedViewport;
 

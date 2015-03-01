@@ -139,13 +139,13 @@ void Painter::paint()
         }
         m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
 
-        m_gl->glClearColor(1.0, 0.0, 0.0, 0.0);
+        m_gl->glClearColor(0.0, 1.0, 0.0, 0.0);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         renderLightRays(*m_scene->camera());
 
         if (m_glowEffect) {
-            m_glowEffect->renderGlowToTexture(*m_scene->camera(), m_glowTexture);
+            m_glowEffect->renderGlowToTexture(*m_scene->camera());
         }
 
         // scene
@@ -232,7 +232,7 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
     if (m_scene && m_scene->camera()) {
-        m_glowEffect = new GlowEffect(*m_gl);
+        m_glowEffect = new GlowEffect(*m_gl, m_glowTexture);
     }
     m_initialized = true;
 }
