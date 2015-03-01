@@ -8,6 +8,7 @@
 #include "lightrayrenderer.h"
 #include "player.h"
 #include "scene.h"
+#include "soundmanager.h"
 #include "triangle.h"
 
 LightRay::LightRay(QObject *parent) :
@@ -36,11 +37,8 @@ LightRay::~LightRay()
 
 void LightRay::synchronize()
 {
-    m_renderer->addLightRay(*this);
-
-    for (auto& successor : *m_successors ) {
-        successor->synchronize();
-    }
+    m_renderer->resetDynamicRays();
+    _synchronize();
 }
 
 void LightRay::update(int timeDifference)
@@ -70,6 +68,8 @@ void LightRay::update(int timeDifference)
             collisionTestRay.setEndPosition(endPosition());
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         } else {
+            Soundmanager::instance()->setCollisionSound(SoundEffects::Collision2);
+            Soundmanager::instance()->playCollisionSound();
             m_collidingGem->setColor(m_data->color());
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
@@ -231,6 +231,15 @@ void LightRay::calculateSuccessors()
     m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
     nextRay->setEndPosition(nextCollisionPoint);
     m_successors->push_back(nextRay);
+}
+
+void LightRay::_synchronize()
+{
+    m_renderer->addLightRay(*this);
+
+    for (auto& successor : *m_successors ) {
+        successor->_synchronize();
+    }
 }
 
 bool LightRay::isPlayerBeforeCollisionPoint()

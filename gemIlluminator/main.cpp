@@ -11,6 +11,7 @@
 #include "painterqml.h"
 #include "player.h"
 #include "scene.h"
+#include "soundmanager.h"
 #include "tetrahedrongem.h"
 
 int main(int argc, char *argv[])
@@ -27,7 +28,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
-    qmlRegisterSingletonType<Config>("GemIlluminator", 1, 0, "Config", singletontype_provider);
+    qmlRegisterSingletonType<Config>("GemIlluminator", 1, 0, "Config", configSingletontypeProvider);
+    qmlRegisterSingletonType<Soundmanager>("GemIlluminator", 1, 0, "Soundmanager", soundmanagerSingletontypeProvider);
     qmlRegisterType<PainterQML>("GemIlluminator", 1, 0, "Painter");
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
