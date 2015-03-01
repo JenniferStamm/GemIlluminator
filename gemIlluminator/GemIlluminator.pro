@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     painterqml.cpp \
     gemdata.cpp \
     gemrenderer.cpp \
-    soundmanager.cpp
+    soundmanager.cpp \
+    blureffect.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -64,7 +65,8 @@ HEADERS += \
     painterqml.h \
     gemdata.h \
     gemrenderer.h \
-    soundmanager.h
+    soundmanager.h \
+    blureffect.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug

@@ -22,7 +22,9 @@ enum class ShaderPrograms {
     GemProgram,
     LighRayProgram,
     EnvMapProgram,
-    SceneProgram
+    SceneProgram,
+    GaussHorizontalProgram,
+    GaussVerticalProgram
 };
 
 class Scene : public QQuickItem
@@ -46,6 +48,8 @@ public:
     void setPreviewCamera(Camera *camera);
 
     SceneRenderer& sceneRenderer() const;
+
+    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
 
     /**

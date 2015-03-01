@@ -6,8 +6,10 @@
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class QSize;
+class QTime;
 
 class Camera;
+class BlurEffect;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
@@ -45,24 +47,47 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
+    void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
 
 protected:
     bool m_active;
     uint m_envmap;
-    QOpenGLFunctions * m_gl;
+    QOpenGLFunctions *m_gl;
     bool m_initialized;
+
+    BlurEffect *m_blurEffectScene;
+    int m_blurViewportRatioScene;
+    uint m_glowSceneFBO;
+    uint m_glowSceneDepthRB;
+    uint m_glowSceneTexture;
+
+    BlurEffect *m_blurEffectPreviewScene;
+    int m_blurViewportRatioPreviewScene;
+    uint m_glowPreviewSceneFBO;
+    uint m_glowPreviewSceneDepthRB;
+    uint m_glowPreviewSceneTexture;
+
     uint m_previewSceneFBO;
     uint m_previewSceneDepthRB;
     uint m_previewSceneTexture;
+
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
+
     Scene *m_scene;
+
     uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
+
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_usedViewport;
+
+    int m_counter;
+    int m_oldElapsed;
+    QTime *m_time;
+
 };
 
 #endif // PAINTER_H

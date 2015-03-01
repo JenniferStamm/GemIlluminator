@@ -5,8 +5,10 @@
         <file>shader/lightray.frag</file>
         <file>shader/lightray.vert</file>
         <file>shader/envmap.frag</file>
-        <file>shader/envmap.vert</file>
+        <file>shader/screenquad.vert</file>
         <file>shader/scene.frag</file>
         <file>shader/scene.vert</file>
+        <file>shader/gausshorizontal.frag</file>
+        <file>shader/gaussvertical.frag</file>
     </qresource>
 </RCC>

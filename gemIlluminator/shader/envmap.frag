@@ -9,6 +9,7 @@ uniform samplerCube cubemap;
 // attribute vec4 fragColor;
 
 varying vec3 v_eye;
+varying vec2 v_uv;
 
 void main()
 {
