@@ -24,7 +24,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_active(false)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
-  , m_glowEffect(nullptr)
+  , m_blurEffect(nullptr)
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
@@ -38,7 +38,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
 
 Painter::~Painter()
 {
-    delete m_glowEffect;
+    delete m_blurEffect;
 
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
@@ -144,8 +144,8 @@ void Painter::paint()
 
         renderLightRays(*m_scene->camera());
 
-        if (m_glowEffect) {
-            m_glowEffect->renderGlowToTexture(*m_scene->camera());
+        if (m_blurEffect) {
+            m_blurEffect->renderGlowToTexture(*m_scene->camera());
         }
 
         // scene
@@ -232,7 +232,7 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
     if (m_scene && m_scene->camera()) {
-        m_glowEffect = new BlurEffect(*m_gl, m_glowTexture);
+        m_blurEffect = new BlurEffect(*m_gl, m_glowTexture);
     }
     m_initialized = true;
 }

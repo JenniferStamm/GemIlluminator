@@ -55,7 +55,7 @@ protected:
     uint m_envmap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
-    BlurEffect *m_glowEffect;
+    BlurEffect *m_blurEffect;
     uint m_glowFBO;
     uint m_glowDepthRB;
     uint m_glowTexture;
