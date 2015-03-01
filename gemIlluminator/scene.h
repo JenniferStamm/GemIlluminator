@@ -17,15 +17,7 @@ class Navigation;
 class SceneBounds;
 class SceneRenderer;
 class Triangle;
-
-enum class ShaderPrograms {
-    GemProgram,
-    LighRayProgram,
-    EnvMapProgram,
-    SceneProgram,
-    GaussHorizontalProgram,
-    GaussVerticalProgram
-};
+enum class ShaderPrograms;
 
 class Scene : public QQuickItem
 {

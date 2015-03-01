@@ -7,7 +7,7 @@
 
 #include "camera.h"
 #include "screenalignedquad.h"
-#include "scene.h"
+#include "shaderprograms.h"
 
 BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, int viewportRatio, QObject *parent) :
     QObject(parent)

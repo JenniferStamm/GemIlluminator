@@ -66,7 +66,8 @@ HEADERS += \
     gemdata.h \
     gemrenderer.h \
     soundmanager.h \
-    blureffect.h
+    blureffect.h \
+    shaderprograms.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug

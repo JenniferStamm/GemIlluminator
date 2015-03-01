@@ -13,6 +13,7 @@
 #include "navigation.h"
 #include "scenebounds.h"
 #include "scenerenderer.h"
+#include "shaderprograms.h"
 #include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
