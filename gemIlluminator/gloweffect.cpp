@@ -9,9 +9,8 @@
 #include "screenalignedquad.h"
 #include "scene.h"
 
-GlowEffect::GlowEffect(QOpenGLFunctions &gl, const Camera &camera, QObject *parent) :
+GlowEffect::GlowEffect(QOpenGLFunctions &gl, QObject *parent) :
     QObject(parent)
-  , m_camera(camera)
   , m_gl(gl)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_initialized(false)
@@ -37,7 +36,7 @@ GlowEffect::~GlowEffect()
     delete m_usedViewport;
 }
 
-void GlowEffect::renderGlowToTexture(uint glowTexture)
+void GlowEffect::renderGlowToTexture(const Camera &camera, uint glowTexture)
 {
     if (!m_initialized) {
         initialize();
@@ -46,16 +45,16 @@ void GlowEffect::renderGlowToTexture(uint glowTexture)
     m_lightRayTexture = glowTexture;
 
 
-    int viewportHeight = m_camera.viewport().height();
-    int viewportWidth = m_camera.viewport().width();
-    int glowViewportRatio = 4;
+    int viewportHeight = camera.viewport().height();
+    int viewportWidth = camera.viewport().width();
+    int glowViewportRatio = 1;
     int glowViewportHeight = viewportHeight / glowViewportRatio;
     int glowViewportWidth = viewportWidth / glowViewportRatio;
 
     bool viewportChanged = false;
     if (m_usedViewport->height() != viewportHeight
             && m_usedViewport->width() != viewportWidth) {
-        *m_usedViewport = m_camera.viewport();
+        *m_usedViewport = camera.viewport();
         viewportChanged = true;
     }
 
@@ -76,7 +75,7 @@ void GlowEffect::renderGlowToTexture(uint glowTexture)
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussHorizontal(m_camera, glowViewportWidth);
+    renderGaussHorizontal(camera, glowViewportWidth);
 
     // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
@@ -94,7 +93,7 @@ void GlowEffect::renderGlowToTexture(uint glowTexture)
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussVertical(m_camera, glowViewportHeight);
+    renderGaussVertical(camera, glowViewportHeight);
 
     glowTexture = m_lightRayTexture;
 }

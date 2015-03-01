@@ -15,10 +15,10 @@ class GlowEffect : public QObject
 {
     Q_OBJECT
 public:
-    GlowEffect(QOpenGLFunctions &gl, const Camera &camera, QObject *parent = nullptr);
-    ~GlowEffect();
+    GlowEffect(QOpenGLFunctions &gl, QObject *parent = nullptr);
+    virtual ~GlowEffect();
 
-    void renderGlowToTexture(uint glowTexture);
+    void renderGlowToTexture( const Camera &camera, uint glowTexture);
 
 protected:
     void initialize();
@@ -28,7 +28,6 @@ protected:
     void renderGaussVertical(const Camera &camera, int viewportHeight);
 
 protected:
-    const Camera &m_camera;
     QOpenGLFunctions &m_gl;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     bool m_initialized;

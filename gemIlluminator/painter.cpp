@@ -113,7 +113,7 @@ void Painter::paint()
         int previewViewportHeight = m_scene->previewCamera()->viewport().height();
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
         float previewSize = 1.f / (static_cast<float>(viewportWidth) / previewViewportWidth);
-        int glowViewportRatio = 4;
+        int glowViewportRatio = 1;
         int glowViewportHeight = viewportHeight / glowViewportRatio;
         int glowViewportWidth = viewportWidth / glowViewportRatio;
 
@@ -145,7 +145,7 @@ void Painter::paint()
         renderLightRays(*m_scene->camera());
 
         if (m_glowEffect) {
-            m_glowEffect->renderGlowToTexture(m_glowTexture);
+            m_glowEffect->renderGlowToTexture(*m_scene->camera(), m_glowTexture);
         }
 
         // scene
@@ -232,7 +232,7 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
     if (m_scene && m_scene->camera()) {
-        m_glowEffect = new GlowEffect(*m_gl, *m_scene->camera());
+        m_glowEffect = new GlowEffect(*m_gl);
     }
     m_initialized = true;
 }
