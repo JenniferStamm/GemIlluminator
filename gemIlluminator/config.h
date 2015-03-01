@@ -15,7 +15,7 @@ public:
     int axisRange();
     static void drop();
     QString envMap() const;
-    static Config* instance();
+    static Config *instance();
     Q_INVOKABLE QString read();
     void setAxisRange(int& axisRange);
     void setEnvMap(const QString &envMap);
@@ -38,7 +38,7 @@ protected:
 
     int m_axisRange;
     QString m_envMap;
-    static Config* m_instance;
+    static Config *m_instance;
     QString m_source;
 };
 
