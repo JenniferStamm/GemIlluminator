@@ -55,21 +55,15 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
 
     shaderProgram.bind();
     shaderProgram.enableAttributeArray(0);
-    shaderProgram.setUniformValue("modelViewProjection", viewProjection);
+    shaderProgram.enableAttributeArray(1);
+    shaderProgram.setUniformValue("u_modelViewProjection", viewProjection);
 
     m_staticVertexBuffer->bind();
     m_staticIndexBuffer->bind();
 
-    if (!m_staticRays->isEmpty()) {
-        shaderProgram.setUniformValue("color", m_staticRays->values().first().color());
-    }
-    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-    int indicesPerLightRay = 14;
-    int bytesPerLightRay = indicesPerLightRay * sizeof(unsigned int);
-    for (int i = 0; i < m_staticIndexBuffer->size(); i += bytesPerLightRay) {
-        gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
-    }
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
+    gl.glDrawElements(GL_TRIANGLE_STRIP, m_staticIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
 
     m_staticVertexBuffer->release();
     m_staticIndexBuffer->release();
@@ -78,14 +72,9 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
     m_dynamicVertexBuffer->bind();
     m_dynamicIndexBuffer->bind();
 
-    if (!m_dynamicRays->isEmpty()) {
-        shaderProgram.setUniformValue("color", m_dynamicRays->values().first().color());
-    }
-    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-    for (int i = 0; i < m_dynamicIndexBuffer->size(); i += bytesPerLightRay) {
-        gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
-    }
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
+    gl.glDrawElements(GL_TRIANGLE_STRIP, m_dynamicIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
 
     m_dynamicVertexBuffer->release();
     m_dynamicIndexBuffer->release();
@@ -99,6 +88,16 @@ void LightRayRenderer::resetDynamicRays()
     m_dynamicRays->clear();
 }
 
+void pushVertexAndColorToVector(const QVector3D &pos, const QVector3D &color, QVector<float> &vector)
+{
+    vector.push_back(pos.x());
+    vector.push_back(pos.y());
+    vector.push_back(pos.z());
+    vector.push_back(color.x());
+    vector.push_back(color.y());
+    vector.push_back(color.z());
+}
+
 void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices)
 {
     float offset = 0.01f;
@@ -107,7 +106,7 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     QVector3D rightVector = QVector3D::crossProduct(direction, upVector).normalized();
 
     //s-start, e-end, t-top, b-bottom, r-right, l-left
-    int valuesPerVertex = 3;
+    int valuesPerVertex = 6;
     unsigned int startTop = vertices.count() / valuesPerVertex;
     unsigned int startRight =  startTop + 1;
     unsigned int startBottom = startTop + 2;
@@ -117,31 +116,16 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     unsigned int endBottom =   startTop + 6;
     unsigned int endLeft =     startTop + 7;
 
-    vertices.push_back((rayData.startPosition() + upVector * offset).x());
-    vertices.push_back((rayData.startPosition() + upVector * offset).y());
-    vertices.push_back((rayData.startPosition() + upVector * offset).z());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).x());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).y());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).z());
-    vertices.push_back((rayData.startPosition() - upVector * offset).x());
-    vertices.push_back((rayData.startPosition() - upVector * offset).y());
-    vertices.push_back((rayData.startPosition() - upVector * offset).z());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).x());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).y());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).z());
-    vertices.push_back((rayData.endPosition() + upVector * offset).x());
-    vertices.push_back((rayData.endPosition() + upVector * offset).y());
-    vertices.push_back((rayData.endPosition() + upVector * offset).z());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).x());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).y());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).z());
-    vertices.push_back((rayData.endPosition() - upVector * offset).x());
-    vertices.push_back((rayData.endPosition() - upVector * offset).y());
-    vertices.push_back((rayData.endPosition() - upVector * offset).z());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).x());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).y());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).z());
+    pushVertexAndColorToVector(rayData.startPosition() + upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() + rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() - upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() - rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   + upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   + rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   - upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   - rightVector * offset, rayData.color(), vertices);
 
+    indices.push_back(startBottom);
     indices.push_back(startBottom);
     indices.push_back(startRight);
     indices.push_back(startLeft);
@@ -155,6 +139,7 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     indices.push_back(startLeft);
     indices.push_back(endBottom);
     indices.push_back(startBottom);
+    indices.push_back(startRight);
     indices.push_back(startRight);
 }
 

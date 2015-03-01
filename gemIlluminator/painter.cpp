@@ -327,6 +327,7 @@ void Painter::initializeShaderPrograms()
     }
 
     lightRayProgram->bindAttributeLocation("a_vertex", 0);
+    lightRayProgram->bindAttributeLocation("a_color", 1);
 
     m_shaderPrograms->insert(ShaderPrograms::GemProgram, gemProgram);
     m_shaderPrograms->insert(ShaderPrograms::LighRayProgram, lightRayProgram);

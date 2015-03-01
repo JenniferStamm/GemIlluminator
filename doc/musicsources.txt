@@ -1,0 +1,11 @@
+http://freemusicarchive.org (Music):
+background1.mp3			=		krackatoa_-_07_-_All_is_lost_is_found.mp3
+
+http://www.freesfx.co.uk (Sounds): 
+collision1.mp3			=		science_fiction_laser_001.mp3
+collision2.mp3			=		science_fiction_laser_002.mp3
+collision3.mp3			=		science_fiction_laser_003.mp3
+collision4.mp3			=		science_fiction_laser_004.mp3
+collision5.mp3			=		science_fiction_laser_005.mp3
+collision6.mp3			=		science_fiction_laser_006.mp3
+collision7.mp3			=		science_fiction_laser_007.mp3
