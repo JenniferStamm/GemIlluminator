@@ -20,68 +20,56 @@ SceneBounds::SceneBounds(QObject *parent) :
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f,  1.0f),
                             QVector3D( 1.0f,  1.0f,  1.0f),
-                            QVector3D( 1.0f, -1.0f,  1.0f),
-                            this));
+                            QVector3D( 1.0f, -1.0f,  1.0f)));
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f,  1.0f),
                             QVector3D( 1.0f, -1.0f,  1.0f),
-                            QVector3D(-1.0f, -1.0f,  1.0f),
-                            this));
+                            QVector3D(-1.0f, -1.0f,  1.0f)));
     //back
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f, -1.0f),
                             QVector3D(-1.0f, -1.0f, -1.0f),
-                            QVector3D( 1.0f, -1.0f, -1.0f),
-                            this));
+                            QVector3D( 1.0f, -1.0f, -1.0f)));
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f, -1.0f),
                             QVector3D( 1.0f, -1.0f, -1.0f),
-                            QVector3D( 1.0f,  1.0f, -1.0f),
-                            this));
+                            QVector3D( 1.0f,  1.0f, -1.0f)));
     //left
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f, -1.0f),
                             QVector3D(-1.0f,  1.0f,  1.0f),
-                            QVector3D(-1.0f, -1.0f,  1.0f),
-                            this));
+                            QVector3D(-1.0f, -1.0f,  1.0f)));
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f, -1.0f),
                             QVector3D(-1.0f, -1.0f,  1.0f),
-                            QVector3D(-1.0f, -1.0f, -1.0f),
-                            this));
+                            QVector3D(-1.0f, -1.0f, -1.0f)));
     //right
     triangles.append(new Triangle(
                             QVector3D( 1.0f,  1.0f, -1.0f),
                             QVector3D( 1.0f, -1.0f, -1.0f),
-                            QVector3D( 1.0f, -1.0f,  1.0f),
-                            this));
+                            QVector3D( 1.0f, -1.0f,  1.0f)));
     triangles.append(new Triangle(
                             QVector3D( 1.0f,  1.0f, -1.0f),
                             QVector3D( 1.0f, -1.0f,  1.0f),
-                            QVector3D( 1.0f,  1.0f,  1.0f),
-                            this));
+                            QVector3D( 1.0f,  1.0f,  1.0f)));
     //top
     triangles.append(new Triangle(
                             QVector3D(-1.0f,  1.0f, -1.0f),
                             QVector3D( 1.0f,  1.0f, -1.0f),
-                            QVector3D( 1.0f,  1.0f,  1.0f),
-                            this));
+                            QVector3D( 1.0f,  1.0f,  1.0f)));
     triangles.append(new Triangle(
                             QVector3D( 1.0f,  1.0f,  1.0f),
                             QVector3D(-1.0f,  1.0f,  1.0f),
-                            QVector3D(-1.0f,  1.0f, -1.0f),
-                            this));
+                            QVector3D(-1.0f,  1.0f, -1.0f)));
     //bottom
     triangles.append(new Triangle(
                             QVector3D(-1.0f, -1.0f,  1.0f),
                             QVector3D( 1.0f, -1.0f,  1.0f),
-                            QVector3D( 1.0f, -1.0f, -1.0f),
-                            this));
+                            QVector3D( 1.0f, -1.0f, -1.0f)));
     triangles.append(new Triangle(
                             QVector3D(-1.0f, -1.0f,  1.0f),
                             QVector3D( 1.0f, -1.0f, -1.0f),
-                            QVector3D(-1.0f, -1.0f, -1.0f),
-                            this));
+                            QVector3D(-1.0f, -1.0f, -1.0f)));
     m_data->setTriangles(triangles);
 }
 

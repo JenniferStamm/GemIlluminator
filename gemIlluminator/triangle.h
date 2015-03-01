@@ -9,12 +9,11 @@ class AbstractGem;
 class Triangle
 {
 public:
-    Triangle(AbstractGem *owningGem);
+    Triangle();
 
     Triangle(const QVector3D &a,
              const QVector3D &b,
-             const QVector3D &c,
-             AbstractGem *owningGem);
+             const QVector3D &c);
 
     Triangle(const Triangle &triangle);
 
@@ -35,10 +34,6 @@ public:
 
     QVector3D normalizedNormal() const;
 
-    Triangle inWorldCoordinates() const;
-
-    AbstractGem *owningGem() const;
-
     QList<QVector3D> vertices() const;
 
     QVector3D reflect(const QVector3D &incidentVector) const;
@@ -51,7 +46,6 @@ protected:
     QVector3D *m_b;
     QVector3D *m_c;
     mutable QVector3D *m_normal;
-    AbstractGem *m_gem;
 };
 
 #endif // TRIANGLE_H

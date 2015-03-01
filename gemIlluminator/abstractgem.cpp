@@ -187,6 +187,15 @@ float AbstractGem::intersectedBy(const LightRay &ray, QVector3D *collisionPoint)
     return faceIntersectedBy(ray, intersectedTriangle, collisionPoint);
 }
 
+Triangle inWorldCoordinates(const Triangle &objectSpaceTriangle, const QMatrix4x4 & model)
+{
+    Triangle result;
+    result.setA(model * objectSpaceTriangle.a());
+    result.setB(model * objectSpaceTriangle.b());
+    result.setC(model * objectSpaceTriangle.c());
+    return result;
+}
+
 float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersectedTriangle, QVector3D *collisionPoint)
 {
     const float maxFloat = std::numeric_limits<float>::max();
@@ -210,7 +219,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     float det, invDet;
 
     for (auto objectSpaceTriangle : triangles()) {
-        Triangle worldSpaceTriangle = objectSpaceTriangle->inWorldCoordinates();
+        Triangle worldSpaceTriangle = inWorldCoordinates(*objectSpaceTriangle, model());
 
         edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();
         edge2 = worldSpaceTriangle.c() - worldSpaceTriangle.a();
