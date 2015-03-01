@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     painter.cpp \
     painterqml.cpp \
     gemdata.cpp \
-    gemrenderer.cpp
+    gemrenderer.cpp \
+    gloweffect.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -60,7 +61,8 @@ HEADERS += \
     painter.h \
     painterqml.h \
     gemdata.h \
-    gemrenderer.h
+    gemrenderer.h \
+    gloweffect.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug

@@ -9,6 +9,7 @@ class QSize;
 class QTime;
 
 class Camera;
+class GlowEffect;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
@@ -46,21 +47,18 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void paintEnvmap(const Camera &camera);
-    void renderGaussHorizontal(const Camera &camera);
-    void renderGaussVertical(const Camera &camera);
     void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
 
 protected:
     bool m_active;
     uint m_envmap;
-    QOpenGLFunctions * m_gl;
+    QOpenGLFunctions *m_gl;
     bool m_initialized;
-    uint m_lightRayFBO;
-    uint m_lightRayDepthRB;
-    uint m_lightRayTexture;
-    uint m_secondaryLightRayFBO;
-    uint m_secondaryLightRayTexture;
+    GlowEffect *m_glowEffect;
+    uint m_glowFBO;
+    uint m_glowDepthRB;
+    uint m_glowTexture;
     uint m_previewSceneFBO;
     uint m_previewSceneDepthRB;
     uint m_previewSceneTexture;

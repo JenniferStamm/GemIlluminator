@@ -12,6 +12,7 @@
 
 #include "camera.h"
 #include "config.h"
+#include "gloweffect.h"
 #include "lightray.h"
 #include "painterqml.h"
 #include "scene.h"
@@ -23,6 +24,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_active(false)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
+  , m_glowEffect(nullptr)
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
@@ -36,16 +38,17 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
 
 Painter::~Painter()
 {
+    delete m_glowEffect;
+
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
-    m_gl->glDeleteTextures(1, &m_lightRayTexture);
-    m_gl->glDeleteTextures(1, &m_secondaryLightRayTexture);
+    m_gl->glDeleteTextures(1, &m_glowTexture);
     m_gl->glDeleteRenderbuffers(1, &m_sceneDepthRB);
     m_gl->glDeleteRenderbuffers(1, &m_previewSceneDepthRB);
-    m_gl->glDeleteRenderbuffers(1, &m_lightRayDepthRB);
-    m_gl->glDeleteFramebuffers(1, &m_lightRayFBO);
+    m_gl->glDeleteRenderbuffers(1, &m_glowDepthRB);
     m_gl->glDeleteFramebuffers(1, &m_sceneFBO);
     m_gl->glDeleteFramebuffers(1, &m_previewSceneFBO);
+    m_gl->glDeleteFramebuffers(1, &m_glowFBO);
 
     if (m_scene) {
         m_scene->cleanupGL(*m_gl);
@@ -114,6 +117,7 @@ void Painter::paint()
         int glowViewportHeight = viewportHeight / glowViewportRatio;
         int glowViewportWidth = viewportWidth / glowViewportRatio;
 
+
         bool viewportChanged = false;
         if (m_usedViewport->height() != viewportHeight
                 && m_usedViewport->width() != viewportWidth) {
@@ -121,16 +125,15 @@ void Painter::paint()
             viewportChanged = true;
         }
 
-        // lightray glow
-        // Render lightrays to lightRayTextures
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
+        // Render lightrays to glowTexture for glow
+        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_glowFBO);
 
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_glowTexture);
         if (viewportChanged) {
             m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
 
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_glowDepthRB);
         if (viewportChanged) {
             m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
         }
@@ -139,45 +142,11 @@ void Painter::paint()
         m_gl->glClearColor(1.0, 0.0, 0.0, 0.0);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
         renderLightRays(*m_scene->camera());
 
-        // Smooth lightRayTexture
-        // Gauss Horizontal - lightRayTexture to secondaryLightRayTexture
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_secondaryLightRayFBO);
-
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
-        if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        if (m_glowEffect) {
+            m_glowEffect->renderGlowToTexture(m_glowTexture);
         }
-
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
-        if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
-        }
-        m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
-
-        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        renderGaussHorizontal(*m_scene->camera());
-
-        // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
-        m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
-
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
-        if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-        }
-
-        m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
-        if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
-        }
-        m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
-
-        m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        renderGaussVertical(*m_scene->camera());
 
         // scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
@@ -228,7 +197,7 @@ void Painter::paint()
         m_gl->glActiveTexture(GL_TEXTURE1);
         m_gl->glBindTexture(GL_TEXTURE_2D, m_previewSceneTexture);
         m_gl->glActiveTexture(GL_TEXTURE2);
-        m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+        m_gl->glBindTexture(GL_TEXTURE_2D, m_glowTexture);
 
         QOpenGLShaderProgram *sceneProgram = (*m_shaderPrograms)[ShaderPrograms::SceneProgram];
         sceneProgram->bind();
@@ -262,6 +231,9 @@ void Painter::initialize()
 {
     initializeShaderPrograms();
     initializeFBOs();
+    if (m_scene && m_scene->camera()) {
+        m_glowEffect = new GlowEffect(*m_gl, *m_scene->camera());
+    }
     m_initialized = true;
 }
 
@@ -311,41 +283,22 @@ void Painter::initializeFBOs()
         return;
     }
 
-    m_gl->glGenFramebuffers(1, &m_lightRayFBO);
-    m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
+    m_gl->glGenFramebuffers(1, &m_glowFBO);
+    m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_glowFBO);
 
-    m_gl->glGenRenderbuffers(1, &m_lightRayDepthRB);
-    m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
+    m_gl->glGenRenderbuffers(1, &m_glowDepthRB);
+    m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_glowDepthRB);
 
-    m_gl->glGenTextures(1, &m_lightRayTexture);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
+    m_gl->glGenTextures(1, &m_glowTexture);
+    m_gl->glBindTexture(GL_TEXTURE_2D, m_glowTexture);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
-    m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_lightRayTexture, 0);
-    m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_lightRayDepthRB);
-    m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
-
-    if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        return;
-    }
-
-    m_gl->glGenFramebuffers(1, &m_secondaryLightRayFBO);
-    m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_secondaryLightRayFBO);
-
-    m_gl->glGenTextures(1, &m_secondaryLightRayTexture);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    m_gl->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
-    m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_secondaryLightRayTexture, 0);
-    m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_lightRayDepthRB);
+    m_gl->glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_glowTexture, 0);
+    m_gl->glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_glowDepthRB);
     m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
     if (m_gl->glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
@@ -391,26 +344,6 @@ void Painter::initializeShaderPrograms()
     sceneProgram->bindAttributeLocation("a_vertex", 0);
 
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
-
-    auto gaussHorizontalProgram = new QOpenGLShaderProgram(this);
-    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/screenquad.vert");
-    gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gausshorizontal.frag");
-    if (!gaussHorizontalProgram->link()) {
-        qDebug() << "Gauss horizontal: Link failed";
-    }
-    gaussHorizontalProgram->bindAttributeLocation("a_vertex", 0);
-    m_shaderPrograms->insert(ShaderPrograms::GaussHorizontalProgram, gaussHorizontalProgram);
-
-    auto gaussVerticalProgram = new QOpenGLShaderProgram(this);
-    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/screenquad.vert");
-    gaussVerticalProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gaussvertical.frag");
-    if (!gaussVerticalProgram->link()) {
-        qDebug() << "Gauss horizontal: Link failed";
-    }
-    gaussVerticalProgram->bindAttributeLocation("a_vertex", 0);
-    m_shaderPrograms->insert(ShaderPrograms::GaussVerticalProgram, gaussVerticalProgram);
-
-
 }
 
 void Painter::initializeEnvmap()
@@ -486,44 +419,6 @@ void Painter::paintEnvmap(const Camera &camera)
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
     m_gl->glDisable(GL_TEXTURE_CUBE_MAP);
-}
-
-void Painter::renderGaussHorizontal(const Camera &camera)
-{
-    auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
-    shaderProgram->bind();
-
-    shaderProgram->setUniformValue("view",camera.view());
-    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
-    shaderProgram->setUniformValue("lightRays", 0);
-    m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
-
-    m_quad->draw(*m_gl);
-
-    m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_2D, 0);
-
-    shaderProgram->release();
-}
-
-void Painter::renderGaussVertical(const Camera &camera)
-{
-    auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
-    shaderProgram->bind();
-
-    shaderProgram->setUniformValue("view",camera.view());
-    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
-    shaderProgram->setUniformValue("lightRays", 0);
-    m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
-
-    m_quad->draw(*m_gl);
-
-    m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_2D, 0);
-
-    shaderProgram->release();
 }
 
 void Painter::renderLightRays(const Camera &camera)
