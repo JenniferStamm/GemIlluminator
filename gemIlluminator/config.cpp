@@ -113,6 +113,11 @@ void Config::setMinGemSize(float minGemSize)
     emit minGemSizeChanged();
 }
 
+Config::~Config()
+{
+
+}
+
 int Config::axisRange()
 {
     return m_axisRange;
