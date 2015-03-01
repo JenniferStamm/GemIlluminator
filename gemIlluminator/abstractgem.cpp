@@ -249,7 +249,8 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
                     //Use !qFuzzyIsNull(t) to ensure, that length of calculated vector is not treated as zero by qFuzzyIsEqual (required if calculated vectors should be normalized)
                     if (t < tPrevious && t > 0.0 + epsilon && !qFuzzyIsNull(t)) {
                         tPrevious = t;
-                        intersectedTriangle = objectSpaceTriangle;
+                        delete intersectedTriangle;
+                        intersectedTriangle = new Triangle(worldSpaceTriangle);
                         if (collisionPoint) {
                             *collisionPoint = ray.startPosition() + t * ray.normalizedDirection();
                         }
