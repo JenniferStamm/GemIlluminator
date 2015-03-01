@@ -1,38 +1,40 @@
 #include "gemrenderer.h"
 
+#include <QDebug>
 #include <QHash>
 #include <QList>
 #include <QMatrix4x4>
 #include <QOpenGLBuffer>
+#include <QOpenGLContext>
+#include <QOpenGLExtensions>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 #include <QPair>
+#include <QSurfaceFormat>
+#include <QtGlobal>
 #include <QVector>
 #include <QVector3D>
 
 #include "abstractgem.h"
+#include "config.h"
 #include "gemdata.h"
 #include "triangle.h"
 
 GemRenderer::GemRenderer() :
     m_isInitialized(false)
+  , m_areFloatTexturesAvailable(false)
   , m_gemMap(new QHash<AbstractGem *, GemDataInfo *>())
   , m_isGemBufferUpdateRequired(false)
   , m_newGems(new QList<GemDataInfo *>())
   , m_sceneExtent(1.f)
   , m_isGemDataBufferInvalid(false)
   , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
-{
+{ 
 }
 
 GemRenderer::~GemRenderer()
 {
-    //for (auto gem : m_gemMap->values()) {
-    //    delete gem;
-    //}
-    //delete m_gemMap;
-
     for (auto renderData : m_gemBuffersTex->values()) {
         delete renderData;
     }
@@ -41,13 +43,14 @@ GemRenderer::~GemRenderer()
 
 void GemRenderer::cleanup(QOpenGLFunctions &gl)
 {
-    //TODO
+    for (auto renderData : m_gemBuffersTex->values()) {
+        renderData->cleanup(gl);
+    }
 }
 
 void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
 {
     if (!m_isInitialized) {
-        qDebug() << "Start rendering";
         initialize(gl);
     }
     paintGemsOptimizedWithTexture(gl, viewProjection, program);
@@ -66,8 +69,22 @@ void GemRenderer::updateGem(AbstractGem *gem)
 
 void GemRenderer::initialize(QOpenGLFunctions &gl)
 {
+    QOpenGLContext *currentContext = QOpenGLContext::currentContext();
+    m_areFloatTexturesAvailable = false;
+
+#ifdef __ANDROID__
+    m_areFloatTexturesAvailable = currentContext->hasExtension("OES_texture_float");
+#else
+    if (!currentContext->isOpenGLES()) {
+        QSurfaceFormat format = currentContext->format();
+        if (format.majorVersion() > 3) {
+            m_areFloatTexturesAvailable = true;
+        } else if ((format.majorVersion() == 3) && (format.minorVersion() >= 2)) {
+            m_areFloatTexturesAvailable = true;
+        }
+    }
+#endif
     m_isInitialized = true;
-    //gl.glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &m_maxUniformVectorSize);
 }
 
 void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
@@ -79,6 +96,7 @@ void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMat
                 typeRenderData = new GemRenderData();
                 typeRenderData->setVerticesPerGem(gem->numberOfVertices());
                 typeRenderData->setSceneExtent(m_sceneExtent);
+                typeRenderData->setFloatTexturesEnabled(m_areFloatTexturesAvailable);
                 m_gemBuffersTex->insert(gem->data().type(), typeRenderData);
             }
             typeRenderData->addOrUpdateGem(gem, gl);
@@ -161,10 +179,14 @@ void GemRenderer::GemDataInfo::appendVerticesWithIndexTo(QVector<float> &vector)
 GemRenderer::GemRenderData::GemRenderData() :
     m_allocatedGems(0)
   , m_allocatedAndUsedGems(0)
+  , m_areFloatTexturesAvailable(false)
   , m_dataBuffer(0)
   , m_gems(new QList<GemDataInfo *>())
+  , m_hasErrorOccured(false)
   , m_isInitialized(false)
   , m_lowestUnusedIndex(0)
+  , m_maxTextureSize(64)    //OpenGL ES 2.0 specifies 64 as minimum value
+  , m_texelPerGem(4)        //4 texels are needed if no float texture are available, we expect this
   , m_vertexBuffer(nullptr)
 {
 }
@@ -190,13 +212,24 @@ void GemRenderer::GemRenderData::cleanup(QOpenGLFunctions &gl)
 
 void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program)
 {
+    if (m_hasErrorOccured) {
+        return;
+    }
     if (!m_isInitialized) {
         initialize(gl);
     }
+
+    float texWidth = (m_maxTextureSize / m_texelPerGem) * m_texelPerGem;
+    float texHeight = m_allocatedGems / texWidth;
+
     program.bind();
     program.setUniformValue("u_data", 7);
     program.setUniformValue("u_sceneExtent", m_sceneExtent);
-    program.setUniformValue("u_maxNumberOfGems", static_cast<float>(m_allocatedGems));
+    program.setUniformValue("u_isFloatTextureAvailable", m_areFloatTexturesAvailable);
+    program.setUniformValue("u_texHeight", texHeight);
+    program.setUniformValue("u_texWidth", texWidth);
+    program.setUniformValue("u_maxGemSize", Config::instance()->maxGemSize());
+    program.setUniformValue("u_minGemSize", Config::instance()->minGemSize());
 
     gl.glActiveTexture(GL_TEXTURE7);
     gl.glEnable(GL_TEXTURE_2D);
@@ -226,10 +259,17 @@ void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
+    qDebug() << "tex:" << m_maxTextureSize;
+    //m_maxTextureSize = qMin(m_maxTextureSize, 128);    //magic number in order to keep precision of uv in shader high enough
 }
 
 void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
 {
+    if (m_hasErrorOccured) {
+        return;
+    }
     if (!m_isInitialized) {
         initialize(gl);
     }
@@ -250,13 +290,23 @@ void GemRenderer::GemRenderData::setSceneExtent(float extent)
     m_sceneExtent = extent;
 }
 
+void GemRenderer::GemRenderData::setFloatTexturesEnabled(bool enable)
+{
+    if (enable) {
+        m_texelPerGem = 3;
+    } else {
+        m_texelPerGem = 4;
+    }
+    m_areFloatTexturesAvailable = enable;
+}
+
 QPair<GLubyte, GLubyte> encodeIntoTwoGLubyte(float value, float min, float max)
 {
     const int maxTwoByteValue = 256 * 256 - 1;
     float scaleDown = 1.f / (max - min);
     float valueScaledDown = (value - min) * scaleDown;
     unsigned int resultInt = static_cast<int>(valueScaledDown * maxTwoByteValue);
-    resultInt = resultInt < 0 ? 0 : (resultInt > maxTwoByteValue ? maxTwoByteValue : resultInt);
+    resultInt = resultInt > maxTwoByteValue ? maxTwoByteValue : resultInt;
     QPair<GLubyte, GLubyte> result;
     result.first = static_cast<GLubyte>(resultInt >> 8);
     result.second = static_cast<GLubyte>(resultInt);
@@ -272,47 +322,95 @@ GLubyte asNormalizedGLubyte(float value, float maxExtent)
     return static_cast<GLubyte>(valueZeroToOne * 255);
 }
 
+void GemRenderer::GemRenderData::appendAttributesToVector(GemDataInfo *gem, QVector<float> &vector)
+{
+    GemData gemData = gem->data();
+    vector.append(gemData.position().x());
+    vector.append(gemData.position().y());
+    vector.append(gemData.position().z());
+    vector.append(gemData.scale());
+    vector.append(gemData.rotation().x());
+    vector.append(gemData.rotation().y());
+    vector.append(gemData.rotation().z());
+    vector.append(gemData.rotation().scalar());
+    vector.append(gemData.color().x());
+    vector.append(gemData.color().y());
+    vector.append(gemData.color().z());
+    vector.append(1.f); //padding
+}
+
+void GemRenderer::GemRenderData::appendAttributesToVector(GemRenderer::GemDataInfo *gem, QVector<unsigned char> &vector)
+{
+    GemData gemData = gem->data();
+    QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
+    QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
+    QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
+    QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), Config::instance()->minGemSize(), Config::instance()->maxGemSize());
+
+    vector.append(encodedValueX.first);
+    vector.append(encodedValueY.first);
+    vector.append(encodedValueZ.first);
+    vector.append(encodedValueS.first);
+    vector.append(encodedValueX.second);
+    vector.append(encodedValueY.second);
+    vector.append(encodedValueZ.second);
+    vector.append(encodedValueS.second);
+    vector.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
+    vector.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
+    vector.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
+    vector.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
+    vector.append(static_cast<GLubyte>(gemData.color().x() * 255));
+    vector.append(static_cast<GLubyte>(gemData.color().y() * 255));
+    vector.append(static_cast<GLubyte>(gemData.color().z() * 255));
+    vector.append(255);   //padding
+}
+
 void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
 {
     if (m_allocatedAndUsedGems == m_allocatedGems) {
-        m_allocatedGems += 256;
+        int gemsPerRow = m_maxTextureSize / m_texelPerGem;
+        m_allocatedGems += gemsPerRow;
+        int texWidth = gemsPerRow * m_texelPerGem;          //keep in mind: gemsPerRow is calculated using int division
+        int texHeight = m_allocatedGems / gemsPerRow;
+        if (texHeight > m_maxTextureSize) {
+            qCritical() << "Can not store all required information for rendering with our implementation on GPU. Gems will not be rendered, choose less gems in options.";
+            m_hasErrorOccured = true;
+            return;
+        }
         m_vertexBuffer->bind();
         m_vertexBuffer->allocate(m_allocatedGems * m_verticesPerGem * 7 * sizeof(float));
-        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
-        gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, m_allocatedGems, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
         QVector<float> vertices;
-        QVector<GLubyte> data;
-        for (GemDataInfo *gem : *m_gems) {
-            gem->appendVerticesWithIndexTo(vertices);
-            GemData gemData = gem->data();
-            QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
-            QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
-            QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
-            QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), -m_sceneExtent, m_sceneExtent);
-
-            data.append(encodedValueX.first);
-            data.append(encodedValueY.first);
-            data.append(encodedValueZ.first);
-            data.append(encodedValueS.first);
-            data.append(encodedValueX.second);
-            data.append(encodedValueY.second);
-            data.append(encodedValueZ.second);
-            data.append(encodedValueS.second);
-            data.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
-            data.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
-            data.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
-            data.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
-            data.append(static_cast<GLubyte>(gemData.color().x() * 255));
-            data.append(static_cast<GLubyte>(gemData.color().y() * 255));
-            data.append(static_cast<GLubyte>(gemData.color().z() * 255));
-            data.append(255);   //padding
+        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+        if (m_areFloatTexturesAvailable) {
+#ifdef __ANDROID__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
+            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_OES_texture_float, nullptr);
+            QVector<float> data;
+            for (GemDataInfo *gem : *m_gems) {
+                gem->appendVerticesWithIndexTo(vertices);
+                appendAttributesToVector(gem, data);
+            }
+            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_OES_texture_float, data.data());
+#else   //We expect to have a OpenGL context instead of OpenGL ES, if it is build for no mobile devices
+            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+            QVector<float> data;
+            for (GemDataInfo *gem : *m_gems) {
+                gem->appendVerticesWithIndexTo(vertices);
+                appendAttributesToVector(gem, data);
+            }
+            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_FLOAT, data.data());
+#endif
+        } else {
+            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+            QVector<GLubyte> data;
+            for (GemDataInfo *gem : *m_gems) {
+                gem->appendVerticesWithIndexTo(vertices);
+                appendAttributesToVector(gem, data);
+            }
+            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
         }
         m_vertexBuffer->write(0, vertices.data(), vertices.size() * sizeof(float));
-        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 4, m_allocatedAndUsedGems, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
         m_vertexBuffer->release();
-        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
     }
-
     gem->setIndex(m_allocatedAndUsedGems++);
     m_gems->append(gem);
 
@@ -328,32 +426,24 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
 
 void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
 {
-    QVector<GLubyte> dataNew;
-    GemData gemData = gem->data();
-
-    QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), -m_sceneExtent, m_sceneExtent);
-
-    dataNew.append(encodedValueX.first);
-    dataNew.append(encodedValueY.first);
-    dataNew.append(encodedValueZ.first);
-    dataNew.append(encodedValueS.first);
-    dataNew.append(encodedValueX.second);
-    dataNew.append(encodedValueY.second);
-    dataNew.append(encodedValueZ.second);
-    dataNew.append(encodedValueS.second);
-    dataNew.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
-    dataNew.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
-    dataNew.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
-    dataNew.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
-    dataNew.append(static_cast<GLubyte>(gemData.color().x() * 255));
-    dataNew.append(static_cast<GLubyte>(gemData.color().y() * 255));
-    dataNew.append(static_cast<GLubyte>(gemData.color().z() * 255));
-    dataNew.append(255);   //padding
-
-    gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
-    gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, gem->index(), 4, 1, GL_RGBA, GL_UNSIGNED_BYTE, dataNew.data());
-    gl.glBindTexture(GL_TEXTURE_2D, 0);
+    int texWidth = (m_maxTextureSize / m_texelPerGem) * m_texelPerGem;
+    int xOffset = (gem->index() * m_texelPerGem) % texWidth;
+    int yOffset = (gem->index() * m_texelPerGem) / texWidth;
+    if (m_areFloatTexturesAvailable) {
+        QVector<float> data;
+        appendAttributesToVector(gem, data);
+        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+#ifdef __ANDROID__
+        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_OES_texture_float, data.data());
+#else
+        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
+#endif
+        gl.glBindTexture(GL_TEXTURE_2D, 0);
+    } else {
+        QVector<GLubyte> data;
+        appendAttributesToVector(gem, data);
+        gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
+        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
+        gl.glBindTexture(GL_TEXTURE_2D, 0);
+    }
 }

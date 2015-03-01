@@ -37,11 +37,8 @@ LightRay::~LightRay()
 
 void LightRay::synchronize()
 {
-    m_renderer->addLightRay(*this);
-
-    for (auto& successor : *m_successors ) {
-        successor->synchronize();
-    }
+    m_renderer->resetDynamicRays();
+    _synchronize();
 }
 
 void LightRay::update(int timeDifference)
@@ -234,6 +231,15 @@ void LightRay::calculateSuccessors()
     m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
     nextRay->setEndPosition(nextCollisionPoint);
     m_successors->push_back(nextRay);
+}
+
+void LightRay::_synchronize()
+{
+    m_renderer->addLightRay(*this);
+
+    for (auto& successor : *m_successors ) {
+        successor->_synchronize();
+    }
 }
 
 bool LightRay::isPlayerBeforeCollisionPoint()
