@@ -6,6 +6,7 @@
 class QOpenGLFunctions;
 class QOpenGLShaderProgram;
 class QSize;
+class QTime;
 
 class Camera;
 class PainterQML;
@@ -71,6 +72,11 @@ protected:
     uint m_sceneTexture;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_usedViewport;
+
+    int m_counter;
+    int m_oldElapsed;
+    QTime *m_time;
+
 };
 
 #endif // PAINTER_H

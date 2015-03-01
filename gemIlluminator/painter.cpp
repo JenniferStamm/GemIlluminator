@@ -1,5 +1,6 @@
 #include "painter.h"
 
+#include <QDebug>
 #include <QEvent>
 #include <QImage>
 #include <QOpenGLFunctions>
@@ -7,6 +8,7 @@
 #include <QMap>
 #include <QMatrix4x4>
 #include <QSize>
+#include <QTime>
 
 #include "camera.h"
 #include "config.h"
@@ -25,6 +27,9 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_usedViewport(new QSize())
+  , m_counter(0)
+  , m_oldElapsed(0)
+  , m_time(new QTime())
 {
     m_gl->initializeOpenGLFunctions();
 }
@@ -80,7 +85,16 @@ void Painter::paint()
     if (m_active) {
         if (!m_initialized) {
             initialize();
+            m_time->start();
         }
+
+        m_counter++;
+        if (m_counter % 60 == 0) {
+            auto timeForPaint = (m_time->elapsed() - m_oldElapsed) / 1000;
+            qDebug() << "time for 60 frames " << QString::number(timeForPaint);
+            m_oldElapsed = m_time->elapsed();
+        }
+
         float clearColor[4] = {0.9f, 1.f, 1.f, 1.f};
         m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
