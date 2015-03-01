@@ -76,7 +76,7 @@ void GlowEffect::renderGlowToTexture(uint glowTexture)
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussHorizontal(m_camera);
+    renderGaussHorizontal(m_camera, glowViewportWidth);
 
     // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_lightRayFBO);
@@ -94,7 +94,7 @@ void GlowEffect::renderGlowToTexture(uint glowTexture)
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussVertical(m_camera);
+    renderGaussVertical(m_camera, glowViewportHeight);
 
     glowTexture = m_lightRayTexture;
 }
@@ -172,7 +172,7 @@ void GlowEffect::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::GaussVerticalProgram, gaussVerticalProgram);
 }
 
-void GlowEffect::renderGaussHorizontal(const Camera &camera)
+void GlowEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
     shaderProgram->bind();
@@ -180,6 +180,8 @@ void GlowEffect::renderGaussHorizontal(const Camera &camera)
     shaderProgram->setUniformValue("view",camera.view());
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
+    float blurSize = 1.0 / viewportWidth;
+    shaderProgram->setUniformValue("blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
 
@@ -191,7 +193,7 @@ void GlowEffect::renderGaussHorizontal(const Camera &camera)
     shaderProgram->release();
 }
 
-void GlowEffect::renderGaussVertical(const Camera &camera)
+void GlowEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
     shaderProgram->bind();
@@ -199,6 +201,8 @@ void GlowEffect::renderGaussVertical(const Camera &camera)
     shaderProgram->setUniformValue("view",camera.view());
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
+    float blurSize = 1.0 / viewportHeight;
+    shaderProgram->setUniformValue("blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
 

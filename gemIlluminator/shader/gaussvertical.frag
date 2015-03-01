@@ -6,11 +6,11 @@ precision mediump float;
 
 uniform sampler2D lightRays;
 
+uniform float blurSize;
+
 varying vec2 v_uv;
 
 // const float kernel[9] = float[](1.0, 2.0, 3.0, 4.0, 5.0, 4.0, 3.0, 2.0, 1.0);
-
-const float blurSize = 1.0/512.0;
 
 void main()
 {

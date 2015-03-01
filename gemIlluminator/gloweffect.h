@@ -24,8 +24,8 @@ protected:
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
-    void renderGaussHorizontal(const Camera &camera);
-    void renderGaussVertical(const Camera &camera);
+    void renderGaussHorizontal(const Camera &camera, int viewportWidth);
+    void renderGaussVertical(const Camera &camera, int viewportHeight);
 
 protected:
     const Camera &m_camera;
