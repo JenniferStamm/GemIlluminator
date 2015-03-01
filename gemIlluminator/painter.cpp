@@ -96,6 +96,9 @@ void Painter::paint()
         int previewViewportHeight = m_scene->previewCamera()->viewport().height();
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
         float previewSize = 1.f / (static_cast<float>(viewportWidth) / previewViewportWidth);
+        int glowViewportRatio = 4;
+        int glowViewportHeight = viewportHeight / glowViewportRatio;
+        int glowViewportWidth = viewportWidth / glowViewportRatio;
 
         bool viewportChanged = false;
         if (m_usedViewport->height() != viewportHeight
@@ -110,14 +113,14 @@ void Painter::paint()
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
         if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
         if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
         }
-        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+        m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
 
         m_gl->glClearColor(1.0, 0.0, 0.0, 0.0);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -131,14 +134,14 @@ void Painter::paint()
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_secondaryLightRayTexture);
         if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
         if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
         }
-        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+        m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -149,14 +152,14 @@ void Painter::paint()
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_lightRayTexture);
         if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, viewportWidth, viewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_lightRayDepthRB);
         if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, viewportWidth, viewportHeight);
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
         }
-        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
+        m_gl->glViewport(0, 0, glowViewportWidth, glowViewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
