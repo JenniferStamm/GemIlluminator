@@ -14,9 +14,8 @@ varying vec2 v_uv;
 
 void main()
 {
-    float v = v_uv.t + blurSize;
-    vec4 color = vec4(0.0);
-    color += texture2D(lightRays, vec2(v_uv.s, v)) * 5.0;
+    float v;
+    vec4 color = texture2D(lightRays, v_uv) * 5.0;
 
     for (float i = 1.0; i < 5.0; i++) {
         v = v_uv.t + blurSize * i;

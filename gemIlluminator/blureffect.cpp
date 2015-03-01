@@ -9,11 +9,12 @@
 #include "screenalignedquad.h"
 #include "scene.h"
 
-BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) :
+BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, int viewportRatio, QObject *parent) :
     QObject(parent)
   , m_gl(gl)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_initialized(false)
+  , m_viewportRatio(viewportRatio)
   , m_blurTexture(blurTexture)
   , m_usedViewport(new QSize())
   , m_quad(nullptr)
@@ -45,9 +46,8 @@ void BlurEffect::renderGlowToTexture(const Camera &camera)
     int viewportHeight = camera.viewport().height();
     int viewportWidth = camera.viewport().width();
 
-    int glowViewportRatio = 4;
-    int glowViewportHeight = viewportHeight / glowViewportRatio;
-    int glowViewportWidth = viewportWidth / glowViewportRatio;
+    int glowViewportHeight = viewportHeight / m_viewportRatio;
+    int glowViewportWidth = viewportWidth / m_viewportRatio;
 
     bool viewportChanged = false;
     if (m_usedViewport->height() != viewportHeight
@@ -164,10 +164,10 @@ void BlurEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
     shaderProgram->bind();
 
-    shaderProgram->setUniformValue("view",camera.view());
+    shaderProgram->setUniformValue("view", camera.view());
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
-    float blurSize = 2.0 / viewportWidth;
+    float blurSize = 1.0 / viewportWidth;
     shaderProgram->setUniformValue("blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_blurTexture);
@@ -185,10 +185,10 @@ void BlurEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
     shaderProgram->bind();
 
-    shaderProgram->setUniformValue("view",camera.view());
+    shaderProgram->setUniformValue("view", camera.view());
     shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
     shaderProgram->setUniformValue("lightRays", 0);
-    float blurSize = 2.0 / viewportHeight;
+    float blurSize = 1.0 / viewportHeight;
     shaderProgram->setUniformValue("blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_secondaryBlurTexture);

@@ -25,7 +25,9 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
   , m_blurEffectScene(nullptr)
+  , m_blurViewportRatioScene(4)
   , m_blurEffectPreviewScene(nullptr)
+  , m_blurViewportRatioPreviewScene(1)
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
@@ -120,12 +122,8 @@ void Painter::paint()
         int previewViewportWidth = m_scene->previewCamera()->viewport().width();
         float previewSize = 1.f / (static_cast<float>(viewportWidth) / previewViewportWidth);
 
-        int glowViewportRatio = 4;
-        int glowSceneViewportHeight = viewportHeight / glowViewportRatio;
-        int glowSceneViewportWidth = viewportWidth / glowViewportRatio;
-
-        int glowPreviewSceneViewportHeight = previewViewportHeight / glowViewportRatio;
-        int glowPreviewSceneViewportWidth = previewViewportWidth / glowViewportRatio;
+        int glowSceneViewportHeight = viewportHeight / m_blurViewportRatioScene;
+        int glowSceneViewportWidth = viewportWidth / m_blurViewportRatioScene;
 
 
         bool viewportChanged = false;
@@ -163,14 +161,14 @@ void Painter::paint()
 
         m_gl->glBindTexture(GL_TEXTURE_2D, m_glowPreviewSceneTexture);
         if (viewportChanged) {
-            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowPreviewSceneViewportWidth, glowPreviewSceneViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+            m_gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, previewViewportWidth, previewViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
         }
 
         m_gl->glBindRenderbuffer(GL_RENDERBUFFER, m_glowPreviewSceneDepthRB);
         if (viewportChanged) {
-            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowPreviewSceneViewportWidth, glowPreviewSceneViewportHeight);
+            m_gl->glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, previewViewportWidth, previewViewportHeight);
         }
-        m_gl->glViewport(0, 0, glowPreviewSceneViewportWidth, glowPreviewSceneViewportHeight);
+        m_gl->glViewport(0, 0, previewViewportWidth, previewViewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -238,7 +236,7 @@ void Painter::paint()
         sceneProgram->setUniformValue("u_sceneTexture", 0);
         sceneProgram->setUniformValue("u_previewSceneTexture", 1);
         sceneProgram->setUniformValue("u_glowSceneTexture", 2);
-        sceneProgram->setUniformValue("u_glowPreviewSceneTexture", 2);
+        sceneProgram->setUniformValue("u_glowPreviewSceneTexture", 3);
         sceneProgram->setUniformValue("u_previewSize", previewSize);
         m_quad->draw(*m_gl);
         sceneProgram->release();
@@ -269,10 +267,10 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
     if (m_scene && m_scene->camera()) {
-        m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture);
+        m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture, m_blurViewportRatioScene);
     }
     if (m_scene && m_scene->previewCamera()) {
-        m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture);
+        m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture, m_blurViewportRatioPreviewScene);
     }
     m_initialized = true;
 }

@@ -12,13 +12,10 @@ varying vec2 v_uv;
 
 // float kernel[9] = float[9](1.0, 2.0, 3.0, 4.0, 5.0, 4.0, 3.0, 2.0, 1.0);
 
-
-
 void main()
 {
-    float u = v_uv.s + blurSize;
-    vec4 color = vec4(0.0);
-    color += texture2D(lightRays, vec2(u, v_uv.t)) * 5.0;
+    float u;
+    vec4 color = texture2D(lightRays, v_uv) * 5.0;
 
     for (float i = 1.0; i < 5.0; i++) {
         u = v_uv.s + blurSize * i;

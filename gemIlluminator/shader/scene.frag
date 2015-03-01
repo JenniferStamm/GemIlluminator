@@ -40,6 +40,7 @@ void main()
     float preview_v = (v_uv.t - 1.0) / u_previewSize + 1.0;
 
     vec4 previewColor = texture2D(u_previewSceneTexture, vec2(preview_u, preview_v));
+
     vec4 glowPreviewSceneColor = texture2D(u_glowPreviewSceneTexture, vec2(preview_u, preview_v));
     previewColor += glowPreviewSceneColor * glowFactor * glowPreviewSceneColor.a;
 
@@ -60,5 +61,5 @@ void main()
 
     float sceneMix = step(v_uv.s, u_previewSize) * step(1.0 - u_previewSize, v_uv.t);
     gl_FragColor = vec4(mix(sceneColor, previewColor, sceneMix).xyz, 1.0);
-    gl_FragColor = vec4(glowSceneColor.xyz, 1.0);
+    //gl_FragColor = vec4(glowSceneColor.xyz, 1.0);
 }

@@ -15,7 +15,7 @@ class BlurEffect : public QObject
 {
     Q_OBJECT
 public:
-    BlurEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
+    BlurEffect(QOpenGLFunctions &gl, uint glowTexture, int viewportRatio, QObject *parent = nullptr);
     virtual ~BlurEffect();
 
     void renderGlowToTexture(const Camera &camera);
@@ -31,6 +31,7 @@ protected:
     QOpenGLFunctions &m_gl;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     bool m_initialized;
+    int m_viewportRatio;
 
     uint m_blurFBO;
     uint m_blurDepthRB;

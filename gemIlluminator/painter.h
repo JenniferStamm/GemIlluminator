@@ -57,11 +57,13 @@ protected:
     bool m_initialized;
 
     BlurEffect *m_blurEffectScene;
+    int m_blurViewportRatioScene;
     uint m_glowSceneFBO;
     uint m_glowSceneDepthRB;
     uint m_glowSceneTexture;
 
     BlurEffect *m_blurEffectPreviewScene;
+    int m_blurViewportRatioPreviewScene;
     uint m_glowPreviewSceneFBO;
     uint m_glowPreviewSceneDepthRB;
     uint m_glowPreviewSceneTexture;
