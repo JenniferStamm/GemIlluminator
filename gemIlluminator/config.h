@@ -14,6 +14,8 @@ class Config : public QObject
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
 
 public:
+    virtual ~Config();
+
     int axisRange();
     static void drop();
     QString envMap() const;

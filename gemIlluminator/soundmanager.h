@@ -20,6 +20,8 @@ class Soundmanager : public QObject
 {
     Q_OBJECT
 public:
+    virtual ~Soundmanager();
+
     static void drop();
     static Soundmanager *instance();
     Q_INVOKABLE void playBackgroundMusic();
