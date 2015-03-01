@@ -18,6 +18,7 @@
 #include "scene.h"
 #include "scenerenderer.h"
 #include "screenalignedquad.h"
+#include "shaderprograms.h"
 
 Painter::Painter(PainterQML *painter, QObject *parent) :
     QObject(parent)

@@ -8,6 +8,7 @@
 #include "config.h"
 #include "gemrenderer.h"
 #include "lightray.h"
+#include "shaderprograms.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
