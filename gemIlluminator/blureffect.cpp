@@ -44,7 +44,8 @@ void BlurEffect::renderGlowToTexture(const Camera &camera)
 
     int viewportHeight = camera.viewport().height();
     int viewportWidth = camera.viewport().width();
-    int glowViewportRatio = 1;
+
+    int glowViewportRatio = 4;
     int glowViewportHeight = viewportHeight / glowViewportRatio;
     int glowViewportWidth = viewportWidth / glowViewportRatio;
 

@@ -55,19 +55,30 @@ protected:
     uint m_envmap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
-    BlurEffect *m_blurEffect;
-    uint m_glowFBO;
-    uint m_glowDepthRB;
-    uint m_glowTexture;
+
+    BlurEffect *m_blurEffectScene;
+    uint m_glowSceneFBO;
+    uint m_glowSceneDepthRB;
+    uint m_glowSceneTexture;
+
+    BlurEffect *m_blurEffectPreviewScene;
+    uint m_glowPreviewSceneFBO;
+    uint m_glowPreviewSceneDepthRB;
+    uint m_glowPreviewSceneTexture;
+
     uint m_previewSceneFBO;
     uint m_previewSceneDepthRB;
     uint m_previewSceneTexture;
+
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
+
     Scene *m_scene;
+
     uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
+
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_usedViewport;
 
