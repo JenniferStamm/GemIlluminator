@@ -9,7 +9,7 @@ class QSize;
 class QTime;
 
 class Camera;
-class GlowEffect;
+class BlurEffect;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
@@ -55,7 +55,7 @@ protected:
     uint m_envmap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
-    GlowEffect *m_glowEffect;
+    BlurEffect *m_glowEffect;
     uint m_glowFBO;
     uint m_glowDepthRB;
     uint m_glowTexture;

@@ -12,7 +12,7 @@
 
 #include "camera.h"
 #include "config.h"
-#include "gloweffect.h"
+#include "blureffect.h"
 #include "lightray.h"
 #include "painterqml.h"
 #include "scene.h"
@@ -232,7 +232,7 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
     if (m_scene && m_scene->camera()) {
-        m_glowEffect = new GlowEffect(*m_gl, m_glowTexture);
+        m_glowEffect = new BlurEffect(*m_gl, m_glowTexture);
     }
     m_initialized = true;
 }

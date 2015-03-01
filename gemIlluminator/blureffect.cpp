@@ -1,4 +1,4 @@
-#include "gloweffect.h"
+#include "blureffect.h"
 
 #include <QMap>
 #include <QOpenGLFunctions>
@@ -9,7 +9,7 @@
 #include "screenalignedquad.h"
 #include "scene.h"
 
-GlowEffect::GlowEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) :
+BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) :
     QObject(parent)
   , m_gl(gl)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
@@ -21,7 +21,7 @@ GlowEffect::GlowEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) 
 
 }
 
-GlowEffect::~GlowEffect()
+BlurEffect::~BlurEffect()
 {
     m_gl.glDeleteTextures(1, &m_secondaryBlurTexture);
     m_gl.glDeleteRenderbuffers(1, &m_blurDepthRB);
@@ -36,7 +36,7 @@ GlowEffect::~GlowEffect()
     delete m_usedViewport;
 }
 
-void GlowEffect::renderGlowToTexture(const Camera &camera)
+void BlurEffect::renderGlowToTexture(const Camera &camera)
 {
     if (!m_initialized) {
         initialize();
@@ -93,7 +93,7 @@ void GlowEffect::renderGlowToTexture(const Camera &camera)
     renderGaussVertical(camera, glowViewportHeight);
 }
 
-void GlowEffect::initialize()
+void BlurEffect::initialize()
 {
     m_quad = new ScreenAlignedQuad();
     initializeShaderPrograms();
@@ -101,7 +101,7 @@ void GlowEffect::initialize()
     m_initialized = true;
 }
 
-void GlowEffect::initializeFBOs()
+void BlurEffect::initializeFBOs()
 {
     m_gl.glGenFramebuffers(1, &m_blurFBO);
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_blurFBO);
@@ -137,7 +137,7 @@ void GlowEffect::initializeFBOs()
     }
 }
 
-void GlowEffect::initializeShaderPrograms()
+void BlurEffect::initializeShaderPrograms()
 {
     auto gaussHorizontalProgram = new QOpenGLShaderProgram(this);
     gaussHorizontalProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/screenquad.vert");
@@ -158,7 +158,7 @@ void GlowEffect::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::GaussVerticalProgram, gaussVerticalProgram);
 }
 
-void GlowEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
+void BlurEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
     shaderProgram->bind();
@@ -179,7 +179,7 @@ void GlowEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
     shaderProgram->release();
 }
 
-void GlowEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
+void BlurEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
     shaderProgram->bind();

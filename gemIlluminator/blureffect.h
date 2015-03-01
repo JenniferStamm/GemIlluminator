@@ -11,12 +11,12 @@ class Camera;
 class ScreenAlignedQuad;
 enum class ShaderPrograms;
 
-class GlowEffect : public QObject
+class BlurEffect : public QObject
 {
     Q_OBJECT
 public:
-    GlowEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
-    virtual ~GlowEffect();
+    BlurEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
+    virtual ~BlurEffect();
 
     void renderGlowToTexture(const Camera &camera);
 
