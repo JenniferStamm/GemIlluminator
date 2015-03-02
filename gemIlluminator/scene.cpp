@@ -166,26 +166,6 @@ AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, 
     return result;
 }
 
-Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
-{
-    Triangle *result;
-    float distance = m_bounds->faceIntersectedBy(ray, result, collisionPoint);
-    for (auto& gem : m_gem){
-        QVector3D tempCollisionPoint;
-        Triangle *tempResultTriangle;
-        float collisionDistance = gem->faceIntersectedBy(ray, tempResultTriangle, &tempCollisionPoint);
-        if (collisionDistance < distance) {
-            distance = collisionDistance;
-            if (collisionPoint) {
-                *collisionPoint = tempCollisionPoint;
-            }
-            result = tempResultTriangle;
-        }
-    }
-    assert(result);
-    return result;
-}
-
 void Scene::setCurrentGem(AbstractGem *currentGem)
 {
     if (currentGem == nullptr) {

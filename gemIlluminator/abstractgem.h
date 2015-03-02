@@ -14,6 +14,7 @@ class AbstractGemRenderer;
 class GemData;
 class LightRay;
 class Triangle;
+class Scene;
 
 enum class GemType {
     Abstract,
@@ -56,8 +57,8 @@ public:
 
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
     void rotate(const QQuaternion &quaternion);
+    QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
 
 public slots:
     void setRotationFromEuler(const QVector3D &eulerRotation);
@@ -70,6 +71,14 @@ signals:
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
+    /**
+     * @brief Finds face of gem intersected by given ray. Ownership of returned face is transfered to caller.
+     * @param ray Ray that might intersect gem
+     * @param intersectedFace A pointer to intersected face is written into. Because this triangle is in worldspace and for performance reasons the ownership of face is transfered to caller. If ray does not intersect nullptr is written.
+     * @param collisionPoint Optional parameter. If the given pointer is not nullptr the collisionpoint is written into.
+     * @return Returns distance to collisionpoint. If no collission occured the value is maximum of float.
+     */
+    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
 
 protected:
     GemData *m_data;

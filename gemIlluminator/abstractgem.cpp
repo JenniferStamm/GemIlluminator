@@ -8,6 +8,7 @@
 #include "gemdata.h"
 #include "lightray.h"
 #include "triangle.h"
+#include "scene.h"
 
 namespace {
 
@@ -266,6 +267,29 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
 void AbstractGem::rotate(const QQuaternion &quaternion)
 {
     setRotation(quaternion * rotation());
+}
+
+QList<LightRay *> AbstractGem::processRayIntersection(const LightRay &ray, Scene *scene)
+{
+    QList<LightRay *> result;
+    Triangle *intersectedTriangle;
+    QVector3D collisionPoint;
+    faceIntersectedBy(ray, intersectedTriangle, &collisionPoint);
+    if (intersectedTriangle && scene) {
+        QVector3D reflectedDirection = intersectedTriangle->reflect(ray.direction());
+        auto reflectedRay = new LightRay();
+        reflectedRay->setScene(scene);
+        reflectedRay->setStartPosition(collisionPoint);
+        reflectedRay->setEndPosition(collisionPoint + reflectedDirection);
+        result.append(reflectedRay);
+    }
+    for (auto ray : result) {
+        QVector3D collisionPoint;
+        scene->findGemIntersectedBy(*ray, &collisionPoint);
+        ray->setEndPosition(collisionPoint);
+    }
+    delete intersectedTriangle;
+    return result;
 }
 
 

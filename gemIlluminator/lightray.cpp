@@ -190,7 +190,9 @@ void LightRay::setStatic()
 LightRay *LightRay::selectedSuccessor()
 {
     if (!m_selectedSuccessor) {
-        calculateSuccessors();
+        if (m_successors->isEmpty()) {
+            calculateSuccessors();
+        }
         m_selectedSuccessor = m_successors->at(0);
     }
     return m_selectedSuccessor;
@@ -216,18 +218,8 @@ void LightRay::calculateSuccessors()
     m_successors->clear();
     m_selectedSuccessor = nullptr;
 
-    LightRay *nextRay = new LightRay();
-    nextRay->setScene(m_scene);
-    nextRay->setStartPosition(endPosition());
-
-    Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
-    QVector3D reflectedDirection = intersectedFace->reflect(direction());
-    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
-
-    QVector3D nextCollisionPoint;
-    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
-    nextRay->setEndPosition(nextCollisionPoint);
-    m_successors->push_back(nextRay);
+    auto collidingGem = m_scene->findGemIntersectedBy(*this);
+    m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
 }
 
 void LightRay::_synchronize()
