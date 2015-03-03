@@ -1,7 +1,5 @@
 #include "triangle.h"
 
-#include <cassert>
-
 #include <QMatrix4x4>
 #include <QVector3D>
 
@@ -93,15 +91,6 @@ const QVector3D &Triangle::normal() const
     return *m_normal;
 }
 
-QVector3D Triangle::normalizedNormal() const
-{
-    if (!m_normal) {
-        m_normal = new QVector3D();
-        calculateNormal();
-    }
-    return m_normal->normalized();
-}
-
 QList<QVector3D> Triangle::vertices() const
 {
     QList<QVector3D> result;
@@ -113,7 +102,7 @@ QList<QVector3D> Triangle::vertices() const
 
 QVector3D Triangle::reflect(const QVector3D &incidentVector) const
 {
-    QVector3D N = normalizedNormal();
+    QVector3D N = normal();
     QVector3D I = incidentVector.normalized();
     return I - 2.0 * QVector3D::dotProduct(N, I) * N;
 }
@@ -121,5 +110,5 @@ QVector3D Triangle::reflect(const QVector3D &incidentVector) const
 void Triangle::calculateNormal() const
 {
     QVector3D normal = QVector3D::crossProduct(*m_b - *m_a, *m_c - *m_a);
-    *m_normal = normal;
+    *m_normal = normal.normalized();
 }

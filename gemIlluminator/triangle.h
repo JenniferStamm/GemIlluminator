@@ -32,8 +32,6 @@ public:
 
     const QVector3D &normal() const;
 
-    QVector3D normalizedNormal() const;
-
     QList<QVector3D> vertices() const;
 
     QVector3D reflect(const QVector3D &incidentVector) const;
