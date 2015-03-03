@@ -26,7 +26,7 @@ Scene::Scene(QQuickItem *parent) :
   , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
 {
-    connect(m_bounds, &SceneBounds::gameLost, this, &Scene::gameLost);
+    connect(m_bounds, &SceneBounds::gameLost, this, &Scene::handleGameLost);
 }
 
 Scene::~Scene()
@@ -68,9 +68,8 @@ void Scene::cleanupGL(QOpenGLFunctions &gl)
     }
 }
 
-void Scene::gameLost()
+void Scene::handleGameLost()
 {
-    m_isPlayerAlive = false;
     emit gameLost();
 }
 

@@ -80,7 +80,7 @@ signals:
 public slots:
     virtual void sync(int elapsedTime);
     virtual void cleanupGL(QOpenGLFunctions &gl);
-    void gameLost();
+    void handleGameLost();
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
