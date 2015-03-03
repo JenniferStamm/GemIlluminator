@@ -116,12 +116,12 @@ void LightRay::setEndPosition(const QVector3D &position)
     emit endPositionChanged();
 }
 
-QVector3D LightRay::direction() const
+const QVector3D &LightRay::direction() const
 {
     return m_data->direction();
 }
 
-QVector3D LightRay::normalizedDirection() const
+const QVector3D &LightRay::normalizedDirection() const
 {
     return m_data->normalizedDirection();
 }

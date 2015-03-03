@@ -184,17 +184,16 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
 
 float AbstractGem::intersectedBy(const LightRay &ray, QVector3D *collisionPoint)
 {
+    const float maxFloat = std::numeric_limits<float>::max();
+    const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+    if (boundingSphereIntersectedBy(ray) == maxFloat) {
+        if (collisionPoint) {
+            *collisionPoint = noCollisionPoint;
+        }
+        return maxFloat;
+    }
     Triangle *intersectedTriangle;
     return faceIntersectedBy(ray, intersectedTriangle, collisionPoint);
-}
-
-Triangle inWorldCoordinates(const Triangle &objectSpaceTriangle, const QMatrix4x4 & model)
-{
-    Triangle result;
-    result.setA(model * objectSpaceTriangle.a());
-    result.setB(model * objectSpaceTriangle.b());
-    result.setC(model * objectSpaceTriangle.c());
-    return result;
 }
 
 float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersectedTriangle, QVector3D *collisionPoint)
@@ -202,12 +201,8 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
     intersectedTriangle = nullptr;
-
-    if (boundingSphereIntersectedBy(ray) == maxFloat) {
-        if (collisionPoint) {
-            *collisionPoint = noCollisionPoint;
-        }
-        return maxFloat;
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
     }
 
     // Calculate collision according to
@@ -220,7 +215,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     float det, invDet;
 
     for (auto objectSpaceTriangle : triangles()) {
-        Triangle worldSpaceTriangle = inWorldCoordinates(*objectSpaceTriangle, model());
+        Triangle worldSpaceTriangle = inWorldCoordinates(*objectSpaceTriangle);
 
         edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();
         edge2 = worldSpaceTriangle.c() - worldSpaceTriangle.a();
@@ -262,6 +257,22 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
         }
     }
     return tPrevious;
+}
+
+QVector3D rotateVector(const QVector3D &vector, const QQuaternion &quaternion)
+{
+    QVector3D quat_xyz = QVector3D(quaternion.x(), quaternion.y(), quaternion.z());
+    return vector + 2.f * QVector3D::crossProduct(quat_xyz, QVector3D::crossProduct(quat_xyz, vector)) + quaternion.scalar() * vector;
+}
+
+Triangle AbstractGem::inWorldCoordinates(const Triangle &triangle)
+{
+    //rotate a point around O is same like rotate a vector
+    Triangle result;
+    result.setA(rotateVector(triangle.a() * scale(), rotation()) + position());
+    result.setB(rotateVector(triangle.b() * scale(), rotation()) + position());
+    result.setC(rotateVector(triangle.c() * scale(), rotation()) + position());
+    return result;
 }
 
 void AbstractGem::rotate(const QQuaternion &quaternion)

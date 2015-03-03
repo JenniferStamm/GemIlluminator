@@ -46,8 +46,8 @@ public slots:
     void setStartPosition(const QVector3D &position);
     const QVector3D &endPosition() const;
     void setEndPosition(const QVector3D &position);
-    QVector3D direction() const;
-    QVector3D normalizedDirection() const;
+    const QVector3D &direction() const;
+    const QVector3D &normalizedDirection() const;
 
     AbstractGem *collidingGem() const;
     void setCollidingGem(AbstractGem *gem);

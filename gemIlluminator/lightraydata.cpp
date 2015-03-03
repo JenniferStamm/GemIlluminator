@@ -7,30 +7,38 @@
 
 LightRayData::LightRayData() :
     m_color(new QVector3D(0.f, 0.5f, 0.f))
-  , m_startPosition(new QVector3D())
+  , m_direction(new QVector3D())
+  , m_directionNormalized(new QVector3D())
   , m_endPosition(new QVector3D())
+  , m_startPosition(new QVector3D())
 {
 }
 
 LightRayData::LightRayData(const LightRay &ray) :
     m_color(new QVector3D(ray.color()))
-  , m_startPosition(new QVector3D(ray.startPosition()))
+  , m_direction(new QVector3D(ray.direction()))
+  , m_directionNormalized(new QVector3D(ray.normalizedDirection()))
   , m_endPosition(new QVector3D(ray.endPosition()))
+  , m_startPosition(new QVector3D(ray.startPosition()))
 {
 }
 
 LightRayData::LightRayData(const LightRayData &ray) :
     m_color(new QVector3D(ray.color()))
-  , m_startPosition(new QVector3D(ray.startPosition()))
+  , m_direction(new QVector3D(ray.direction()))
+  , m_directionNormalized(new QVector3D(ray.normalizedDirection()))
   , m_endPosition(new QVector3D(ray.endPosition()))
+  , m_startPosition(new QVector3D(ray.startPosition()))
 {
 }
 
 LightRayData::~LightRayData()
 {
     delete m_color;
-    delete m_startPosition;
+    delete m_direction;
+    delete m_directionNormalized;
     delete m_endPosition;
+    delete m_startPosition;
 }
 
 QVector3D LightRayData::normalizedOrthogonalVector() const
@@ -75,6 +83,8 @@ void LightRayData::setStartPosition(const QVector3D &position)
         return;
     }
     *m_startPosition = position;
+    *m_direction = *m_endPosition - *m_startPosition;
+    *m_directionNormalized = m_direction->normalized();
 }
 
 const QVector3D & LightRayData::endPosition() const
@@ -88,14 +98,16 @@ void LightRayData::setEndPosition(const QVector3D &position)
         return;
     }
     *m_endPosition = position;
+    *m_direction = *m_endPosition - *m_startPosition;
+    *m_directionNormalized = m_direction->normalized();
 }
 
-QVector3D LightRayData::direction() const
+const QVector3D &LightRayData::direction() const
 {
-    return endPosition() - startPosition();
+    return *m_direction;
 }
 
-QVector3D LightRayData::normalizedDirection() const
+const QVector3D &LightRayData::normalizedDirection() const
 {
     return direction().normalized();
 }

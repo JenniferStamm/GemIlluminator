@@ -71,6 +71,7 @@ signals:
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
+
     /**
      * @brief Finds face of gem intersected by given ray. Ownership of returned face is transfered to caller.
      * @param ray Ray that might intersect gem
@@ -79,6 +80,7 @@ protected:
      * @return Returns distance to collisionpoint. If no collission occured the value is maximum of float.
      */
     float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
+    Triangle inWorldCoordinates(const Triangle &triangle);
 
 protected:
     GemData *m_data;
