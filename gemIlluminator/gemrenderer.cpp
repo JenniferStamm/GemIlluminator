@@ -253,6 +253,9 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
 
 void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
 {
+    if (m_isInitialized) {
+        return;
+    }
     m_isInitialized = true;
     m_vertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
     m_vertexBuffer->setUsagePattern(QOpenGLBuffer::DynamicDraw);
