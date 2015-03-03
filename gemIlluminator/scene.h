@@ -47,7 +47,6 @@ public:
 
     SceneRenderer& sceneRenderer() const;
 
-
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
      * @param ray Ray send into scene to find gem.
@@ -69,14 +68,19 @@ public:
     LightRay *rootLightRay() const;
     void setRootLightRay(LightRay *rootLightRay);
 
+    bool isPlayerAlive() const;
+
 signals:
     void cubesChanged();
     void geometriesChanged();
     void rootLightRayChanged();
+    void gameStarted();
+    void gameLost();
 
 public slots:
     virtual void sync(int elapsedTime);
     virtual void cleanupGL(QOpenGLFunctions &gl);
+    void gameLost();
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);

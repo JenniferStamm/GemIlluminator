@@ -58,7 +58,7 @@ public:
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     void rotate(const QQuaternion &quaternion);
-    QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
+    virtual QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
 
 public slots:
     void setRotationFromEuler(const QVector3D &eulerRotation);

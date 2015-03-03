@@ -7,6 +7,10 @@ Scene {
     property alias cameraId: camera
     property var loadScreen: null
 
+    onGameLost: {
+        console.log("Game over");
+    }
+
     camera: Camera {
         id: camera
         eye: "0, 0, 1"
@@ -36,7 +40,6 @@ Scene {
         velocity: 2.5
         camera: camera
     }
-
 
     rootLightRay: LightRay {
         id: lightray

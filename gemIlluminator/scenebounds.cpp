@@ -1,11 +1,13 @@
 #include "scenebounds.h"
 
 #include <QtGlobal>
+#include <QList>
 #include <QVector>
 #include <QVector3D>
 
 #include "config.h"
 #include "gemdata.h"
+#include "lightray.h"
 #include "triangle.h"
 
 SceneBounds::SceneBounds(QObject *parent) :
@@ -83,4 +85,12 @@ void SceneBounds::setPosition(const QVector3D &/*position*/)
 
 void SceneBounds::setRotation(const QQuaternion &/*rotation*/)
 {
+}
+
+QList<LightRay *> SceneBounds::processRayIntersection(const LightRay &ray, Scene *scene)
+{
+    emit gameLost();
+    QList<LightRay *> result;
+    result.append(new LightRay());
+    return result;
 }
