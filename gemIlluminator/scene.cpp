@@ -40,6 +40,7 @@ void Scene::sync(int elapsedTime)
 {
     if (!m_renderer) {
         m_renderer = new SceneRenderer();
+        connect(m_renderer, &SceneRenderer::initalizationDone, this, &Scene::handleGameStarted);
     }
 
     if (!m_lightRayRenderer) {
@@ -71,6 +72,11 @@ void Scene::cleanupGL(QOpenGLFunctions &gl)
 void Scene::handleGameLost()
 {
     emit gameLost();
+}
+
+void Scene::handleGameStarted()
+{
+    emit gameStarted();
 }
 
 void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)

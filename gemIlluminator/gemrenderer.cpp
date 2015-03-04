@@ -86,6 +86,9 @@ void GemRenderer::updateGem(AbstractGem *gem)
 
 void GemRenderer::initialize(QOpenGLFunctions &gl)
 {
+    if (m_isInitialized) {
+        return;
+    }
     QOpenGLContext *currentContext = QOpenGLContext::currentContext();
     m_areFloatTexturesAvailable = false;
 
@@ -108,7 +111,6 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
     for (auto renderData : m_gemBuffersTex->values()) {
         renderData->initialize(gl);
     }
-    qDebug() << "foo";
 }
 
 void GemRenderer::updateData(QOpenGLFunctions &gl)

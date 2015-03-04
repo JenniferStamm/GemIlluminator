@@ -11,6 +11,11 @@ Scene {
         console.log("Game over");
     }
 
+    onGameStarted: {
+        console.log("Game started")
+        painter.resetTimer()
+    }
+
     camera: Camera {
         id: camera
         eye: "0, 0, 1"

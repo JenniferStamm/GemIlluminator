@@ -79,12 +79,12 @@ public:
     ~GemRenderer();
 
     void cleanup(QOpenGLFunctions &gl);
+    void initialize(QOpenGLFunctions &gl);
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
     void setSceneExtent(float extent);
     void updateGem(AbstractGem *gem);
 
 protected:
-    void initialize(QOpenGLFunctions &gl);
     void updateData(QOpenGLFunctions &gl);
 
 protected:
