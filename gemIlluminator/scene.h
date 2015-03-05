@@ -17,13 +17,7 @@ class Navigation;
 class SceneBounds;
 class SceneRenderer;
 class Triangle;
-
-enum class ShaderPrograms {
-    GemProgram,
-    LighRayProgram,
-    EnvMapProgram,
-    SceneProgram
-};
+enum class ShaderPrograms;
 
 class Scene : public QQuickItem
 {
@@ -46,6 +40,8 @@ public:
     void setPreviewCamera(Camera *camera);
 
     SceneRenderer& sceneRenderer() const;
+
+    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.

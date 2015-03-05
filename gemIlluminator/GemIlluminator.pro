@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors opengl openglextensions #multimedia
+QT += qml quick widgets sensors opengl openglextensions multimedia
 
 SOURCES += main.cpp \
     scene.cpp \
@@ -22,11 +22,15 @@ SOURCES += main.cpp \
     painterqml.cpp \
     gemdata.cpp \
     gemrenderer.cpp \
-    gamelostray.cpp
+    gamelostray.cpp \
+    soundmanager.cpp \
+    blureffect.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
-    data.qrc
+    data.qrc \
+    backgroundmusic.qrc \
+    sound.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -62,11 +66,13 @@ HEADERS += \
     painterqml.h \
     gemdata.h \
     gemrenderer.h \
-    gamelostray.h
+    gamelostray.h \
+    soundmanager.h \
+    blureffect.h \
+    shaderprograms.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
-
 
 win32 {
     install_it.path = $$DESTDIR/assets
@@ -74,3 +80,4 @@ win32 {
 
     INSTALLS += install_it
 }
+

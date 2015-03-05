@@ -13,6 +13,7 @@
 #include "navigation.h"
 #include "scenebounds.h"
 #include "scenerenderer.h"
+#include "shaderprograms.h"
 #include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -137,6 +138,11 @@ SceneRenderer& Scene::sceneRenderer() const
 {
     assert(m_renderer);
     return *m_renderer;
+}
+
+void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+{
+    m_renderer->paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
 }
 
 AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const

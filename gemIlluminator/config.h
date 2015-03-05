@@ -14,10 +14,12 @@ class Config : public QObject
     Q_PROPERTY(QString source READ source WRITE setSource NOTIFY sourceChanged)
 
 public:
+    virtual ~Config();
+
     int axisRange();
     static void drop();
     QString envMap() const;
-    static Config* instance();
+    static Config *instance();
     float maxGemSize() const;
     float minGemSize() const;
     Q_INVOKABLE QString read();
@@ -46,13 +48,13 @@ protected:
 
     int m_axisRange;
     QString m_envMap;
-    static Config* m_instance;
+    static Config *m_instance;
     float m_maxGemSize;
     float m_minGemSize;
     QString m_source;
 };
 
-static QObject *singletontype_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
+static QObject *configSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
     Q_UNUSED(engine)
     Q_UNUSED(scriptEngine)

@@ -1,7 +1,9 @@
+import GemIlluminator 1.0
+
 import QtQuick 2.3
 import QtQuick.Controls 1.2
-import QtQml 2.2
 import QtQuick.Window 2.1
+import QtQml 2.2
 import QtSensors 5.0
 
 ApplicationWindow {
@@ -82,13 +84,14 @@ ApplicationWindow {
                     painter.scene !== null) {
                 event.accepted = true
                 mainMenu.visible = true
+                Soundmanager.stopBackgroundMusic()
 
                 painter.clearScene()
             }
         }
     }
 
-    Navigation {
+    NavigationFile {
         id: navigation
     }
 
@@ -118,11 +121,11 @@ ApplicationWindow {
         }
     }
 
-    Config {
+    ConfigFile {
         id: config
     }
 
-    Painter {
+    PainterFile {
         id: painter
     }
 }

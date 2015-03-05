@@ -113,6 +113,11 @@ void Config::setMinGemSize(float minGemSize)
     emit minGemSizeChanged();
 }
 
+Config::~Config()
+{
+
+}
+
 int Config::axisRange()
 {
     return m_axisRange;
@@ -130,12 +135,12 @@ void Config::drop()
 Config *Config::instance()
 {
     static QMutex mutex;
-    if (!m_instance)
-    {
+    if (!m_instance) {
         mutex.lock();
 
-        if (!m_instance)
+        if (!m_instance) {
             m_instance = new Config;
+        }
 
         mutex.unlock();
     }

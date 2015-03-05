@@ -6,6 +6,7 @@
 #include "lightrayrenderer.h"
 #include "player.h"
 #include "scene.h"
+#include "soundmanager.h"
 #include "triangle.h"
 
 LightRay::LightRay(QObject *parent) :
@@ -65,12 +66,14 @@ void LightRay::update(int timeDifference)
             collisionTestRay.setEndPosition(endPosition());
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         } else {
+            Soundmanager::instance()->setCollisionSound(SoundEffects::Collision2);
+            Soundmanager::instance()->playCollisionSound();
             m_collidingGem->setColor(m_data->color());
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
-            m_data->setColor(QVector3D(0.f, 0.f, 1.f));
+            m_data->setColor(QVector3D(0.1f, 0.1f, 0.5f));
             setStatic();
         }
 
