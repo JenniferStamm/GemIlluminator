@@ -26,7 +26,6 @@ Scene::Scene(QQuickItem *parent) :
   , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
 {
-    connect(m_bounds, &SceneBounds::gameLost, this, &Scene::handleGameLost);
 }
 
 Scene::~Scene()

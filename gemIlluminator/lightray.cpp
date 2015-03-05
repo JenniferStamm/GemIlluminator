@@ -1,7 +1,5 @@
 #include "lightray.h"
 
-#include <cstdlib>
-
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightraydata.h"
