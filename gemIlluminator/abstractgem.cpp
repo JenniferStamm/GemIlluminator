@@ -262,7 +262,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
 QVector3D rotateVector(const QVector3D &vector, const QQuaternion &quaternion)
 {
     QVector3D quat_xyz = QVector3D(quaternion.x(), quaternion.y(), quaternion.z());
-    return vector + 2.f * QVector3D::crossProduct(quat_xyz, QVector3D::crossProduct(quat_xyz, vector)) + quaternion.scalar() * vector;
+    return vector + 2.f * QVector3D::crossProduct(quat_xyz, QVector3D::crossProduct(quat_xyz, vector) + quaternion.scalar() * vector);
 }
 
 Triangle AbstractGem::inWorldCoordinates(const Triangle &triangle)
