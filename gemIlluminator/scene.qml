@@ -6,15 +6,21 @@ Scene {
     id: scene
     property alias cameraId: camera
     property var loadScreen: null
+    property int score: 0
+    anchors.fill: parent
 
     onGameLost: {
-        console.log("Game over");
+        timer.stop()
+        console.log("Game over")
     }
 
     onGameStarted: {
         console.log("Game started")
         pause.visible = true
+        highscore.visible = true
         painter.resetTimer()
+        score = 0
+        timer.start()
     }
 
     camera: Camera {
@@ -104,12 +110,38 @@ Scene {
         }
     }
 
+    Timer {
+        id: timer
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            score = score + 1
+            highscore.update()
+        }
+    }
+
+    Text {
+        id: highscore
+        visible: false
+        color: "white"
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pointSize: 16
+        text: "Score: " + score
+    }
+
     PauseButton {
         id: pause
         visible: false
         onPressedChanged: {
             if (pressed) {
                 painter.active = !painter.active
+                if (painter.active) {
+                    timer.start()
+                } else {
+                    timer.stop()
+                }
             }
         }
     }
