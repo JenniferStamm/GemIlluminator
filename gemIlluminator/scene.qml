@@ -13,6 +13,7 @@ Scene {
 
     onGameStarted: {
         console.log("Game started")
+        pause.visible = true
         painter.resetTimer()
     }
 
@@ -105,6 +106,7 @@ Scene {
 
     PauseButton {
         id: pause
+        visible: false
         onPressedChanged: {
             if (pressed) {
                 painter.active = !painter.active
