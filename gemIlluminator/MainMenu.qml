@@ -31,7 +31,6 @@ Rectangle {
 
             onClicked: {
                 mainMenu.visible = false
-                Soundmanager.playBackgroundMusic()
             }
         }
 
