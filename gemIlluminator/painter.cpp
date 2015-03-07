@@ -23,7 +23,7 @@
 Painter::Painter(PainterQML *painter, QObject *parent) :
     QObject(parent)
   , m_active(false)
-  , m_sceneEnvMap(nullptr)
+  , m_envMap(nullptr)
   , m_gl(new QOpenGLFunctions())
   , m_initialized(false)
   , m_blurEffectScene(nullptr)
@@ -46,8 +46,7 @@ Painter::~Painter()
     delete m_blurEffectScene;
     delete m_blurEffectPreviewScene;
 
-    delete m_sceneEnvMap;
-    delete m_previewSceneEnvMap;
+    delete m_envMap;
 
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
@@ -200,7 +199,7 @@ void Painter::paint()
         m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderScene(*m_sceneEnvMap, *m_scene->camera());
+        renderScene(*m_scene->camera());
 
         // preview scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
@@ -219,7 +218,7 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderScene(*m_previewSceneEnvMap, *m_scene->previewCamera());
+        renderScene(*m_scene->previewCamera());
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -277,8 +276,7 @@ void Painter::initialize()
     m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture, m_blurViewportRatioScene);
     m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture, m_blurViewportRatioPreviewScene);
 
-    m_previewSceneEnvMap = new EnvironmentMap(*m_gl);
-    m_sceneEnvMap = new EnvironmentMap(*m_gl);
+    m_envMap = new EnvironmentMap(*m_gl);
     m_initialized = true;
 }
 
@@ -414,8 +412,7 @@ void Painter::initializeShaderPrograms()
 
 void Painter::initializeEnvMaps()
 {
-    m_previewSceneEnvMap->initialize();
-    m_sceneEnvMap->initialize();
+    m_envMap->initialize();
 }
 
 void Painter::renderLightRays(const Camera &camera)
@@ -423,9 +420,9 @@ void Painter::renderLightRays(const Camera &camera)
     m_scene->paintLightRays(*m_gl, camera.viewProjection(), *m_shaderPrograms);
 }
 
-void Painter::renderScene(EnvironmentMap &envMap, const Camera &camera)
+void Painter::renderScene(const Camera &camera)
 {
-    envMap.paint(camera);
+    m_envMap->paint(camera);
 
     /* Paint gems */
     QOpenGLShaderProgram *gemProgram = (*m_shaderPrograms)[ShaderPrograms::GemProgram];
@@ -438,7 +435,7 @@ void Painter::renderScene(EnvironmentMap &envMap, const Camera &camera)
     gemProgram->setUniformValue("eye", camera.eye());
     gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, envMap.envMapTexture());
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap->envMapTexture());
 
     // Use shaderPrograms to insert different shader programs
     // At the moment m_shaderProgram is sufficient

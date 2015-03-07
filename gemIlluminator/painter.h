@@ -48,12 +48,11 @@ protected:
     void initializeFBOs();
     void initializeShaderPrograms();
     void renderLightRays(const Camera &camera);
-    void renderScene(EnvironmentMap &envmap, const Camera &camera);
+    void renderScene(const Camera &camera);
 
 protected:
     bool m_active;
-    EnvironmentMap *m_previewSceneEnvMap;
-    EnvironmentMap *m_sceneEnvMap;
+    EnvironmentMap *m_envMap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
 
