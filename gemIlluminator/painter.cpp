@@ -129,7 +129,7 @@ void Painter::paint()
 
         bool viewportChanged = false;
         if (m_usedViewport->height() != viewportHeight
-                && m_usedViewport->width() != viewportWidth) {
+                || m_usedViewport->width() != viewportWidth) {
             *m_usedViewport = m_scene->camera()->viewport();
             viewportChanged = true;
         }
@@ -219,7 +219,7 @@ void Painter::paint()
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
-        m_gl->glViewport(0, 0, viewportWidth,viewportHeight);
+        m_gl->glViewport(0, 0, viewportWidth, viewportHeight);
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
