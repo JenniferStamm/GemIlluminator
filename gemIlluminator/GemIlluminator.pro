@@ -83,3 +83,7 @@ win32 {
     INSTALLS += install_it
 }
 
+android {
+    QT += androidextras
+}
+

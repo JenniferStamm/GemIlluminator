@@ -131,6 +131,8 @@ void PainterQML::setIsAppActive(bool active)
         delete m_time;
         m_time = nullptr;
     }
+
+    emit isAppActiveChanged();
 }
 
 void PainterQML::synchronize()

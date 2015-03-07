@@ -43,7 +43,7 @@ Button {
         id: bottomBorder
         anchors.bottom: parent.bottom
         color: blue
-        height: getBorderHeight()
+        height: 2
         width: parent.width
         visible: true
     }
@@ -53,7 +53,7 @@ Button {
         anchors.left: parent.left
         color: blue
         height: parent.height
-        width: getBorderWidth()
+        width: 3
         visible: true
     }
 
@@ -62,17 +62,7 @@ Button {
         anchors.right: parent.right
         color: blue
         height: parent.height
-        width: getBorderWidth()
+        width: 3
         visible: true
-    }
-
-    function getBorderWidth()
-    {
-        return Math.floor(root.width / 300)
-    }
-
-    function getBorderHeight()
-    {
-        return Math.floor(root.height / 150)
     }
 }

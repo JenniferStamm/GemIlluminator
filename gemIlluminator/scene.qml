@@ -1,19 +1,24 @@
-import QtGraphicalEffects 1.0
+import GemIlluminator 1.0
 import QtQuick 2.0
 import QtQuick.Window 2.2
-import GemIlluminator 1.0
 import "gemgenerator.js" as GemGenerator
 
 Scene {
     id: scene
+    anchors.fill: parent
+
     property alias cameraId: camera
     property var loadScreen: null
     property int score: 0
-    anchors.fill: parent
+
+    property alias timerId: timer
 
     onGameLost: {
         timer.stop()
+        gameOver.finalScore = score
         gameOver.visible = true
+        highscore.visible = false
+        pause.visible = false
     }
 
     onGameStarted: {
@@ -56,8 +61,8 @@ Scene {
 
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "0, 0, -15"
-        endPosition: "0, 0, 15"
+        startPosition: "-" + Config.axisRange + ", -" + Config.axisRange + ", -" + (Config.axisRange / 2)
+        endPosition: "0, 0, 0"
         player: player
         scene: scene
     }
@@ -75,13 +80,16 @@ Scene {
                 var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    curGemType = gems[i][4].toString()
+                    curGemType = gems[i][7].toString()
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
                                                             "position.z": gems[i][2],
                                                             "scale": gems[i][3],
+                                                            "xAngle": gems[i][4],
+                                                            "yAngle": gems[i][5],
+                                                            "zAngle": gems[i][6],
                                                         }))
                 }
 
@@ -148,44 +156,14 @@ Scene {
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
-                                     "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
-    }
-
-    Rectangle {
-        id: gameOver
-        visible: false
-        anchors.fill: parent
-        color: "transparent"
-
-        RadialGradient {
-            anchors.fill: parent
-            cached: true
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "#70000000" }
-                GradientStop { position: 0.325; color: "#D0000000" }
-                GradientStop { position: 0.45; color: "#FF000000" }
-            }
-        }
-
-        Text {
-            id: gameOverText
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: Screen.pixelDensity * 20
-            text: "Game Over"
-            font.pointSize: 24
-            color: "white"
-        }
-
-        Text {
-            anchors.top: gameOverText.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.topMargin: Screen.pixelDensity * 2
-            text: "Score: " + score
-            font.pointSize: 18
-            color: "white"
-        }
+        var seed = (painter.seed.length > 0) ? painter.seed : Math.random().toString()
+        gemGenerator.sendMessage({"numGems": config.numGems,
+                                     "gemRangeSize": config.gemRangeSize,
+                                     "rangeStart": -Config.axisRange,
+                                     "rangeEnd": Config.axisRange,
+                                     "gemTypes": config.gemTypes,
+                                     "seed": seed
+                                 })
     }
 }
 
