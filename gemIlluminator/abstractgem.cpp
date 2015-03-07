@@ -8,6 +8,7 @@
 #include "gemdata.h"
 #include "lightray.h"
 #include "triangle.h"
+#include "scene.h"
 
 namespace {
 
@@ -183,6 +184,14 @@ int AbstractGem::solveQuadricFormula(float a, float b, float c, float &x1, float
 
 float AbstractGem::intersectedBy(const LightRay &ray, QVector3D *collisionPoint)
 {
+    const float maxFloat = std::numeric_limits<float>::max();
+    const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
+    if (boundingSphereIntersectedBy(ray) == maxFloat) {
+        if (collisionPoint) {
+            *collisionPoint = noCollisionPoint;
+        }
+        return maxFloat;
+    }
     Triangle *intersectedTriangle;
     return faceIntersectedBy(ray, intersectedTriangle, collisionPoint);
 }
@@ -192,12 +201,8 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     const float maxFloat = std::numeric_limits<float>::max();
     const QVector3D noCollisionPoint(maxFloat, maxFloat, maxFloat);
     intersectedTriangle = nullptr;
-
-    if (boundingSphereIntersectedBy(ray) == maxFloat) {
-        if (collisionPoint) {
-            *collisionPoint = noCollisionPoint;
-        }
-        return maxFloat;
+    if (collisionPoint) {
+        *collisionPoint = noCollisionPoint;
     }
 
     // Calculate collision according to
@@ -210,7 +215,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     float det, invDet;
 
     for (auto objectSpaceTriangle : triangles()) {
-        Triangle worldSpaceTriangle = objectSpaceTriangle->inWorldCoordinates();
+        Triangle worldSpaceTriangle = inWorldCoordinates(*objectSpaceTriangle);
 
         edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();
         edge2 = worldSpaceTriangle.c() - worldSpaceTriangle.a();
@@ -240,7 +245,8 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
                     //Use !qFuzzyIsNull(t) to ensure, that length of calculated vector is not treated as zero by qFuzzyIsEqual (required if calculated vectors should be normalized)
                     if (t < tPrevious && t > 0.0 + epsilon && !qFuzzyIsNull(t)) {
                         tPrevious = t;
-                        intersectedTriangle = objectSpaceTriangle;
+                        delete intersectedTriangle;
+                        intersectedTriangle = new Triangle(worldSpaceTriangle);
                         if (collisionPoint) {
                             *collisionPoint = ray.startPosition() + t * ray.normalizedDirection();
                         }
@@ -253,9 +259,48 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     return tPrevious;
 }
 
+QVector3D rotateVector(const QVector3D &vector, const QQuaternion &quaternion)
+{
+    QVector3D quat_xyz = QVector3D(quaternion.x(), quaternion.y(), quaternion.z());
+    return vector + 2.f * QVector3D::crossProduct(quat_xyz, QVector3D::crossProduct(quat_xyz, vector) + quaternion.scalar() * vector);
+}
+
+Triangle AbstractGem::inWorldCoordinates(const Triangle &triangle)
+{
+    //rotate a point around O is same like rotate a vector
+    Triangle result;
+    result.setA(rotateVector(triangle.a() * scale(), rotation()) + position());
+    result.setB(rotateVector(triangle.b() * scale(), rotation()) + position());
+    result.setC(rotateVector(triangle.c() * scale(), rotation()) + position());
+    return result;
+}
+
 void AbstractGem::rotate(const QQuaternion &quaternion)
 {
     setRotation(quaternion * rotation());
+}
+
+QList<LightRay *> AbstractGem::processRayIntersection(const LightRay &ray, Scene *scene)
+{
+    QList<LightRay *> result;
+    Triangle *intersectedTriangle;
+    QVector3D collisionPoint;
+    faceIntersectedBy(ray, intersectedTriangle, &collisionPoint);
+    if (intersectedTriangle && scene) {
+        QVector3D reflectedDirection = intersectedTriangle->reflect(ray.direction());
+        auto reflectedRay = new LightRay();
+        reflectedRay->setScene(scene);
+        reflectedRay->setStartPosition(collisionPoint);
+        reflectedRay->setEndPosition(collisionPoint + reflectedDirection);
+        result.append(reflectedRay);
+    }
+    for (auto ray : result) {
+        QVector3D collisionPoint;
+        scene->findGemIntersectedBy(*ray, &collisionPoint);
+        ray->setEndPosition(collisionPoint);
+    }
+    delete intersectedTriangle;
+    return result;
 }
 
 

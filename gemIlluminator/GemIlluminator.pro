@@ -22,6 +22,7 @@ SOURCES += main.cpp \
     painterqml.cpp \
     gemdata.cpp \
     gemrenderer.cpp \
+    gamelostray.cpp \
     soundmanager.cpp \
     blureffect.cpp
 
@@ -65,6 +66,7 @@ HEADERS += \
     painterqml.h \
     gemdata.h \
     gemrenderer.h \
+    gamelostray.h \
     soundmanager.h \
     blureffect.h \
     shaderprograms.h

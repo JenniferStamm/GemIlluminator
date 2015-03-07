@@ -15,8 +15,13 @@ public:
     explicit SceneBounds(QObject *parent = 0);
     virtual ~SceneBounds();
 
-    virtual void setPosition(const QVector3D &position) override;
-    virtual void setRotation(const QQuaternion &rotation) override;
+    void setPosition(const QVector3D &position) override;
+    void setRotation(const QQuaternion &rotation) override;
+
+    QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene) override;
+
+signals:
+    void gameLost();
 };
 
 #endif // SCENEBOUNDS_H

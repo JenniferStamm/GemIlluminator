@@ -17,6 +17,17 @@ WorkerScript.onMessage = function(message)
     var gemSize = 0
     var posVariance = 0
 
+    gemSize = getGemSize(gemRangeSize)
+    posVariance = (gemRangeSize[1] - gemSize) / 2
+
+    x = 0
+    y = 0
+    z = 0
+
+    randomGemTypeIndex = getRandomGemTypeIndex(gemTypes)
+    newGem = [x, y, z, gemSize, gemTypes[randomGemTypeIndex]]
+    gems.push(newGem)
+
     for (var i = 1; i <= numGemsPerDim && !gemsCompleted; i++) {
         for (var j = 1; j <= numGemsPerDim && !gemsCompleted; j++) {
             for (var k = 1; k <= numGemsPerDim && !gemsCompleted; k++) {

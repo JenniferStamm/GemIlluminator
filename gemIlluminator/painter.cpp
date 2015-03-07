@@ -245,13 +245,13 @@ void Painter::paint()
         // Reset OpenGL state for qml
         // According to https://qt.gitorious.org/qt/qtdeclarative/source/fa0eea53f73c9b03b259f075e4cd5b83bfefccd3:src/quick/items/qquickwindow.cpp
         m_gl->glEnable(GL_TEXTURE_2D);
-        m_gl->glActiveTexture(GL_TEXTURE0);
-        m_gl->glBindTexture(GL_TEXTURE_2D, 0);
-        m_gl->glActiveTexture(GL_TEXTURE1);
+        m_gl->glActiveTexture(GL_TEXTURE3);
         m_gl->glBindTexture(GL_TEXTURE_2D, 0);
         m_gl->glActiveTexture(GL_TEXTURE2);
         m_gl->glBindTexture(GL_TEXTURE_2D, 0);
-        m_gl->glActiveTexture(GL_TEXTURE3);
+        m_gl->glActiveTexture(GL_TEXTURE1);
+        m_gl->glBindTexture(GL_TEXTURE_2D, 0);
+        m_gl->glActiveTexture(GL_TEXTURE0);
         m_gl->glBindTexture(GL_TEXTURE_2D, 0);
         m_gl->glDisable(GL_TEXTURE_2D);
         m_gl->glDisable(GL_DEPTH_TEST);
