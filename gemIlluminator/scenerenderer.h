@@ -12,6 +12,7 @@ class QMatrix4x4;
 class AbstractGem;
 class GemRenderer;
 class LightRay;
+class LightRayRenderer;
 
 /**
  * @brief The SceneRenderer class
@@ -29,10 +30,9 @@ public:
     void cleanup(QOpenGLFunctions &gl);
 
     void synchronizeGeometries(QList<AbstractGem*> geometries);
+    void synchronizeLightRays(LightRay *rootLightRay);
 
-    LightRay *rootLightRay() const;
-    void setRootLightRay(LightRay *rootLightRay);
-
+    void paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 public slots:
@@ -43,13 +43,11 @@ signals:
 
 protected:
     void initalize(QOpenGLFunctions &gl);
-    void paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
     GemRenderer *m_gemRenderer;
-    QList<AbstractGem*> m_geometries;
+    LightRayRenderer *m_lightRayRenderer;
     bool m_isInitalized;
-    LightRay *m_rootLightRay;
 };
 
 #endif // SCENERENDERER_H

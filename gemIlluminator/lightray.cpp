@@ -33,12 +33,6 @@ LightRay::~LightRay()
     delete m_data;
 }
 
-void LightRay::synchronize()
-{
-    m_renderer->resetDynamicRays();
-    _synchronize();
-}
-
 void LightRay::update(int timeDifference)
 {
     if (m_player) {
@@ -163,15 +157,6 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player->setViewDirection(direction());
 }
 
-void LightRay::setRenderer(LightRayRenderer *renderer)
-{
-    m_renderer = renderer;
-
-    for (auto& successor : *m_successors ) {
-        successor->setRenderer(renderer);
-    }
-}
-
 Scene *LightRay::scene() const
 {
     return m_scene;
@@ -213,6 +198,11 @@ void LightRay::setSelectedSuccessor(LightRay *successor)
     m_selectedSuccessor = successor;
 }
 
+const QList<LightRay *> &LightRay::successors()
+{
+    return *m_successors;
+}
+
 void LightRay::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
     if (m_renderer) {
@@ -230,15 +220,6 @@ void LightRay::calculateSuccessors()
 
     auto collidingGem = m_scene->findGemIntersectedBy(*this);
     m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
-}
-
-void LightRay::_synchronize()
-{
-    m_renderer->addLightRay(*this);
-
-    for (auto& successor : *m_successors ) {
-        successor->_synchronize();
-    }
 }
 
 bool LightRay::isPlayerBeforeCollisionPoint()

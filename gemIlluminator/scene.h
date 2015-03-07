@@ -89,7 +89,6 @@ protected:
     Camera *m_previewCamera;
     AbstractGem *m_currentGem;
     QList<AbstractGem*> m_gem;
-    LightRayRenderer *m_lightRayRenderer;
     Navigation *m_navigation;
     SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;

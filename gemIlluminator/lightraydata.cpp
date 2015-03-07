@@ -109,7 +109,7 @@ const QVector3D &LightRayData::direction() const
 
 const QVector3D &LightRayData::normalizedDirection() const
 {
-    return direction().normalized();
+    return *m_directionNormalized;
 }
 
 LightRayData & LightRayData::operator=(const LightRayData &lightRay)

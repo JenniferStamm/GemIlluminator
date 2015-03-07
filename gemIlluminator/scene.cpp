@@ -22,7 +22,6 @@ Scene::Scene(QQuickItem *parent) :
   , m_camera(nullptr)
   , m_previewCamera(nullptr)
   , m_currentGem(m_bounds)
-  , m_lightRayRenderer(nullptr)
   , m_navigation(nullptr)
   , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
@@ -32,27 +31,20 @@ Scene::Scene(QQuickItem *parent) :
 Scene::~Scene()
 {
     delete m_bounds;
-    delete m_lightRayRenderer;
     delete m_renderer;
 }
 
 void Scene::sync(int elapsedTime)
 {
+    m_rootLightRay->update(elapsedTime);
+
     if (!m_renderer) {
         m_renderer = new SceneRenderer();
         connect(m_renderer, &SceneRenderer::initalizationDone, this, &Scene::handleGameStarted);
     }
 
-    if (!m_lightRayRenderer) {
-        m_lightRayRenderer = new LightRayRenderer();
-    }
-
     m_renderer->synchronizeGeometries(m_gem);
-
-    m_renderer->setRootLightRay(m_rootLightRay);
-    m_rootLightRay->update(elapsedTime);
-    m_rootLightRay->setRenderer(m_lightRayRenderer);
-    m_rootLightRay->synchronize();
+    m_renderer->synchronizeLightRays(m_rootLightRay);
 }
 
 void Scene::cleanupGL(QOpenGLFunctions &gl)
@@ -61,11 +53,6 @@ void Scene::cleanupGL(QOpenGLFunctions &gl)
         m_renderer->cleanup(gl);
         delete m_renderer;
         m_renderer = nullptr;
-    }
-
-    if (m_lightRayRenderer) {
-        delete m_lightRayRenderer;
-        m_lightRayRenderer = nullptr;
     }
 }
 
