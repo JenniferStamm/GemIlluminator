@@ -68,7 +68,7 @@ void Scene::cleanupGL(QOpenGLFunctions &gl)
     }
 }
 
-void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
     m_renderer->paint(gl, viewProjection, shaderPrograms);
 }
@@ -129,7 +129,7 @@ SceneRenderer& Scene::sceneRenderer() const
     return *m_renderer;
 }
 
-void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
     m_renderer->paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
 }

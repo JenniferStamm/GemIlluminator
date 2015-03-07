@@ -81,7 +81,7 @@ protected:
     uint m_sceneDepthRB;
     uint m_sceneTexture;
 
-    QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
+    QHash<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_usedViewport;
 
     int m_counter;

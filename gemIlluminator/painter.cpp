@@ -4,7 +4,7 @@
 #include <QEvent>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QMap>
+#include <QHash>
 #include <QMatrix4x4>
 #include <QSize>
 #include <QTime>
@@ -32,7 +32,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_blurViewportRatioPreviewScene(1)
   , m_painterQML(painter)
   , m_quad(nullptr)
-  , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
+  , m_shaderPrograms(new QHash<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_usedViewport(new QSize())
   , m_counter(0)
   , m_oldElapsed(0)

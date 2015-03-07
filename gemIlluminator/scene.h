@@ -1,7 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <QMap>
 #include <QQuickItem>
 #include <QQmlListProperty>
 
@@ -41,7 +40,7 @@ public:
 
     SceneRenderer& sceneRenderer() const;
 
-    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
 
     /**
@@ -81,7 +80,7 @@ signals:
 public slots:
     virtual void sync(int elapsedTime);
     virtual void cleanupGL(QOpenGLFunctions &gl);
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 
