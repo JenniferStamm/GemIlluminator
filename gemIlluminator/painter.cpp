@@ -117,7 +117,7 @@ void Painter::paint()
         float clearColor[4] = {0.9f, 1.f, 1.f, 1.f};
         m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        m_gl->glDisable(GL_CULL_FACE);
+        m_gl->glEnable(GL_CULL_FACE);
 
         m_gl->glEnable(GL_DEPTH_TEST);
         m_gl->glDepthFunc(GL_LEQUAL);

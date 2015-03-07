@@ -19,7 +19,7 @@ const vec3 specularColor = vec3(1.0, 1.0, 1.0);
 const float brightness = 0.8;
 const float shininess = 16.0;
 const float dispersionStrength = 1.0;
-const float smoothnessFactor = 0.0;
+const float smoothnessFactor = 0.5;
 
 vec3 transmissionTerm(vec3 eyeVector)
 {
