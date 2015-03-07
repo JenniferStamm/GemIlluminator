@@ -1,6 +1,11 @@
 #ifndef SHADERPROGRAMS
 #define SHADERPROGRAMS
 
+inline uint qHash(ShaderPrograms key, uint seed)
+{
+    return qHash(static_cast<uint>(key), seed);
+}
+
 enum class ShaderPrograms {
     GemProgram,
     LighRayProgram,
