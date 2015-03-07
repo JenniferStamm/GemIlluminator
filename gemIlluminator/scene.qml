@@ -40,8 +40,8 @@ Scene {
 
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "0, 0, -15"
-        endPosition: "0, 0, 15"
+        startPosition: "-" + Config.axisRange.toString() + ", -" + Config.axisRange.toString() + ", -" + Config.axisRange.toString()
+        endPosition: Config.axisRange.toString() + ", " + Config.axisRange.toString() + ", " + Config.axisRange.toString()
         player: player
         scene: scene
     }
@@ -59,13 +59,16 @@ Scene {
                 var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    curGemType = gems[i][4].toString()
+                    curGemType = gems[i][7].toString()
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
                                                             "position.z": gems[i][2],
                                                             "scale": gems[i][3],
+                                                            "xAngle": gems[i][4],
+                                                            "yAngle": gems[i][5],
+                                                            "zAngle": gems[i][6],
                                                         }))
                 }
 
@@ -105,8 +108,13 @@ Scene {
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
-                                     "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
+        gemGenerator.sendMessage({"numGems": config.numGems,
+                                     "gemRangeSize": config.gemRangeSize,
+                                     "rangeStart": -Config.axisRange,
+                                     "rangeEnd": Config.axisRange,
+                                     "gemTypes": config.gemTypes,
+                                     "seed": "somekindofstringinsertedlater"
+                                 })
     }
 }
 
