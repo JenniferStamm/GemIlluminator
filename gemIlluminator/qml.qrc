@@ -19,5 +19,6 @@
         <file>data/arrow-right.png</file>
         <file>PauseButton.qml</file>
         <file>GameOver.qml</file>
+        <file>SeedInput.qml</file>
     </qresource>
 </RCC>

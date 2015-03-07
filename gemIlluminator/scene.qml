@@ -1,14 +1,17 @@
+import GemIlluminator 1.0
 import QtQuick 2.0
 import QtQuick.Window 2.2
-import GemIlluminator 1.0
 import "gemgenerator.js" as GemGenerator
 
 Scene {
     id: scene
+    anchors.fill: parent
+
     property alias cameraId: camera
     property var loadScreen: null
     property int score: 0
-    anchors.fill: parent
+
+    property alias timerId: timer
 
     onGameLost: {
         timer.stop()
@@ -58,8 +61,8 @@ Scene {
 
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "-" + Config.axisRange.toString() + ", -" + Config.axisRange.toString() + ", -" + Config.axisRange.toString()
-        endPosition: Config.axisRange.toString() + ", " + Config.axisRange.toString() + ", " + Config.axisRange.toString()
+        startPosition: "-" + Config.axisRange + ", -" + Config.axisRange + ", -" + (Config.axisRange / 2)
+        endPosition: "0, 0, 0"
         player: player
         scene: scene
     }
@@ -153,12 +156,13 @@ Scene {
     }
 
     Component.onCompleted: {
+        var seed = (painter.seed.length > 0) ? painter.seed : Math.random().toString()
         gemGenerator.sendMessage({"numGems": config.numGems,
                                      "gemRangeSize": config.gemRangeSize,
                                      "rangeStart": -Config.axisRange,
                                      "rangeEnd": Config.axisRange,
                                      "gemTypes": config.gemTypes,
-                                     "seed": "somekindofstringinsertedlater"
+                                     "seed": seed
                                  })
     }
 }

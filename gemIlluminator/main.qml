@@ -116,10 +116,12 @@ ApplicationWindow {
         anchors.fill: parent
 
         startButton.onClicked: {
-            loadScreen.visible = true
-
-            painter.generateScene()
+            seedInput.visible = true
         }
+    }
+
+    SeedInput {
+        id: seedInput
     }
 
     NavigationFile {

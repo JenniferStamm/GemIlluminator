@@ -21,7 +21,7 @@ WorkerScript.onMessage = function(message)
     for (var i = 1; i <= numGemsPerDim && !gemsCompleted; ++i) {
         for (var j = 1; j <= numGemsPerDim && !gemsCompleted; ++j) {
             for (var k = 1; k <= numGemsPerDim && !gemsCompleted; ++k) {
-                seed = (i + j + k) * message.seed.hashCode();
+                seed = (i * k + j) * message.seed.hashCode();
                 gems.push(getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed));
 
                 WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)});
