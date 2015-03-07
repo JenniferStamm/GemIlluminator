@@ -1,7 +1,6 @@
 #ifndef SCENERENDERER_H
 #define SCENERENDERER_H
 
-#include <QMap>
 #include <QObject>
 #include <QOpenGLShaderProgram>
 
@@ -37,7 +36,7 @@ public:
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 public slots:
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
 signals:
     void initalizationDone();

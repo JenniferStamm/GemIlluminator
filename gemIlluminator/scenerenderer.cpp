@@ -1,6 +1,6 @@
 #include "scenerenderer.h"
 
-#include <QMap>
+#include <QHash>
 #include <QString>
 #include <QDebug>
 
@@ -30,13 +30,13 @@ void SceneRenderer::cleanup(QOpenGLFunctions &gl)
     }
 }
 
-void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
     if (!m_isInitalized) {
         initalize(gl);
     }
-    paintGems(gl, viewProjection, *shaderPrograms[ShaderPrograms::GemProgram]);
-    paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
+        paintGems(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::GemProgram));
+        paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
 }
 
 void SceneRenderer::initalize(QOpenGLFunctions &gl)

@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     gemrenderer.cpp \
     gamelostray.cpp \
     soundmanager.cpp \
-    blureffect.cpp
+    blureffect.cpp \
+    environmentmap.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -69,7 +70,8 @@ HEADERS += \
     gamelostray.h \
     soundmanager.h \
     blureffect.h \
-    shaderprograms.h
+    shaderprograms.h \
+    environmentmap.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
