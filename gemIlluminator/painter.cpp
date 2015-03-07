@@ -13,6 +13,7 @@
 #include "config.h"
 #include "blureffect.h"
 #include "cubemap.h"
+#include "environmentmap.h"
 #include "lightray.h"
 #include "painterqml.h"
 #include "scene.h"
@@ -284,7 +285,7 @@ void Painter::initialize()
     m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture, m_blurViewportRatioScene);
     m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture, m_blurViewportRatioPreviewScene);
 
-    m_envMap = new CubeMap(*m_gl, Config::instance()->envMap());
+    m_envMap = new EnvironmentMap(*m_gl, Config::instance()->envMap());
     m_initialized = true;
 }
 

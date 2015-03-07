@@ -11,6 +11,7 @@ class QTime;
 class Camera;
 class BlurEffect;
 class CubeMap;
+class EnvironmentMap;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
@@ -52,7 +53,7 @@ protected:
 
 protected:
     bool m_active;
-    CubeMap *m_envMap;
+    EnvironmentMap *m_envMap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
 

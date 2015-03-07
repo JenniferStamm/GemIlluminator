@@ -1,32 +1,21 @@
 #include "cubemap.h"
 
-
 #include <QImage>
 #include <QMap>
 #include <QOpenGLFunctions>
-#include <QOpenGLShaderProgram>
 
-#include "camera.h"
-#include "screenalignedquad.h"
 
-CubeMap::CubeMap(QOpenGLFunctions &gl, QString cubeMapPrefix,QObject *parent) :
+CubeMap::CubeMap(QOpenGLFunctions &gl, QString cubeMapPrefix, QObject *parent) :
     QObject(parent)
   , m_gl(gl)
   , m_cubeMapPrefix(cubeMapPrefix)
-  , m_initialized(false)
-  , m_quad(nullptr)
-  , m_shaderProgram(new QOpenGLShaderProgram())
 {
-
+    initialize();
 }
 
 CubeMap::~CubeMap()
 {
-    delete m_quad;
-
     m_gl.glDeleteTextures(1, &m_cubeMap);
-
-    delete m_shaderProgram;
 }
 
 void CubeMap::update(QString newCubeMapPrefix)
@@ -63,34 +52,6 @@ void CubeMap::update(QString newCubeMapPrefix)
         }
 }
 
-void CubeMap::paint(const Camera &camera)
-{
-    if (!m_initialized) {
-        initialize();
-    }
-
-    m_shaderProgram->bind();
-
-    m_shaderProgram->setUniformValue("view",camera.view());
-    m_shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
-
-    m_shaderProgram->setUniformValue("cubemap", 0);
-
-    m_gl.glDepthMask(GL_FALSE);
-    m_gl.glActiveTexture(GL_TEXTURE0);
-    m_gl.glEnable(GL_TEXTURE_CUBE_MAP);
-    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMap);
-
-    m_shaderProgram->bind();
-    m_quad->draw(m_gl);
-    m_shaderProgram->release();
-
-    m_gl.glDepthMask(GL_TRUE);
-    m_gl.glActiveTexture(GL_TEXTURE0);
-    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-    m_gl.glDisable(GL_TEXTURE_CUBE_MAP);
-}
-
 uint CubeMap::cubeMapTexture()
 {
     return m_cubeMap;
@@ -98,26 +59,5 @@ uint CubeMap::cubeMapTexture()
 
 void CubeMap::initialize()
 {
-    // Initialize squad
-    m_quad = new ScreenAlignedQuad();
-
-    // Initialize Cube Map
     update(m_cubeMapPrefix);
-
-    initializeShaderProgram();
-
-    m_initialized = true;
 }
-
-void CubeMap::initializeShaderProgram()
-{
-    m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/screenquad.vert");
-    m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");
-
-    if (!m_shaderProgram->link()) {
-        qDebug() << "Envmap: Link failed";
-    }
-
-    m_shaderProgram->bindAttributeLocation("a_vertex", 0);
-}
-
