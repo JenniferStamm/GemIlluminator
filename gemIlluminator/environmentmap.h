@@ -8,8 +8,6 @@ class QOpenGLShaderProgram;
 
 class Camera;
 class ScreenAlignedQuad;
-enum class ShaderPrograms;
-
 
 class EnvironmentMap : public QObject
 {
@@ -32,7 +30,7 @@ protected:
     QOpenGLFunctions &m_gl;
     bool m_initialized;
     ScreenAlignedQuad *m_quad;
-    QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
+    QOpenGLShaderProgram *m_shaderProgram;
 };
 
 #endif // ENVIRONMENTMAP_H
