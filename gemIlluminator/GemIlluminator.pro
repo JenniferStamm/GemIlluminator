@@ -25,13 +25,15 @@ SOURCES += main.cpp \
     gamelostray.cpp \
     soundmanager.cpp \
     blureffect.cpp \
+    cubemap.cpp \
     environmentmap.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
     data.qrc \
     backgroundmusic.qrc \
-    sound.qrc
+    sound.qrc \
+    data2.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -71,6 +73,7 @@ HEADERS += \
     soundmanager.h \
     blureffect.h \
     shaderprograms.h \
+    cubemap.h \
     environmentmap.h
 
 release: DESTDIR = $$OUT_PWD/release

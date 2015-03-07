@@ -10,6 +10,7 @@ class QTime;
 
 class Camera;
 class BlurEffect;
+class CubeMap;
 class EnvironmentMap;
 class PainterQML;
 class ScreenAlignedQuad;
@@ -28,7 +29,7 @@ public:
     Painter(PainterQML *painter, QObject *parent = 0);
     virtual ~Painter();
 
-    void initializeEnvMaps();
+    void initializeEnvMap();
 
     bool isActive() const;
     void setActive(bool active);
@@ -74,6 +75,9 @@ protected:
 
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
+
+    CubeMap *m_rainbowMap;
+    CubeMap *m_refractionMap;
 
     Scene *m_scene;
 
