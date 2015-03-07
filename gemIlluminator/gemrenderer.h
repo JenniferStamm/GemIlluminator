@@ -43,27 +43,34 @@ class GemRenderer
         ~GemRenderData();
 
         void cleanup(QOpenGLFunctions &gl);
+        void initialize(QOpenGLFunctions &gl);
 
         void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program);
         void addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl);
         void setVerticesPerGem(int numberOfVertices);
         void setSceneExtent(float extent);
+        void setFloatTexturesEnabled(bool enable);
+        void appendAttributesToVector(GemDataInfo *gem, QVector<float> &vector);
+        void appendAttributesToVector(GemDataInfo *gem, QVector<unsigned char> &vector);
 
     protected:
         void addGem(GemDataInfo *gem, QOpenGLFunctions &gl);
-        void initialize(QOpenGLFunctions &gl);
         void updateGem(GemDataInfo *gem, QOpenGLFunctions &gl);
 
     protected:
         int m_allocatedGems;
         int m_allocatedAndUsedGems;
+        bool m_areFloatTexturesAvailable;
         unsigned int m_dataBuffer;
         QList<GemDataInfo *> *m_gems;
+        bool m_hasErrorOccured;
         bool m_isInitialized;
         unsigned int m_lowestUnusedIndex;
         QOpenGLBuffer *m_vertexBuffer;
         int m_verticesPerGem;
         float m_sceneExtent;
+        int m_maxTextureSize;
+        int m_texelPerGem;
     };
 
 
@@ -72,18 +79,17 @@ public:
     ~GemRenderer();
 
     void cleanup(QOpenGLFunctions &gl);
+    void initialize(QOpenGLFunctions &gl);
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
     void setSceneExtent(float extent);
     void updateGem(AbstractGem *gem);
 
 protected:
-    void initialize(QOpenGLFunctions &gl);
-    void paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
-
-    void updateGemForTextureOptimization(AbstractGem *gem);
+    void updateData(QOpenGLFunctions &gl);
 
 protected:
     bool m_isInitialized;
+    bool m_areFloatTexturesAvailable;
     QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
     bool m_isGemBufferUpdateRequired;
     bool m_isGemDataBufferInvalid;

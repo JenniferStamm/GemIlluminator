@@ -23,6 +23,7 @@ class LightRay : public QObject
     Q_PROPERTY(const QVector3D &endPosition READ endPosition WRITE setEndPosition NOTIFY endPositionChanged)
     Q_PROPERTY(const QVector3D &direction READ direction)
     Q_PROPERTY(const QVector3D &normalizedDirection READ normalizedDirection)
+    Q_PROPERTY(const QVector3D &color READ color WRITE setColor NOTIFY colorChanged)
     Q_PROPERTY(Player *player READ player WRITE setPlayer NOTIFY playerChanged)
     Q_PROPERTY(Scene *scene READ scene WRITE setScene NOTIFY sceneChanged)
 
@@ -36,6 +37,7 @@ public:
     QVector3D normalizedOrthogonalVector() const;
 
 signals:
+    void colorChanged();
     void startPositionChanged();
     void endPositionChanged();
     void playerChanged();
@@ -46,13 +48,13 @@ public slots:
     void setStartPosition(const QVector3D &position);
     const QVector3D &endPosition() const;
     void setEndPosition(const QVector3D &position);
-    QVector3D direction() const;
-    QVector3D normalizedDirection() const;
+    const QVector3D &direction() const;
+    const QVector3D &normalizedDirection() const;
+    const QVector3D &color() const;
+    void setColor(const QVector3D &color);
 
     AbstractGem *collidingGem() const;
     void setCollidingGem(AbstractGem *gem);
-
-    const QVector3D &color() const;
 
     Player *player() const;
     void setPlayer(Player *attachedPlayer);
@@ -71,8 +73,9 @@ public slots:
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
-    void calculateSuccessors();
     bool isPlayerBeforeCollisionPoint();
+    void calculateSuccessors();
+    virtual void _synchronize();
 
 protected:
     AbstractGem *m_collidingGem;

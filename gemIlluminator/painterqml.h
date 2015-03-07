@@ -28,6 +28,7 @@ public:
     QEvent::Type paintingDoneEventType();
 
     Q_INVOKABLE void reloadEnvMap();
+    Q_INVOKABLE void resetTimer();
 
     Scene *scene() const;
     void setScene(Scene *scene);
