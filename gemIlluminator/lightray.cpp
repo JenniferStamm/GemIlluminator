@@ -142,6 +142,15 @@ const QVector3D & LightRay::color() const
     return m_data->color();
 }
 
+void LightRay::setColor(const QVector3D &color)
+{
+    if (color == m_data->color()) {
+        return;
+    }
+    m_data->setColor(color);
+    emit colorChanged();
+}
+
 Player * LightRay::player() const
 {
     return m_player;
