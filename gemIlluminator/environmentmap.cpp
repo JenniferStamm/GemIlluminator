@@ -50,8 +50,6 @@ void EnvironmentMap::initialize()
 
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    // GL_TEXTURE_WRAP_R is not supported in OpenGL ES 2.0
-    //m_gl->glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
     m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap);
 
