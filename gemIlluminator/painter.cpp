@@ -421,7 +421,9 @@ void Painter::initializeShaderPrograms()
 
 void Painter::initializeEnvMap()
 {
-    m_envMap->update(Config::instance()->envMap());
+    if (m_envMap) {
+        m_envMap->update(Config::instance()->envMap());
+    }
 }
 
 void Painter::renderLightRays(const Camera &camera)
