@@ -60,7 +60,7 @@ void EnvironmentMap::initialize()
             << GL_TEXTURE_CUBE_MAP_POSITIVE_Y << GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
             << GL_TEXTURE_CUBE_MAP_POSITIVE_Z << GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
 
-    foreach(GLenum face, faces) {
+    for (GLenum face: faces) {
             const QImage &image(images[face]);
             m_gl.glTexImage2D(face, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
         }
