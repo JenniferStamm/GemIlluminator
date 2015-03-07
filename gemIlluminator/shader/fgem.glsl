@@ -49,7 +49,7 @@ vec3 reflectionTerm(vec3 eyeVector)
 
     float fresnel = pow(1.0 - clamp(dot(v_normal, eyeVector), 0.0, 1.0), 2.0);
 
-    vec3 environmentColor = textureCube(envmap, r_face).xyz; // could use r_curved
+    vec3 environmentColor = textureCube(envmap, transmissionTerm(eyeVector)).xyz; // could use r_curved
     vec3 rainbowColor = textureCube(rainbowMap, r_face).xyz; // could use r_curved
 
     rainbowColor = mix(vec3(1.0), rainbowColor, dispersionStrength);
@@ -63,5 +63,5 @@ void main()
     vec3 eyeVector = normalize(v_eyeVector);
     vec3 color = mix(reflectionTerm(eyeVector), transmissionTerm(eyeVector), vec3(0.1));
     gl_FragColor = vec4(mix(color, v_color, 0.5), 1.0);
-    //gl_FragColor = vec4(textureCube(rainbowMap, eyeVector).xyz, 1.0);
+    //gl_FragColor = vec4(reflectionTerm(eyeVector), 1.0);
 }
