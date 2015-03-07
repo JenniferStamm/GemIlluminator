@@ -7,6 +7,7 @@ Painter {
     scene: null
 
     property Component sceneComponent: Qt.createComponent("Scene.qml", Component.Asynchronous)
+    property string seed: ""
 
     function generateScene()
     {
@@ -22,5 +23,13 @@ Painter {
         scene.geometries = []
         scene.destroy()
         scene = null
+    }
+
+    onIsAppActiveChanged: {
+        if (isAppActive) {
+            scene.timerId.start()
+        } else {
+            scene.timerId.stop()
+        }
     }
 }
