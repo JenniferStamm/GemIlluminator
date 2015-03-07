@@ -9,18 +9,18 @@ class QOpenGLShaderProgram;
 class Camera;
 class ScreenAlignedQuad;
 
-class EnvironmentMap : public QObject
+class CubeMap : public QObject
 {
     Q_OBJECT
 public:
-    EnvironmentMap(QOpenGLFunctions &gl, QObject *parent = 0);
-    virtual ~EnvironmentMap();
+    CubeMap(QOpenGLFunctions &gl, QString cubeMapPrefix,QObject *parent = 0);
+    virtual ~CubeMap();
 
     void initialize();
 
     void paint(const Camera &camera);
 
-    uint envMapTexture();
+    uint cubeMapTexture();
 
 protected:
     void initializeShaderProgram();
@@ -28,6 +28,7 @@ protected:
 protected:
     uint m_envMap;
     QOpenGLFunctions &m_gl;
+    QString m_cubeMapPrefix;
     bool m_initialized;
     ScreenAlignedQuad *m_quad;
     QOpenGLShaderProgram *m_shaderProgram;

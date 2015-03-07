@@ -1,4 +1,4 @@
-#include "environmentmap.h"
+#include "cubemap.h"
 
 
 #include <QImage>
@@ -7,19 +7,20 @@
 #include <QOpenGLShaderProgram>
 
 #include "camera.h"
-#include "config.h"
 #include "screenalignedquad.h"
 
-EnvironmentMap::EnvironmentMap(QOpenGLFunctions &gl, QObject *parent) :
+CubeMap::CubeMap(QOpenGLFunctions &gl, QString cubeMapPrefix,QObject *parent) :
     QObject(parent)
   , m_gl(gl)
+  , m_cubeMapPrefix(cubeMapPrefix)
   , m_initialized(false)
+  , m_quad(nullptr)
   , m_shaderProgram(new QOpenGLShaderProgram())
 {
 
 }
 
-EnvironmentMap::~EnvironmentMap()
+CubeMap::~CubeMap()
 {
     delete m_quad;
 
@@ -28,20 +29,19 @@ EnvironmentMap::~EnvironmentMap()
     delete m_shaderProgram;
 }
 
-void EnvironmentMap::initialize()
+void CubeMap::initialize()
 {
     // Initialize squad
     m_quad = new ScreenAlignedQuad();
 
     // Initialize Cube Map
     QMap<GLenum, QImage> images;
-    QString envMapPrefix = Config::instance()->envMap();
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/" + envMapPrefix + "_env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/" + envMapPrefix + "_env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/" + envMapPrefix + "_env_cube_py.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/" + envMapPrefix + "_env_cube_ny.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/" + envMapPrefix + "_env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
-    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/" + envMapPrefix + "_env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Y] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_py.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Y] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_ny.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
+    images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
 
     m_gl.glGenTextures(1, &m_envMap);
     m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap);
@@ -69,7 +69,7 @@ void EnvironmentMap::initialize()
     m_initialized = true;
 }
 
-void EnvironmentMap::paint(const Camera &camera)
+void CubeMap::paint(const Camera &camera)
 {
     if (!m_initialized) {
         initialize();
@@ -97,12 +97,12 @@ void EnvironmentMap::paint(const Camera &camera)
     m_gl.glDisable(GL_TEXTURE_CUBE_MAP);
 }
 
-uint EnvironmentMap::envMapTexture()
+uint CubeMap::cubeMapTexture()
 {
     return m_envMap;
 }
 
-void EnvironmentMap::initializeShaderProgram()
+void CubeMap::initializeShaderProgram()
 {
     m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/screenquad.vert");
     m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");

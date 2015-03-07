@@ -12,7 +12,7 @@
 #include "camera.h"
 #include "config.h"
 #include "blureffect.h"
-#include "environmentmap.h"
+#include "cubemap.h"
 #include "lightray.h"
 #include "painterqml.h"
 #include "scene.h"
@@ -32,6 +32,8 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_blurViewportRatioPreviewScene(1)
   , m_painterQML(painter)
   , m_quad(nullptr)
+  , m_rainbowMap(nullptr)
+  , m_refractionMap(nullptr)
   , m_shaderPrograms(new QHash<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_usedViewport(new QSize())
   , m_counter(0)
@@ -47,6 +49,8 @@ Painter::~Painter()
     delete m_blurEffectPreviewScene;
 
     delete m_envMap;
+    delete m_rainbowMap;
+    delete m_refractionMap;
 
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
@@ -268,8 +272,8 @@ void Painter::paint()
 
 void Painter::initialize()
 {
-    initializeRefractionCubemap();
-    initializeRainbowCubemap();
+    m_refractionMap = new CubeMap(*m_gl, QString("refraction"));
+    m_rainbowMap = new CubeMap(*m_gl, QString("rainbow"));
     m_quad = new ScreenAlignedQuad();
 
     initializeShaderPrograms();
@@ -278,7 +282,7 @@ void Painter::initialize()
     m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture, m_blurViewportRatioScene);
     m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture, m_blurViewportRatioPreviewScene);
 
-    m_envMap = new EnvironmentMap(*m_gl);
+    m_envMap = new CubeMap(*m_gl, Config::instance()->envMap());
     m_initialized = true;
 }
 
@@ -412,18 +416,7 @@ void Painter::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
 }
 
-void Painter::initializeRefractionCubemap()
-{
-    //initializeCubeMap("refraction", m_refractionMap);
-}
-
-void Painter::initializeRainbowCubemap()
-{
-    //initializeCubeMap("rainbow", m_rainbowMap);
-}
-
-
-void Painter::initializeEnvMaps()
+void Painter::initializeEnvMap()
 {
     m_envMap->initialize();
 }
@@ -450,11 +443,11 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->setUniformValue("eye", camera.eye());
     gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap->envMapTexture());
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap->cubeMapTexture());
     m_gl->glActiveTexture(GL_TEXTURE1);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_refractionMap);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_refractionMap->cubeMapTexture());
     m_gl->glActiveTexture(GL_TEXTURE2);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_rainbowMap);
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_rainbowMap->cubeMapTexture());
 
     // Use shaderPrograms to insert different shader programs
     // At the moment m_shaderProgram is sufficient
