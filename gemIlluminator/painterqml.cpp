@@ -96,6 +96,13 @@ void PainterQML::reloadEnvMap()
     }
 }
 
+void PainterQML::resetTimer()
+{
+    if (m_time) {
+        m_time->restart();
+    }
+}
+
 Scene* PainterQML::scene() const
 {
     return m_scene;

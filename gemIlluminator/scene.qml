@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Window 2.2
 import GemIlluminator 1.0
 import "gemgenerator.js" as GemGenerator
 
@@ -6,6 +7,24 @@ Scene {
     id: scene
     property alias cameraId: camera
     property var loadScreen: null
+    property int score: 0
+    anchors.fill: parent
+
+    onGameLost: {
+        timer.stop()
+        gameOver.finalScore = score
+        gameOver.visible = true
+        highscore.visible = false
+        pause.visible = false
+    }
+
+    onGameStarted: {
+        pause.visible = true
+        highscore.visible = true
+        painter.resetTimer()
+        score = 0
+        timer.start()
+    }
 
     camera: Camera {
         id: camera
@@ -36,7 +55,6 @@ Scene {
         velocity: 2.5
         camera: camera
     }
-
 
     rootLightRay: LightRay {
         id: lightray
@@ -98,11 +116,38 @@ Scene {
         }
     }
 
+    Timer {
+        id: timer
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            score = score + 1
+            highscore.update()
+        }
+    }
+
+    Text {
+        id: highscore
+        visible: false
+        color: "white"
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pointSize: 16
+        text: "Score: " + score
+    }
+
     PauseButton {
         id: pause
+        visible: false
         onPressedChanged: {
             if (pressed) {
                 painter.active = !painter.active
+                if (painter.active) {
+                    timer.start()
+                } else {
+                    timer.stop()
+                }
             }
         }
     }

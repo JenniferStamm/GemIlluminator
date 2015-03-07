@@ -13,6 +13,7 @@
 #include "navigation.h"
 #include "scenebounds.h"
 #include "scenerenderer.h"
+#include "shaderprograms.h"
 #include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -39,6 +40,7 @@ void Scene::sync(int elapsedTime)
 {
     if (!m_renderer) {
         m_renderer = new SceneRenderer();
+        connect(m_renderer, &SceneRenderer::initalizationDone, this, &Scene::handleGameStarted);
     }
 
     if (!m_lightRayRenderer) {
@@ -65,6 +67,16 @@ void Scene::cleanupGL(QOpenGLFunctions &gl)
         delete m_lightRayRenderer;
         m_lightRayRenderer = nullptr;
     }
+}
+
+void Scene::handleGameLost()
+{
+    emit gameLost();
+}
+
+void Scene::handleGameStarted()
+{
+    emit gameStarted();
 }
 
 void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
@@ -128,6 +140,11 @@ SceneRenderer& Scene::sceneRenderer() const
     return *m_renderer;
 }
 
+void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+{
+    m_renderer->paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
+}
+
 AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
 {
     AbstractGem *result = m_bounds;
@@ -160,26 +177,6 @@ AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, 
                 *collisionPoint = temp;
             }
             result = gem;
-        }
-    }
-    assert(result);
-    return result;
-}
-
-Triangle *Scene::findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const
-{
-    Triangle *result;
-    float distance = m_bounds->faceIntersectedBy(ray, result, collisionPoint);
-    for (auto& gem : m_gem){
-        QVector3D tempCollisionPoint;
-        Triangle *tempResultTriangle;
-        float collisionDistance = gem->faceIntersectedBy(ray, tempResultTriangle, &tempCollisionPoint);
-        if (collisionDistance < distance) {
-            distance = collisionDistance;
-            if (collisionPoint) {
-                *collisionPoint = tempCollisionPoint;
-            }
-            result = tempResultTriangle;
         }
     }
     assert(result);

@@ -6,6 +6,14 @@
 
 Soundmanager *Soundmanager::m_instance = 0;
 
+Soundmanager::~Soundmanager()
+{
+    delete m_backgroundMusic->playlist();
+    delete m_collisionSound->playlist();
+    delete m_backgroundMusic;
+    delete m_collisionSound;
+}
+
 void Soundmanager::drop()
 {
     static QMutex mutex;

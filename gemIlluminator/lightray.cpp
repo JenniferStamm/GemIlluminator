@@ -1,7 +1,5 @@
 #include "lightray.h"
 
-#include <cstdlib>
-
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightraydata.h"
@@ -75,7 +73,7 @@ void LightRay::update(int timeDifference)
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
-            m_data->setColor(QVector3D(0.f, 0.f, 1.f));
+            m_data->setColor(QVector3D(0.1f, 0.1f, 0.5f));
             setStatic();
         }
 
@@ -119,12 +117,12 @@ void LightRay::setEndPosition(const QVector3D &position)
     emit endPositionChanged();
 }
 
-QVector3D LightRay::direction() const
+const QVector3D &LightRay::direction() const
 {
     return m_data->direction();
 }
 
-QVector3D LightRay::normalizedDirection() const
+const QVector3D &LightRay::normalizedDirection() const
 {
     return m_data->normalizedDirection();
 }
@@ -142,6 +140,15 @@ void LightRay::setCollidingGem(AbstractGem *gem)
 const QVector3D & LightRay::color() const
 {
     return m_data->color();
+}
+
+void LightRay::setColor(const QVector3D &color)
+{
+    if (color == m_data->color()) {
+        return;
+    }
+    m_data->setColor(color);
+    emit colorChanged();
 }
 
 Player * LightRay::player() const
@@ -193,7 +200,9 @@ void LightRay::setStatic()
 LightRay *LightRay::selectedSuccessor()
 {
     if (!m_selectedSuccessor) {
-        calculateSuccessors();
+        if (m_successors->isEmpty()) {
+            calculateSuccessors();
+        }
         m_selectedSuccessor = m_successors->at(0);
     }
     return m_selectedSuccessor;
@@ -219,18 +228,8 @@ void LightRay::calculateSuccessors()
     m_successors->clear();
     m_selectedSuccessor = nullptr;
 
-    LightRay *nextRay = new LightRay();
-    nextRay->setScene(m_scene);
-    nextRay->setStartPosition(endPosition());
-
-    Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
-    QVector3D reflectedDirection = intersectedFace->reflect(direction());
-    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
-
-    QVector3D nextCollisionPoint;
-    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
-    nextRay->setEndPosition(nextCollisionPoint);
-    m_successors->push_back(nextRay);
+    auto collidingGem = m_scene->findGemIntersectedBy(*this);
+    m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
 }
 
 void LightRay::_synchronize()

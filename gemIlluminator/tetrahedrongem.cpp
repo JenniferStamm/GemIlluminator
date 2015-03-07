@@ -27,23 +27,19 @@ TetrahedronGem::TetrahedronGem(QObject *parent) :
     triangles.append(new Triangle(
                 vertices.at(1),
                 vertices.at(2),
-                vertices.at(3),
-                this));
+                vertices.at(3)));
     triangles.append(new Triangle(
                 vertices.at(0),
                 vertices.at(3),
-                vertices.at(2),
-                this));
+                vertices.at(2)));
     triangles.append(new Triangle(
                 vertices.at(0),
                 vertices.at(1),
-                vertices.at(3),
-                this));
+                vertices.at(3)));
     triangles.append(new Triangle(
                 vertices.at(0),
                 vertices.at(2),
-                vertices.at(1),
-                this));
+                vertices.at(1)));
     m_data->setTriangles(triangles);
 }
 

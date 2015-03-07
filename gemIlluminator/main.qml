@@ -82,6 +82,7 @@ ApplicationWindow {
             if (((event.key === Qt.Key_Escape && Qt.platform.os !== "android") ||
                     (event.key === Qt.Key_Back && Qt.platform.os === "android")) &&
                     painter.scene !== null) {
+                gameOver.visible = false;
                 event.accepted = true
                 mainMenu.visible = true
                 Soundmanager.stopBackgroundMusic()
@@ -89,10 +90,6 @@ ApplicationWindow {
                 painter.clearScene()
             }
         }
-    }
-
-    NavigationFile {
-        id: navigation
     }
 
     SensorInputs {
@@ -110,6 +107,10 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    GameOver {
+        id: gameOver
+    }
+
     MainMenu {
         id: mainMenu
         anchors.fill: parent
@@ -119,6 +120,10 @@ ApplicationWindow {
 
             painter.generateScene()
         }
+    }
+
+    NavigationFile {
+        id: navigation
     }
 
     ConfigFile {

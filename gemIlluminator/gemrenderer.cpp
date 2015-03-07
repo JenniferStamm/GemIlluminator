@@ -53,7 +53,13 @@ void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, 
     if (!m_isInitialized) {
         initialize(gl);
     }
-    paintGemsOptimizedWithTexture(gl, viewProjection, program);
+
+    updateData(gl);
+
+    program.enableAttributeArray(2);
+    for (auto renderData : m_gemBuffersTex->values()) {
+        renderData->paint(gl, program);
+    }
 }
 
 void GemRenderer::setSceneExtent(float extent)
@@ -64,11 +70,25 @@ void GemRenderer::setSceneExtent(float extent)
 
 void GemRenderer::updateGem(AbstractGem *gem)
 {
-    updateGemForTextureOptimization(gem);
+    GemDataInfo *gemInfo = m_gemMap->value(gem);
+    if (gemInfo) {
+        if (gemInfo->data() != gem->data()) {
+            gemInfo->setData(gem->data());
+            m_newGems->append(gemInfo);
+        }
+    } else {
+        gemInfo = new GemDataInfo();
+        gemInfo->setData(gem->data());
+        m_gemMap->insert(gem, gemInfo);
+        m_newGems->append(gemInfo);
+    }
 }
 
 void GemRenderer::initialize(QOpenGLFunctions &gl)
 {
+    if (m_isInitialized) {
+        return;
+    }
     QOpenGLContext *currentContext = QOpenGLContext::currentContext();
     m_areFloatTexturesAvailable = false;
 
@@ -85,9 +105,15 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
     }
 #endif
     m_isInitialized = true;
+    //first data update is done while init because it is expected to be largest update and after init time measurment will be started (TODO)
+    updateData(gl);
+
+    for (auto renderData : m_gemBuffersTex->values()) {
+        renderData->initialize(gl);
+    }
 }
 
-void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
+void GemRenderer::updateData(QOpenGLFunctions &gl)
 {
     if (!m_newGems->isEmpty()) {
         for (auto gem : *m_newGems) {
@@ -103,26 +129,6 @@ void GemRenderer::paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMat
         }
 
         m_newGems->clear();
-    }
-    program.enableAttributeArray(2);
-    for (auto renderData : m_gemBuffersTex->values()) {
-        renderData->paint(gl, program);
-    }
-}
-
-void GemRenderer::updateGemForTextureOptimization(AbstractGem *gem)
-{
-    GemDataInfo *gemInfo = m_gemMap->value(gem);
-    if (gemInfo) {
-        if (gemInfo->data() != gem->data()) {
-            gemInfo->setData(gem->data());
-            m_newGems->append(gemInfo);
-        }
-    } else {
-        gemInfo = new GemDataInfo();
-        gemInfo->setData(gem->data());
-        m_gemMap->insert(gem, gemInfo);
-        m_newGems->append(gemInfo);
     }
 }
 
@@ -216,6 +222,7 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
         return;
     }
     if (!m_isInitialized) {
+        qDebug() << "GemRenderer::GemRenderData: Initalization should be done befor painting. It will done now, but measured times will be greater then they have to be.";
         initialize(gl);
     }
 
@@ -248,6 +255,9 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
 
 void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
 {
+    if (m_isInitialized) {
+        return;
+    }
     m_isInitialized = true;
     m_vertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
     m_vertexBuffer->setUsagePattern(QOpenGLBuffer::DynamicDraw);
