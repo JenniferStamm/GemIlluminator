@@ -273,7 +273,9 @@ void Painter::paint()
 void Painter::initialize()
 {
     m_refractionMap = new CubeMap(*m_gl, QString("refraction"));
+    m_refractionMap->update(QString("refraction"));
     m_rainbowMap = new CubeMap(*m_gl, QString("rainbow"));
+    m_rainbowMap->update(QString("rainbow"));
     m_quad = new ScreenAlignedQuad();
 
     initializeShaderPrograms();
@@ -418,7 +420,7 @@ void Painter::initializeShaderPrograms()
 
 void Painter::initializeEnvMap()
 {
-    m_envMap->initialize();
+    m_envMap->update(Config::instance()->envMap());
 }
 
 void Painter::renderLightRays(const Camera &camera)

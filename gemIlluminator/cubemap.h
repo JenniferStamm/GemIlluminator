@@ -16,17 +16,18 @@ public:
     CubeMap(QOpenGLFunctions &gl, QString cubeMapPrefix,QObject *parent = 0);
     virtual ~CubeMap();
 
-    void initialize();
+    void update(QString newCubeMapPrefix);
 
     void paint(const Camera &camera);
 
     uint cubeMapTexture();
 
 protected:
+    void initialize();
     void initializeShaderProgram();
 
 protected:
-    uint m_envMap;
+    uint m_cubeMap;
     QOpenGLFunctions &m_gl;
     QString m_cubeMapPrefix;
     bool m_initialized;

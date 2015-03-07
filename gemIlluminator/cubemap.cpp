@@ -24,17 +24,15 @@ CubeMap::~CubeMap()
 {
     delete m_quad;
 
-    m_gl.glDeleteTextures(1, &m_envMap);
+    m_gl.glDeleteTextures(1, &m_cubeMap);
 
     delete m_shaderProgram;
 }
 
-void CubeMap::initialize()
+void CubeMap::update(QString newCubeMapPrefix)
 {
-    // Initialize squad
-    m_quad = new ScreenAlignedQuad();
+    m_cubeMapPrefix = newCubeMapPrefix;
 
-    // Initialize Cube Map
     QMap<GLenum, QImage> images;
     images[GL_TEXTURE_CUBE_MAP_POSITIVE_X] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_px.png").convertToFormat(QImage::Format_RGBA8888);
     images[GL_TEXTURE_CUBE_MAP_NEGATIVE_X] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_nx.png").convertToFormat(QImage::Format_RGBA8888);
@@ -43,8 +41,8 @@ void CubeMap::initialize()
     images[GL_TEXTURE_CUBE_MAP_POSITIVE_Z] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_pz.png").convertToFormat(QImage::Format_RGBA8888);
     images[GL_TEXTURE_CUBE_MAP_NEGATIVE_Z] = QImage(":/data/" + m_cubeMapPrefix + "_env_cube_nz.png").convertToFormat(QImage::Format_RGBA8888);
 
-    m_gl.glGenTextures(1, &m_envMap);
-    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap);
+    m_gl.glGenTextures(1, &m_cubeMap);
+    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMap);
 
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -52,7 +50,7 @@ void CubeMap::initialize()
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     m_gl.glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap);
+    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMap);
 
     QList<GLenum> faces = QList<GLenum>()
             << GL_TEXTURE_CUBE_MAP_POSITIVE_X << GL_TEXTURE_CUBE_MAP_NEGATIVE_X
@@ -63,10 +61,6 @@ void CubeMap::initialize()
             const QImage &image(images[face]);
             m_gl.glTexImage2D(face, 0, GL_RGBA, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
         }
-
-    initializeShaderProgram();
-
-    m_initialized = true;
 }
 
 void CubeMap::paint(const Camera &camera)
@@ -85,7 +79,7 @@ void CubeMap::paint(const Camera &camera)
     m_gl.glDepthMask(GL_FALSE);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glEnable(GL_TEXTURE_CUBE_MAP);
-    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap);
+    m_gl.glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMap);
 
     m_shaderProgram->bind();
     m_quad->draw(m_gl);
@@ -99,7 +93,20 @@ void CubeMap::paint(const Camera &camera)
 
 uint CubeMap::cubeMapTexture()
 {
-    return m_envMap;
+    return m_cubeMap;
+}
+
+void CubeMap::initialize()
+{
+    // Initialize squad
+    m_quad = new ScreenAlignedQuad();
+
+    // Initialize Cube Map
+    update(m_cubeMapPrefix);
+
+    initializeShaderProgram();
+
+    m_initialized = true;
 }
 
 void CubeMap::initializeShaderProgram()
