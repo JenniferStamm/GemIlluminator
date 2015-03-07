@@ -43,6 +43,7 @@ class GemRenderer
         ~GemRenderData();
 
         void cleanup(QOpenGLFunctions &gl);
+        void initialize(QOpenGLFunctions &gl);
 
         void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program);
         void addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl);
@@ -54,7 +55,6 @@ class GemRenderer
 
     protected:
         void addGem(GemDataInfo *gem, QOpenGLFunctions &gl);
-        void initialize(QOpenGLFunctions &gl);
         void updateGem(GemDataInfo *gem, QOpenGLFunctions &gl);
 
     protected:
@@ -79,15 +79,13 @@ public:
     ~GemRenderer();
 
     void cleanup(QOpenGLFunctions &gl);
+    void initialize(QOpenGLFunctions &gl);
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
     void setSceneExtent(float extent);
     void updateGem(AbstractGem *gem);
 
 protected:
-    void initialize(QOpenGLFunctions &gl);
-    void paintGemsOptimizedWithTexture(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program);
-
-    void updateGemForTextureOptimization(AbstractGem *gem);
+    void updateData(QOpenGLFunctions &gl);
 
 protected:
     bool m_isInitialized;

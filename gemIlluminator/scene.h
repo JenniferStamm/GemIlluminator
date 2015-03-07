@@ -42,7 +42,6 @@ public:
 
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
-
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
      * @param ray Ray send into scene to find gem.
@@ -59,28 +58,28 @@ public:
      */
     AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
-    /**
-     * @brief Finds intersected face of nearest gem intersected by given ray.
-     * @param ray Ray send into scene to find gem face.
-     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected face of a gem. Returns never nullptr.
-     */
-    Triangle *findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
-
     void setCurrentGem(AbstractGem *currentGem);
 
     LightRay *rootLightRay() const;
     void setRootLightRay(LightRay *rootLightRay);
 
+    bool isPlayerAlive() const;
+
 signals:
     void cubesChanged();
     void geometriesChanged();
     void rootLightRayChanged();
+    void gameStarted();
+    void gameLost();
 
 public slots:
     virtual void sync(int elapsedTime);
     virtual void cleanupGL(QOpenGLFunctions &gl);
+
+    void handleGameLost();
+    void handleGameStarted();
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 
