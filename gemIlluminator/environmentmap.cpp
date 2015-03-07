@@ -25,6 +25,11 @@ EnvironmentMap::~EnvironmentMap()
     delete m_quad;
 
     m_gl.glDeleteTextures(1, &m_envMap);
+
+    for (auto i : *m_shaderPrograms) {
+        delete i;
+    }
+    delete m_shaderPrograms;
 }
 
 void EnvironmentMap::initialize()
