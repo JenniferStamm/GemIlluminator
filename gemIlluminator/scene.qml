@@ -24,6 +24,7 @@ Scene {
     onGameStarted: {
         pause.visible = true
         highscore.visible = true
+        gameOver.visible = false
         painter.resetTimer()
         score = 0
         timer.start()

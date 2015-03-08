@@ -84,7 +84,7 @@ ApplicationWindow {
                     painter.scene !== null) {
                 gameOver.visible = false;
                 event.accepted = true
-                mainMenu.visible = true
+                highscore.visible = true
                 Soundmanager.stopBackgroundMusic()
 
                 painter.clearScene()
@@ -116,23 +116,37 @@ ApplicationWindow {
         anchors.fill: parent
 
         startButton.onClicked: {
-            seedInput.visible = true
+            seedInput.visible = true;
         }
+    }
+
+    Options {
+        id: options
+
+    }
+
+    Credits {
+        id: credits
+
     }
 
     SeedInput {
         id: seedInput
     }
 
-    NavigationFile {
+    NavigationView {
         id: navigation
     }
 
-    ConfigFile {
+    ConfigView {
         id: config
     }
 
-    PainterFile {
+    PainterView {
         id: painter
+    }
+
+    HighscoreView {
+        id: highscore
     }
 }

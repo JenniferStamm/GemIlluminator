@@ -25,8 +25,10 @@ SOURCES += main.cpp \
     gamelostray.cpp \
     soundmanager.cpp \
     blureffect.cpp \
-    cubemap.cpp \
-    environmentmap.cpp
+    environmentmap.cpp \
+    fileio.cpp \
+    highscore.cpp \
+    cubemap.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -73,17 +75,22 @@ HEADERS += \
     soundmanager.h \
     blureffect.h \
     shaderprograms.h \
-    cubemap.h \
-    environmentmap.h
+    environmentmap.h \
+    fileio.h \
+    highscore.h \
+    cubemap.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
 
 win32 {
-    install_it.path = $$DESTDIR/assets
-    install_it.files = assets/config.json
+    install_config.path = $$DESTDIR/assets
+    install_config.files = assets/config.json
 
-    INSTALLS += install_it
+    install_highscore.path = $$DESTDIR/assets
+    install_highscore.files = assets/highscore.dat
+
+    INSTALLS += install_config install_highscore
 }
 
 android {

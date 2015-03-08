@@ -12,7 +12,7 @@ Rectangle {
         label: "Back"
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 5 * Screen.pixelDensity
+        anchors.bottomMargin: 2 * Screen.pixelDensity
 
         onClicked: {
             credits.visible = false

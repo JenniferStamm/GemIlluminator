@@ -5,6 +5,6 @@
 	"GemRangeSize": [0.1, 1.5],
 	"AvailableEnvMaps": ["gold", "sky"],
 	"EnvMap": "gold",
-	"ViewportRatio": 4,
-	"NavigationSmoothnessFactor": 0.5
+    "ViewportRatio": 4,
+    "NavigationSmoothnessFactor": 0.5
 }

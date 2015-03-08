@@ -12,6 +12,9 @@ public:
 
 signals:
     void gameLost();
+
+protected:
+    bool m_alreadyLost;
 };
 
 #endif // GAMELOSTRAY_H
