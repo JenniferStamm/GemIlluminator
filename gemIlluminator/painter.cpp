@@ -40,6 +40,9 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_counter(0)
   , m_oldElapsed(0)
   , m_time(new QTime())
+  , m_sceneRenderer(nullptr)
+  , m_camera(new Camera())
+  , m_previewCamera(new Camera())
 {
     m_gl->initializeOpenGLFunctions();
 }
@@ -66,9 +69,9 @@ Painter::~Painter()
     m_gl->glDeleteFramebuffers(1, &m_glowSceneFBO);
     m_gl->glDeleteFramebuffers(1, &m_glowPreviewSceneFBO);
 
-    if (m_scene) {
-        m_scene->cleanupGL(*m_gl);
-    }
+    delete m_sceneRenderer;
+    delete m_camera;
+    delete m_previewCamera;
 
     delete m_gl;
     delete m_quad;
@@ -89,14 +92,32 @@ void Painter::setActive(bool active)
     m_active = active;
 }
 
-Scene* Painter::scene() const
+void Painter::clearScene()
 {
-    return m_scene;
+    if (m_sceneRenderer) {
+        m_sceneRenderer->cleanup(*m_gl);
+        delete m_sceneRenderer;
+        m_sceneRenderer = nullptr;
+    }
 }
 
-void Painter::setScene(Scene *scene)
+void Painter::synchronizeScene(Scene *scene)
 {
-    m_scene = scene;
+    if (!scene) {
+        clearScene();
+        return;
+    }
+    if (!m_sceneRenderer) {
+        m_sceneRenderer = new SceneRenderer();
+    }
+    delete m_camera;
+    m_camera = new Camera(*scene->camera());
+
+    delete m_previewCamera;
+    m_previewCamera = new Camera(*scene->previewCamera());
+
+    m_sceneRenderer->synchronizeGeometries(scene->geometries());
+    m_sceneRenderer->synchronizeLightRays(scene->rootLightRay());
 }
 
 void Painter::paint()
@@ -124,11 +145,11 @@ void Painter::paint()
         m_gl->glDepthMask(GL_TRUE);
 
         // Render to texture
-        int viewportHeight = m_scene->camera()->viewport().height();
-        int viewportWidth = m_scene->camera()->viewport().width();
+        int viewportHeight = m_camera->viewport().height();
+        int viewportWidth = m_camera->viewport().width();
 
-        int previewViewportHeight = m_scene->previewCamera()->viewport().height();
-        int previewViewportWidth = m_scene->previewCamera()->viewport().width();
+        int previewViewportHeight = m_previewCamera->viewport().height();
+        int previewViewportWidth = m_previewCamera->viewport().width();
         float previewSize = 1.f / (static_cast<float>(viewportWidth) / previewViewportWidth);
 
         int glowSceneViewportHeight = viewportHeight / m_blurViewportRatioScene;
@@ -138,7 +159,7 @@ void Painter::paint()
         bool viewportChanged = false;
         if (m_usedViewport->height() != viewportHeight
                 || m_usedViewport->width() != viewportWidth) {
-            *m_usedViewport = m_scene->camera()->viewport();
+            *m_usedViewport = m_camera->viewport();
             viewportChanged = true;
         }
 
@@ -159,10 +180,10 @@ void Painter::paint()
         m_gl->glClearColor(1.0, 0.0, 0.0, 0.0);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderLightRays(*m_scene->camera());
+        renderLightRays(*m_camera);
 
         if (m_blurEffectScene) {
-            m_blurEffectScene->renderGlowToTexture(*m_scene->camera());
+            m_blurEffectScene->renderGlowToTexture(*m_camera);
         }
 
         // Render preview lightrays to glowPreviewSceneTexture for glow
@@ -181,10 +202,10 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderLightRays(*m_scene->previewCamera());
+        renderLightRays(*m_previewCamera);
 
         if (m_blurEffectPreviewScene) {
-            m_blurEffectPreviewScene->renderGlowToTexture(*m_scene->previewCamera());
+            m_blurEffectPreviewScene->renderGlowToTexture(*m_previewCamera);
         }
 
         // scene
@@ -204,7 +225,7 @@ void Painter::paint()
         m_gl->glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderScene(*m_scene->camera());
+        renderScene(*m_camera);
 
         // preview scene
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, m_previewSceneFBO);
@@ -223,7 +244,7 @@ void Painter::paint()
 
         m_gl->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        renderScene(*m_scene->previewCamera());
+        renderScene(*m_previewCamera);
 
         // Render to the screen
         m_gl->glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -428,7 +449,7 @@ void Painter::initializeEnvMap()
 
 void Painter::renderLightRays(const Camera &camera)
 {
-    m_scene->paintLightRays(*m_gl, camera.viewProjection(), *m_shaderPrograms);
+    m_sceneRenderer->paintLightRays(*m_gl, camera.viewProjection(), *m_shaderPrograms);
 }
 
 void Painter::renderScene(const Camera &camera)
@@ -454,13 +475,11 @@ void Painter::renderScene(const Camera &camera)
     m_gl->glActiveTexture(GL_TEXTURE2);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_rainbowMap->cubeMapTexture());
 
-    // Use shaderPrograms to insert different shader programs
-    // At the moment m_shaderProgram is sufficient
-    QMap<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
+    QHash<ShaderPrograms, QOpenGLShaderProgram*> shaderPrograms;
     shaderPrograms.insert(ShaderPrograms::GemProgram, m_shaderPrograms->value(ShaderPrograms::GemProgram));
     shaderPrograms.insert(ShaderPrograms::LighRayProgram, m_shaderPrograms->value(ShaderPrograms::LighRayProgram));
 
-    m_scene->paint(*m_gl, camera.viewProjection(), *m_shaderPrograms);
+    m_sceneRenderer->paint(*m_gl, camera.viewProjection(), shaderPrograms);
 
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);

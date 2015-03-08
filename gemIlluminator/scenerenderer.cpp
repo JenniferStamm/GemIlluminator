@@ -59,6 +59,11 @@ void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewP
     m_lightRayRenderer->paint(gl, viewProjection, shaderProgram);
 }
 
+void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram *> &shaderPrograms)
+{
+    paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
+}
+
 void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
 {
     for (auto gem : geometries) {

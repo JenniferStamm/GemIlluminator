@@ -21,7 +21,7 @@ enum class ShaderPrograms;
 class Scene : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
+    Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometriesQML NOTIFY geometriesChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
     Q_PROPERTY(Camera* previewCamera READ previewCamera WRITE setPreviewCamera)
     Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
@@ -30,7 +30,8 @@ public:
     explicit Scene(QQuickItem *parent = 0);
     virtual ~Scene();
 
-    QQmlListProperty<AbstractGem> geometries();
+    QQmlListProperty<AbstractGem> geometriesQML();
+    QList<AbstractGem *> geometries();
 
     Camera* camera() const;
     void setCamera(Camera *camera);
@@ -73,7 +74,7 @@ signals:
     void gameLost();
 
 public slots:
-    virtual void sync(int elapsedTime);
+    virtual void update(int elapsedTime);
     virtual void cleanupGL(QOpenGLFunctions &gl);
 
     void handleGameLost();
@@ -88,7 +89,7 @@ protected:
     Camera *m_camera;
     Camera *m_previewCamera;
     AbstractGem *m_currentGem;
-    QList<AbstractGem*> m_gem;
+    QList<AbstractGem*> m_gems;
     Navigation *m_navigation;
     SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;

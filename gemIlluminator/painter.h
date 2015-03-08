@@ -15,6 +15,7 @@ class EnvironmentMap;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
+class SceneRenderer;
 enum class ShaderPrograms;
 
 /**
@@ -34,8 +35,8 @@ public:
     bool isActive() const;
     void setActive(bool active);
 
-    Scene *scene() const;
-    void setScene(Scene *scene);
+    void clearScene();
+    void synchronizeScene(Scene *scene);
 
     QOpenGLFunctions &gl() const;
 
@@ -92,6 +93,9 @@ protected:
     int m_oldElapsed;
     QTime *m_time;
 
+    SceneRenderer *m_sceneRenderer;
+    Camera *m_camera;
+    Camera *m_previewCamera;
 };
 
 #endif // PAINTER_H

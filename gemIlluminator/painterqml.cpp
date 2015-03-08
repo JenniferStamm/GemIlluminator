@@ -14,6 +14,7 @@ PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
   , m_active(false)
   , m_isAppActive(true)
+  , m_isSceneDeletionRequired(false)
   , m_isUpdatePending(false)
   , m_painter(nullptr)
   , m_paintingDoneEventType(-1)
@@ -111,6 +112,7 @@ Scene* PainterQML::scene() const
 void PainterQML::setScene(Scene *scene)
 {
     m_scene = scene;
+    m_isSceneDeletionRequired = !(scene);
 }
 
 bool PainterQML::isAppActive() const
@@ -143,17 +145,19 @@ void PainterQML::synchronize()
     }
 
     m_painter->setActive(m_active && m_isAppActive);
-    m_painter->setScene(m_scene);
 
+    if (m_isSceneDeletionRequired) {
+        m_painter->clearScene();
+        m_isSceneDeletionRequired = false;
+    }
     if (m_active && m_isAppActive) {
         if (!m_time) {
             m_time = new QTime();
             m_time->start();
         }
-
         int elapsedTime = m_time->restart();
-
-        m_scene->sync(elapsedTime);
+        m_scene->update(elapsedTime);
+        m_painter->synchronizeScene(m_scene);
     }
 }
 

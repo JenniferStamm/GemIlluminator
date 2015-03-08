@@ -34,17 +34,14 @@ Scene::~Scene()
     delete m_renderer;
 }
 
-void Scene::sync(int elapsedTime)
+QList<AbstractGem *> Scene::geometries()
+{
+    return m_gems;
+}
+
+void Scene::update(int elapsedTime)
 {
     m_rootLightRay->update(elapsedTime);
-
-    if (!m_renderer) {
-        m_renderer = new SceneRenderer();
-        connect(m_renderer, &SceneRenderer::initalizationDone, this, &Scene::handleGameStarted);
-    }
-
-    m_renderer->synchronizeGeometries(m_gem);
-    m_renderer->synchronizeLightRays(m_rootLightRay);
 }
 
 void Scene::cleanupGL(QOpenGLFunctions &gl)
@@ -71,9 +68,9 @@ void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const 
     m_renderer->paint(gl, viewProjection, shaderPrograms);
 }
 
-QQmlListProperty<AbstractGem> Scene::geometries()
+QQmlListProperty<AbstractGem> Scene::geometriesQML()
 {
-    return QQmlListProperty<AbstractGem>(this, m_gem);
+    return QQmlListProperty<AbstractGem>(this, m_gems);
 }
 
 void Scene::registerNavigation(Navigation *navigation)
@@ -136,7 +133,7 @@ AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisi
 {
     AbstractGem *result = m_bounds;
     float distance = m_bounds->intersectedBy(ray, collisionPoint);
-    for( auto& gem : m_gem ){
+    for( auto& gem : m_gems ){
         QVector3D temp;
         float collisionDistance = gem->intersectedBy(ray, &temp);
         if (collisionDistance < distance) {
@@ -155,7 +152,7 @@ AbstractGem *Scene::findGemWithBoundingSphereIntersectedBy(const LightRay &ray, 
 {
     AbstractGem *result = m_bounds;
     float distance = m_bounds->boundingSphereIntersectedBy(ray, collisionPoint);
-    for( auto& gem : m_gem ){
+    for( auto& gem : m_gems ){
         QVector3D temp;
         float collisionDistance = gem->boundingSphereIntersectedBy(ray, &temp);
         if (collisionDistance < distance) {
