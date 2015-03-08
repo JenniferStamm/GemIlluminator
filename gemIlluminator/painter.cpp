@@ -123,7 +123,7 @@ void Painter::synchronizeScene(Scene *scene)
 
 void Painter::paint()
 {
-    if (m_active) {
+    if (m_active && m_sceneRenderer) {
         if (!m_initialized) {
             initialize();
             m_time->start();
