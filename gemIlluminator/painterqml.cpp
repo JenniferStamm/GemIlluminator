@@ -93,7 +93,7 @@ QEvent::Type PainterQML::paintingDoneEventType()
 void PainterQML::reloadEnvMap()
 {
     if (m_painter) {
-       m_painter->initializeEnvMap();
+       m_painter->updateEnvMap();
     }
 }
 

@@ -440,7 +440,7 @@ void Painter::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::SceneProgram, sceneProgram);
 }
 
-void Painter::initializeEnvMap()
+void Painter::updateEnvMap()
 {
     if (m_envMap) {
         m_envMap->update(Config::instance()->envMap());
@@ -493,9 +493,4 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->disableAttributeArray(1);
 
     gemProgram->release();
-}
-
-QOpenGLFunctions &Painter::gl() const
-{
-    return *m_gl;
 }

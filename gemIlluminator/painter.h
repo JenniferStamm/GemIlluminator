@@ -20,29 +20,56 @@ enum class ShaderPrograms;
 
 /**
  * @brief The Painter class
- * @detail Includes the rendering process, thus creates the whole picture
+ * @detail Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread
  *
  */
 class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(PainterQML *painter, QObject *parent = 0);
+    /**
+     * @brief Constructor of Painter
+     * @param painter Corresponding QML-Painter. Will be informed about finished rendering.
+     * @param parent QObject-parent
+     */
+    explicit Painter(PainterQML *painter, QObject *parent = 0);
+
+    /**
+     * @brief Destrutor. Will delete all rendering related classes and ressources.
+     */
     virtual ~Painter();
 
-    void initializeEnvMap();
+    /**
+     * @brief Updates enviorment map using config file
+     */
+    void updateEnvMap();
 
+    /**
+     * @brief Check if Painter is active. Active means the painter is rendering.
+     * @return Active state of painter.
+     */
     bool isActive() const;
+    /**
+     * @brief Set Active state. If active is true the painter renders the picture.
+     * @param active
+     */
     void setActive(bool active);
 
+    /**
+     * @brief Clears the scene and removes all anymore required ressources.
+     */
     void clearScene();
+
+    /**
+     * @brief Painter copies all needed information of scene into own thread.
+     * @param scene The scene that should be synchronized. If nullptr is passed it is like clearScene()
+     */
     void synchronizeScene(Scene *scene);
 
-    QOpenGLFunctions &gl() const;
-
-signals:
-
 public slots:
+    /**
+     * @brief Starts rendering and paints the whole picture.
+     */
     void paint();
 
 protected:
