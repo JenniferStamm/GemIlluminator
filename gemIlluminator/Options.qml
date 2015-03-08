@@ -26,6 +26,7 @@ Rectangle {
             config.saveConfig()
             painter.reloadEnvMap()
             inputElement.focus = true
+            mainMenu.visible = true
         }
     }
 
