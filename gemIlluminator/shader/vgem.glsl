@@ -21,7 +21,9 @@ uniform vec3 eye;
 
 varying vec3 v_color;
 varying vec3 v_eyeVector;
+varying float v_index;
 varying vec3 v_normal;
+varying vec3 v_vertex;
 
 vec2 getUVOfGemAttribute(float gemIndex, float attributeIndex)
 {
@@ -85,5 +87,7 @@ void drawOptimizedWithTexture()
 
 void main()
 {
+    v_index = a_index;
+    v_vertex = a_vertex;
     drawOptimizedWithTexture();
 }
