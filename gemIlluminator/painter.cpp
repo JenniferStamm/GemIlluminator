@@ -109,6 +109,7 @@ void Painter::synchronizeScene(Scene *scene)
     }
     if (!m_sceneRenderer) {
         m_sceneRenderer = new SceneRenderer();
+        connect(m_sceneRenderer, &SceneRenderer::initalizationDone, this, &Painter::handleInitializeDone);
     }
     delete m_camera;
     m_camera = new Camera(*scene->camera());
@@ -122,7 +123,7 @@ void Painter::synchronizeScene(Scene *scene)
 
 void Painter::paint()
 {
-    if (m_active) {
+    if (m_active && m_sceneRenderer) {
         if (!m_initialized) {
             initialize();
             m_time->start();
@@ -493,4 +494,9 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->disableAttributeArray(1);
 
     gemProgram->release();
+}
+
+void Painter::handleInitializeDone()
+{
+    emit initializeDone();
 }

@@ -111,6 +111,14 @@ Scene* PainterQML::scene() const
 
 void PainterQML::setScene(Scene *scene)
 {
+    if (m_painter) {
+        if (m_scene) {
+            disconnect(m_painter, &Painter::initializeDone, m_scene, &Scene::handleGameStarted);
+        }
+        if (scene) {
+            connect(m_painter, &Painter::initializeDone, scene, &Scene::handleGameStarted, Qt::QueuedConnection);
+        }
+    }
     m_scene = scene;
     m_isSceneDeletionRequired = true;
 }
@@ -142,9 +150,12 @@ void PainterQML::synchronize()
     if (!m_painter) {
         m_painter = new Painter(this, nullptr);
         connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
+        if (m_scene) {
+            connect(m_painter, &Painter::initializeDone, m_scene, &Scene::handleGameStarted, Qt::QueuedConnection);
+        }
     }
 
-    m_painter->setActive(m_active && m_isAppActive);
+    m_painter->setActive(m_isAppActive);
 
     if (m_isSceneDeletionRequired) {
         m_painter->clearScene();

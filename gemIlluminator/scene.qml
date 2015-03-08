@@ -149,10 +149,14 @@ Scene {
         onPressedChanged: {
             if (pressed) {
                 painter.active = !painter.active
+
                 if (painter.active) {
-                    timer.start()
+                    timer.start();
+                    pause.image.source = "qrc:/data/pauseButton.png";
                 } else {
-                    timer.stop()
+                    timer.stop();
+                    pause.image.source = "qrc:/data/playButton.png";
+
                 }
             }
         }
