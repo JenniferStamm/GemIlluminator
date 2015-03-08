@@ -15,13 +15,7 @@ Rectangle {
         y: parent.height / 2 + 10 * Screen.pixelDensity
 
         onClicked: {
-            seedInput.visible = false
-            loadScreen.visible = true
-            inputElement.focus = true
-
-            Soundmanager.playBackgroundMusic()
-            painter.seed = seedString.text
-            painter.generateScene()
+            submitSeedInput();
         }
     }
 
@@ -50,15 +44,20 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
 
             Keys.onReturnPressed: {
-                seedInput.visible = false
-                loadScreen.visible = true
-                inputElement.focus = true
-
-                Soundmanager.playBackgroundMusic()
-                painter.seed = seedString.text
-                painter.generateScene()
+                submitSeedInput();
             }
         }
+    }
+
+    function submitSeedInput()
+    {
+        seedInput.visible = false;
+        loadScreen.visible = true;
+        inputElement.focus = true;
+
+        Soundmanager.playBackgroundMusic();
+        painter.seed = seedString.text;
+        painter.generateScene();
     }
 }
 

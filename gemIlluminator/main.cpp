@@ -10,6 +10,7 @@
 #include "camera.h"
 #include "config.h"
 #include "cubegem.h"
+#include "highscore.h"
 #include "lightray.h"
 #include "navigation.h"
 #include "painterqml.h"
@@ -50,6 +51,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<TetrahedronGem>("GemIlluminator", 1, 0, "TetrahedronGem");
     qmlRegisterType<Player>("GemIlluminator", 1, 0, "Player");
     qmlRegisterType<LightRay>("GemIlluminator", 1, 0, "LightRay");
+    qmlRegisterType<Highscore>("GemIlluminator", 1, 0, "Highscore");
     qmlRegisterType<Camera>("GemIlluminator", 1, 0, "Camera");
     qmlRegisterType<Navigation>("GemIlluminator", 1, 0, "Navigation");
     qmlRegisterSingletonType<Config>("GemIlluminator", 1, 0, "Config", configSingletontypeProvider);

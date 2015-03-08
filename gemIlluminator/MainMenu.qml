@@ -43,6 +43,7 @@ Rectangle {
 
             onClicked: {
                 options.visible = true
+                mainMenu.visible = false
             }
         }
 
@@ -55,6 +56,7 @@ Rectangle {
 
             onClicked: {
                 credits.visible = true
+                mainMenu.visible = false
             }
         }
 
@@ -81,15 +83,5 @@ Rectangle {
             height: parent.height
             width: 0.5 * Screen.pixelDensity
         }
-    }
-
-    Options {
-        id: options
-
-    }
-
-    Credits {
-        id: credits
-
     }
 }

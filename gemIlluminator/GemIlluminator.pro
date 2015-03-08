@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     soundmanager.cpp \
     blureffect.cpp \
     environmentmap.cpp \
-    fileio.cpp
+    fileio.cpp \
+    highscore.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
@@ -73,16 +74,20 @@ HEADERS += \
     blureffect.h \
     shaderprograms.h \
     environmentmap.h \
-    fileio.h
+    fileio.h \
+    highscore.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
 
 win32 {
-    install_it.path = $$DESTDIR/assets
-    install_it.files = assets/config.json
+    install_config.path = $$DESTDIR/assets
+    install_config.files = assets/config.json
 
-    INSTALLS += install_it
+    install_highscore.path = $$DESTDIR/assets
+    install_highscore.files = assets/highscore.dat
+
+    INSTALLS += install_config install_highscore
 }
 
 android {

@@ -120,6 +120,7 @@ Rectangle {
         color: "#33b5e5"
         height: 10 * Screen.pixelDensity
         width: 60 * Screen.pixelDensity
+
         Text {
             text: "Control Sensitivity:"
             font.pointSize: 12
