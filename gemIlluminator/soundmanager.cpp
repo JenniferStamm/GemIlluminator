@@ -81,6 +81,7 @@ void Soundmanager::loadSounds()
     collisionSound->addMedia(QUrl("qrc:/data/sound/collision5.mp3"));
     collisionSound->addMedia(QUrl("qrc:/data/sound/collision6.mp3"));
     collisionSound->addMedia(QUrl("qrc:/data/sound/collision7.mp3"));
+    collisionSound->addMedia(QUrl("qrc:/data/sound/gameover.mp3"));
     collisionSound->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     m_collisionSound->setPlaylist(collisionSound);
     m_collisionSound->setVolume(100);

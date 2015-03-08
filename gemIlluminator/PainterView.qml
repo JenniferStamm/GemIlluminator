@@ -26,10 +26,12 @@ Painter {
     }
 
     onIsAppActiveChanged: {
-        if (isAppActive) {
-            scene.timerId.start()
-        } else {
-            scene.timerId.stop()
+        if (scene !== null) {
+            if (isAppActive) {
+                scene.timerId.start()
+            } else {
+                scene.timerId.stop()
+            }
         }
     }
 }

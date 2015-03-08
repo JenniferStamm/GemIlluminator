@@ -3,6 +3,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 
 Rectangle {
+    id: gameOver
     visible: false
     anchors.fill: parent
     color: "transparent"
@@ -30,12 +31,65 @@ Rectangle {
     }
 
     Text {
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: Screen.pixelDensity * 50
+        text: "Name"
+        font.pointSize: 16
+        color: "white"
+    }
+
+
+    Rectangle {
+        color: "#33b5e5"
+        width: 60 * Screen.pixelDensity
+        height: 10 * Screen.pixelDensity
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: Screen.pixelDensity * 60
+
+        TextInput {
+            id: gameOverName
+            cursorVisible: false
+            anchors.fill: parent
+            font.pointSize: 16
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            Keys.onReturnPressed: {
+                submitGameOver();
+            }
+        }
+    }
+
+    MenuButton {
+        label: "Submit Score"
+        width: 60 * Screen.pixelDensity
+        height: 10 * Screen.pixelDensity
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: Screen.pixelDensity * 75
+
+        onClicked: {
+            submitGameOver();
+        }
+    }
+
+    Text {
         anchors.top: gameOverText.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: Screen.pixelDensity * 2
         text: "Score: " + finalScore
         font.pointSize: 18
         color: "white"
+    }
+
+    function submitGameOver()
+    {
+        highscore.highscore.checkHighscore(gameOverName.text, finalScore);
+        gameOver.visible = false;
+        highscore.visible = true;
     }
 }
 
