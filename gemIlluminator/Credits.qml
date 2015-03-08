@@ -15,7 +15,8 @@ Rectangle {
         anchors.bottomMargin: 2 * Screen.pixelDensity
 
         onClicked: {
-            credits.visible = false
+            credits.visible = false;
+            mainMenu.visible = true;
         }
     }
 }

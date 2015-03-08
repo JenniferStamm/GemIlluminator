@@ -88,7 +88,9 @@ Rectangle {
     function submitGameOver()
     {
         highscore.highscore.checkHighscore(gameOverName.text, finalScore);
+        finalScore = 0;
         gameOver.visible = false;
+        painter.clearScene();
         highscore.visible = true;
     }
 }
