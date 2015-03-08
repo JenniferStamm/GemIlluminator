@@ -12,9 +12,8 @@ GameLostRay::GameLostRay(QObject *parent) :
 void GameLostRay::update(int timeDifference)
 {
     if (m_player) {
-        emit gameLost();
-
         if (!m_alreadyLost) {
+            emit gameLost();
             Soundmanager::instance()->setCollisionSound(SoundEffects::GameOver);
             Soundmanager::instance()->playCollisionSound();
             Soundmanager::instance()->stopBackgroundMusic();

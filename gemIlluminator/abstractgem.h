@@ -75,6 +75,10 @@ public:
     virtual QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
 
 public slots:
+    /**
+     * @brief Sets rotation of gem using euler angles. This method is mainly used to set initial rotation.
+     * @param eulerRotation QVector3D containing the euler angles. The member of eulerVector contains corresponding rotation along axis (x component = rotation around x axis). The angle around axis is specified in degrees.
+     */
     void setRotationFromEuler(const QVector3D &eulerRotation);
 
 signals:
