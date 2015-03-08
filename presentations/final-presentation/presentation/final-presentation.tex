@@ -36,56 +36,6 @@
 	]{}{http://www.youtube.com/v/pz10FPVzF1k}
 \end{frame}
 
-% 2m
-\begin{frame}{Game Features}
-	%Must-Haves, Should-Haves, Nice-To-Haves
-	\begin{itemize}
-		\item Start-Menü, Options-Menü mit Konfigurationsdatei, Ladebalken
-		\item Kristalllandschaftgenerierung mit Seeds
-		\item Verschiedene Kristalle
-		\item Wechselnde Lichtstrahlfarbe
-		\item Einfluss auf die Kristallfarbe
-		\item Reflektion bei Kollision
-		\item Pause-Button
-		\item Hintergrundmusik und Soundeffekte
-		\item Spielende und Highscore
-	\end{itemize}
-\end{frame}
-
-% 2m
-\slideonetoone
-{Computergraphic Features}
-{
-	\begin{figure}
-		\centering
-		\subcaptionbox{Environment Mapping}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/envmap}}
-		\subcaptionbox{Preview-Window}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/previewwindow}}
-	\end{figure}
-}
-{
-	\begin{figure}
-		\centering
-		\subcaptionbox{Licht- und Kristalleffekte}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/kristalleffekt}}
-		\subcaptionbox{Glow-Effekt}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/glow}}
-	\end{figure}
-}
-
-% 1m
-\begin{frame}{Architektur -- Zwischenstandspräsentation}
-	\begin{figure}
-		\centering
-		\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{images/klassendiagramm}
-	\end{figure}
-\end{frame}
-
-% 4m
-\begin{frame}{Architektur -- Abschlusspräsentation}
-	\begin{figure}
-		\centering
-		\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{images/klassendiagramm-final}
-	\end{figure}
-\end{frame}
-
 % 1m
 \begin{frame}{Entwicklungsumgebung}
 \onetoone
@@ -121,32 +71,70 @@
 \end{table}
 \end{frame}
 
-\begin{frame}{Herausforderungen durch QML}
-	\centering
-	\includemedia[
-	width=0.8\textwidth,height=0.8\textheight,
-	activate=pageopen,
-	flashvars={
-		modestbranding=1 % no YT logo in control bar
-		&autohide=1 % controlbar autohide
-		&showinfo=0 % no title and other info before start
-		&rel=0 % no related videos after end
-	},
-	url % Flash loaded from URL
-	]{}{http://www.youtube.com/v/UPE6igj0wnQ}
+
+% 2m
+%\begin{frame}{Game Features}
+	%Must-Haves, Should-Haves, Nice-To-Haves
+	%\begin{itemize}
+		%\item Start-Menü, Options-Menü mit Konfigurationsdatei, Ladebalken
+		%\item Kristalllandschaftgenerierung mit Seeds
+		%\item Verschiedene Kristalle
+		%\item Wechselnde Lichtstrahlfarbe
+		%\item Einfluss auf die Kristallfarbe
+		%\item Reflektion bei Kollision
+		%\item Pause-Button
+		%\item Hintergrundmusik und Soundeffekte
+		%\item Spielende und Highscore
+	%\end{itemize}
+%\end{frame}
+
+\begin{frame}[c,plain]
+	\begin{tikzpicture}[remember picture,overlay]
+	\node[at=(current page.center)]
+	{
+		\includegraphics[width=\paperwidth, height=\paperheight]{images/screen-final}
+	};
+	\end{tikzpicture}	
+	%\includegraphics[width=\paperwidth]{images/screen-final}
 \end{frame}
 
-% 1m
-\begin{frame}{Herausforderungen durch QML}
+% 2m
+\slideonetoone
+{Computergraphic Features}
+{
 	\begin{figure}
 		\centering
-		\subcaptionbox{Inakurate Dokumentation}{\includegraphics[width=\textwidth, height=0.17\textheight, keepaspectratio]{images/QMLCalibrate}}
-		\subcaptionbox{Unerklärliches Verhalten}{\includegraphics[width=\textwidth, height=0.17\textheight, keepaspectratio]{images/QMLred}}
+		\subcaptionbox{Environment Mapping}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/envmap}}
+		\subcaptionbox{Preview-Window}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/previewwindow}}
 	\end{figure}
+}
+{
 	\begin{figure}
 		\centering
-		\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{images/linkerrorsuccess}
-		\caption{Wage Fehlermeldungen}
+		\subcaptionbox{Licht- und Kristalleffekte}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/kristalleffekt}}
+		\subcaptionbox{Glow-Effekt}{\includegraphics[width=\textwidth, height=0.3\textheight, keepaspectratio]{images/glow}}
+	\end{figure}
+}
+
+% 2m
+\slidegraphic
+{Preview Window \& Glow}
+{images/glowEffekt}
+{}
+
+% 1m
+\begin{frame}{Architektur -- Zwischenstandspräsentation}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{images/klassendiagramm}
+	\end{figure}
+\end{frame}
+
+% 4m
+\begin{frame}{Architektur -- Abschlusspräsentation}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=0.8\textheight, keepaspectratio]{images/klassendiagramm-final}
 	\end{figure}
 \end{frame}
 
@@ -170,11 +158,34 @@
 {images/teaser}
 {}
 
-% 2m
-\slidegraphic
-{Preview Window \& Glow}
-{images/glowEffekt}
-{}
+\begin{frame}{Herausforderungen durch QML}
+	\centering
+	\includemedia[
+	width=0.8\textwidth,height=0.8\textheight,
+	activate=pageopen,
+	flashvars={
+		modestbranding=1 % no YT logo in control bar
+		&autohide=1 % controlbar autohide
+		&showinfo=0 % no title and other info before start
+		&rel=0 % no related videos after end
+	},
+	url % Flash loaded from URL
+	]{}{http://www.youtube.com/v/UPE6igj0wnQ}
+\end{frame}
+
+% 1m
+\begin{frame}{Herausforderungen durch QML}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{images/linkerrorsuccess}
+		\caption{Wage Fehlermeldungen}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=0.17\textheight, keepaspectratio]{images/QMLCalibrate}
+		 \caption{Inakurate Dokumentation}
+	\end{figure}
+\end{frame}
 
 % 1m
 \begin{frame}{Lessons learned - Teamerfahrung}
@@ -184,13 +195,13 @@
 		\item Abgleichen der Fähigkeiten, Erwartungen und Coding Styles
 		\item Zufällig passendes Team
 		\item Konstantes Arbeiten
-		\item Spaß
 	\end{itemize}
 	}
 	{
 	\begin{itemize}
-		\item Das Nachmittagstief
-		\item Änderung des Spielkonzeptes während der Kollaboration mit Martin
+		\item Nachmittagstief
+		\item Durchdachtes Spielkonzept vs. coole Spielidee
+		\item Spaß
 	\end{itemize}
 	}
 	\begin{figure}
