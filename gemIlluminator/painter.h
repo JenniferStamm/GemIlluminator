@@ -72,12 +72,18 @@ public slots:
      */
     void paint();
 
+signals:
+    void initializeDone();
+
 protected:
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
     void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
+
+protected slots:
+    void handleInitializeDone();
 
 protected:
     bool m_active;

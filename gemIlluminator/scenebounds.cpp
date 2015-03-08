@@ -97,7 +97,7 @@ QList<LightRay *> SceneBounds::processRayIntersection(const LightRay &ray, Scene
     QList<LightRay *> result;
     auto lostRay = new GameLostRay();
     lostRay->setStartPosition(ray.endPosition());
-    lostRay->setEndPosition(ray.endPosition() + ray.normalizedDirection());
+    lostRay->setEndPosition(ray.endPosition() + 5 * ray.normalizedDirection());
     lostRay->setScene(scene);
     connect(lostRay, &GameLostRay::gameLost, scene, &Scene::handleGameLost);
     result.append(lostRay);
