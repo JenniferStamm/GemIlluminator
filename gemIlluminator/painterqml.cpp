@@ -112,7 +112,7 @@ Scene* PainterQML::scene() const
 void PainterQML::setScene(Scene *scene)
 {
     m_scene = scene;
-    m_isSceneDeletionRequired = !(scene);
+    m_isSceneDeletionRequired = true;
 }
 
 bool PainterQML::isAppActive() const

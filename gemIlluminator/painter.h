@@ -107,8 +107,6 @@ protected:
     CubeMap *m_rainbowMap;
     CubeMap *m_refractionMap;
 
-    Scene *m_scene;
-
     uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
