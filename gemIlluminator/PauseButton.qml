@@ -10,6 +10,8 @@ Button {
     x: root.width - width
     y: root.height - height
 
+    property alias image: image
+
     style: ButtonStyle {
         background: Rectangle{
             color: "#00000000"
@@ -17,6 +19,7 @@ Button {
     }
 
     Image {
+        id: image
         height: 8 * Screen.pixelDensity
         width: 8 * Screen.pixelDensity
         source: "qrc:/data/pauseButton.png"

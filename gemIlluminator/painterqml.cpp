@@ -144,7 +144,7 @@ void PainterQML::synchronize()
         connect(window(), &QQuickWindow::beforeRendering, m_painter, &Painter::paint, Qt::DirectConnection);
     }
 
-    m_painter->setActive(m_active && m_isAppActive);
+    m_painter->setActive(m_isAppActive);
 
     if (m_isSceneDeletionRequired) {
         m_painter->clearScene();
