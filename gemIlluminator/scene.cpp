@@ -9,11 +9,8 @@
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightray.h"
-#include "lightrayrenderer.h"
 #include "navigation.h"
 #include "scenebounds.h"
-#include "scenerenderer.h"
-#include "shaderprograms.h"
 #include "triangle.h"
 
 Scene::Scene(QQuickItem *parent) :
@@ -23,7 +20,6 @@ Scene::Scene(QQuickItem *parent) :
   , m_previewCamera(nullptr)
   , m_currentGem(m_bounds)
   , m_navigation(nullptr)
-  , m_renderer(nullptr)
   , m_rootLightRay(nullptr)
 {
 }
@@ -31,7 +27,6 @@ Scene::Scene(QQuickItem *parent) :
 Scene::~Scene()
 {
     delete m_bounds;
-    delete m_renderer;
 }
 
 QList<AbstractGem *> Scene::geometries()
@@ -44,15 +39,6 @@ void Scene::update(int elapsedTime)
     m_rootLightRay->update(elapsedTime);
 }
 
-void Scene::cleanupGL(QOpenGLFunctions &gl)
-{
-    if (m_renderer) {
-        m_renderer->cleanup(gl);
-        delete m_renderer;
-        m_renderer = nullptr;
-    }
-}
-
 void Scene::handleGameLost()
 {
     emit gameLost();
@@ -61,11 +47,6 @@ void Scene::handleGameLost()
 void Scene::handleGameStarted()
 {
     emit gameStarted();
-}
-
-void Scene::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
-{
-    m_renderer->paint(gl, viewProjection, shaderPrograms);
 }
 
 QQmlListProperty<AbstractGem> Scene::geometriesQML()
@@ -116,17 +97,6 @@ LightRay* Scene::rootLightRay() const
 void Scene::setRootLightRay(LightRay *rootLightRay)
 {
     m_rootLightRay = rootLightRay;
-}
-
-SceneRenderer& Scene::sceneRenderer() const
-{
-    assert(m_renderer);
-    return *m_renderer;
-}
-
-void Scene::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
-{
-    m_renderer->paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
 }
 
 AbstractGem *Scene::findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint) const

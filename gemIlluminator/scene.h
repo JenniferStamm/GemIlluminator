@@ -11,12 +11,9 @@ class QMatrix4x4;
 class AbstractGem;
 class Camera;
 class LightRay;
-class LightRayRenderer;
 class Navigation;
 class SceneBounds;
-class SceneRenderer;
 class Triangle;
-enum class ShaderPrograms;
 
 class Scene : public QQuickItem
 {
@@ -38,10 +35,6 @@ public:
 
     Camera* previewCamera() const;
     void setPreviewCamera(Camera *camera);
-
-    SceneRenderer& sceneRenderer() const;
-
-    void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
@@ -75,11 +68,9 @@ signals:
 
 public slots:
     virtual void update(int elapsedTime);
-    virtual void cleanupGL(QOpenGLFunctions &gl);
 
     void handleGameLost();
     void handleGameStarted();
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
@@ -91,7 +82,6 @@ protected:
     AbstractGem *m_currentGem;
     QList<AbstractGem*> m_gems;
     Navigation *m_navigation;
-    SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;
 };
 

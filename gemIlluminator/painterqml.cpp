@@ -163,9 +163,6 @@ void PainterQML::synchronize()
 
 void PainterQML::cleanup()
 {
-    if (m_scene) {
-        m_scene->cleanupGL(m_painter->gl());
-    }
     delete m_painter;
     m_painter = nullptr;
 }

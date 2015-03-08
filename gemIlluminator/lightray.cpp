@@ -3,7 +3,6 @@
 #include "abstractgem.h"
 #include "camera.h"
 #include "lightraydata.h"
-#include "lightrayrenderer.h"
 #include "player.h"
 #include "scene.h"
 #include "soundmanager.h"
@@ -15,7 +14,6 @@ LightRay::LightRay(QObject *parent) :
   , m_data(new LightRayData())
   , m_successors(new QList<LightRay *>)
   , m_selectedSuccessor(nullptr)
-  , m_renderer(nullptr)
   , m_isStatic(false)
   , m_player(nullptr)
   , m_scene(nullptr)
@@ -201,13 +199,6 @@ void LightRay::setSelectedSuccessor(LightRay *successor)
 const QList<LightRay *> &LightRay::successors()
 {
     return *m_successors;
-}
-
-void LightRay::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
-{
-    if (m_renderer) {
-        m_renderer->paint(gl, viewProjection, shaderProgram);
-    }
 }
 
 void LightRay::calculateSuccessors()

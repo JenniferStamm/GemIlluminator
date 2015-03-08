@@ -13,6 +13,7 @@ class AbstractGem;
 class GemRenderer;
 class LightRay;
 class LightRayRenderer;
+enum class ShaderPrograms;
 
 /**
  * @brief The SceneRenderer class

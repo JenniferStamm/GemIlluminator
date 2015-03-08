@@ -13,7 +13,6 @@ class QVector3D;
 
 class AbstractGem;
 class LightRayData;
-class LightRayRenderer;
 class Scene;
 
 class LightRay : public QObject
@@ -69,8 +68,6 @@ public slots:
 
     const QList<LightRay *> &successors();
 
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
-
 protected:
     bool isPlayerBeforeCollisionPoint();
     void calculateSuccessors();
@@ -80,7 +77,6 @@ protected:
     LightRayData *m_data;
     QList<LightRay *> *m_successors;
     LightRay *m_selectedSuccessor;
-    LightRayRenderer *m_renderer;
     bool m_isStatic;
     Player *m_player;
     Scene *m_scene;
