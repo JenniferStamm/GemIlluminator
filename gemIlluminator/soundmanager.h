@@ -13,7 +13,8 @@ enum SoundEffects {
     Collision4,
     Collision5,
     Collision6,
-    Collision7
+    Collision7,
+    GameOver
 };
 
 class Soundmanager : public QObject

@@ -4,7 +4,7 @@
         <file>TetrahedronGem.qml</file>
         <file>gemgenerator.js</file>
         <file>Scene.qml</file>
-        <file>NavigationFile.qml</file>
+        <file>NavigationView.qml</file>
         <file>SensorInputs.qml</file>
         <file>MouseInput.qml</file>
         <file>MainMenu.qml</file>
@@ -12,13 +12,14 @@
         <file>Credits.qml</file>
         <file>LoadScreen.qml</file>
         <file>CubeGem.qml</file>
-        <file>ConfigFile.qml</file>
+        <file>ConfigView.qml</file>
         <file>Options.qml</file>
-        <file>PainterFile.qml</file>
+        <file>PainterView.qml</file>
         <file>data/arrow-left.png</file>
         <file>data/arrow-right.png</file>
         <file>PauseButton.qml</file>
         <file>GameOver.qml</file>
         <file>SeedInput.qml</file>
+        <file>HighscoreView.qml</file>
     </qresource>
 </RCC>
