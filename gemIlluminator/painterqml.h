@@ -49,6 +49,7 @@ protected:
     bool m_active;
     bool m_isAppActive;
     bool m_isUpdatePending;
+    bool m_isSceneDeletionRequired;
     Painter *m_painter;
     int m_paintingDoneEventType;
     Scene *m_scene;

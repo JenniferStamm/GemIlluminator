@@ -13,7 +13,6 @@ class QVector3D;
 
 class AbstractGem;
 class LightRayData;
-class LightRayRenderer;
 class Scene;
 
 class LightRay : public QObject
@@ -31,7 +30,6 @@ public:
     explicit LightRay(QObject *parent = 0);
     virtual ~LightRay();
 
-    virtual void synchronize();
     virtual void update(int timeDifference);
 
     QVector3D normalizedOrthogonalVector() const;
@@ -59,8 +57,6 @@ public slots:
     Player *player() const;
     void setPlayer(Player *attachedPlayer);
 
-    void setRenderer(LightRayRenderer *renderer);
-
     Scene *scene() const;
     void setScene(Scene *owningScene);
 
@@ -70,19 +66,17 @@ public slots:
     LightRay *selectedSuccessor();
     void setSelectedSuccessor(LightRay *successor);
 
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
+    const QList<LightRay *> &successors();
 
 protected:
     bool isPlayerBeforeCollisionPoint();
     void calculateSuccessors();
-    virtual void _synchronize();
 
 protected:
     AbstractGem *m_collidingGem;
     LightRayData *m_data;
     QList<LightRay *> *m_successors;
     LightRay *m_selectedSuccessor;
-    LightRayRenderer *m_renderer;
     bool m_isStatic;
     Player *m_player;
     Scene *m_scene;

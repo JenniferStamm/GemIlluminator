@@ -44,11 +44,8 @@ protected:
     QMediaPlayer *m_collisionSound;
 };
 
-static QObject *soundmanagerSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+static QObject *soundmanagerSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
 {
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-
     Soundmanager *instance = Soundmanager::instance();
     return instance;
 }

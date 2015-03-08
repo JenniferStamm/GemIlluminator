@@ -8,11 +8,13 @@
 #include "config.h"
 #include "gemrenderer.h"
 #include "lightray.h"
+#include "lightrayrenderer.h"
 #include "shaderprograms.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
   , m_gemRenderer(new GemRenderer())
+  , m_lightRayRenderer(new LightRayRenderer())
   , m_isInitalized(false)
 {
     m_gemRenderer->setSceneExtent(Config::instance()->axisRange());
@@ -21,6 +23,7 @@ SceneRenderer::SceneRenderer(QObject *parent) :
 SceneRenderer::~SceneRenderer()
 {
     delete m_gemRenderer;
+    delete m_lightRayRenderer;
 }
 
 void SceneRenderer::cleanup(QOpenGLFunctions &gl)
@@ -35,8 +38,8 @@ void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection
     if (!m_isInitalized) {
         initalize(gl);
     }
-        paintGems(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::GemProgram));
-        paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
+    paintGems(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::GemProgram));
+    paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
 }
 
 void SceneRenderer::initalize(QOpenGLFunctions &gl)
@@ -53,7 +56,12 @@ void SceneRenderer::paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjec
 
 void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
-    m_rootLightRay->paint(gl, viewProjection, shaderProgram);
+    m_lightRayRenderer->paint(gl, viewProjection, shaderProgram);
+}
+
+void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram *> &shaderPrograms)
+{
+    paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
 }
 
 void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
@@ -61,15 +69,16 @@ void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
     for (auto gem : geometries) {
         m_gemRenderer->updateGem(gem);
     }
-    m_geometries = geometries;
 }
 
-LightRay* SceneRenderer::rootLightRay() const
+void SceneRenderer::synchronizeLightRays(LightRay *rootLightRay)
 {
-    return m_rootLightRay;
-}
-
-void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
-{
-    m_rootLightRay = rootLightRay;
+    m_lightRayRenderer->resetDynamicRays();
+    auto rays = QList<LightRay *>() << rootLightRay;
+    int counter = 0;
+    while (counter < rays.count()) {
+        m_lightRayRenderer->addLightRay(*rays.at(counter));
+        rays.append(rays.at(counter)->successors());
+        ++counter;
+    }
 }

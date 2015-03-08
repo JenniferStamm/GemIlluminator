@@ -48,11 +48,8 @@ protected:
     float m_minGemSize;
 };
 
-static QObject *configSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+static QObject *configSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
 {
-    Q_UNUSED(engine)
-    Q_UNUSED(scriptEngine)
-
     Config *instance = Config::instance();
     return instance;
 }

@@ -51,7 +51,7 @@ void BlurEffect::renderGlowToTexture(const Camera &camera)
 
     bool viewportChanged = false;
     if (m_usedViewport->height() != viewportHeight
-            && m_usedViewport->width() != viewportWidth) {
+            || m_usedViewport->width() != viewportWidth) {
         *m_usedViewport = camera.viewport();
         viewportChanged = true;
     }

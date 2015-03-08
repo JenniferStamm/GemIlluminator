@@ -15,33 +15,61 @@ class EnvironmentMap;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
+class SceneRenderer;
 enum class ShaderPrograms;
 
 /**
  * @brief The Painter class
- * @detail Includes the rendering process, thus creates the whole picture
+ * @detail Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread
  *
  */
 class Painter : public QObject
 {
     Q_OBJECT
 public:
-    Painter(PainterQML *painter, QObject *parent = 0);
+    /**
+     * @brief Constructor of Painter
+     * @param painter Corresponding QML-Painter. Will be informed about finished rendering.
+     * @param parent QObject-parent
+     */
+    explicit Painter(PainterQML *painter, QObject *parent = 0);
+
+    /**
+     * @brief Destrutor. Will delete all rendering related classes and ressources.
+     */
     virtual ~Painter();
 
-    void initializeEnvMap();
+    /**
+     * @brief Updates enviorment map using config file
+     */
+    void updateEnvMap();
 
+    /**
+     * @brief Check if Painter is active. Active means the painter is rendering.
+     * @return Active state of painter.
+     */
     bool isActive() const;
+    /**
+     * @brief Set Active state. If active is true the painter renders the picture.
+     * @param active
+     */
     void setActive(bool active);
 
-    Scene *scene() const;
-    void setScene(Scene *scene);
+    /**
+     * @brief Clears the scene and removes all anymore required ressources.
+     */
+    void clearScene();
 
-    QOpenGLFunctions &gl() const;
-
-signals:
+    /**
+     * @brief Painter copies all needed information of scene into own thread.
+     * @param scene The scene that should be synchronized. If nullptr is passed it is like clearScene()
+     */
+    void synchronizeScene(Scene *scene);
 
 public slots:
+    /**
+     * @brief Starts rendering and paints the whole picture.
+     */
     void paint();
 
 protected:
@@ -79,8 +107,6 @@ protected:
     CubeMap *m_rainbowMap;
     CubeMap *m_refractionMap;
 
-    Scene *m_scene;
-
     uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
@@ -92,6 +118,9 @@ protected:
     int m_oldElapsed;
     QTime *m_time;
 
+    SceneRenderer *m_sceneRenderer;
+    Camera *m_camera;
+    Camera *m_previewCamera;
 };
 
 #endif // PAINTER_H

@@ -14,11 +14,13 @@ Scene {
     property alias timerId: timer
 
     onGameLost: {
-        timer.stop()
-        gameOver.finalScore = score
-        gameOver.visible = true
-        highscore.visible = false
-        pause.visible = false
+        if (timer.running) {
+            timer.stop()
+            gameOver.finalScore = score
+            gameOver.visible = true
+            highscore.visible = false
+            pause.visible = false
+        }
     }
 
     onGameStarted: {
