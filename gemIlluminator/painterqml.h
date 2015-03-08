@@ -13,7 +13,7 @@ class PainterQML : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
-    Q_PROPERTY(bool isAppActive READ isAppActive WRITE setIsAppActive)
+    Q_PROPERTY(bool isAppActive READ isAppActive WRITE setIsAppActive NOTIFY isAppActiveChanged)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
@@ -28,6 +28,7 @@ public:
     QEvent::Type paintingDoneEventType();
 
     Q_INVOKABLE void reloadEnvMap();
+    Q_INVOKABLE void resetTimer();
 
     Scene *scene() const;
     void setScene(Scene *scene);
@@ -38,6 +39,7 @@ public:
 signals:
     void activeChanged();
     void sceneChanged();
+    void isAppActiveChanged();
 
 public slots:
     void synchronize();

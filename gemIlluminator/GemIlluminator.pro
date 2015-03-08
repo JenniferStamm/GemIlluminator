@@ -22,14 +22,18 @@ SOURCES += main.cpp \
     painterqml.cpp \
     gemdata.cpp \
     gemrenderer.cpp \
+    gamelostray.cpp \
     soundmanager.cpp \
-    blureffect.cpp
+    blureffect.cpp \
+    cubemap.cpp \
+    environmentmap.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
     data.qrc \
     backgroundmusic.qrc \
-    sound.qrc
+    sound.qrc \
+    data2.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -65,9 +69,12 @@ HEADERS += \
     painterqml.h \
     gemdata.h \
     gemrenderer.h \
+    gamelostray.h \
     soundmanager.h \
     blureffect.h \
-    shaderprograms.h
+    shaderprograms.h \
+    cubemap.h \
+    environmentmap.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
@@ -77,5 +84,9 @@ win32 {
     install_it.files = assets/config.json
 
     INSTALLS += install_it
+}
+
+android {
+    QT += androidextras
 }
 

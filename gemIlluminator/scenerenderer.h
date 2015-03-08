@@ -1,7 +1,6 @@
 #ifndef SCENERENDERER_H
 #define SCENERENDERER_H
 
-#include <QMap>
 #include <QObject>
 #include <QOpenGLShaderProgram>
 
@@ -37,14 +36,19 @@ public:
     void paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 public slots:
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+
+signals:
+    void initalizationDone();
 
 protected:
+    void initalize(QOpenGLFunctions &gl);
     void paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
 
 protected:
     GemRenderer *m_gemRenderer;
     QList<AbstractGem*> m_geometries;
+    bool m_isInitalized;
     LightRay *m_rootLightRay;
 };
 

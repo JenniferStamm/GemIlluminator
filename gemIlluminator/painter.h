@@ -10,6 +10,8 @@ class QTime;
 
 class Camera;
 class BlurEffect;
+class CubeMap;
+class EnvironmentMap;
 class PainterQML;
 class ScreenAlignedQuad;
 class Scene;
@@ -27,7 +29,7 @@ public:
     Painter(PainterQML *painter, QObject *parent = 0);
     virtual ~Painter();
 
-    void initializeEnvmap();
+    void initializeEnvMap();
 
     bool isActive() const;
     void setActive(bool active);
@@ -46,13 +48,12 @@ protected:
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
-    void paintEnvmap(const Camera &camera);
     void renderLightRays(const Camera &camera);
     void renderScene(const Camera &camera);
 
 protected:
     bool m_active;
-    uint m_envmap;
+    EnvironmentMap *m_envMap;
     QOpenGLFunctions *m_gl;
     bool m_initialized;
 
@@ -75,13 +76,16 @@ protected:
     PainterQML *m_painterQML;
     ScreenAlignedQuad *m_quad;
 
+    CubeMap *m_rainbowMap;
+    CubeMap *m_refractionMap;
+
     Scene *m_scene;
 
     uint m_sceneFBO;
     uint m_sceneDepthRB;
     uint m_sceneTexture;
 
-    QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
+    QHash<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     QSize *m_usedViewport;
 
     int m_counter;

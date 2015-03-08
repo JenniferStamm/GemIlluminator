@@ -29,74 +29,62 @@ CubeGem::CubeGem(QObject *parent) :
     triangles.append(new Triangle(
                 vertices.at(0),
                 vertices.at(2),
-                vertices.at(3),
-                this));
+                vertices.at(3)));
     // back-face bottom-right triangle
     triangles.append(new Triangle(
                 vertices.at(0),
                 vertices.at(3),
-                vertices.at(1),
-                this));
+                vertices.at(1)));
     // right-face top-right triangle
     triangles.append(new Triangle(
                 vertices.at(1),
                 vertices.at(3),
-                vertices.at(7),
-                this));
+                vertices.at(7)));
     // right-face bottom-left triangle
     triangles.append(new Triangle(
                 vertices.at(1),
                 vertices.at(7),
-                vertices.at(5),
-                this));
+                vertices.at(5)));
     // front-face top-left triangle
     triangles.append(new Triangle(
                 vertices.at(5),
                 vertices.at(7),
-                vertices.at(6),
-                this));
+                vertices.at(6)));
     // front-face bottom-right triangle
     triangles.append(new Triangle(
                 vertices.at(5),
                 vertices.at(6),
-                vertices.at(4),
-                this));
+                vertices.at(4)));
     // left-face top-right triangle
     triangles.append(new Triangle(
                 vertices.at(4),
                 vertices.at(6),
-                vertices.at(2),
-                this));
+                vertices.at(2)));
     // left-face bottom-left triangle
     triangles.append(new Triangle(
                 vertices.at(4),
                 vertices.at(2),
-                vertices.at(0),
-                this));
+                vertices.at(0)));
     // top-face bottom-left triangle
     triangles.append(new Triangle(
                 vertices.at(2),
                 vertices.at(6),
-                vertices.at(7),
-                this));
+                vertices.at(7)));
     // top-face top-right triangle
     triangles.append(new Triangle(
                 vertices.at(2),
                 vertices.at(7),
-                vertices.at(3),
-                this));
+                vertices.at(3)));
     // bottom-face top-left triangle
     triangles.append(new Triangle(
                 vertices.at(4),
                 vertices.at(0),
-                vertices.at(1),
-                this));
+                vertices.at(1)));
     // bottom-face bottom-right triangle
     triangles.append(new Triangle(
                 vertices.at(4),
                 vertices.at(1),
-                vertices.at(5),
-                this));
+                vertices.at(5)));
     m_data->setTriangles(triangles);
 }
 

@@ -92,7 +92,14 @@ QEvent::Type PainterQML::paintingDoneEventType()
 void PainterQML::reloadEnvMap()
 {
     if (m_painter) {
-       m_painter->initializeEnvmap();
+       m_painter->initializeEnvMap();
+    }
+}
+
+void PainterQML::resetTimer()
+{
+    if (m_time) {
+        m_time->restart();
     }
 }
 
@@ -124,6 +131,8 @@ void PainterQML::setIsAppActive(bool active)
         delete m_time;
         m_time = nullptr;
     }
+
+    emit isAppActiveChanged();
 }
 
 void PainterQML::synchronize()

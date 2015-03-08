@@ -14,13 +14,28 @@ class AbstractGemRenderer;
 class GemData;
 class LightRay;
 class Triangle;
+class Scene;
 
+/**
+ * @brief The GemType An enum describing current gem type. This enum is used for faster comparision of gems, because all gems of one type have same (objectspace) vertices.
+ */
 enum class GemType {
     Abstract,
     Cube,
     Tetrahedron};
+
+/**
+ * @brief Custom implementation of qHash. Providing hash calculation for GemType. In order to use GemType as key in QHash and QSet.
+ * @param key Value the hash value is calculated for
+ * @param seed
+ * @return Returns hash value.
+ */
 uint qHash(GemType key, uint seed);
 
+/**
+ * @brief The AbstractGem class is our base class of all gems.
+ * @detail As base class all required information of a gem are stored. Also usefull algorithms for collision detection are provided. Furthermore this class is supposed to be used within QML.
+ */
 class AbstractGem : public QObject
 {
     Q_OBJECT
@@ -56,8 +71,8 @@ public:
 
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
     float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
     void rotate(const QQuaternion &quaternion);
+    virtual QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
 
 public slots:
     void setRotationFromEuler(const QVector3D &eulerRotation);
@@ -70,6 +85,22 @@ signals:
 
 protected:
     int solveQuadricFormula(float a, float b, float c, float &x1, float &x2);
+
+    /**
+     * @brief Finds face of gem intersected by given ray. Ownership of returned face is transfered to caller.
+     * @param ray Ray that might intersect gem
+     * @param intersectedFace A pointer to intersected face is written into. Because this triangle is in worldspace and for performance reasons the ownership of face is transfered to caller. If ray does not intersect nullptr is written.
+     * @param collisionPoint Optional parameter. If the given pointer is not nullptr the collisionpoint is written into.
+     * @return Returns distance to collisionpoint. If no collission occured the value is maximum of float.
+     */
+    float faceIntersectedBy(const LightRay &ray, Triangle *&intersectedFace, QVector3D *collisionPoint = nullptr);
+
+    /**
+     * @brief Calculates triangle in world coordinates for given triangle. Therefor position, rotatition and scale of gem are used.
+     * @param triangle Objectspace triangle for wich the coressponding wolrdspace triangle should be calculated.
+     * @return Returns the Triangle in wolrd coordinates,
+     */
+    Triangle inWorldCoordinates(const Triangle &triangle);
 
 protected:
     GemData *m_data;

@@ -1,7 +1,7 @@
 {
 	"GemTypes": ["CubeGem", "TetrahedronGem"],
-	"NumGems": 200,
-	"AxisRange": 20,
+	"NumGems": 3723,
+	"AxisRange": 50,
 	"GemRangeSize": [0.1, 1.5],
 	"AvailableEnvMaps": ["gold", "sky"],
 	"EnvMap": "gold",

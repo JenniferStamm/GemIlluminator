@@ -4,9 +4,9 @@ import QtQuick.Window 2.2
 import QtQuick.Controls.Styles 1.1
 
 Button {
-    //width: 5 * Screen.pixelDensity
-    //height: 5 * Screen.pixelDensity
-
+    id: pauseButton
+    height: 8 * Screen.pixelDensity
+    width: 8 * Screen.pixelDensity
     x: root.width - width
     y: root.height - height
 
@@ -16,6 +16,10 @@ Button {
         }
     }
 
-    iconSource: "data/pauseButton.png"
+    Image {
+        height: 8 * Screen.pixelDensity
+        width: 8 * Screen.pixelDensity
+        source: "qrc:/data/pauseButton.png"
+    }
 }
 

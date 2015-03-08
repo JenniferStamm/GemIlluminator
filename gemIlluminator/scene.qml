@@ -1,11 +1,33 @@
-import QtQuick 2.0
 import GemIlluminator 1.0
+import QtQuick 2.0
+import QtQuick.Window 2.2
 import "gemgenerator.js" as GemGenerator
 
 Scene {
     id: scene
+    anchors.fill: parent
+
     property alias cameraId: camera
     property var loadScreen: null
+    property int score: 0
+
+    property alias timerId: timer
+
+    onGameLost: {
+        timer.stop()
+        gameOver.finalScore = score
+        gameOver.visible = true
+        highscore.visible = false
+        pause.visible = false
+    }
+
+    onGameStarted: {
+        pause.visible = true
+        highscore.visible = true
+        painter.resetTimer()
+        score = 0
+        timer.start()
+    }
 
     camera: Camera {
         id: camera
@@ -37,11 +59,10 @@ Scene {
         camera: camera
     }
 
-
     rootLightRay: LightRay {
         id: lightray
-        startPosition: "0, 0, -15"
-        endPosition: "0, 0, 15"
+        startPosition: "-" + Config.axisRange + ", -" + Config.axisRange + ", -" + (Config.axisRange / 2)
+        endPosition: "0, 0, 0"
         player: player
         scene: scene
     }
@@ -59,13 +80,16 @@ Scene {
                 var curGemType = null
 
                 for (var i = 0; i < gems.length; i++) {
-                    curGemType = gems[i][4].toString()
+                    curGemType = gems[i][7].toString()
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
                                                             "position.y": gems[i][1],
                                                             "position.z": gems[i][2],
                                                             "scale": gems[i][3],
+                                                            "xAngle": gems[i][4],
+                                                            "yAngle": gems[i][5],
+                                                            "zAngle": gems[i][6],
                                                         }))
                 }
 
@@ -95,18 +119,51 @@ Scene {
         }
     }
 
+    Timer {
+        id: timer
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            score = score + 1
+            highscore.update()
+        }
+    }
+
+    Text {
+        id: highscore
+        visible: false
+        color: "white"
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pointSize: 16
+        text: "Score: " + score
+    }
+
     PauseButton {
         id: pause
+        visible: false
         onPressedChanged: {
             if (pressed) {
                 painter.active = !painter.active
+                if (painter.active) {
+                    timer.start()
+                } else {
+                    timer.stop()
+                }
             }
         }
     }
 
     Component.onCompleted: {
-        gemGenerator.sendMessage({"numGems": config.numGems,"gemRangeSize": config.gemRangeSize, "rangeStart": -Config.axisRange,
-                                     "rangeEnd": Config.axisRange, "gemTypes": config.gemTypes})
+        var seed = (painter.seed.length > 0) ? painter.seed : Math.random().toString()
+        gemGenerator.sendMessage({"numGems": config.numGems,
+                                     "gemRangeSize": config.gemRangeSize,
+                                     "rangeStart": -Config.axisRange,
+                                     "rangeEnd": Config.axisRange,
+                                     "gemTypes": config.gemTypes,
+                                     "seed": seed
+                                 })
     }
 }
 

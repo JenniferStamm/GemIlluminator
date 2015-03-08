@@ -1,6 +1,6 @@
 #include "scenerenderer.h"
 
-#include <QMap>
+#include <QHash>
 #include <QString>
 #include <QDebug>
 
@@ -13,6 +13,7 @@
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
   , m_gemRenderer(new GemRenderer())
+  , m_isInitalized(false)
 {
     m_gemRenderer->setSceneExtent(Config::instance()->axisRange());
 }
@@ -29,10 +30,20 @@ void SceneRenderer::cleanup(QOpenGLFunctions &gl)
     }
 }
 
-void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
-    paintGems(gl, viewProjection, *shaderPrograms[ShaderPrograms::GemProgram]);
-    paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
+    if (!m_isInitalized) {
+        initalize(gl);
+    }
+        paintGems(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::GemProgram));
+        paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
+}
+
+void SceneRenderer::initalize(QOpenGLFunctions &gl)
+{
+    m_gemRenderer->initialize(gl);
+    m_isInitalized = true;
+    emit initalizationDone();
 }
 
 void SceneRenderer::paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram& shaderProgram)
