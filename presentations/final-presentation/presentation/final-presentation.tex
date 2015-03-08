@@ -95,41 +95,48 @@
 {
 	\begin{table}[h]
 	\begin{tabular}{c|c|c|c}
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/tower} &
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/laptops} &
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/tablets} & 
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/smartphones} \\ \hline
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/tower} &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/laptops} &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/tablets} & 
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/smartphones} \\ \hline
 		3 & 3 & 2 & 2
 	\end{tabular}
 	\caption{Entwicklung auf 9 Geräten gleichzeitig}
 	\end{table}
 }
 {
-	\begin{table}[h]
-	\begin{tabular}{c|c|c}
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/AMD_Logo} &
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/nvidia-logo} &
-		\includegraphics[width=0.2\textwidth, height=0.1\textheight, keepaspectratio]{images/Intel-logo}  
-	\end{tabular}
-	\caption{Verwendete Grafikkarten}
-	\end{table}
-}
-\begin{figure}
+	\begin{figure}
 		\centering
-		\includegraphics[width=0.35\textwidth, height=0.7\textheight, keepaspectratio]{images/opengl_es_logo}
+		\includegraphics[width=\textwidth, height=0.18\textheight, keepaspectratio]{images/opengl_es_logo}
 		\caption{Entwicklung mit OpenGL ES 2.0}
 	\end{figure}
+}
+\begin{table}[h]
+	\begin{tabular}{c|c|c|c|c}
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/AMD_Logo} &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/nvidia-logo} &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/Intel-logo}  &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/powerVR-logo} &
+		\includegraphics[width=\textwidth, height=0.1\textheight, keepaspectratio]{images/qualcomm-logo} \\ \hline
+		1 & 4 & 3 & 1 & 2
+	\end{tabular}
+	\caption{Verwendete Grafikkarten}
+\end{table}
 \end{frame}
 
 
 % 1m
-\begin{frame}{Review: QML}
-	\begin{itemize}
-	\item QML Dokumentation
-	\item QML Resource-Verwaltung und Assets
-	\item QML: backgroundcolor: white vs. red
-	\item Wage Fehlermeldungen
-	\end{itemize}
+\begin{frame}{Herausforderungen durch QML}
+	\begin{figure}
+		\centering
+		\subcaptionbox{Inakurate Dokumentation}{\includegraphics[width=\textwidth, height=0.17\textheight, keepaspectratio]{images/QMLCalibrate}}
+		\subcaptionbox{Unerklärliches Verhalten}{\includegraphics[width=\textwidth, height=0.17\textheight, keepaspectratio]{images/QMLred}}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth, height=0.2\textheight, keepaspectratio]{images/linkerrorsuccess}
+		\caption{Wage Fehlermeldungen}
+	\end{figure}
 \end{frame}
 
 % 2m
