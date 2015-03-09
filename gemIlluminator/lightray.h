@@ -34,6 +34,11 @@ public:
 
     QVector3D normalizedOrthogonalVector() const;
 
+    /**
+     * @brief calculateSuccessorColor calculates the successor color based on its normalized direction
+     * The color values are approximately in the range between 0.1 and 0.8
+     * @return The calculated color
+     */
     QVector3D calculateSuccessorColor();
 
 signals:
