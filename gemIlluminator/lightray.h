@@ -34,6 +34,8 @@ public:
 
     QVector3D normalizedOrthogonalVector() const;
 
+    QVector3D calculateSuccessorColor();
+
 signals:
     void colorChanged();
     void startPositionChanged();
