@@ -32,19 +32,6 @@ GemData::GemData(const GemData &otherGemData) :
     copyTriangles(otherGemData.triangles());
 }
 
-GemData::GemData(const AbstractGem &gem) :
-    m_color(new QVector3D(gem.color()))
-  , m_isModelInvalid(true)
-  , m_model(new QMatrix4x4())
-  , m_position(new QVector3D(gem.position()))
-  , m_rotation(new QQuaternion(gem.rotation()))
-  , m_scale(gem.scale())
-  , m_triangles(new QList<Triangle *>())
-  , m_type(gem.type())
-{
-    copyTriangles(gem.triangles());
-}
-
 GemData::~GemData()
 {
     delete m_color;

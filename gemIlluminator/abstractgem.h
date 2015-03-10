@@ -84,7 +84,6 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
-    const QList<Triangle *> &triangles() const;
     GemType type() const;
 
     /**

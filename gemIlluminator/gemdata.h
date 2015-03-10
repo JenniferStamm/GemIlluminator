@@ -29,11 +29,7 @@ public:
      * @param ohterGemData GemData that should be copied.
      */
     GemData(const GemData &ohterGemData);
-    /**
-     * @brief This is an overloaded constructor behaving like the copy constructor, but takes a AbstractGem.
-     * @param gem Gem where the AbstractGem::data() is copied from
-     */
-    GemData(const AbstractGem &gem);
+
     ~GemData();
 
     GemData &operator=(const GemData &rhs);
