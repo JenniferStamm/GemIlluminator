@@ -3,6 +3,9 @@
 
 #include "lightray.h"
 
+/**
+ * @brief The GameLostRay class is a specialized LightRay, that is created if the player should loose as soon as the player reaches it.
+ */
 class GameLostRay : public LightRay
 {
     Q_OBJECT

@@ -84,6 +84,10 @@ public:
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
+    /**
+     * @brief Returns the type of gem, in order to differntiate between types even you have only AbstractGems
+     * @return
+     */
     GemType type() const;
 
     /**
