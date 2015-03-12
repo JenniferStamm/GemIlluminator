@@ -50,12 +50,12 @@ vec3 reflectionTerm(vec3 eyeVector)
     rainbowColor = mix(vec3(1.0), rainbowColor, dispersionStrength);
     environmentColor = mix(environmentColor, rainbowColor, vec3(0.1)) * fresnel;
 
-    return clamp(specular, 0.0, 1.0) + environmentColor;
+    return clamp(specular, vec3(0.0), vec3(1.0)) + environmentColor;
 }
 
 void main()
 {
     vec3 eyeVector = normalize(v_eyeVector);
     vec3 color = mix(reflectionTerm(eyeVector), textureCube(refractionMap, v_vertex).xyz, vec3(0.1));
-    gl_FragColor = vec4(mix(color, v_color, 0.3), 1.0);
+    gl_FragColor = vec4(mix(color, v_color, vec3(0.3)), 1.0);
 }

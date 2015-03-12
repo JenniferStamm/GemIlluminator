@@ -52,7 +52,7 @@ vec4 decode(vec4 high, vec4 low, float minBorder, float maxBorder)
     float scaleLow = (maxBorder - minBorder) / 256.0;
 
     vec4 scaled = high * scaleHigh + low * scaleLow;
-    return scaled + minBorder;
+    return scaled + vec3(minBorder);
 }
 
 void drawOptimizedWithTexture()
@@ -60,19 +60,19 @@ void drawOptimizedWithTexture()
     //texture coordinates have to point to center of texel not border (u-coordinates: precalculated for width)
     vec4 xyzs;
     vec4 rotation;
-    vec4 rgb_;
+    vec4 rgb;
     if (u_isFloatTextureAvailable) {
         xyzs = texture2D(u_data, getUVOfGemAttribute(a_index, 0.0));
         rotation = texture2D(u_data, getUVOfGemAttribute(a_index, 1.0));
-        rgb_ = texture2D(u_data, getUVOfGemAttribute(a_index, 2.0));
+        rgb = texture2D(u_data, getUVOfGemAttribute(a_index, 2.0));
     } else {
         vec4 xyzsHigh = texture2D(u_data, getUVOfGemAttribute(a_index, 0.0));
         vec4 xyzsLow = texture2D(u_data, getUVOfGemAttribute(a_index, 1.0));
         xyzs.xyz = decode(xyzsHigh, xyzsLow, -u_sceneExtent, u_sceneExtent).xyz;
         xyzs.w = decode(xyzsHigh, xyzsLow, u_minGemSize, u_maxGemSize).w;
         rotation = texture2D(u_data, getUVOfGemAttribute(a_index, 2.0));
-        rotation = rotation * 2.0 - 1.0;
-        rgb_ = texture2D(u_data, getUVOfGemAttribute(a_index, 3.0));
+        rotation = rotation * 2.0 - vec4(1.0);
+        rgb = texture2D(u_data, getUVOfGemAttribute(a_index, 3.0));
     }
     vec3 scaledCoord = a_vertex * xyzs.w;
     vec3 rotatedCoord = rotateVector(rotation, scaledCoord);
@@ -81,7 +81,7 @@ void drawOptimizedWithTexture()
     v_normal = normalize(rotateVector(rotation, a_normal));
     v_eyeVector = worldCoord - eye;
 
-    v_color = rgb_.xyz;
+    v_color = rgb.xyz;
     gl_Position = viewProjection * vec4(worldCoord, 1.0);
 }
 
