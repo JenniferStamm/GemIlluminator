@@ -51,8 +51,17 @@ public:
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
 
+    /**
+     * @brief This method returns the GemData object describing the gem.
+     * @detail This method was not intended to be public, but we needed it for rendering.
+     * @return
+     */
     const GemData &data() const;
 
+    /**
+     * @brief Constructs normal matrix for gem in order to transform it from objectspace into worldsapce.
+     * @return
+     */
     const QMatrix4x4 &model() const;
 
     const QVector3D &position() const;

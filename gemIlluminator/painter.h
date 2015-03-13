@@ -56,7 +56,7 @@ public:
     void setActive(bool active);
 
     /**
-     * @brief Clears the scene and removes all anymore required ressources.
+     * @brief Clears the scene and removes all not anymore required ressources.
      */
     void clearScene();
 
