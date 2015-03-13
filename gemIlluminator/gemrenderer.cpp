@@ -97,6 +97,7 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
 #else
     if (!currentContext->isOpenGLES()) {
         QSurfaceFormat format = currentContext->format();
+        //check 3.2, because this was the lowest one I found with documentation
         if (format.majorVersion() > 3) {
             m_areFloatTexturesAvailable = true;
         } else if ((format.majorVersion() == 3) && (format.minorVersion() >= 2)) {
@@ -227,7 +228,7 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
     }
 
     float texWidth = (m_maxTextureSize / m_texelPerGem) * m_texelPerGem;
-    float texHeight = m_allocatedGems / texWidth;
+    float texHeight = m_allocatedGems * m_texelPerGem / texWidth;
 
     program.bind();
     program.setUniformValue("u_data", 7);
@@ -271,6 +272,7 @@ void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
+    m_maxTextureSize = qMin(m_maxTextureSize, 512);    //precision of mediump is 2^-10 and we allways want to take right texel
 }
 
 void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
@@ -313,7 +315,7 @@ void encode(float value, float min, float max, GLubyte &high, GLubyte &mid, GLub
     const int maxValue = 256 * 256 * 256 - 1; //this value doesn't loose precission casting to float because highest int that can (and all lower ints) be stored in float is 2^24+1
     float scaleDown = static_cast<float>(maxValue) / (max - min);
     float valueScaledDown = (value - min) * scaleDown;
-    unsigned int resultInt = std::round(valueScaledDown);
+    unsigned int resultInt = qRound(valueScaledDown);
     resultInt = resultInt > maxValue ? maxValue : resultInt;
     high = static_cast<GLubyte>(resultInt >> 16);
     mid = static_cast<GLubyte>(resultInt >> 8);
