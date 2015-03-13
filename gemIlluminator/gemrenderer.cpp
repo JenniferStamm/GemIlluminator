@@ -95,14 +95,14 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
 #ifdef __ANDROID__
     m_areFloatTexturesAvailable = currentContext->hasExtension("OES_texture_float");
 #else
-    //if (!currentContext->isOpenGLES()) {
-    //    QSurfaceFormat format = currentContext->format();
-    //    if (format.majorVersion() > 3) {
-    //        m_areFloatTexturesAvailable = true;
-    //    } else if ((format.majorVersion() == 3) && (format.minorVersion() >= 2)) {
-    //        m_areFloatTexturesAvailable = true;
-    //    }
-    //}
+    if (!currentContext->isOpenGLES()) {
+        QSurfaceFormat format = currentContext->format();
+        if (format.majorVersion() > 3) {
+            m_areFloatTexturesAvailable = true;
+        } else if ((format.majorVersion() == 3) && (format.minorVersion() >= 2)) {
+            m_areFloatTexturesAvailable = true;
+        }
+    }
 #endif
     m_isInitialized = true;
     //first data update is done while init because it is expected to be largest update and after init time measurment will be started (TODO)
@@ -271,7 +271,6 @@ void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
-    qDebug() << "tex:" << m_maxTextureSize;
 }
 
 void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
