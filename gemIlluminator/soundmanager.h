@@ -6,15 +6,15 @@
 
 class QMediaPlayer;
 
-enum SoundEffects {
-    Collision1,
-    Collision2,
-    Collision3,
-    Collision4,
-    Collision5,
-    Collision6,
-    Collision7,
-    GameOver
+enum class SoundEffects {
+    Collision1 = 0,
+    Collision2 = 1,
+    Collision3 = 2,
+    Collision4 = 3,
+    Collision5 = 4,
+    Collision6 = 5,
+    Collision7 = 6,
+    GameOver = 7
 };
 
 class Soundmanager : public QObject

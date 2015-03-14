@@ -15,6 +15,12 @@ class AbstractGem;
 class LightRayData;
 class Scene;
 
+/**
+ * @brief The LightRay class describes our lightrays send into Scene.
+ * @detail Because we send our LightRays into Scene right after creation, they are more lines but rays.
+ * Our rays are organized as a tree, a ray owns all of its successors().
+ * Accidentally most of our game logic is done within LightRay::update().
+ */
 class LightRay : public QObject
 {
     Q_OBJECT
@@ -30,8 +36,16 @@ public:
     explicit LightRay(QObject *parent = 0);
     virtual ~LightRay();
 
+    /**
+     * @brief Updates our game. The player will be moved.
+     * @param timeDifference Time since last update in milliseconds.
+     */
     virtual void update(int timeDifference);
 
+    /**
+     * @brief Calculates a normalized vector that is orthogonal to direction().
+     * @return
+     */
     QVector3D normalizedOrthogonalVector() const;
 
     /**
@@ -70,6 +84,10 @@ public slots:
     bool isStatic() const;
     void setStatic();
 
+    /**
+     * @brief Returns the ray the player should move on after reaching end of current ray. In case no successors exists they will be calculated using calculateSuccessors()
+     * @return
+     */
     LightRay *selectedSuccessor();
     void setSelectedSuccessor(LightRay *successor);
 

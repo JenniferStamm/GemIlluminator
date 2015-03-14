@@ -450,7 +450,7 @@ void Painter::updateEnvMap()
 
 void Painter::renderLightRays(const Camera &camera)
 {
-    m_sceneRenderer->paintLightRays(*m_gl, camera.viewProjection(), *m_shaderPrograms);
+    m_sceneRenderer->paintLightRays(*m_gl, camera.viewProjection(), *(m_shaderPrograms->value(ShaderPrograms::LighRayProgram)));
 }
 
 void Painter::renderScene(const Camera &camera)

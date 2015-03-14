@@ -8,6 +8,7 @@ class LightRay;
 /**
  * @brief The LightRayData class stores data of a LightRay. The LightRayData doesn't inherit
  * from QObject, so it can be stored in Qt-Containers (currently only those require == or qHash) by Value.
+ * Also the data can be copied easily.
  */
 class LightRayData
 {
@@ -17,6 +18,10 @@ public:
     LightRayData(const LightRayData &lightRay);
     ~LightRayData();
 
+    /**
+     * @brief Calculates a normalized vector, that is orthogonal to direction().
+     * @return
+     */
     QVector3D normalizedOrthogonalVector() const;
 
     const QVector3D &color() const;

@@ -86,11 +86,6 @@ void AbstractGem::setScale(qreal scaleFactor)
     emit scaleChanged();
 }
 
-const QList<Triangle *> &AbstractGem::triangles() const
-{
-    return m_data->triangles();
-}
-
 GemType AbstractGem::type() const
 {
     return m_data->type();
@@ -214,7 +209,7 @@ float AbstractGem::faceIntersectedBy(const LightRay &ray, Triangle *&intersected
     QVector3D edge1, edge2, tvec, pvec, qvec;
     float det, invDet;
 
-    for (auto objectSpaceTriangle : triangles()) {
+    for (auto objectSpaceTriangle : m_data->triangles()) {
         Triangle worldSpaceTriangle = inWorldCoordinates(*objectSpaceTriangle);
 
         edge1 = worldSpaceTriangle.b() - worldSpaceTriangle.a();

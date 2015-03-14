@@ -51,30 +51,90 @@ public:
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
 
+    /**
+     * @brief This method returns the GemData object describing the gem.
+     * @detail This method was not intended to be public, but we needed it for rendering.
+     * @return
+     */
     const GemData &data() const;
 
+    /**
+     * @brief Constructs normal matrix for gem in order to transform it from objectspace into worldsapce.
+     * @return
+     */
     const QMatrix4x4 &model() const;
 
     const QVector3D &position() const;
     virtual void setPosition(const QVector3D &position);
 
+    /**
+     * @brief Radius of boundingsphere. This value is influenced by scale and the geometry of gem.
+     * @return
+     */
     qreal radius() const;
 
+    /**
+     * @brief Rotation around the own center.
+     * @return
+     */
     const QQuaternion &rotation() const;
+    /**
+     * @brief Sets the rotation of gem around own center.
+     * @param rotation Value the roation will be set to.
+     * @seealso setRotationFromEuler()
+     */
     virtual void setRotation(const QQuaternion &rotation);
+    /**
+     * @brief Rotates the gem around the center of the gem
+     * @param quaternion Specifies how the gem should be rotated.
+     */
+    void rotate(const QQuaternion &quaternion);
 
     qreal scale() const;
     void setScale(qreal scaleFactor);
 
-    const QList<Triangle *> &triangles() const;
+    /**
+     * @brief Returns the type of gem, in order to differntiate between types even you have only AbstractGems
+     * @return
+     */
     GemType type() const;
 
+    /**
+     * @brief Calculates distance to collision with gems boundingsphere.
+     * @detail The boundingsphere is specified by gems themself and cannot be influenced from outside. Because the collision point is only
+     * calculated with the bondingsphere computation is pretty fast.
+     * @param ray The ray which might collide with gems boundingsphere
+     * @param collisionPoint Optional parameter. If provided the collision point
+     * of ray with boundingsphere is written into. If no collision occurs the maximum
+     * float value is wriiten into all components.
+     * @return The factor you need to apply ray.direction() to ray.startPosition().
+     * If no collision occurs maximum float value is returned. Do not compare this value with return values of intersectedBy()
+     * @seealso intersectedBy()
+     */
     float boundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
-    void rotate(const QQuaternion &quaternion);
+    /**
+     * @brief Calcualtes the distance to collision of ray with gem.
+     * @detail This method calculates the real collision point therefor many computations are done especially for complex gems.
+     * @param ray The ray that might collide with gem.
+     * @param collisionPoint Optional parameter. If a collision occurs the collision point will be written into this else all components contain maximum float values.
+     * @return The factor you need to apply ray.normalizedDirection() to ray.startDirection().
+     * If no collision occurs this value will be highest possible float. Do not compare this vale with return value of boundingsphereIntersectedBy()
+     * @seealso boundingSphereIntersectedBy()
+     */
+    virtual float intersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr);
+    /**
+     * @brief Calculates all new rays, that will be created by a collision with that gem. Also affect gem attributes.
+     * @param ray Ray that might collide.
+     * @param scene The scene the ray and gem are in. This is needed in order to calculate new rays appropraite.
+     * @return A List of lightrays that should be added to scene. If no collision occurs the list is empty. Ownership of rays contained in list is transfered to caller.
+     */
     virtual QList<LightRay *> processRayIntersection(const LightRay &ray, Scene *scene);
 
 public slots:
+    /**
+     * @brief Sets rotation of gem using euler angles. This method is mainly used to set initial rotation.
+     * @param eulerRotation QVector3D containing the euler angles. The member of eulerVector contains corresponding rotation along axis (x component = rotation around x axis). The angle around axis is specified in degrees.
+     */
     void setRotationFromEuler(const QVector3D &eulerRotation);
 
 signals:

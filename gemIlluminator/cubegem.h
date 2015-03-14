@@ -3,6 +3,10 @@
 
 #include "abstractgem.h"
 
+/**
+ * @brief CubeGems are gems with a shape like a cube. The only difference to AbstracGem is the fact, that a cube gem has a shape defined.
+ */
+
 class CubeGem : public AbstractGem
 {
     Q_OBJECT
