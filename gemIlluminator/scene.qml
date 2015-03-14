@@ -82,6 +82,8 @@ Scene {
                 var gemsToJSON = []
                 var curGemType = null
 
+                //var
+
                 for (var i = 0; i < gems.length; i++) {
                     curGemType = gems[i][7].toString()
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
@@ -105,7 +107,7 @@ Scene {
                     loadScreen.visible = false
                 }
             } else if (messageObject.currentProgress) {
-                loadScreen.currentProgress = messageObject.currentProgress
+                loadScreen.currentProgress = messageObject.currentProgress / 2
             }
         }
 

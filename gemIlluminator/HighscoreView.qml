@@ -18,12 +18,18 @@ Rectangle {
 
         function checkHighscore(name, score)
         {
-            var i
+            var i, numScores
             var highscoreData = highscore.read()
 
             highscoreData = highscoreData.split("-;")
 
-            for (i = 0; i < 10; i++) {
+            if (Qt.platform.os  === "android") {
+                numScores = 5
+            } else {
+                numScores = 10
+            }
+
+            for (i = 0; i < numScores; i++) {
                 if (score > parseInt(highscoreData[i * 2 + 1])) {
                     highscoreData.splice(i * 2, 0, score);
                     highscoreData.splice(i * 2, 0, name);
@@ -57,7 +63,7 @@ Rectangle {
 
     onVisibleChanged: {
         if (visible) {
-            var i, name, score;
+            var i, name, score, numScores;
             var highscoreData = highscore.read();
 
             highscoreData = highscoreData.split("-;");
@@ -66,12 +72,18 @@ Rectangle {
                 scoreContainer.children[i].destroy();
             }
 
-            for (i = 0; i < 10; i++) {
+            if (Qt.platform.os  === "android") {
+                numScores = 5
+            } else {
+                numScores = 10
+            }
+
+            for (i = 0; i < numScores; i++) {
                 score = highscoreData.pop();
                 name = highscoreData.pop();
-                Qt.createQmlObject(getHighscoreNameString(name, 9 - i),
+                Qt.createQmlObject(getHighscoreNameString(name, (numScores - 1) - i),
                      scoreContainer, "dynamicSnippet" + i + "_1");
-                Qt.createQmlObject(getHighscoreScoreString(score, 9 - i),
+                Qt.createQmlObject(getHighscoreScoreString(score, (numScores - 1) - i),
                      scoreContainer, "dynamicSnippet" + i + "_2");
             }
         }
@@ -88,7 +100,13 @@ Rectangle {
         nameString += 'height: 20;';
         nameString += 'font.pointSize: 16;';
         nameString += 'text: "' + name + '";';
-        nameString += 'x: parent.width / 2 - 120;';
+
+        if (Qt.platform.os  === "android") {
+            nameString += 'x: (parent.width / 2) + 30 * Screen.pixelDensity;';
+        } else {
+            nameString += 'x: (parent.width / 2) - 120;';
+        }
+
         nameString += 'anchors.top: parent.top;';
         nameString += 'anchors.topMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
         nameString += '}';
@@ -107,7 +125,12 @@ Rectangle {
         scoreString += 'height: 20;';
         scoreString += 'font.pointSize: 16;';
         scoreString += 'text: "' + score + '";';
-        scoreString += 'x: parent.width / 2 + 85;';
+
+        if (Qt.platform.os  === "android") {
+            scoreString += 'x: (parent.width / 2) - 25 * Screen.pixelDensity;';
+        } else {
+            scoreString += 'x: (parent.width / 2) + 85;';
+        }
         scoreString += 'anchors.top: parent.top;';
         scoreString += 'anchors.topMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
         scoreString += '}';

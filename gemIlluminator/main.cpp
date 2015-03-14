@@ -19,30 +19,10 @@
 #include "soundmanager.h"
 #include "tetrahedrongem.h"
 
-#ifdef __ANDROID__
-void keepScreenOn()
-{
-    QAndroidJniObject activity = QtAndroid::androidActivity();
-
-    if (activity.isValid()) {
-        QAndroidJniObject window = activity.callObjectMethod("getWindow", "()Landroid/view/Window;");
-
-        if (window.isValid()) {
-            const int FLAG_KEEP_SCREEN_ON = 128;
-            window.callObjectMethod("addFlags", "(I)V", FLAG_KEEP_SCREEN_ON);
-        }
-    }
-}
-#endif
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     QQmlApplicationEngine engine;
-
-#ifdef __ANDROID__
-    keepScreenOn();
-#endif
 
     // Define a C++ object for use in qml
     qmlRegisterType<AbstractGem>();
