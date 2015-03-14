@@ -53,7 +53,7 @@ public:
      * The color values are approximately in the range between 0.1 and 0.8
      * @return The calculated color
      */
-    QVector3D calculateSuccessorColor();
+    QVector3D calculateColor();
 
 signals:
     void colorChanged();
