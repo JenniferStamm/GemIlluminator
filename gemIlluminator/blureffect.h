@@ -11,27 +11,35 @@ class Camera;
 class ScreenAlignedQuad;
 enum class ShaderPrograms;
 
+/**
+ * @brief The BlurEffect blurs a given texture.
+ */
 class BlurEffect : public QObject
 {
     Q_OBJECT
 public:
-    BlurEffect(QOpenGLFunctions &gl, uint glowTexture, int viewportRatio, QObject *parent = nullptr);
+    /**
+     * @brief Creates a new BlurEffect, that will blur a specified texture everytime blur() is called
+     * @param gl The QOpenGLFuntions will be used for all gl-calls.
+     * @param glowTexture The texture that will be blurred.
+     * @param parent QObject-parent
+     */
+    BlurEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
     virtual ~BlurEffect();
 
-    void renderGlowToTexture(const Camera &camera);
+    void blur(const QSize &textureSize);
 
 protected:
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
-    void renderGaussHorizontal(const Camera &camera, int viewportWidth);
-    void renderGaussVertical(const Camera &camera, int viewportHeight);
+    void renderGaussHorizontal(const QSize &textureSize);
+    void renderGaussVertical(const QSize &textureSize);
 
 protected:
     QOpenGLFunctions &m_gl;
     QMap<ShaderPrograms, QOpenGLShaderProgram*> *m_shaderPrograms;
     bool m_initialized;
-    int m_viewportRatio;
 
     uint m_blurFBO;
     uint m_blurDepthRB;

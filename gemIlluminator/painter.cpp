@@ -184,7 +184,7 @@ void Painter::paint()
         renderLightRays(*m_camera);
 
         if (m_blurEffectScene) {
-            m_blurEffectScene->renderGlowToTexture(*m_camera);
+            m_blurEffectScene->blur(QSize(glowSceneViewportWidth, glowSceneViewportHeight));
         }
 
         // Render preview lightrays to glowPreviewSceneTexture for glow
@@ -206,7 +206,7 @@ void Painter::paint()
         renderLightRays(*m_previewCamera);
 
         if (m_blurEffectPreviewScene) {
-            m_blurEffectPreviewScene->renderGlowToTexture(*m_previewCamera);
+            m_blurEffectPreviewScene->blur(m_previewCamera->viewport());
         }
 
         // scene
@@ -304,8 +304,8 @@ void Painter::initialize()
     initializeShaderPrograms();
     initializeFBOs();
 
-    m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture, m_blurViewportRatioScene);
-    m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture, m_blurViewportRatioPreviewScene);
+    m_blurEffectScene = new BlurEffect(*m_gl, m_glowSceneTexture);
+    m_blurEffectPreviewScene = new BlurEffect(*m_gl, m_glowPreviewSceneTexture);
 
     m_envMap = new EnvironmentMap(*m_gl, Config::instance()->envMap());
     m_initialized = true;
