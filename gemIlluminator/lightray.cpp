@@ -65,7 +65,6 @@ void LightRay::update(int timeDifference)
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
-            m_data->setColor(QVector3D(0.1f, 0.1f, 0.5f));
             setStatic();
         }
 
@@ -211,6 +210,14 @@ void LightRay::calculateSuccessors()
 
     auto collidingGem = m_scene->findGemIntersectedBy(*this);
     m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
+}
+
+QVector3D LightRay::calculateColor()
+{
+    QVector3D newColor = m_data->normalizedDirection();
+    newColor /= 2.8f;
+    newColor += QVector3D(0.45f, 0.45f, 0.45f);
+    return newColor;
 }
 
 bool LightRay::isPlayerBeforeCollisionPoint()
