@@ -22,14 +22,14 @@
 #include "triangle.h"
 
 GemRenderer::GemRenderer() :
-    m_isInitialized(false)
-  , m_areFloatTexturesAvailable(false)
+    m_areFloatTexturesAvailable(false)
+  , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
   , m_gemMap(new QHash<AbstractGem *, GemDataInfo *>())
   , m_isGemBufferUpdateRequired(false)
+  , m_isGemDataBufferInvalid(false)
+  , m_isInitialized(false)
   , m_newGems(new QList<GemDataInfo *>())
   , m_sceneExtent(1.f)
-  , m_isGemDataBufferInvalid(false)
-  , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
 { 
 }
 
@@ -93,10 +93,11 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
     m_areFloatTexturesAvailable = false;
 
 #ifdef __ANDROID__
-    m_areFloatTexturesAvailable = currentContext->hasExtension("OES_texture_float");
+    m_areFloatTexturesAvailable = currentContext->hasExtension("GL_OES_texture_float");
 #else
     if (!currentContext->isOpenGLES()) {
         QSurfaceFormat format = currentContext->format();
+        //check 3.2, because this was the lowest one I found with documentation
         if (format.majorVersion() > 3) {
             m_areFloatTexturesAvailable = true;
         } else if ((format.majorVersion() == 3) && (format.minorVersion() >= 2)) {
@@ -192,7 +193,7 @@ GemRenderer::GemRenderData::GemRenderData() :
   , m_isInitialized(false)
   , m_lowestUnusedIndex(0)
   , m_maxTextureSize(64)    //OpenGL ES 2.0 specifies 64 as minimum value
-  , m_texelPerGem(4)        //4 texels are needed if no float texture are available, we expect this
+  , m_texelPerGem(6)        //6 texels are needed if no float texture are available, we expect this
   , m_vertexBuffer(nullptr)
 {
 }
@@ -227,7 +228,7 @@ void GemRenderer::GemRenderData::paint(QOpenGLFunctions &gl, QOpenGLShaderProgra
     }
 
     float texWidth = (m_maxTextureSize / m_texelPerGem) * m_texelPerGem;
-    float texHeight = m_allocatedGems / texWidth;
+    float texHeight = m_allocatedGems * m_texelPerGem / texWidth;
 
     program.bind();
     program.setUniformValue("u_data", 7);
@@ -271,8 +272,7 @@ void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
-    qDebug() << "tex:" << m_maxTextureSize;
-    //m_maxTextureSize = qMin(m_maxTextureSize, 128);    //magic number in order to keep precision of uv in shader high enough
+    m_maxTextureSize = qMin(m_maxTextureSize, 512);    //precision of mediump is 2^-10 and we allways want to take right texel
 }
 
 void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
@@ -305,31 +305,21 @@ void GemRenderer::GemRenderData::setFloatTexturesEnabled(bool enable)
     if (enable) {
         m_texelPerGem = 3;
     } else {
-        m_texelPerGem = 4;
+        m_texelPerGem = 6;
     }
     m_areFloatTexturesAvailable = enable;
 }
 
-QPair<GLubyte, GLubyte> encodeIntoTwoGLubyte(float value, float min, float max)
+void encode(float value, float min, float max, GLubyte &high, GLubyte &mid, GLubyte &low)
 {
-    const int maxTwoByteValue = 256 * 256 - 1;
-    float scaleDown = 1.f / (max - min);
+    const int maxValue = 256 * 256 * 256 - 1; //this value doesn't loose precission casting to float because highest int that can (and all lower ints) be stored in float is 2^24+1
+    float scaleDown = static_cast<float>(maxValue) / (max - min);
     float valueScaledDown = (value - min) * scaleDown;
-    unsigned int resultInt = static_cast<int>(valueScaledDown * maxTwoByteValue);
-    resultInt = resultInt > maxTwoByteValue ? maxTwoByteValue : resultInt;
-    QPair<GLubyte, GLubyte> result;
-    result.first = static_cast<GLubyte>(resultInt >> 8);
-    result.second = static_cast<GLubyte>(resultInt);
-    return result;
-}
-
-GLubyte asNormalizedGLubyte(float value, float maxExtent)
-{
-    //move value from [-maxExtent;maxExtent] to [0;1]
-    float scaleDown = 1.f / (2.f * maxExtent);
-    float valueZeroToOne = value * scaleDown + 0.5f;
-    //move value from [0;1] to [0;255]
-    return static_cast<GLubyte>(valueZeroToOne * 255);
+    unsigned int resultInt = qRound(valueScaledDown);
+    resultInt = resultInt > maxValue ? maxValue : resultInt;
+    high = static_cast<GLubyte>(resultInt >> 16);
+    mid = static_cast<GLubyte>(resultInt >> 8);
+    low = static_cast<GLubyte>(resultInt);
 }
 
 void GemRenderer::GemRenderData::appendAttributesToVector(GemDataInfo *gem, QVector<float> &vector)
@@ -352,27 +342,37 @@ void GemRenderer::GemRenderData::appendAttributesToVector(GemDataInfo *gem, QVec
 void GemRenderer::GemRenderData::appendAttributesToVector(GemRenderer::GemDataInfo *gem, QVector<unsigned char> &vector)
 {
     GemData gemData = gem->data();
-    QPair<GLubyte, GLubyte> encodedValueX = encodeIntoTwoGLubyte(gemData.position().x(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueY = encodeIntoTwoGLubyte(gemData.position().y(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueZ = encodeIntoTwoGLubyte(gemData.position().z(), -m_sceneExtent, m_sceneExtent);
-    QPair<GLubyte, GLubyte> encodedValueS = encodeIntoTwoGLubyte(gemData.scale(), Config::instance()->minGemSize(), Config::instance()->maxGemSize());
 
-    vector.append(encodedValueX.first);
-    vector.append(encodedValueY.first);
-    vector.append(encodedValueZ.first);
-    vector.append(encodedValueS.first);
-    vector.append(encodedValueX.second);
-    vector.append(encodedValueY.second);
-    vector.append(encodedValueZ.second);
-    vector.append(encodedValueS.second);
-    vector.append(asNormalizedGLubyte(gemData.rotation().x(), 1.f));
-    vector.append(asNormalizedGLubyte(gemData.rotation().y(), 1.f));
-    vector.append(asNormalizedGLubyte(gemData.rotation().z(), 1.f));
-    vector.append(asNormalizedGLubyte(gemData.rotation().scalar(), 1.f));
-    vector.append(static_cast<GLubyte>(gemData.color().x() * 255));
-    vector.append(static_cast<GLubyte>(gemData.color().y() * 255));
-    vector.append(static_cast<GLubyte>(gemData.color().z() * 255));
-    vector.append(255);   //padding
+    GLubyte highX, midX, lowX;
+    GLubyte highY, midY, lowY;
+    GLubyte highZ, midZ, lowZ;
+    GLubyte highS, midS, lowS;
+    //xyzs 3 texel per value because we want high precission and with 3 values per value we can use complete precission
+    encode(gemData.position().x(), -m_sceneExtent, m_sceneExtent, highX, midX, lowX);
+    encode(gemData.position().y(), -m_sceneExtent, m_sceneExtent, highY, midY, lowY);
+    encode(gemData.position().z(), -m_sceneExtent, m_sceneExtent, highZ, midZ, lowZ);
+    encode(gemData.scale(), Config::instance()->minGemSize(), Config::instance()->maxGemSize(), highS, midS, lowS);
+    vector << highX << highY << highZ << highS;
+    vector << midX << midY << midZ << midS;
+    vector << lowX << lowY << lowZ << lowS;
+
+    //rotation
+    encode(gemData.rotation().x(), -1.f, 1.f, highX, midX, lowX);
+    encode(gemData.rotation().y(), -1.f, 1.f, highY, midY, lowY);
+    encode(gemData.rotation().z(), -1.f, 1.f, highZ, midZ, lowZ);
+    encode(gemData.rotation().scalar(), -1.f, 1.f, highS, midS, lowS);
+    vector << highX << highY << highZ << highS;
+    vector << midX << midY << midZ << midS;
+
+    //rgb 1 texel per value because there is no need for precission
+    GLubyte colorHigh, colorMid, colorLow;
+    encode(gemData.color().x(), 0.f, 1.f, colorHigh, colorMid, colorLow);
+    vector << colorHigh;
+    encode(gemData.color().y(), 0.f, 1.f, colorHigh, colorMid, colorLow);
+    vector << colorHigh;
+    encode(gemData.color().z(), 0.f, 1.f, colorHigh, colorMid, colorLow);
+    vector << colorHigh;
+    vector << 255; //padding
 }
 
 void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
@@ -393,22 +393,16 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
         if (m_areFloatTexturesAvailable) {
 #ifdef __ANDROID__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
-            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_OES_texture_float, nullptr);
-            QVector<float> data;
-            for (GemDataInfo *gem : *m_gems) {
-                gem->appendVerticesWithIndexTo(vertices);
-                appendAttributesToVector(gem, data);
-            }
-            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_OES_texture_float, data.data());
+            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
 #else   //We expect to have a OpenGL context instead of OpenGL ES, if it is build for no mobile devices
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+#endif
             QVector<float> data;
             for (GemDataInfo *gem : *m_gems) {
                 gem->appendVerticesWithIndexTo(vertices);
                 appendAttributesToVector(gem, data);
             }
             gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_FLOAT, data.data());
-#endif
         } else {
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
             QVector<GLubyte> data;
@@ -443,11 +437,7 @@ void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &g
         QVector<float> data;
         appendAttributesToVector(gem, data);
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
-#ifdef __ANDROID__
-        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_OES_texture_float, data.data());
-#else
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
-#endif
         gl.glBindTexture(GL_TEXTURE_2D, 0);
     } else {
         QVector<GLubyte> data;
