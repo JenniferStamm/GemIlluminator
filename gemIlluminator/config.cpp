@@ -45,7 +45,6 @@ void Config::setMinGemSize(float minGemSize)
 
 Config::~Config()
 {
-
 }
 
 int Config::axisRange()
@@ -69,7 +68,7 @@ Config *Config::instance()
         mutex.lock();
 
         if (!m_instance) {
-            m_instance = new Config;
+            m_instance = new Config();
         }
 
         mutex.unlock();
