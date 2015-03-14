@@ -17,17 +17,17 @@ Rectangle {
     Rectangle {
         color: backgroundBlue
         width: 70 * Screen.pixelDensity
-        height: 100 + 30 * Screen.pixelDensity
+        height: 120 + 40 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 50
+        anchors.bottomMargin: 2 * Screen.pixelDensity
 
         MenuButton {
             id: startButton
             label: "Start the Game!"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 70 + 20 * Screen.pixelDensity
+            anchors.bottomMargin: 90 + 30 * Screen.pixelDensity
 
             onClicked: {
                 mainMenu.visible = false
@@ -35,14 +35,14 @@ Rectangle {
         }
 
         MenuButton {
-            id: creditsButton
+            id: highscoreButton
             label: "Highscore"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 30
+            anchors.bottomMargin: 70 + 20 * Screen.pixelDensity
 
             onClicked: {
-                credits.visible = true
+                highscore.visible = true
                 mainMenu.visible = false
             }
         }
@@ -61,7 +61,7 @@ Rectangle {
         }
 
         MenuButton {
-            id: highscoreButton
+            id: creditsButton
             label: "Credits..."
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
