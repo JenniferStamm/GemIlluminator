@@ -20,6 +20,9 @@ enum class SoundEffects {
 class Soundmanager : public QObject
 {
     Q_OBJECT
+
+    Soundmanager(const Soundmanager &) = delete;
+    Soundmanager& operator=(const Soundmanager &) = delete;
 public:
     virtual ~Soundmanager();
 
@@ -31,11 +34,7 @@ public:
     Q_INVOKABLE void stopBackgroundMusic();
 
 protected:
-    Soundmanager() {}
-    Soundmanager(const Soundmanager &); // hide copy constructor
-    Soundmanager& operator=(const Soundmanager &); // hide assign op
-                                 // we leave just the declarations, so the compiler will warn us
-                                 // if we try to use those two functions by accident
+    Soundmanager();
     void loadSounds();
 
 protected:
@@ -44,10 +43,6 @@ protected:
     QMediaPlayer *m_collisionSound;
 };
 
-static QObject *soundmanagerSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
-{
-    Soundmanager *instance = Soundmanager::instance();
-    return instance;
-}
+QObject *soundmanagerSingletontypeProvider(QQmlEngine * engine, QJSEngine * scriptEngine);
 
 #endif // SOUNDMANAGER_H

@@ -6,6 +6,10 @@
 
 Soundmanager *Soundmanager::m_instance = 0;
 
+Soundmanager::Soundmanager()
+{
+}
+
 Soundmanager::~Soundmanager()
 {
     delete m_backgroundMusic->playlist();
@@ -30,7 +34,7 @@ Soundmanager *Soundmanager::instance()
         mutex.lock();
 
         if (!m_instance) {
-            m_instance = new Soundmanager;
+            m_instance = new Soundmanager();
             m_instance->loadSounds();
         }
 
@@ -85,6 +89,9 @@ void Soundmanager::loadSounds()
     collisionSound->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
     m_collisionSound->setPlaylist(collisionSound);
     m_collisionSound->setVolume(100);
-
 }
 
+QObject *soundmanagerSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
+{
+    return Soundmanager::instance();
+}

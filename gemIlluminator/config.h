@@ -14,6 +14,8 @@ class Config : public FileIO
     Q_PROPERTY(float maxGemSize READ maxGemSize WRITE setMaxGemSize NOTIFY maxGemSizeChanged)
     Q_PROPERTY(float minGemSize READ minGemSize WRITE setMinGemSize NOTIFY minGemSizeChanged)
 
+    Config(const Config &) = delete;
+    Config& operator=(const Config &) = delete;
 public:
     virtual ~Config();
 
@@ -35,12 +37,9 @@ signals:
     void minGemSizeChanged();
 
 protected:
-    Config() {}
-    Config(const Config &); // hide copy constructor
-    Config& operator=(const Config &); // hide assign op
-                                 // we leave just the declarations, so the compiler will warn us
-                                 // if we try to use those two functions by accident
+    Config();
 
+protected:
     int m_axisRange;
     QString m_envMap;
     static Config *m_instance;
@@ -48,10 +47,6 @@ protected:
     float m_minGemSize;
 };
 
-static QObject *configSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
-{
-    Config *instance = Config::instance();
-    return instance;
-}
+QObject *configSingletontypeProvider(QQmlEngine *engine, QJSEngine *scriptEngine);
 
 #endif // CONFIG_H

@@ -4,6 +4,10 @@
 
 Config* Config::m_instance = 0;
 
+Config::Config()
+{
+}
+
 void Config::setAxisRange(int &axisRange)
 {
     m_axisRange = axisRange;
@@ -84,3 +88,7 @@ float Config::minGemSize() const
     return m_minGemSize;
 }
 
+QObject *configSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
+{
+    return Config::instance();
+}
