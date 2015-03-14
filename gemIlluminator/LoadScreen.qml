@@ -3,7 +3,7 @@ import QtQuick.Controls 1.2
 
 Rectangle {
     visible: false
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     property real currentProgress: 0.0
 

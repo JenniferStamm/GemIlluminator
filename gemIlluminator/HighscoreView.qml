@@ -7,7 +7,7 @@ Rectangle {
     id: highscoreView
     anchors.fill: parent
     visible: false
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     property alias menuButton: menuButton
     property alias highscore: highscore

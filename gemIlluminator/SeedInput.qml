@@ -7,7 +7,7 @@ Rectangle {
     id: seedInput
     visible: false
     anchors.fill: parent
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     MenuButton {
         label: "Generate Scene"

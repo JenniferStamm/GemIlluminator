@@ -7,7 +7,7 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: mainMenu
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     property color backgroundBlue: "#75d5f5"
     property color lightBlue: "#33b5e5"
@@ -35,6 +35,19 @@ Rectangle {
         }
 
         MenuButton {
+            id: creditsButton
+            label: "Highscore"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 30
+
+            onClicked: {
+                credits.visible = true
+                mainMenu.visible = false
+            }
+        }
+
+        MenuButton {
             id: optionsButton
             label: "Options"
             anchors.bottom: parent.bottom
@@ -48,7 +61,7 @@ Rectangle {
         }
 
         MenuButton {
-            id: creditsButton
+            id: highscoreButton
             label: "Credits..."
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter

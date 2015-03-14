@@ -3,7 +3,7 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: credits
-    color: "#e5ffff"
+    color: "#e4eeff"
     anchors.fill: parent
     visible: false
 
