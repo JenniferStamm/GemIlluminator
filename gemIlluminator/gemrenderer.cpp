@@ -93,7 +93,7 @@ void GemRenderer::initialize(QOpenGLFunctions &gl)
     m_areFloatTexturesAvailable = false;
 
 #ifdef __ANDROID__
-    m_areFloatTexturesAvailable = currentContext->hasExtension("OES_texture_float");
+    m_areFloatTexturesAvailable = currentContext->hasExtension("GL_OES_texture_float");
 #else
     if (!currentContext->isOpenGLES()) {
         QSurfaceFormat format = currentContext->format();
@@ -393,13 +393,13 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
         if (m_areFloatTexturesAvailable) {
 #ifdef __ANDROID__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
-            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_OES_texture_float, nullptr);
+            gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
             QVector<float> data;
             for (GemDataInfo *gem : *m_gems) {
                 gem->appendVerticesWithIndexTo(vertices);
                 appendAttributesToVector(gem, data);
             }
-            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_OES_texture_float, data.data());
+            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_FLOAT, data.data());
 #else   //We expect to have a OpenGL context instead of OpenGL ES, if it is build for no mobile devices
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
             QVector<float> data;
@@ -444,7 +444,7 @@ void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &g
         appendAttributesToVector(gem, data);
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
 #ifdef __ANDROID__
-        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_OES_texture_float, data.data());
+        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
 #else
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
 #endif
