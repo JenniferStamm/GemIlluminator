@@ -40,8 +40,9 @@ Item {
         convertedConfig += '\t"AxisRange": ' + Config.axisRange + ',\n'
         convertedConfig += '\t"GemRangeSize": [' + gemRangeSize.join(', ') + '],\n'
         convertedConfig += '\t"AvailableEnvMaps": ["' + availableEnvMaps.join('", "') + '"],\n'
-        convertedConfig += '\t"EnvMap": "' + Config.envMap + ',"\n'
-        convertedConfig += '\t"ViewportRatio": ' + viewportRatio + '\n'
+        convertedConfig += '\t"EnvMap": "' + Config.envMap + '",\n'
+        convertedConfig += '\t"ViewportRatio": ' + viewportRatio + ',\n'
+        convertedConfig += '\t"NavigationSmoothnessFactor": ' + smoothnessFactor + '\n'
         convertedConfig += '}\n'
         Config.write(convertedConfig)
     }

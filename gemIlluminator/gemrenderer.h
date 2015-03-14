@@ -66,11 +66,11 @@ class GemRenderer
         bool m_hasErrorOccured;
         bool m_isInitialized;
         unsigned int m_lowestUnusedIndex;
+        int m_maxTextureSize;
+        float m_sceneExtent;
+        int m_texelPerGem;
         QOpenGLBuffer *m_vertexBuffer;
         int m_verticesPerGem;
-        float m_sceneExtent;
-        int m_maxTextureSize;
-        int m_texelPerGem;
     };
 
 
@@ -88,13 +88,13 @@ protected:
     void updateData(QOpenGLFunctions &gl);
 
 protected:
-    bool m_isInitialized;
     bool m_areFloatTexturesAvailable;
+    QHash<GemType, GemRenderData *> *m_gemBuffersTex;
     QHash<AbstractGem *, GemDataInfo *> *m_gemMap;
     bool m_isGemBufferUpdateRequired;
     bool m_isGemDataBufferInvalid;
+    bool m_isInitialized;
     QList<GemDataInfo *> *m_newGems;
-    QHash<GemType, GemRenderData *> *m_gemBuffersTex;
     float m_sceneExtent;
 };
 

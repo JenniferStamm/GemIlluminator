@@ -11,13 +11,13 @@
 
 LightRayRenderer::LightRayRenderer(QObject *parent) :
     QObject(parent)
-  , m_isStaticVBOUpdateRequired(true)
-  , m_staticVertexBuffer(nullptr)
-  , m_staticIndexBuffer(nullptr)
-  , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
   , m_dynamicRays(new QSet<LightRayData>)
+  , m_dynamicVertexBuffer(nullptr)
+  , m_isStaticVBOUpdateRequired(true)
+  , m_staticIndexBuffer(nullptr)
   , m_staticRays(new QSet<LightRayData>)
+  , m_staticVertexBuffer(nullptr)
 {
 }
 

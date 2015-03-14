@@ -1,6 +1,7 @@
 #include "fileio.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
@@ -20,7 +21,19 @@ QString FileIO::read()
     QFile *file = new QFile();
 
 #ifdef __ANDROID__
-    file->setFileName("assets:/" + m_source);
+    file->setFileName("./" + m_source);
+
+    // Assets directory is read only copy the file if needed
+    QFile *dfile = new QFile("assets:/" + m_source);
+
+    if (dfile->exists() && !file->exists()) {
+
+         dfile->copy("./" + m_source);
+         QFile::setPermissions("./" + m_source, QFile::WriteOwner | QFile::WriteGroup | QFile::ReadOwner | QFile::ReadGroup);
+    }
+
+    dfile->close();
+    delete dfile;
 #endif
 #ifdef _WIN32
     file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
@@ -41,6 +54,7 @@ QString FileIO::read()
         emit error("Unable to open the file.");
         return QString();
     }
+
     return fileContent;
 }
 
@@ -52,7 +66,18 @@ bool FileIO::write(const QString& data)
     QFile *file = new QFile();
 
 #ifdef __ANDROID__
-    file->setFileName("assets:/" + m_source);
+    file->setFileName("./" + m_source);
+
+    // Assets directory is read only copy the file if needed
+    QFile *dfile = new QFile("assets:/" + m_source);
+
+    if (dfile->exists() && !file->exists()) {
+         dfile->copy("./" + m_source);
+         QFile::setPermissions("./" + m_source, QFile::WriteOwner | QFile::WriteGroup | QFile::ReadOwner | QFile::ReadGroup);
+    }
+
+    dfile->close();
+    delete dfile;
 #endif
 #ifdef _WIN32
     file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);

@@ -69,9 +69,9 @@ Rectangle {
             for (i = 0; i < 10; i++) {
                 score = highscoreData.pop();
                 name = highscoreData.pop();
-                Qt.createQmlObject(getHighscoreNameString(name, i),
+                Qt.createQmlObject(getHighscoreNameString(name, 9 - i),
                      scoreContainer, "dynamicSnippet" + i + "_1");
-                Qt.createQmlObject(getHighscoreScoreString(score, i),
+                Qt.createQmlObject(getHighscoreScoreString(score, 9 - i),
                      scoreContainer, "dynamicSnippet" + i + "_2");
             }
         }
@@ -89,8 +89,8 @@ Rectangle {
         nameString += 'font.pointSize: 16;';
         nameString += 'text: "' + name + '";';
         nameString += 'x: parent.width / 2 - 120;';
-        nameString += 'anchors.bottom: parent.bottom;';
-        nameString += 'anchors.bottomMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
+        nameString += 'anchors.top: parent.top;';
+        nameString += 'anchors.topMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
         nameString += '}';
 
         return nameString;
@@ -108,8 +108,8 @@ Rectangle {
         scoreString += 'font.pointSize: 16;';
         scoreString += 'text: "' + score + '";';
         scoreString += 'x: parent.width / 2 + 85;';
-        scoreString += 'anchors.bottom: parent.bottom;';
-        scoreString += 'anchors.bottomMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
+        scoreString += 'anchors.top: parent.top;';
+        scoreString += 'anchors.topMargin: 60 + 5 * ' + i + ' * Screen.pixelDensity;';
         scoreString += '}';
 
         return scoreString;

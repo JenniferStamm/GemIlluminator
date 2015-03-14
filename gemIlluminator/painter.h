@@ -56,7 +56,7 @@ public:
     void setActive(bool active);
 
     /**
-     * @brief Clears the scene and removes all anymore required ressources.
+     * @brief Clears the scene and removes all not anymore required ressources.
      */
     void clearScene();
 
@@ -73,9 +73,18 @@ public slots:
     void paint();
 
 signals:
+    /**
+     * @brief This signal is emitted if initialization of all required ressources for current scene are initalized.
+     * @detail The signal is everytime emitted if previous scene was deleted and a new scene was synchronized.
+     */
     void initializeDone();
 
 protected:
+    /**
+     * @brief Initializes all required ressources,
+     * that are direct members of painter (scene independant ressources).
+     * This method is executed within first paint.
+     */
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
