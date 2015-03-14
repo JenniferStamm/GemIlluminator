@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QQmlEngine>
 
+class QJSEngine;
 class QMediaPlayer;
+class QQmlEngine;
 
 enum class SoundEffects {
     Collision1 = 0,
@@ -17,6 +19,10 @@ enum class SoundEffects {
     GameOver = 7
 };
 
+/**
+ * @brief The Soundmanager class provides several sounds which can be played.
+ * @detail The Soundmanager manages the required ressources.
+ */
 class Soundmanager : public QObject
 {
     Q_OBJECT
@@ -26,11 +32,33 @@ class Soundmanager : public QObject
 public:
     virtual ~Soundmanager();
 
+    /**
+     * @brief Drops current instance of our Soundmanager
+     */
     static void drop();
+    /**
+     * @brief The instance of our Soundmanager
+     * @return
+     */
     static Soundmanager *instance();
+    /**
+      * @brief Starts playing our background music
+      * @see stopBackgroundMusic()
+      */
     Q_INVOKABLE void playBackgroundMusic();
+    /**
+     * @brief Plays a previously defined sound in order to indicate a collision
+     * @see setCollisionSound()
+     */
     void playCollisionSound();
+    /**
+     * @brief Sets the collision sound that will be played next time playCollisionSound() is called
+     * @param effect The choosen SoundEffect
+     */
     void setCollisionSound(SoundEffects effect);
+    /**
+      * @brief Stops playing our background music
+      */
     Q_INVOKABLE void stopBackgroundMusic();
 
 protected:
@@ -43,6 +71,12 @@ protected:
     QMediaPlayer *m_collisionSound;
 };
 
+/**
+ * @brief Callback function used to get the current instance of Soundmanager within QML.
+ * @param engine Unused parameter required by callback.
+ * @param scriptEngine Unused parameter required by callback.
+ * @return Our instance of Soundmanager
+ */
 QObject *soundmanagerSingletontypeProvider(QQmlEngine * engine, QJSEngine * scriptEngine);
 
 #endif // SOUNDMANAGER_H
