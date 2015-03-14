@@ -8,7 +8,6 @@
 
 FileIO::FileIO(QObject *parent) : QObject(parent)
 {
-
 }
 
 QString FileIO::read()
@@ -102,11 +101,14 @@ QString FileIO::source()
 
 void FileIO::setSource(const QString &source)
 {
+    if (m_source == source) {
+        return;
+    }
     m_source = source;
+    emit sourceChanged(source);
 }
 
 FileIO::~FileIO()
 {
-
 }
 
