@@ -17,7 +17,7 @@ Rectangle {
     Rectangle {
         color: backgroundBlue
         width: 70 * Screen.pixelDensity
-        height: 120 + 40 * Screen.pixelDensity
+        height: 110 + 40 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 2 * Screen.pixelDensity
@@ -27,7 +27,7 @@ Rectangle {
             label: "Start the Game!"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 90 + 30 * Screen.pixelDensity
+            anchors.bottomMargin: 85 + 30 * Screen.pixelDensity
 
             onClicked: {
                 mainMenu.visible = false
@@ -39,7 +39,7 @@ Rectangle {
             label: "Highscore"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 70 + 20 * Screen.pixelDensity
+            anchors.bottomMargin: 65 + 20 * Screen.pixelDensity
 
             onClicked: {
                 highscore.visible = true
@@ -52,7 +52,7 @@ Rectangle {
             label: "Options"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 50 + 10 * Screen.pixelDensity
+            anchors.bottomMargin: 45 + 10 * Screen.pixelDensity
 
             onClicked: {
                 options.visible = true
@@ -65,7 +65,7 @@ Rectangle {
             label: "Credits..."
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 30
+            anchors.bottomMargin: 25
 
             onClicked: {
                 credits.visible = true
