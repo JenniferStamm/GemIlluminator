@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Gem Illuminator</title>
+	<meta name="author" content="" />
+	<meta name="description" content="" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fullpagescroll/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="owlcarousel/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="owlcarousel/owl.theme.css">
+	<link rel="stylesheet" type="text/css" href="owlcarousel/owl.transitions.css">
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<!--[if IE]>
+	<script type="text/javascript">
+	var console = { log: function() {} };
+	</script>
+	<![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="" class="navbar-brand">Gem Illuminator</a>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul id="menu" class="nav navbar-nav navbar-right">
+      	<li class="link" data-menuanchor="game"><a href="#game">The Game</a></li>
+        <li class="link" data-menuanchor="download"><a href="#download">Download</a></li>
+        <li id="doc-link" class="link" data-menuanchor="documentation"><a href="#documentation">Documentation</a></li>
+        <li class="link" data-menuanchor="contact"><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<div id="fullpage" class="container">
+	<div class="section" id="section0">
+	    <div id="features" class="owl-carousel owl-theme">
+		    <div class="item"><img src="assets/MainMenu.png" alt=""></div>
+		    <div class="item"><img src="assets/MainMenu (Kopie).png" alt=""></div>
+	    </div>
+	    Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen. Nicht einmal von der allmächtigen Interpunktion werden die 
+	</div>
+
+	<div class="section" id="section1">
+		Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans. Ein kleines Bächlein namens Duden fließt durch ihren Ort und versorgt sie mit den nötigen Regelialien. Es ist ein paradiesmatisches Land, in dem einem gebratene Satzteile in den Mund fliegen. Nicht einmal von der allmächtigen Interpunktion werden die Blindtexte beherrscht – ein geradezu unorthographisches Leben. Eines Tages aber beschloß eine kleine Zeile Blindtext, ihr Name war Lorem Ipsum, hinaus zu gehen in die weite Grammatik. Der große Oxmox riet ihr davon ab, da es dort wimmele von bösen Kommata, wilden Fragezeichen und hinterhältigen Semikoli, doch das Blindtextchen ließ sich nicht beirren. Es packte seine sieben Versalien, schob sich sein Initial in den Gürtel und machte sich auf den Weg. Als es die ersten Hügel des Kursivgebirges erklommen hatte, warf es einen letzten Blick zurück auf die Skyline seiner Heimatstadt Buchstabhausen, die Headline von Alphabetdorf und die Subline seiner eigenen Straße, der Zeilengasse. Wehmütig lief ihm eine rhetorische Frage über die Wange, dann setzte es seinen Weg fort. Unterwegs traf es eine Copy. Die Copy warnte das Blindtextchen, da, wo sie herkäme wäre sie 
+	</div>
+
+	<div class="section" id="section2">
+		
+	</div>
+
+	<div class="section" id="section3">
+
+	</div>
+</div>
+<iframe id="doc" src="http://voxellancer.de/doxygen/index.html"></iframe>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="owlcarousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="fullpagescroll/jquery.fullPage.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#fullpage').fullpage({
+			anchors: ['game', 'download', 'documentation', 'contact', 'lastPage'],
+			menu: '#menu',
+			//equivalent to jQuery `easeOutBack` extracted from http://matthewlein.com/ceaser/
+			easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)',
+			paddingTop: '76px',
+			verticalCentered: false,
+		});
+
+		$('.link').click(function(){
+			if($(this).attr("id") === "doc-link") {
+				$('#doc').css("display", "block");
+			} else {
+				$('#doc').css("display", "none");
+			}
+		});
+     
+    	$("#features").owlCarousel({
+		    navigation : true, // Show next and prev buttons
+		    slideSpeed : 300,
+		    paginationSpeed : 400,
+		    singleItem:true,
+		     
+	    });
+	});
+</script>
+</body>
+</html>
