@@ -289,11 +289,11 @@ QList<LightRay *> AbstractGem::processRayIntersection(const LightRay &ray, Scene
         reflectedRay->setEndPosition(collisionPoint + reflectedDirection);
         result.append(reflectedRay);
     }
-    for (auto ray : result) {
+    for (auto incidentRay : result) {
         QVector3D collisionPoint;
-        scene->findGemIntersectedBy(*ray, &collisionPoint);
-        ray->setEndPosition(collisionPoint);
-        ray->setColor(ray->calculateSuccessorColor());
+        scene->findGemIntersectedBy(*incidentRay, &collisionPoint);
+        incidentRay->setEndPosition(collisionPoint);
+        incidentRay->setColor(incidentRay->calculateSuccessorColor());
     }
     delete intersectedTriangle;
     return result;
