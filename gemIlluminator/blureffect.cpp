@@ -70,7 +70,6 @@ void BlurEffect::blur(const QSize &textureSize)
         m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.width(), textureSize.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
     }
 
-    m_gl.glBindRenderbuffer(GL_RENDERBUFFER, m_blurDepthRB);
     if (viewportChanged) {
         m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, textureSize.width(), textureSize.height());
     }

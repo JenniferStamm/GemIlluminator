@@ -38,7 +38,7 @@ void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection
     if (!m_isInitalized) {
         initalize(gl);
     }
-    paintGems(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::GemProgram));
+    paintGems(gl, *shaderPrograms.value(ShaderPrograms::GemProgram));
     paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
 }
 
@@ -49,9 +49,9 @@ void SceneRenderer::initalize(QOpenGLFunctions &gl)
     emit initalizationDone();
 }
 
-void SceneRenderer::paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram& shaderProgram)
+void SceneRenderer::paintGems(QOpenGLFunctions &gl, QOpenGLShaderProgram& shaderProgram)
 {
-    m_gemRenderer->paint(gl, viewProjection, shaderProgram);
+    m_gemRenderer->paint(gl, shaderProgram);
 }
 
 void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
