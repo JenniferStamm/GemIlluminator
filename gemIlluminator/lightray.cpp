@@ -65,7 +65,6 @@ void LightRay::update(int timeDifference)
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
-            m_data->setColor(QVector3D(0.1f, 0.1f, 0.5f));
             setStatic();
         }
 
