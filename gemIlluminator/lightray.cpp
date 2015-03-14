@@ -213,6 +213,14 @@ void LightRay::calculateSuccessors()
     m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
 }
 
+QVector3D LightRay::calculateColor()
+{
+    QVector3D newColor = m_data->normalizedDirection();
+    newColor /= 2.8f;
+    newColor += QVector3D(0.45f, 0.45f, 0.45f);
+    return newColor;
+}
+
 bool LightRay::isPlayerBeforeCollisionPoint()
 {
     QVector3D playerPosition = m_player->position();
