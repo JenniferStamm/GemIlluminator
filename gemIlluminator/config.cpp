@@ -4,6 +4,10 @@
 
 Config* Config::m_instance = 0;
 
+Config::Config()
+{
+}
+
 void Config::setAxisRange(int &axisRange)
 {
     m_axisRange = axisRange;
@@ -41,7 +45,6 @@ void Config::setMinGemSize(float minGemSize)
 
 Config::~Config()
 {
-
 }
 
 int Config::axisRange()
@@ -65,7 +68,7 @@ Config *Config::instance()
         mutex.lock();
 
         if (!m_instance) {
-            m_instance = new Config;
+            m_instance = new Config();
         }
 
         mutex.unlock();
@@ -84,3 +87,7 @@ float Config::minGemSize() const
     return m_minGemSize;
 }
 
+QObject *configSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
+{
+    return Config::instance();
+}

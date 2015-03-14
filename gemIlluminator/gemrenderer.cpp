@@ -48,7 +48,7 @@ void GemRenderer::cleanup(QOpenGLFunctions &gl)
     }
 }
 
-void GemRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &program)
+void GemRenderer::paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program)
 {
     if (!m_isInitialized) {
         initialize(gl);
@@ -128,7 +128,6 @@ void GemRenderer::updateData(QOpenGLFunctions &gl)
             }
             typeRenderData->addOrUpdateGem(gem, gl);
         }
-
         m_newGems->clear();
     }
 }

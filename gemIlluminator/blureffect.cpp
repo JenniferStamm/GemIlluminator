@@ -5,16 +5,14 @@
 #include <QOpenGLShaderProgram>
 #include <QSize>
 
-#include "camera.h"
 #include "screenalignedquad.h"
 #include "shaderprograms.h"
 
-BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, int viewportRatio, QObject *parent) :
+BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) :
     QObject(parent)
   , m_gl(gl)
   , m_shaderPrograms(new QMap<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_initialized(false)
-  , m_viewportRatio(viewportRatio)
   , m_blurTexture(blurTexture)
   , m_usedViewport(new QSize())
   , m_quad(nullptr)
@@ -25,7 +23,6 @@ BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, int viewportRatio
 BlurEffect::~BlurEffect()
 {
     m_gl.glDeleteTextures(1, &m_secondaryBlurTexture);
-    m_gl.glDeleteRenderbuffers(1, &m_blurDepthRB);
     m_gl.glDeleteFramebuffers(1, &m_blurFBO);
     m_gl.glDeleteFramebuffers(1, &m_secondaryBlurFBO);
 
@@ -37,61 +34,52 @@ BlurEffect::~BlurEffect()
     delete m_usedViewport;
 }
 
-void BlurEffect::renderGlowToTexture(const Camera &camera)
+void BlurEffect::blur(const QSize &textureSize)
 {
     if (!m_initialized) {
         initialize();
     }
 
-    int viewportHeight = camera.viewport().height();
-    int viewportWidth = camera.viewport().width();
-
-    int glowViewportHeight = viewportHeight / m_viewportRatio;
-    int glowViewportWidth = viewportWidth / m_viewportRatio;
-
     bool viewportChanged = false;
-    if (m_usedViewport->height() != viewportHeight
-            || m_usedViewport->width() != viewportWidth) {
-        *m_usedViewport = camera.viewport();
+    if (*m_usedViewport != textureSize) {
+        *m_usedViewport = textureSize;
         viewportChanged = true;
     }
 
     // Smooth lightRayTexture
     // Gauss Horizontal - lightRayTexture to secondaryLightRayTexture
+    m_gl.glDisable(GL_DEPTH_TEST);
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_secondaryBlurFBO);
 
     m_gl.glBindTexture(GL_TEXTURE_2D, m_secondaryBlurTexture);
     if (viewportChanged) {
-        m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.width(), textureSize.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
     }
 
-    m_gl.glBindRenderbuffer(GL_RENDERBUFFER, m_blurDepthRB);
-    if (viewportChanged) {
-        m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
-    }
-    m_gl.glViewport(0, 0, glowViewportWidth, glowViewportHeight);
+    m_gl.glViewport(0, 0, textureSize.width(), textureSize.height());
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussHorizontal(camera, glowViewportWidth);
+    renderGaussHorizontal(textureSize);
 
     // Gauss Vertical - secondaryLightRayTexture to lightRayTexture
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_blurFBO);
 
     m_gl.glBindTexture(GL_TEXTURE_2D, m_blurTexture);
     if (viewportChanged) {
-        m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glowViewportWidth, glowViewportHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+        m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureSize.width(), textureSize.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
     }
 
-    m_gl.glBindRenderbuffer(GL_RENDERBUFFER, m_blurDepthRB);
     if (viewportChanged) {
-        m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, glowViewportWidth, glowViewportHeight);
+        m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, textureSize.width(), textureSize.height());
     }
-    m_gl.glViewport(0, 0, glowViewportWidth, glowViewportHeight);
+    m_gl.glViewport(0, 0, textureSize.width(), textureSize.height());
 
     m_gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderGaussVertical(camera, glowViewportHeight);
+    renderGaussVertical(textureSize);
+
+    m_gl.glEnable(GL_DEPTH_TEST);
 }
 
 void BlurEffect::initialize()
@@ -107,15 +95,9 @@ void BlurEffect::initializeFBOs()
     m_gl.glGenFramebuffers(1, &m_blurFBO);
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_blurFBO);
 
-    m_gl.glGenRenderbuffers(1, &m_blurDepthRB);
-    m_gl.glBindRenderbuffer(GL_RENDERBUFFER, m_blurDepthRB);
-
     m_gl.glBindTexture(GL_TEXTURE_2D, m_blurTexture);
     m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
     m_gl.glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_blurTexture, 0);
-    m_gl.glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_blurDepthRB);
-    m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
     if (m_gl.glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;
@@ -133,8 +115,6 @@ void BlurEffect::initializeFBOs()
     m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     m_gl.glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_secondaryBlurTexture, 0);
-    m_gl.glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_blurDepthRB);
-    m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
     if (m_gl.glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;
@@ -162,16 +142,14 @@ void BlurEffect::initializeShaderPrograms()
     m_shaderPrograms->insert(ShaderPrograms::GaussVerticalProgram, gaussVerticalProgram);
 }
 
-void BlurEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
+void BlurEffect::renderGaussHorizontal(const QSize &textureSize)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussHorizontalProgram);
     shaderProgram->bind();
 
-    shaderProgram->setUniformValue("view", camera.view());
-    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
-    shaderProgram->setUniformValue("lightRays", 0);
-    float blurSize = 1.0 / viewportWidth;
-    shaderProgram->setUniformValue("blurSize", blurSize);
+    shaderProgram->setUniformValue("u_source", 0);
+    float blurSize = 1.0 / textureSize.width();
+    shaderProgram->setUniformValue("u_blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_blurTexture);
 
@@ -183,16 +161,14 @@ void BlurEffect::renderGaussHorizontal(const Camera &camera, int viewportWidth)
     shaderProgram->release();
 }
 
-void BlurEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
+void BlurEffect::renderGaussVertical(const QSize &textureSize)
 {
     auto shaderProgram = m_shaderPrograms->value(ShaderPrograms::GaussVerticalProgram);
     shaderProgram->bind();
 
-    shaderProgram->setUniformValue("view", camera.view());
-    shaderProgram->setUniformValue("projectionInverse", camera.projectionInverted());
-    shaderProgram->setUniformValue("lightRays", 0);
-    float blurSize = 1.0 / viewportHeight;
-    shaderProgram->setUniformValue("blurSize", blurSize);
+    shaderProgram->setUniformValue("u_source", 0);
+    float blurSize = 1.0 / textureSize.height();
+    shaderProgram->setUniformValue("u_blurSize", blurSize);
     m_gl.glActiveTexture(GL_TEXTURE0);
     m_gl.glBindTexture(GL_TEXTURE_2D, m_secondaryBlurTexture);
 
@@ -203,9 +179,3 @@ void BlurEffect::renderGaussVertical(const Camera &camera, int viewportHeight)
 
     shaderProgram->release();
 }
-
-
-
-
-
-

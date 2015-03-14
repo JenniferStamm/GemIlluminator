@@ -10,5 +10,6 @@
         <file>shader/scene.vert</file>
         <file>shader/gausshorizontal.frag</file>
         <file>shader/gaussvertical.frag</file>
+        <file>shader/envmap.vert</file>
     </qresource>
 </RCC>

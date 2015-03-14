@@ -4,9 +4,8 @@ precision mediump int;
 precision mediump float;
 #endif
 
-uniform sampler2D lightRays;
-
-uniform float blurSize;
+uniform sampler2D u_source;
+uniform float u_blurSize;
 
 varying vec2 v_uv;
 
@@ -15,13 +14,13 @@ varying vec2 v_uv;
 void main()
 {
     float u;
-    vec4 color = texture2D(lightRays, v_uv) * 5.0;
+    vec4 color = texture2D(u_source, v_uv) * 5.0;
 
     for (float i = 1.0; i < 5.0; i++) {
-        u = v_uv.s + blurSize * i;
-        color += texture2D(lightRays, vec2(u, v_uv.t)) * (5.0 - i);
-        u = v_uv.s + blurSize * -i;
-        color += texture2D(lightRays, vec2(u, v_uv.t)) * (5.0 - i);
+        u = v_uv.s + u_blurSize * i;
+        color += texture2D(u_source, vec2(u, v_uv.t)) * (5.0 - i);
+        u = v_uv.s + u_blurSize * -i;
+        color += texture2D(u_source, vec2(u, v_uv.t)) * (5.0 - i);
     }
 
     gl_FragColor = vec4(color / 25.0);

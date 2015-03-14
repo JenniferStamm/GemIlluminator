@@ -56,7 +56,7 @@ public:
      * @param viewProjection The viewprojection matrix which will be used.
      * @param shaderProgram The specified shaderprogram used for rendering.
      */
-    void paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram);
+    void paintGems(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
     /**
      * @brief Paints previous synchronized lightrays using specified program.
      * @param gl QOpenGLFunctions which will be used for any gl-call

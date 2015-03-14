@@ -75,7 +75,7 @@ void EnvironmentMap::initialize()
 
 void EnvironmentMap::initializeShaderProgram()
 {
-    m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/screenquad.vert");
+    m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":shader/envmap.vert");
     m_shaderProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":shader/envmap.frag");
 
     if (!m_shaderProgram->link()) {
