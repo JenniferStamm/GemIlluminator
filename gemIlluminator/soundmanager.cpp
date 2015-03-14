@@ -48,7 +48,7 @@ void Soundmanager::playBackgroundMusic()
 void Soundmanager::setCollisionSound(SoundEffects effect)
 {
     m_collisionSound->playlist()->setPlaybackMode(QMediaPlaylist::CurrentItemOnce);
-    m_collisionSound->playlist()->setCurrentIndex(effect);
+    m_collisionSound->playlist()->setCurrentIndex(static_cast<int>(effect));
 }
 
 void Soundmanager::playCollisionSound()
