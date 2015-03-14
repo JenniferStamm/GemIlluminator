@@ -5,6 +5,9 @@
 
 #include "fileio.h"
 
+/**
+ * @brief The Highscore is only a semantic class. We want to clarify that this fileIO is a Highscore.
+ */
 class Highscore : public FileIO
 {
     Q_OBJECT
