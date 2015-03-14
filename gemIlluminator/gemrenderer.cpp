@@ -22,14 +22,14 @@
 #include "triangle.h"
 
 GemRenderer::GemRenderer() :
-    m_isInitialized(false)
-  , m_areFloatTexturesAvailable(false)
+    m_areFloatTexturesAvailable(false)
+  , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
   , m_gemMap(new QHash<AbstractGem *, GemDataInfo *>())
   , m_isGemBufferUpdateRequired(false)
+  , m_isGemDataBufferInvalid(false)
+  , m_isInitialized(false)
   , m_newGems(new QList<GemDataInfo *>())
   , m_sceneExtent(1.f)
-  , m_isGemDataBufferInvalid(false)
-  , m_gemBuffersTex(new QHash<GemType, GemRenderData *>())
 { 
 }
 

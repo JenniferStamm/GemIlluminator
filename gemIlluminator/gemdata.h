@@ -64,13 +64,13 @@ protected:
 
 protected:
     QVector3D *m_color;
+    mutable bool m_isModelInvalid;
+    mutable QMatrix4x4 *m_model;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     float m_scale;
     QList<Triangle *> *m_triangles;
     GemType m_type;
-    mutable QMatrix4x4 *m_model;
-    mutable bool m_isModelInvalid;
 };
 
 bool operator==(const GemData &lhs, const GemData &rhs);
