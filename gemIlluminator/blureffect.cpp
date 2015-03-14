@@ -23,7 +23,6 @@ BlurEffect::BlurEffect(QOpenGLFunctions &gl, uint blurTexture, QObject *parent) 
 BlurEffect::~BlurEffect()
 {
     m_gl.glDeleteTextures(1, &m_secondaryBlurTexture);
-    m_gl.glDeleteRenderbuffers(1, &m_blurDepthRB);
     m_gl.glDeleteFramebuffers(1, &m_blurFBO);
     m_gl.glDeleteFramebuffers(1, &m_secondaryBlurFBO);
 
@@ -97,15 +96,9 @@ void BlurEffect::initializeFBOs()
     m_gl.glGenFramebuffers(1, &m_blurFBO);
     m_gl.glBindFramebuffer(GL_FRAMEBUFFER, m_blurFBO);
 
-    m_gl.glGenRenderbuffers(1, &m_blurDepthRB);
-    m_gl.glBindRenderbuffer(GL_RENDERBUFFER, m_blurDepthRB);
-
     m_gl.glBindTexture(GL_TEXTURE_2D, m_blurTexture);
     m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-
     m_gl.glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_blurTexture, 0);
-    m_gl.glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_blurDepthRB);
-    m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
     if (m_gl.glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;
@@ -123,8 +116,6 @@ void BlurEffect::initializeFBOs()
     m_gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 
     m_gl.glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_secondaryBlurTexture, 0);
-    m_gl.glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_blurDepthRB);
-    m_gl.glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 1, 1);
 
     if (m_gl.glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
         return;

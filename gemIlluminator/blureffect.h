@@ -27,13 +27,26 @@ public:
     BlurEffect(QOpenGLFunctions &gl, uint glowTexture, QObject *parent = nullptr);
     virtual ~BlurEffect();
 
+    /**
+     * @brief Blurs previous set texture.
+     * @detail The texture is blurred using two seperated passes of gauss blur. The result is a gaussblur with 9x9 kernel.
+     * @param textureSize The size of texture, because we support changing texture sizes.
+     */
     void blur(const QSize &textureSize);
 
 protected:
     void initialize();
     void initializeFBOs();
     void initializeShaderPrograms();
+    /**
+     * @brief Blurs texture horizontally.
+     * @param textureSize The current size of texture that is blurred.
+     */
     void renderGaussHorizontal(const QSize &textureSize);
+    /**
+     * @brief Blurs texture vertically.
+     * @param textureSize The current size of texture that is blurred.
+     */
     void renderGaussVertical(const QSize &textureSize);
 
 protected:
@@ -42,7 +55,6 @@ protected:
     bool m_initialized;
 
     uint m_blurFBO;
-    uint m_blurDepthRB;
     uint m_blurTexture;
     uint m_secondaryBlurFBO;
     uint m_secondaryBlurTexture;
