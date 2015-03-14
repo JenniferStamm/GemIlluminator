@@ -394,21 +394,15 @@ void GemRenderer::GemRenderData::addGem(GemDataInfo *gem, QOpenGLFunctions &gl)
         if (m_areFloatTexturesAvailable) {
 #ifdef __ANDROID__  //We support only android as mobile device, other OpenGL ES 2.0 devices should be checked too if needed
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
-            QVector<float> data;
-            for (GemDataInfo *gem : *m_gems) {
-                gem->appendVerticesWithIndexTo(vertices);
-                appendAttributesToVector(gem, data);
-            }
-            gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_FLOAT, data.data());
 #else   //We expect to have a OpenGL context instead of OpenGL ES, if it is build for no mobile devices
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, texWidth, texHeight, 0, GL_RGBA, GL_FLOAT, nullptr);
+#endif
             QVector<float> data;
             for (GemDataInfo *gem : *m_gems) {
                 gem->appendVerticesWithIndexTo(vertices);
                 appendAttributesToVector(gem, data);
             }
             gl.glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, texWidth, texHeight - 1, GL_RGBA, GL_FLOAT, data.data());
-#endif
         } else {
             gl.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
             QVector<GLubyte> data;
@@ -443,11 +437,7 @@ void GemRenderer::GemRenderData::updateGem(GemDataInfo *gem, QOpenGLFunctions &g
         QVector<float> data;
         appendAttributesToVector(gem, data);
         gl.glBindTexture(GL_TEXTURE_2D, m_dataBuffer);
-#ifdef __ANDROID__
         gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
-#else
-        gl.glTexSubImage2D(GL_TEXTURE_2D, 0, xOffset, yOffset, m_texelPerGem, 1, GL_RGBA, GL_FLOAT, data.data());
-#endif
         gl.glBindTexture(GL_TEXTURE_2D, 0);
     } else {
         QVector<GLubyte> data;
