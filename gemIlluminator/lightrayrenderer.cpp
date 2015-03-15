@@ -53,6 +53,8 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
         updateStaticVBO();
     }
 
+    gl.glDisable(GL_CULL_FACE);
+
     shaderProgram.bind();
     shaderProgram.enableAttributeArray(0);
     shaderProgram.enableAttributeArray(1);
@@ -63,7 +65,7 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
 
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
     gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
-    gl.glDrawElements(GL_TRIANGLE_STRIP, m_staticIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
+    gl.glDrawElements(GL_TRIANGLES, m_staticIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
 
     m_staticVertexBuffer->release();
     m_staticIndexBuffer->release();
@@ -74,13 +76,15 @@ void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProject
 
     gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
     gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
-    gl.glDrawElements(GL_TRIANGLE_STRIP, m_dynamicIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
+    gl.glDrawElements(GL_TRIANGLES, m_dynamicIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
 
     m_dynamicVertexBuffer->release();
     m_dynamicIndexBuffer->release();
 
     shaderProgram.disableAttributeArray(0);
     shaderProgram.release();
+
+    gl.glEnable(GL_CULL_FACE);
 }
 
 void LightRayRenderer::resetDynamicRays()
@@ -125,22 +129,10 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     pushVertexAndColorToVector(rayData.endPosition()   - upVector    * offset, rayData.color(), vertices);
     pushVertexAndColorToVector(rayData.endPosition()   - rightVector * offset, rayData.color(), vertices);
 
-    indices.push_back(startBottom);
-    indices.push_back(startBottom);
-    indices.push_back(startRight);
-    indices.push_back(startLeft);
-    indices.push_back(startTop);
-    indices.push_back(endTop);
-    indices.push_back(startRight);
-    indices.push_back(endRight);
-    indices.push_back(endBottom);
-    indices.push_back(endTop);
-    indices.push_back(endLeft);
-    indices.push_back(startLeft);
-    indices.push_back(endBottom);
-    indices.push_back(startBottom);
-    indices.push_back(startRight);
-    indices.push_back(startRight);
+    indices << startLeft << startRight << endRight;
+    indices << endRight << endLeft << startLeft;
+    indices << startTop << startBottom << endBottom;
+    indices << endBottom << endTop << startTop;
 }
 
 void LightRayRenderer::updateRayVBO(
