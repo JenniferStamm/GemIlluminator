@@ -120,7 +120,7 @@ protected:
     ScreenAlignedQuad *m_quad;
 
     CubeMap *m_rainbowMap;
-    CubeMap *m_refractionMap;
+    CubeMap *m_gemStructureMap;
 
     uint m_sceneFBO;
     uint m_sceneDepthRB;
