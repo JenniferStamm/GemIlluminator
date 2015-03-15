@@ -405,8 +405,8 @@ void Painter::initializeFBOs()
 void Painter::initializeShaderPrograms()
 {
     auto gemProgram = new QOpenGLShaderProgram(this);
-    gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
-    gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
     if (!gemProgram->link()) {
         qDebug() << "Gem: Link failed";
     }
