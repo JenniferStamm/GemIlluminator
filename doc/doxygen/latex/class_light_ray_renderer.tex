@@ -1,0 +1,62 @@
+\hypertarget{class_light_ray_renderer}{}\section{Light\+Ray\+Renderer Class Reference}
+\label{class_light_ray_renderer}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
+Inheritance diagram for Light\+Ray\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_light_ray_renderer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}{}{\bfseries Light\+Ray\+Renderer} (Q\+Object $\ast$parent=0)\label{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}
+
+\item 
+\hypertarget{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}{}void {\bfseries add\+Light\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&light\+Ray)\label{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}
+
+\item 
+\hypertarget{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}{}virtual void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}{}void {\bfseries update\+Static\+V\+B\+O} ()\label{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}
+
+\item 
+\hypertarget{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}{}void {\bfseries update\+Dynamic\+V\+B\+O} ()\label{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}
+
+\item 
+\hypertarget{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}{}void {\bfseries calculate\+Vertex\+Data\+For} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&ray\+Data, \hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ \&vertices, \hyperlink{class_q_vector}{Q\+Vector}$<$ unsigned int $>$ \&indices)\label{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}{}bool {\bfseries m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}\label{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}
+
+\item 
+\hypertarget{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}{}Q\+Open\+G\+L\+Buffer $\ast$ {\bfseries m\+\_\+static\+Vertex\+Buffer}\label{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}
+
+\item 
+\hypertarget{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}{}Q\+Open\+G\+L\+Buffer $\ast$ {\bfseries m\+\_\+static\+Index\+Buffer}\label{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}
+
+\item 
+\hypertarget{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}{}Q\+Open\+G\+L\+Buffer $\ast$ {\bfseries m\+\_\+dynamic\+Vertex\+Buffer}\label{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}
+
+\item 
+\hypertarget{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}{}Q\+Open\+G\+L\+Buffer $\ast$ {\bfseries m\+\_\+dynamic\+Index\+Buffer}\label{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}
+
+\item 
+\hypertarget{class_light_ray_renderer_a994b774bb19f4d310593b18a40a41af7}{}\hyperlink{class_q_vector}{Q\+Vector}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ {\bfseries m\+\_\+dynamic\+Rays}\label{class_light_ray_renderer_a994b774bb19f4d310593b18a40a41af7}
+
+\item 
+\hypertarget{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}{}\hyperlink{class_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ {\bfseries m\+\_\+static\+Rays}\label{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/lightrayrenderer.\+h\item 
+gem\+Illuminator/lightrayrenderer.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,83 @@
+\hypertarget{class_triangle}{}\section{Triangle Class Reference}
+\label{class_triangle}\index{Triangle@{Triangle}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_triangle_ab9220b045480de037944ed99913ecea8}{}{\bfseries Triangle} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$owning\+Gem)\label{class_triangle_ab9220b045480de037944ed99913ecea8}
+
+\item 
+\hypertarget{class_triangle_a860d12ec88ef8821dd10a5a653a7413d}{}{\bfseries Triangle} (const Q\+Vector3\+D \&a, const Q\+Vector3\+D \&b, const Q\+Vector3\+D \&c, \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$owning\+Gem)\label{class_triangle_a860d12ec88ef8821dd10a5a653a7413d}
+
+\item 
+\hypertarget{class_triangle_a889893fe34e2eb7121082b86199d5628}{}{\bfseries Triangle} (const \hyperlink{class_triangle}{Triangle} \&triangle)\label{class_triangle_a889893fe34e2eb7121082b86199d5628}
+
+\item 
+\hypertarget{class_triangle_aae57b61e09898f54256a83e76acfe502}{}\hyperlink{class_triangle}{Triangle} \& {\bfseries operator=} (const \hyperlink{class_triangle}{Triangle} \&triangle)\label{class_triangle_aae57b61e09898f54256a83e76acfe502}
+
+\item 
+\hypertarget{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{}const Q\+Vector3\+D \& {\bfseries a} () const \label{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}
+
+\item 
+\hypertarget{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}{}void {\bfseries set\+A} (const Q\+Vector3\+D \&a)\label{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}
+
+\item 
+\hypertarget{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{}const Q\+Vector3\+D \& {\bfseries b} () const \label{class_triangle_a8327124c9b9b752be94187c9fbf3f460}
+
+\item 
+\hypertarget{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}{}void {\bfseries set\+B} (const Q\+Vector3\+D \&b)\label{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}
+
+\item 
+\hypertarget{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{}const Q\+Vector3\+D \& {\bfseries c} () const \label{class_triangle_a61f6c0245df276555de6d1b1a98840b8}
+
+\item 
+\hypertarget{class_triangle_af4566995b306c0f9ae72b457b7acb983}{}void {\bfseries set\+C} (const Q\+Vector3\+D \&c)\label{class_triangle_af4566995b306c0f9ae72b457b7acb983}
+
+\item 
+\hypertarget{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}{}const Q\+Vector3\+D \& {\bfseries normal} () const \label{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}
+
+\item 
+\hypertarget{class_triangle_ad51139a1ad219f93031cf1a64646c123}{}Q\+Vector3\+D {\bfseries normalized\+Normal} () const \label{class_triangle_ad51139a1ad219f93031cf1a64646c123}
+
+\item 
+\hypertarget{class_triangle_ad29fe2cad14c0285aca2557d3a0c0f13}{}\hyperlink{class_triangle}{Triangle} {\bfseries in\+World\+Coordinates} () const \label{class_triangle_ad29fe2cad14c0285aca2557d3a0c0f13}
+
+\item 
+\hypertarget{class_triangle_ae531defb56fd5b0a19078f23954253dc}{}\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ {\bfseries owning\+Gem} () const \label{class_triangle_ae531defb56fd5b0a19078f23954253dc}
+
+\item 
+\hypertarget{class_triangle_a66da12d2c747c435ea5148df472d9229}{}\hyperlink{class_q_list}{Q\+List}$<$ Q\+Vector3\+D $>$ {\bfseries vertices} () const \label{class_triangle_a66da12d2c747c435ea5148df472d9229}
+
+\item 
+\hypertarget{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}{}Q\+Vector3\+D {\bfseries reflect} (const Q\+Vector3\+D \&incident\+Vector) const \label{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}{}void {\bfseries calculate\+Normal} () const \label{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+a}\label{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}
+
+\item 
+\hypertarget{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+b}\label{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}
+
+\item 
+\hypertarget{class_triangle_ae39dcbf0b28b543900380517bbef628c}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+c}\label{class_triangle_ae39dcbf0b28b543900380517bbef628c}
+
+\item 
+\hypertarget{class_triangle_a86922a6a07e847f2df3b9310af273d8a}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+normal}\label{class_triangle_a86922a6a07e847f2df3b9310af273d8a}
+
+\item 
+\hypertarget{class_triangle_a205c63aa77abccf049d3535cb2512df0}{}\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ {\bfseries m\+\_\+gem}\label{class_triangle_a205c63aa77abccf049d3535cb2512df0}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/triangle.\+h\item 
+gem\+Illuminator/triangle.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,89 @@
+\hypertarget{class_player}{}\section{Player Class Reference}
+\label{class_player}\index{Player@{Player}}
+Inheritance diagram for Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries camera} () const \label{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}
+
+\item 
+\hypertarget{class_player_af5e57b3a9719cd999aff21d59355be52}{}void {\bfseries set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)\label{class_player_af5e57b3a9719cd999aff21d59355be52}
+
+\item 
+\hypertarget{class_player_a836e1afdde2c379b964bcf5d3811f0da}{}qreal {\bfseries velocity} () const \label{class_player_a836e1afdde2c379b964bcf5d3811f0da}
+
+\item 
+\hypertarget{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}{}void {\bfseries set\+Velocity} (qreal velocity)\label{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}
+
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_aef620bc75871b32311560a7b2a31c144}{}void {\bfseries camera\+Changed} ()\label{class_player_aef620bc75871b32311560a7b2a31c144}
+
+\item 
+\hypertarget{class_player_a22ae3d9604e92fa12cfad39fe40e8651}{}void {\bfseries velocity\+Changed} ()\label{class_player_a22ae3d9604e92fa12cfad39fe40e8651}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}{}{\bfseries Player} (Q\+Object $\ast$parent=0)\label{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}
+
+\item 
+\hypertarget{class_player_a6dcd0b9f4d678260314878ab20ce6e09}{}void {\bfseries move\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, int time\+Difference\+In\+Milliseconds)\label{class_player_a6dcd0b9f4d678260314878ab20ce6e09}
+
+\item 
+\hypertarget{class_player_a38269e0706f91b71c6e8f8373c397969}{}void {\bfseries move\+To\+Start\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a38269e0706f91b71c6e8f8373c397969}
+
+\item 
+\hypertarget{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{}void {\bfseries move\+To\+End\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}
+
+\item 
+\hypertarget{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{}const Q\+Vector3\+D \& {\bfseries position} () const \label{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}
+
+\item 
+\hypertarget{class_player_a0cb33ddb87038b4e2af648e1b884d79f}{}void {\bfseries set\+Position} (const Q\+Vector3\+D \&position)\label{class_player_a0cb33ddb87038b4e2af648e1b884d79f}
+
+\item 
+\hypertarget{class_player_ae51ad40372e26d33351c02d77a1aba63}{}void {\bfseries set\+View\+Direction} (const Q\+Vector3\+D \&view\+Direction)\label{class_player_ae51ad40372e26d33351c02d77a1aba63}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_a557b70acbd3cb1f71218390f7e90105c}{}void {\bfseries update\+Camera\+For\+Point\+On\+Ray} (const Q\+Vector3\+D \&point, const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a557b70acbd3cb1f71218390f7e90105c}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}{}qreal {\bfseries m\+\_\+velocity}\label{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}
+
+\item 
+\hypertarget{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+position}\label{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}
+
+\item 
+\hypertarget{class_player_a7721626a1c43592bfcb0c81a836f7aad}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries m\+\_\+camera}\label{class_player_a7721626a1c43592bfcb0c81a836f7aad}
+
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_player_a4e1ae30bdaec837b94451416a523d5cb}{}\hyperlink{class_camera}{Camera} {\bfseries camera}\label{class_player_a4e1ae30bdaec837b94451416a523d5cb}
+
+\item 
+\hypertarget{class_player_a53141a3791c456938945973cc78a2ea7}{}qreal {\bfseries velocity}\label{class_player_a53141a3791c456938945973cc78a2ea7}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/player.\+h\item 
+gem\+Illuminator/player.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,185 @@
+\hypertarget{class_scene}{}\section{Scene Class Reference}
+\label{class_scene}\index{Scene@{Scene}}
+Inheritance diagram for Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scene}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_affe50b48f645e09b22f6f8c5c0561654}{}virtual void {\bfseries sync} (int elapsed\+Time)\label{class_scene_affe50b48f645e09b22f6f8c5c0561654}
+
+\item 
+\hypertarget{class_scene_abc75a5de4f5a191816e6e1901b7b62bf}{}virtual void {\bfseries cleanup\+G\+L} (Q\+Open\+G\+L\+Functions \&gl)\label{class_scene_abc75a5de4f5a191816e6e1901b7b62bf}
+
+\item 
+\hypertarget{class_scene_a0d27204bee9a3211c83bc81f592b5c3c}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, const Q\+Map$<$ Shader\+Programs, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ \&shader\+Programs)\label{class_scene_a0d27204bee9a3211c83bc81f592b5c3c}
+
+\item 
+\hypertarget{class_scene_ace3407a4d148d317a20b1bf205554bc5}{}void {\bfseries register\+Navigation} (\hyperlink{class_navigation}{Navigation} $\ast$navigation)\label{class_scene_ace3407a4d148d317a20b1bf205554bc5}
+
+\item 
+\hypertarget{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}{}void {\bfseries rotate\+Current\+Gem} (const Q\+Quaternion \&quaternion)\label{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}
+
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}{}void {\bfseries cubes\+Changed} ()\label{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}
+
+\item 
+\hypertarget{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}{}void {\bfseries geometries\+Changed} ()\label{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}
+
+\item 
+\hypertarget{class_scene_a4eed91c96f13a7646830737b820755c4}{}void {\bfseries root\+Light\+Ray\+Changed} ()\label{class_scene_a4eed91c96f13a7646830737b820755c4}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_a93f88c89ce94ad70a668225522818b1e}{}{\bfseries Scene} (Q\+Quick\+Item $\ast$parent=0)\label{class_scene_a93f88c89ce94ad70a668225522818b1e}
+
+\item 
+\hypertarget{class_scene_a34966e5d9859ef84b3867b29f26c4dc6}{}Q\+Qml\+List\+Property$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $>$ {\bfseries geometries} ()\label{class_scene_a34966e5d9859ef84b3867b29f26c4dc6}
+
+\item 
+\hypertarget{class_scene_a81b014ae882dfaec147d917b1ea99d68}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries camera} () const \label{class_scene_a81b014ae882dfaec147d917b1ea99d68}
+
+\item 
+\hypertarget{class_scene_a4c722c43b266a642a4a06d0d818b14d1}{}void {\bfseries set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)\label{class_scene_a4c722c43b266a642a4a06d0d818b14d1}
+
+\item 
+\hypertarget{class_scene_ac8f232cf7cae52e2a235f63589fe85b5}{}\hyperlink{class_scene_renderer}{Scene\+Renderer} \& {\bfseries scene\+Renderer} () const \label{class_scene_ac8f232cf7cae52e2a235f63589fe85b5}
+
+\item 
+\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_scene_af96ea722705769055ef2f9e9572f3fa0}{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, Q\+Vector3\+D $\ast$collision\+Point=nullptr) const 
+\begin{DoxyCompactList}\small\item\em Finds the nearest gem, that bounding sphere is intersected by given ray. \end{DoxyCompactList}\item 
+\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_scene_a2a2cee0a97d8436aac1cd582904af459}{find\+Gem\+Intersected\+By} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, Q\+Vector3\+D $\ast$collision\+Point=nullptr) const 
+\begin{DoxyCompactList}\small\item\em Finds the nearest gem with bounding sphere intersected by given ray. \end{DoxyCompactList}\item 
+\hyperlink{class_triangle}{Triangle} $\ast$ \hyperlink{class_scene_a2a06baa2386486f9276f97c47d76e624}{find\+Gem\+Face\+Intersected\+By} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, Q\+Vector3\+D $\ast$collision\+Point=nullptr) const 
+\begin{DoxyCompactList}\small\item\em Finds intersected face of nearest gem intersected by given ray. \end{DoxyCompactList}\item 
+\hypertarget{class_scene_afcaeead320358b9d9dd02a113ef97c44}{}void {\bfseries set\+Current\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$current\+Gem)\label{class_scene_afcaeead320358b9d9dd02a113ef97c44}
+
+\item 
+\hypertarget{class_scene_a7de6dcc38dd6398f71af71295ae09966}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries root\+Light\+Ray} () const \label{class_scene_a7de6dcc38dd6398f71af71295ae09966}
+
+\item 
+\hypertarget{class_scene_a3da6be3089fe335bf628ef58d23cda18}{}void {\bfseries set\+Root\+Light\+Ray} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$root\+Light\+Ray)\label{class_scene_a3da6be3089fe335bf628ef58d23cda18}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_a62831eb6a67ce74ee608b4327bf069f3}{}\hyperlink{class_scene_bounds}{Scene\+Bounds} $\ast$ {\bfseries m\+\_\+bounds}\label{class_scene_a62831eb6a67ce74ee608b4327bf069f3}
+
+\item 
+\hypertarget{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries m\+\_\+camera}\label{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}
+
+\item 
+\hypertarget{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}{}\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ {\bfseries m\+\_\+current\+Gem}\label{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}
+
+\item 
+\hypertarget{class_scene_a4865a91dd0d6d9af51a7e5cb74d9c991}{}\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ {\bfseries m\+\_\+gem}\label{class_scene_a4865a91dd0d6d9af51a7e5cb74d9c991}
+
+\item 
+\hypertarget{class_scene_ab06de12f271bb51852aedf06285b1032}{}\hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} $\ast$ {\bfseries m\+\_\+light\+Ray\+Renderer}\label{class_scene_ab06de12f271bb51852aedf06285b1032}
+
+\item 
+\hypertarget{class_scene_a595ab554271bd87c4c73f0cce175ff81}{}\hyperlink{class_navigation}{Navigation} $\ast$ {\bfseries m\+\_\+navigation}\label{class_scene_a595ab554271bd87c4c73f0cce175ff81}
+
+\item 
+\hypertarget{class_scene_aa7040eec94173f3ca255a35f926fad6f}{}\hyperlink{class_scene_renderer}{Scene\+Renderer} $\ast$ {\bfseries m\+\_\+renderer}\label{class_scene_aa7040eec94173f3ca255a35f926fad6f}
+
+\item 
+\hypertarget{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries m\+\_\+root\+Light\+Ray}\label{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}
+
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_a827a20f41fe948e08f2774579b91d048}{}Q\+Qml\+List\+Property$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $>$ {\bfseries geometries}\label{class_scene_a827a20f41fe948e08f2774579b91d048}
+
+\item 
+\hypertarget{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{}\hyperlink{class_camera}{Camera} {\bfseries camera}\label{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}
+
+\item 
+\hypertarget{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{}\hyperlink{class_light_ray}{Light\+Ray} {\bfseries root\+Light\+Ray}\label{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_scene_a2a06baa2386486f9276f97c47d76e624}{}\index{Scene@{Scene}!find\+Gem\+Face\+Intersected\+By@{find\+Gem\+Face\+Intersected\+By}}
+\index{find\+Gem\+Face\+Intersected\+By@{find\+Gem\+Face\+Intersected\+By}!Scene@{Scene}}
+\subsubsection[{find\+Gem\+Face\+Intersected\+By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Triangle} $\ast$ Scene\+::find\+Gem\+Face\+Intersected\+By (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray, }
+\item[{Q\+Vector3\+D $\ast$}]{collision\+Point = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+) const}\label{class_scene_a2a06baa2386486f9276f97c47d76e624}
+
+
+Finds intersected face of nearest gem intersected by given ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Ray send into scene to find gem face. \\
+\hline
+{\em collision\+Point} & Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the nearst intersected face of a gem. Returns never nullptr. 
+\end{DoxyReturn}
+\hypertarget{class_scene_a2a2cee0a97d8436aac1cd582904af459}{}\index{Scene@{Scene}!find\+Gem\+Intersected\+By@{find\+Gem\+Intersected\+By}}
+\index{find\+Gem\+Intersected\+By@{find\+Gem\+Intersected\+By}!Scene@{Scene}}
+\subsubsection[{find\+Gem\+Intersected\+By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem} $\ast$ Scene\+::find\+Gem\+Intersected\+By (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray, }
+\item[{Q\+Vector3\+D $\ast$}]{collision\+Point = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+) const}\label{class_scene_a2a2cee0a97d8436aac1cd582904af459}
+
+
+Finds the nearest gem with bounding sphere intersected by given ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Ray send into scene to find gem. \\
+\hline
+{\em collision\+Point} & Optional parameter. The point of collision is written into. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the nearst intersected gem. Returns never a nullptr; 
+\end{DoxyReturn}
+\hypertarget{class_scene_af96ea722705769055ef2f9e9572f3fa0}{}\index{Scene@{Scene}!find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By@{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}}
+\index{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By@{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}!Scene@{Scene}}
+\subsubsection[{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem} $\ast$ Scene\+::find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray, }
+\item[{Q\+Vector3\+D $\ast$}]{collision\+Point = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+) const}\label{class_scene_af96ea722705769055ef2f9e9572f3fa0}
+
+
+Finds the nearest gem, that bounding sphere is intersected by given ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & Ray send into scene to find gem. \\
+\hline
+{\em collision\+Point} & Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the nearst intersected gem. Returns never nullptr. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/scene.\+h\item 
+gem\+Illuminator/scene.\+cpp\end{DoxyCompactItemize}

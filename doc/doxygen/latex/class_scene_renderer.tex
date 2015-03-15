@@ -1,0 +1,77 @@
+\hypertarget{class_scene_renderer}{}\section{Scene\+Renderer Class Reference}
+\label{class_scene_renderer}\index{Scene\+Renderer@{Scene\+Renderer}}
+
+
+The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in one call.  
+
+
+
+
+{\ttfamily \#include $<$scenerenderer.\+h$>$}
+
+Inheritance diagram for Scene\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scene_renderer}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_renderer_a0b6e4d40b218acb45ea13bb4fda494e5}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, const Q\+Map$<$ Shader\+Programs, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ \&shader\+Programs)\label{class_scene_renderer_a0b6e4d40b218acb45ea13bb4fda494e5}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}{}{\bfseries Scene\+Renderer} (Q\+Object $\ast$parent=0)\label{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}
+
+\item 
+\hypertarget{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}{}void {\bfseries cleanup} (Q\+Open\+G\+L\+Functions \&gl)\label{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}
+
+\item 
+\hypertarget{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}{}void {\bfseries synchronize\+Geometries} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ geometries)\label{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}
+
+\item 
+\hypertarget{class_scene_renderer_a6596dcdb04a471f4fbcfa82eed07b9d8}{}void {\bfseries set\+Scene\+Extent} (float extent)\label{class_scene_renderer_a6596dcdb04a471f4fbcfa82eed07b9d8}
+
+\item 
+\hypertarget{class_scene_renderer_ad57b11f56edc29b4e46a9104af6efe6d}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries root\+Light\+Ray} () const \label{class_scene_renderer_ad57b11f56edc29b4e46a9104af6efe6d}
+
+\item 
+\hypertarget{class_scene_renderer_a8e9b701f5b236adbe805715944d9ae8c}{}void {\bfseries set\+Root\+Light\+Ray} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$root\+Light\+Ray)\label{class_scene_renderer_a8e9b701f5b236adbe805715944d9ae8c}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_renderer_a6a8fecf9dcfcda180e4f9d2abb0ca2e8}{}void {\bfseries paint\+Gems} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_scene_renderer_a6a8fecf9dcfcda180e4f9d2abb0ca2e8}
+
+\item 
+\hypertarget{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}{}void {\bfseries paint\+Light\+Rays} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}{}\hyperlink{class_gem_renderer}{Gem\+Renderer} $\ast$ {\bfseries m\+\_\+gem\+Renderer}\label{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}
+
+\item 
+\hypertarget{class_scene_renderer_af2d4ded15e32fd485295fc0531645dc1}{}\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ {\bfseries m\+\_\+geometries}\label{class_scene_renderer_af2d4ded15e32fd485295fc0531645dc1}
+
+\item 
+\hypertarget{class_scene_renderer_aec10558966df8efad69726e9b06d0cfd}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries m\+\_\+root\+Light\+Ray}\label{class_scene_renderer_aec10558966df8efad69726e9b06d0cfd}
+
+\item 
+\hypertarget{class_scene_renderer_ae9cdbec278ec42dac41c7f1d9d75388f}{}float {\bfseries m\+\_\+scene\+Extent}\label{class_scene_renderer_ae9cdbec278ec42dac41c7f1d9d75388f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in one call. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/scenerenderer.\+h\item 
+gem\+Illuminator/scenerenderer.\+cpp\end{DoxyCompactItemize}

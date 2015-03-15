@@ -1,0 +1,131 @@
+\hypertarget{class_painter}{}\section{Painter Class Reference}
+\label{class_painter}\index{Painter@{Painter}}
+
+
+The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creates the whole picture.  
+
+
+
+
+{\ttfamily \#include $<$painter.\+h$>$}
+
+Inheritance diagram for Painter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_painter}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}{}void {\bfseries paint} ()\label{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_painter_ae9520672fc113fc60cf942ba3d13a46e}{}{\bfseries Painter} (\hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} $\ast$painter, Q\+Object $\ast$parent=0)\label{class_painter_ae9520672fc113fc60cf942ba3d13a46e}
+
+\item 
+\hypertarget{class_painter_ae2a4d4b93b38b14ca5510b3d66f9752f}{}void {\bfseries initialize\+Envmap} ()\label{class_painter_ae2a4d4b93b38b14ca5510b3d66f9752f}
+
+\item 
+\hypertarget{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}{}bool {\bfseries is\+Active} () const \label{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}
+
+\item 
+\hypertarget{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}{}void {\bfseries set\+Active} (bool active)\label{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}
+
+\item 
+\hypertarget{class_painter_ae666ca89f52438dd898054a38cb7678c}{}void {\bfseries set\+Camera} (const \hyperlink{class_camera}{Camera} \&camera)\label{class_painter_ae666ca89f52438dd898054a38cb7678c}
+
+\item 
+\hypertarget{class_painter_a9a306e3a17dcd709a1e23faf8b28cab3}{}\hyperlink{class_scene}{Scene} $\ast$ {\bfseries scene} () const \label{class_painter_a9a306e3a17dcd709a1e23faf8b28cab3}
+
+\item 
+\hypertarget{class_painter_ad0c60a921518aac36ecbbf9c050bb779}{}void {\bfseries set\+Scene} (\hyperlink{class_scene}{Scene} $\ast$scene)\label{class_painter_ad0c60a921518aac36ecbbf9c050bb779}
+
+\item 
+void \hyperlink{class_painter_a6cbe31709ecd794c00d4c524c8468b14}{set\+Viewport} (const Q\+Size \&viewport)
+\begin{DoxyCompactList}\small\item\em Scene\+Renderer\+::set\+Viewport Only set within sync() \end{DoxyCompactList}\item 
+\hypertarget{class_painter_a3a8ffdc1e2408e267717ed3816e93e19}{}Q\+String {\bfseries env\+Map\+Prefix} () const \label{class_painter_a3a8ffdc1e2408e267717ed3816e93e19}
+
+\item 
+\hypertarget{class_painter_afb568401ef2792e27e4f565bf35cb6bb}{}void {\bfseries set\+Env\+Map\+Prefix} (const Q\+String \&env\+Map\+Prefix)\label{class_painter_afb568401ef2792e27e4f565bf35cb6bb}
+
+\item 
+\hypertarget{class_painter_a0c2b82efd3882c162d9807282aab189f}{}Q\+Open\+G\+L\+Functions \& {\bfseries gl} () const \label{class_painter_a0c2b82efd3882c162d9807282aab189f}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_painter_a12f9623c2acf87eced6e141e7638804e}{}void {\bfseries initialize} ()\label{class_painter_a12f9623c2acf87eced6e141e7638804e}
+
+\item 
+\hypertarget{class_painter_a3deca470f67f8e9fafc0cc901c689c02}{}void {\bfseries paint\+Envmap} ()\label{class_painter_a3deca470f67f8e9fafc0cc901c689c02}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_painter_a9b476c949ca4b2af7b1653c7106b659b}{}bool {\bfseries m\+\_\+active}\label{class_painter_a9b476c949ca4b2af7b1653c7106b659b}
+
+\item 
+\hypertarget{class_painter_a05558ea7a2f818641e0506d01d518010}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries m\+\_\+camera}\label{class_painter_a05558ea7a2f818641e0506d01d518010}
+
+\item 
+\hypertarget{class_painter_a141349e5459cd3ce52bb12b85579f752}{}uint {\bfseries m\+\_\+envmap}\label{class_painter_a141349e5459cd3ce52bb12b85579f752}
+
+\item 
+\hypertarget{class_painter_a983045c9611224d2576cf1d20fb87770}{}Q\+String {\bfseries m\+\_\+env\+Map\+Prefix}\label{class_painter_a983045c9611224d2576cf1d20fb87770}
+
+\item 
+\hypertarget{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}{}Q\+Open\+G\+L\+Functions $\ast$ {\bfseries m\+\_\+gl}\label{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}
+
+\item 
+\hypertarget{class_painter_a0adcfafb8172b4f76561e2c951b1090b}{}bool {\bfseries m\+\_\+initialized}\label{class_painter_a0adcfafb8172b4f76561e2c951b1090b}
+
+\item 
+\hypertarget{class_painter_af2774293bfaf6f654cb01e504937abb8}{}\hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} $\ast$ {\bfseries m\+\_\+painter\+Q\+M\+L}\label{class_painter_af2774293bfaf6f654cb01e504937abb8}
+
+\item 
+\hypertarget{class_painter_a50f7fad2d44554f0be878a96afacfa44}{}\hyperlink{class_screen_aligned_quad}{Screen\+Aligned\+Quad} $\ast$ {\bfseries m\+\_\+quad}\label{class_painter_a50f7fad2d44554f0be878a96afacfa44}
+
+\item 
+\hypertarget{class_painter_a9aa927a8a72482a508d5abd8e4f7d590}{}\hyperlink{class_scene}{Scene} $\ast$ {\bfseries m\+\_\+scene}\label{class_painter_a9aa927a8a72482a508d5abd8e4f7d590}
+
+\item 
+\hypertarget{class_painter_ac1208fd08f67613750efb7adbb718cea}{}Q\+Map$<$ Shader\+Programs, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ $\ast$ {\bfseries m\+\_\+shader\+Programs}\label{class_painter_ac1208fd08f67613750efb7adbb718cea}
+
+\item 
+\hypertarget{class_painter_a9369e3a89f7074d7fae461acb18adf45}{}Q\+Size $\ast$ {\bfseries m\+\_\+viewport}\label{class_painter_a9369e3a89f7074d7fae461acb18adf45}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creates the whole picture. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_painter_a6cbe31709ecd794c00d4c524c8468b14}{}\index{Painter@{Painter}!set\+Viewport@{set\+Viewport}}
+\index{set\+Viewport@{set\+Viewport}!Painter@{Painter}}
+\subsubsection[{set\+Viewport}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::set\+Viewport (
+\begin{DoxyParamCaption}
+\item[{const Q\+Size \&}]{viewport}
+\end{DoxyParamCaption}
+)}\label{class_painter_a6cbe31709ecd794c00d4c524c8468b14}
+
+
+Scene\+Renderer\+::set\+Viewport Only set within sync() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em viewport} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/painter.\+h\item 
+gem\+Illuminator/painter.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+\hypertarget{class_gem_renderer}{}\section{Gem\+Renderer Class Reference}
+\label{class_gem_renderer}\index{Gem\+Renderer@{Gem\+Renderer}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}{}void {\bfseries cleanup} (Q\+Open\+G\+L\+Functions \&gl)\label{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}
+
+\item 
+\hypertarget{class_gem_renderer_a129dc12b1b309a0d707f9c6f17a3a4e9}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_a129dc12b1b309a0d707f9c6f17a3a4e9}
+
+\item 
+\hypertarget{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}{}void {\bfseries set\+Scene\+Extent} (float extent)\label{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}
+
+\item 
+\hypertarget{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{}void {\bfseries update\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}{}void {\bfseries initialize} (Q\+Open\+G\+L\+Functions \&gl)\label{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}
+
+\item 
+\hypertarget{class_gem_renderer_aaac7cf2429ddde7715e80b4e2014d484}{}void {\bfseries paint\+All\+Gems\+With\+Own\+Draw\+Call} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_aaac7cf2429ddde7715e80b4e2014d484}
+
+\item 
+\hypertarget{class_gem_renderer_ad9e201c7b6d1e49537e5bcab80f296e3}{}void {\bfseries paint\+Gems\+Packed\+Using\+Uniform\+Arays} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_ad9e201c7b6d1e49537e5bcab80f296e3}
+
+\item 
+\hypertarget{class_gem_renderer_a03cc6455c9b52c79c120097bbe03bbd9}{}void {\bfseries paint\+Gems\+Optimized\+With\+Texture} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_a03cc6455c9b52c79c120097bbe03bbd9}
+
+\item 
+\hypertarget{class_gem_renderer_a114291cb009678f06e889c46433d7076}{}void {\bfseries update\+Gem\+For\+Own\+Draw\+Call} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a114291cb009678f06e889c46433d7076}
+
+\item 
+\hypertarget{class_gem_renderer_ac5257d21b1833cc9276c144c4722a18f}{}void {\bfseries update\+Gem\+For\+Uniform\+Draw\+Call} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_ac5257d21b1833cc9276c144c4722a18f}
+
+\item 
+\hypertarget{class_gem_renderer_a11f9e6827954a2ea7aff7b105d59c1a5}{}void {\bfseries update\+Gem\+For\+Texture\+Optimization} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a11f9e6827954a2ea7aff7b105d59c1a5}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}{}bool {\bfseries m\+\_\+is\+Initialized}\label{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}
+
+\item 
+\hypertarget{class_gem_renderer_a3ed9c37e253feb54b1ca0e34d51751a9}{}int {\bfseries m\+\_\+max\+Uniform\+Vector\+Size}\label{class_gem_renderer_a3ed9c37e253feb54b1ca0e34d51751a9}
+
+\item 
+\hypertarget{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$, Gem\+Data\+Info $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Map}\label{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}
+
+\item 
+\hypertarget{class_gem_renderer_af64c5f2973d7c025dc011bc64fb93e50}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Gem\+Type, \hyperlink{class_q_list}{Q\+List}$<$ Q\+Open\+G\+L\+Buffer $\ast$ $>$ $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Buffers}\label{class_gem_renderer_af64c5f2973d7c025dc011bc64fb93e50}
+
+\item 
+\hypertarget{class_gem_renderer_ace5a7e3d33bd65cbe78d2b395a83e27a}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Q\+Open\+G\+L\+Buffer $\ast$, \hyperlink{class_q_list}{Q\+List}$<$ Gem\+Data\+Info $\ast$ $>$ $\ast$ $>$ $\ast$ {\bfseries m\+\_\+buffer\+Data\+Linkage}\label{class_gem_renderer_ace5a7e3d33bd65cbe78d2b395a83e27a}
+
+\item 
+\hypertarget{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}{}bool {\bfseries m\+\_\+is\+Gem\+Buffer\+Update\+Required}\label{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}
+
+\item 
+\hypertarget{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}{}bool {\bfseries m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}\label{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}
+
+\item 
+\hypertarget{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}{}\hyperlink{class_q_list}{Q\+List}$<$ Gem\+Data\+Info $\ast$ $>$ $\ast$ {\bfseries m\+\_\+new\+Gems}\label{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}
+
+\item 
+\hypertarget{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Gem\+Type, Gem\+Render\+Data $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Buffers\+Tex}\label{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}
+
+\item 
+\hypertarget{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}{}float {\bfseries m\+\_\+scene\+Extent}\label{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+gem\+Illuminator/gemrenderer.\+h\item 
+gem\+Illuminator/gemrenderer.\+cpp\end{DoxyCompactItemize}
