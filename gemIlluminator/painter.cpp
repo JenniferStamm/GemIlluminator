@@ -34,7 +34,7 @@ Painter::Painter(PainterQML *painter, QObject *parent) :
   , m_painterQML(painter)
   , m_quad(nullptr)
   , m_rainbowMap(nullptr)
-  , m_refractionMap(nullptr)
+  , m_gemStructureMap(nullptr)
   , m_shaderPrograms(new QHash<ShaderPrograms, QOpenGLShaderProgram*>())
   , m_usedViewport(new QSize())
   , m_counter(0)
@@ -54,7 +54,7 @@ Painter::~Painter()
 
     delete m_envMap;
     delete m_rainbowMap;
-    delete m_refractionMap;
+    delete m_gemStructureMap;
 
     m_gl->glDeleteTextures(1, &m_sceneTexture);
     m_gl->glDeleteTextures(1, &m_previewSceneTexture);
@@ -295,8 +295,8 @@ void Painter::paint()
 
 void Painter::initialize()
 {
-    m_refractionMap = new CubeMap(*m_gl, QString("refraction"));
-    m_refractionMap->update(QString("refraction"));
+    m_gemStructureMap = new CubeMap(*m_gl, QString("gemStructure"));
+    m_gemStructureMap->update(QString("gemStructure"));
     m_rainbowMap = new CubeMap(*m_gl, QString("rainbow"));
     m_rainbowMap->update(QString("rainbow"));
     m_quad = new ScreenAlignedQuad();
@@ -405,8 +405,8 @@ void Painter::initializeFBOs()
 void Painter::initializeShaderPrograms()
 {
     auto gemProgram = new QOpenGLShaderProgram(this);
-    gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/vgem.glsl");
-    gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/fgem.glsl");
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shader/gem.vert");
+    gemProgram->addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shader/gem.frag");
     if (!gemProgram->link()) {
         qDebug() << "Gem: Link failed";
     }
@@ -465,14 +465,14 @@ void Painter::renderScene(const Camera &camera)
     gemProgram->enableAttributeArray(1);
 
     gemProgram->setUniformValue("envmap", 0);
-    gemProgram->setUniformValue("refractionMap", 1);
+    gemProgram->setUniformValue("gemStructureMap", 1);
     gemProgram->setUniformValue("rainbowMap", 2);
     gemProgram->setUniformValue("eye", camera.eye());
     gemProgram->setUniformValue("viewProjection", camera.viewProjection());
     m_gl->glActiveTexture(GL_TEXTURE0);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_envMap->cubeMapTexture());
     m_gl->glActiveTexture(GL_TEXTURE1);
-    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_refractionMap->cubeMapTexture());
+    m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_gemStructureMap->cubeMapTexture());
     m_gl->glActiveTexture(GL_TEXTURE2);
     m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_rainbowMap->cubeMapTexture());
 

@@ -3,6 +3,9 @@ import QtQuick.Controls 1.2
 import QtQuick.Window 2.2
 import QtQuick.Controls.Styles 1.1
 
+/**
+ * @brief A button which is displayed during the game to stop and resume the game.
+ */
 Button {
     id: pauseButton
     height: 8 * Screen.pixelDensity

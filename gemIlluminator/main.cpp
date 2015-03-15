@@ -2,10 +2,6 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 
-#ifdef __ANDROID__
-#include <QtAndroidExtras>
-#endif
-
 #include "abstractgem.h"
 #include "camera.h"
 #include "config.h"

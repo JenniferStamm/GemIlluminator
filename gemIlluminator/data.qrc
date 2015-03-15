@@ -6,12 +6,6 @@
         <file>data/gold_env_cube_px.png</file>
         <file>data/gold_env_cube_py.png</file>
         <file>data/gold_env_cube_pz.png</file>
-        <file>data/refraction_env_cube_nx.png</file>
-        <file>data/refraction_env_cube_ny.png</file>
-        <file>data/refraction_env_cube_nz.png</file>
-        <file>data/refraction_env_cube_px.png</file>
-        <file>data/refraction_env_cube_py.png</file>
-        <file>data/refraction_env_cube_pz.png</file>
         <file>data/rainbow_env_cube_nx.png</file>
         <file>data/rainbow_env_cube_ny.png</file>
         <file>data/rainbow_env_cube_nz.png</file>
@@ -20,5 +14,11 @@
         <file>data/rainbow_env_cube_pz.png</file>
         <file>data/pauseButton.png</file>
         <file>data/playButton.png</file>
+        <file>data/gemStructure_env_cube_nx.png</file>
+        <file>data/gemStructure_env_cube_ny.png</file>
+        <file>data/gemStructure_env_cube_nz.png</file>
+        <file>data/gemStructure_env_cube_px.png</file>
+        <file>data/gemStructure_env_cube_py.png</file>
+        <file>data/gemStructure_env_cube_pz.png</file>
     </qresource>
 </RCC>

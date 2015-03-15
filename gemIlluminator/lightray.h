@@ -72,9 +72,6 @@ public slots:
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
 
-    AbstractGem *collidingGem() const;
-    void setCollidingGem(AbstractGem *gem);
-
     Player *player() const;
     void setPlayer(Player *attachedPlayer);
 
@@ -96,6 +93,9 @@ public slots:
 protected:
     bool isPlayerBeforeCollisionPoint();
     void calculateSuccessors();
+
+    AbstractGem *collidingGem() const;
+    void setCollidingGem(AbstractGem *gem);
 
 protected:
     AbstractGem *m_collidingGem;

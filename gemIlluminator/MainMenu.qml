@@ -5,6 +5,9 @@ import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.1
 import QtQuick.Window 2.2
 
+/**
+ * @brief Displays the main menu of the game.
+ */
 Rectangle {
     id: mainMenu
     color: "#e4eeff"
