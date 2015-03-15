@@ -135,6 +135,23 @@ Scene {
         }
     }
 
+    Timer {
+        // Increase player velocity over time
+        // Increase by 0.1 every three seconds
+        // Final velocity is set to 10.0
+        id: playerVelocityTimer
+        interval: 3000
+        running: true
+        repeat: true
+        onTriggered:
+            if (player.velocity <= 10.0) {
+                player.velocity += 0.1
+               if (player.velocity > 10.0) {
+                   console.log("Final velocity reached!")
+               }
+            }
+    }
+
     Text {
         id: highscore
         visible: false

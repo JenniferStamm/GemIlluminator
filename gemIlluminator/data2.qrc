@@ -6,5 +6,7 @@
         <file>data/sky_env_cube_px.png</file>
         <file>data/sky_env_cube_py.png</file>
         <file>data/sky_env_cube_pz.png</file>
+        <file>data/arrow-left.png</file>
+        <file>data/arrow-right.png</file>
     </qresource>
 </RCC>
