@@ -4,7 +4,6 @@
         <file>TetrahedronGem.qml</file>
         <file>gemgenerator.js</file>
         <file>Scene.qml</file>
-        <file>NavigationView.qml</file>
         <file>SensorInputs.qml</file>
         <file>MouseInput.qml</file>
         <file>MainMenu.qml</file>
@@ -19,5 +18,6 @@
         <file>GameOver.qml</file>
         <file>SeedInput.qml</file>
         <file>HighscoreView.qml</file>
+        <file>ParentCenteredText.qml</file>
     </qresource>
 </RCC>

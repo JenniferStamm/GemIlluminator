@@ -4,6 +4,9 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
+/**
+ * @brief The view provides the ability to manipulate some configurations.
+ */
 Rectangle {
     id: options
     color: "#e4eeff"

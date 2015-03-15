@@ -3,6 +3,9 @@ import QtQuick.Controls 1.2
 import QtQuick.Window 2.2
 import QtQuick.Controls.Styles 1.1
 
+/**
+ * @brief A generic button for any menu interaction.
+ */
 Button {
     width: 60 * Screen.pixelDensity
     height: 10 * Screen.pixelDensity

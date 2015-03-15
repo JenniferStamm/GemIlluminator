@@ -2,6 +2,9 @@ import GemIlluminator 1.0
 
 import QtQuick 2.0
 
+/**
+ * @brief QML object of the config. The file is named ConfigView.qml to prevent name collisions with the global config.
+ */
 Item {
     id: config
     property var gemTypes: null
@@ -16,6 +19,9 @@ Item {
         loadConfig()
     }
 
+    /**
+     * @brief Takes the config file content and parses it into JSON to get config properties.
+     */
     function loadConfig()
     {
         var configJSON = JSON.parse(Config.read())
@@ -32,6 +38,9 @@ Item {
         Config.minGemSize = gemRangeSize[0]
     }
 
+    /**
+     * @brief Writes back the config properties to the config file.
+     */
     function saveConfig()
     {
         var convertedConfig = '{\n'
