@@ -6,8 +6,10 @@ Rectangle {
     color: "#e4eeff"
 
     property real currentProgress: 0.0
+    property alias progressBar: progressBar
 
     Rectangle {
+        id: progressBar
         color: "#75d5f5"
         x: parent.width * 0.05
         anchors.verticalCenter: parent.verticalCenter

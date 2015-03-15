@@ -3,6 +3,9 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Window 2.2
 
+/**
+ * @brief QML object of the scene. This object is created for every game.
+ */
 Rectangle {
     id: highscoreView
     anchors.fill: parent

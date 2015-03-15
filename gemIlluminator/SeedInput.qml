@@ -3,6 +3,9 @@ import QtQuick 2.0
 import QtQuick.Controls 1.2
 import QtQuick.Window 2.2
 
+/**
+ * @brief Provides an input for the user so he is able to enter a seed to generate the scene.
+ */
 Rectangle {
     id: seedInput
     visible: false
@@ -15,7 +18,13 @@ Rectangle {
         y: parent.height / 2 + 10 * Screen.pixelDensity
 
         onClicked: {
-            submitSeedInput();
+            seedInput.visible = false;
+            loadScreen.visible = true;
+            inputElement.focus = true;
+
+            Soundmanager.playBackgroundMusic();
+            painter.seed = seedString.text;
+            painter.generateScene();
         }
     }
 
@@ -43,17 +52,6 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-    }
-
-    function submitSeedInput()
-    {
-        seedInput.visible = false;
-        loadScreen.visible = true;
-        inputElement.focus = true;
-
-        Soundmanager.playBackgroundMusic();
-        painter.seed = seedString.text;
-        painter.generateScene();
     }
 }
 

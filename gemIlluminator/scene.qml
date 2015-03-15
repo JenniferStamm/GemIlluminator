@@ -3,6 +3,9 @@ import QtQuick 2.0
 import QtQuick.Window 2.2
 import "gemgenerator.js" as GemGenerator
 
+/**
+ * @brief QML object of the scene. This object is created for every game.
+ */
 Scene {
     id: scene
     anchors.fill: parent
@@ -76,16 +79,14 @@ Scene {
 
         onMessage: {
             if(messageObject.gems) {
-                var gems = messageObject.gems
-                var gemTypes = initGemTypes()
+                var gems = messageObject.gems;
+                var gemTypes = initGemTypes();
 
-                var gemsToJSON = []
-                var curGemType = null
-
-                //var
+                var gemsToJSON = [];
+                var curGemType = null;
 
                 for (var i = 0; i < gems.length; i++) {
-                    curGemType = gems[i][7].toString()
+                    curGemType = gems[i][7].toString();
                     gemsToJSON.push(gemTypes[curGemType].createObject(scene,
                                                         {"id": "gem" + i.toString(),
                                                             "position.x": gems[i][0],
@@ -95,32 +96,35 @@ Scene {
                                                             "xAngle": gems[i][4],
                                                             "yAngle": gems[i][5],
                                                             "zAngle": gems[i][6],
-                                                        }))
+                                                        }));
+                }
+
+                painter.active = true;
+                scene.geometries = gemsToJSON;
+
+                if (loadScreen !== null) {
+                    loadScreen.visible = false;
                 }
 
                 console.log("Gems created: " + gems.length)
-                painter.active = true
-
-                scene.geometries = gemsToJSON
-
-                if (loadScreen !== null) {
-                    loadScreen.visible = false
-                }
             } else if (messageObject.currentProgress) {
-                loadScreen.currentProgress = messageObject.currentProgress / 2
+                // The gem generation is only the first part of the game preparations
+                loadScreen.currentProgress = messageObject.currentProgress;
             }
         }
 
+        /**
+         * @brief Creates a component for every given gem type to speed up the object creation.
+         */
         function initGemTypes()
         {
-            // Improve the solution when a configuration file is available
-            var gemTypes = {}
+            var gemTypes = {};
 
             config.gemTypes.forEach(function(type) {
-                gemTypes[type] = Qt.createComponent(type + ".qml")
-            })
+                gemTypes[type] = Qt.createComponent(type + ".qml");
+            });
 
-            return gemTypes
+            return gemTypes;
         }
     }
 
@@ -165,14 +169,16 @@ Scene {
     }
 
     Component.onCompleted: {
-        var seed = (painter.seed.length > 0) ? painter.seed : Math.random().toString()
+        // Take a given seed or generate a random one.
+        var seed = (painter.seed.length > 0) ? painter.seed : Math.random().toString();
+        // Start the gem generation with the loaded parameters.
         gemGenerator.sendMessage({"numGems": config.numGems,
                                      "gemRangeSize": config.gemRangeSize,
                                      "rangeStart": -Config.axisRange,
                                      "rangeEnd": Config.axisRange,
                                      "gemTypes": config.gemTypes,
                                      "seed": seed
-                                 })
+                                 });
     }
 }
 

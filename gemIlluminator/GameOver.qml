@@ -22,18 +22,25 @@ Rectangle {
 
     Text {
         id: gameOverText
-        anchors.top: parent.top
+        y: parent.height / 2 - parent.height / 3
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Screen.pixelDensity * 20
         text: "Game Over"
         font.pointSize: 24
         color: "white"
     }
 
     Text {
-        anchors.top: parent.top
+        anchors.top: gameOverText.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Screen.pixelDensity * 50
+        anchors.topMargin: 2 * Screen.pixelDensity
+        text: "Score: " + finalScore
+        font.pointSize: 18
+        color: "white"
+    }
+
+    Text {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
         text: "Name"
         font.pointSize: 16
         color: "white"
@@ -41,12 +48,11 @@ Rectangle {
 
 
     Rectangle {
+        y: parent.height / 2 + 5 * Screen.pixelDensity
         color: "#33b5e5"
         width: 60 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
-        anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Screen.pixelDensity * 60
 
         TextInput {
             id: gameOverName
@@ -61,33 +67,18 @@ Rectangle {
 
     MenuButton {
         label: "Submit Score"
+        y: parent.height / 2 + 18 * Screen.pixelDensity
         width: 60 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
-        anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Screen.pixelDensity * 75
 
         onClicked: {
-            submitGameOver();
+            highscore.highscore.checkHighscore(gameOverName.text, finalScore);
+            finalScore = 0;
+            gameOver.visible = false;
+            painter.clearScene();
+            highscore.visible = true;
         }
-    }
-
-    Text {
-        anchors.top: gameOverText.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: Screen.pixelDensity * 2
-        text: "Score: " + finalScore
-        font.pointSize: 18
-        color: "white"
-    }
-
-    function submitGameOver()
-    {
-        highscore.highscore.checkHighscore(gameOverName.text, finalScore);
-        finalScore = 0;
-        gameOver.visible = false;
-        painter.clearScene();
-        highscore.visible = true;
     }
 }
 

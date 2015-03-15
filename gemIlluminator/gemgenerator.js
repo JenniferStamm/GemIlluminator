@@ -1,3 +1,9 @@
+/**
+ * @brief Asynchronous script to generate gems.
+ * @detail The script runs in a seperate thread. This way the UI can be update over time
+ * to show the progress of the generation.
+ * @param message A JSON object containing all parameters of the called function.
+ */
 WorkerScript.onMessage = function(message)
 {
     var gems = new Array();
@@ -8,7 +14,7 @@ WorkerScript.onMessage = function(message)
     var numGemsPerDim = Math.ceil(Math.pow(message.numGems, 1/3));
     var x, y, z;
     var gemsCompleted = false;
-    var gemInterval = gemRangeSize[1] * 2; //* Math.sqrt(3)
+    var gemInterval = gemRangeSize[1] * 2;
     var gapAddition = (range - (numGemsPerDim * gemInterval)) / numGemsPerDim;
     gemInterval += gapAddition;
 
@@ -36,14 +42,18 @@ WorkerScript.onMessage = function(message)
     WorkerScript.sendMessage({"gems": gems})
 }
 
-// Seeded randomize function
+/**
+ * @brief Simulates randomness through a function with a seed.
+ */
 function random(seed)
 {
     var x = Math.sin(seed) * 10000;
     return x - Math.floor(x);
 }
 
-// Get a random variance for the
+/**
+ * @brief
+ */
 function getRandomPos(posIndex, posVariance, gemInterval, range)
 {
     if (Math.random() - 0.5 > 0) {
@@ -53,6 +63,9 @@ function getRandomPos(posIndex, posVariance, gemInterval, range)
     }
 }
 
+/**
+ * @brief
+ */
 function getSeededPos(posIndex, posVariance, gemInterval, range, seed)
 {
     if (Math.random() - 0.5 > 0) {
@@ -62,18 +75,25 @@ function getSeededPos(posIndex, posVariance, gemInterval, range, seed)
     }
 }
 
-//
+/**
+ * @brief
+ */
 function getRandomGemTypeIndex(gemTypes)
 {
     return Math.min(Math.floor(Math.random() * gemTypes.length), 1);
 }
 
+/**
+ * @brief
+ */
 function getSeededGemTypeIndex(gemTypes, seed)
 {
     return Math.min(Math.floor(random(seed) * gemTypes.length), 1);
 }
 
-//
+/**
+ * @brief
+ */
 function getRandomGemSize(gemRangeSize)
 {
     var gemSize = Math.random();
@@ -82,6 +102,9 @@ function getRandomGemSize(gemRangeSize)
     return gemSize;
 }
 
+/**
+ * @brief
+ */
 function getSeededGemSize(gemRangeSize, seed)
 {
     var gemSize = random(seed);
@@ -90,10 +113,12 @@ function getSeededGemSize(gemRangeSize, seed)
     return gemSize;
 }
 
-//
+/**
+ * @brief Generates a gem with the given parameters and a seed.
+ */
 function getRandomGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize)
 {
-    var gemSize, posVariance, x, y, z, xAngle, yAngle, zAngle, randomGemTypeIndex;
+    var gemSize, posVariance, x, y, z, xAngle, yAngle, zAngle, randomGemTypeIndex, newGem;
 
     gemSize = getRandomGemSize(gemRangeSize);
     posVariance = (gemRangeSize[1] - gemSize) / 2;
@@ -107,12 +132,17 @@ function getRandomGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize)
 
     randomGemTypeIndex = getRandomGemTypeIndex(gemTypes);
 
-    return [x, y, z, gemSize, xAngle, yAngle, zAngle, gemTypes[randomGemTypeIndex]]
+    newGem = [x, y, z, gemSize, xAngle, yAngle, zAngle, gemTypes[randomGemTypeIndex]];
+
+    return newGem;
 }
 
+/**
+ * @brief Generates a gem with the given parameters and a seed.
+ */
 function getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed)
 {
-    var gemSize, posVariance, x, y, z, xAngle, yAngle, zAngle, seededGemTypeIndex;
+    var gemSize, posVariance, x, y, z, xAngle, yAngle, zAngle, seededGemTypeIndex, newGem;
 
     gemSize = getSeededGemSize(gemRangeSize, seed);
     posVariance = (gemRangeSize[1] - gemSize) / 2;
@@ -126,10 +156,14 @@ function getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed)
 
     seededGemTypeIndex = getSeededGemTypeIndex(gemTypes, seed);
 
-    return [x, y, z, gemSize, xAngle, yAngle, zAngle, gemTypes[seededGemTypeIndex]];
+    newGem = [x, y, z, gemSize, xAngle, yAngle, zAngle, gemTypes[seededGemTypeIndex]];
+
+    return newGem;
 }
 
-// String hash function see:
+/**
+ * @brief Converts a given string into a 32 bit integer.
+ */
 String.prototype.hashCode = function()
 {
     var hash = 0;

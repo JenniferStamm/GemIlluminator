@@ -1,6 +1,9 @@
 import QtQuick 2.0
 import GemIlluminator 1.0
 
+/**
+ * @brief QML object of the painter. The file is named PainterView.qml to prevent name collisions in the main.qml.
+ */
 Painter {
     id: painter
     visible: false

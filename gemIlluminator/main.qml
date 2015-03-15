@@ -134,7 +134,7 @@ ApplicationWindow {
         id: seedInput
     }
 
-    NavigationView {
+    Navigation {
         id: navigation
     }
 

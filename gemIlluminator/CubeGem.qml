@@ -1,6 +1,9 @@
 import QtQuick 2.3
 import GemIlluminator 1.0
 
+/**
+ * @brief A generatic cube gem object need for the gem generation.
+ */
 CubeGem {
     property real xAngle
     property real yAngle
