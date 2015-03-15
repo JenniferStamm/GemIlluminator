@@ -18,7 +18,6 @@ const vec4 lightDirection = vec4(4.0, 8.0, 4.0, 1.0);
 const vec3 specularColor = vec3(1.0, 1.0, 1.0);
 const float brightness = 0.8;
 const float shininess = 16.0;
-const float dispersionStrength = 1.0;
 const float smoothnessFactor = 0.5;
 
 vec3 envmapCoordinates(vec3 eyeVector)
@@ -47,7 +46,6 @@ vec3 reflectionTerm(vec3 eyeVector)
     vec3 environmentColor = textureCube(envmap, envmapAccess).xyz;
     vec3 rainbowColor = textureCube(rainbowMap, r_face).xyz;
 
-    rainbowColor = mix(vec3(1.0), rainbowColor, dispersionStrength);
     environmentColor = mix(environmentColor, rainbowColor, vec3(0.1)) * fresnel;
 
     return clamp(specular, 0.0, 1.0) + environmentColor;
