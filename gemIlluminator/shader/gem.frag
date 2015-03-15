@@ -33,7 +33,7 @@ vec3 envmapCoordinates(vec3 eyeVector)
     return refractColor;
 }
 
-vec3 reflectionTerm(vec3 eyeVector)
+vec3 calculateEnvironmentColor(vec3 eyeVector)
 {
     vec3 r_face = reflect(eyeVector, v_normal);
 
@@ -54,6 +54,6 @@ vec3 reflectionTerm(vec3 eyeVector)
 void main()
 {
     vec3 eyeVector = normalize(v_eyeVector);
-    vec3 color = mix(reflectionTerm(eyeVector), textureCube(gemStructureMap, v_vertex).xyz, vec3(0.1));
+    vec3 color = mix(calculateEnvironmentColor(eyeVector), textureCube(gemStructureMap, v_vertex).xyz, vec3(0.1));
     gl_FragColor = vec4(mix(color, v_color, 0.3), 1.0);
 }
