@@ -18,5 +18,6 @@
         <file>GameOver.qml</file>
         <file>SeedInput.qml</file>
         <file>HighscoreView.qml</file>
+        <file>ParentCenteredText.qml</file>
     </qresource>
 </RCC>

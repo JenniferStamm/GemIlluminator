@@ -18,21 +18,21 @@ Scene {
 
     onGameLost: {
         if (timer.running) {
-            timer.stop()
-            gameOver.finalScore = score
-            gameOver.visible = true
-            highscore.visible = false
-            pause.visible = false
+            timer.stop();
+            gameOver.finalScore = score;
+            gameOver.visible = true;
+            highscore.visible = false;
+            pause.visible = false;
         }
     }
 
     onGameStarted: {
-        pause.visible = true
-        highscore.visible = true
-        gameOver.visible = false
-        painter.resetTimer()
-        score = 0
-        timer.start()
+        pause.visible = true;
+        highscore.visible = true;
+        gameOver.visible = false;
+        painter.resetTimer();
+        score = 0;
+        timer.start();
     }
 
     camera: Camera {

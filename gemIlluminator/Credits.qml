@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import QtQuick.Window 2.2
 
 /**
@@ -23,28 +23,67 @@ Rectangle {
         }
     }
 
-    Text {
-        font.pointSize: 18
-        color: "#0099cc"
-        text: "Developers"
-    }
+    Column {
+        y: 5 * Screen.pixelDensity
+        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 2
 
-    Text {
-        font.pointSize: 16
-        color: "#0099cc"
-        text: "Jennifer Stamm"
-    }
+        ParentCenteredText {
+            font.pointSize: 19
+            text: "Developers"
+        }
 
-    Text {
-        font.pointSize: 16
-        color: "#0099cc"
-        text: "Pascal Lange"
-    }
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Jennifer Stamm"
+        }
 
-    Text {
-        font.pointSize: 16
-        color: "#0099cc"
-        text: "Sebastian Koall"
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Pascal Lange"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Sebastian Koall\n"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 19
+            text: "Mentor"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Daniel Limberger"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Martin Reiter\n"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 19
+            text: "Special Thanks"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Philipp Fischbeck"
+        }
+
+        ParentCenteredText {
+            font.pointSize: 16
+            text: "Daniel Beard"
+        }
+
+        Text {
+            font.pointSize: 16
+            text: "www.freesfx.co.uk"
+            color: "#0099cc"
+            horizontalAlignment: Text.AlignHCenter
+        }
     }
 }
 

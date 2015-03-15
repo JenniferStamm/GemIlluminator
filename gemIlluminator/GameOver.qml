@@ -2,6 +2,9 @@ import QtGraphicalEffects 1.0
 import QtQuick 2.0
 import QtQuick.Window 2.2
 
+/**
+ * @brief The screen shown when the game is lost.
+ */
 Rectangle {
     id: gameOver
     visible: false

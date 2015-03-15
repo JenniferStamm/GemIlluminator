@@ -1,6 +1,9 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 
+/**
+ * @brief The screen shown when the game is lost.
+ */
 Rectangle {
     visible: false
     color: "#e4eeff"

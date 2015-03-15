@@ -2,6 +2,11 @@
  * @brief Asynchronous script to generate gems.
  * @detail The script runs in a seperate thread. This way the UI can be update over time
  * to show the progress of the generation.
+ * @note The function has no return value, it sends a message from time to time to communicate with
+ * the caller.
+ * @note The function can switch between two modes.
+ * - mode 1: All values are calculated randomly. (getRandomGem(...))
+ * - mode 2: All values are calculated based on a given seed. (getSeededGem(...))
  * @param message A JSON object containing all parameters of the called function.
  */
 WorkerScript.onMessage = function(message)
@@ -28,6 +33,7 @@ WorkerScript.onMessage = function(message)
         for (var j = 1; j <= numGemsPerDim && !gemsCompleted; ++j) {
             for (var k = 1; k <= numGemsPerDim && !gemsCompleted; ++k) {
                 seed = (i * k + j) * message.seed.hashCode();
+                // gems.push(getRandomGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed));
                 gems.push(getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed));
 
                 WorkerScript.sendMessage({"currentProgress": (gems.length / message.numGems)});
@@ -44,6 +50,8 @@ WorkerScript.onMessage = function(message)
 
 /**
  * @brief Simulates randomness through a function with a seed.
+ * @param seed A string that is used generate a random number.
+ * @return Returns a float between 0 and 1.
  */
 function random(seed)
 {
@@ -52,7 +60,12 @@ function random(seed)
 }
 
 /**
- * @brief
+ * @brief Calculates a position for given gem parameters.
+ * @param posIndex Position along an axis in the grid.
+ * @param posVariance Describes how much the position along the axis varies.
+ * @param gemInterval Average distance between two gems in the scene.
+ * @param range The size of the area a gem can be created.
+ * @return Returns a position in a range with a given position.
  */
 function getRandomPos(posIndex, posVariance, gemInterval, range)
 {
@@ -64,19 +77,29 @@ function getRandomPos(posIndex, posVariance, gemInterval, range)
 }
 
 /**
- * @brief
+ * @brief Calculates a position for given gem parameters based on a seed.
+ * @param posIndex Position along an axis in the grid.
+ * @param posVariance Describes how much the position along the axis varies.
+ * @param gemInterval Average distance between two gems in the scene.
+ * @param range The size of the area a gem can be created.
+ * @param seed A string that is used generate random numbers.
+ * @return Returns a position in a range with a given position based on a seed.
  */
 function getSeededPos(posIndex, posVariance, gemInterval, range, seed)
 {
-    if (Math.random() - 0.5 > 0) {
-        return (((posIndex - 0.5) * gemInterval - (range / 2)) + posVariance * random(seed));
+    var rand = random(seed);
+
+    if (rand - 0.5 > 0) {
+        return (((posIndex - 0.5) * gemInterval - (range / 2)) + posVariance * rand);
     } else {
-        return (((posIndex - 0.5) * gemInterval - (range / 2)) - posVariance * random(seed));
+        return (((posIndex - 0.5) * gemInterval - (range / 2)) - posVariance * rand);
     }
 }
 
 /**
- * @brief
+ * @brief Selects a random gem from a given array of gems.
+ * @param gemTypes An array of all available gem types.
+ * @return Returns the index of the chosen gem.
  */
 function getRandomGemTypeIndex(gemTypes)
 {
@@ -84,15 +107,20 @@ function getRandomGemTypeIndex(gemTypes)
 }
 
 /**
- * @brief
+ * @brief Selects a random gem from a given array of gems based on a seed.
+ * @param gemTypes An array of all available gem types.
+ * @param seed A string that is used generate random numbers.
+ * @return Returns the index of the chosen gem.
  */
 function getSeededGemTypeIndex(gemTypes, seed)
 {
-    return Math.min(Math.floor(random(seed) * gemTypes.length), 1);
+    return Math.min(Math.floor(random(seed) * gemTypes.length), gemTypes.length - 1);
 }
 
 /**
- * @brief
+ * @brief Calculates a gem size based on a range.
+ * @param gemRangeSize The range in which the size of a gem can alternate.
+ * @return Returns a float between gemRangeSize[0] and gemRangeSize[1].
  */
 function getRandomGemSize(gemRangeSize)
 {
@@ -103,7 +131,10 @@ function getRandomGemSize(gemRangeSize)
 }
 
 /**
- * @brief
+ * @brief Calculates a gem size based on a range and a seed.
+ * @param gemRangeSize The range in which the size of a gem can alternate.
+ * @param seed A string that is used generate random numbers.
+ * @return Returns a float between gemRangeSize[0] and gemRangeSize[1].
  */
 function getSeededGemSize(gemRangeSize, seed)
 {
@@ -114,7 +145,15 @@ function getSeededGemSize(gemRangeSize, seed)
 }
 
 /**
- * @brief Generates a gem with the given parameters and a seed.
+ * @brief Generates a gem with the given parameters.
+ * @param i The x coordinate in the gem grid.
+ * @param j The y coordinate in the gem grid.
+ * @param k The z coordinate in the gem grid.
+ * @param gemInterval Average distance between two gems in the scene.
+ * @param range The size of the area a gem can be created.
+ * @param gemTypes An array of all available gem types.
+ * @param gemRangeSize The range in which the size of a gem can alternate.
+ * @return Returns an array with all parameters for a new gem.
  */
 function getRandomGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize)
 {
@@ -139,6 +178,15 @@ function getRandomGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize)
 
 /**
  * @brief Generates a gem with the given parameters and a seed.
+ * @param i The x coordinate in the gem grid.
+ * @param j The y coordinate in the gem grid.
+ * @param k The z coordinate in the gem grid.
+ * @param gemInterval Average distance between two gems in the scene.
+ * @param range The size of the area a gem can be created.
+ * @param gemTypes An array of all available gem types.
+ * @param gemRangeSize The range in which the size of a gem can alternate.
+ * @param seed A string that is used generate random numbers.
+ * @return Returns an array with all parameters for a new gem.
  */
 function getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed)
 {
@@ -163,6 +211,7 @@ function getSeededGem(i, j, k, gemInterval, range, gemTypes, gemRangeSize, seed)
 
 /**
  * @brief Converts a given string into a 32 bit integer.
+ * @return Returns the integer value of the string.
  */
 String.prototype.hashCode = function()
 {
