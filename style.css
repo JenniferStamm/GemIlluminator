@@ -1,6 +1,7 @@
 html, body {
   font-size: 18px;
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  font-family: 'Asap', sans-serif; }
 
 .navbar-default {
   background-color: #e4eeff;
