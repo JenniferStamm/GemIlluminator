@@ -1,5 +1,14 @@
 \hypertarget{class_player}{}\section{Player Class Reference}
 \label{class_player}\index{Player@{Player}}
+
+
+Our \hyperlink{class_player}{Player} class is pretty stupid, because our player only ride on lightrays. The only responsiblity is to move on rays and update the camera.  
+
+
+
+
+{\ttfamily \#include $<$player.\+h$>$}
+
 Inheritance diagram for Player\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,81 +18,289 @@ Inheritance diagram for Player\+:\begin{figure}[H]
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries camera} () const \label{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}
-
-\item 
-\hypertarget{class_player_af5e57b3a9719cd999aff21d59355be52}{}void {\bfseries set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)\label{class_player_af5e57b3a9719cd999aff21d59355be52}
-
-\item 
-\hypertarget{class_player_a836e1afdde2c379b964bcf5d3811f0da}{}qreal {\bfseries velocity} () const \label{class_player_a836e1afdde2c379b964bcf5d3811f0da}
-
-\item 
-\hypertarget{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}{}void {\bfseries set\+Velocity} (qreal velocity)\label{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}
-
-\end{DoxyCompactItemize}
+\hyperlink{class_camera}{Camera} $\ast$ \hyperlink{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}{camera} () const 
+\begin{DoxyCompactList}\small\item\em The camera which is updated by player. \end{DoxyCompactList}\item 
+void \hyperlink{class_player_af5e57b3a9719cd999aff21d59355be52}{set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$\hyperlink{class_player_a4e1ae30bdaec837b94451416a523d5cb}{camera})
+\begin{DoxyCompactList}\small\item\em Sets the camera, that should be updated by player. The player does not take ownership of camera. \end{DoxyCompactList}\item 
+qreal \hyperlink{class_player_a836e1afdde2c379b964bcf5d3811f0da}{velocity} () const 
+\begin{DoxyCompactList}\small\item\em The velocity of player. \end{DoxyCompactList}\item 
+void \hyperlink{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}{set\+Velocity} (qreal \hyperlink{class_player_a53141a3791c456938945973cc78a2ea7}{velocity})
+\begin{DoxyCompactList}\small\item\em Set velocity of player. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_aef620bc75871b32311560a7b2a31c144}{}void {\bfseries camera\+Changed} ()\label{class_player_aef620bc75871b32311560a7b2a31c144}
-
+void \hyperlink{class_player_aef620bc75871b32311560a7b2a31c144}{camera\+Changed} ()
 \item 
-\hypertarget{class_player_a22ae3d9604e92fa12cfad39fe40e8651}{}void {\bfseries velocity\+Changed} ()\label{class_player_a22ae3d9604e92fa12cfad39fe40e8651}
-
+void \hyperlink{class_player_a22ae3d9604e92fa12cfad39fe40e8651}{velocity\+Changed} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}{}{\bfseries Player} (Q\+Object $\ast$parent=0)\label{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}
-
+\hyperlink{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}{Player} (Q\+Object $\ast$parent=0)
 \item 
-\hypertarget{class_player_a6dcd0b9f4d678260314878ab20ce6e09}{}void {\bfseries move\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, int time\+Difference\+In\+Milliseconds)\label{class_player_a6dcd0b9f4d678260314878ab20ce6e09}
-
+virtual \hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{$\sim$\+Player} ()
 \item 
-\hypertarget{class_player_a38269e0706f91b71c6e8f8373c397969}{}void {\bfseries move\+To\+Start\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a38269e0706f91b71c6e8f8373c397969}
-
+void \hyperlink{class_player_a6dcd0b9f4d678260314878ab20ce6e09}{move\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, int time\+Difference\+In\+Milliseconds)
+\begin{DoxyCompactList}\small\item\em Move the player along a ray. \end{DoxyCompactList}\item 
+void \hyperlink{class_player_a38269e0706f91b71c6e8f8373c397969}{move\+To\+Start\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)
+\begin{DoxyCompactList}\small\item\em Set the player to ray.\+start\+Position() and updates the camera accordingly. \end{DoxyCompactList}\item 
+void \hyperlink{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{move\+To\+End\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)
+\begin{DoxyCompactList}\small\item\em Set the player to ray.\+end\+Position() and updates the camera accordingly. \end{DoxyCompactList}\item 
+const Q\+Vector3\+D \& \hyperlink{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{position} () const 
+\begin{DoxyCompactList}\small\item\em The position of player in world coordinates. \end{DoxyCompactList}\item 
+void \hyperlink{class_player_a0cb33ddb87038b4e2af648e1b884d79f}{set\+Position} (const Q\+Vector3\+D \&\hyperlink{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{position})
 \item 
-\hypertarget{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{}void {\bfseries move\+To\+End\+Point\+On\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}
-
-\item 
-\hypertarget{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{}const Q\+Vector3\+D \& {\bfseries position} () const \label{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}
-
-\item 
-\hypertarget{class_player_a0cb33ddb87038b4e2af648e1b884d79f}{}void {\bfseries set\+Position} (const Q\+Vector3\+D \&position)\label{class_player_a0cb33ddb87038b4e2af648e1b884d79f}
-
-\item 
-\hypertarget{class_player_ae51ad40372e26d33351c02d77a1aba63}{}void {\bfseries set\+View\+Direction} (const Q\+Vector3\+D \&view\+Direction)\label{class_player_ae51ad40372e26d33351c02d77a1aba63}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_player_ae51ad40372e26d33351c02d77a1aba63}{set\+View\+Direction} (const Q\+Vector3\+D \&view\+Direction)
+\begin{DoxyCompactList}\small\item\em Set view direction to provided value. For now this value should be the same like the direction of followed lightray. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_a557b70acbd3cb1f71218390f7e90105c}{}void {\bfseries update\+Camera\+For\+Point\+On\+Ray} (const Q\+Vector3\+D \&point, const \hyperlink{class_light_ray}{Light\+Ray} \&ray)\label{class_player_a557b70acbd3cb1f71218390f7e90105c}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_player_a557b70acbd3cb1f71218390f7e90105c}{update\+Camera\+For\+Point\+On\+Ray} (const Q\+Vector3\+D \&point, const \hyperlink{class_light_ray}{Light\+Ray} \&ray)
+\begin{DoxyCompactList}\small\item\em Updates the camera position for given point on ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}{}qreal {\bfseries m\+\_\+velocity}\label{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}
-
+qreal \hyperlink{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}{m\+\_\+velocity}
 \item 
-\hypertarget{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+position}\label{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}{m\+\_\+position}
 \item 
-\hypertarget{class_player_a7721626a1c43592bfcb0c81a836f7aad}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries m\+\_\+camera}\label{class_player_a7721626a1c43592bfcb0c81a836f7aad}
-
+\hyperlink{class_camera}{Camera} $\ast$ \hyperlink{class_player_a7721626a1c43592bfcb0c81a836f7aad}{m\+\_\+camera}
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_player_a4e1ae30bdaec837b94451416a523d5cb}{}\hyperlink{class_camera}{Camera} {\bfseries camera}\label{class_player_a4e1ae30bdaec837b94451416a523d5cb}
-
+\hyperlink{class_camera}{Camera} \hyperlink{class_player_a4e1ae30bdaec837b94451416a523d5cb}{camera}
 \item 
-\hypertarget{class_player_a53141a3791c456938945973cc78a2ea7}{}qreal {\bfseries velocity}\label{class_player_a53141a3791c456938945973cc78a2ea7}
-
+qreal \hyperlink{class_player_a53141a3791c456938945973cc78a2ea7}{velocity}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Our \hyperlink{class_player}{Player} class is pretty stupid, because our player only ride on lightrays. The only responsiblity is to move on rays and update the camera. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}{}\index{Player@{Player}!Player@{Player}}
+\index{Player@{Player}!Player@{Player}}
+\subsubsection[{Player}]{\setlength{\rightskip}{0pt plus 5cm}Player\+::\+Player (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_player_a5c2a46dbacbc28b7cfbe352b6c0db644}
+\hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{}\index{Player@{Player}!````~Player@{$\sim$\+Player}}
+\index{````~Player@{$\sim$\+Player}!Player@{Player}}
+\subsubsection[{$\sim$\+Player}]{\setlength{\rightskip}{0pt plus 5cm}Player\+::$\sim$\+Player (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}{}\index{Player@{Player}!camera@{camera}}
+\index{camera@{camera}!Player@{Player}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Player\+::camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_player_a10605ebcab0fac1b542d1bd8f3d23acd}
+
+
+The camera which is updated by player. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_player_aef620bc75871b32311560a7b2a31c144}{}\index{Player@{Player}!camera\+Changed@{camera\+Changed}}
+\index{camera\+Changed@{camera\+Changed}!Player@{Player}}
+\subsubsection[{camera\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::camera\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_player_aef620bc75871b32311560a7b2a31c144}
+\hypertarget{class_player_a6dcd0b9f4d678260314878ab20ce6e09}{}\index{Player@{Player}!move\+On\+Ray@{move\+On\+Ray}}
+\index{move\+On\+Ray@{move\+On\+Ray}!Player@{Player}}
+\subsubsection[{move\+On\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::move\+On\+Ray (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray, }
+\item[{int}]{time\+Difference\+In\+Milliseconds}
+\end{DoxyParamCaption}
+)}\label{class_player_a6dcd0b9f4d678260314878ab20ce6e09}
+
+
+Move the player along a ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & The ray that is followed by ray. \\
+\hline
+{\em time\+Difference\+In\+Milliseconds} & The time left since last update in order to calculate how far the player should move. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{}\index{Player@{Player}!move\+To\+End\+Point\+On\+Ray@{move\+To\+End\+Point\+On\+Ray}}
+\index{move\+To\+End\+Point\+On\+Ray@{move\+To\+End\+Point\+On\+Ray}!Player@{Player}}
+\subsubsection[{move\+To\+End\+Point\+On\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::move\+To\+End\+Point\+On\+Ray (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray}
+\end{DoxyParamCaption}
+)}\label{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}
+
+
+Set the player to ray.\+end\+Position() and updates the camera accordingly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & \hyperlink{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{move\+To\+End\+Point\+On\+Ray()}; \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a38269e0706f91b71c6e8f8373c397969}{}\index{Player@{Player}!move\+To\+Start\+Point\+On\+Ray@{move\+To\+Start\+Point\+On\+Ray}}
+\index{move\+To\+Start\+Point\+On\+Ray@{move\+To\+Start\+Point\+On\+Ray}!Player@{Player}}
+\subsubsection[{move\+To\+Start\+Point\+On\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::move\+To\+Start\+Point\+On\+Ray (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{ray}
+\end{DoxyParamCaption}
+)}\label{class_player_a38269e0706f91b71c6e8f8373c397969}
+
+
+Set the player to ray.\+start\+Position() and updates the camera accordingly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ray} & \hyperlink{class_player_a0a4ebefb0f7593d79573ddcfe68e8e2f}{move\+To\+End\+Point\+On\+Ray()}; \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{}\index{Player@{Player}!position@{position}}
+\index{position@{position}!Player@{Player}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Player\+::position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}
+
+
+The position of player in world coordinates. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_player_af5e57b3a9719cd999aff21d59355be52}{}\index{Player@{Player}!set\+Camera@{set\+Camera}}
+\index{set\+Camera@{set\+Camera}!Player@{Player}}
+\subsubsection[{set\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::set\+Camera (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{camera}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_player_af5e57b3a9719cd999aff21d59355be52}
+
+
+Sets the camera, that should be updated by player. The player does not take ownership of camera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a0cb33ddb87038b4e2af648e1b884d79f}{}\index{Player@{Player}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Player@{Player}}
+\subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)}\label{class_player_a0cb33ddb87038b4e2af648e1b884d79f}
+\hypertarget{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}{}\index{Player@{Player}!set\+Velocity@{set\+Velocity}}
+\index{set\+Velocity@{set\+Velocity}!Player@{Player}}
+\subsubsection[{set\+Velocity}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::set\+Velocity (
+\begin{DoxyParamCaption}
+\item[{qreal}]{velocity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_player_ae2d5423c7bf6c6c924a451dc1cdab6aa}
+
+
+Set velocity of player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_ae51ad40372e26d33351c02d77a1aba63}{}\index{Player@{Player}!set\+View\+Direction@{set\+View\+Direction}}
+\index{set\+View\+Direction@{set\+View\+Direction}!Player@{Player}}
+\subsubsection[{set\+View\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::set\+View\+Direction (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{view\+Direction}
+\end{DoxyParamCaption}
+)}\label{class_player_ae51ad40372e26d33351c02d77a1aba63}
+
+
+Set view direction to provided value. For now this value should be the same like the direction of followed lightray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em view\+Direction} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a557b70acbd3cb1f71218390f7e90105c}{}\index{Player@{Player}!update\+Camera\+For\+Point\+On\+Ray@{update\+Camera\+For\+Point\+On\+Ray}}
+\index{update\+Camera\+For\+Point\+On\+Ray@{update\+Camera\+For\+Point\+On\+Ray}!Player@{Player}}
+\subsubsection[{update\+Camera\+For\+Point\+On\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::update\+Camera\+For\+Point\+On\+Ray (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{point, }
+\item[{const {\bf Light\+Ray} \&}]{ray}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_player_a557b70acbd3cb1f71218390f7e90105c}
+
+
+Updates the camera position for given point on ray. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & The new \hyperlink{class_player_a0c307c67d3c6d64ee9c5b724c1e2b095}{position()} of player on ray. This point has to lie on ray or it will lead to unexpected behaviour \\
+\hline
+{\em ray} & The lightray the player is following. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_player_a836e1afdde2c379b964bcf5d3811f0da}{}\index{Player@{Player}!velocity@{velocity}}
+\index{velocity@{velocity}!Player@{Player}}
+\subsubsection[{velocity}]{\setlength{\rightskip}{0pt plus 5cm}qreal Player\+::velocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_player_a836e1afdde2c379b964bcf5d3811f0da}
+
+
+The velocity of player. 
+
+\begin{DoxyReturn}{Returns}
+Returns the distance, that is passed in one second. 
+\end{DoxyReturn}
+\hypertarget{class_player_a22ae3d9604e92fa12cfad39fe40e8651}{}\index{Player@{Player}!velocity\+Changed@{velocity\+Changed}}
+\index{velocity\+Changed@{velocity\+Changed}!Player@{Player}}
+\subsubsection[{velocity\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Player\+::velocity\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_player_a22ae3d9604e92fa12cfad39fe40e8651}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_player_a7721626a1c43592bfcb0c81a836f7aad}{}\index{Player@{Player}!m\+\_\+camera@{m\+\_\+camera}}
+\index{m\+\_\+camera@{m\+\_\+camera}!Player@{Player}}
+\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Player\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_player_a7721626a1c43592bfcb0c81a836f7aad}
+\hypertarget{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}{}\index{Player@{Player}!m\+\_\+position@{m\+\_\+position}}
+\index{m\+\_\+position@{m\+\_\+position}!Player@{Player}}
+\subsubsection[{m\+\_\+position}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Player\+::m\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}\label{class_player_a9dc251e6a6d9a7f49c3f2ad5b64a7780}
+\hypertarget{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}{}\index{Player@{Player}!m\+\_\+velocity@{m\+\_\+velocity}}
+\index{m\+\_\+velocity@{m\+\_\+velocity}!Player@{Player}}
+\subsubsection[{m\+\_\+velocity}]{\setlength{\rightskip}{0pt plus 5cm}qreal Player\+::m\+\_\+velocity\hspace{0.3cm}{\ttfamily [protected]}}\label{class_player_a962e97e5fd3fe1c2db4e7e2066dbe61c}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_player_a4e1ae30bdaec837b94451416a523d5cb}{}\index{Player@{Player}!camera@{camera}}
+\index{camera@{camera}!Player@{Player}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ Player\+::camera\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_player_a4e1ae30bdaec837b94451416a523d5cb}
+\hypertarget{class_player_a53141a3791c456938945973cc78a2ea7}{}\index{Player@{Player}!velocity@{velocity}}
+\index{velocity@{velocity}!Player@{Player}}
+\subsubsection[{velocity}]{\setlength{\rightskip}{0pt plus 5cm}qreal Player\+::velocity\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_player_a53141a3791c456938945973cc78a2ea7}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/player.\+h\item 
-gem\+Illuminator/player.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{player_8h}{player.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{player_8cpp}{player.\+cpp}\end{DoxyCompactItemize}

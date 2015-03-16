@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,72 +92,388 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> class stores data of a <a class="el" href="class_light_ray.html">LightRay</a>. The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> doesn't inherit from QObject, so it can be stored in Qt-Containers (currently only those require == or qHash) by Value.  
+<p>The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> class stores data of a <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a>. The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> doesn't inherit from QObject, so it can be stored in Qt-Containers (currently only those require == or qHash) by Value. Also the data can be copied easily.  
  <a href="class_light_ray_data.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="lightraydata_8h_source.html">lightraydata.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50350aa163fd7c1a54f97cefafd2d2f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50350aa163fd7c1a54f97cefafd2d2f7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LightRayData</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;lightRay)</td></tr>
+<tr class="memitem:ac0cb11da1651f8ff7b8ed9d785b68a27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ac0cb11da1651f8ff7b8ed9d785b68a27">LightRayData</a> ()</td></tr>
+<tr class="separator:ac0cb11da1651f8ff7b8ed9d785b68a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50350aa163fd7c1a54f97cefafd2d2f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a50350aa163fd7c1a54f97cefafd2d2f7">LightRayData</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;lightRay)</td></tr>
 <tr class="separator:a50350aa163fd7c1a54f97cefafd2d2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9344f139cafb257f61f4d800fbecd905"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9344f139cafb257f61f4d800fbecd905"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LightRayData</b> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;lightRay)</td></tr>
+<tr class="memitem:a9344f139cafb257f61f4d800fbecd905"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a9344f139cafb257f61f4d800fbecd905">LightRayData</a> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;lightRay)</td></tr>
 <tr class="separator:a9344f139cafb257f61f4d800fbecd905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acada2319ae380a11a405817cd9cd3d65"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acada2319ae380a11a405817cd9cd3d65"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>normalizedOrthogonalVector</b> () const </td></tr>
+<tr class="memitem:a6cd92465c9ba1da296d30a32487a6ac0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a6cd92465c9ba1da296d30a32487a6ac0">~LightRayData</a> ()</td></tr>
+<tr class="separator:a6cd92465c9ba1da296d30a32487a6ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acada2319ae380a11a405817cd9cd3d65"><td class="memItemLeft" align="right" valign="top">QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#acada2319ae380a11a405817cd9cd3d65">normalizedOrthogonalVector</a> () const </td></tr>
+<tr class="memdesc:acada2319ae380a11a405817cd9cd3d65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates a normalized vector, that is orthogonal to <a class="el" href="class_light_ray_data.html#aaecf9f1d378eebf6d577eaa588930a4f">direction()</a>.  <a href="#acada2319ae380a11a405817cd9cd3d65">More...</a><br /></td></tr>
 <tr class="separator:acada2319ae380a11a405817cd9cd3d65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>color</b> () const </td></tr>
+<tr class="memitem:a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57">color</a> () const </td></tr>
 <tr class="separator:a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8fead207765a43bb1167e2ce95e85a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8fead207765a43bb1167e2ce95e85a4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setColor</b> (const QVector3D &amp;color)</td></tr>
+<tr class="memitem:ad8fead207765a43bb1167e2ce95e85a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ad8fead207765a43bb1167e2ce95e85a4">setColor</a> (const QVector3D &amp;<a class="el" href="class_light_ray_data.html#a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57">color</a>)</td></tr>
 <tr class="separator:ad8fead207765a43bb1167e2ce95e85a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af040092e873e42d0d31f803452fc648e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af040092e873e42d0d31f803452fc648e"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>startPosition</b> () const </td></tr>
+<tr class="memitem:af040092e873e42d0d31f803452fc648e"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#af040092e873e42d0d31f803452fc648e">startPosition</a> () const </td></tr>
 <tr class="separator:af040092e873e42d0d31f803452fc648e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a464a868047052152f375cb45ac476eb2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a464a868047052152f375cb45ac476eb2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setStartPosition</b> (const QVector3D &amp;position)</td></tr>
+<tr class="memitem:a464a868047052152f375cb45ac476eb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a464a868047052152f375cb45ac476eb2">setStartPosition</a> (const QVector3D &amp;position)</td></tr>
 <tr class="separator:a464a868047052152f375cb45ac476eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab47d397dcffe8a2c8da0cf4d8bbbd2bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab47d397dcffe8a2c8da0cf4d8bbbd2bc"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>endPosition</b> () const </td></tr>
+<tr class="memitem:ab47d397dcffe8a2c8da0cf4d8bbbd2bc"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ab47d397dcffe8a2c8da0cf4d8bbbd2bc">endPosition</a> () const </td></tr>
 <tr class="separator:ab47d397dcffe8a2c8da0cf4d8bbbd2bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ec7b96408f0fb7f603687c54804d3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7ec7b96408f0fb7f603687c54804d3b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEndPosition</b> (const QVector3D &amp;position)</td></tr>
+<tr class="memitem:ad7ec7b96408f0fb7f603687c54804d3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ad7ec7b96408f0fb7f603687c54804d3b">setEndPosition</a> (const QVector3D &amp;position)</td></tr>
 <tr class="separator:ad7ec7b96408f0fb7f603687c54804d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fe5ec48ab375501e81610af12330cce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fe5ec48ab375501e81610af12330cce"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b> () const </td></tr>
-<tr class="separator:a8fe5ec48ab375501e81610af12330cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a472299411aab12213a9d712ea07f012b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a472299411aab12213a9d712ea07f012b"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>normalizedDirection</b> () const </td></tr>
-<tr class="separator:a472299411aab12213a9d712ea07f012b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dc01f58929829517a90b1fc29f12942"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dc01f58929829517a90b1fc29f12942"></a>
-<a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;lightRay)</td></tr>
+<tr class="memitem:aaecf9f1d378eebf6d577eaa588930a4f"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#aaecf9f1d378eebf6d577eaa588930a4f">direction</a> () const </td></tr>
+<tr class="separator:aaecf9f1d378eebf6d577eaa588930a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791bbf3c85d32004d0d7d155cd248a43"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a791bbf3c85d32004d0d7d155cd248a43">normalizedDirection</a> () const </td></tr>
+<tr class="separator:a791bbf3c85d32004d0d7d155cd248a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc01f58929829517a90b1fc29f12942"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a2dc01f58929829517a90b1fc29f12942">operator=</a> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;lightRay)</td></tr>
 <tr class="separator:a2dc01f58929829517a90b1fc29f12942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae6ad9fa7cd9bc9db1837691c603e5eaa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6ad9fa7cd9bc9db1837691c603e5eaa"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_color</b></td></tr>
+<tr class="memitem:ae6ad9fa7cd9bc9db1837691c603e5eaa"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ae6ad9fa7cd9bc9db1837691c603e5eaa">m_color</a></td></tr>
 <tr class="separator:ae6ad9fa7cd9bc9db1837691c603e5eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1da577bdf12b630015fca5d89712e479"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1da577bdf12b630015fca5d89712e479"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_startPosition</b></td></tr>
-<tr class="separator:a1da577bdf12b630015fca5d89712e479"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7228a576b4b1c0843641e3706a6cb35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7228a576b4b1c0843641e3706a6cb35"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_endPosition</b></td></tr>
+<tr class="memitem:a4a71e8787288d9e243c3c9dd744350ff"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a4a71e8787288d9e243c3c9dd744350ff">m_direction</a></td></tr>
+<tr class="separator:a4a71e8787288d9e243c3c9dd744350ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18cf984ba862735dcde2d77767c4bb2"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#af18cf984ba862735dcde2d77767c4bb2">m_directionNormalized</a></td></tr>
+<tr class="separator:af18cf984ba862735dcde2d77767c4bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7228a576b4b1c0843641e3706a6cb35"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#ab7228a576b4b1c0843641e3706a6cb35">m_endPosition</a></td></tr>
 <tr class="separator:ab7228a576b4b1c0843641e3706a6cb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da577bdf12b630015fca5d89712e479"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_data.html#a1da577bdf12b630015fca5d89712e479">m_startPosition</a></td></tr>
+<tr class="separator:a1da577bdf12b630015fca5d89712e479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> class stores data of a <a class="el" href="class_light_ray.html">LightRay</a>. The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> doesn't inherit from QObject, so it can be stored in Qt-Containers (currently only those require == or qHash) by Value. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="lightraydata_8h_source.html">lightraydata.h</a></li>
-<li>gemIlluminator/lightraydata.cpp</li>
+<div class="textblock"><p>The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> class stores data of a <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a>. The <a class="el" href="class_light_ray_data.html" title="The LightRayData class stores data of a LightRay. The LightRayData doesn&#39;t inherit from QObject...">LightRayData</a> doesn't inherit from QObject, so it can be stored in Qt-Containers (currently only those require == or qHash) by Value. Also the data can be copied easily. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac0cb11da1651f8ff7b8ed9d785b68a27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayData::LightRayData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a50350aa163fd7c1a54f97cefafd2d2f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayData::LightRayData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightRay</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9344f139cafb257f61f4d800fbecd905"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayData::LightRayData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightRay</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6cd92465c9ba1da296d30a32487a6ac0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayData::~LightRayData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; LightRayData::color </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaecf9f1d378eebf6d577eaa588930a4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; LightRayData::direction </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab47d397dcffe8a2c8da0cf4d8bbbd2bc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; LightRayData::endPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a791bbf3c85d32004d0d7d155cd248a43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; LightRayData::normalizedDirection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acada2319ae380a11a405817cd9cd3d65"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D LightRayData::normalizedOrthogonalVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates a normalized vector, that is orthogonal to <a class="el" href="class_light_ray_data.html#aaecf9f1d378eebf6d577eaa588930a4f">direction()</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2dc01f58929829517a90b1fc29f12942"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_light_ray_data.html">LightRayData</a> &amp; LightRayData::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightRay</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad8fead207765a43bb1167e2ce95e85a4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayData::setColor </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad7ec7b96408f0fb7f603687c54804d3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayData::setEndPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a464a868047052152f375cb45ac476eb2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayData::setStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af040092e873e42d0d31f803452fc648e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; LightRayData::startPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ae6ad9fa7cd9bc9db1837691c603e5eaa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* LightRayData::m_color</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4a71e8787288d9e243c3c9dd744350ff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* LightRayData::m_direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af18cf984ba862735dcde2d77767c4bb2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* LightRayData::m_directionNormalized</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab7228a576b4b1c0843641e3706a6cb35"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* LightRayData::m_endPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1da577bdf12b630015fca5d89712e479"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* LightRayData::m_startPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="lightraydata_8h_source.html">lightraydata.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="lightraydata_8cpp.html">lightraydata.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:42 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:05 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

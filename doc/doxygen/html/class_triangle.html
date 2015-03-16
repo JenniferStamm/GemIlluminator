@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,90 +92,450 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Triangle Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a> class represents a triangle in three dimensional space.  
+ <a href="class_triangle.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="triangle_8h_source.html">triangle.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab9220b045480de037944ed99913ecea8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9220b045480de037944ed99913ecea8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Triangle</b> (<a class="el" href="class_abstract_gem.html">AbstractGem</a> *owningGem)</td></tr>
-<tr class="separator:ab9220b045480de037944ed99913ecea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a860d12ec88ef8821dd10a5a653a7413d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a860d12ec88ef8821dd10a5a653a7413d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Triangle</b> (const QVector3D &amp;a, const QVector3D &amp;b, const QVector3D &amp;c, <a class="el" href="class_abstract_gem.html">AbstractGem</a> *owningGem)</td></tr>
-<tr class="separator:a860d12ec88ef8821dd10a5a653a7413d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a889893fe34e2eb7121082b86199d5628"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a889893fe34e2eb7121082b86199d5628"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Triangle</b> (const <a class="el" href="class_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memitem:aaefe4ed500c07918d30c6f0e286332c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#aaefe4ed500c07918d30c6f0e286332c5">Triangle</a> ()</td></tr>
+<tr class="memdesc:aaefe4ed500c07918d30c6f0e286332c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new degenerated <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a>, with all points in (0, 0, 0).  <a href="#aaefe4ed500c07918d30c6f0e286332c5">More...</a><br /></td></tr>
+<tr class="separator:aaefe4ed500c07918d30c6f0e286332c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89052ece2572bfee5d6ade44b9f5094d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a89052ece2572bfee5d6ade44b9f5094d">Triangle</a> (const QVector3D &amp;<a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a</a>, const QVector3D &amp;<a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b</a>, const QVector3D &amp;<a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c</a>)</td></tr>
+<tr class="memdesc:a89052ece2572bfee5d6ade44b9f5094d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a>, with specified points. It is expected, that points a, b and c are ordered counter clock wise.  <a href="#a89052ece2572bfee5d6ade44b9f5094d">More...</a><br /></td></tr>
+<tr class="separator:a89052ece2572bfee5d6ade44b9f5094d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889893fe34e2eb7121082b86199d5628"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a889893fe34e2eb7121082b86199d5628">Triangle</a> (const <a class="el" href="class_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memdesc:a889893fe34e2eb7121082b86199d5628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a> with data copied from given triangle.  <a href="#a889893fe34e2eb7121082b86199d5628">More...</a><br /></td></tr>
 <tr class="separator:a889893fe34e2eb7121082b86199d5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae57b61e09898f54256a83e76acfe502"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae57b61e09898f54256a83e76acfe502"></a>
-<a class="el" href="class_triangle.html">Triangle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="class_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memitem:a5199760a17454f4dc94c855a57e3a152"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a5199760a17454f4dc94c855a57e3a152">~Triangle</a> ()</td></tr>
+<tr class="separator:a5199760a17454f4dc94c855a57e3a152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae57b61e09898f54256a83e76acfe502"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_triangle.html">Triangle</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#aae57b61e09898f54256a83e76acfe502">operator=</a> (const <a class="el" href="class_triangle.html">Triangle</a> &amp;triangle)</td></tr>
 <tr class="separator:aae57b61e09898f54256a83e76acfe502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a430bf0a9d8eaf20ea7bdefcd8082588c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a430bf0a9d8eaf20ea7bdefcd8082588c"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> () const </td></tr>
+<tr class="memitem:a430bf0a9d8eaf20ea7bdefcd8082588c"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a</a> () const </td></tr>
 <tr class="separator:a430bf0a9d8eaf20ea7bdefcd8082588c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24c012d83d7e6c5d0b27985d8dcb64da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24c012d83d7e6c5d0b27985d8dcb64da"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setA</b> (const QVector3D &amp;a)</td></tr>
+<tr class="memitem:a24c012d83d7e6c5d0b27985d8dcb64da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a24c012d83d7e6c5d0b27985d8dcb64da">setA</a> (const QVector3D &amp;<a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a</a>)</td></tr>
 <tr class="separator:a24c012d83d7e6c5d0b27985d8dcb64da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8327124c9b9b752be94187c9fbf3f460"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8327124c9b9b752be94187c9fbf3f460"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>b</b> () const </td></tr>
+<tr class="memitem:a8327124c9b9b752be94187c9fbf3f460"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b</a> () const </td></tr>
 <tr class="separator:a8327124c9b9b752be94187c9fbf3f460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f889b49a5ea3b4be4c4366c63673095"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f889b49a5ea3b4be4c4366c63673095"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setB</b> (const QVector3D &amp;b)</td></tr>
+<tr class="memitem:a9f889b49a5ea3b4be4c4366c63673095"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a9f889b49a5ea3b4be4c4366c63673095">setB</a> (const QVector3D &amp;<a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b</a>)</td></tr>
 <tr class="separator:a9f889b49a5ea3b4be4c4366c63673095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61f6c0245df276555de6d1b1a98840b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61f6c0245df276555de6d1b1a98840b8"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>c</b> () const </td></tr>
+<tr class="memitem:a61f6c0245df276555de6d1b1a98840b8"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c</a> () const </td></tr>
 <tr class="separator:a61f6c0245df276555de6d1b1a98840b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4566995b306c0f9ae72b457b7acb983"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4566995b306c0f9ae72b457b7acb983"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setC</b> (const QVector3D &amp;c)</td></tr>
+<tr class="memitem:af4566995b306c0f9ae72b457b7acb983"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#af4566995b306c0f9ae72b457b7acb983">setC</a> (const QVector3D &amp;<a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c</a>)</td></tr>
 <tr class="separator:af4566995b306c0f9ae72b457b7acb983"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1ccf6af0c2567e53b9dc6f51243f934"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1ccf6af0c2567e53b9dc6f51243f934"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>normal</b> () const </td></tr>
+<tr class="memitem:aa1ccf6af0c2567e53b9dc6f51243f934"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#aa1ccf6af0c2567e53b9dc6f51243f934">normal</a> () const </td></tr>
+<tr class="memdesc:aa1ccf6af0c2567e53b9dc6f51243f934"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns normal of triangle. The vertices <a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a()</a>, <a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b()</a> and <a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c()</a> ordered counter clockwise are expected to describe outer side of triangle.  <a href="#aa1ccf6af0c2567e53b9dc6f51243f934">More...</a><br /></td></tr>
 <tr class="separator:aa1ccf6af0c2567e53b9dc6f51243f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad51139a1ad219f93031cf1a64646c123"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad51139a1ad219f93031cf1a64646c123"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>normalizedNormal</b> () const </td></tr>
-<tr class="separator:ad51139a1ad219f93031cf1a64646c123"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad29fe2cad14c0285aca2557d3a0c0f13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad29fe2cad14c0285aca2557d3a0c0f13"></a>
-<a class="el" href="class_triangle.html">Triangle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>inWorldCoordinates</b> () const </td></tr>
-<tr class="separator:ad29fe2cad14c0285aca2557d3a0c0f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae531defb56fd5b0a19078f23954253dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae531defb56fd5b0a19078f23954253dc"></a>
-<a class="el" href="class_abstract_gem.html">AbstractGem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>owningGem</b> () const </td></tr>
-<tr class="separator:ae531defb56fd5b0a19078f23954253dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66da12d2c747c435ea5148df472d9229"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66da12d2c747c435ea5148df472d9229"></a>
-<a class="el" href="class_q_list.html">QList</a>&lt; QVector3D &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b> () const </td></tr>
+<tr class="memitem:a66da12d2c747c435ea5148df472d9229"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_list.html">QList</a>&lt; QVector3D &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a66da12d2c747c435ea5148df472d9229">vertices</a> () const </td></tr>
+<tr class="memdesc:a66da12d2c747c435ea5148df472d9229"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convienence method. All vertices are returned in <a class="el" href="class_q_list.html">QList</a>.  <a href="#a66da12d2c747c435ea5148df472d9229">More...</a><br /></td></tr>
 <tr class="separator:a66da12d2c747c435ea5148df472d9229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fb81ac7e355c97a03f4c056bd79ac99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fb81ac7e355c97a03f4c056bd79ac99"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>reflect</b> (const QVector3D &amp;incidentVector) const </td></tr>
+<tr class="memitem:a4fb81ac7e355c97a03f4c056bd79ac99"><td class="memItemLeft" align="right" valign="top">QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a4fb81ac7e355c97a03f4c056bd79ac99">reflect</a> (const QVector3D &amp;incidentVector) const </td></tr>
+<tr class="memdesc:a4fb81ac7e355c97a03f4c056bd79ac99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reflects incoming ray at outer side of triangle.  <a href="#a4fb81ac7e355c97a03f4c056bd79ac99">More...</a><br /></td></tr>
 <tr class="separator:a4fb81ac7e355c97a03f4c056bd79ac99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a429f86c999f5c27720f7b912fa3b20ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a429f86c999f5c27720f7b912fa3b20ca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>calculateNormal</b> () const </td></tr>
+<tr class="memitem:a429f86c999f5c27720f7b912fa3b20ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a429f86c999f5c27720f7b912fa3b20ca">calculateNormal</a> () const </td></tr>
 <tr class="separator:a429f86c999f5c27720f7b912fa3b20ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a38f859bd8a6291d1fe460dbcf3c937c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f859bd8a6291d1fe460dbcf3c937c8"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_a</b></td></tr>
+<tr class="memitem:a38f859bd8a6291d1fe460dbcf3c937c8"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a38f859bd8a6291d1fe460dbcf3c937c8">m_a</a></td></tr>
 <tr class="separator:a38f859bd8a6291d1fe460dbcf3c937c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a783a7fcacbfa566c37dfd3fa8c6f44fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a783a7fcacbfa566c37dfd3fa8c6f44fd"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_b</b></td></tr>
+<tr class="memitem:a783a7fcacbfa566c37dfd3fa8c6f44fd"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a783a7fcacbfa566c37dfd3fa8c6f44fd">m_b</a></td></tr>
 <tr class="separator:a783a7fcacbfa566c37dfd3fa8c6f44fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae39dcbf0b28b543900380517bbef628c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae39dcbf0b28b543900380517bbef628c"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_c</b></td></tr>
+<tr class="memitem:ae39dcbf0b28b543900380517bbef628c"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#ae39dcbf0b28b543900380517bbef628c">m_c</a></td></tr>
 <tr class="separator:ae39dcbf0b28b543900380517bbef628c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86922a6a07e847f2df3b9310af273d8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86922a6a07e847f2df3b9310af273d8a"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_normal</b></td></tr>
+<tr class="memitem:a86922a6a07e847f2df3b9310af273d8a"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_triangle.html#a86922a6a07e847f2df3b9310af273d8a">m_normal</a></td></tr>
 <tr class="separator:a86922a6a07e847f2df3b9310af273d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a205c63aa77abccf049d3535cb2512df0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a205c63aa77abccf049d3535cb2512df0"></a>
-<a class="el" href="class_abstract_gem.html">AbstractGem</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gem</b></td></tr>
-<tr class="separator:a205c63aa77abccf049d3535cb2512df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a> class represents a triangle in three dimensional space. </p>
+<p>Mostly this is a data class storing the vertices and is easy copiable. Also some helper functions are implemented. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aaefe4ed500c07918d30c6f0e286332c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Triangle::Triangle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new degenerated <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a>, with all points in (0, 0, 0). </p>
+
+</div>
+</div>
+<a class="anchor" id="a89052ece2572bfee5d6ade44b9f5094d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Triangle::Triangle </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a>, with specified points. It is expected, that points a, b and c are ordered counter clock wise. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>First vertex. </td></tr>
+    <tr><td class="paramname">b</td><td>Second vertex. </td></tr>
+    <tr><td class="paramname">c</td><td>Third vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a889893fe34e2eb7121082b86199d5628"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Triangle::Triangle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_triangle.html">Triangle</a> &amp;&#160;</td>
+          <td class="paramname"><em>triangle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a> with data copied from given triangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">triangle</td><td>The <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a>, that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5199760a17454f4dc94c855a57e3a152"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Triangle::~Triangle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a430bf0a9d8eaf20ea7bdefcd8082588c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Triangle::a </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8327124c9b9b752be94187c9fbf3f460"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Triangle::b </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a61f6c0245df276555de6d1b1a98840b8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Triangle::c </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a429f86c999f5c27720f7b912fa3b20ca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Triangle::calculateNormal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa1ccf6af0c2567e53b9dc6f51243f934"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Triangle::normal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns normal of triangle. The vertices <a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a()</a>, <a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b()</a> and <a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c()</a> ordered counter clockwise are expected to describe outer side of triangle. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aae57b61e09898f54256a83e76acfe502"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_triangle.html">Triangle</a> &amp; Triangle::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_triangle.html">Triangle</a> &amp;&#160;</td>
+          <td class="paramname"><em>triangle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4fb81ac7e355c97a03f4c056bd79ac99"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D Triangle::reflect </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>incidentVector</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reflects incoming ray at outer side of triangle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">incidentVector</td><td>The vector that will be reflected. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reflected vector. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a24c012d83d7e6c5d0b27985d8dcb64da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Triangle::setA </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9f889b49a5ea3b4be4c4366c63673095"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Triangle::setB </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af4566995b306c0f9ae72b457b7acb983"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Triangle::setC </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a66da12d2c747c435ea5148df472d9229"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_list.html">QList</a>&lt; QVector3D &gt; Triangle::vertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convienence method. All vertices are returned in <a class="el" href="class_q_list.html">QList</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_q_list.html">QList</a> of vertices. Containing <a class="el" href="class_triangle.html#a430bf0a9d8eaf20ea7bdefcd8082588c">a()</a>, <a class="el" href="class_triangle.html#a8327124c9b9b752be94187c9fbf3f460">b()</a> and <a class="el" href="class_triangle.html#a61f6c0245df276555de6d1b1a98840b8">c()</a> in this order. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a38f859bd8a6291d1fe460dbcf3c937c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Triangle::m_a</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a783a7fcacbfa566c37dfd3fa8c6f44fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Triangle::m_b</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae39dcbf0b28b543900380517bbef628c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Triangle::m_c</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a86922a6a07e847f2df3b9310af273d8a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Triangle::m_normal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="triangle_8h_source.html">triangle.h</a></li>
-<li>gemIlluminator/triangle.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="triangle_8h_source.html">triangle.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="triangle_8cpp.html">triangle.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:45 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:07 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

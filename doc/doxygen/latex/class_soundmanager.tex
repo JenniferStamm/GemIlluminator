@@ -1,0 +1,184 @@
+\hypertarget{class_soundmanager}{}\section{Soundmanager Class Reference}
+\label{class_soundmanager}\index{Soundmanager@{Soundmanager}}
+
+
+The \hyperlink{class_soundmanager}{Soundmanager} class provides several sounds which can be played.  The \hyperlink{class_soundmanager}{Soundmanager} manages the required ressources.  
+
+
+
+
+{\ttfamily \#include $<$soundmanager.\+h$>$}
+
+Inheritance diagram for Soundmanager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_soundmanager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{class_soundmanager_a098a604a4cb0a238863ddb0065f11885}{$\sim$\+Soundmanager} ()
+\item 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E void \hyperlink{class_soundmanager_adc77c21e0705c9220b6bfff6d8957d7c}{play\+Background\+Music} ()
+\begin{DoxyCompactList}\small\item\em Starts playing our background music. \end{DoxyCompactList}\item 
+void \hyperlink{class_soundmanager_a6116af7088ee72cafda5d3e1c6b6600b}{play\+Collision\+Sound} ()
+\begin{DoxyCompactList}\small\item\em Plays a previously defined sound in order to indicate a collision. \end{DoxyCompactList}\item 
+void \hyperlink{class_soundmanager_a490ddb5b63b94701ad5d246d27759b14}{set\+Collision\+Sound} (\hyperlink{soundmanager_8h_a7fbdfef23a43c911ebc18ef1b9d9808d}{Sound\+Effects} effect)
+\begin{DoxyCompactList}\small\item\em Sets the collision sound that will be played next time \hyperlink{class_soundmanager_a6116af7088ee72cafda5d3e1c6b6600b}{play\+Collision\+Sound()} is called. \end{DoxyCompactList}\item 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E void \hyperlink{class_soundmanager_a36411846ae8c5cd18239cfb913f3dc83}{stop\+Background\+Music} ()
+\begin{DoxyCompactList}\small\item\em Stops playing our background music. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_soundmanager_aa4a2f89d1c517bff42654038da492d65}{drop} ()
+\begin{DoxyCompactList}\small\item\em Drops current instance of our \hyperlink{class_soundmanager}{Soundmanager}. \end{DoxyCompactList}\item 
+static \hyperlink{class_soundmanager}{Soundmanager} $\ast$ \hyperlink{class_soundmanager_aa1fa87053cd1cd240447a54327962b23}{instance} ()
+\begin{DoxyCompactList}\small\item\em The instance of our \hyperlink{class_soundmanager}{Soundmanager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_soundmanager_a8b484955e5732155f07099e53dca61e1}{Soundmanager} ()
+\item 
+void \hyperlink{class_soundmanager_a97874137f1bc5dcff106b0a5faeca828}{load\+Sounds} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Media\+Player $\ast$ \hyperlink{class_soundmanager_a39e32f7d94670486c52e78721a8f4faf}{m\+\_\+background\+Music}
+\item 
+Q\+Media\+Player $\ast$ \hyperlink{class_soundmanager_a824f9bfdbe61a7db3cb54cb87cb80268}{m\+\_\+collision\+Sound}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_soundmanager}{Soundmanager} $\ast$ \hyperlink{class_soundmanager_a81105bb352bada9ff056335df0dd2bb3}{m\+\_\+instance} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_soundmanager}{Soundmanager} class provides several sounds which can be played.  The \hyperlink{class_soundmanager}{Soundmanager} manages the required ressources. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_soundmanager_a098a604a4cb0a238863ddb0065f11885}{}\index{Soundmanager@{Soundmanager}!````~Soundmanager@{$\sim$\+Soundmanager}}
+\index{````~Soundmanager@{$\sim$\+Soundmanager}!Soundmanager@{Soundmanager}}
+\subsubsection[{$\sim$\+Soundmanager}]{\setlength{\rightskip}{0pt plus 5cm}Soundmanager\+::$\sim$\+Soundmanager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_soundmanager_a098a604a4cb0a238863ddb0065f11885}
+\hypertarget{class_soundmanager_a8b484955e5732155f07099e53dca61e1}{}\index{Soundmanager@{Soundmanager}!Soundmanager@{Soundmanager}}
+\index{Soundmanager@{Soundmanager}!Soundmanager@{Soundmanager}}
+\subsubsection[{Soundmanager}]{\setlength{\rightskip}{0pt plus 5cm}Soundmanager\+::\+Soundmanager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_soundmanager_a8b484955e5732155f07099e53dca61e1}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_soundmanager_aa4a2f89d1c517bff42654038da492d65}{}\index{Soundmanager@{Soundmanager}!drop@{drop}}
+\index{drop@{drop}!Soundmanager@{Soundmanager}}
+\subsubsection[{drop}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::drop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_soundmanager_aa4a2f89d1c517bff42654038da492d65}
+
+
+Drops current instance of our \hyperlink{class_soundmanager}{Soundmanager}. 
+
+\hypertarget{class_soundmanager_aa1fa87053cd1cd240447a54327962b23}{}\index{Soundmanager@{Soundmanager}!instance@{instance}}
+\index{instance@{instance}!Soundmanager@{Soundmanager}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Soundmanager} $\ast$ Soundmanager\+::instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_soundmanager_aa1fa87053cd1cd240447a54327962b23}
+
+
+The instance of our \hyperlink{class_soundmanager}{Soundmanager}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_soundmanager_a97874137f1bc5dcff106b0a5faeca828}{}\index{Soundmanager@{Soundmanager}!load\+Sounds@{load\+Sounds}}
+\index{load\+Sounds@{load\+Sounds}!Soundmanager@{Soundmanager}}
+\subsubsection[{load\+Sounds}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::load\+Sounds (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_soundmanager_a97874137f1bc5dcff106b0a5faeca828}
+\hypertarget{class_soundmanager_adc77c21e0705c9220b6bfff6d8957d7c}{}\index{Soundmanager@{Soundmanager}!play\+Background\+Music@{play\+Background\+Music}}
+\index{play\+Background\+Music@{play\+Background\+Music}!Soundmanager@{Soundmanager}}
+\subsubsection[{play\+Background\+Music}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::play\+Background\+Music (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_soundmanager_adc77c21e0705c9220b6bfff6d8957d7c}
+
+
+Starts playing our background music. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_soundmanager_a36411846ae8c5cd18239cfb913f3dc83}{stop\+Background\+Music()} 
+\end{DoxySeeAlso}
+\hypertarget{class_soundmanager_a6116af7088ee72cafda5d3e1c6b6600b}{}\index{Soundmanager@{Soundmanager}!play\+Collision\+Sound@{play\+Collision\+Sound}}
+\index{play\+Collision\+Sound@{play\+Collision\+Sound}!Soundmanager@{Soundmanager}}
+\subsubsection[{play\+Collision\+Sound}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::play\+Collision\+Sound (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_soundmanager_a6116af7088ee72cafda5d3e1c6b6600b}
+
+
+Plays a previously defined sound in order to indicate a collision. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_soundmanager_a490ddb5b63b94701ad5d246d27759b14}{set\+Collision\+Sound()} 
+\end{DoxySeeAlso}
+\hypertarget{class_soundmanager_a490ddb5b63b94701ad5d246d27759b14}{}\index{Soundmanager@{Soundmanager}!set\+Collision\+Sound@{set\+Collision\+Sound}}
+\index{set\+Collision\+Sound@{set\+Collision\+Sound}!Soundmanager@{Soundmanager}}
+\subsubsection[{set\+Collision\+Sound}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::set\+Collision\+Sound (
+\begin{DoxyParamCaption}
+\item[{{\bf Sound\+Effects}}]{effect}
+\end{DoxyParamCaption}
+)}\label{class_soundmanager_a490ddb5b63b94701ad5d246d27759b14}
+
+
+Sets the collision sound that will be played next time \hyperlink{class_soundmanager_a6116af7088ee72cafda5d3e1c6b6600b}{play\+Collision\+Sound()} is called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em effect} & The choosen Sound\+Effect \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_soundmanager_a36411846ae8c5cd18239cfb913f3dc83}{}\index{Soundmanager@{Soundmanager}!stop\+Background\+Music@{stop\+Background\+Music}}
+\index{stop\+Background\+Music@{stop\+Background\+Music}!Soundmanager@{Soundmanager}}
+\subsubsection[{stop\+Background\+Music}]{\setlength{\rightskip}{0pt plus 5cm}void Soundmanager\+::stop\+Background\+Music (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_soundmanager_a36411846ae8c5cd18239cfb913f3dc83}
+
+
+Stops playing our background music. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_soundmanager_a39e32f7d94670486c52e78721a8f4faf}{}\index{Soundmanager@{Soundmanager}!m\+\_\+background\+Music@{m\+\_\+background\+Music}}
+\index{m\+\_\+background\+Music@{m\+\_\+background\+Music}!Soundmanager@{Soundmanager}}
+\subsubsection[{m\+\_\+background\+Music}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Media\+Player$\ast$ Soundmanager\+::m\+\_\+background\+Music\hspace{0.3cm}{\ttfamily [protected]}}\label{class_soundmanager_a39e32f7d94670486c52e78721a8f4faf}
+\hypertarget{class_soundmanager_a824f9bfdbe61a7db3cb54cb87cb80268}{}\index{Soundmanager@{Soundmanager}!m\+\_\+collision\+Sound@{m\+\_\+collision\+Sound}}
+\index{m\+\_\+collision\+Sound@{m\+\_\+collision\+Sound}!Soundmanager@{Soundmanager}}
+\subsubsection[{m\+\_\+collision\+Sound}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Media\+Player$\ast$ Soundmanager\+::m\+\_\+collision\+Sound\hspace{0.3cm}{\ttfamily [protected]}}\label{class_soundmanager_a824f9bfdbe61a7db3cb54cb87cb80268}
+\hypertarget{class_soundmanager_a81105bb352bada9ff056335df0dd2bb3}{}\index{Soundmanager@{Soundmanager}!m\+\_\+instance@{m\+\_\+instance}}
+\index{m\+\_\+instance@{m\+\_\+instance}!Soundmanager@{Soundmanager}}
+\subsubsection[{m\+\_\+instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Soundmanager} $\ast$ Soundmanager\+::m\+\_\+instance = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\label{class_soundmanager_a81105bb352bada9ff056335df0dd2bb3}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{soundmanager_8h}{soundmanager.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{soundmanager_8cpp}{soundmanager.\+cpp}\end{DoxyCompactItemize}

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,6 +95,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Player Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Our <a class="el" href="class_player.html" title="Our Player class is pretty stupid, because our player only ride on lightrays. The only responsiblity ...">Player</a> class is pretty stupid, because our player only ride on lightrays. The only responsiblity is to move on rays and update the camera.  
+ <a href="class_player.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="player_8h_source.html">player.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Player:</div>
 <div class="dyncontent">
@@ -105,87 +111,579 @@ Inheritance diagram for Player:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a10605ebcab0fac1b542d1bd8f3d23acd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10605ebcab0fac1b542d1bd8f3d23acd"></a>
-<a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>camera</b> () const </td></tr>
+<tr class="memitem:a10605ebcab0fac1b542d1bd8f3d23acd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">camera</a> () const </td></tr>
+<tr class="memdesc:a10605ebcab0fac1b542d1bd8f3d23acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The camera which is updated by player.  <a href="#a10605ebcab0fac1b542d1bd8f3d23acd">More...</a><br /></td></tr>
 <tr class="separator:a10605ebcab0fac1b542d1bd8f3d23acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5e57b3a9719cd999aff21d59355be52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5e57b3a9719cd999aff21d59355be52"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCamera</b> (<a class="el" href="class_camera.html">Camera</a> *camera)</td></tr>
+<tr class="memitem:af5e57b3a9719cd999aff21d59355be52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#af5e57b3a9719cd999aff21d59355be52">setCamera</a> (<a class="el" href="class_camera.html">Camera</a> *<a class="el" href="class_player.html#a4e1ae30bdaec837b94451416a523d5cb">camera</a>)</td></tr>
+<tr class="memdesc:af5e57b3a9719cd999aff21d59355be52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the camera, that should be updated by player. The player does not take ownership of camera.  <a href="#af5e57b3a9719cd999aff21d59355be52">More...</a><br /></td></tr>
 <tr class="separator:af5e57b3a9719cd999aff21d59355be52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a836e1afdde2c379b964bcf5d3811f0da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a836e1afdde2c379b964bcf5d3811f0da"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b> () const </td></tr>
+<tr class="memitem:a836e1afdde2c379b964bcf5d3811f0da"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">velocity</a> () const </td></tr>
+<tr class="memdesc:a836e1afdde2c379b964bcf5d3811f0da"><td class="mdescLeft">&#160;</td><td class="mdescRight">The velocity of player.  <a href="#a836e1afdde2c379b964bcf5d3811f0da">More...</a><br /></td></tr>
 <tr class="separator:a836e1afdde2c379b964bcf5d3811f0da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d5423c7bf6c6c924a451dc1cdab6aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2d5423c7bf6c6c924a451dc1cdab6aa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocity</b> (qreal velocity)</td></tr>
+<tr class="memitem:ae2d5423c7bf6c6c924a451dc1cdab6aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ae2d5423c7bf6c6c924a451dc1cdab6aa">setVelocity</a> (qreal <a class="el" href="class_player.html#a53141a3791c456938945973cc78a2ea7">velocity</a>)</td></tr>
+<tr class="memdesc:ae2d5423c7bf6c6c924a451dc1cdab6aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set velocity of player.  <a href="#ae2d5423c7bf6c6c924a451dc1cdab6aa">More...</a><br /></td></tr>
 <tr class="separator:ae2d5423c7bf6c6c924a451dc1cdab6aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:aef620bc75871b32311560a7b2a31c144"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef620bc75871b32311560a7b2a31c144"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>cameraChanged</b> ()</td></tr>
+<tr class="memitem:aef620bc75871b32311560a7b2a31c144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#aef620bc75871b32311560a7b2a31c144">cameraChanged</a> ()</td></tr>
 <tr class="separator:aef620bc75871b32311560a7b2a31c144"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22ae3d9604e92fa12cfad39fe40e8651"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22ae3d9604e92fa12cfad39fe40e8651"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>velocityChanged</b> ()</td></tr>
+<tr class="memitem:a22ae3d9604e92fa12cfad39fe40e8651"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a22ae3d9604e92fa12cfad39fe40e8651">velocityChanged</a> ()</td></tr>
 <tr class="separator:a22ae3d9604e92fa12cfad39fe40e8651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5c2a46dbacbc28b7cfbe352b6c0db644"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2a46dbacbc28b7cfbe352b6c0db644"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Player</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:a5c2a46dbacbc28b7cfbe352b6c0db644"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a5c2a46dbacbc28b7cfbe352b6c0db644">Player</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a5c2a46dbacbc28b7cfbe352b6c0db644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dcd0b9f4d678260314878ab20ce6e09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dcd0b9f4d678260314878ab20ce6e09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveOnRay</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, int timeDifferenceInMilliseconds)</td></tr>
+<tr class="memitem:a749d2c00e1fe0f5c2746f7505a58c062"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a749d2c00e1fe0f5c2746f7505a58c062">~Player</a> ()</td></tr>
+<tr class="separator:a749d2c00e1fe0f5c2746f7505a58c062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dcd0b9f4d678260314878ab20ce6e09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a6dcd0b9f4d678260314878ab20ce6e09">moveOnRay</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, int timeDifferenceInMilliseconds)</td></tr>
+<tr class="memdesc:a6dcd0b9f4d678260314878ab20ce6e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the player along a ray.  <a href="#a6dcd0b9f4d678260314878ab20ce6e09">More...</a><br /></td></tr>
 <tr class="separator:a6dcd0b9f4d678260314878ab20ce6e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38269e0706f91b71c6e8f8373c397969"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38269e0706f91b71c6e8f8373c397969"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveToStartPointOnRay</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memitem:a38269e0706f91b71c6e8f8373c397969"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a38269e0706f91b71c6e8f8373c397969">moveToStartPointOnRay</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memdesc:a38269e0706f91b71c6e8f8373c397969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the player to ray.startPosition() and updates the camera accordingly.  <a href="#a38269e0706f91b71c6e8f8373c397969">More...</a><br /></td></tr>
 <tr class="separator:a38269e0706f91b71c6e8f8373c397969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a4ebefb0f7593d79573ddcfe68e8e2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a4ebefb0f7593d79573ddcfe68e8e2f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveToEndPointOnRay</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memitem:a0a4ebefb0f7593d79573ddcfe68e8e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a0a4ebefb0f7593d79573ddcfe68e8e2f">moveToEndPointOnRay</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memdesc:a0a4ebefb0f7593d79573ddcfe68e8e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the player to ray.endPosition() and updates the camera accordingly.  <a href="#a0a4ebefb0f7593d79573ddcfe68e8e2f">More...</a><br /></td></tr>
 <tr class="separator:a0a4ebefb0f7593d79573ddcfe68e8e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c307c67d3c6d64ee9c5b724c1e2b095"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c307c67d3c6d64ee9c5b724c1e2b095"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> () const </td></tr>
+<tr class="memitem:a0c307c67d3c6d64ee9c5b724c1e2b095"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095">position</a> () const </td></tr>
+<tr class="memdesc:a0c307c67d3c6d64ee9c5b724c1e2b095"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of player in world coordinates.  <a href="#a0c307c67d3c6d64ee9c5b724c1e2b095">More...</a><br /></td></tr>
 <tr class="separator:a0c307c67d3c6d64ee9c5b724c1e2b095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cb33ddb87038b4e2af648e1b884d79f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cb33ddb87038b4e2af648e1b884d79f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const QVector3D &amp;position)</td></tr>
+<tr class="memitem:a0cb33ddb87038b4e2af648e1b884d79f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a0cb33ddb87038b4e2af648e1b884d79f">setPosition</a> (const QVector3D &amp;<a class="el" href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095">position</a>)</td></tr>
 <tr class="separator:a0cb33ddb87038b4e2af648e1b884d79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae51ad40372e26d33351c02d77a1aba63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae51ad40372e26d33351c02d77a1aba63"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setViewDirection</b> (const QVector3D &amp;viewDirection)</td></tr>
+<tr class="memitem:ae51ad40372e26d33351c02d77a1aba63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ae51ad40372e26d33351c02d77a1aba63">setViewDirection</a> (const QVector3D &amp;viewDirection)</td></tr>
+<tr class="memdesc:ae51ad40372e26d33351c02d77a1aba63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set view direction to provided value. For now this value should be the same like the direction of followed lightray.  <a href="#ae51ad40372e26d33351c02d77a1aba63">More...</a><br /></td></tr>
 <tr class="separator:ae51ad40372e26d33351c02d77a1aba63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a557b70acbd3cb1f71218390f7e90105c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a557b70acbd3cb1f71218390f7e90105c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCameraForPointOnRay</b> (const QVector3D &amp;point, const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memitem:a557b70acbd3cb1f71218390f7e90105c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a557b70acbd3cb1f71218390f7e90105c">updateCameraForPointOnRay</a> (const QVector3D &amp;point, const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray)</td></tr>
+<tr class="memdesc:a557b70acbd3cb1f71218390f7e90105c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the camera position for given point on ray.  <a href="#a557b70acbd3cb1f71218390f7e90105c">More...</a><br /></td></tr>
 <tr class="separator:a557b70acbd3cb1f71218390f7e90105c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a962e97e5fd3fe1c2db4e7e2066dbe61c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a962e97e5fd3fe1c2db4e7e2066dbe61c"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>m_velocity</b></td></tr>
+<tr class="memitem:a962e97e5fd3fe1c2db4e7e2066dbe61c"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a962e97e5fd3fe1c2db4e7e2066dbe61c">m_velocity</a></td></tr>
 <tr class="separator:a962e97e5fd3fe1c2db4e7e2066dbe61c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dc251e6a6d9a7f49c3f2ad5b64a7780"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dc251e6a6d9a7f49c3f2ad5b64a7780"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_position</b></td></tr>
+<tr class="memitem:a9dc251e6a6d9a7f49c3f2ad5b64a7780"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a9dc251e6a6d9a7f49c3f2ad5b64a7780">m_position</a></td></tr>
 <tr class="separator:a9dc251e6a6d9a7f49c3f2ad5b64a7780"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7721626a1c43592bfcb0c81a836f7aad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7721626a1c43592bfcb0c81a836f7aad"></a>
-<a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_camera</b></td></tr>
+<tr class="memitem:a7721626a1c43592bfcb0c81a836f7aad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a7721626a1c43592bfcb0c81a836f7aad">m_camera</a></td></tr>
 <tr class="separator:a7721626a1c43592bfcb0c81a836f7aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a4e1ae30bdaec837b94451416a523d5cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e1ae30bdaec837b94451416a523d5cb"></a>
-<a class="el" href="class_camera.html">Camera</a>&#160;</td><td class="memItemRight" valign="bottom"><b>camera</b></td></tr>
+<tr class="memitem:a4e1ae30bdaec837b94451416a523d5cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a4e1ae30bdaec837b94451416a523d5cb">camera</a></td></tr>
 <tr class="separator:a4e1ae30bdaec837b94451416a523d5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53141a3791c456938945973cc78a2ea7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53141a3791c456938945973cc78a2ea7"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b></td></tr>
+<tr class="memitem:a53141a3791c456938945973cc78a2ea7"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a53141a3791c456938945973cc78a2ea7">velocity</a></td></tr>
 <tr class="separator:a53141a3791c456938945973cc78a2ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Our <a class="el" href="class_player.html" title="Our Player class is pretty stupid, because our player only ride on lightrays. The only responsiblity ...">Player</a> class is pretty stupid, because our player only ride on lightrays. The only responsiblity is to move on rays and update the camera. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a5c2a46dbacbc28b7cfbe352b6c0db644"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Player::Player </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a749d2c00e1fe0f5c2746f7505a58c062"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Player::~Player </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a10605ebcab0fac1b542d1bd8f3d23acd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Player::camera </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The camera which is updated by player. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aef620bc75871b32311560a7b2a31c144"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::cameraChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6dcd0b9f4d678260314878ab20ce6e09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::moveOnRay </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>timeDifferenceInMilliseconds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move the player along a ray. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>The ray that is followed by ray. </td></tr>
+    <tr><td class="paramname">timeDifferenceInMilliseconds</td><td>The time left since last update in order to calculate how far the player should move. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a4ebefb0f7593d79573ddcfe68e8e2f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::moveToEndPointOnRay </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the player to ray.endPosition() and updates the camera accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td><a class="el" href="class_player.html#a0a4ebefb0f7593d79573ddcfe68e8e2f" title="Set the player to ray.endPosition() and updates the camera accordingly. ">moveToEndPointOnRay()</a>; </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a38269e0706f91b71c6e8f8373c397969"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::moveToStartPointOnRay </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the player to ray.startPosition() and updates the camera accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td><a class="el" href="class_player.html#a0a4ebefb0f7593d79573ddcfe68e8e2f" title="Set the player to ray.endPosition() and updates the camera accordingly. ">moveToEndPointOnRay()</a>; </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0c307c67d3c6d64ee9c5b724c1e2b095"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Player::position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The position of player in world coordinates. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af5e57b3a9719cd999aff21d59355be52"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::setCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> *&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the camera, that should be updated by player. The player does not take ownership of camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">camera</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0cb33ddb87038b4e2af648e1b884d79f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae2d5423c7bf6c6c924a451dc1cdab6aa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::setVelocity </td>
+          <td>(</td>
+          <td class="paramtype">qreal&#160;</td>
+          <td class="paramname"><em>velocity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set velocity of player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">velocity</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae51ad40372e26d33351c02d77a1aba63"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::setViewDirection </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>viewDirection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set view direction to provided value. For now this value should be the same like the direction of followed lightray. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">viewDirection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a557b70acbd3cb1f71218390f7e90105c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::updateCameraForPointOnRay </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the camera position for given point on ray. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>The new <a class="el" href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095" title="The position of player in world coordinates. ">position()</a> of player on ray. This point has to lie on ray or it will lead to unexpected behaviour </td></tr>
+    <tr><td class="paramname">ray</td><td>The lightray the player is following. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a836e1afdde2c379b964bcf5d3811f0da"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal Player::velocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The velocity of player. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the distance, that is passed in one second. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a22ae3d9604e92fa12cfad39fe40e8651"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::velocityChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7721626a1c43592bfcb0c81a836f7aad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Player::m_camera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9dc251e6a6d9a7f49c3f2ad5b64a7780"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Player::m_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a962e97e5fd3fe1c2db4e7e2066dbe61c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal Player::m_velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a4e1ae30bdaec837b94451416a523d5cb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a> * Player::camera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a53141a3791c456938945973cc78a2ea7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal Player::velocity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="player_8h_source.html">player.h</a></li>
-<li>gemIlluminator/player.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="player_8h_source.html">player.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="player_8cpp.html">player.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:43 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:06 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

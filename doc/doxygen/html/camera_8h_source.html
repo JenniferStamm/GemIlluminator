@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Gem Illuminator: gemIlluminator/camera.h Source File</title>
+<title>Gem Illuminator: Game-Programming-WS2014/gemIlluminator/camera.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_6fe477e04668ae66267e4804812c6cd5.html">gemIlluminator</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_78153e7ed162178108f48b245e38da6a.html">Game-Programming-WS2014</a></li><li class="navelem"><a class="el" href="dir_f8d2780bb503ebb2e914d3f70acccb8e.html">gemIlluminator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">camera.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CAMERA_H</span></div>
+<a href="camera_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CAMERA_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CAMERA_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
@@ -96,94 +98,141 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QMatrix4x4;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_camera.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;eye READ eye WRITE setEye)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;center READ center WRITE setCenter)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;up READ up WRITE setUp)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;position READ position WRITE setPosition)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;viewDirection READ viewDirection WRITE setViewDirection)</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QSize &amp;viewport READ viewport WRITE setViewport)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Q_PROPERTY(qreal zNear READ zNear WRITE setZNear)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    Q_PROPERTY(qreal zFar READ zFar WRITE setZFar)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    Q_PROPERTY(qreal fovy READ fovy WRITE setFovy)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_camera.html">Camera</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_camera.html">Camera</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp;camera, QObject *parent = 0);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_camera.html">Camera</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;view() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;viewInverted() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;viewProjection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;viewProjectionInverted() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;projection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> QMatrix4x4 &amp;projectionInverted() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> QVector3D &amp;position() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    QVector3D viewDirection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> QVector3D &amp;center() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">const</span> QVector3D &amp;eye() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">const</span> QVector3D &amp;up() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_camera.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">   19</a></span>&#160;    Q_PROPERTY(<span class="keyword">const</span> QVector3D &amp;<a class="code" href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">eye</a> READ <a class="code" href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">eye</a> WRITE <a class="code" href="class_camera.html#aa445664f0bf5f3cd892a99125e4bc786">setEye</a>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">   20</a></span>&#160;    Q_PROPERTY(const QVector3D &amp;<a class="code" href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">center</a> READ <a class="code" href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">center</a> WRITE <a class="code" href="class_camera.html#ae0594124b7a1baf13ef38de7a6bd0ed8">setCenter</a>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_camera.html#a86995a93a125a9d9941f10144c4c398e">   21</a></span>&#160;    Q_PROPERTY(const QVector3D &amp;<a class="code" href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">up</a> READ <a class="code" href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">up</a> WRITE <a class="code" href="class_camera.html#a037ef3f032c7fc09fa1f044260dd3a09">setUp</a>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_camera.html#a1e8c173f6a47c5ebea0e91aefea50b51">   22</a></span>&#160;    Q_PROPERTY(const QVector3D &amp;<a class="code" href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">position</a> READ <a class="code" href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">position</a> WRITE <a class="code" href="class_camera.html#a3ac4fcd89c146068205a3c8b73a86520">setPosition</a>)</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">   23</a></span>&#160;    Q_PROPERTY(const QVector3D &amp;<a class="code" href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">viewDirection</a> READ <a class="code" href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">viewDirection</a> WRITE <a class="code" href="class_camera.html#a61a059ce3aedc779f9087dda9b5e227c">setViewDirection</a>)</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="class_camera.html#a56b601feb6a54eee0bce1910cdeac291">   24</a></span>&#160;    Q_PROPERTY(const QSize &amp;<a class="code" href="class_camera.html#af74af0fabb70490072ebeb013582284a">viewport</a> READ <a class="code" href="class_camera.html#af74af0fabb70490072ebeb013582284a">viewport</a> WRITE <a class="code" href="class_camera.html#ad47041196bf35fed448003491112f528">setViewport</a>)</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_camera.html#a1db2166635ff27594eda3a23130b66ac">   25</a></span>&#160;    Q_PROPERTY(qreal <a class="code" href="class_camera.html#a898b996f8cc534948886387193bcbc52">zNear</a> READ <a class="code" href="class_camera.html#a898b996f8cc534948886387193bcbc52">zNear</a> WRITE <a class="code" href="class_camera.html#a4a8cda23fc022255f30452f608c66081">setZNear</a>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_camera.html#a6290469f972a5903c805725db563f41f">   26</a></span>&#160;    Q_PROPERTY(qreal <a class="code" href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">zFar</a> READ <a class="code" href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">zFar</a> WRITE <a class="code" href="class_camera.html#a8ab94de2388acc72fa129fa203ccc587">setZFar</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_camera.html#a6cba4066109137fb0d23ee207205927c">   27</a></span>&#160;    Q_PROPERTY(qreal <a class="code" href="class_camera.html#a74f8741128595da3efa466cb5e580601">fovy</a> READ <a class="code" href="class_camera.html#a74f8741128595da3efa466cb5e580601">fovy</a> WRITE <a class="code" href="class_camera.html#aa0e1d52fdb7e3d060041b960fa8b5c24">setFovy</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;public:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    explicit <a class="code" href="class_camera.html">Camera</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_camera.html">Camera</a>(const <a class="code" href="class_camera.html">Camera</a> &amp;camera, QObject *parent = 0);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    virtual ~<a class="code" href="class_camera.html">Camera</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#a6797f30b3a8a94a798a9687be4e1d825">view</a>() const;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#a6f373d44131b72f23b4a23ef3b13f90b">viewInverted</a>() const;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#a683759f8c6c9207192a4c8b3f12be8e7">viewProjection</a>() const;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#a5ee2df09ee42e1ddddf7b6dc3de330e4">viewProjectionInverted</a>() const;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#af87d251359157acdb6e540d63a933392">projection</a>() const;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    const QMatrix4x4 &amp;<a class="code" href="class_camera.html#a6108163876720d7e856ac91c6835cde9">projectionInverted</a>() const;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">const</span> QSize &amp;viewport() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">float</span> fovy() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">float</span> zNear() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">float</span> zFar() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;signals:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> viewChanged();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> QVector3D &amp;position);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> setViewDirection(<span class="keyword">const</span> QVector3D &amp;viewDirection);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> setEye(<span class="keyword">const</span> QVector3D &amp;eye);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> setCenter(<span class="keyword">const</span> QVector3D &amp;center);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> setUp(<span class="keyword">const</span> QVector3D &amp;up);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> setView(<span class="keyword">const</span> QVector3D &amp;eye, <span class="keyword">const</span> QVector3D &amp;center, <span class="keyword">const</span> QVector3D &amp;up);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> setViewport(<span class="keyword">const</span> QSize &amp;viewport);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> setViewport(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> setFovy(<span class="keywordtype">float</span> angle);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> setZNear(<span class="keywordtype">float</span> zNear);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> setZFar(<span class="keywordtype">float</span> zFar);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> invalidateView() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> invalidateProjection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> recalculateView() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> recalculateProjection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> recalculateViewProjection() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    QVector3D *m_eye;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    QVector3D *m_center;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    QVector3D *m_up;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    QSize *m_viewport;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">float</span> m_zNear;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">float</span> m_zFar;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">float</span> m_fovy;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_view;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_viewInverted;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_projection;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_projectionInverted;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_viewProjection;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">mutable</span> QMatrix4x4 *m_viewProjectionInverted;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> m_isViewInvalid;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> m_isProjectionInvalid;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span> m_isViewProjectionInvalid;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif // CAMERA_H</span></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> camera.h:10</div></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    const QVector3D &amp;<a class="code" href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">position</a>() const;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    QVector3D <a class="code" href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">viewDirection</a>() const;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    const QVector3D &amp;<a class="code" href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">center</a>() const;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    const QVector3D &amp;<a class="code" href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">eye</a>() const;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    const QVector3D &amp;<a class="code" href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">up</a>() const;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    const QSize &amp;<a class="code" href="class_camera.html#af74af0fabb70490072ebeb013582284a">viewport</a>() const;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#a74f8741128595da3efa466cb5e580601">fovy</a>() const;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#a898b996f8cc534948886387193bcbc52">zNear</a>() const;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">zFar</a>() const;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;signals:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#af652ce7cb83eb966a90393be8e0038c3">viewChanged</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;public slots:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a3ac4fcd89c146068205a3c8b73a86520">setPosition</a>(const QVector3D &amp;<a class="code" href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">position</a>);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a61a059ce3aedc779f9087dda9b5e227c">setViewDirection</a>(const QVector3D &amp;<a class="code" href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">viewDirection</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> setEye(const QVector3D &amp;<a class="code" href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">eye</a>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ae0594124b7a1baf13ef38de7a6bd0ed8">setCenter</a>(const QVector3D &amp;<a class="code" href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">center</a>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a037ef3f032c7fc09fa1f044260dd3a09">setUp</a>(const QVector3D &amp;<a class="code" href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">up</a>);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a995075e3b619176b72ad2ff0ab434ed8">setView</a>(const QVector3D &amp;eye, const QVector3D &amp;center, const QVector3D &amp;up);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ad47041196bf35fed448003491112f528">setViewport</a>(const QSize &amp;<a class="code" href="class_camera.html#af74af0fabb70490072ebeb013582284a">viewport</a>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ad47041196bf35fed448003491112f528">setViewport</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#aa0e1d52fdb7e3d060041b960fa8b5c24">setFovy</a>(<span class="keywordtype">float</span> angle);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a4a8cda23fc022255f30452f608c66081">setZNear</a>(<span class="keywordtype">float</span> <a class="code" href="class_camera.html#a898b996f8cc534948886387193bcbc52">zNear</a>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a8ab94de2388acc72fa129fa203ccc587">setZFar</a>(<span class="keywordtype">float</span> <a class="code" href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">zFar</a>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;protected:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ada8eafa78187469b93a22e2cc97d49f8">invalidateView</a>() const;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a8067b4207b1a429318159059fac186c0">invalidateProjection</a>() const;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#aa1ce6744a19131677ee890325032e749">recalculateView</a>() const;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#adba918d86364f5452cad93a9ec6ea6d6">recalculateProjection</a>() const;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ae4c6dcfee420eb57f9521d5195ce78f8">recalculateViewProjection</a>() const;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;protected:</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_camera.html#a227e5fd463e3bea92f376d8a9d7cee7e">  108</a></span>&#160;    QVector3D *<a class="code" href="class_camera.html#a227e5fd463e3bea92f376d8a9d7cee7e">m_eye</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_camera.html#a7048a9ea478532b36678d4d2d07c6dd6">  109</a></span>&#160;    QVector3D *<a class="code" href="class_camera.html#a7048a9ea478532b36678d4d2d07c6dd6">m_center</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="class_camera.html#af30016ca4d7348e14462f3147add42ec">  110</a></span>&#160;    QVector3D *<a class="code" href="class_camera.html#af30016ca4d7348e14462f3147add42ec">m_up</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_camera.html#ac6968a6be1441d8947d3376e983c592e">  111</a></span>&#160;    QSize *<a class="code" href="class_camera.html#ac6968a6be1441d8947d3376e983c592e">m_viewport</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_camera.html#ae77d866ea9d0aa75853c8243154fca82">  112</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#ae77d866ea9d0aa75853c8243154fca82">m_zNear</a>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="class_camera.html#aa1aaffbfe1f859ff06ae57f7c1faa208">  113</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#aa1aaffbfe1f859ff06ae57f7c1faa208">m_zFar</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="class_camera.html#ae537e927f6648b6ce7054e0ff54442b9">  114</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#ae537e927f6648b6ce7054e0ff54442b9">m_fovy</a>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_camera.html#ac11306608e9187c2ff52e0b949cdc5b3">  116</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#ac11306608e9187c2ff52e0b949cdc5b3">m_view</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="class_camera.html#a06be12235980a27d0e529de166117b3e">  117</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#a06be12235980a27d0e529de166117b3e">m_viewInverted</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="class_camera.html#a23f540bd415235c5b917322e8a333996">  118</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#a23f540bd415235c5b917322e8a333996">m_projection</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="class_camera.html#a406e8638e0676defdc5757ed2733e401">  119</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#a406e8638e0676defdc5757ed2733e401">m_projectionInverted</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_camera.html#a00e4c0e94057379c97e8c71fd69995f7">  120</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#a00e4c0e94057379c97e8c71fd69995f7">m_viewProjection</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="class_camera.html#a29e1c120c55810920954e335eb60e84e">  121</a></span>&#160;    mutable QMatrix4x4 *<a class="code" href="class_camera.html#a29e1c120c55810920954e335eb60e84e">m_viewProjectionInverted</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_camera.html#a07a7666a3529761624675f4f1771f1c7">  123</a></span>&#160;    mutable <span class="keywordtype">bool</span> <a class="code" href="class_camera.html#a07a7666a3529761624675f4f1771f1c7">m_isViewInvalid</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="class_camera.html#a62264f74f2fb442e8d94e5c0a44098f0">  124</a></span>&#160;    mutable <span class="keywordtype">bool</span> <a class="code" href="class_camera.html#a62264f74f2fb442e8d94e5c0a44098f0">m_isProjectionInvalid</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_camera.html#a34a4ccea1f4f66eb140db34ef7bdf11a">  125</a></span>&#160;    mutable <span class="keywordtype">bool</span> <a class="code" href="class_camera.html#a34a4ccea1f4f66eb140db34ef7bdf11a">m_isViewProjectionInvalid</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;};</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif // CAMERA_H</span></div>
+<div class="ttc" id="class_camera_html_a6f373d44131b72f23b4a23ef3b13f90b"><div class="ttname"><a href="class_camera.html#a6f373d44131b72f23b4a23ef3b13f90b">Camera::viewInverted</a></div><div class="ttdeci">const QMatrix4x4 &amp; viewInverted() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:98</div></div>
+<div class="ttc" id="class_camera_html_a2558b66a8e6b053468bb1f5ffcc5841b"><div class="ttname"><a href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">Camera::eye</a></div><div class="ttdeci">const QVector3D &amp; eye() const </div></div>
+<div class="ttc" id="class_camera_html_a4a8cda23fc022255f30452f608c66081"><div class="ttname"><a href="class_camera.html#a4a8cda23fc022255f30452f608c66081">Camera::setZNear</a></div><div class="ttdeci">void setZNear(float zNear)</div><div class="ttdef"><b>Definition:</b> camera.cpp:261</div></div>
+<div class="ttc" id="class_camera_html_a683759f8c6c9207192a4c8b3f12be8e7"><div class="ttname"><a href="class_camera.html#a683759f8c6c9207192a4c8b3f12be8e7">Camera::viewProjection</a></div><div class="ttdeci">const QMatrix4x4 &amp; viewProjection() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:106</div></div>
+<div class="ttc" id="class_camera_html_a6797f30b3a8a94a798a9687be4e1d825"><div class="ttname"><a href="class_camera.html#a6797f30b3a8a94a798a9687be4e1d825">Camera::view</a></div><div class="ttdeci">const QMatrix4x4 &amp; view() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:90</div></div>
+<div class="ttc" id="class_camera_html_a037ef3f032c7fc09fa1f044260dd3a09"><div class="ttname"><a href="class_camera.html#a037ef3f032c7fc09fa1f044260dd3a09">Camera::setUp</a></div><div class="ttdeci">void setUp(const QVector3D &amp;up)</div><div class="ttdoc">Set up-vector of camera. </div><div class="ttdef"><b>Definition:</b> camera.cpp:222</div></div>
+<div class="ttc" id="class_camera_html_a07a7666a3529761624675f4f1771f1c7"><div class="ttname"><a href="class_camera.html#a07a7666a3529761624675f4f1771f1c7">Camera::m_isViewInvalid</a></div><div class="ttdeci">bool m_isViewInvalid</div><div class="ttdef"><b>Definition:</b> camera.h:123</div></div>
+<div class="ttc" id="class_camera_html_af74af0fabb70490072ebeb013582284a"><div class="ttname"><a href="class_camera.html#af74af0fabb70490072ebeb013582284a">Camera::viewport</a></div><div class="ttdeci">const QSize &amp; viewport() const </div></div>
+<div class="ttc" id="class_camera_html_a74f8741128595da3efa466cb5e580601"><div class="ttname"><a href="class_camera.html#a74f8741128595da3efa466cb5e580601">Camera::fovy</a></div><div class="ttdeci">float fovy() const </div></div>
+<div class="ttc" id="class_camera_html_aa1aaffbfe1f859ff06ae57f7c1faa208"><div class="ttname"><a href="class_camera.html#aa1aaffbfe1f859ff06ae57f7c1faa208">Camera::m_zFar</a></div><div class="ttdeci">float m_zFar</div><div class="ttdef"><b>Definition:</b> camera.h:113</div></div>
+<div class="ttc" id="class_camera_html_ac11306608e9187c2ff52e0b949cdc5b3"><div class="ttname"><a href="class_camera.html#ac11306608e9187c2ff52e0b949cdc5b3">Camera::m_view</a></div><div class="ttdeci">QMatrix4x4 * m_view</div><div class="ttdef"><b>Definition:</b> camera.h:116</div></div>
+<div class="ttc" id="class_camera_html_adba918d86364f5452cad93a9ec6ea6d6"><div class="ttname"><a href="class_camera.html#adba918d86364f5452cad93a9ec6ea6d6">Camera::recalculateProjection</a></div><div class="ttdeci">void recalculateProjection() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:69</div></div>
+<div class="ttc" id="class_camera_html_ac6968a6be1441d8947d3376e983c592e"><div class="ttname"><a href="class_camera.html#ac6968a6be1441d8947d3376e983c592e">Camera::m_viewport</a></div><div class="ttdeci">QSize * m_viewport</div><div class="ttdef"><b>Definition:</b> camera.h:111</div></div>
+<div class="ttc" id="class_camera_html_a227e5fd463e3bea92f376d8a9d7cee7e"><div class="ttname"><a href="class_camera.html#a227e5fd463e3bea92f376d8a9d7cee7e">Camera::m_eye</a></div><div class="ttdeci">QVector3D * m_eye</div><div class="ttdef"><b>Definition:</b> camera.h:108</div></div>
+<div class="ttc" id="class_camera_html_af652ce7cb83eb966a90393be8e0038c3"><div class="ttname"><a href="class_camera.html#af652ce7cb83eb966a90393be8e0038c3">Camera::viewChanged</a></div><div class="ttdeci">void viewChanged()</div></div>
+<div class="ttc" id="class_camera_html_a14e0e8d92dfcd76624780288caa7de8e"><div class="ttname"><a href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">Camera::zFar</a></div><div class="ttdeci">float zFar() const </div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">The Camera class provides view and perspective projection matrices. Additional the viewport of camera...</div><div class="ttdef"><b>Definition:</b> camera.h:16</div></div>
+<div class="ttc" id="class_camera_html_a995075e3b619176b72ad2ff0ab434ed8"><div class="ttname"><a href="class_camera.html#a995075e3b619176b72ad2ff0ab434ed8">Camera::setView</a></div><div class="ttdeci">void setView(const QVector3D &amp;eye, const QVector3D &amp;center, const QVector3D &amp;up)</div><div class="ttdoc">Convinence method to specify view with one method call. </div><div class="ttdef"><b>Definition:</b> camera.cpp:231</div></div>
+<div class="ttc" id="class_camera_html_a34a4ccea1f4f66eb140db34ef7bdf11a"><div class="ttname"><a href="class_camera.html#a34a4ccea1f4f66eb140db34ef7bdf11a">Camera::m_isViewProjectionInvalid</a></div><div class="ttdeci">bool m_isViewProjectionInvalid</div><div class="ttdef"><b>Definition:</b> camera.h:125</div></div>
+<div class="ttc" id="class_camera_html_a7048a9ea478532b36678d4d2d07c6dd6"><div class="ttname"><a href="class_camera.html#a7048a9ea478532b36678d4d2d07c6dd6">Camera::m_center</a></div><div class="ttdeci">QVector3D * m_center</div><div class="ttdef"><b>Definition:</b> camera.h:109</div></div>
+<div class="ttc" id="class_camera_html_aa445664f0bf5f3cd892a99125e4bc786"><div class="ttname"><a href="class_camera.html#aa445664f0bf5f3cd892a99125e4bc786">Camera::setEye</a></div><div class="ttdeci">void setEye(const QVector3D &amp;eye)</div><div class="ttdoc">Set eye (position) of camera to given value. center() will not be changed, so viewDirection() is set ...</div><div class="ttdef"><b>Definition:</b> camera.cpp:204</div></div>
+<div class="ttc" id="class_camera_html_a3ac4fcd89c146068205a3c8b73a86520"><div class="ttname"><a href="class_camera.html#a3ac4fcd89c146068205a3c8b73a86520">Camera::setPosition</a></div><div class="ttdeci">void setPosition(const QVector3D &amp;position)</div><div class="ttdoc">Set position of camera to given value. center() will be changed in order to keep viewDirection() the ...</div><div class="ttdef"><b>Definition:</b> camera.cpp:183</div></div>
+<div class="ttc" id="class_camera_html_a8ab94de2388acc72fa129fa203ccc587"><div class="ttname"><a href="class_camera.html#a8ab94de2388acc72fa129fa203ccc587">Camera::setZFar</a></div><div class="ttdeci">void setZFar(float zFar)</div><div class="ttdef"><b>Definition:</b> camera.cpp:270</div></div>
+<div class="ttc" id="class_camera_html_af30016ca4d7348e14462f3147add42ec"><div class="ttname"><a href="class_camera.html#af30016ca4d7348e14462f3147add42ec">Camera::m_up</a></div><div class="ttdeci">QVector3D * m_up</div><div class="ttdef"><b>Definition:</b> camera.h:110</div></div>
+<div class="ttc" id="class_camera_html_a62264f74f2fb442e8d94e5c0a44098f0"><div class="ttname"><a href="class_camera.html#a62264f74f2fb442e8d94e5c0a44098f0">Camera::m_isProjectionInvalid</a></div><div class="ttdeci">bool m_isProjectionInvalid</div><div class="ttdef"><b>Definition:</b> camera.h:124</div></div>
+<div class="ttc" id="class_camera_html_a06be12235980a27d0e529de166117b3e"><div class="ttname"><a href="class_camera.html#a06be12235980a27d0e529de166117b3e">Camera::m_viewInverted</a></div><div class="ttdeci">QMatrix4x4 * m_viewInverted</div><div class="ttdef"><b>Definition:</b> camera.h:117</div></div>
+<div class="ttc" id="class_camera_html_af87d251359157acdb6e540d63a933392"><div class="ttname"><a href="class_camera.html#af87d251359157acdb6e540d63a933392">Camera::projection</a></div><div class="ttdeci">const QMatrix4x4 &amp; projection() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:122</div></div>
+<div class="ttc" id="class_camera_html_aa03eb8b412fd5c6a496072503c78ee95"><div class="ttname"><a href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">Camera::position</a></div><div class="ttdeci">const QVector3D &amp; position() const </div></div>
+<div class="ttc" id="class_camera_html_a61a059ce3aedc779f9087dda9b5e227c"><div class="ttname"><a href="class_camera.html#a61a059ce3aedc779f9087dda9b5e227c">Camera::setViewDirection</a></div><div class="ttdeci">void setViewDirection(const QVector3D &amp;viewDirection)</div><div class="ttdoc">Set viewDirection of camera to given vector. center() will be changed in order to. </div><div class="ttdef"><b>Definition:</b> camera.cpp:195</div></div>
+<div class="ttc" id="class_camera_html_a8067b4207b1a429318159059fac186c0"><div class="ttname"><a href="class_camera.html#a8067b4207b1a429318159059fac186c0">Camera::invalidateProjection</a></div><div class="ttdeci">void invalidateProjection() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:285</div></div>
+<div class="ttc" id="class_camera_html_ae0594124b7a1baf13ef38de7a6bd0ed8"><div class="ttname"><a href="class_camera.html#ae0594124b7a1baf13ef38de7a6bd0ed8">Camera::setCenter</a></div><div class="ttdeci">void setCenter(const QVector3D &amp;center)</div><div class="ttdoc">Set center of camera to given value. viewDirection() will be set to new center() - eye()...</div><div class="ttdef"><b>Definition:</b> camera.cpp:213</div></div>
+<div class="ttc" id="class_camera_html_ae537e927f6648b6ce7054e0ff54442b9"><div class="ttname"><a href="class_camera.html#ae537e927f6648b6ce7054e0ff54442b9">Camera::m_fovy</a></div><div class="ttdeci">float m_fovy</div><div class="ttdef"><b>Definition:</b> camera.h:114</div></div>
+<div class="ttc" id="class_camera_html_ae77d866ea9d0aa75853c8243154fca82"><div class="ttname"><a href="class_camera.html#ae77d866ea9d0aa75853c8243154fca82">Camera::m_zNear</a></div><div class="ttdeci">float m_zNear</div><div class="ttdef"><b>Definition:</b> camera.h:112</div></div>
+<div class="ttc" id="class_camera_html_a00e4c0e94057379c97e8c71fd69995f7"><div class="ttname"><a href="class_camera.html#a00e4c0e94057379c97e8c71fd69995f7">Camera::m_viewProjection</a></div><div class="ttdeci">QMatrix4x4 * m_viewProjection</div><div class="ttdef"><b>Definition:</b> camera.h:120</div></div>
+<div class="ttc" id="class_camera_html_a23f540bd415235c5b917322e8a333996"><div class="ttname"><a href="class_camera.html#a23f540bd415235c5b917322e8a333996">Camera::m_projection</a></div><div class="ttdeci">QMatrix4x4 * m_projection</div><div class="ttdef"><b>Definition:</b> camera.h:118</div></div>
+<div class="ttc" id="class_camera_html_a406e8638e0676defdc5757ed2733e401"><div class="ttname"><a href="class_camera.html#a406e8638e0676defdc5757ed2733e401">Camera::m_projectionInverted</a></div><div class="ttdeci">QMatrix4x4 * m_projectionInverted</div><div class="ttdef"><b>Definition:</b> camera.h:119</div></div>
+<div class="ttc" id="class_camera_html_ad47041196bf35fed448003491112f528"><div class="ttname"><a href="class_camera.html#ad47041196bf35fed448003491112f528">Camera::setViewport</a></div><div class="ttdeci">void setViewport(const QSize &amp;viewport)</div><div class="ttdef"><b>Definition:</b> camera.cpp:238</div></div>
+<div class="ttc" id="class_camera_html_a29e1c120c55810920954e335eb60e84e"><div class="ttname"><a href="class_camera.html#a29e1c120c55810920954e335eb60e84e">Camera::m_viewProjectionInverted</a></div><div class="ttdeci">QMatrix4x4 * m_viewProjectionInverted</div><div class="ttdef"><b>Definition:</b> camera.h:121</div></div>
+<div class="ttc" id="class_camera_html_a3eabf004448f650a632365cfd3d6980b"><div class="ttname"><a href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">Camera::center</a></div><div class="ttdeci">const QVector3D &amp; center() const </div></div>
+<div class="ttc" id="class_camera_html_ae4c6dcfee420eb57f9521d5195ce78f8"><div class="ttname"><a href="class_camera.html#ae4c6dcfee420eb57f9521d5195ce78f8">Camera::recalculateViewProjection</a></div><div class="ttdeci">void recalculateViewProjection() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:77</div></div>
+<div class="ttc" id="class_camera_html_aa1ce6744a19131677ee890325032e749"><div class="ttname"><a href="class_camera.html#aa1ce6744a19131677ee890325032e749">Camera::recalculateView</a></div><div class="ttdeci">void recalculateView() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:61</div></div>
+<div class="ttc" id="class_camera_html_a3b5d47728aad185b6471e9d641e5716e"><div class="ttname"><a href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">Camera::viewDirection</a></div><div class="ttdeci">QVector3D viewDirection() const </div></div>
+<div class="ttc" id="class_camera_html_a86a19bc4ac24604bb5c0b3f4b6dad193"><div class="ttname"><a href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">Camera::up</a></div><div class="ttdeci">const QVector3D &amp; up() const </div></div>
+<div class="ttc" id="class_camera_html_a5ee2df09ee42e1ddddf7b6dc3de330e4"><div class="ttname"><a href="class_camera.html#a5ee2df09ee42e1ddddf7b6dc3de330e4">Camera::viewProjectionInverted</a></div><div class="ttdeci">const QMatrix4x4 &amp; viewProjectionInverted() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:114</div></div>
+<div class="ttc" id="class_camera_html_a898b996f8cc534948886387193bcbc52"><div class="ttname"><a href="class_camera.html#a898b996f8cc534948886387193bcbc52">Camera::zNear</a></div><div class="ttdeci">float zNear() const </div></div>
+<div class="ttc" id="class_camera_html_aa0e1d52fdb7e3d060041b960fa8b5c24"><div class="ttname"><a href="class_camera.html#aa0e1d52fdb7e3d060041b960fa8b5c24">Camera::setFovy</a></div><div class="ttdeci">void setFovy(float angle)</div><div class="ttdef"><b>Definition:</b> camera.cpp:252</div></div>
+<div class="ttc" id="class_camera_html_ada8eafa78187469b93a22e2cc97d49f8"><div class="ttname"><a href="class_camera.html#ada8eafa78187469b93a22e2cc97d49f8">Camera::invalidateView</a></div><div class="ttdeci">void invalidateView() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:279</div></div>
+<div class="ttc" id="class_camera_html_a6108163876720d7e856ac91c6835cde9"><div class="ttname"><a href="class_camera.html#a6108163876720d7e856ac91c6835cde9">Camera::projectionInverted</a></div><div class="ttdeci">const QMatrix4x4 &amp; projectionInverted() const </div><div class="ttdef"><b>Definition:</b> camera.cpp:130</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:40 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:00 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

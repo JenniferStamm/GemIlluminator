@@ -2,7 +2,7 @@
 \label{class_scene_renderer}\index{Scene\+Renderer@{Scene\+Renderer}}
 
 
-The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in one call.  
+The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in as few render calls as possible. The \hyperlink{class_scene_renderer}{Scene\+Renderer} uses specialized Renderer for diffrent types of geometry.  
 
 
 
@@ -18,60 +18,222 @@ Inheritance diagram for Scene\+Renderer\+:\begin{figure}[H]
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_scene_renderer_a0b6e4d40b218acb45ea13bb4fda494e5}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, const Q\+Map$<$ Shader\+Programs, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ \&shader\+Programs)\label{class_scene_renderer_a0b6e4d40b218acb45ea13bb4fda494e5}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_scene_renderer_a91177b285ac9fba685e8409671eac1e7}{paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, const \hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{shaderprograms_8h_ada89718f8d394b2cc093eb9770c554ff}{Shader\+Programs}, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ \&shader\+Programs)
+\begin{DoxyCompactList}\small\item\em paint Paints the previous synchronized scene using specified programs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_scene_renderer_a9ea8f56371c7758519c5e6541519d988}{initalization\+Done} ()
+\begin{DoxyCompactList}\small\item\em This signal is emitted after initialization of all ressources is done. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}{}{\bfseries Scene\+Renderer} (Q\+Object $\ast$parent=0)\label{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}
-
+\hyperlink{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}{Scene\+Renderer} (Q\+Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_scene_renderer}{Scene\+Renderer}. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_scene_renderer_aceec75b5c04861c2a5c26349c2ba5748}{$\sim$\+Scene\+Renderer} ()
 \item 
-\hypertarget{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}{}void {\bfseries cleanup} (Q\+Open\+G\+L\+Functions \&gl)\label{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}
-
-\item 
-\hypertarget{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}{}void {\bfseries synchronize\+Geometries} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ geometries)\label{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}
-
-\item 
-\hypertarget{class_scene_renderer_a6596dcdb04a471f4fbcfa82eed07b9d8}{}void {\bfseries set\+Scene\+Extent} (float extent)\label{class_scene_renderer_a6596dcdb04a471f4fbcfa82eed07b9d8}
-
-\item 
-\hypertarget{class_scene_renderer_ad57b11f56edc29b4e46a9104af6efe6d}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries root\+Light\+Ray} () const \label{class_scene_renderer_ad57b11f56edc29b4e46a9104af6efe6d}
-
-\item 
-\hypertarget{class_scene_renderer_a8e9b701f5b236adbe805715944d9ae8c}{}void {\bfseries set\+Root\+Light\+Ray} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$root\+Light\+Ray)\label{class_scene_renderer_a8e9b701f5b236adbe805715944d9ae8c}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}{cleanup} (Q\+Open\+G\+L\+Functions \&gl)
+\begin{DoxyCompactList}\small\item\em Clears all used ressources. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}{synchronize\+Geometries} (\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ geometries)
+\begin{DoxyCompactList}\small\item\em Synchronizes given gems between gui and render thread. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_renderer_a244d4002c0fe43988f1802057ba63fd2}{synchronize\+Light\+Rays} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$root\+Light\+Ray)
+\begin{DoxyCompactList}\small\item\em Synchronizes lightrays between gui and render thread. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_renderer_a809441cca9a5b772648f0d28e70df3fb}{paint\+Gems} (Q\+Open\+G\+L\+Functions \&gl, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)
+\begin{DoxyCompactList}\small\item\em Paint the previous synchronized gems using specified program. \end{DoxyCompactList}\item 
+void \hyperlink{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}{paint\+Light\+Rays} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)
+\begin{DoxyCompactList}\small\item\em Paints previous synchronized lightrays using specified program. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_scene_renderer_a6a8fecf9dcfcda180e4f9d2abb0ca2e8}{}void {\bfseries paint\+Gems} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_scene_renderer_a6a8fecf9dcfcda180e4f9d2abb0ca2e8}
-
-\item 
-\hypertarget{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}{}void {\bfseries paint\+Light\+Rays} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}
-
+void \hyperlink{class_scene_renderer_adca7959c1d0b5aaa6600a875afd31069}{initalize} (Q\+Open\+G\+L\+Functions \&gl)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}{}\hyperlink{class_gem_renderer}{Gem\+Renderer} $\ast$ {\bfseries m\+\_\+gem\+Renderer}\label{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}
-
+\hyperlink{class_gem_renderer}{Gem\+Renderer} $\ast$ \hyperlink{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}{m\+\_\+gem\+Renderer}
 \item 
-\hypertarget{class_scene_renderer_af2d4ded15e32fd485295fc0531645dc1}{}\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ {\bfseries m\+\_\+geometries}\label{class_scene_renderer_af2d4ded15e32fd485295fc0531645dc1}
-
+\hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} $\ast$ \hyperlink{class_scene_renderer_a26d9a971a57c68a46653046343f91af6}{m\+\_\+light\+Ray\+Renderer}
 \item 
-\hypertarget{class_scene_renderer_aec10558966df8efad69726e9b06d0cfd}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries m\+\_\+root\+Light\+Ray}\label{class_scene_renderer_aec10558966df8efad69726e9b06d0cfd}
-
-\item 
-\hypertarget{class_scene_renderer_ae9cdbec278ec42dac41c7f1d9d75388f}{}float {\bfseries m\+\_\+scene\+Extent}\label{class_scene_renderer_ae9cdbec278ec42dac41c7f1d9d75388f}
-
+bool \hyperlink{class_scene_renderer_acaa9426d0e8b0c913709cbd40f5f7a32}{m\+\_\+is\+Initalized}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in one call. 
+The \hyperlink{class_scene_renderer}{Scene\+Renderer} class  Renders the scene\+: Packs the scene in the buffer and draws the scene in as few render calls as possible. The \hyperlink{class_scene_renderer}{Scene\+Renderer} uses specialized Renderer for diffrent types of geometry. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}{}\index{Scene\+Renderer@{Scene\+Renderer}!Scene\+Renderer@{Scene\+Renderer}}
+\index{Scene\+Renderer@{Scene\+Renderer}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{Scene\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Renderer\+::\+Scene\+Renderer (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_scene_renderer_a12f72dc9b22e99ecdccaec38b6d2d512}
+
+
+\hyperlink{class_scene_renderer}{Scene\+Renderer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_aceec75b5c04861c2a5c26349c2ba5748}{}\index{Scene\+Renderer@{Scene\+Renderer}!````~Scene\+Renderer@{$\sim$\+Scene\+Renderer}}
+\index{````~Scene\+Renderer@{$\sim$\+Scene\+Renderer}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{$\sim$\+Scene\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Renderer\+::$\sim$\+Scene\+Renderer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_scene_renderer_aceec75b5c04861c2a5c26349c2ba5748}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}{}\index{Scene\+Renderer@{Scene\+Renderer}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{cleanup}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::cleanup (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl}
+\end{DoxyParamCaption}
+)}\label{class_scene_renderer_a9dc118d75160651fb925410a68fef70f}
+
+
+Clears all used ressources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions which can be used by \hyperlink{class_scene_renderer}{Scene\+Renderer} to release G\+P\+U ressources \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_a9ea8f56371c7758519c5e6541519d988}{}\index{Scene\+Renderer@{Scene\+Renderer}!initalization\+Done@{initalization\+Done}}
+\index{initalization\+Done@{initalization\+Done}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{initalization\+Done}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::initalization\+Done (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_renderer_a9ea8f56371c7758519c5e6541519d988}
+
+
+This signal is emitted after initialization of all ressources is done. 
+
+\hypertarget{class_scene_renderer_adca7959c1d0b5aaa6600a875afd31069}{}\index{Scene\+Renderer@{Scene\+Renderer}!initalize@{initalize}}
+\index{initalize@{initalize}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{initalize}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::initalize (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_renderer_adca7959c1d0b5aaa6600a875afd31069}
+\hypertarget{class_scene_renderer_a91177b285ac9fba685e8409671eac1e7}{}\index{Scene\+Renderer@{Scene\+Renderer}!paint@{paint}}
+\index{paint@{paint}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::paint (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl, }
+\item[{const Q\+Matrix4x4 \&}]{view\+Projection, }
+\item[{const {\bf Q\+Hash}$<$ {\bf Shader\+Programs}, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ \&}]{shader\+Programs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_scene_renderer_a91177b285ac9fba685e8409671eac1e7}
+
+
+paint Paints the previous synchronized scene using specified programs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions which will be used for any gl-\/call \\
+\hline
+{\em view\+Projection} & The viewprojection matrix which will be used. \\
+\hline
+{\em shader\+Programs} & A \hyperlink{class_q_hash}{Q\+Hash} containing diffrent shader programs for different components of scene (lightrays and gems) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_a809441cca9a5b772648f0d28e70df3fb}{}\index{Scene\+Renderer@{Scene\+Renderer}!paint\+Gems@{paint\+Gems}}
+\index{paint\+Gems@{paint\+Gems}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{paint\+Gems}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::paint\+Gems (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl, }
+\item[{Q\+Open\+G\+L\+Shader\+Program \&}]{shader\+Program}
+\end{DoxyParamCaption}
+)}\label{class_scene_renderer_a809441cca9a5b772648f0d28e70df3fb}
+
+
+Paint the previous synchronized gems using specified program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions which will be used for any gl-\/call \\
+\hline
+{\em view\+Projection} & The viewprojection matrix which will be used. \\
+\hline
+{\em shader\+Program} & The specified shaderprogram used for rendering. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}{}\index{Scene\+Renderer@{Scene\+Renderer}!paint\+Light\+Rays@{paint\+Light\+Rays}}
+\index{paint\+Light\+Rays@{paint\+Light\+Rays}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{paint\+Light\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::paint\+Light\+Rays (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl, }
+\item[{const Q\+Matrix4x4 \&}]{view\+Projection, }
+\item[{Q\+Open\+G\+L\+Shader\+Program \&}]{shader\+Program}
+\end{DoxyParamCaption}
+)}\label{class_scene_renderer_a6371e0e5c63e519fcf407f12d9d47262}
+
+
+Paints previous synchronized lightrays using specified program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions which will be used for any gl-\/call \\
+\hline
+{\em view\+Projection} & The viewprojection matrix which will be used. \\
+\hline
+{\em shader\+Program} & The specified shaderprogram used for rendering. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}{}\index{Scene\+Renderer@{Scene\+Renderer}!synchronize\+Geometries@{synchronize\+Geometries}}
+\index{synchronize\+Geometries@{synchronize\+Geometries}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{synchronize\+Geometries}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::synchronize\+Geometries (
+\begin{DoxyParamCaption}
+\item[{{\bf Q\+List}$<$ {\bf Abstract\+Gem} $\ast$ $>$}]{geometries}
+\end{DoxyParamCaption}
+)}\label{class_scene_renderer_a0cae4e7fdd5ef1fd4d38f480521433a9}
+
+
+Synchronizes given gems between gui and render thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em geometries} & List of gems which should be synchronized. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_scene_renderer_a244d4002c0fe43988f1802057ba63fd2}{}\index{Scene\+Renderer@{Scene\+Renderer}!synchronize\+Light\+Rays@{synchronize\+Light\+Rays}}
+\index{synchronize\+Light\+Rays@{synchronize\+Light\+Rays}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{synchronize\+Light\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Renderer\+::synchronize\+Light\+Rays (
+\begin{DoxyParamCaption}
+\item[{{\bf Light\+Ray} $\ast$}]{root\+Light\+Ray}
+\end{DoxyParamCaption}
+)}\label{class_scene_renderer_a244d4002c0fe43988f1802057ba63fd2}
+
+
+Synchronizes lightrays between gui and render thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\+Light\+Ray} & This and all of its successors will be synchronized. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}{}\index{Scene\+Renderer@{Scene\+Renderer}!m\+\_\+gem\+Renderer@{m\+\_\+gem\+Renderer}}
+\index{m\+\_\+gem\+Renderer@{m\+\_\+gem\+Renderer}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{m\+\_\+gem\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gem\+Renderer}$\ast$ Scene\+Renderer\+::m\+\_\+gem\+Renderer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_renderer_adf73dd839ccd615bf377b8dba695255e}
+\hypertarget{class_scene_renderer_acaa9426d0e8b0c913709cbd40f5f7a32}{}\index{Scene\+Renderer@{Scene\+Renderer}!m\+\_\+is\+Initalized@{m\+\_\+is\+Initalized}}
+\index{m\+\_\+is\+Initalized@{m\+\_\+is\+Initalized}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{m\+\_\+is\+Initalized}]{\setlength{\rightskip}{0pt plus 5cm}bool Scene\+Renderer\+::m\+\_\+is\+Initalized\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_renderer_acaa9426d0e8b0c913709cbd40f5f7a32}
+\hypertarget{class_scene_renderer_a26d9a971a57c68a46653046343f91af6}{}\index{Scene\+Renderer@{Scene\+Renderer}!m\+\_\+light\+Ray\+Renderer@{m\+\_\+light\+Ray\+Renderer}}
+\index{m\+\_\+light\+Ray\+Renderer@{m\+\_\+light\+Ray\+Renderer}!Scene\+Renderer@{Scene\+Renderer}}
+\subsubsection[{m\+\_\+light\+Ray\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray\+Renderer}$\ast$ Scene\+Renderer\+::m\+\_\+light\+Ray\+Renderer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_renderer_a26d9a971a57c68a46653046343f91af6}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/scenerenderer.\+h\item 
-gem\+Illuminator/scenerenderer.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scenerenderer_8h}{scenerenderer.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scenerenderer_8cpp}{scenerenderer.\+cpp}\end{DoxyCompactItemize}

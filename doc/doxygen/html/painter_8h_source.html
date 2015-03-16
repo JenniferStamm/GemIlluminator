@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Gem Illuminator: gemIlluminator/painter.h Source File</title>
+<title>Gem Illuminator: Game-Programming-WS2014/gemIlluminator/painter.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_6fe477e04668ae66267e4804812c6cd5.html">gemIlluminator</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_78153e7ed162178108f48b245e38da6a.html">Game-Programming-WS2014</a></li><li class="navelem"><a class="el" href="dir_f8d2780bb503ebb2e914d3f70acccb8e.html">gemIlluminator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">painter.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PAINTER_H</span></div>
+<a href="painter_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PAINTER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PAINTER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
@@ -95,71 +97,158 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span>QOpenGLFunctions;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">class </span>QOpenGLShaderProgram;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QSize;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_painter_q_m_l.html">PainterQML</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene.html">Scene</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">enum class</span> ShaderPrograms;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="class_painter.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_painter.html">Painter</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_painter.html">Painter</a>(<a class="code" href="class_painter_q_m_l.html">PainterQML</a> *painter, QObject *parent = 0);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_painter.html">Painter</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> initializeEnvmap();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> isActive() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> setActive(<span class="keywordtype">bool</span> active);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> setCamera(<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp;camera);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_scene.html">Scene</a> *scene() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> setScene(<a class="code" href="class_scene.html">Scene</a> *scene);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a6cbe31709ecd794c00d4c524c8468b14">setViewport</a>(<span class="keyword">const</span> QSize &amp;viewport);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    QString envMapPrefix() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> setEnvMapPrefix(<span class="keyword">const</span> QString &amp;envMapPrefix);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    QOpenGLFunctions &amp;gl() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;signals:</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span>QTime;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_blur_effect.html">BlurEffect</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="class_cube_map.html">CubeMap</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_environment_map.html">EnvironmentMap</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_painter_q_m_l.html">PainterQML</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene.html">Scene</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene_renderer.html">SceneRenderer</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">enum class</span> <a class="code" href="shaderprograms_8h.html#ada89718f8d394b2cc093eb9770c554ff">ShaderPrograms</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_painter.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_painter.html">Painter</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_painter.html#ae9520672fc113fc60cf942ba3d13a46e">Painter</a>(<a class="code" href="class_painter_q_m_l.html">PainterQML</a> *painter, QObject *parent = 0);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_painter.html#a6db88212368910da3385fa9e5fa97174">~Painter</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a3af62665915b5f5380e7009c18862e7e">updateEnvMap</a>();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> paint();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> initialize();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> paintEnvmap();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> m_active;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_camera.html">Camera</a> *m_camera;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    uint m_envmap;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    QString m_envMapPrefix;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    QOpenGLFunctions * m_gl;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> m_initialized;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_painter_q_m_l.html">PainterQML</a> *m_painterQML;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a> *m_quad;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_scene.html">Scene</a> *m_scene;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    QMap&lt;ShaderPrograms, QOpenGLShaderProgram*&gt; *m_shaderPrograms;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    QSize *m_viewport;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif // PAINTER_H</span></div>
-<div class="ttc" id="class_painter_html"><div class="ttname"><a href="class_painter.html">Painter</a></div><div class="ttdoc">The Painter class  Includes the rendering process, thus creates the whole picture. </div><div class="ttdef"><b>Definition:</b> painter.h:21</div></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> camera.h:10</div></div>
-<div class="ttc" id="class_painter_html_a6cbe31709ecd794c00d4c524c8468b14"><div class="ttname"><a href="class_painter.html#a6cbe31709ecd794c00d4c524c8468b14">Painter::setViewport</a></div><div class="ttdeci">void setViewport(const QSize &amp;viewport)</div><div class="ttdoc">SceneRenderer::setViewport Only set within sync() </div><div class="ttdef"><b>Definition:</b> painter.cpp:75</div></div>
-<div class="ttc" id="class_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdef"><b>Definition:</b> scene.h:27</div></div>
-<div class="ttc" id="class_screen_aligned_quad_html"><div class="ttname"><a href="class_screen_aligned_quad.html">ScreenAlignedQuad</a></div><div class="ttdef"><b>Definition:</b> screenalignedquad.h:7</div></div>
-<div class="ttc" id="class_painter_q_m_l_html"><div class="ttname"><a href="class_painter_q_m_l.html">PainterQML</a></div><div class="ttdef"><b>Definition:</b> painterqml.h:12</div></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_painter.html#addfa0fd4dd943d27c67b62dfc9ab3a0b">isActive</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a7dd43be8d3e1eab98035fcc23316bd1a">setActive</a>(<span class="keywordtype">bool</span> active);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a37014617684597b602522d3de20f8f41">clearScene</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a0c7f2b5b2bc7fa8fdfac559cc9b1401d">synchronizeScene</a>(<a class="code" href="class_scene.html">Scene</a> *scene);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a5b9b4ed8aebaebeb2f6483e350445fbc">paint</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;signals:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a171dd523e7ba423b8da554a062168e94">initializeDone</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a12f9623c2acf87eced6e141e7638804e">initialize</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#ad7db952528a1d7745dbf083ee1431f50">initializeFBOs</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a4fee3b94c00da17f851b52cc8d60ff72">initializeShaderPrograms</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a5fee5d930d347b38fe1aa565e3264d3c">renderLightRays</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp;camera);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#a8cbffb0c2d28dd1558716136c99a079f">renderScene</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html">Camera</a> &amp;camera);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">protected</span> slots:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_painter.html#ab5dbc13d3e46ee83c4f819a5ae74206e">handleInitializeDone</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_painter.html#a9b476c949ca4b2af7b1653c7106b659b">   98</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_painter.html#a9b476c949ca4b2af7b1653c7106b659b">m_active</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="class_painter.html#acb7b623817cf6865168bb74d3823897f">   99</a></span>&#160;    <a class="code" href="class_environment_map.html">EnvironmentMap</a> *<a class="code" href="class_painter.html#acb7b623817cf6865168bb74d3823897f">m_envMap</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_painter.html#a8aa44a5f1477d570ee10d3dacae09f08">  100</a></span>&#160;    QOpenGLFunctions *<a class="code" href="class_painter.html#a8aa44a5f1477d570ee10d3dacae09f08">m_gl</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_painter.html#a0adcfafb8172b4f76561e2c951b1090b">  101</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_painter.html#a0adcfafb8172b4f76561e2c951b1090b">m_initialized</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_painter.html#a951961fa0e012d87500b9775f9dcb19a">  103</a></span>&#160;    <a class="code" href="class_blur_effect.html">BlurEffect</a> *<a class="code" href="class_painter.html#a951961fa0e012d87500b9775f9dcb19a">m_blurEffectScene</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_painter.html#a9a58327bf0fd8004e11e97c4415caa62">  104</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_painter.html#a9a58327bf0fd8004e11e97c4415caa62">m_blurViewportRatioScene</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="class_painter.html#a265ca037babf5497830eda6f42b6aeef">  105</a></span>&#160;    uint <a class="code" href="class_painter.html#a265ca037babf5497830eda6f42b6aeef">m_glowSceneFBO</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="class_painter.html#af165f6cb73abce18d3c48e4cbba39058">  106</a></span>&#160;    uint <a class="code" href="class_painter.html#af165f6cb73abce18d3c48e4cbba39058">m_glowSceneDepthRB</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="class_painter.html#ab0b0d6b22e49da1a22d3e3114efc6f56">  107</a></span>&#160;    uint <a class="code" href="class_painter.html#ab0b0d6b22e49da1a22d3e3114efc6f56">m_glowSceneTexture</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_painter.html#a8960c588485d1ccdb7d4306236e187af">  109</a></span>&#160;    <a class="code" href="class_blur_effect.html">BlurEffect</a> *<a class="code" href="class_painter.html#a8960c588485d1ccdb7d4306236e187af">m_blurEffectPreviewScene</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="class_painter.html#ab898af5b9784a08a86a93d9d9f3e6de6">  110</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_painter.html#ab898af5b9784a08a86a93d9d9f3e6de6">m_blurViewportRatioPreviewScene</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="class_painter.html#a68a674089abe95f55b48e12fef4e3a8f">  111</a></span>&#160;    uint <a class="code" href="class_painter.html#a68a674089abe95f55b48e12fef4e3a8f">m_glowPreviewSceneFBO</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_painter.html#ae7d26057c7ce98d20f8e11242f9b8d23">  112</a></span>&#160;    uint <a class="code" href="class_painter.html#ae7d26057c7ce98d20f8e11242f9b8d23">m_glowPreviewSceneDepthRB</a>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="class_painter.html#a642492c18262a53f20c0824bd70e7526">  113</a></span>&#160;    uint <a class="code" href="class_painter.html#a642492c18262a53f20c0824bd70e7526">m_glowPreviewSceneTexture</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_painter.html#adb6ae15aabf53d3f2c9108a8db0cbbb5">  115</a></span>&#160;    uint <a class="code" href="class_painter.html#adb6ae15aabf53d3f2c9108a8db0cbbb5">m_previewSceneFBO</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="class_painter.html#ad4fb3338a366abb5592996572afa070d">  116</a></span>&#160;    uint <a class="code" href="class_painter.html#ad4fb3338a366abb5592996572afa070d">m_previewSceneDepthRB</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="class_painter.html#aff56d277a464801c66a7f7414ef86733">  117</a></span>&#160;    uint <a class="code" href="class_painter.html#aff56d277a464801c66a7f7414ef86733">m_previewSceneTexture</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="class_painter.html#af2774293bfaf6f654cb01e504937abb8">  119</a></span>&#160;    <a class="code" href="class_painter_q_m_l.html">PainterQML</a> *<a class="code" href="class_painter.html#af2774293bfaf6f654cb01e504937abb8">m_painterQML</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_painter.html#a50f7fad2d44554f0be878a96afacfa44">  120</a></span>&#160;    <a class="code" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a> *<a class="code" href="class_painter.html#a50f7fad2d44554f0be878a96afacfa44">m_quad</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="class_painter.html#a9f99a5ccb9b1b645281b1439cbf416e1">  122</a></span>&#160;    <a class="code" href="class_cube_map.html">CubeMap</a> *<a class="code" href="class_painter.html#a9f99a5ccb9b1b645281b1439cbf416e1">m_rainbowMap</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_painter.html#abd540fa99df6acea8eb32c3bcfb81773">  123</a></span>&#160;    <a class="code" href="class_cube_map.html">CubeMap</a> *<a class="code" href="class_painter.html#abd540fa99df6acea8eb32c3bcfb81773">m_gemStructureMap</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_painter.html#a4df95c88604785d7eecaf1474df67629">  125</a></span>&#160;    uint <a class="code" href="class_painter.html#a4df95c88604785d7eecaf1474df67629">m_sceneFBO</a>;</div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="class_painter.html#a92db0cde0f42dd82569e85785850c283">  126</a></span>&#160;    uint <a class="code" href="class_painter.html#a92db0cde0f42dd82569e85785850c283">m_sceneDepthRB</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="class_painter.html#af82c25060227ea6ec91ae60f0753c593">  127</a></span>&#160;    uint <a class="code" href="class_painter.html#af82c25060227ea6ec91ae60f0753c593">m_sceneTexture</a>;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_painter.html#a30655a30ba8f540f0e28b976b97d126f">  129</a></span>&#160;    <a class="code" href="class_q_hash.html">QHash&lt;ShaderPrograms, QOpenGLShaderProgram*&gt;</a> *<a class="code" href="class_painter.html#a30655a30ba8f540f0e28b976b97d126f">m_shaderPrograms</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="class_painter.html#aff5d274eb90d7a94565effe5bd5d03f7">  130</a></span>&#160;    QSize *<a class="code" href="class_painter.html#aff5d274eb90d7a94565effe5bd5d03f7">m_usedViewport</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="class_painter.html#a1a3de21931e9796db399252b7336169c">  132</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_painter.html#a1a3de21931e9796db399252b7336169c">m_counter</a>;</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="class_painter.html#aedfda3eb1a37f4f121291c558786492a">  133</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_painter.html#aedfda3eb1a37f4f121291c558786492a">m_oldElapsed</a>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno"><a class="line" href="class_painter.html#ab6976ab19027866bbb01e9a1504aa5c9">  134</a></span>&#160;    QTime *<a class="code" href="class_painter.html#ab6976ab19027866bbb01e9a1504aa5c9">m_time</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="class_painter.html#a574ba64fd2af1d8c64d2c293d4811fc2">  136</a></span>&#160;    <a class="code" href="class_scene_renderer.html">SceneRenderer</a> *<a class="code" href="class_painter.html#a574ba64fd2af1d8c64d2c293d4811fc2">m_sceneRenderer</a>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="class_painter.html#a05558ea7a2f818641e0506d01d518010">  137</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_painter.html#a05558ea7a2f818641e0506d01d518010">m_camera</a>;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="class_painter.html#a237399ac0b5da625eb19de1ae3c0a236">  138</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_painter.html#a237399ac0b5da625eb19de1ae3c0a236">m_previewCamera</a>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;};</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#endif // PAINTER_H</span></div>
+<div class="ttc" id="class_painter_html"><div class="ttname"><a href="class_painter.html">Painter</a></div><div class="ttdoc">The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. </div><div class="ttdef"><b>Definition:</b> painter.h:26</div></div>
+<div class="ttc" id="class_painter_html_acb7b623817cf6865168bb74d3823897f"><div class="ttname"><a href="class_painter.html#acb7b623817cf6865168bb74d3823897f">Painter::m_envMap</a></div><div class="ttdeci">EnvironmentMap * m_envMap</div><div class="ttdef"><b>Definition:</b> painter.h:99</div></div>
+<div class="ttc" id="class_painter_html_a171dd523e7ba423b8da554a062168e94"><div class="ttname"><a href="class_painter.html#a171dd523e7ba423b8da554a062168e94">Painter::initializeDone</a></div><div class="ttdeci">void initializeDone()</div><div class="ttdoc">This signal is emitted if initialization of all required ressources for current scene are initalized...</div></div>
+<div class="ttc" id="class_painter_html_aedfda3eb1a37f4f121291c558786492a"><div class="ttname"><a href="class_painter.html#aedfda3eb1a37f4f121291c558786492a">Painter::m_oldElapsed</a></div><div class="ttdeci">int m_oldElapsed</div><div class="ttdef"><b>Definition:</b> painter.h:133</div></div>
+<div class="ttc" id="class_painter_html_a4df95c88604785d7eecaf1474df67629"><div class="ttname"><a href="class_painter.html#a4df95c88604785d7eecaf1474df67629">Painter::m_sceneFBO</a></div><div class="ttdeci">uint m_sceneFBO</div><div class="ttdef"><b>Definition:</b> painter.h:125</div></div>
+<div class="ttc" id="class_painter_html_ad7db952528a1d7745dbf083ee1431f50"><div class="ttname"><a href="class_painter.html#ad7db952528a1d7745dbf083ee1431f50">Painter::initializeFBOs</a></div><div class="ttdeci">void initializeFBOs()</div><div class="ttdef"><b>Definition:</b> painter.cpp:314</div></div>
+<div class="ttc" id="class_painter_html_a237399ac0b5da625eb19de1ae3c0a236"><div class="ttname"><a href="class_painter.html#a237399ac0b5da625eb19de1ae3c0a236">Painter::m_previewCamera</a></div><div class="ttdeci">Camera * m_previewCamera</div><div class="ttdef"><b>Definition:</b> painter.h:138</div></div>
+<div class="ttc" id="class_painter_html_a9f99a5ccb9b1b645281b1439cbf416e1"><div class="ttname"><a href="class_painter.html#a9f99a5ccb9b1b645281b1439cbf416e1">Painter::m_rainbowMap</a></div><div class="ttdeci">CubeMap * m_rainbowMap</div><div class="ttdef"><b>Definition:</b> painter.h:122</div></div>
+<div class="ttc" id="class_painter_html_a12f9623c2acf87eced6e141e7638804e"><div class="ttname"><a href="class_painter.html#a12f9623c2acf87eced6e141e7638804e">Painter::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdoc">Initializes all required ressources, that are direct members of painter (scene independant ressources...</div><div class="ttdef"><b>Definition:</b> painter.cpp:296</div></div>
+<div class="ttc" id="class_painter_html_af2774293bfaf6f654cb01e504937abb8"><div class="ttname"><a href="class_painter.html#af2774293bfaf6f654cb01e504937abb8">Painter::m_painterQML</a></div><div class="ttdeci">PainterQML * m_painterQML</div><div class="ttdef"><b>Definition:</b> painter.h:119</div></div>
+<div class="ttc" id="class_painter_html_a30655a30ba8f540f0e28b976b97d126f"><div class="ttname"><a href="class_painter.html#a30655a30ba8f540f0e28b976b97d126f">Painter::m_shaderPrograms</a></div><div class="ttdeci">QHash&lt; ShaderPrograms, QOpenGLShaderProgram * &gt; * m_shaderPrograms</div><div class="ttdef"><b>Definition:</b> painter.h:129</div></div>
+<div class="ttc" id="class_painter_html_ae9520672fc113fc60cf942ba3d13a46e"><div class="ttname"><a href="class_painter.html#ae9520672fc113fc60cf942ba3d13a46e">Painter::Painter</a></div><div class="ttdeci">Painter(PainterQML *painter, QObject *parent=0)</div><div class="ttdoc">Constructor of Painter. </div><div class="ttdef"><b>Definition:</b> painter.cpp:24</div></div>
+<div class="ttc" id="class_painter_html_a9a58327bf0fd8004e11e97c4415caa62"><div class="ttname"><a href="class_painter.html#a9a58327bf0fd8004e11e97c4415caa62">Painter::m_blurViewportRatioScene</a></div><div class="ttdeci">int m_blurViewportRatioScene</div><div class="ttdef"><b>Definition:</b> painter.h:104</div></div>
+<div class="ttc" id="class_painter_html_a9b476c949ca4b2af7b1653c7106b659b"><div class="ttname"><a href="class_painter.html#a9b476c949ca4b2af7b1653c7106b659b">Painter::m_active</a></div><div class="ttdeci">bool m_active</div><div class="ttdef"><b>Definition:</b> painter.h:98</div></div>
+<div class="ttc" id="class_painter_html_a8cbffb0c2d28dd1558716136c99a079f"><div class="ttname"><a href="class_painter.html#a8cbffb0c2d28dd1558716136c99a079f">Painter::renderScene</a></div><div class="ttdeci">void renderScene(const Camera &amp;camera)</div><div class="ttdef"><b>Definition:</b> painter.cpp:456</div></div>
+<div class="ttc" id="class_painter_html_ab6976ab19027866bbb01e9a1504aa5c9"><div class="ttname"><a href="class_painter.html#ab6976ab19027866bbb01e9a1504aa5c9">Painter::m_time</a></div><div class="ttdeci">QTime * m_time</div><div class="ttdef"><b>Definition:</b> painter.h:134</div></div>
+<div class="ttc" id="class_environment_map_html"><div class="ttname"><a href="class_environment_map.html">EnvironmentMap</a></div><div class="ttdoc">The EnvironmentMap is a CubeMap based rendering technique for showing some scene enviroment. </div><div class="ttdef"><b>Definition:</b> environmentmap.h:16</div></div>
+<div class="ttc" id="class_painter_html_a8960c588485d1ccdb7d4306236e187af"><div class="ttname"><a href="class_painter.html#a8960c588485d1ccdb7d4306236e187af">Painter::m_blurEffectPreviewScene</a></div><div class="ttdeci">BlurEffect * m_blurEffectPreviewScene</div><div class="ttdef"><b>Definition:</b> painter.h:109</div></div>
+<div class="ttc" id="class_painter_html_a5fee5d930d347b38fe1aa565e3264d3c"><div class="ttname"><a href="class_painter.html#a5fee5d930d347b38fe1aa565e3264d3c">Painter::renderLightRays</a></div><div class="ttdeci">void renderLightRays(const Camera &amp;camera)</div><div class="ttdef"><b>Definition:</b> painter.cpp:451</div></div>
+<div class="ttc" id="class_painter_html_ae7d26057c7ce98d20f8e11242f9b8d23"><div class="ttname"><a href="class_painter.html#ae7d26057c7ce98d20f8e11242f9b8d23">Painter::m_glowPreviewSceneDepthRB</a></div><div class="ttdeci">uint m_glowPreviewSceneDepthRB</div><div class="ttdef"><b>Definition:</b> painter.h:112</div></div>
+<div class="ttc" id="class_painter_html_adb6ae15aabf53d3f2c9108a8db0cbbb5"><div class="ttname"><a href="class_painter.html#adb6ae15aabf53d3f2c9108a8db0cbbb5">Painter::m_previewSceneFBO</a></div><div class="ttdeci">uint m_previewSceneFBO</div><div class="ttdef"><b>Definition:</b> painter.h:115</div></div>
+<div class="ttc" id="class_blur_effect_html"><div class="ttname"><a href="class_blur_effect.html">BlurEffect</a></div><div class="ttdoc">The BlurEffect blurs a given texture. </div><div class="ttdef"><b>Definition:</b> blureffect.h:17</div></div>
+<div class="ttc" id="class_cube_map_html"><div class="ttname"><a href="class_cube_map.html">CubeMap</a></div><div class="ttdoc">The CubeMap class loads cubemap textures and provides them as OpenGL-texture. </div><div class="ttdef"><b>Definition:</b> cubemap.h:11</div></div>
+<div class="ttc" id="class_painter_html_ab0b0d6b22e49da1a22d3e3114efc6f56"><div class="ttname"><a href="class_painter.html#ab0b0d6b22e49da1a22d3e3114efc6f56">Painter::m_glowSceneTexture</a></div><div class="ttdeci">uint m_glowSceneTexture</div><div class="ttdef"><b>Definition:</b> painter.h:107</div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">The Camera class provides view and perspective projection matrices. Additional the viewport of camera...</div><div class="ttdef"><b>Definition:</b> camera.h:16</div></div>
+<div class="ttc" id="class_painter_html_a7dd43be8d3e1eab98035fcc23316bd1a"><div class="ttname"><a href="class_painter.html#a7dd43be8d3e1eab98035fcc23316bd1a">Painter::setActive</a></div><div class="ttdeci">void setActive(bool active)</div><div class="ttdoc">Set Active state. If active is true the painter renders the picture. </div><div class="ttdef"><b>Definition:</b> painter.cpp:90</div></div>
+<div class="ttc" id="class_painter_html_aff5d274eb90d7a94565effe5bd5d03f7"><div class="ttname"><a href="class_painter.html#aff5d274eb90d7a94565effe5bd5d03f7">Painter::m_usedViewport</a></div><div class="ttdeci">QSize * m_usedViewport</div><div class="ttdef"><b>Definition:</b> painter.h:130</div></div>
+<div class="ttc" id="class_painter_html_addfa0fd4dd943d27c67b62dfc9ab3a0b"><div class="ttname"><a href="class_painter.html#addfa0fd4dd943d27c67b62dfc9ab3a0b">Painter::isActive</a></div><div class="ttdeci">bool isActive() const </div><div class="ttdoc">Check if Painter is active. Active means the painter is rendering. </div><div class="ttdef"><b>Definition:</b> painter.cpp:85</div></div>
+<div class="ttc" id="class_painter_html_a951961fa0e012d87500b9775f9dcb19a"><div class="ttname"><a href="class_painter.html#a951961fa0e012d87500b9775f9dcb19a">Painter::m_blurEffectScene</a></div><div class="ttdeci">BlurEffect * m_blurEffectScene</div><div class="ttdef"><b>Definition:</b> painter.h:103</div></div>
+<div class="ttc" id="class_painter_html_a0c7f2b5b2bc7fa8fdfac559cc9b1401d"><div class="ttname"><a href="class_painter.html#a0c7f2b5b2bc7fa8fdfac559cc9b1401d">Painter::synchronizeScene</a></div><div class="ttdeci">void synchronizeScene(Scene *scene)</div><div class="ttdoc">Painter copies all needed information of scene into own thread. </div><div class="ttdef"><b>Definition:</b> painter.cpp:104</div></div>
+<div class="ttc" id="class_painter_html_ad4fb3338a366abb5592996572afa070d"><div class="ttname"><a href="class_painter.html#ad4fb3338a366abb5592996572afa070d">Painter::m_previewSceneDepthRB</a></div><div class="ttdeci">uint m_previewSceneDepthRB</div><div class="ttdef"><b>Definition:</b> painter.h:116</div></div>
+<div class="ttc" id="class_painter_html_a3af62665915b5f5380e7009c18862e7e"><div class="ttname"><a href="class_painter.html#a3af62665915b5f5380e7009c18862e7e">Painter::updateEnvMap</a></div><div class="ttdeci">void updateEnvMap()</div><div class="ttdoc">Updates enviorment map using config file. </div><div class="ttdef"><b>Definition:</b> painter.cpp:444</div></div>
+<div class="ttc" id="class_painter_html_ab898af5b9784a08a86a93d9d9f3e6de6"><div class="ttname"><a href="class_painter.html#ab898af5b9784a08a86a93d9d9f3e6de6">Painter::m_blurViewportRatioPreviewScene</a></div><div class="ttdeci">int m_blurViewportRatioPreviewScene</div><div class="ttdef"><b>Definition:</b> painter.h:110</div></div>
+<div class="ttc" id="class_painter_html_af165f6cb73abce18d3c48e4cbba39058"><div class="ttname"><a href="class_painter.html#af165f6cb73abce18d3c48e4cbba39058">Painter::m_glowSceneDepthRB</a></div><div class="ttdeci">uint m_glowSceneDepthRB</div><div class="ttdef"><b>Definition:</b> painter.h:106</div></div>
+<div class="ttc" id="class_painter_html_a265ca037babf5497830eda6f42b6aeef"><div class="ttname"><a href="class_painter.html#a265ca037babf5497830eda6f42b6aeef">Painter::m_glowSceneFBO</a></div><div class="ttdeci">uint m_glowSceneFBO</div><div class="ttdef"><b>Definition:</b> painter.h:105</div></div>
+<div class="ttc" id="class_painter_html_a05558ea7a2f818641e0506d01d518010"><div class="ttname"><a href="class_painter.html#a05558ea7a2f818641e0506d01d518010">Painter::m_camera</a></div><div class="ttdeci">Camera * m_camera</div><div class="ttdef"><b>Definition:</b> painter.h:137</div></div>
+<div class="ttc" id="class_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdoc">The Scene class provides access to geometry and collision detection methods. Furthermore some game lo...</div><div class="ttdef"><b>Definition:</b> scene.h:22</div></div>
+<div class="ttc" id="class_painter_html_abd540fa99df6acea8eb32c3bcfb81773"><div class="ttname"><a href="class_painter.html#abd540fa99df6acea8eb32c3bcfb81773">Painter::m_gemStructureMap</a></div><div class="ttdeci">CubeMap * m_gemStructureMap</div><div class="ttdef"><b>Definition:</b> painter.h:123</div></div>
+<div class="ttc" id="class_painter_html_a50f7fad2d44554f0be878a96afacfa44"><div class="ttname"><a href="class_painter.html#a50f7fad2d44554f0be878a96afacfa44">Painter::m_quad</a></div><div class="ttdeci">ScreenAlignedQuad * m_quad</div><div class="ttdef"><b>Definition:</b> painter.h:120</div></div>
+<div class="ttc" id="class_screen_aligned_quad_html"><div class="ttname"><a href="class_screen_aligned_quad.html">ScreenAlignedQuad</a></div><div class="ttdoc">The ScreenAlignedQuad class encapsulates the drawing of a screen aligned quad. </div><div class="ttdef"><b>Definition:</b> screenalignedquad.h:10</div></div>
+<div class="ttc" id="class_painter_html_a574ba64fd2af1d8c64d2c293d4811fc2"><div class="ttname"><a href="class_painter.html#a574ba64fd2af1d8c64d2c293d4811fc2">Painter::m_sceneRenderer</a></div><div class="ttdeci">SceneRenderer * m_sceneRenderer</div><div class="ttdef"><b>Definition:</b> painter.h:136</div></div>
+<div class="ttc" id="class_painter_html_a6db88212368910da3385fa9e5fa97174"><div class="ttname"><a href="class_painter.html#a6db88212368910da3385fa9e5fa97174">Painter::~Painter</a></div><div class="ttdeci">virtual ~Painter()</div><div class="ttdoc">Destrutor. Will delete all rendering related classes and ressources. </div><div class="ttdef"><b>Definition:</b> painter.cpp:50</div></div>
+<div class="ttc" id="class_painter_html_af82c25060227ea6ec91ae60f0753c593"><div class="ttname"><a href="class_painter.html#af82c25060227ea6ec91ae60f0753c593">Painter::m_sceneTexture</a></div><div class="ttdeci">uint m_sceneTexture</div><div class="ttdef"><b>Definition:</b> painter.h:127</div></div>
+<div class="ttc" id="class_scene_renderer_html"><div class="ttname"><a href="class_scene_renderer.html">SceneRenderer</a></div><div class="ttdoc">The SceneRenderer class  Renders the scene: Packs the scene in the buffer and draws the scene in as f...</div><div class="ttdef"><b>Definition:</b> scenerenderer.h:23</div></div>
+<div class="ttc" id="class_painter_html_a37014617684597b602522d3de20f8f41"><div class="ttname"><a href="class_painter.html#a37014617684597b602522d3de20f8f41">Painter::clearScene</a></div><div class="ttdeci">void clearScene()</div><div class="ttdoc">Clears the scene and removes all not anymore required ressources. </div><div class="ttdef"><b>Definition:</b> painter.cpp:95</div></div>
+<div class="ttc" id="class_painter_html_ab5dbc13d3e46ee83c4f819a5ae74206e"><div class="ttname"><a href="class_painter.html#ab5dbc13d3e46ee83c4f819a5ae74206e">Painter::handleInitializeDone</a></div><div class="ttdeci">void handleInitializeDone()</div><div class="ttdef"><b>Definition:</b> painter.cpp:499</div></div>
+<div class="ttc" id="class_painter_html_a1a3de21931e9796db399252b7336169c"><div class="ttname"><a href="class_painter.html#a1a3de21931e9796db399252b7336169c">Painter::m_counter</a></div><div class="ttdeci">int m_counter</div><div class="ttdef"><b>Definition:</b> painter.h:132</div></div>
+<div class="ttc" id="class_painter_html_a68a674089abe95f55b48e12fef4e3a8f"><div class="ttname"><a href="class_painter.html#a68a674089abe95f55b48e12fef4e3a8f">Painter::m_glowPreviewSceneFBO</a></div><div class="ttdeci">uint m_glowPreviewSceneFBO</div><div class="ttdef"><b>Definition:</b> painter.h:111</div></div>
+<div class="ttc" id="class_painter_q_m_l_html"><div class="ttname"><a href="class_painter_q_m_l.html">PainterQML</a></div><div class="ttdoc">The PainterQML class is responsible to make our game visible within QML using Painter.  This class is intended to be added and created within QML. As the element showing our game it recognizes(?) resize events and update events needed by our application. Also it keeps our rendering alive. Furthermore it is the interface between game logic and rendering. </div><div class="ttdef"><b>Definition:</b> painterqml.h:18</div></div>
+<div class="ttc" id="shaderprograms_8h_html_ada89718f8d394b2cc093eb9770c554ff"><div class="ttname"><a href="shaderprograms_8h.html#ada89718f8d394b2cc093eb9770c554ff">ShaderPrograms</a></div><div class="ttdeci">ShaderPrograms</div><div class="ttdoc">The ShaderPrograms enum  Manage ShaderPrograms with the help of this enum class. If it is neccessary ...</div><div class="ttdef"><b>Definition:</b> shaderprograms.h:14</div></div>
+<div class="ttc" id="class_painter_html_a5b9b4ed8aebaebeb2f6483e350445fbc"><div class="ttname"><a href="class_painter.html#a5b9b4ed8aebaebeb2f6483e350445fbc">Painter::paint</a></div><div class="ttdeci">void paint()</div><div class="ttdoc">Starts rendering and paints the whole picture. </div><div class="ttdef"><b>Definition:</b> painter.cpp:124</div></div>
+<div class="ttc" id="class_painter_html_a0adcfafb8172b4f76561e2c951b1090b"><div class="ttname"><a href="class_painter.html#a0adcfafb8172b4f76561e2c951b1090b">Painter::m_initialized</a></div><div class="ttdeci">bool m_initialized</div><div class="ttdef"><b>Definition:</b> painter.h:101</div></div>
+<div class="ttc" id="class_painter_html_a92db0cde0f42dd82569e85785850c283"><div class="ttname"><a href="class_painter.html#a92db0cde0f42dd82569e85785850c283">Painter::m_sceneDepthRB</a></div><div class="ttdeci">uint m_sceneDepthRB</div><div class="ttdef"><b>Definition:</b> painter.h:126</div></div>
+<div class="ttc" id="class_painter_html_a8aa44a5f1477d570ee10d3dacae09f08"><div class="ttname"><a href="class_painter.html#a8aa44a5f1477d570ee10d3dacae09f08">Painter::m_gl</a></div><div class="ttdeci">QOpenGLFunctions * m_gl</div><div class="ttdef"><b>Definition:</b> painter.h:100</div></div>
+<div class="ttc" id="class_painter_html_aff56d277a464801c66a7f7414ef86733"><div class="ttname"><a href="class_painter.html#aff56d277a464801c66a7f7414ef86733">Painter::m_previewSceneTexture</a></div><div class="ttdeci">uint m_previewSceneTexture</div><div class="ttdef"><b>Definition:</b> painter.h:117</div></div>
+<div class="ttc" id="class_painter_html_a642492c18262a53f20c0824bd70e7526"><div class="ttname"><a href="class_painter.html#a642492c18262a53f20c0824bd70e7526">Painter::m_glowPreviewSceneTexture</a></div><div class="ttdeci">uint m_glowPreviewSceneTexture</div><div class="ttdef"><b>Definition:</b> painter.h:113</div></div>
+<div class="ttc" id="class_painter_html_a4fee3b94c00da17f851b52cc8d60ff72"><div class="ttname"><a href="class_painter.html#a4fee3b94c00da17f851b52cc8d60ff72">Painter::initializeShaderPrograms</a></div><div class="ttdeci">void initializeShaderPrograms()</div><div class="ttdef"><b>Definition:</b> painter.cpp:405</div></div>
+<div class="ttc" id="class_q_hash_html"><div class="ttname"><a href="class_q_hash.html">QHash&lt; ShaderPrograms, QOpenGLShaderProgram * &gt;</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:41 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:00 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

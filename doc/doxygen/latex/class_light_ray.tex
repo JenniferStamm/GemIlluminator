@@ -1,161 +1,439 @@
 \hypertarget{class_light_ray}{}\section{Light\+Ray Class Reference}
 \label{class_light_ray}\index{Light\+Ray@{Light\+Ray}}
+
+
+The \hyperlink{class_light_ray}{Light\+Ray} class describes our lightrays send into \hyperlink{class_scene}{Scene}.  Because we send our Light\+Rays into \hyperlink{class_scene}{Scene} right after creation, they are more lines but rays. Our rays are organized as a tree, a ray owns all of its \hyperlink{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{successors()}. Accidentally most of our game logic is done within \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()}.  
+
+
+
+
+{\ttfamily \#include $<$lightray.\+h$>$}
+
 Inheritance diagram for Light\+Ray\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_light_ray}
+\includegraphics[height=3.000000cm]{class_light_ray}
 \end{center}
 \end{figure}
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_a70d3d18bbecdf54dc399df5112ca024a}{}const Q\+Vector3\+D \& {\bfseries start\+Position} () const \label{class_light_ray_a70d3d18bbecdf54dc399df5112ca024a}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_a70d3d18bbecdf54dc399df5112ca024a}{start\+Position} () const 
 \item 
-\hypertarget{class_light_ray_a1db98f630b5a18bb297936fc5c8f25fb}{}void {\bfseries set\+Start\+Position} (const Q\+Vector3\+D \&position)\label{class_light_ray_a1db98f630b5a18bb297936fc5c8f25fb}
-
+void \hyperlink{class_light_ray_a1db98f630b5a18bb297936fc5c8f25fb}{set\+Start\+Position} (const Q\+Vector3\+D \&position)
 \item 
-\hypertarget{class_light_ray_a13026c9fc18cf7fc2d53832223172f13}{}const Q\+Vector3\+D \& {\bfseries end\+Position} () const \label{class_light_ray_a13026c9fc18cf7fc2d53832223172f13}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_a13026c9fc18cf7fc2d53832223172f13}{end\+Position} () const 
 \item 
-\hypertarget{class_light_ray_a5b9d55f5a6bed4b610f1bc294905dd64}{}void {\bfseries set\+End\+Position} (const Q\+Vector3\+D \&position)\label{class_light_ray_a5b9d55f5a6bed4b610f1bc294905dd64}
-
+void \hyperlink{class_light_ray_a5b9d55f5a6bed4b610f1bc294905dd64}{set\+End\+Position} (const Q\+Vector3\+D \&position)
 \item 
-\hypertarget{class_light_ray_acb99bfb7f75989e5ee5a29944e9a9bb7}{}Q\+Vector3\+D {\bfseries direction} () const \label{class_light_ray_acb99bfb7f75989e5ee5a29944e9a9bb7}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_af2c247c9b2cc33b4b18ead8e1b12c697}{direction} () const 
 \item 
-\hypertarget{class_light_ray_a34f82694ce533664616476bca11e7daf}{}Q\+Vector3\+D {\bfseries normalized\+Direction} () const \label{class_light_ray_a34f82694ce533664616476bca11e7daf}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_a1a0dfa514a6c350b78e20903d2fde5c4}{normalized\+Direction} () const 
 \item 
-\hypertarget{class_light_ray_a9db8f3d965dec84c167b6634bee842f4}{}\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ {\bfseries colliding\+Gem} () const \label{class_light_ray_a9db8f3d965dec84c167b6634bee842f4}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_ae816ba62186298d8900e4617034d1d66}{color} () const 
 \item 
-\hypertarget{class_light_ray_a87c45492f6508b5c1adf8300babf8eeb}{}void {\bfseries set\+Colliding\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_light_ray_a87c45492f6508b5c1adf8300babf8eeb}
-
+void \hyperlink{class_light_ray_a607addd328ae2b935d21e093ae15bcd4}{set\+Color} (const Q\+Vector3\+D \&\hyperlink{class_light_ray_ad03c134ce8b910618409f74d1267ff9b}{color})
 \item 
-\hypertarget{class_light_ray_aa8e775f4aacf01e51d2a85ae32cb19cc}{}const Q\+Vector3\+D \& {\bfseries color} () const \label{class_light_ray_aa8e775f4aacf01e51d2a85ae32cb19cc}
-
+\hyperlink{class_player}{Player} $\ast$ \hyperlink{class_light_ray_ab2e0d1d08c23a451b83907d61af4297a}{player} () const 
 \item 
-\hypertarget{class_light_ray_ab2e0d1d08c23a451b83907d61af4297a}{}\hyperlink{class_player}{Player} $\ast$ {\bfseries player} () const \label{class_light_ray_ab2e0d1d08c23a451b83907d61af4297a}
-
+void \hyperlink{class_light_ray_a3720775f0e8d6c5a8041fd6a7b371dad}{set\+Player} (\hyperlink{class_player}{Player} $\ast$attached\+Player)
 \item 
-\hypertarget{class_light_ray_a3720775f0e8d6c5a8041fd6a7b371dad}{}void {\bfseries set\+Player} (\hyperlink{class_player}{Player} $\ast$attached\+Player)\label{class_light_ray_a3720775f0e8d6c5a8041fd6a7b371dad}
-
+\hyperlink{class_scene}{Scene} $\ast$ \hyperlink{class_light_ray_a7ad5ff6f8863759c2183c95ba8914dfc}{scene} () const 
 \item 
-\hypertarget{class_light_ray_ad507b2707408f92aac2962134ed72fb8}{}void {\bfseries set\+Renderer} (\hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} $\ast$renderer)\label{class_light_ray_ad507b2707408f92aac2962134ed72fb8}
-
+void \hyperlink{class_light_ray_a82577f82a77e84b81bd1b722a00bde54}{set\+Scene} (\hyperlink{class_scene}{Scene} $\ast$owning\+Scene)
 \item 
-\hypertarget{class_light_ray_a7ad5ff6f8863759c2183c95ba8914dfc}{}\hyperlink{class_scene}{Scene} $\ast$ {\bfseries scene} () const \label{class_light_ray_a7ad5ff6f8863759c2183c95ba8914dfc}
-
+bool \hyperlink{class_light_ray_a86e10593e7c2e3a4bbbbf817dd774c27}{is\+Static} () const 
 \item 
-\hypertarget{class_light_ray_a82577f82a77e84b81bd1b722a00bde54}{}void {\bfseries set\+Scene} (\hyperlink{class_scene}{Scene} $\ast$owning\+Scene)\label{class_light_ray_a82577f82a77e84b81bd1b722a00bde54}
-
+void \hyperlink{class_light_ray_a6694333616a4d172f1c1bcb4ccbe1587}{set\+Static} ()
 \item 
-\hypertarget{class_light_ray_a86e10593e7c2e3a4bbbbf817dd774c27}{}bool {\bfseries is\+Static} () const \label{class_light_ray_a86e10593e7c2e3a4bbbbf817dd774c27}
-
+\hyperlink{class_light_ray}{Light\+Ray} $\ast$ \hyperlink{class_light_ray_ad7a12f31f9f84adc155211009a677d77}{selected\+Successor} ()
+\begin{DoxyCompactList}\small\item\em Returns the ray the player should move on after reaching end of current ray. In case no successors exists they will be calculated using \hyperlink{class_light_ray_a1711b1964da22ce4083740adc2233780}{calculate\+Successors()} \end{DoxyCompactList}\item 
+void \hyperlink{class_light_ray_a2644a596af5de9b41f770131b5c2b0eb}{set\+Selected\+Successor} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$successor)
 \item 
-\hypertarget{class_light_ray_a6694333616a4d172f1c1bcb4ccbe1587}{}void {\bfseries set\+Static} ()\label{class_light_ray_a6694333616a4d172f1c1bcb4ccbe1587}
-
-\item 
-\hypertarget{class_light_ray_ad7a12f31f9f84adc155211009a677d77}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries selected\+Successor} ()\label{class_light_ray_ad7a12f31f9f84adc155211009a677d77}
-
-\item 
-\hypertarget{class_light_ray_a2644a596af5de9b41f770131b5c2b0eb}{}void {\bfseries set\+Selected\+Successor} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$successor)\label{class_light_ray_a2644a596af5de9b41f770131b5c2b0eb}
-
-\item 
-\hypertarget{class_light_ray_acd346957efa39055b61eb9b2be660011}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)\label{class_light_ray_acd346957efa39055b61eb9b2be660011}
-
+const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_light_ray}{Light\+Ray} $\ast$ $>$ \& \hyperlink{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{successors} ()
 \end{DoxyCompactItemize}
 \subsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_a5be9eb60aae11d0c24e7db4aa1f89b6c}{}void {\bfseries start\+Position\+Changed} ()\label{class_light_ray_a5be9eb60aae11d0c24e7db4aa1f89b6c}
-
+void \hyperlink{class_light_ray_a4c9bff5b766f6ba5f4a265cd6aa64958}{color\+Changed} ()
 \item 
-\hypertarget{class_light_ray_a146c3e8249de30de6340fffbf0c1a4d6}{}void {\bfseries end\+Position\+Changed} ()\label{class_light_ray_a146c3e8249de30de6340fffbf0c1a4d6}
-
+void \hyperlink{class_light_ray_a5be9eb60aae11d0c24e7db4aa1f89b6c}{start\+Position\+Changed} ()
 \item 
-\hypertarget{class_light_ray_a7b14272e752393259f0b645d92113782}{}void {\bfseries player\+Changed} ()\label{class_light_ray_a7b14272e752393259f0b645d92113782}
-
+void \hyperlink{class_light_ray_a146c3e8249de30de6340fffbf0c1a4d6}{end\+Position\+Changed} ()
 \item 
-\hypertarget{class_light_ray_aeea833ba9fe0fe8a3810ba002c3dbec4}{}void {\bfseries scene\+Changed} ()\label{class_light_ray_aeea833ba9fe0fe8a3810ba002c3dbec4}
-
+void \hyperlink{class_light_ray_a7b14272e752393259f0b645d92113782}{player\+Changed} ()
+\item 
+void \hyperlink{class_light_ray_aeea833ba9fe0fe8a3810ba002c3dbec4}{scene\+Changed} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_a311f25dc81f2acfe6bc9f7379f76e6fe}{}{\bfseries Light\+Ray} (Q\+Object $\ast$parent=0)\label{class_light_ray_a311f25dc81f2acfe6bc9f7379f76e6fe}
-
+\hyperlink{class_light_ray_a311f25dc81f2acfe6bc9f7379f76e6fe}{Light\+Ray} (Q\+Object $\ast$parent=0)
 \item 
-\hypertarget{class_light_ray_ab62f10ba7917f59714c9ea44780cb2e6}{}virtual void {\bfseries synchronize} ()\label{class_light_ray_ab62f10ba7917f59714c9ea44780cb2e6}
-
+virtual \hyperlink{class_light_ray_a1ec27c859b1851ef680f803ae0555f17}{$\sim$\+Light\+Ray} ()
 \item 
-\hypertarget{class_light_ray_acf06a71a307433fa5b220baccf809e64}{}virtual void {\bfseries update} (int time\+Difference)\label{class_light_ray_acf06a71a307433fa5b220baccf809e64}
-
-\item 
-\hypertarget{class_light_ray_ab8723690d8af8cb9b4ba339eff784135}{}Q\+Vector3\+D {\bfseries normalized\+Orthogonal\+Vector} () const \label{class_light_ray_ab8723690d8af8cb9b4ba339eff784135}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{update} (int time\+Difference)
+\begin{DoxyCompactList}\small\item\em Updates our game. The player will be moved. \end{DoxyCompactList}\item 
+Q\+Vector3\+D \hyperlink{class_light_ray_ab8723690d8af8cb9b4ba339eff784135}{normalized\+Orthogonal\+Vector} () const 
+\begin{DoxyCompactList}\small\item\em Calculates a normalized vector that is orthogonal to \hyperlink{class_light_ray_a001a750a7d287ce54dd1772aa18be6c7}{direction()}. \end{DoxyCompactList}\item 
+Q\+Vector3\+D \hyperlink{class_light_ray_afe5d6813717569166a2c2ca29b2bc923}{calculate\+Color} ()
+\begin{DoxyCompactList}\small\item\em calculate\+Successor\+Color calculates the successor color based on its normalized direction The color values are approximately in the range between 0.\+1 and 0.\+8 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_a1711b1964da22ce4083740adc2233780}{}void {\bfseries calculate\+Successors} ()\label{class_light_ray_a1711b1964da22ce4083740adc2233780}
-
+bool \hyperlink{class_light_ray_ad2f26e29e0781597f7bf106396ba2fb7}{is\+Player\+Before\+Collision\+Point} ()
 \item 
-\hypertarget{class_light_ray_ad2f26e29e0781597f7bf106396ba2fb7}{}bool {\bfseries is\+Player\+Before\+Collision\+Point} ()\label{class_light_ray_ad2f26e29e0781597f7bf106396ba2fb7}
-
+void \hyperlink{class_light_ray_a1711b1964da22ce4083740adc2233780}{calculate\+Successors} ()
+\item 
+\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_light_ray_a9db8f3d965dec84c167b6634bee842f4}{colliding\+Gem} () const 
+\item 
+void \hyperlink{class_light_ray_a87c45492f6508b5c1adf8300babf8eeb}{set\+Colliding\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_ac11396a5ac4a0899ca4bad5d88300fdd}{}\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ {\bfseries m\+\_\+colliding\+Gem}\label{class_light_ray_ac11396a5ac4a0899ca4bad5d88300fdd}
-
+\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_light_ray_ac11396a5ac4a0899ca4bad5d88300fdd}{m\+\_\+colliding\+Gem}
 \item 
-\hypertarget{class_light_ray_acba0c9beeba8ea2863a022910d4ffc34}{}\hyperlink{class_light_ray_data}{Light\+Ray\+Data} $\ast$ {\bfseries m\+\_\+data}\label{class_light_ray_acba0c9beeba8ea2863a022910d4ffc34}
-
+\hyperlink{class_light_ray_data}{Light\+Ray\+Data} $\ast$ \hyperlink{class_light_ray_acba0c9beeba8ea2863a022910d4ffc34}{m\+\_\+data}
 \item 
-\hypertarget{class_light_ray_a669e04446c77fc44bee41146c1883356}{}\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_light_ray}{Light\+Ray} $\ast$ $>$ $\ast$ {\bfseries m\+\_\+successors}\label{class_light_ray_a669e04446c77fc44bee41146c1883356}
-
+\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_light_ray}{Light\+Ray} $\ast$ $>$ $\ast$ \hyperlink{class_light_ray_a669e04446c77fc44bee41146c1883356}{m\+\_\+successors}
 \item 
-\hypertarget{class_light_ray_a9e430528b861007696716fbd054c9de3}{}\hyperlink{class_light_ray}{Light\+Ray} $\ast$ {\bfseries m\+\_\+selected\+Successor}\label{class_light_ray_a9e430528b861007696716fbd054c9de3}
-
+\hyperlink{class_light_ray}{Light\+Ray} $\ast$ \hyperlink{class_light_ray_a9e430528b861007696716fbd054c9de3}{m\+\_\+selected\+Successor}
 \item 
-\hypertarget{class_light_ray_a9514f088b07846b4aeb643b9523b51da}{}\hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} $\ast$ {\bfseries m\+\_\+renderer}\label{class_light_ray_a9514f088b07846b4aeb643b9523b51da}
-
+bool \hyperlink{class_light_ray_af44c254c7782710304489afdabd5303a}{m\+\_\+is\+Static}
 \item 
-\hypertarget{class_light_ray_af44c254c7782710304489afdabd5303a}{}bool {\bfseries m\+\_\+is\+Static}\label{class_light_ray_af44c254c7782710304489afdabd5303a}
-
+\hyperlink{class_player}{Player} $\ast$ \hyperlink{class_light_ray_a55cf457d13b240178933f0a73d6f7b2b}{m\+\_\+player}
 \item 
-\hypertarget{class_light_ray_a55cf457d13b240178933f0a73d6f7b2b}{}\hyperlink{class_player}{Player} $\ast$ {\bfseries m\+\_\+player}\label{class_light_ray_a55cf457d13b240178933f0a73d6f7b2b}
-
-\item 
-\hypertarget{class_light_ray_a9f99d6386ed92c979889f38b5348d628}{}\hyperlink{class_scene}{Scene} $\ast$ {\bfseries m\+\_\+scene}\label{class_light_ray_a9f99d6386ed92c979889f38b5348d628}
-
+\hyperlink{class_scene}{Scene} $\ast$ \hyperlink{class_light_ray_a9f99d6386ed92c979889f38b5348d628}{m\+\_\+scene}
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_af91b7c6c3c299e2a39b8c7f016f9ce15}{}const Q\+Vector3\+D {\bfseries start\+Position}\label{class_light_ray_af91b7c6c3c299e2a39b8c7f016f9ce15}
-
+const Q\+Vector3\+D \hyperlink{class_light_ray_af91b7c6c3c299e2a39b8c7f016f9ce15}{start\+Position}
 \item 
-\hypertarget{class_light_ray_a79917df93dd2cc9c8915fe659b3dd0da}{}const Q\+Vector3\+D {\bfseries end\+Position}\label{class_light_ray_a79917df93dd2cc9c8915fe659b3dd0da}
-
+const Q\+Vector3\+D \hyperlink{class_light_ray_a79917df93dd2cc9c8915fe659b3dd0da}{end\+Position}
 \item 
-\hypertarget{class_light_ray_ab7d1b417505cb68548114b03c8ecde8e}{}const Q\+Vector3\+D {\bfseries direction}\label{class_light_ray_ab7d1b417505cb68548114b03c8ecde8e}
-
+const Q\+Vector3\+D \hyperlink{class_light_ray_a001a750a7d287ce54dd1772aa18be6c7}{direction}
 \item 
-\hypertarget{class_light_ray_aab55396a68a866e18897a8b622773b27}{}const Q\+Vector3\+D {\bfseries normalized\+Direction}\label{class_light_ray_aab55396a68a866e18897a8b622773b27}
-
+const Q\+Vector3\+D \hyperlink{class_light_ray_ae6599fa543d56b2c812afa16f5ac4bbc}{normalized\+Direction}
 \item 
-\hypertarget{class_light_ray_ac86091ec591fbf919bcc6c97beee47ec}{}\hyperlink{class_player}{Player} {\bfseries player}\label{class_light_ray_ac86091ec591fbf919bcc6c97beee47ec}
-
+const Q\+Vector3\+D \hyperlink{class_light_ray_ad03c134ce8b910618409f74d1267ff9b}{color}
 \item 
-\hypertarget{class_light_ray_afd3d673f6ca3570f648bb706d7f2d6e6}{}\hyperlink{class_scene}{Scene} {\bfseries scene}\label{class_light_ray_afd3d673f6ca3570f648bb706d7f2d6e6}
-
+\hyperlink{class_player}{Player} \hyperlink{class_light_ray_ac86091ec591fbf919bcc6c97beee47ec}{player}
+\item 
+\hyperlink{class_scene}{Scene} \hyperlink{class_light_ray_afd3d673f6ca3570f648bb706d7f2d6e6}{scene}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_light_ray}{Light\+Ray} class describes our lightrays send into \hyperlink{class_scene}{Scene}.  Because we send our Light\+Rays into \hyperlink{class_scene}{Scene} right after creation, they are more lines but rays. Our rays are organized as a tree, a ray owns all of its \hyperlink{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{successors()}. Accidentally most of our game logic is done within \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_light_ray_a311f25dc81f2acfe6bc9f7379f76e6fe}{}\index{Light\+Ray@{Light\+Ray}!Light\+Ray@{Light\+Ray}}
+\index{Light\+Ray@{Light\+Ray}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+::\+Light\+Ray (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_light_ray_a311f25dc81f2acfe6bc9f7379f76e6fe}
+\hypertarget{class_light_ray_a1ec27c859b1851ef680f803ae0555f17}{}\index{Light\+Ray@{Light\+Ray}!````~Light\+Ray@{$\sim$\+Light\+Ray}}
+\index{````~Light\+Ray@{$\sim$\+Light\+Ray}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{$\sim$\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+::$\sim$\+Light\+Ray (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_light_ray_a1ec27c859b1851ef680f803ae0555f17}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_light_ray_afe5d6813717569166a2c2ca29b2bc923}{}\index{Light\+Ray@{Light\+Ray}!calculate\+Color@{calculate\+Color}}
+\index{calculate\+Color@{calculate\+Color}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{calculate\+Color}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Light\+Ray\+::calculate\+Color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_afe5d6813717569166a2c2ca29b2bc923}
+
+
+calculate\+Successor\+Color calculates the successor color based on its normalized direction The color values are approximately in the range between 0.\+1 and 0.\+8 
+
+\begin{DoxyReturn}{Returns}
+The calculated color 
+\end{DoxyReturn}
+\hypertarget{class_light_ray_a1711b1964da22ce4083740adc2233780}{}\index{Light\+Ray@{Light\+Ray}!calculate\+Successors@{calculate\+Successors}}
+\index{calculate\+Successors@{calculate\+Successors}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{calculate\+Successors}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::calculate\+Successors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a1711b1964da22ce4083740adc2233780}
+\hypertarget{class_light_ray_a9db8f3d965dec84c167b6634bee842f4}{}\index{Light\+Ray@{Light\+Ray}!colliding\+Gem@{colliding\+Gem}}
+\index{colliding\+Gem@{colliding\+Gem}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{colliding\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem} $\ast$ Light\+Ray\+::colliding\+Gem (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a9db8f3d965dec84c167b6634bee842f4}
+\hypertarget{class_light_ray_ae816ba62186298d8900e4617034d1d66}{}\index{Light\+Ray@{Light\+Ray}!color@{color}}
+\index{color@{color}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Light\+Ray\+::color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_ae816ba62186298d8900e4617034d1d66}
+\hypertarget{class_light_ray_a4c9bff5b766f6ba5f4a265cd6aa64958}{}\index{Light\+Ray@{Light\+Ray}!color\+Changed@{color\+Changed}}
+\index{color\+Changed@{color\+Changed}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{color\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::color\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_light_ray_a4c9bff5b766f6ba5f4a265cd6aa64958}
+\hypertarget{class_light_ray_af2c247c9b2cc33b4b18ead8e1b12c697}{}\index{Light\+Ray@{Light\+Ray}!direction@{direction}}
+\index{direction@{direction}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Light\+Ray\+::direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_af2c247c9b2cc33b4b18ead8e1b12c697}
+\hypertarget{class_light_ray_a13026c9fc18cf7fc2d53832223172f13}{}\index{Light\+Ray@{Light\+Ray}!end\+Position@{end\+Position}}
+\index{end\+Position@{end\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{end\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Light\+Ray\+::end\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a13026c9fc18cf7fc2d53832223172f13}
+\hypertarget{class_light_ray_a146c3e8249de30de6340fffbf0c1a4d6}{}\index{Light\+Ray@{Light\+Ray}!end\+Position\+Changed@{end\+Position\+Changed}}
+\index{end\+Position\+Changed@{end\+Position\+Changed}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{end\+Position\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::end\+Position\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_light_ray_a146c3e8249de30de6340fffbf0c1a4d6}
+\hypertarget{class_light_ray_ad2f26e29e0781597f7bf106396ba2fb7}{}\index{Light\+Ray@{Light\+Ray}!is\+Player\+Before\+Collision\+Point@{is\+Player\+Before\+Collision\+Point}}
+\index{is\+Player\+Before\+Collision\+Point@{is\+Player\+Before\+Collision\+Point}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{is\+Player\+Before\+Collision\+Point}]{\setlength{\rightskip}{0pt plus 5cm}bool Light\+Ray\+::is\+Player\+Before\+Collision\+Point (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_ad2f26e29e0781597f7bf106396ba2fb7}
+\hypertarget{class_light_ray_a86e10593e7c2e3a4bbbbf817dd774c27}{}\index{Light\+Ray@{Light\+Ray}!is\+Static@{is\+Static}}
+\index{is\+Static@{is\+Static}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{is\+Static}]{\setlength{\rightskip}{0pt plus 5cm}bool Light\+Ray\+::is\+Static (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a86e10593e7c2e3a4bbbbf817dd774c27}
+\hypertarget{class_light_ray_a1a0dfa514a6c350b78e20903d2fde5c4}{}\index{Light\+Ray@{Light\+Ray}!normalized\+Direction@{normalized\+Direction}}
+\index{normalized\+Direction@{normalized\+Direction}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{normalized\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Light\+Ray\+::normalized\+Direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a1a0dfa514a6c350b78e20903d2fde5c4}
+\hypertarget{class_light_ray_ab8723690d8af8cb9b4ba339eff784135}{}\index{Light\+Ray@{Light\+Ray}!normalized\+Orthogonal\+Vector@{normalized\+Orthogonal\+Vector}}
+\index{normalized\+Orthogonal\+Vector@{normalized\+Orthogonal\+Vector}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{normalized\+Orthogonal\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Light\+Ray\+::normalized\+Orthogonal\+Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_ab8723690d8af8cb9b4ba339eff784135}
+
+
+Calculates a normalized vector that is orthogonal to \hyperlink{class_light_ray_a001a750a7d287ce54dd1772aa18be6c7}{direction()}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_light_ray_ab2e0d1d08c23a451b83907d61af4297a}{}\index{Light\+Ray@{Light\+Ray}!player@{player}}
+\index{player@{player}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$ Light\+Ray\+::player (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_ab2e0d1d08c23a451b83907d61af4297a}
+\hypertarget{class_light_ray_a7b14272e752393259f0b645d92113782}{}\index{Light\+Ray@{Light\+Ray}!player\+Changed@{player\+Changed}}
+\index{player\+Changed@{player\+Changed}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{player\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::player\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_light_ray_a7b14272e752393259f0b645d92113782}
+\hypertarget{class_light_ray_a7ad5ff6f8863759c2183c95ba8914dfc}{}\index{Light\+Ray@{Light\+Ray}!scene@{scene}}
+\index{scene@{scene}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene}$\ast$ Light\+Ray\+::scene (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a7ad5ff6f8863759c2183c95ba8914dfc}
+\hypertarget{class_light_ray_aeea833ba9fe0fe8a3810ba002c3dbec4}{}\index{Light\+Ray@{Light\+Ray}!scene\+Changed@{scene\+Changed}}
+\index{scene\+Changed@{scene\+Changed}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{scene\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::scene\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_light_ray_aeea833ba9fe0fe8a3810ba002c3dbec4}
+\hypertarget{class_light_ray_ad7a12f31f9f84adc155211009a677d77}{}\index{Light\+Ray@{Light\+Ray}!selected\+Successor@{selected\+Successor}}
+\index{selected\+Successor@{selected\+Successor}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{selected\+Successor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray} $\ast$ Light\+Ray\+::selected\+Successor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_ad7a12f31f9f84adc155211009a677d77}
+
+
+Returns the ray the player should move on after reaching end of current ray. In case no successors exists they will be calculated using \hyperlink{class_light_ray_a1711b1964da22ce4083740adc2233780}{calculate\+Successors()} 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_light_ray_a87c45492f6508b5c1adf8300babf8eeb}{}\index{Light\+Ray@{Light\+Ray}!set\+Colliding\+Gem@{set\+Colliding\+Gem}}
+\index{set\+Colliding\+Gem@{set\+Colliding\+Gem}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Colliding\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Colliding\+Gem (
+\begin{DoxyParamCaption}
+\item[{{\bf Abstract\+Gem} $\ast$}]{gem}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a87c45492f6508b5c1adf8300babf8eeb}
+\hypertarget{class_light_ray_a607addd328ae2b935d21e093ae15bcd4}{}\index{Light\+Ray@{Light\+Ray}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Color}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Color (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a607addd328ae2b935d21e093ae15bcd4}
+\hypertarget{class_light_ray_a5b9d55f5a6bed4b610f1bc294905dd64}{}\index{Light\+Ray@{Light\+Ray}!set\+End\+Position@{set\+End\+Position}}
+\index{set\+End\+Position@{set\+End\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+End\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+End\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a5b9d55f5a6bed4b610f1bc294905dd64}
+\hypertarget{class_light_ray_a3720775f0e8d6c5a8041fd6a7b371dad}{}\index{Light\+Ray@{Light\+Ray}!set\+Player@{set\+Player}}
+\index{set\+Player@{set\+Player}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Player}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Player (
+\begin{DoxyParamCaption}
+\item[{{\bf Player} $\ast$}]{attached\+Player}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a3720775f0e8d6c5a8041fd6a7b371dad}
+\hypertarget{class_light_ray_a82577f82a77e84b81bd1b722a00bde54}{}\index{Light\+Ray@{Light\+Ray}!set\+Scene@{set\+Scene}}
+\index{set\+Scene@{set\+Scene}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Scene (
+\begin{DoxyParamCaption}
+\item[{{\bf Scene} $\ast$}]{owning\+Scene}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a82577f82a77e84b81bd1b722a00bde54}
+\hypertarget{class_light_ray_a2644a596af5de9b41f770131b5c2b0eb}{}\index{Light\+Ray@{Light\+Ray}!set\+Selected\+Successor@{set\+Selected\+Successor}}
+\index{set\+Selected\+Successor@{set\+Selected\+Successor}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Selected\+Successor}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Selected\+Successor (
+\begin{DoxyParamCaption}
+\item[{{\bf Light\+Ray} $\ast$}]{successor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a2644a596af5de9b41f770131b5c2b0eb}
+\hypertarget{class_light_ray_a1db98f630b5a18bb297936fc5c8f25fb}{}\index{Light\+Ray@{Light\+Ray}!set\+Start\+Position@{set\+Start\+Position}}
+\index{set\+Start\+Position@{set\+Start\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Start\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a1db98f630b5a18bb297936fc5c8f25fb}
+\hypertarget{class_light_ray_a6694333616a4d172f1c1bcb4ccbe1587}{}\index{Light\+Ray@{Light\+Ray}!set\+Static@{set\+Static}}
+\index{set\+Static@{set\+Static}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{set\+Static}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::set\+Static (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a6694333616a4d172f1c1bcb4ccbe1587}
+\hypertarget{class_light_ray_a70d3d18bbecdf54dc399df5112ca024a}{}\index{Light\+Ray@{Light\+Ray}!start\+Position@{start\+Position}}
+\index{start\+Position@{start\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Light\+Ray\+::start\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a70d3d18bbecdf54dc399df5112ca024a}
+\hypertarget{class_light_ray_a5be9eb60aae11d0c24e7db4aa1f89b6c}{}\index{Light\+Ray@{Light\+Ray}!start\+Position\+Changed@{start\+Position\+Changed}}
+\index{start\+Position\+Changed@{start\+Position\+Changed}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{start\+Position\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::start\+Position\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_light_ray_a5be9eb60aae11d0c24e7db4aa1f89b6c}
+\hypertarget{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{}\index{Light\+Ray@{Light\+Ray}!successors@{successors}}
+\index{successors@{successors}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{successors}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Q\+List}$<$ {\bf Light\+Ray} $\ast$ $>$ \& Light\+Ray\+::successors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}
+\hypertarget{class_light_ray_acf06a71a307433fa5b220baccf809e64}{}\index{Light\+Ray@{Light\+Ray}!update@{update}}
+\index{update@{update}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+::update (
+\begin{DoxyParamCaption}
+\item[{int}]{time\+Difference}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_light_ray_acf06a71a307433fa5b220baccf809e64}
+
+
+Updates our game. The player will be moved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Difference} & Time since last update in milliseconds. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}{Game\+Lost\+Ray}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_light_ray_ac11396a5ac4a0899ca4bad5d88300fdd}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+colliding\+Gem@{m\+\_\+colliding\+Gem}}
+\index{m\+\_\+colliding\+Gem@{m\+\_\+colliding\+Gem}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+colliding\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem}$\ast$ Light\+Ray\+::m\+\_\+colliding\+Gem\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_ac11396a5ac4a0899ca4bad5d88300fdd}
+\hypertarget{class_light_ray_acba0c9beeba8ea2863a022910d4ffc34}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+data@{m\+\_\+data}}
+\index{m\+\_\+data@{m\+\_\+data}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray\+Data}$\ast$ Light\+Ray\+::m\+\_\+data\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_acba0c9beeba8ea2863a022910d4ffc34}
+\hypertarget{class_light_ray_af44c254c7782710304489afdabd5303a}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+is\+Static@{m\+\_\+is\+Static}}
+\index{m\+\_\+is\+Static@{m\+\_\+is\+Static}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+is\+Static}]{\setlength{\rightskip}{0pt plus 5cm}bool Light\+Ray\+::m\+\_\+is\+Static\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_af44c254c7782710304489afdabd5303a}
+\hypertarget{class_light_ray_a55cf457d13b240178933f0a73d6f7b2b}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+player@{m\+\_\+player}}
+\index{m\+\_\+player@{m\+\_\+player}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player}$\ast$ Light\+Ray\+::m\+\_\+player\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a55cf457d13b240178933f0a73d6f7b2b}
+\hypertarget{class_light_ray_a9f99d6386ed92c979889f38b5348d628}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+scene@{m\+\_\+scene}}
+\index{m\+\_\+scene@{m\+\_\+scene}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene}$\ast$ Light\+Ray\+::m\+\_\+scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a9f99d6386ed92c979889f38b5348d628}
+\hypertarget{class_light_ray_a9e430528b861007696716fbd054c9de3}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+selected\+Successor@{m\+\_\+selected\+Successor}}
+\index{m\+\_\+selected\+Successor@{m\+\_\+selected\+Successor}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+selected\+Successor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray}$\ast$ Light\+Ray\+::m\+\_\+selected\+Successor\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a9e430528b861007696716fbd054c9de3}
+\hypertarget{class_light_ray_a669e04446c77fc44bee41146c1883356}{}\index{Light\+Ray@{Light\+Ray}!m\+\_\+successors@{m\+\_\+successors}}
+\index{m\+\_\+successors@{m\+\_\+successors}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{m\+\_\+successors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<${\bf Light\+Ray} $\ast$$>$$\ast$ Light\+Ray\+::m\+\_\+successors\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_a669e04446c77fc44bee41146c1883356}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_light_ray_ad03c134ce8b910618409f74d1267ff9b}{}\index{Light\+Ray@{Light\+Ray}!color@{color}}
+\index{color@{color}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+::color\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_light_ray_ad03c134ce8b910618409f74d1267ff9b}
+\hypertarget{class_light_ray_a001a750a7d287ce54dd1772aa18be6c7}{}\index{Light\+Ray@{Light\+Ray}!direction@{direction}}
+\index{direction@{direction}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+::direction\hspace{0.3cm}{\ttfamily [read]}}\label{class_light_ray_a001a750a7d287ce54dd1772aa18be6c7}
+\hypertarget{class_light_ray_a79917df93dd2cc9c8915fe659b3dd0da}{}\index{Light\+Ray@{Light\+Ray}!end\+Position@{end\+Position}}
+\index{end\+Position@{end\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{end\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+::end\+Position\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_light_ray_a79917df93dd2cc9c8915fe659b3dd0da}
+\hypertarget{class_light_ray_ae6599fa543d56b2c812afa16f5ac4bbc}{}\index{Light\+Ray@{Light\+Ray}!normalized\+Direction@{normalized\+Direction}}
+\index{normalized\+Direction@{normalized\+Direction}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{normalized\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+::normalized\+Direction\hspace{0.3cm}{\ttfamily [read]}}\label{class_light_ray_ae6599fa543d56b2c812afa16f5ac4bbc}
+\hypertarget{class_light_ray_ac86091ec591fbf919bcc6c97beee47ec}{}\index{Light\+Ray@{Light\+Ray}!player@{player}}
+\index{player@{player}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{player}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Player} $\ast$ Light\+Ray\+::player\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_light_ray_ac86091ec591fbf919bcc6c97beee47ec}
+\hypertarget{class_light_ray_afd3d673f6ca3570f648bb706d7f2d6e6}{}\index{Light\+Ray@{Light\+Ray}!scene@{scene}}
+\index{scene@{scene}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene} $\ast$ Light\+Ray\+::scene\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_light_ray_afd3d673f6ca3570f648bb706d7f2d6e6}
+\hypertarget{class_light_ray_af91b7c6c3c299e2a39b8c7f016f9ce15}{}\index{Light\+Ray@{Light\+Ray}!start\+Position@{start\+Position}}
+\index{start\+Position@{start\+Position}!Light\+Ray@{Light\+Ray}}
+\subsubsection[{start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+::start\+Position\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_light_ray_af91b7c6c3c299e2a39b8c7f016f9ce15}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/lightray.\+h\item 
-gem\+Illuminator/lightray.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightray_8h}{lightray.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightray_8cpp}{lightray.\+cpp}\end{DoxyCompactItemize}

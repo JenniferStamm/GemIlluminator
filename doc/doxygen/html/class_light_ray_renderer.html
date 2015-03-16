@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,6 +92,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">LightRayRenderer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_light_ray_renderer.html" title="The LightRayRenderer packs LightRays and paint them. ">LightRayRenderer</a> packs LightRays and paint them.  
+ <a href="class_light_ray_renderer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="lightrayrenderer_8h_source.html">lightrayrenderer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for LightRayRenderer:</div>
 <div class="dyncontent">
@@ -102,60 +108,476 @@ Inheritance diagram for LightRayRenderer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a081e83e5e16a36faec002878052aab04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a081e83e5e16a36faec002878052aab04"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LightRayRenderer</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:a081e83e5e16a36faec002878052aab04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a081e83e5e16a36faec002878052aab04">LightRayRenderer</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a081e83e5e16a36faec002878052aab04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e481c5c466f2423e06adfde398f6a28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e481c5c466f2423e06adfde398f6a28"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addLightRay</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;lightRay)</td></tr>
+<tr class="memitem:ac751be83a9d351286b0f89693c425205"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#ac751be83a9d351286b0f89693c425205">~LightRayRenderer</a> ()</td></tr>
+<tr class="separator:ac751be83a9d351286b0f89693c425205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e481c5c466f2423e06adfde398f6a28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a0e481c5c466f2423e06adfde398f6a28">addLightRay</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;lightRay)</td></tr>
+<tr class="memdesc:a0e481c5c466f2423e06adfde398f6a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a> that will be rendered.  Dynamic LightRays are added without checking wheter they exist or not. Static LightRays will be only added if the <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a> is not allready drawn by <a class="el" href="class_light_ray_renderer.html" title="The LightRayRenderer packs LightRays and paint them. ">LightRayRenderer</a>.  <a href="#a0e481c5c466f2423e06adfde398f6a28">More...</a><br /></td></tr>
 <tr class="separator:a0e481c5c466f2423e06adfde398f6a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3270c30bd4f5eba01e543bb196c501ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3270c30bd4f5eba01e543bb196c501ed"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>paint</b> (QOpenGLFunctions &amp;gl, const QMatrix4x4 &amp;viewProjection, QOpenGLShaderProgram &amp;shaderProgram)</td></tr>
+<tr class="memitem:a3270c30bd4f5eba01e543bb196c501ed"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a3270c30bd4f5eba01e543bb196c501ed">paint</a> (QOpenGLFunctions &amp;gl, const QMatrix4x4 &amp;viewProjection, QOpenGLShaderProgram &amp;shaderProgram)</td></tr>
+<tr class="memdesc:a3270c30bd4f5eba01e543bb196c501ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paints all LightRays.  <a href="#a3270c30bd4f5eba01e543bb196c501ed">More...</a><br /></td></tr>
 <tr class="separator:a3270c30bd4f5eba01e543bb196c501ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6274b441ae15e56176d1d4d7d86ed540"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a6274b441ae15e56176d1d4d7d86ed540">resetDynamicRays</a> ()</td></tr>
+<tr class="memdesc:a6274b441ae15e56176d1d4d7d86ed540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all dynamic rays. It is suggested to do so every frame.  <a href="#a6274b441ae15e56176d1d4d7d86ed540">More...</a><br /></td></tr>
+<tr class="separator:a6274b441ae15e56176d1d4d7d86ed540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a26948ed2a22fac94af809d293cecf135"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26948ed2a22fac94af809d293cecf135"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateStaticVBO</b> ()</td></tr>
-<tr class="separator:a26948ed2a22fac94af809d293cecf135"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60b1a942ae0b926f4126836dc19ea21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa60b1a942ae0b926f4126836dc19ea21"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateDynamicVBO</b> ()</td></tr>
-<tr class="separator:aa60b1a942ae0b926f4126836dc19ea21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f7367b897a492fd021ea2ae43053cef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f7367b897a492fd021ea2ae43053cef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>calculateVertexDataFor</b> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;rayData, <a class="el" href="class_q_vector.html">QVector</a>&lt; float &gt; &amp;vertices, <a class="el" href="class_q_vector.html">QVector</a>&lt; unsigned int &gt; &amp;indices)</td></tr>
+<tr class="memitem:a6f7367b897a492fd021ea2ae43053cef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a6f7367b897a492fd021ea2ae43053cef">calculateVertexDataFor</a> (const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;rayData, <a class="el" href="class_q_vector.html">QVector</a>&lt; float &gt; &amp;vertices, <a class="el" href="class_q_vector.html">QVector</a>&lt; unsigned int &gt; &amp;indices)</td></tr>
+<tr class="memdesc:a6f7367b897a492fd021ea2ae43053cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates vertex data out of start and end position of a ray.  <a href="#a6f7367b897a492fd021ea2ae43053cef">More...</a><br /></td></tr>
 <tr class="separator:a6f7367b897a492fd021ea2ae43053cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa60b1a942ae0b926f4126836dc19ea21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#aa60b1a942ae0b926f4126836dc19ea21">updateDynamicVBO</a> ()</td></tr>
+<tr class="separator:aa60b1a942ae0b926f4126836dc19ea21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26948ed2a22fac94af809d293cecf135"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a26948ed2a22fac94af809d293cecf135">updateStaticVBO</a> ()</td></tr>
+<tr class="separator:a26948ed2a22fac94af809d293cecf135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e31cf1e12e66f170cb34d3620983c7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a3e31cf1e12e66f170cb34d3620983c7c">updateRayVBO</a> (QOpenGLBuffer *&amp;vertexBuffer, QOpenGLBuffer *&amp;indexBuffer, const <a class="el" href="class_q_set.html">QSet</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; &amp;data)</td></tr>
+<tr class="separator:a3e31cf1e12e66f170cb34d3620983c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a9931d2944cabf289973c862a714fc5fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9931d2944cabf289973c862a714fc5fd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isStaticVBOUpdateRequired</b></td></tr>
-<tr class="separator:a9931d2944cabf289973c862a714fc5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af21bb4b6a08c84b13753860a0a89b199"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af21bb4b6a08c84b13753860a0a89b199"></a>
-QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><b>m_staticVertexBuffer</b></td></tr>
-<tr class="separator:af21bb4b6a08c84b13753860a0a89b199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab78cd6dadbb241b4d8929f5f1b60995a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab78cd6dadbb241b4d8929f5f1b60995a"></a>
-QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><b>m_staticIndexBuffer</b></td></tr>
-<tr class="separator:ab78cd6dadbb241b4d8929f5f1b60995a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8c0c8b69c3dda2e8e535f3c7da7543f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8c0c8b69c3dda2e8e535f3c7da7543f"></a>
-QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dynamicVertexBuffer</b></td></tr>
-<tr class="separator:ae8c0c8b69c3dda2e8e535f3c7da7543f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe1bab9c62f8e91c45df4680f1f878a9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe1bab9c62f8e91c45df4680f1f878a9"></a>
-QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dynamicIndexBuffer</b></td></tr>
+<tr class="memitem:afe1bab9c62f8e91c45df4680f1f878a9"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#afe1bab9c62f8e91c45df4680f1f878a9">m_dynamicIndexBuffer</a></td></tr>
 <tr class="separator:afe1bab9c62f8e91c45df4680f1f878a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a994b774bb19f4d310593b18a40a41af7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a994b774bb19f4d310593b18a40a41af7"></a>
-<a class="el" href="class_q_vector.html">QVector</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_dynamicRays</b></td></tr>
-<tr class="separator:a994b774bb19f4d310593b18a40a41af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6524c19725083f59fe41616998dcf111"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6524c19725083f59fe41616998dcf111"></a>
-<a class="el" href="class_q_set.html">QSet</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_staticRays</b></td></tr>
+<tr class="memitem:a829e8b67018149941b5e349c336be865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_set.html">QSet</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a829e8b67018149941b5e349c336be865">m_dynamicRays</a></td></tr>
+<tr class="separator:a829e8b67018149941b5e349c336be865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c0c8b69c3dda2e8e535f3c7da7543f"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#ae8c0c8b69c3dda2e8e535f3c7da7543f">m_dynamicVertexBuffer</a></td></tr>
+<tr class="separator:ae8c0c8b69c3dda2e8e535f3c7da7543f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9931d2944cabf289973c862a714fc5fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a9931d2944cabf289973c862a714fc5fd">m_isStaticVBOUpdateRequired</a></td></tr>
+<tr class="separator:a9931d2944cabf289973c862a714fc5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab78cd6dadbb241b4d8929f5f1b60995a"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#ab78cd6dadbb241b4d8929f5f1b60995a">m_staticIndexBuffer</a></td></tr>
+<tr class="separator:ab78cd6dadbb241b4d8929f5f1b60995a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6524c19725083f59fe41616998dcf111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_set.html">QSet</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#a6524c19725083f59fe41616998dcf111">m_staticRays</a></td></tr>
 <tr class="separator:a6524c19725083f59fe41616998dcf111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af21bb4b6a08c84b13753860a0a89b199"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_light_ray_renderer.html#af21bb4b6a08c84b13753860a0a89b199">m_staticVertexBuffer</a></td></tr>
+<tr class="separator:af21bb4b6a08c84b13753860a0a89b199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_light_ray_renderer.html" title="The LightRayRenderer packs LightRays and paint them. ">LightRayRenderer</a> packs LightRays and paint them. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a081e83e5e16a36faec002878052aab04"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayRenderer::LightRayRenderer </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac751be83a9d351286b0f89693c425205"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LightRayRenderer::~LightRayRenderer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0e481c5c466f2423e06adfde398f6a28"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::addLightRay </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>lightRay</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a new <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a> that will be rendered.  Dynamic LightRays are added without checking wheter they exist or not. Static LightRays will be only added if the <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a> is not allready drawn by <a class="el" href="class_light_ray_renderer.html" title="The LightRayRenderer packs LightRays and paint them. ">LightRayRenderer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lightRay</td><td>The <a class="el" href="class_light_ray.html" title="The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...">LightRay</a> that is added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6f7367b897a492fd021ea2ae43053cef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::calculateVertexDataFor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray_data.html">LightRayData</a> &amp;&#160;</td>
+          <td class="paramname"><em>rayData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_q_vector.html">QVector</a>&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_q_vector.html">QVector</a>&lt; unsigned int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>indices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates vertex data out of start and end position of a ray. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rayData</td><td>The ray that should be drawn and requires vertex data </td></tr>
+    <tr><td class="paramname">vertices</td><td>A vector the vertex data will be appended </td></tr>
+    <tr><td class="paramname">indices</td><td>A vector the index data will be appended </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3270c30bd4f5eba01e543bb196c501ed"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::paint </td>
+          <td>(</td>
+          <td class="paramtype">QOpenGLFunctions &amp;&#160;</td>
+          <td class="paramname"><em>gl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QMatrix4x4 &amp;&#160;</td>
+          <td class="paramname"><em>viewProjection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QOpenGLShaderProgram &amp;&#160;</td>
+          <td class="paramname"><em>shaderProgram</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Paints all LightRays. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gl</td><td>QOPenGLFunctions which are used for gl-calls </td></tr>
+    <tr><td class="paramname">viewProjection</td><td>The viewprojection matrix for drawing the rays. </td></tr>
+    <tr><td class="paramname">shaderProgram</td><td>The shader program that will be used to draw rays. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6274b441ae15e56176d1d4d7d86ed540"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::resetDynamicRays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes all dynamic rays. It is suggested to do so every frame. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa60b1a942ae0b926f4126836dc19ea21"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::updateDynamicVBO </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3e31cf1e12e66f170cb34d3620983c7c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::updateRayVBO </td>
+          <td>(</td>
+          <td class="paramtype">QOpenGLBuffer *&amp;&#160;</td>
+          <td class="paramname"><em>vertexBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QOpenGLBuffer *&amp;&#160;</td>
+          <td class="paramname"><em>indexBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_q_set.html">QSet</a>&lt; <a class="el" href="class_light_ray_data.html">LightRayData</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a26948ed2a22fac94af809d293cecf135"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LightRayRenderer::updateStaticVBO </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afe1bab9c62f8e91c45df4680f1f878a9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer* LightRayRenderer::m_dynamicIndexBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a829e8b67018149941b5e349c336be865"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_set.html">QSet</a>&lt;<a class="el" href="class_light_ray_data.html">LightRayData</a>&gt;* LightRayRenderer::m_dynamicRays</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae8c0c8b69c3dda2e8e535f3c7da7543f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer* LightRayRenderer::m_dynamicVertexBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9931d2944cabf289973c862a714fc5fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool LightRayRenderer::m_isStaticVBOUpdateRequired</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab78cd6dadbb241b4d8929f5f1b60995a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer* LightRayRenderer::m_staticIndexBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6524c19725083f59fe41616998dcf111"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_set.html">QSet</a>&lt;<a class="el" href="class_light_ray_data.html">LightRayData</a>&gt;* LightRayRenderer::m_staticRays</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af21bb4b6a08c84b13753860a0a89b199"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer* LightRayRenderer::m_staticVertexBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="lightrayrenderer_8h_source.html">lightrayrenderer.h</a></li>
-<li>gemIlluminator/lightrayrenderer.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="lightrayrenderer_8h_source.html">lightrayrenderer.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="lightrayrenderer_8cpp.html">lightrayrenderer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:43 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:05 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

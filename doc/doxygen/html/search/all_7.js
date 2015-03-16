@@ -1,17 +1,9 @@
 var searchData=
 [
-  ['qhash',['QHash',['../class_q_hash.html',1,'']]],
-  ['qhash_3c_20abstractgem_20_2a_2c_20gemdatainfo_20_2a_20_3e',['QHash&lt; AbstractGem *, GemDataInfo * &gt;',['../class_q_hash.html',1,'']]],
-  ['qhash_3c_20gemtype_2c_20gemrenderdata_20_2a_20_3e',['QHash&lt; GemType, GemRenderData * &gt;',['../class_q_hash.html',1,'']]],
-  ['qhash_3c_20gemtype_2c_20qlist_3c_20qopenglbuffer_20_2a_20_3e_20_2a_20_3e',['QHash&lt; GemType, QList&lt; QOpenGLBuffer * &gt; * &gt;',['../class_q_hash.html',1,'']]],
-  ['qhash_3c_20qopenglbuffer_20_2a_2c_20qlist_3c_20gemdatainfo_20_2a_20_3e_20_2a_20_3e',['QHash&lt; QOpenGLBuffer *, QList&lt; GemDataInfo * &gt; * &gt;',['../class_q_hash.html',1,'']]],
-  ['qlist',['QList',['../class_q_list.html',1,'']]],
-  ['qlist_3c_20abstractgem_20_2a_20_3e',['QList&lt; AbstractGem * &gt;',['../class_q_list.html',1,'']]],
-  ['qlist_3c_20gemdatainfo_20_2a_20_3e',['QList&lt; GemDataInfo * &gt;',['../class_q_list.html',1,'']]],
-  ['qlist_3c_20lightray_20_2a_20_3e',['QList&lt; LightRay * &gt;',['../class_q_list.html',1,'']]],
-  ['qlist_3c_20triangle_20_2a_20_3e',['QList&lt; Triangle * &gt;',['../class_q_list.html',1,'']]],
-  ['qset',['QSet',['../class_q_set.html',1,'']]],
-  ['qset_3c_20lightraydata_20_3e',['QSet&lt; LightRayData &gt;',['../class_q_set.html',1,'']]],
-  ['qvector',['QVector',['../class_q_vector.html',1,'']]],
-  ['qvector_3c_20lightraydata_20_3e',['QVector&lt; LightRayData &gt;',['../class_q_vector.html',1,'']]]
+  ['handlegamelost',['handleGameLost',['../class_scene.html#a3f593e4e80703153633a76cc628ab539',1,'Scene']]],
+  ['handlegamestarted',['handleGameStarted',['../class_scene.html#aceda1edb06b179bd439539965998f7da',1,'Scene']]],
+  ['handleinitializedone',['handleInitializeDone',['../class_painter.html#ab5dbc13d3e46ee83c4f819a5ae74206e',1,'Painter']]],
+  ['highscore',['Highscore',['../class_highscore.html',1,'Highscore'],['../class_highscore.html#ab760f6092405a654479f34107dc38beb',1,'Highscore::Highscore()']]],
+  ['highscore_2ecpp',['highscore.cpp',['../highscore_8cpp.html',1,'']]],
+  ['highscore_2eh',['highscore.h',['../highscore_8h.html',1,'']]]
 ];

@@ -1,95 +1,269 @@
 \hypertarget{class_gem_data}{}\section{Gem\+Data Class Reference}
 \label{class_gem_data}\index{Gem\+Data@{Gem\+Data}}
+
+
+The \hyperlink{class_gem_data}{Gem\+Data} class stores all required information to describe a \hyperlink{class_abstract_gem}{Abstract\+Gem}.  The adventage of \hyperlink{class_gem_data}{Gem\+Data} is, that it is possible to assign, copy, compare and \hyperlink{abstractgem_8cpp_a92fb5a3a6f53f07f0f9653dd299d31ff}{q\+Hash()} this class. Therefore it is possible to store it in most Qt-\/containers.  
+
+
+
+
+{\ttfamily \#include $<$gemdata.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_data_a384ba75fa94427e138d3f7240ffd2877}{}{\bfseries Gem\+Data} (const \hyperlink{class_gem_data}{Gem\+Data} \&ohter\+Gem\+Data)\label{class_gem_data_a384ba75fa94427e138d3f7240ffd2877}
-
+\hyperlink{class_gem_data_a1140e4a3ecf37d05cddf303d7a120ca1}{Gem\+Data} ()
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_gem_data}{Gem\+Data} with all values initialized to zero. \end{DoxyCompactList}\item 
+\hyperlink{class_gem_data_a384ba75fa94427e138d3f7240ffd2877}{Gem\+Data} (const \hyperlink{class_gem_data}{Gem\+Data} \&ohter\+Gem\+Data)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_gem_data_abbd61a573420a780baa954890b0409ea}{$\sim$\+Gem\+Data} ()
 \item 
-\hypertarget{class_gem_data_aa2027a69a6c2719badb12e169ede4fa0}{}{\bfseries Gem\+Data} (const \hyperlink{class_abstract_gem}{Abstract\+Gem} \&gem)\label{class_gem_data_aa2027a69a6c2719badb12e169ede4fa0}
-
+\hyperlink{class_gem_data}{Gem\+Data} \& \hyperlink{class_gem_data_a736bacc522b569d04d40321b40cabc6a}{operator=} (const \hyperlink{class_gem_data}{Gem\+Data} \&rhs)
 \item 
-\hypertarget{class_gem_data_a736bacc522b569d04d40321b40cabc6a}{}\hyperlink{class_gem_data}{Gem\+Data} \& {\bfseries operator=} (const \hyperlink{class_gem_data}{Gem\+Data} \&rhs)\label{class_gem_data_a736bacc522b569d04d40321b40cabc6a}
-
+const Q\+Vector3\+D \& \hyperlink{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}{color} () const 
 \item 
-\hypertarget{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}{}const Q\+Vector3\+D \& {\bfseries color} () const \label{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}
-
+void \hyperlink{class_gem_data_a08bf37ae1fa58d93146f10719c2fed41}{set\+Color} (const Q\+Vector3\+D \&\hyperlink{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}{color})
 \item 
-\hypertarget{class_gem_data_a08bf37ae1fa58d93146f10719c2fed41}{}void {\bfseries set\+Color} (const Q\+Vector3\+D \&color)\label{class_gem_data_a08bf37ae1fa58d93146f10719c2fed41}
-
+const Q\+Matrix4x4 \& \hyperlink{class_gem_data_acf4d522f8c4ef7dd30c184b73790a8fb}{model} () const 
+\begin{DoxyCompactList}\small\item\em Returns on demand the modelmatrix of current gem\+Data. \end{DoxyCompactList}\item 
+const Q\+Vector3\+D \& \hyperlink{class_gem_data_aa863540bdd957405b632864da28908b2}{position} () const 
 \item 
-\hypertarget{class_gem_data_acf4d522f8c4ef7dd30c184b73790a8fb}{}const Q\+Matrix4x4 \& {\bfseries model} () const \label{class_gem_data_acf4d522f8c4ef7dd30c184b73790a8fb}
-
+void \hyperlink{class_gem_data_a6e1ea1cab5241f228842cd47b37202fa}{set\+Position} (const Q\+Vector3\+D \&\hyperlink{class_gem_data_aa863540bdd957405b632864da28908b2}{position})
 \item 
-\hypertarget{class_gem_data_aa863540bdd957405b632864da28908b2}{}const Q\+Vector3\+D \& {\bfseries position} () const \label{class_gem_data_aa863540bdd957405b632864da28908b2}
-
+const Q\+Quaternion \& \hyperlink{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}{rotation} () const 
 \item 
-\hypertarget{class_gem_data_a6e1ea1cab5241f228842cd47b37202fa}{}void {\bfseries set\+Position} (const Q\+Vector3\+D \&position)\label{class_gem_data_a6e1ea1cab5241f228842cd47b37202fa}
-
+void \hyperlink{class_gem_data_ac22fb4a6faf13d78299be0f5cfd029a1}{set\+Rotation} (const Q\+Quaternion \&\hyperlink{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}{rotation})
 \item 
-\hypertarget{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}{}const Q\+Quaternion \& {\bfseries rotation} () const \label{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}
-
+float \hyperlink{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}{scale} () const 
 \item 
-\hypertarget{class_gem_data_ac22fb4a6faf13d78299be0f5cfd029a1}{}void {\bfseries set\+Rotation} (const Q\+Quaternion \&rotation)\label{class_gem_data_ac22fb4a6faf13d78299be0f5cfd029a1}
-
+void \hyperlink{class_gem_data_a49e18ed27815f66469f4ac951b5f969b}{set\+Scale} (float \hyperlink{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}{scale})
 \item 
-\hypertarget{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}{}float {\bfseries scale} () const \label{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}
-
+const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \& \hyperlink{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}{triangles} () const 
 \item 
-\hypertarget{class_gem_data_a49e18ed27815f66469f4ac951b5f969b}{}void {\bfseries set\+Scale} (float scale)\label{class_gem_data_a49e18ed27815f66469f4ac951b5f969b}
-
+void \hyperlink{class_gem_data_aa4be4b2b96ae412308c89e053249d744}{set\+Triangles} (const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \&\hyperlink{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}{triangles})
 \item 
-\hypertarget{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}{}const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \& {\bfseries triangles} () const \label{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}
-
+\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type} \hyperlink{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}{type} () const 
 \item 
-\hypertarget{class_gem_data_aa4be4b2b96ae412308c89e053249d744}{}void {\bfseries set\+Triangles} (const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \&triangles)\label{class_gem_data_aa4be4b2b96ae412308c89e053249d744}
-
-\item 
-\hypertarget{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}{}Gem\+Type {\bfseries type} () const \label{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}
-
-\item 
-\hypertarget{class_gem_data_a10d94a0bd72a57fb9a52a8f534f3e1dd}{}void {\bfseries set\+Type} (Gem\+Type type)\label{class_gem_data_a10d94a0bd72a57fb9a52a8f534f3e1dd}
-
+void \hyperlink{class_gem_data_a10d94a0bd72a57fb9a52a8f534f3e1dd}{set\+Type} (\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type} \hyperlink{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}{type})
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_data_a24986c8eaaa23640a7cb7fff9f4df2b5}{}void {\bfseries copy\+Triangles} (const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \&triangles)\label{class_gem_data_a24986c8eaaa23640a7cb7fff9f4df2b5}
-
+void \hyperlink{class_gem_data_a24986c8eaaa23640a7cb7fff9f4df2b5}{copy\+Triangles} (const \hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ \&\hyperlink{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}{triangles})
 \item 
-\hypertarget{class_gem_data_ac558e3bbb71c2ec73400f0a0cb309693}{}void {\bfseries calculate\+Model\+Matrix} () const \label{class_gem_data_ac558e3bbb71c2ec73400f0a0cb309693}
-
+void \hyperlink{class_gem_data_ac558e3bbb71c2ec73400f0a0cb309693}{calculate\+Model\+Matrix} () const 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_data_aa5888d4d3212ba621643a0f1c1efca76}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+color}\label{class_gem_data_aa5888d4d3212ba621643a0f1c1efca76}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_gem_data_aa5888d4d3212ba621643a0f1c1efca76}{m\+\_\+color}
 \item 
-\hypertarget{class_gem_data_ad5c2bc9fc38c168fbbf143e0092c8cdb}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+position}\label{class_gem_data_ad5c2bc9fc38c168fbbf143e0092c8cdb}
-
+bool \hyperlink{class_gem_data_a82ba26b9a691149c8525244969cceaef}{m\+\_\+is\+Model\+Invalid}
 \item 
-\hypertarget{class_gem_data_a8a055b766496fa47842a683035f15637}{}Q\+Quaternion $\ast$ {\bfseries m\+\_\+rotation}\label{class_gem_data_a8a055b766496fa47842a683035f15637}
-
+Q\+Matrix4x4 $\ast$ \hyperlink{class_gem_data_a3a7eec529b0228a410ea608401cf2f1a}{m\+\_\+model}
 \item 
-\hypertarget{class_gem_data_a15953642fe15a2a37aceea037e4ad81e}{}float {\bfseries m\+\_\+scale}\label{class_gem_data_a15953642fe15a2a37aceea037e4ad81e}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_gem_data_ad5c2bc9fc38c168fbbf143e0092c8cdb}{m\+\_\+position}
 \item 
-\hypertarget{class_gem_data_a21068b04db70d2e37e9c30d816484f25}{}\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ $\ast$ {\bfseries m\+\_\+triangles}\label{class_gem_data_a21068b04db70d2e37e9c30d816484f25}
-
+Q\+Quaternion $\ast$ \hyperlink{class_gem_data_a8a055b766496fa47842a683035f15637}{m\+\_\+rotation}
 \item 
-\hypertarget{class_gem_data_a310940114f54b2146f6601662e8a323f}{}Gem\+Type {\bfseries m\+\_\+type}\label{class_gem_data_a310940114f54b2146f6601662e8a323f}
-
+float \hyperlink{class_gem_data_a15953642fe15a2a37aceea037e4ad81e}{m\+\_\+scale}
 \item 
-\hypertarget{class_gem_data_a3a7eec529b0228a410ea608401cf2f1a}{}Q\+Matrix4x4 $\ast$ {\bfseries m\+\_\+model}\label{class_gem_data_a3a7eec529b0228a410ea608401cf2f1a}
-
+\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_triangle}{Triangle} $\ast$ $>$ $\ast$ \hyperlink{class_gem_data_a21068b04db70d2e37e9c30d816484f25}{m\+\_\+triangles}
 \item 
-\hypertarget{class_gem_data_a82ba26b9a691149c8525244969cceaef}{}bool {\bfseries m\+\_\+is\+Model\+Invalid}\label{class_gem_data_a82ba26b9a691149c8525244969cceaef}
-
+\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type} \hyperlink{class_gem_data_a310940114f54b2146f6601662e8a323f}{m\+\_\+type}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_gem_data}{Gem\+Data} class stores all required information to describe a \hyperlink{class_abstract_gem}{Abstract\+Gem}.  The adventage of \hyperlink{class_gem_data}{Gem\+Data} is, that it is possible to assign, copy, compare and \hyperlink{abstractgem_8cpp_a92fb5a3a6f53f07f0f9653dd299d31ff}{q\+Hash()} this class. Therefore it is possible to store it in most Qt-\/containers. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_gem_data_a1140e4a3ecf37d05cddf303d7a120ca1}{}\index{Gem\+Data@{Gem\+Data}!Gem\+Data@{Gem\+Data}}
+\index{Gem\+Data@{Gem\+Data}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{Gem\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Gem\+Data\+::\+Gem\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a1140e4a3ecf37d05cddf303d7a120ca1}
+
+
+Creates a new \hyperlink{class_gem_data}{Gem\+Data} with all values initialized to zero. 
+
+\hypertarget{class_gem_data_a384ba75fa94427e138d3f7240ffd2877}{}\index{Gem\+Data@{Gem\+Data}!Gem\+Data@{Gem\+Data}}
+\index{Gem\+Data@{Gem\+Data}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{Gem\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Gem\+Data\+::\+Gem\+Data (
+\begin{DoxyParamCaption}
+\item[{const {\bf Gem\+Data} \&}]{ohter\+Gem\+Data}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a384ba75fa94427e138d3f7240ffd2877}
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ohter\+Gem\+Data} & \hyperlink{class_gem_data}{Gem\+Data} that should be copied. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_data_abbd61a573420a780baa954890b0409ea}{}\index{Gem\+Data@{Gem\+Data}!````~Gem\+Data@{$\sim$\+Gem\+Data}}
+\index{````~Gem\+Data@{$\sim$\+Gem\+Data}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{$\sim$\+Gem\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Gem\+Data\+::$\sim$\+Gem\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_abbd61a573420a780baa954890b0409ea}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_gem_data_ac558e3bbb71c2ec73400f0a0cb309693}{}\index{Gem\+Data@{Gem\+Data}!calculate\+Model\+Matrix@{calculate\+Model\+Matrix}}
+\index{calculate\+Model\+Matrix@{calculate\+Model\+Matrix}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{calculate\+Model\+Matrix}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::calculate\+Model\+Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_ac558e3bbb71c2ec73400f0a0cb309693}
+\hypertarget{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}{}\index{Gem\+Data@{Gem\+Data}!color@{color}}
+\index{color@{color}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Gem\+Data\+::color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_af210f7380a31e39e1494629fb4f7b5d1}
+\hypertarget{class_gem_data_a24986c8eaaa23640a7cb7fff9f4df2b5}{}\index{Gem\+Data@{Gem\+Data}!copy\+Triangles@{copy\+Triangles}}
+\index{copy\+Triangles@{copy\+Triangles}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{copy\+Triangles}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::copy\+Triangles (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+List}$<$ {\bf Triangle} $\ast$ $>$ \&}]{triangles}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_a24986c8eaaa23640a7cb7fff9f4df2b5}
+\hypertarget{class_gem_data_acf4d522f8c4ef7dd30c184b73790a8fb}{}\index{Gem\+Data@{Gem\+Data}!model@{model}}
+\index{model@{model}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{model}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Matrix4x4 \& Gem\+Data\+::model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_acf4d522f8c4ef7dd30c184b73790a8fb}
+
+
+Returns on demand the modelmatrix of current gem\+Data. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_gem_data_a736bacc522b569d04d40321b40cabc6a}{}\index{Gem\+Data@{Gem\+Data}!operator=@{operator=}}
+\index{operator=@{operator=}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gem\+Data} \& Gem\+Data\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Gem\+Data} \&}]{rhs}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a736bacc522b569d04d40321b40cabc6a}
+\hypertarget{class_gem_data_aa863540bdd957405b632864da28908b2}{}\index{Gem\+Data@{Gem\+Data}!position@{position}}
+\index{position@{position}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Gem\+Data\+::position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_aa863540bdd957405b632864da28908b2}
+\hypertarget{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}{}\index{Gem\+Data@{Gem\+Data}!rotation@{rotation}}
+\index{rotation@{rotation}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{rotation}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Quaternion \& Gem\+Data\+::rotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_a3c902384912903b22d5eaab7e70f1f5c}
+\hypertarget{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}{}\index{Gem\+Data@{Gem\+Data}!scale@{scale}}
+\index{scale@{scale}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{scale}]{\setlength{\rightskip}{0pt plus 5cm}float Gem\+Data\+::scale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_a39ef099801a421c7b7ffbbd920084eb0}
+\hypertarget{class_gem_data_a08bf37ae1fa58d93146f10719c2fed41}{}\index{Gem\+Data@{Gem\+Data}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Color}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Color (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{color}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a08bf37ae1fa58d93146f10719c2fed41}
+\hypertarget{class_gem_data_a6e1ea1cab5241f228842cd47b37202fa}{}\index{Gem\+Data@{Gem\+Data}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a6e1ea1cab5241f228842cd47b37202fa}
+\hypertarget{class_gem_data_ac22fb4a6faf13d78299be0f5cfd029a1}{}\index{Gem\+Data@{Gem\+Data}!set\+Rotation@{set\+Rotation}}
+\index{set\+Rotation@{set\+Rotation}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const Q\+Quaternion \&}]{rotation}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_ac22fb4a6faf13d78299be0f5cfd029a1}
+\hypertarget{class_gem_data_a49e18ed27815f66469f4ac951b5f969b}{}\index{Gem\+Data@{Gem\+Data}!set\+Scale@{set\+Scale}}
+\index{set\+Scale@{set\+Scale}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Scale}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Scale (
+\begin{DoxyParamCaption}
+\item[{float}]{scale}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a49e18ed27815f66469f4ac951b5f969b}
+\hypertarget{class_gem_data_aa4be4b2b96ae412308c89e053249d744}{}\index{Gem\+Data@{Gem\+Data}!set\+Triangles@{set\+Triangles}}
+\index{set\+Triangles@{set\+Triangles}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Triangles}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Triangles (
+\begin{DoxyParamCaption}
+\item[{const {\bf Q\+List}$<$ {\bf Triangle} $\ast$ $>$ \&}]{triangles}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_aa4be4b2b96ae412308c89e053249d744}
+\hypertarget{class_gem_data_a10d94a0bd72a57fb9a52a8f534f3e1dd}{}\index{Gem\+Data@{Gem\+Data}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{set\+Type}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Data\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{{\bf Gem\+Type}}]{type}
+\end{DoxyParamCaption}
+)}\label{class_gem_data_a10d94a0bd72a57fb9a52a8f534f3e1dd}
+\hypertarget{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}{}\index{Gem\+Data@{Gem\+Data}!triangles@{triangles}}
+\index{triangles@{triangles}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{triangles}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Q\+List}$<$ {\bf Triangle} $\ast$ $>$ \& Gem\+Data\+::triangles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_a2c8956630fdf362efe4e69db9bad2f7f}
+\hypertarget{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}{}\index{Gem\+Data@{Gem\+Data}!type@{type}}
+\index{type@{type}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gem\+Type} Gem\+Data\+::type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_gem_data_a38e33b0c64c37f30d0e063580d6a20bb}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_gem_data_aa5888d4d3212ba621643a0f1c1efca76}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+color@{m\+\_\+color}}
+\index{m\+\_\+color@{m\+\_\+color}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+color}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Gem\+Data\+::m\+\_\+color\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_aa5888d4d3212ba621643a0f1c1efca76}
+\hypertarget{class_gem_data_a82ba26b9a691149c8525244969cceaef}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+is\+Model\+Invalid@{m\+\_\+is\+Model\+Invalid}}
+\index{m\+\_\+is\+Model\+Invalid@{m\+\_\+is\+Model\+Invalid}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+is\+Model\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Gem\+Data\+::m\+\_\+is\+Model\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_gem_data_a82ba26b9a691149c8525244969cceaef}
+\hypertarget{class_gem_data_a3a7eec529b0228a410ea608401cf2f1a}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+model@{m\+\_\+model}}
+\index{m\+\_\+model@{m\+\_\+model}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+model}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Gem\+Data\+::m\+\_\+model\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_gem_data_a3a7eec529b0228a410ea608401cf2f1a}
+\hypertarget{class_gem_data_ad5c2bc9fc38c168fbbf143e0092c8cdb}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+position@{m\+\_\+position}}
+\index{m\+\_\+position@{m\+\_\+position}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+position}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Gem\+Data\+::m\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_ad5c2bc9fc38c168fbbf143e0092c8cdb}
+\hypertarget{class_gem_data_a8a055b766496fa47842a683035f15637}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+rotation@{m\+\_\+rotation}}
+\index{m\+\_\+rotation@{m\+\_\+rotation}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+rotation}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Quaternion$\ast$ Gem\+Data\+::m\+\_\+rotation\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_a8a055b766496fa47842a683035f15637}
+\hypertarget{class_gem_data_a15953642fe15a2a37aceea037e4ad81e}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+scale@{m\+\_\+scale}}
+\index{m\+\_\+scale@{m\+\_\+scale}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+scale}]{\setlength{\rightskip}{0pt plus 5cm}float Gem\+Data\+::m\+\_\+scale\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_a15953642fe15a2a37aceea037e4ad81e}
+\hypertarget{class_gem_data_a21068b04db70d2e37e9c30d816484f25}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+triangles@{m\+\_\+triangles}}
+\index{m\+\_\+triangles@{m\+\_\+triangles}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+triangles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<${\bf Triangle} $\ast$$>$$\ast$ Gem\+Data\+::m\+\_\+triangles\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_a21068b04db70d2e37e9c30d816484f25}
+\hypertarget{class_gem_data_a310940114f54b2146f6601662e8a323f}{}\index{Gem\+Data@{Gem\+Data}!m\+\_\+type@{m\+\_\+type}}
+\index{m\+\_\+type@{m\+\_\+type}!Gem\+Data@{Gem\+Data}}
+\subsubsection[{m\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Gem\+Type} Gem\+Data\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_data_a310940114f54b2146f6601662e8a323f}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/gemdata.\+h\item 
-gem\+Illuminator/gemdata.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gemdata_8h}{gemdata.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gemdata_8cpp}{gemdata.\+cpp}\end{DoxyCompactItemize}

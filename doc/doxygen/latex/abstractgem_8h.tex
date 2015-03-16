@@ -1,0 +1,69 @@
+\hypertarget{abstractgem_8h}{}\section{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/abstractgem.h File Reference}
+\label{abstractgem_8h}\index{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/abstractgem.\+h@{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/abstractgem.\+h}}
+{\ttfamily \#include $<$Q\+Object$>$}\\*
+{\ttfamily \#include $<$Q\+Quaternion$>$}\\*
+{\ttfamily \#include $<$Q\+Vector3\+D$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_abstract_gem}{Abstract\+Gem}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{class_abstract_gem}{Abstract\+Gem} class is our base class of all gems.  As base class all required information of a gem are stored. Also usefull algorithms for collision detection are provided. Furthermore this class is supposed to be used within Q\+M\+L. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type} \{ \hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae353dbe42c8654f33588d4da0b517469}{Gem\+Type\+::\+Abstract}, 
+\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444aa296104f0c61a9cf39f4824d05315e12}{Gem\+Type\+::\+Cube}, 
+\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae029cf63d8d01a489974f9289b50dc80}{Gem\+Type\+::\+Tetrahedron}
+ \}
+\begin{DoxyCompactList}\small\item\em The Gem\+Type An enum describing current gem type. This enum is used for faster comparision of gems, because all gems of one type have same (objectspace) vertices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint \hyperlink{abstractgem_8h_a92fb5a3a6f53f07f0f9653dd299d31ff}{q\+Hash} (\hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type} key, uint seed)
+\begin{DoxyCompactList}\small\item\em Custom implementation of q\+Hash. Providing hash calculation for Gem\+Type. In order to use Gem\+Type as key in \hyperlink{class_q_hash}{Q\+Hash} and \hyperlink{class_q_set}{Q\+Set}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{}\index{abstractgem.\+h@{abstractgem.\+h}!Gem\+Type@{Gem\+Type}}
+\index{Gem\+Type@{Gem\+Type}!abstractgem.\+h@{abstractgem.\+h}}
+\subsubsection[{Gem\+Type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Gem\+Type}\hspace{0.3cm}{\ttfamily [strong]}}\label{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}
+
+
+The Gem\+Type An enum describing current gem type. This enum is used for faster comparision of gems, because all gems of one type have same (objectspace) vertices. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Abstract@{Abstract}!abstractgem.\+h@{abstractgem.\+h}}\index{abstractgem.\+h@{abstractgem.\+h}!Abstract@{Abstract}}\item[{\em 
+\hypertarget{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae353dbe42c8654f33588d4da0b517469}{}Abstract\label{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae353dbe42c8654f33588d4da0b517469}
+}]\index{Cube@{Cube}!abstractgem.\+h@{abstractgem.\+h}}\index{abstractgem.\+h@{abstractgem.\+h}!Cube@{Cube}}\item[{\em 
+\hypertarget{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444aa296104f0c61a9cf39f4824d05315e12}{}Cube\label{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444aa296104f0c61a9cf39f4824d05315e12}
+}]\index{Tetrahedron@{Tetrahedron}!abstractgem.\+h@{abstractgem.\+h}}\index{abstractgem.\+h@{abstractgem.\+h}!Tetrahedron@{Tetrahedron}}\item[{\em 
+\hypertarget{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae029cf63d8d01a489974f9289b50dc80}{}Tetrahedron\label{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444ae029cf63d8d01a489974f9289b50dc80}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{abstractgem_8h_a92fb5a3a6f53f07f0f9653dd299d31ff}{}\index{abstractgem.\+h@{abstractgem.\+h}!q\+Hash@{q\+Hash}}
+\index{q\+Hash@{q\+Hash}!abstractgem.\+h@{abstractgem.\+h}}
+\subsubsection[{q\+Hash}]{\setlength{\rightskip}{0pt plus 5cm}uint q\+Hash (
+\begin{DoxyParamCaption}
+\item[{{\bf Gem\+Type}}]{key, }
+\item[{uint}]{seed}
+\end{DoxyParamCaption}
+)}\label{abstractgem_8h_a92fb5a3a6f53f07f0f9653dd299d31ff}
+
+
+Custom implementation of q\+Hash. Providing hash calculation for Gem\+Type. In order to use Gem\+Type as key in \hyperlink{class_q_hash}{Q\+Hash} and \hyperlink{class_q_set}{Q\+Set}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Value the hash value is calculated for \\
+\hline
+{\em seed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns hash value. 
+\end{DoxyReturn}

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,6 +95,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Camera Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> class provides view and perspective projection matrices. Additional the viewport of camera is stored.  The view of camera has to be specified by eye, center and up or by position, viewdirection and up. It is allowed to mix both definitions, but it might lead to unexpected behaviour. The perspective projection is specified by field of view, viewport, and near and far plane.  
+ <a href="class_camera.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="camera_8h_source.html">camera.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Camera:</div>
 <div class="dyncontent">
@@ -105,200 +111,176 @@ Inheritance diagram for Camera:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a3ac4fcd89c146068205a3c8b73a86520"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ac4fcd89c146068205a3c8b73a86520"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const QVector3D &amp;position)</td></tr>
+<tr class="memitem:a3ac4fcd89c146068205a3c8b73a86520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a3ac4fcd89c146068205a3c8b73a86520">setPosition</a> (const QVector3D &amp;<a class="el" href="class_camera.html#a1e8c173f6a47c5ebea0e91aefea50b51">position</a>)</td></tr>
+<tr class="memdesc:a3ac4fcd89c146068205a3c8b73a86520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set position of camera to given value. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will be changed in order to keep <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> the same.  <a href="#a3ac4fcd89c146068205a3c8b73a86520">More...</a><br /></td></tr>
 <tr class="separator:a3ac4fcd89c146068205a3c8b73a86520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61a059ce3aedc779f9087dda9b5e227c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61a059ce3aedc779f9087dda9b5e227c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setViewDirection</b> (const QVector3D &amp;viewDirection)</td></tr>
+<tr class="memitem:a61a059ce3aedc779f9087dda9b5e227c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a61a059ce3aedc779f9087dda9b5e227c">setViewDirection</a> (const QVector3D &amp;<a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection</a>)</td></tr>
+<tr class="memdesc:a61a059ce3aedc779f9087dda9b5e227c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set viewDirection of camera to given vector. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will be changed in order to.  <a href="#a61a059ce3aedc779f9087dda9b5e227c">More...</a><br /></td></tr>
 <tr class="separator:a61a059ce3aedc779f9087dda9b5e227c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa445664f0bf5f3cd892a99125e4bc786"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa445664f0bf5f3cd892a99125e4bc786"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEye</b> (const QVector3D &amp;eye)</td></tr>
+<tr class="memitem:aa445664f0bf5f3cd892a99125e4bc786"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa445664f0bf5f3cd892a99125e4bc786">setEye</a> (const QVector3D &amp;<a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye</a>)</td></tr>
+<tr class="memdesc:aa445664f0bf5f3cd892a99125e4bc786"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set eye (position) of camera to given value. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will not be changed, so <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> is set to <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> - <a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye()</a>  <a href="#aa445664f0bf5f3cd892a99125e4bc786">More...</a><br /></td></tr>
 <tr class="separator:aa445664f0bf5f3cd892a99125e4bc786"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0594124b7a1baf13ef38de7a6bd0ed8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0594124b7a1baf13ef38de7a6bd0ed8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCenter</b> (const QVector3D &amp;center)</td></tr>
+<tr class="memitem:ae0594124b7a1baf13ef38de7a6bd0ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae0594124b7a1baf13ef38de7a6bd0ed8">setCenter</a> (const QVector3D &amp;<a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center</a>)</td></tr>
+<tr class="memdesc:ae0594124b7a1baf13ef38de7a6bd0ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set center of camera to given value. <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> will be set to new <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> - <a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye()</a>.  <a href="#ae0594124b7a1baf13ef38de7a6bd0ed8">More...</a><br /></td></tr>
 <tr class="separator:ae0594124b7a1baf13ef38de7a6bd0ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a037ef3f032c7fc09fa1f044260dd3a09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a037ef3f032c7fc09fa1f044260dd3a09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUp</b> (const QVector3D &amp;up)</td></tr>
+<tr class="memitem:a037ef3f032c7fc09fa1f044260dd3a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a037ef3f032c7fc09fa1f044260dd3a09">setUp</a> (const QVector3D &amp;<a class="el" href="class_camera.html#a86995a93a125a9d9941f10144c4c398e">up</a>)</td></tr>
+<tr class="memdesc:a037ef3f032c7fc09fa1f044260dd3a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up-vector of camera.  <a href="#a037ef3f032c7fc09fa1f044260dd3a09">More...</a><br /></td></tr>
 <tr class="separator:a037ef3f032c7fc09fa1f044260dd3a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a995075e3b619176b72ad2ff0ab434ed8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a995075e3b619176b72ad2ff0ab434ed8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setView</b> (const QVector3D &amp;eye, const QVector3D &amp;center, const QVector3D &amp;up)</td></tr>
+<tr class="memitem:a995075e3b619176b72ad2ff0ab434ed8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a995075e3b619176b72ad2ff0ab434ed8">setView</a> (const QVector3D &amp;<a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye</a>, const QVector3D &amp;<a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center</a>, const QVector3D &amp;<a class="el" href="class_camera.html#a86995a93a125a9d9941f10144c4c398e">up</a>)</td></tr>
+<tr class="memdesc:a995075e3b619176b72ad2ff0ab434ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convinence method to specify view with one method call.  <a href="#a995075e3b619176b72ad2ff0ab434ed8">More...</a><br /></td></tr>
 <tr class="separator:a995075e3b619176b72ad2ff0ab434ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad47041196bf35fed448003491112f528"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad47041196bf35fed448003491112f528"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setViewport</b> (const QSize &amp;viewport)</td></tr>
+<tr class="memitem:ad47041196bf35fed448003491112f528"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad47041196bf35fed448003491112f528">setViewport</a> (const QSize &amp;<a class="el" href="class_camera.html#a56b601feb6a54eee0bce1910cdeac291">viewport</a>)</td></tr>
 <tr class="separator:ad47041196bf35fed448003491112f528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0794a4ebc430368c5c3731e9bb35cdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0794a4ebc430368c5c3731e9bb35cdc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setViewport</b> (int x, int y)</td></tr>
+<tr class="memitem:ab0794a4ebc430368c5c3731e9bb35cdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ab0794a4ebc430368c5c3731e9bb35cdc">setViewport</a> (int x, int y)</td></tr>
 <tr class="separator:ab0794a4ebc430368c5c3731e9bb35cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0e1d52fdb7e3d060041b960fa8b5c24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0e1d52fdb7e3d060041b960fa8b5c24"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFovy</b> (float angle)</td></tr>
+<tr class="memitem:aa0e1d52fdb7e3d060041b960fa8b5c24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa0e1d52fdb7e3d060041b960fa8b5c24">setFovy</a> (float angle)</td></tr>
 <tr class="separator:aa0e1d52fdb7e3d060041b960fa8b5c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a8cda23fc022255f30452f608c66081"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a8cda23fc022255f30452f608c66081"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setZNear</b> (float zNear)</td></tr>
+<tr class="memitem:a4a8cda23fc022255f30452f608c66081"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4a8cda23fc022255f30452f608c66081">setZNear</a> (float <a class="el" href="class_camera.html#a1db2166635ff27594eda3a23130b66ac">zNear</a>)</td></tr>
 <tr class="separator:a4a8cda23fc022255f30452f608c66081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ab94de2388acc72fa129fa203ccc587"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ab94de2388acc72fa129fa203ccc587"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setZFar</b> (float zFar)</td></tr>
+<tr class="memitem:a8ab94de2388acc72fa129fa203ccc587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8ab94de2388acc72fa129fa203ccc587">setZFar</a> (float <a class="el" href="class_camera.html#a6290469f972a5903c805725db563f41f">zFar</a>)</td></tr>
 <tr class="separator:a8ab94de2388acc72fa129fa203ccc587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:af652ce7cb83eb966a90393be8e0038c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af652ce7cb83eb966a90393be8e0038c3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>viewChanged</b> ()</td></tr>
+<tr class="memitem:af652ce7cb83eb966a90393be8e0038c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af652ce7cb83eb966a90393be8e0038c3">viewChanged</a> ()</td></tr>
 <tr class="separator:af652ce7cb83eb966a90393be8e0038c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad56e137b78c37179019cf90005af9b29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad56e137b78c37179019cf90005af9b29"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Camera</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:ad56e137b78c37179019cf90005af9b29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad56e137b78c37179019cf90005af9b29">Camera</a> (QObject *parent=0)</td></tr>
 <tr class="separator:ad56e137b78c37179019cf90005af9b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33ad49c0e2c636d279be20bacc0d1757"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a33ad49c0e2c636d279be20bacc0d1757">Camera</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera, QObject *parent=0)</td></tr>
-<tr class="memdesc:a33ad49c0e2c636d279be20bacc0d1757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_camera.html">Camera</a> with matrices copied.  <a href="#a33ad49c0e2c636d279be20bacc0d1757">More...</a><br /></td></tr>
+<tr class="memdesc:a33ad49c0e2c636d279be20bacc0d1757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> with matrices copied.  <a href="#a33ad49c0e2c636d279be20bacc0d1757">More...</a><br /></td></tr>
 <tr class="separator:a33ad49c0e2c636d279be20bacc0d1757"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6797f30b3a8a94a798a9687be4e1d825"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6797f30b3a8a94a798a9687be4e1d825"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>view</b> () const </td></tr>
+<tr class="memitem:ad1897942d0ccf91052386388a497349f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad1897942d0ccf91052386388a497349f">~Camera</a> ()</td></tr>
+<tr class="separator:ad1897942d0ccf91052386388a497349f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6797f30b3a8a94a798a9687be4e1d825"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6797f30b3a8a94a798a9687be4e1d825">view</a> () const </td></tr>
 <tr class="separator:a6797f30b3a8a94a798a9687be4e1d825"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f373d44131b72f23b4a23ef3b13f90b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f373d44131b72f23b4a23ef3b13f90b"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>viewInverted</b> () const </td></tr>
+<tr class="memitem:a6f373d44131b72f23b4a23ef3b13f90b"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6f373d44131b72f23b4a23ef3b13f90b">viewInverted</a> () const </td></tr>
 <tr class="separator:a6f373d44131b72f23b4a23ef3b13f90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a683759f8c6c9207192a4c8b3f12be8e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a683759f8c6c9207192a4c8b3f12be8e7"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>viewProjection</b> () const </td></tr>
+<tr class="memitem:a683759f8c6c9207192a4c8b3f12be8e7"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a683759f8c6c9207192a4c8b3f12be8e7">viewProjection</a> () const </td></tr>
 <tr class="separator:a683759f8c6c9207192a4c8b3f12be8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ee2df09ee42e1ddddf7b6dc3de330e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ee2df09ee42e1ddddf7b6dc3de330e4"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>viewProjectionInverted</b> () const </td></tr>
+<tr class="memitem:a5ee2df09ee42e1ddddf7b6dc3de330e4"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a5ee2df09ee42e1ddddf7b6dc3de330e4">viewProjectionInverted</a> () const </td></tr>
 <tr class="separator:a5ee2df09ee42e1ddddf7b6dc3de330e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af87d251359157acdb6e540d63a933392"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af87d251359157acdb6e540d63a933392"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>projection</b> () const </td></tr>
+<tr class="memitem:af87d251359157acdb6e540d63a933392"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af87d251359157acdb6e540d63a933392">projection</a> () const </td></tr>
 <tr class="separator:af87d251359157acdb6e540d63a933392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6108163876720d7e856ac91c6835cde9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6108163876720d7e856ac91c6835cde9"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>projectionInverted</b> () const </td></tr>
+<tr class="memitem:a6108163876720d7e856ac91c6835cde9"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6108163876720d7e856ac91c6835cde9">projectionInverted</a> () const </td></tr>
 <tr class="separator:a6108163876720d7e856ac91c6835cde9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa03eb8b412fd5c6a496072503c78ee95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa03eb8b412fd5c6a496072503c78ee95"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> () const </td></tr>
+<tr class="memitem:aa03eb8b412fd5c6a496072503c78ee95"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa03eb8b412fd5c6a496072503c78ee95">position</a> () const </td></tr>
 <tr class="separator:aa03eb8b412fd5c6a496072503c78ee95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b5d47728aad185b6471e9d641e5716e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b5d47728aad185b6471e9d641e5716e"></a>
-QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>viewDirection</b> () const </td></tr>
+<tr class="memitem:a3b5d47728aad185b6471e9d641e5716e"><td class="memItemLeft" align="right" valign="top">QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a3b5d47728aad185b6471e9d641e5716e">viewDirection</a> () const </td></tr>
 <tr class="separator:a3b5d47728aad185b6471e9d641e5716e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eabf004448f650a632365cfd3d6980b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eabf004448f650a632365cfd3d6980b"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>center</b> () const </td></tr>
+<tr class="memitem:a3eabf004448f650a632365cfd3d6980b"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a3eabf004448f650a632365cfd3d6980b">center</a> () const </td></tr>
 <tr class="separator:a3eabf004448f650a632365cfd3d6980b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2558b66a8e6b053468bb1f5ffcc5841b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2558b66a8e6b053468bb1f5ffcc5841b"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>eye</b> () const </td></tr>
+<tr class="memitem:a2558b66a8e6b053468bb1f5ffcc5841b"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2558b66a8e6b053468bb1f5ffcc5841b">eye</a> () const </td></tr>
 <tr class="separator:a2558b66a8e6b053468bb1f5ffcc5841b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86a19bc4ac24604bb5c0b3f4b6dad193"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86a19bc4ac24604bb5c0b3f4b6dad193"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>up</b> () const </td></tr>
+<tr class="memitem:a86a19bc4ac24604bb5c0b3f4b6dad193"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193">up</a> () const </td></tr>
 <tr class="separator:a86a19bc4ac24604bb5c0b3f4b6dad193"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af74af0fabb70490072ebeb013582284a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af74af0fabb70490072ebeb013582284a"></a>
-const QSize &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>viewport</b> () const </td></tr>
+<tr class="memitem:af74af0fabb70490072ebeb013582284a"><td class="memItemLeft" align="right" valign="top">const QSize &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af74af0fabb70490072ebeb013582284a">viewport</a> () const </td></tr>
 <tr class="separator:af74af0fabb70490072ebeb013582284a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74f8741128595da3efa466cb5e580601"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74f8741128595da3efa466cb5e580601"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>fovy</b> () const </td></tr>
+<tr class="memitem:a74f8741128595da3efa466cb5e580601"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a74f8741128595da3efa466cb5e580601">fovy</a> () const </td></tr>
 <tr class="separator:a74f8741128595da3efa466cb5e580601"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a898b996f8cc534948886387193bcbc52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a898b996f8cc534948886387193bcbc52"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>zNear</b> () const </td></tr>
+<tr class="memitem:a898b996f8cc534948886387193bcbc52"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a898b996f8cc534948886387193bcbc52">zNear</a> () const </td></tr>
 <tr class="separator:a898b996f8cc534948886387193bcbc52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14e0e8d92dfcd76624780288caa7de8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14e0e8d92dfcd76624780288caa7de8e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>zFar</b> () const </td></tr>
+<tr class="memitem:a14e0e8d92dfcd76624780288caa7de8e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a14e0e8d92dfcd76624780288caa7de8e">zFar</a> () const </td></tr>
 <tr class="separator:a14e0e8d92dfcd76624780288caa7de8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ada8eafa78187469b93a22e2cc97d49f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada8eafa78187469b93a22e2cc97d49f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invalidateView</b> () const </td></tr>
+<tr class="memitem:ada8eafa78187469b93a22e2cc97d49f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ada8eafa78187469b93a22e2cc97d49f8">invalidateView</a> () const </td></tr>
 <tr class="separator:ada8eafa78187469b93a22e2cc97d49f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8067b4207b1a429318159059fac186c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8067b4207b1a429318159059fac186c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>invalidateProjection</b> () const </td></tr>
+<tr class="memitem:a8067b4207b1a429318159059fac186c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8067b4207b1a429318159059fac186c0">invalidateProjection</a> () const </td></tr>
 <tr class="separator:a8067b4207b1a429318159059fac186c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1ce6744a19131677ee890325032e749"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1ce6744a19131677ee890325032e749"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>recalculateView</b> () const </td></tr>
+<tr class="memitem:aa1ce6744a19131677ee890325032e749"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa1ce6744a19131677ee890325032e749">recalculateView</a> () const </td></tr>
 <tr class="separator:aa1ce6744a19131677ee890325032e749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adba918d86364f5452cad93a9ec6ea6d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adba918d86364f5452cad93a9ec6ea6d6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>recalculateProjection</b> () const </td></tr>
+<tr class="memitem:adba918d86364f5452cad93a9ec6ea6d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#adba918d86364f5452cad93a9ec6ea6d6">recalculateProjection</a> () const </td></tr>
 <tr class="separator:adba918d86364f5452cad93a9ec6ea6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4c6dcfee420eb57f9521d5195ce78f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4c6dcfee420eb57f9521d5195ce78f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>recalculateViewProjection</b> () const </td></tr>
+<tr class="memitem:ae4c6dcfee420eb57f9521d5195ce78f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae4c6dcfee420eb57f9521d5195ce78f8">recalculateViewProjection</a> () const </td></tr>
 <tr class="separator:ae4c6dcfee420eb57f9521d5195ce78f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a227e5fd463e3bea92f376d8a9d7cee7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a227e5fd463e3bea92f376d8a9d7cee7e"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_eye</b></td></tr>
+<tr class="memitem:a227e5fd463e3bea92f376d8a9d7cee7e"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a227e5fd463e3bea92f376d8a9d7cee7e">m_eye</a></td></tr>
 <tr class="separator:a227e5fd463e3bea92f376d8a9d7cee7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7048a9ea478532b36678d4d2d07c6dd6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7048a9ea478532b36678d4d2d07c6dd6"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_center</b></td></tr>
+<tr class="memitem:a7048a9ea478532b36678d4d2d07c6dd6"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a7048a9ea478532b36678d4d2d07c6dd6">m_center</a></td></tr>
 <tr class="separator:a7048a9ea478532b36678d4d2d07c6dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30016ca4d7348e14462f3147add42ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af30016ca4d7348e14462f3147add42ec"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_up</b></td></tr>
+<tr class="memitem:af30016ca4d7348e14462f3147add42ec"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#af30016ca4d7348e14462f3147add42ec">m_up</a></td></tr>
 <tr class="separator:af30016ca4d7348e14462f3147add42ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6968a6be1441d8947d3376e983c592e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6968a6be1441d8947d3376e983c592e"></a>
-QSize *&#160;</td><td class="memItemRight" valign="bottom"><b>m_viewport</b></td></tr>
+<tr class="memitem:ac6968a6be1441d8947d3376e983c592e"><td class="memItemLeft" align="right" valign="top">QSize *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac6968a6be1441d8947d3376e983c592e">m_viewport</a></td></tr>
 <tr class="separator:ac6968a6be1441d8947d3376e983c592e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae77d866ea9d0aa75853c8243154fca82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae77d866ea9d0aa75853c8243154fca82"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>m_zNear</b></td></tr>
+<tr class="memitem:ae77d866ea9d0aa75853c8243154fca82"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae77d866ea9d0aa75853c8243154fca82">m_zNear</a></td></tr>
 <tr class="separator:ae77d866ea9d0aa75853c8243154fca82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1aaffbfe1f859ff06ae57f7c1faa208"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1aaffbfe1f859ff06ae57f7c1faa208"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>m_zFar</b></td></tr>
+<tr class="memitem:aa1aaffbfe1f859ff06ae57f7c1faa208"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa1aaffbfe1f859ff06ae57f7c1faa208">m_zFar</a></td></tr>
 <tr class="separator:aa1aaffbfe1f859ff06ae57f7c1faa208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae537e927f6648b6ce7054e0ff54442b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae537e927f6648b6ce7054e0ff54442b9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>m_fovy</b></td></tr>
+<tr class="memitem:ae537e927f6648b6ce7054e0ff54442b9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae537e927f6648b6ce7054e0ff54442b9">m_fovy</a></td></tr>
 <tr class="separator:ae537e927f6648b6ce7054e0ff54442b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac11306608e9187c2ff52e0b949cdc5b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac11306608e9187c2ff52e0b949cdc5b3"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_view</b></td></tr>
+<tr class="memitem:ac11306608e9187c2ff52e0b949cdc5b3"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac11306608e9187c2ff52e0b949cdc5b3">m_view</a></td></tr>
 <tr class="separator:ac11306608e9187c2ff52e0b949cdc5b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06be12235980a27d0e529de166117b3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06be12235980a27d0e529de166117b3e"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_viewInverted</b></td></tr>
+<tr class="memitem:a06be12235980a27d0e529de166117b3e"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a06be12235980a27d0e529de166117b3e">m_viewInverted</a></td></tr>
 <tr class="separator:a06be12235980a27d0e529de166117b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23f540bd415235c5b917322e8a333996"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23f540bd415235c5b917322e8a333996"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_projection</b></td></tr>
+<tr class="memitem:a23f540bd415235c5b917322e8a333996"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a23f540bd415235c5b917322e8a333996">m_projection</a></td></tr>
 <tr class="separator:a23f540bd415235c5b917322e8a333996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a406e8638e0676defdc5757ed2733e401"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a406e8638e0676defdc5757ed2733e401"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_projectionInverted</b></td></tr>
+<tr class="memitem:a406e8638e0676defdc5757ed2733e401"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a406e8638e0676defdc5757ed2733e401">m_projectionInverted</a></td></tr>
 <tr class="separator:a406e8638e0676defdc5757ed2733e401"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00e4c0e94057379c97e8c71fd69995f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00e4c0e94057379c97e8c71fd69995f7"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_viewProjection</b></td></tr>
+<tr class="memitem:a00e4c0e94057379c97e8c71fd69995f7"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a00e4c0e94057379c97e8c71fd69995f7">m_viewProjection</a></td></tr>
 <tr class="separator:a00e4c0e94057379c97e8c71fd69995f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29e1c120c55810920954e335eb60e84e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29e1c120c55810920954e335eb60e84e"></a>
-QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><b>m_viewProjectionInverted</b></td></tr>
+<tr class="memitem:a29e1c120c55810920954e335eb60e84e"><td class="memItemLeft" align="right" valign="top">QMatrix4x4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a29e1c120c55810920954e335eb60e84e">m_viewProjectionInverted</a></td></tr>
 <tr class="separator:a29e1c120c55810920954e335eb60e84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07a7666a3529761624675f4f1771f1c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07a7666a3529761624675f4f1771f1c7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isViewInvalid</b></td></tr>
+<tr class="memitem:a07a7666a3529761624675f4f1771f1c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a07a7666a3529761624675f4f1771f1c7">m_isViewInvalid</a></td></tr>
 <tr class="separator:a07a7666a3529761624675f4f1771f1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62264f74f2fb442e8d94e5c0a44098f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62264f74f2fb442e8d94e5c0a44098f0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isProjectionInvalid</b></td></tr>
+<tr class="memitem:a62264f74f2fb442e8d94e5c0a44098f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a62264f74f2fb442e8d94e5c0a44098f0">m_isProjectionInvalid</a></td></tr>
 <tr class="separator:a62264f74f2fb442e8d94e5c0a44098f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34a4ccea1f4f66eb140db34ef7bdf11a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34a4ccea1f4f66eb140db34ef7bdf11a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_isViewProjectionInvalid</b></td></tr>
+<tr class="memitem:a34a4ccea1f4f66eb140db34ef7bdf11a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a34a4ccea1f4f66eb140db34ef7bdf11a">m_isViewProjectionInvalid</a></td></tr>
 <tr class="separator:a34a4ccea1f4f66eb140db34ef7bdf11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:aac5808300c4e00d266da238ad35b1a1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac5808300c4e00d266da238ad35b1a1b"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>eye</b></td></tr>
+<tr class="memitem:aac5808300c4e00d266da238ad35b1a1b"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye</a></td></tr>
 <tr class="separator:aac5808300c4e00d266da238ad35b1a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacb30cc51aef5e3f98db5b51e3a4ef3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacb30cc51aef5e3f98db5b51e3a4ef3b"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>center</b></td></tr>
+<tr class="memitem:aacb30cc51aef5e3f98db5b51e3a4ef3b"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center</a></td></tr>
 <tr class="separator:aacb30cc51aef5e3f98db5b51e3a4ef3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86995a93a125a9d9941f10144c4c398e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86995a93a125a9d9941f10144c4c398e"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>up</b></td></tr>
+<tr class="memitem:a86995a93a125a9d9941f10144c4c398e"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a86995a93a125a9d9941f10144c4c398e">up</a></td></tr>
 <tr class="separator:a86995a93a125a9d9941f10144c4c398e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8c173f6a47c5ebea0e91aefea50b51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e8c173f6a47c5ebea0e91aefea50b51"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memitem:a1e8c173f6a47c5ebea0e91aefea50b51"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a1e8c173f6a47c5ebea0e91aefea50b51">position</a></td></tr>
 <tr class="separator:a1e8c173f6a47c5ebea0e91aefea50b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7745654f918533ddc5e285bcf630e934"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7745654f918533ddc5e285bcf630e934"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>viewDirection</b></td></tr>
+<tr class="memitem:a7745654f918533ddc5e285bcf630e934"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection</a></td></tr>
 <tr class="separator:a7745654f918533ddc5e285bcf630e934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56b601feb6a54eee0bce1910cdeac291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56b601feb6a54eee0bce1910cdeac291"></a>
-const QSize&#160;</td><td class="memItemRight" valign="bottom"><b>viewport</b></td></tr>
+<tr class="memitem:a56b601feb6a54eee0bce1910cdeac291"><td class="memItemLeft" align="right" valign="top">const QSize&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a56b601feb6a54eee0bce1910cdeac291">viewport</a></td></tr>
 <tr class="separator:a56b601feb6a54eee0bce1910cdeac291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db2166635ff27594eda3a23130b66ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1db2166635ff27594eda3a23130b66ac"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>zNear</b></td></tr>
+<tr class="memitem:a1db2166635ff27594eda3a23130b66ac"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a1db2166635ff27594eda3a23130b66ac">zNear</a></td></tr>
 <tr class="separator:a1db2166635ff27594eda3a23130b66ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6290469f972a5903c805725db563f41f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6290469f972a5903c805725db563f41f"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>zFar</b></td></tr>
+<tr class="memitem:a6290469f972a5903c805725db563f41f"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6290469f972a5903c805725db563f41f">zFar</a></td></tr>
 <tr class="separator:a6290469f972a5903c805725db563f41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cba4066109137fb0d23ee207205927c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cba4066109137fb0d23ee207205927c"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>fovy</b></td></tr>
+<tr class="memitem:a6cba4066109137fb0d23ee207205927c"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6cba4066109137fb0d23ee207205927c">fovy</a></td></tr>
 <tr class="separator:a6cba4066109137fb0d23ee207205927c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> class provides view and perspective projection matrices. Additional the viewport of camera is stored.  The view of camera has to be specified by eye, center and up or by position, viewdirection and up. It is allowed to mix both definitions, but it might lead to unexpected behaviour. The perspective projection is specified by field of view, viewport, and near and far plane. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ad56e137b78c37179019cf90005af9b29"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Camera::Camera </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a33ad49c0e2c636d279be20bacc0d1757"></a>
 <div class="memitem">
 <div class="memproto">
@@ -323,7 +305,7 @@ qreal&#160;</td><td class="memItemRight" valign="bottom"><b>fovy</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new <a class="el" href="class_camera.html">Camera</a> with matrices copied. </p>
+<p>Creates a new <a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> with matrices copied. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">camera</td><td>Specifies the camera the matrices are copied from. </td></tr>
@@ -334,14 +316,1243 @@ qreal&#160;</td><td class="memItemRight" valign="bottom"><b>fovy</b></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad1897942d0ccf91052386388a497349f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Camera::~Camera </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3eabf004448f650a632365cfd3d6980b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; Camera::center </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2558b66a8e6b053468bb1f5ffcc5841b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; Camera::eye </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a74f8741128595da3efa466cb5e580601"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::fovy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8067b4207b1a429318159059fac186c0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::invalidateProjection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ada8eafa78187469b93a22e2cc97d49f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::invalidateView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa03eb8b412fd5c6a496072503c78ee95"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; Camera::position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af87d251359157acdb6e540d63a933392"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::projection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6108163876720d7e856ac91c6835cde9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::projectionInverted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adba918d86364f5452cad93a9ec6ea6d6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::recalculateProjection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa1ce6744a19131677ee890325032e749"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::recalculateView </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae4c6dcfee420eb57f9521d5195ce78f8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::recalculateViewProjection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae0594124b7a1baf13ef38de7a6bd0ed8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setCenter </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>center</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set center of camera to given value. <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> will be set to new <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> - <a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">center</td><td>Position the camera is looking to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa445664f0bf5f3cd892a99125e4bc786"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setEye </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>eye</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set eye (position) of camera to given value. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will not be changed, so <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> is set to <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> - <a class="el" href="class_camera.html#aac5808300c4e00d266da238ad35b1a1b">eye()</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eye</td><td><a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> will be set to this position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa0e1d52fdb7e3d060041b960fa8b5c24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setFovy </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3ac4fcd89c146068205a3c8b73a86520"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set position of camera to given value. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will be changed in order to keep <a class="el" href="class_camera.html#a7745654f918533ddc5e285bcf630e934">viewDirection()</a> the same. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td><a class="el" href="class_camera.html" title="The Camera class provides view and perspective projection matrices. Additional the viewport of camera...">Camera</a> will be set to this position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a037ef3f032c7fc09fa1f044260dd3a09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setUp </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>up</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set up-vector of camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">up</td><td>New up vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a995075e3b619176b72ad2ff0ab434ed8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setView </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>eye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>center</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>up</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convinence method to specify view with one method call. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eye</td><td>See <a class="el" href="class_camera.html#aa445664f0bf5f3cd892a99125e4bc786" title="Set eye (position) of camera to given value. center() will not be changed, so viewDirection() is set ...">setEye()</a> </td></tr>
+    <tr><td class="paramname">center</td><td>See <a class="el" href="class_camera.html#ae0594124b7a1baf13ef38de7a6bd0ed8" title="Set center of camera to given value. viewDirection() will be set to new center() - eye()...">setCenter()</a> </td></tr>
+    <tr><td class="paramname">up</td><td>See <a class="el" href="class_camera.html#a037ef3f032c7fc09fa1f044260dd3a09" title="Set up-vector of camera. ">setUp()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a61a059ce3aedc779f9087dda9b5e227c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setViewDirection </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>viewDirection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set viewDirection of camera to given vector. <a class="el" href="class_camera.html#aacb30cc51aef5e3f98db5b51e3a4ef3b">center()</a> will be changed in order to. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">viewDirection</td><td>Direction the camera should look. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad47041196bf35fed448003491112f528"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setViewport </td>
+          <td>(</td>
+          <td class="paramtype">const QSize &amp;&#160;</td>
+          <td class="paramname"><em>viewport</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab0794a4ebc430368c5c3731e9bb35cdc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setViewport </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8ab94de2388acc72fa129fa203ccc587"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setZFar </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zFar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4a8cda23fc022255f30452f608c66081"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setZNear </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>zNear</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a86a19bc4ac24604bb5c0b3f4b6dad193"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; Camera::up </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6797f30b3a8a94a798a9687be4e1d825"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::view </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af652ce7cb83eb966a90393be8e0038c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::viewChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3b5d47728aad185b6471e9d641e5716e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D Camera::viewDirection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6f373d44131b72f23b4a23ef3b13f90b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::viewInverted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af74af0fabb70490072ebeb013582284a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QSize&amp; Camera::viewport </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a683759f8c6c9207192a4c8b3f12be8e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::viewProjection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5ee2df09ee42e1ddddf7b6dc3de330e4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4 const &amp; Camera::viewProjectionInverted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a14e0e8d92dfcd76624780288caa7de8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::zFar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a898b996f8cc534948886387193bcbc52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::zNear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a7048a9ea478532b36678d4d2d07c6dd6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Camera::m_center</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a227e5fd463e3bea92f376d8a9d7cee7e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Camera::m_eye</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae537e927f6648b6ce7054e0ff54442b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::m_fovy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a62264f74f2fb442e8d94e5c0a44098f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Camera::m_isProjectionInvalid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a07a7666a3529761624675f4f1771f1c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Camera::m_isViewInvalid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a34a4ccea1f4f66eb140db34ef7bdf11a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Camera::m_isViewProjectionInvalid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a23f540bd415235c5b917322e8a333996"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_projection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a406e8638e0676defdc5757ed2733e401"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_projectionInverted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af30016ca4d7348e14462f3147add42ec"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Camera::m_up</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac11306608e9187c2ff52e0b949cdc5b3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a06be12235980a27d0e529de166117b3e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_viewInverted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac6968a6be1441d8947d3376e983c592e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize* Camera::m_viewport</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a00e4c0e94057379c97e8c71fd69995f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_viewProjection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a29e1c120c55810920954e335eb60e84e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMatrix4x4* Camera::m_viewProjectionInverted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa1aaffbfe1f859ff06ae57f7c1faa208"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::m_zFar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae77d866ea9d0aa75853c8243154fca82"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::m_zNear</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="aacb30cc51aef5e3f98db5b51e3a4ef3b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Camera::center</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aac5808300c4e00d266da238ad35b1a1b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Camera::eye</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6cba4066109137fb0d23ee207205927c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::fovy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1e8c173f6a47c5ebea0e91aefea50b51"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Camera::position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a86995a93a125a9d9941f10144c4c398e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Camera::up</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7745654f918533ddc5e285bcf630e934"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D Camera::viewDirection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a56b601feb6a54eee0bce1910cdeac291"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QSize &amp; Camera::viewport</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6290469f972a5903c805725db563f41f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::zFar</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1db2166635ff27594eda3a23130b66ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Camera::zNear</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="camera_8h_source.html">camera.h</a></li>
-<li>gemIlluminator/camera.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="camera_8h_source.html">camera.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="camera_8cpp.html">camera.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:42 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:04 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -94,134 +95,936 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AbstractGem Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_abstract_gem.html" title="The AbstractGem class is our base class of all gems.  As base class all required information of a gem...">AbstractGem</a> class is our base class of all gems.  As base class all required information of a gem are stored. Also usefull algorithms for collision detection are provided. Furthermore this class is supposed to be used within QML.  
+ <a href="class_abstract_gem.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="abstractgem_8h_source.html">abstractgem.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AbstractGem:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_abstract_gem.png" usemap="#AbstractGem_map" alt=""/>
   <map id="AbstractGem_map" name="AbstractGem_map">
-<area href="class_cube_gem.html" alt="CubeGem" shape="rect" coords="0,112,106,136"/>
-<area href="class_scene_bounds.html" alt="SceneBounds" shape="rect" coords="116,112,222,136"/>
-<area href="class_tetrahedron_gem.html" alt="TetrahedronGem" shape="rect" coords="232,112,338,136"/>
+<area href="class_cube_gem.html" title="CubeGems are gems with a shape like a cube. The only difference to AbstracGem is the fact..." alt="CubeGem" shape="rect" coords="0,112,106,136"/>
+<area href="class_scene_bounds.html" title="The SceneBounds class is a special kind of gem describing the bounds of scene. The shape of the bound..." alt="SceneBounds" shape="rect" coords="116,112,222,136"/>
+<area href="class_tetrahedron_gem.html" title="TetrahedronGems are gems with a shape like a tetrahedron. The only difference to AbstracGem is the fa..." alt="TetrahedronGem" shape="rect" coords="232,112,338,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a6198aae1f2f54d73a7a5e66ca60f5f67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6198aae1f2f54d73a7a5e66ca60f5f67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRotationFromEuler</b> (const QVector3D &amp;eulerRotation)</td></tr>
+<tr class="memitem:a6198aae1f2f54d73a7a5e66ca60f5f67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a6198aae1f2f54d73a7a5e66ca60f5f67">setRotationFromEuler</a> (const QVector3D &amp;eulerRotation)</td></tr>
+<tr class="memdesc:a6198aae1f2f54d73a7a5e66ca60f5f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets rotation of gem using euler angles. This method is mainly used to set initial rotation.  <a href="#a6198aae1f2f54d73a7a5e66ca60f5f67">More...</a><br /></td></tr>
 <tr class="separator:a6198aae1f2f54d73a7a5e66ca60f5f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:ac84dd4c9b3ea3adf02c1bfa74a29b649"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac84dd4c9b3ea3adf02c1bfa74a29b649"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>positionChanged</b> ()</td></tr>
+<tr class="memitem:ac84dd4c9b3ea3adf02c1bfa74a29b649"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ac84dd4c9b3ea3adf02c1bfa74a29b649">positionChanged</a> ()</td></tr>
 <tr class="separator:ac84dd4c9b3ea3adf02c1bfa74a29b649"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2702e870321deb40a8f056c1fce01094"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2702e870321deb40a8f056c1fce01094"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotationChanged</b> ()</td></tr>
+<tr class="memitem:a2702e870321deb40a8f056c1fce01094"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a2702e870321deb40a8f056c1fce01094">rotationChanged</a> ()</td></tr>
 <tr class="separator:a2702e870321deb40a8f056c1fce01094"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e6bfe659f09bc68222211a58c365177"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e6bfe659f09bc68222211a58c365177"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>scaleChanged</b> ()</td></tr>
+<tr class="memitem:a7e6bfe659f09bc68222211a58c365177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a7e6bfe659f09bc68222211a58c365177">scaleChanged</a> ()</td></tr>
 <tr class="separator:a7e6bfe659f09bc68222211a58c365177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae20ad53d4ddeff9fc13878e7db5a3253"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae20ad53d4ddeff9fc13878e7db5a3253"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>colorChanged</b> ()</td></tr>
+<tr class="memitem:ae20ad53d4ddeff9fc13878e7db5a3253"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ae20ad53d4ddeff9fc13878e7db5a3253">colorChanged</a> ()</td></tr>
 <tr class="separator:ae20ad53d4ddeff9fc13878e7db5a3253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a489d032060a42a9a8475309105fc585d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a489d032060a42a9a8475309105fc585d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AbstractGem</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:a489d032060a42a9a8475309105fc585d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a489d032060a42a9a8475309105fc585d">AbstractGem</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a489d032060a42a9a8475309105fc585d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb92885bcf86f43f069c9a0ef203d770"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb92885bcf86f43f069c9a0ef203d770"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>color</b> () const </td></tr>
+<tr class="memitem:aafe5a4fa8c354ee562602d7b9ff1656b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#aafe5a4fa8c354ee562602d7b9ff1656b">~AbstractGem</a> ()</td></tr>
+<tr class="separator:aafe5a4fa8c354ee562602d7b9ff1656b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb92885bcf86f43f069c9a0ef203d770"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#abb92885bcf86f43f069c9a0ef203d770">color</a> () const </td></tr>
 <tr class="separator:abb92885bcf86f43f069c9a0ef203d770"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace63416f61034b73969b5a89e3913e6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace63416f61034b73969b5a89e3913e6d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setColor</b> (const QVector3D &amp;color)</td></tr>
+<tr class="memitem:ace63416f61034b73969b5a89e3913e6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ace63416f61034b73969b5a89e3913e6d">setColor</a> (const QVector3D &amp;<a class="el" href="class_abstract_gem.html#ae73e6ac2448549460fbc597354ab0854">color</a>)</td></tr>
 <tr class="separator:ace63416f61034b73969b5a89e3913e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23fb212f3cca79b345f82e19f8c12d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac23fb212f3cca79b345f82e19f8c12d5"></a>
-const <a class="el" href="class_gem_data.html">GemData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () const </td></tr>
+<tr class="memitem:ac23fb212f3cca79b345f82e19f8c12d5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_gem_data.html">GemData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ac23fb212f3cca79b345f82e19f8c12d5">data</a> () const </td></tr>
+<tr class="memdesc:ac23fb212f3cca79b345f82e19f8c12d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method returns the <a class="el" href="class_gem_data.html" title="The GemData class stores all required information to describe a AbstractGem.  The adventage of GemDat...">GemData</a> object describing the gem.  This method was not intended to be public, but we needed it for rendering.  <a href="#ac23fb212f3cca79b345f82e19f8c12d5">More...</a><br /></td></tr>
 <tr class="separator:ac23fb212f3cca79b345f82e19f8c12d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89f90d07bc8a780f053b3c6a5720aeed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89f90d07bc8a780f053b3c6a5720aeed"></a>
-const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>model</b> () const </td></tr>
+<tr class="memitem:a89f90d07bc8a780f053b3c6a5720aeed"><td class="memItemLeft" align="right" valign="top">const QMatrix4x4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a89f90d07bc8a780f053b3c6a5720aeed">model</a> () const </td></tr>
+<tr class="memdesc:a89f90d07bc8a780f053b3c6a5720aeed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs normal matrix for gem in order to transform it from objectspace into worldsapce.  <a href="#a89f90d07bc8a780f053b3c6a5720aeed">More...</a><br /></td></tr>
 <tr class="separator:a89f90d07bc8a780f053b3c6a5720aeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a404114854610011363f6d7800985b718"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a404114854610011363f6d7800985b718"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> () const </td></tr>
+<tr class="memitem:a404114854610011363f6d7800985b718"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a404114854610011363f6d7800985b718">position</a> () const </td></tr>
 <tr class="separator:a404114854610011363f6d7800985b718"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf11fa4b522dc334ebed4f2d031a3e2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf11fa4b522dc334ebed4f2d031a3e2b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (const QVector3D &amp;position)</td></tr>
+<tr class="memitem:aaf11fa4b522dc334ebed4f2d031a3e2b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#aaf11fa4b522dc334ebed4f2d031a3e2b">setPosition</a> (const QVector3D &amp;<a class="el" href="class_abstract_gem.html#accd665898ada9bc95c886bfbcf56d9a8">position</a>)</td></tr>
 <tr class="separator:aaf11fa4b522dc334ebed4f2d031a3e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a628481ed4ebff7b282524a003d4392c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a628481ed4ebff7b282524a003d4392c2"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>radius</b> () const </td></tr>
+<tr class="memitem:a628481ed4ebff7b282524a003d4392c2"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a628481ed4ebff7b282524a003d4392c2">radius</a> () const </td></tr>
+<tr class="memdesc:a628481ed4ebff7b282524a003d4392c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radius of boundingsphere. This value is influenced by scale and the geometry of gem.  <a href="#a628481ed4ebff7b282524a003d4392c2">More...</a><br /></td></tr>
 <tr class="separator:a628481ed4ebff7b282524a003d4392c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fc9d6ed418b73ec2539e063ebfa70c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fc9d6ed418b73ec2539e063ebfa70c1"></a>
-const QQuaternion &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b> () const </td></tr>
+<tr class="memitem:a4fc9d6ed418b73ec2539e063ebfa70c1"><td class="memItemLeft" align="right" valign="top">const QQuaternion &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a4fc9d6ed418b73ec2539e063ebfa70c1">rotation</a> () const </td></tr>
+<tr class="memdesc:a4fc9d6ed418b73ec2539e063ebfa70c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotation around the own center.  <a href="#a4fc9d6ed418b73ec2539e063ebfa70c1">More...</a><br /></td></tr>
 <tr class="separator:a4fc9d6ed418b73ec2539e063ebfa70c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afce4d09f74fec117d27b11a220eee6b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afce4d09f74fec117d27b11a220eee6b9"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setRotation</b> (const QQuaternion &amp;rotation)</td></tr>
+<tr class="memitem:afce4d09f74fec117d27b11a220eee6b9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#afce4d09f74fec117d27b11a220eee6b9">setRotation</a> (const QQuaternion &amp;<a class="el" href="class_abstract_gem.html#a6d85928549d64d369864716dbe2c716b">rotation</a>)</td></tr>
+<tr class="memdesc:afce4d09f74fec117d27b11a220eee6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation of gem around own center.  <a href="#afce4d09f74fec117d27b11a220eee6b9">More...</a><br /></td></tr>
 <tr class="separator:afce4d09f74fec117d27b11a220eee6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadc1c5925331b573d9aba6c2451c9348"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aadc1c5925331b573d9aba6c2451c9348"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b> () const </td></tr>
-<tr class="separator:aadc1c5925331b573d9aba6c2451c9348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23693f4ebb5260cb21141bbcf3f4ff83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23693f4ebb5260cb21141bbcf3f4ff83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setScale</b> (qreal scaleFactor)</td></tr>
-<tr class="separator:a23693f4ebb5260cb21141bbcf3f4ff83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52741bbab219af90f8400104f4c55f7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52741bbab219af90f8400104f4c55f7a"></a>
-const <a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_triangle.html">Triangle</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>triangles</b> () const </td></tr>
-<tr class="separator:a52741bbab219af90f8400104f4c55f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4860dda50d7acab4f507505369da19f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4860dda50d7acab4f507505369da19f8"></a>
-GemType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> () const </td></tr>
-<tr class="separator:a4860dda50d7acab4f507505369da19f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f945c4f1b76ae90414ed3229d01dd0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f945c4f1b76ae90414ed3229d01dd0b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>boundingSphereIntersectedBy</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint=nullptr)</td></tr>
-<tr class="separator:a9f945c4f1b76ae90414ed3229d01dd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc52cc6d78f3494563c50cfd7e0584b4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc52cc6d78f3494563c50cfd7e0584b4"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>intersectedBy</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint=nullptr)</td></tr>
-<tr class="separator:adc52cc6d78f3494563c50cfd7e0584b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a446d8e7a7296203789414ae5b93e0bde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a446d8e7a7296203789414ae5b93e0bde"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>faceIntersectedBy</b> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, <a class="el" href="class_triangle.html">Triangle</a> *&amp;intersectedFace, QVector3D *collisionPoint=nullptr)</td></tr>
-<tr class="separator:a446d8e7a7296203789414ae5b93e0bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ca6867a835dfe2b49d46dbfb933bfca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ca6867a835dfe2b49d46dbfb933bfca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotate</b> (const QQuaternion &amp;quaternion)</td></tr>
+<tr class="memitem:a5ca6867a835dfe2b49d46dbfb933bfca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a5ca6867a835dfe2b49d46dbfb933bfca">rotate</a> (const QQuaternion &amp;quaternion)</td></tr>
+<tr class="memdesc:a5ca6867a835dfe2b49d46dbfb933bfca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotates the gem around the center of the gem.  <a href="#a5ca6867a835dfe2b49d46dbfb933bfca">More...</a><br /></td></tr>
 <tr class="separator:a5ca6867a835dfe2b49d46dbfb933bfca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadc1c5925331b573d9aba6c2451c9348"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#aadc1c5925331b573d9aba6c2451c9348">scale</a> () const </td></tr>
+<tr class="separator:aadc1c5925331b573d9aba6c2451c9348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23693f4ebb5260cb21141bbcf3f4ff83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a23693f4ebb5260cb21141bbcf3f4ff83">setScale</a> (qreal scaleFactor)</td></tr>
+<tr class="separator:a23693f4ebb5260cb21141bbcf3f4ff83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4860dda50d7acab4f507505369da19f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="abstractgem_8h.html#a2f0a34b6dac35a9610cab7a1c5fcb444">GemType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a4860dda50d7acab4f507505369da19f8">type</a> () const </td></tr>
+<tr class="memdesc:a4860dda50d7acab4f507505369da19f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of gem, in order to differntiate between types even you have only AbstractGems.  <a href="#a4860dda50d7acab4f507505369da19f8">More...</a><br /></td></tr>
+<tr class="separator:a4860dda50d7acab4f507505369da19f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f945c4f1b76ae90414ed3229d01dd0b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a9f945c4f1b76ae90414ed3229d01dd0b">boundingSphereIntersectedBy</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint=nullptr)</td></tr>
+<tr class="memdesc:a9f945c4f1b76ae90414ed3229d01dd0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates distance to collision with gems boundingsphere.  The boundingsphere is specified by gems themself and cannot be influenced from outside. Because the collision point is only calculated with the bondingsphere computation is pretty fast.  <a href="#a9f945c4f1b76ae90414ed3229d01dd0b">More...</a><br /></td></tr>
+<tr class="separator:a9f945c4f1b76ae90414ed3229d01dd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc52cc6d78f3494563c50cfd7e0584b4"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#adc52cc6d78f3494563c50cfd7e0584b4">intersectedBy</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint=nullptr)</td></tr>
+<tr class="memdesc:adc52cc6d78f3494563c50cfd7e0584b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcualtes the distance to collision of ray with gem.  This method calculates the real collision point therefor many computations are done especially for complex gems.  <a href="#adc52cc6d78f3494563c50cfd7e0584b4">More...</a><br /></td></tr>
+<tr class="separator:adc52cc6d78f3494563c50cfd7e0584b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f3c6d38acbe59a610c67588e4944d7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_light_ray.html">LightRay</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ab4f3c6d38acbe59a610c67588e4944d7">processRayIntersection</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, <a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
+<tr class="memdesc:ab4f3c6d38acbe59a610c67588e4944d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates all new rays, that will be created by a collision with that gem. Also affect gem attributes.  <a href="#ab4f3c6d38acbe59a610c67588e4944d7">More...</a><br /></td></tr>
+<tr class="separator:ab4f3c6d38acbe59a610c67588e4944d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a85e872137d38a2c4a9a38f1f0b996bdc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85e872137d38a2c4a9a38f1f0b996bdc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>solveQuadricFormula</b> (float a, float b, float c, float &amp;x1, float &amp;x2)</td></tr>
+<tr class="memitem:a85e872137d38a2c4a9a38f1f0b996bdc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a85e872137d38a2c4a9a38f1f0b996bdc">solveQuadricFormula</a> (float a, float b, float c, float &amp;x1, float &amp;x2)</td></tr>
 <tr class="separator:a85e872137d38a2c4a9a38f1f0b996bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a446d8e7a7296203789414ae5b93e0bde"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a446d8e7a7296203789414ae5b93e0bde">faceIntersectedBy</a> (const <a class="el" href="class_light_ray.html">LightRay</a> &amp;ray, <a class="el" href="class_triangle.html">Triangle</a> *&amp;intersectedFace, QVector3D *collisionPoint=nullptr)</td></tr>
+<tr class="memdesc:a446d8e7a7296203789414ae5b93e0bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds face of gem intersected by given ray. Ownership of returned face is transfered to caller.  <a href="#a446d8e7a7296203789414ae5b93e0bde">More...</a><br /></td></tr>
+<tr class="separator:a446d8e7a7296203789414ae5b93e0bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18523ca4a999d5159e38003b3fad5f20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_triangle.html">Triangle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a18523ca4a999d5159e38003b3fad5f20">inWorldCoordinates</a> (const <a class="el" href="class_triangle.html">Triangle</a> &amp;triangle)</td></tr>
+<tr class="memdesc:a18523ca4a999d5159e38003b3fad5f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates triangle in world coordinates for given triangle. Therefor position, rotatition and scale of gem are used.  <a href="#a18523ca4a999d5159e38003b3fad5f20">More...</a><br /></td></tr>
+<tr class="separator:a18523ca4a999d5159e38003b3fad5f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a10a337f732ade69f1988659852f837c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10a337f732ade69f1988659852f837c6"></a>
-<a class="el" href="class_gem_data.html">GemData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_data</b></td></tr>
+<tr class="memitem:a10a337f732ade69f1988659852f837c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_gem_data.html">GemData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a10a337f732ade69f1988659852f837c6">m_data</a></td></tr>
 <tr class="separator:a10a337f732ade69f1988659852f837c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab058af121fa66616cab7551e9418048a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab058af121fa66616cab7551e9418048a"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>m_radius</b></td></tr>
+<tr class="memitem:ab058af121fa66616cab7551e9418048a"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ab058af121fa66616cab7551e9418048a">m_radius</a></td></tr>
 <tr class="separator:ab058af121fa66616cab7551e9418048a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:accd665898ada9bc95c886bfbcf56d9a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accd665898ada9bc95c886bfbcf56d9a8"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memitem:accd665898ada9bc95c886bfbcf56d9a8"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#accd665898ada9bc95c886bfbcf56d9a8">position</a></td></tr>
 <tr class="separator:accd665898ada9bc95c886bfbcf56d9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d85928549d64d369864716dbe2c716b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d85928549d64d369864716dbe2c716b"></a>
-const QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="memitem:a6d85928549d64d369864716dbe2c716b"><td class="memItemLeft" align="right" valign="top">const QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a6d85928549d64d369864716dbe2c716b">rotation</a></td></tr>
 <tr class="separator:a6d85928549d64d369864716dbe2c716b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c3b2720a5e3da61741f9043427ab51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71c3b2720a5e3da61741f9043427ab51"></a>
-qreal&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b></td></tr>
+<tr class="memitem:a71c3b2720a5e3da61741f9043427ab51"><td class="memItemLeft" align="right" valign="top">qreal&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#a71c3b2720a5e3da61741f9043427ab51">scale</a></td></tr>
 <tr class="separator:a71c3b2720a5e3da61741f9043427ab51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae73e6ac2448549460fbc597354ab0854"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae73e6ac2448549460fbc597354ab0854"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>color</b></td></tr>
+<tr class="memitem:ae73e6ac2448549460fbc597354ab0854"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abstract_gem.html#ae73e6ac2448549460fbc597354ab0854">color</a></td></tr>
 <tr class="separator:ae73e6ac2448549460fbc597354ab0854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_abstract_gem.html" title="The AbstractGem class is our base class of all gems.  As base class all required information of a gem...">AbstractGem</a> class is our base class of all gems.  As base class all required information of a gem are stored. Also usefull algorithms for collision detection are provided. Furthermore this class is supposed to be used within QML. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a489d032060a42a9a8475309105fc585d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AbstractGem::AbstractGem </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aafe5a4fa8c354ee562602d7b9ff1656b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AbstractGem::~AbstractGem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9f945c4f1b76ae90414ed3229d01dd0b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AbstractGem::boundingSphereIntersectedBy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QVector3D *&#160;</td>
+          <td class="paramname"><em>collisionPoint</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates distance to collision with gems boundingsphere.  The boundingsphere is specified by gems themself and cannot be influenced from outside. Because the collision point is only calculated with the bondingsphere computation is pretty fast. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>The ray which might collide with gems boundingsphere </td></tr>
+    <tr><td class="paramname">collisionPoint</td><td>Optional parameter. If provided the collision point of ray with boundingsphere is written into. If no collision occurs the maximum float value is wriiten into all components. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The factor you need to apply ray.direction() to ray.startPosition(). If no collision occurs maximum float value is returned. Do not compare this value with return values of <a class="el" href="class_abstract_gem.html#adc52cc6d78f3494563c50cfd7e0584b4" title="Calcualtes the distance to collision of ray with gem.  This method calculates the real collision poin...">intersectedBy()</a>  <a class="el" href="class_abstract_gem.html#adc52cc6d78f3494563c50cfd7e0584b4" title="Calcualtes the distance to collision of ray with gem.  This method calculates the real collision poin...">intersectedBy()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abb92885bcf86f43f069c9a0ef203d770"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; AbstractGem::color </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae20ad53d4ddeff9fc13878e7db5a3253"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::colorChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac23fb212f3cca79b345f82e19f8c12d5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_gem_data.html">GemData</a> &amp; AbstractGem::data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method returns the <a class="el" href="class_gem_data.html" title="The GemData class stores all required information to describe a AbstractGem.  The adventage of GemDat...">GemData</a> object describing the gem.  This method was not intended to be public, but we needed it for rendering. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a446d8e7a7296203789414ae5b93e0bde"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AbstractGem::faceIntersectedBy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_triangle.html">Triangle</a> *&amp;&#160;</td>
+          <td class="paramname"><em>intersectedFace</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QVector3D *&#160;</td>
+          <td class="paramname"><em>collisionPoint</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds face of gem intersected by given ray. Ownership of returned face is transfered to caller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>Ray that might intersect gem </td></tr>
+    <tr><td class="paramname">intersectedFace</td><td>A pointer to intersected face is written into. Because this triangle is in worldspace and for performance reasons the ownership of face is transfered to caller. If ray does not intersect nullptr is written. </td></tr>
+    <tr><td class="paramname">collisionPoint</td><td>Optional parameter. If the given pointer is not nullptr the collisionpoint is written into. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns distance to collisionpoint. If no collission occured the value is maximum of float. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adc52cc6d78f3494563c50cfd7e0584b4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AbstractGem::intersectedBy </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QVector3D *&#160;</td>
+          <td class="paramname"><em>collisionPoint</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calcualtes the distance to collision of ray with gem.  This method calculates the real collision point therefor many computations are done especially for complex gems. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>The ray that might collide with gem. </td></tr>
+    <tr><td class="paramname">collisionPoint</td><td>Optional parameter. If a collision occurs the collision point will be written into this else all components contain maximum float values. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The factor you need to apply ray.normalizedDirection() to ray.startDirection(). If no collision occurs this value will be highest possible float. Do not compare this vale with return value of boundingsphereIntersectedBy()  <a class="el" href="class_abstract_gem.html#a9f945c4f1b76ae90414ed3229d01dd0b" title="Calculates distance to collision with gems boundingsphere.  The boundingsphere is specified by gems t...">boundingSphereIntersectedBy()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a18523ca4a999d5159e38003b3fad5f20"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_triangle.html">Triangle</a> AbstractGem::inWorldCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_triangle.html">Triangle</a> &amp;&#160;</td>
+          <td class="paramname"><em>triangle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates triangle in world coordinates for given triangle. Therefor position, rotatition and scale of gem are used. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">triangle</td><td>Objectspace triangle for wich the coressponding wolrdspace triangle should be calculated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the <a class="el" href="class_triangle.html" title="The Triangle class represents a triangle in three dimensional space. ">Triangle</a> in wolrd coordinates, </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a89f90d07bc8a780f053b3c6a5720aeed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QMatrix4x4 &amp; AbstractGem::model </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs normal matrix for gem in order to transform it from objectspace into worldsapce. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a404114854610011363f6d7800985b718"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; AbstractGem::position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac84dd4c9b3ea3adf02c1bfa74a29b649"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::positionChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4f3c6d38acbe59a610c67588e4944d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_list.html">QList</a>&lt; <a class="el" href="class_light_ray.html">LightRay</a> * &gt; AbstractGem::processRayIntersection </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_light_ray.html">LightRay</a> &amp;&#160;</td>
+          <td class="paramname"><em>ray</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_scene.html">Scene</a> *&#160;</td>
+          <td class="paramname"><em>scene</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates all new rays, that will be created by a collision with that gem. Also affect gem attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ray</td><td>Ray that might collide. </td></tr>
+    <tr><td class="paramname">scene</td><td>The scene the ray and gem are in. This is needed in order to calculate new rays appropraite. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A List of lightrays that should be added to scene. If no collision occurs the list is empty. Ownership of rays contained in list is transfered to caller. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_scene_bounds.html#aeac6aafe6081e8efd6b4180e86346dc0">SceneBounds</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a628481ed4ebff7b282524a003d4392c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal AbstractGem::radius </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Radius of boundingsphere. This value is influenced by scale and the geometry of gem. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5ca6867a835dfe2b49d46dbfb933bfca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::rotate </td>
+          <td>(</td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>quaternion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rotates the gem around the center of the gem. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quaternion</td><td>Specifies how the gem should be rotated. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4fc9d6ed418b73ec2539e063ebfa70c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QQuaternion&amp; AbstractGem::rotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rotation around the own center. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2702e870321deb40a8f056c1fce01094"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::rotationChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aadc1c5925331b573d9aba6c2451c9348"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal AbstractGem::scale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7e6bfe659f09bc68222211a58c365177"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::scaleChanged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ace63416f61034b73969b5a89e3913e6d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::setColor </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaf11fa4b522dc334ebed4f2d031a3e2b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::setPosition </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="class_scene_bounds.html#a26db5e7928d3ac7d0257dc52e1ed4e77">SceneBounds</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afce4d09f74fec117d27b11a220eee6b9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::setRotation </td>
+          <td>(</td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the rotation of gem around own center. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rotation</td><td>Value the roation will be set to.  <a class="el" href="class_abstract_gem.html#a6198aae1f2f54d73a7a5e66ca60f5f67" title="Sets rotation of gem using euler angles. This method is mainly used to set initial rotation...">setRotationFromEuler()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_scene_bounds.html#a2e7b2f2e66700b414584ca6b407faf72">SceneBounds</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6198aae1f2f54d73a7a5e66ca60f5f67"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::setRotationFromEuler </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>eulerRotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets rotation of gem using euler angles. This method is mainly used to set initial rotation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eulerRotation</td><td>QVector3D containing the euler angles. The member of eulerVector contains corresponding rotation along axis (x component = rotation around x axis). The angle around axis is specified in degrees. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a23693f4ebb5260cb21141bbcf3f4ff83"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AbstractGem::setScale </td>
+          <td>(</td>
+          <td class="paramtype">qreal&#160;</td>
+          <td class="paramname"><em>scaleFactor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a85e872137d38a2c4a9a38f1f0b996bdc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AbstractGem::solveQuadricFormula </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>x2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4860dda50d7acab4f507505369da19f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="abstractgem_8h.html#a2f0a34b6dac35a9610cab7a1c5fcb444">GemType</a> AbstractGem::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the type of gem, in order to differntiate between types even you have only AbstractGems. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a10a337f732ade69f1988659852f837c6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_gem_data.html">GemData</a>* AbstractGem::m_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab058af121fa66616cab7551e9418048a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal AbstractGem::m_radius</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="ae73e6ac2448549460fbc597354ab0854"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; AbstractGem::color</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="accd665898ada9bc95c886bfbcf56d9a8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; AbstractGem::position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6d85928549d64d369864716dbe2c716b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QQuaternion &amp; AbstractGem::rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a71c3b2720a5e3da61741f9043427ab51"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qreal AbstractGem::scale</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="abstractgem_8h_source.html">abstractgem.h</a></li>
-<li>gemIlluminator/abstractgem.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="abstractgem_8h_source.html">abstractgem.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="abstractgem_8cpp.html">abstractgem.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:41 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:03 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

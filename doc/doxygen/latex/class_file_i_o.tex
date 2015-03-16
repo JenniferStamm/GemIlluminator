@@ -1,0 +1,191 @@
+\hypertarget{class_file_i_o}{}\section{File\+I\+O Class Reference}
+\label{class_file_i_o}\index{File\+I\+O@{File\+I\+O}}
+
+
+The \hyperlink{class_file_i_o}{File\+I\+O} class provides platform independent file reading for ressource files used by us.  The file that should be read is specified by name and \hyperlink{class_file_i_o}{File\+I\+O} will load it from platform dependent location.  
+
+
+
+
+{\ttfamily \#include $<$fileio.\+h$>$}
+
+Inheritance diagram for File\+I\+O\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_file_i_o}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_file_i_o_a4136bb085d530f9dd54eb849f14d58da}{error} (const Q\+String \&msg)
+\begin{DoxyCompactList}\small\item\em This signal will be emitted if an error occurs. \end{DoxyCompactList}\item 
+void \hyperlink{class_file_i_o_a31a6e00e907268e4473a0a826d2e6a1e}{source\+Changed} (const Q\+String \&\hyperlink{class_file_i_o_ad4467aa6c50748ac1e7076d25dcd33cc}{source})
+\begin{DoxyCompactList}\small\item\em This signal is emitted if the \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source()} is changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_file_i_o_a6e4f7122f89b633e3522c2e1d31e1fdd}{File\+I\+O} (Q\+Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_file_i_o}{File\+I\+O}. \end{DoxyCompactList}\item 
+\hyperlink{class_file_i_o_adc3caa8f1e5d76274d8ffb8b5c17288b}{$\sim$\+File\+I\+O} ()
+\item 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E Q\+String \hyperlink{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{read} ()
+\begin{DoxyCompactList}\small\item\em Reads previous specified file. \end{DoxyCompactList}\item 
+void \hyperlink{class_file_i_o_a985a2cce4d400bca160c5f42bf697adb}{set\+Source} (const Q\+String \&\hyperlink{class_file_i_o_ad4467aa6c50748ac1e7076d25dcd33cc}{source})
+\begin{DoxyCompactList}\small\item\em Sets the source file by name. The source is read calling \hyperlink{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{read()} \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source} ()
+\begin{DoxyCompactList}\small\item\em The name of file that is read by \hyperlink{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{read()}. \end{DoxyCompactList}\item 
+Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E bool \hyperlink{class_file_i_o_a73bc6cac958f024325e795a690740a85}{write} (const Q\+String \&data)
+\begin{DoxyCompactList}\small\item\em Writes specified data into \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String \hyperlink{class_file_i_o_ab8f8edbc97eec6d3cf77e314a8754ef3}{m\+\_\+source}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Q\+String \hyperlink{class_file_i_o_ad4467aa6c50748ac1e7076d25dcd33cc}{source}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_file_i_o}{File\+I\+O} class provides platform independent file reading for ressource files used by us.  The file that should be read is specified by name and \hyperlink{class_file_i_o}{File\+I\+O} will load it from platform dependent location. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_file_i_o_a6e4f7122f89b633e3522c2e1d31e1fdd}{}\index{File\+I\+O@{File\+I\+O}!File\+I\+O@{File\+I\+O}}
+\index{File\+I\+O@{File\+I\+O}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{File\+I\+O}]{\setlength{\rightskip}{0pt plus 5cm}File\+I\+O\+::\+File\+I\+O (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_file_i_o_a6e4f7122f89b633e3522c2e1d31e1fdd}
+
+
+Creates a new \hyperlink{class_file_i_o}{File\+I\+O}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Q\+Object-\/parent \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_file_i_o_adc3caa8f1e5d76274d8ffb8b5c17288b}{}\index{File\+I\+O@{File\+I\+O}!````~File\+I\+O@{$\sim$\+File\+I\+O}}
+\index{````~File\+I\+O@{$\sim$\+File\+I\+O}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{$\sim$\+File\+I\+O}]{\setlength{\rightskip}{0pt plus 5cm}File\+I\+O\+::$\sim$\+File\+I\+O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_file_i_o_adc3caa8f1e5d76274d8ffb8b5c17288b}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_file_i_o_a4136bb085d530f9dd54eb849f14d58da}{}\index{File\+I\+O@{File\+I\+O}!error@{error}}
+\index{error@{error}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}void File\+I\+O\+::error (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_file_i_o_a4136bb085d530f9dd54eb849f14d58da}
+
+
+This signal will be emitted if an error occurs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The error message describing the error \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{}\index{File\+I\+O@{File\+I\+O}!read@{read}}
+\index{read@{read}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String File\+I\+O\+::read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}
+
+
+Reads previous specified file. 
+
+\begin{DoxyReturn}{Returns}
+Read file as Q\+String. 
+\end{DoxyReturn}
+\hypertarget{class_file_i_o_a985a2cce4d400bca160c5f42bf697adb}{}\index{File\+I\+O@{File\+I\+O}!set\+Source@{set\+Source}}
+\index{set\+Source@{set\+Source}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{set\+Source}]{\setlength{\rightskip}{0pt plus 5cm}void File\+I\+O\+::set\+Source (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{source}
+\end{DoxyParamCaption}
+)}\label{class_file_i_o_a985a2cce4d400bca160c5f42bf697adb}
+
+
+Sets the source file by name. The source is read calling \hyperlink{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{read()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The name of file that should be read. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{}\index{File\+I\+O@{File\+I\+O}!source@{source}}
+\index{source@{source}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{source}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String File\+I\+O\+::source (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}
+
+
+The name of file that is read by \hyperlink{class_file_i_o_a48c90efc3bf8dda4d612f2dff5409834}{read()}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_file_i_o_a31a6e00e907268e4473a0a826d2e6a1e}{}\index{File\+I\+O@{File\+I\+O}!source\+Changed@{source\+Changed}}
+\index{source\+Changed@{source\+Changed}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{source\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void File\+I\+O\+::source\+Changed (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_file_i_o_a31a6e00e907268e4473a0a826d2e6a1e}
+
+
+This signal is emitted if the \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source()} is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The new source \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_file_i_o_a73bc6cac958f024325e795a690740a85}{}\index{File\+I\+O@{File\+I\+O}!write@{write}}
+\index{write@{write}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}bool File\+I\+O\+::write (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{data}
+\end{DoxyParamCaption}
+)}\label{class_file_i_o_a73bc6cac958f024325e795a690740a85}
+
+
+Writes specified data into \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data that will be written into \hyperlink{class_file_i_o_a8da2b4c6cd72af512e4556203c1c66e7}{source()} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_file_i_o_ab8f8edbc97eec6d3cf77e314a8754ef3}{}\index{File\+I\+O@{File\+I\+O}!m\+\_\+source@{m\+\_\+source}}
+\index{m\+\_\+source@{m\+\_\+source}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{m\+\_\+source}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String File\+I\+O\+::m\+\_\+source\hspace{0.3cm}{\ttfamily [protected]}}\label{class_file_i_o_ab8f8edbc97eec6d3cf77e314a8754ef3}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_file_i_o_ad4467aa6c50748ac1e7076d25dcd33cc}{}\index{File\+I\+O@{File\+I\+O}!source@{source}}
+\index{source@{source}!File\+I\+O@{File\+I\+O}}
+\subsubsection[{source}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String File\+I\+O\+::source\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_file_i_o_ad4467aa6c50748ac1e7076d25dcd33cc}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{fileio_8h}{fileio.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{fileio_8cpp}{fileio.\+cpp}\end{DoxyCompactItemize}

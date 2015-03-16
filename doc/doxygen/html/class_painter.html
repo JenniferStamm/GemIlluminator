@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -84,7 +85,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-slots">Protected Slots</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_painter-members.html">List of all members</a>  </div>
@@ -93,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. ">Painter</a> class  Includes the rendering process, thus creates the whole picture.  
+<p>The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> class  Includes the rendering process, thus creates the whole picture. The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> will be used by QML within rendering thread.  
  <a href="class_painter.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="painter_8h_source.html">painter.h</a>&gt;</code></p>
@@ -108,126 +111,1139 @@ Inheritance diagram for Painter:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a5b9b4ed8aebaebeb2f6483e350445fbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b9b4ed8aebaebeb2f6483e350445fbc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>paint</b> ()</td></tr>
+<tr class="memitem:a5b9b4ed8aebaebeb2f6483e350445fbc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a5b9b4ed8aebaebeb2f6483e350445fbc">paint</a> ()</td></tr>
+<tr class="memdesc:a5b9b4ed8aebaebeb2f6483e350445fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts rendering and paints the whole picture.  <a href="#a5b9b4ed8aebaebeb2f6483e350445fbc">More...</a><br /></td></tr>
 <tr class="separator:a5b9b4ed8aebaebeb2f6483e350445fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:a171dd523e7ba423b8da554a062168e94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a171dd523e7ba423b8da554a062168e94">initializeDone</a> ()</td></tr>
+<tr class="memdesc:a171dd523e7ba423b8da554a062168e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">This signal is emitted if initialization of all required ressources for current scene are initalized.  The signal is everytime emitted if previous scene was deleted and a new scene was synchronized.  <a href="#a171dd523e7ba423b8da554a062168e94">More...</a><br /></td></tr>
+<tr class="separator:a171dd523e7ba423b8da554a062168e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae9520672fc113fc60cf942ba3d13a46e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9520672fc113fc60cf942ba3d13a46e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Painter</b> (<a class="el" href="class_painter_q_m_l.html">PainterQML</a> *painter, QObject *parent=0)</td></tr>
+<tr class="memitem:ae9520672fc113fc60cf942ba3d13a46e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ae9520672fc113fc60cf942ba3d13a46e">Painter</a> (<a class="el" href="class_painter_q_m_l.html">PainterQML</a> *painter, QObject *parent=0)</td></tr>
+<tr class="memdesc:ae9520672fc113fc60cf942ba3d13a46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a>.  <a href="#ae9520672fc113fc60cf942ba3d13a46e">More...</a><br /></td></tr>
 <tr class="separator:ae9520672fc113fc60cf942ba3d13a46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2a4d4b93b38b14ca5510b3d66f9752f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2a4d4b93b38b14ca5510b3d66f9752f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeEnvmap</b> ()</td></tr>
-<tr class="separator:ae2a4d4b93b38b14ca5510b3d66f9752f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addfa0fd4dd943d27c67b62dfc9ab3a0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addfa0fd4dd943d27c67b62dfc9ab3a0b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isActive</b> () const </td></tr>
+<tr class="memitem:a6db88212368910da3385fa9e5fa97174"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a6db88212368910da3385fa9e5fa97174">~Painter</a> ()</td></tr>
+<tr class="memdesc:a6db88212368910da3385fa9e5fa97174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destrutor. Will delete all rendering related classes and ressources.  <a href="#a6db88212368910da3385fa9e5fa97174">More...</a><br /></td></tr>
+<tr class="separator:a6db88212368910da3385fa9e5fa97174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af62665915b5f5380e7009c18862e7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a3af62665915b5f5380e7009c18862e7e">updateEnvMap</a> ()</td></tr>
+<tr class="memdesc:a3af62665915b5f5380e7009c18862e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates enviorment map using config file.  <a href="#a3af62665915b5f5380e7009c18862e7e">More...</a><br /></td></tr>
+<tr class="separator:a3af62665915b5f5380e7009c18862e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addfa0fd4dd943d27c67b62dfc9ab3a0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#addfa0fd4dd943d27c67b62dfc9ab3a0b">isActive</a> () const </td></tr>
+<tr class="memdesc:addfa0fd4dd943d27c67b62dfc9ab3a0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> is active. Active means the painter is rendering.  <a href="#addfa0fd4dd943d27c67b62dfc9ab3a0b">More...</a><br /></td></tr>
 <tr class="separator:addfa0fd4dd943d27c67b62dfc9ab3a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dd43be8d3e1eab98035fcc23316bd1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dd43be8d3e1eab98035fcc23316bd1a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setActive</b> (bool active)</td></tr>
+<tr class="memitem:a7dd43be8d3e1eab98035fcc23316bd1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a7dd43be8d3e1eab98035fcc23316bd1a">setActive</a> (bool active)</td></tr>
+<tr class="memdesc:a7dd43be8d3e1eab98035fcc23316bd1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Active state. If active is true the painter renders the picture.  <a href="#a7dd43be8d3e1eab98035fcc23316bd1a">More...</a><br /></td></tr>
 <tr class="separator:a7dd43be8d3e1eab98035fcc23316bd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae666ca89f52438dd898054a38cb7678c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae666ca89f52438dd898054a38cb7678c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCamera</b> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
-<tr class="separator:ae666ca89f52438dd898054a38cb7678c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a306e3a17dcd709a1e23faf8b28cab3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a306e3a17dcd709a1e23faf8b28cab3"></a>
-<a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scene</b> () const </td></tr>
-<tr class="separator:a9a306e3a17dcd709a1e23faf8b28cab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0c60a921518aac36ecbbf9c050bb779"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0c60a921518aac36ecbbf9c050bb779"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setScene</b> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
-<tr class="separator:ad0c60a921518aac36ecbbf9c050bb779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cbe31709ecd794c00d4c524c8468b14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a6cbe31709ecd794c00d4c524c8468b14">setViewport</a> (const QSize &amp;viewport)</td></tr>
-<tr class="memdesc:a6cbe31709ecd794c00d4c524c8468b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">SceneRenderer::setViewport Only set within sync()  <a href="#a6cbe31709ecd794c00d4c524c8468b14">More...</a><br /></td></tr>
-<tr class="separator:a6cbe31709ecd794c00d4c524c8468b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a8ffdc1e2408e267717ed3816e93e19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a8ffdc1e2408e267717ed3816e93e19"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>envMapPrefix</b> () const </td></tr>
-<tr class="separator:a3a8ffdc1e2408e267717ed3816e93e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb568401ef2792e27e4f565bf35cb6bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb568401ef2792e27e4f565bf35cb6bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEnvMapPrefix</b> (const QString &amp;envMapPrefix)</td></tr>
-<tr class="separator:afb568401ef2792e27e4f565bf35cb6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c2b82efd3882c162d9807282aab189f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c2b82efd3882c162d9807282aab189f"></a>
-QOpenGLFunctions &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>gl</b> () const </td></tr>
-<tr class="separator:a0c2b82efd3882c162d9807282aab189f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37014617684597b602522d3de20f8f41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a37014617684597b602522d3de20f8f41">clearScene</a> ()</td></tr>
+<tr class="memdesc:a37014617684597b602522d3de20f8f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the scene and removes all not anymore required ressources.  <a href="#a37014617684597b602522d3de20f8f41">More...</a><br /></td></tr>
+<tr class="separator:a37014617684597b602522d3de20f8f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c7f2b5b2bc7fa8fdfac559cc9b1401d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a0c7f2b5b2bc7fa8fdfac559cc9b1401d">synchronizeScene</a> (<a class="el" href="class_scene.html">Scene</a> *scene)</td></tr>
+<tr class="memdesc:a0c7f2b5b2bc7fa8fdfac559cc9b1401d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> copies all needed information of scene into own thread.  <a href="#a0c7f2b5b2bc7fa8fdfac559cc9b1401d">More...</a><br /></td></tr>
+<tr class="separator:a0c7f2b5b2bc7fa8fdfac559cc9b1401d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-slots"></a>
+Protected Slots</h2></td></tr>
+<tr class="memitem:ab5dbc13d3e46ee83c4f819a5ae74206e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ab5dbc13d3e46ee83c4f819a5ae74206e">handleInitializeDone</a> ()</td></tr>
+<tr class="separator:ab5dbc13d3e46ee83c4f819a5ae74206e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a12f9623c2acf87eced6e141e7638804e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12f9623c2acf87eced6e141e7638804e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
+<tr class="memitem:a12f9623c2acf87eced6e141e7638804e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a12f9623c2acf87eced6e141e7638804e">initialize</a> ()</td></tr>
+<tr class="memdesc:a12f9623c2acf87eced6e141e7638804e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes all required ressources, that are direct members of painter (scene independant ressources). This method is executed within first paint.  <a href="#a12f9623c2acf87eced6e141e7638804e">More...</a><br /></td></tr>
 <tr class="separator:a12f9623c2acf87eced6e141e7638804e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3deca470f67f8e9fafc0cc901c689c02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3deca470f67f8e9fafc0cc901c689c02"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEnvmap</b> ()</td></tr>
-<tr class="separator:a3deca470f67f8e9fafc0cc901c689c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7db952528a1d7745dbf083ee1431f50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ad7db952528a1d7745dbf083ee1431f50">initializeFBOs</a> ()</td></tr>
+<tr class="separator:ad7db952528a1d7745dbf083ee1431f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fee3b94c00da17f851b52cc8d60ff72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a4fee3b94c00da17f851b52cc8d60ff72">initializeShaderPrograms</a> ()</td></tr>
+<tr class="separator:a4fee3b94c00da17f851b52cc8d60ff72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fee5d930d347b38fe1aa565e3264d3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a5fee5d930d347b38fe1aa565e3264d3c">renderLightRays</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="separator:a5fee5d930d347b38fe1aa565e3264d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cbffb0c2d28dd1558716136c99a079f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a8cbffb0c2d28dd1558716136c99a079f">renderScene</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;camera)</td></tr>
+<tr class="separator:a8cbffb0c2d28dd1558716136c99a079f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a9b476c949ca4b2af7b1653c7106b659b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b476c949ca4b2af7b1653c7106b659b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_active</b></td></tr>
+<tr class="memitem:a9b476c949ca4b2af7b1653c7106b659b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a9b476c949ca4b2af7b1653c7106b659b">m_active</a></td></tr>
 <tr class="separator:a9b476c949ca4b2af7b1653c7106b659b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05558ea7a2f818641e0506d01d518010"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05558ea7a2f818641e0506d01d518010"></a>
-<a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_camera</b></td></tr>
-<tr class="separator:a05558ea7a2f818641e0506d01d518010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a141349e5459cd3ce52bb12b85579f752"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a141349e5459cd3ce52bb12b85579f752"></a>
-uint&#160;</td><td class="memItemRight" valign="bottom"><b>m_envmap</b></td></tr>
-<tr class="separator:a141349e5459cd3ce52bb12b85579f752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a983045c9611224d2576cf1d20fb87770"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a983045c9611224d2576cf1d20fb87770"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>m_envMapPrefix</b></td></tr>
-<tr class="separator:a983045c9611224d2576cf1d20fb87770"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8aa44a5f1477d570ee10d3dacae09f08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8aa44a5f1477d570ee10d3dacae09f08"></a>
-QOpenGLFunctions *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gl</b></td></tr>
+<tr class="memitem:acb7b623817cf6865168bb74d3823897f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_environment_map.html">EnvironmentMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#acb7b623817cf6865168bb74d3823897f">m_envMap</a></td></tr>
+<tr class="separator:acb7b623817cf6865168bb74d3823897f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aa44a5f1477d570ee10d3dacae09f08"><td class="memItemLeft" align="right" valign="top">QOpenGLFunctions *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a8aa44a5f1477d570ee10d3dacae09f08">m_gl</a></td></tr>
 <tr class="separator:a8aa44a5f1477d570ee10d3dacae09f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0adcfafb8172b4f76561e2c951b1090b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0adcfafb8172b4f76561e2c951b1090b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_initialized</b></td></tr>
+<tr class="memitem:a0adcfafb8172b4f76561e2c951b1090b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a0adcfafb8172b4f76561e2c951b1090b">m_initialized</a></td></tr>
 <tr class="separator:a0adcfafb8172b4f76561e2c951b1090b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2774293bfaf6f654cb01e504937abb8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2774293bfaf6f654cb01e504937abb8"></a>
-<a class="el" href="class_painter_q_m_l.html">PainterQML</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_painterQML</b></td></tr>
+<tr class="memitem:a951961fa0e012d87500b9775f9dcb19a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_blur_effect.html">BlurEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a951961fa0e012d87500b9775f9dcb19a">m_blurEffectScene</a></td></tr>
+<tr class="separator:a951961fa0e012d87500b9775f9dcb19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a58327bf0fd8004e11e97c4415caa62"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a9a58327bf0fd8004e11e97c4415caa62">m_blurViewportRatioScene</a></td></tr>
+<tr class="separator:a9a58327bf0fd8004e11e97c4415caa62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a265ca037babf5497830eda6f42b6aeef"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a265ca037babf5497830eda6f42b6aeef">m_glowSceneFBO</a></td></tr>
+<tr class="separator:a265ca037babf5497830eda6f42b6aeef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af165f6cb73abce18d3c48e4cbba39058"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#af165f6cb73abce18d3c48e4cbba39058">m_glowSceneDepthRB</a></td></tr>
+<tr class="separator:af165f6cb73abce18d3c48e4cbba39058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0b0d6b22e49da1a22d3e3114efc6f56"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ab0b0d6b22e49da1a22d3e3114efc6f56">m_glowSceneTexture</a></td></tr>
+<tr class="separator:ab0b0d6b22e49da1a22d3e3114efc6f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8960c588485d1ccdb7d4306236e187af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_blur_effect.html">BlurEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a8960c588485d1ccdb7d4306236e187af">m_blurEffectPreviewScene</a></td></tr>
+<tr class="separator:a8960c588485d1ccdb7d4306236e187af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab898af5b9784a08a86a93d9d9f3e6de6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ab898af5b9784a08a86a93d9d9f3e6de6">m_blurViewportRatioPreviewScene</a></td></tr>
+<tr class="separator:ab898af5b9784a08a86a93d9d9f3e6de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68a674089abe95f55b48e12fef4e3a8f"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a68a674089abe95f55b48e12fef4e3a8f">m_glowPreviewSceneFBO</a></td></tr>
+<tr class="separator:a68a674089abe95f55b48e12fef4e3a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7d26057c7ce98d20f8e11242f9b8d23"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ae7d26057c7ce98d20f8e11242f9b8d23">m_glowPreviewSceneDepthRB</a></td></tr>
+<tr class="separator:ae7d26057c7ce98d20f8e11242f9b8d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642492c18262a53f20c0824bd70e7526"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a642492c18262a53f20c0824bd70e7526">m_glowPreviewSceneTexture</a></td></tr>
+<tr class="separator:a642492c18262a53f20c0824bd70e7526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6ae15aabf53d3f2c9108a8db0cbbb5"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#adb6ae15aabf53d3f2c9108a8db0cbbb5">m_previewSceneFBO</a></td></tr>
+<tr class="separator:adb6ae15aabf53d3f2c9108a8db0cbbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4fb3338a366abb5592996572afa070d"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ad4fb3338a366abb5592996572afa070d">m_previewSceneDepthRB</a></td></tr>
+<tr class="separator:ad4fb3338a366abb5592996572afa070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff56d277a464801c66a7f7414ef86733"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#aff56d277a464801c66a7f7414ef86733">m_previewSceneTexture</a></td></tr>
+<tr class="separator:aff56d277a464801c66a7f7414ef86733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2774293bfaf6f654cb01e504937abb8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_painter_q_m_l.html">PainterQML</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#af2774293bfaf6f654cb01e504937abb8">m_painterQML</a></td></tr>
 <tr class="separator:af2774293bfaf6f654cb01e504937abb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50f7fad2d44554f0be878a96afacfa44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50f7fad2d44554f0be878a96afacfa44"></a>
-<a class="el" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_quad</b></td></tr>
+<tr class="memitem:a50f7fad2d44554f0be878a96afacfa44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a50f7fad2d44554f0be878a96afacfa44">m_quad</a></td></tr>
 <tr class="separator:a50f7fad2d44554f0be878a96afacfa44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9aa927a8a72482a508d5abd8e4f7d590"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9aa927a8a72482a508d5abd8e4f7d590"></a>
-<a class="el" href="class_scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_scene</b></td></tr>
-<tr class="separator:a9aa927a8a72482a508d5abd8e4f7d590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1208fd08f67613750efb7adbb718cea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1208fd08f67613750efb7adbb718cea"></a>
-QMap&lt; ShaderPrograms, QOpenGLShaderProgram * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>m_shaderPrograms</b></td></tr>
-<tr class="separator:ac1208fd08f67613750efb7adbb718cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9369e3a89f7074d7fae461acb18adf45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9369e3a89f7074d7fae461acb18adf45"></a>
-QSize *&#160;</td><td class="memItemRight" valign="bottom"><b>m_viewport</b></td></tr>
-<tr class="separator:a9369e3a89f7074d7fae461acb18adf45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f99a5ccb9b1b645281b1439cbf416e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cube_map.html">CubeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a9f99a5ccb9b1b645281b1439cbf416e1">m_rainbowMap</a></td></tr>
+<tr class="separator:a9f99a5ccb9b1b645281b1439cbf416e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd540fa99df6acea8eb32c3bcfb81773"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_cube_map.html">CubeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#abd540fa99df6acea8eb32c3bcfb81773">m_gemStructureMap</a></td></tr>
+<tr class="separator:abd540fa99df6acea8eb32c3bcfb81773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4df95c88604785d7eecaf1474df67629"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a4df95c88604785d7eecaf1474df67629">m_sceneFBO</a></td></tr>
+<tr class="separator:a4df95c88604785d7eecaf1474df67629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92db0cde0f42dd82569e85785850c283"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a92db0cde0f42dd82569e85785850c283">m_sceneDepthRB</a></td></tr>
+<tr class="separator:a92db0cde0f42dd82569e85785850c283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af82c25060227ea6ec91ae60f0753c593"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#af82c25060227ea6ec91ae60f0753c593">m_sceneTexture</a></td></tr>
+<tr class="separator:af82c25060227ea6ec91ae60f0753c593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30655a30ba8f540f0e28b976b97d126f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_q_hash.html">QHash</a>&lt; <a class="el" href="shaderprograms_8h.html#ada89718f8d394b2cc093eb9770c554ff">ShaderPrograms</a>, QOpenGLShaderProgram * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a30655a30ba8f540f0e28b976b97d126f">m_shaderPrograms</a></td></tr>
+<tr class="separator:a30655a30ba8f540f0e28b976b97d126f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff5d274eb90d7a94565effe5bd5d03f7"><td class="memItemLeft" align="right" valign="top">QSize *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#aff5d274eb90d7a94565effe5bd5d03f7">m_usedViewport</a></td></tr>
+<tr class="separator:aff5d274eb90d7a94565effe5bd5d03f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a3de21931e9796db399252b7336169c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a1a3de21931e9796db399252b7336169c">m_counter</a></td></tr>
+<tr class="separator:a1a3de21931e9796db399252b7336169c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedfda3eb1a37f4f121291c558786492a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#aedfda3eb1a37f4f121291c558786492a">m_oldElapsed</a></td></tr>
+<tr class="separator:aedfda3eb1a37f4f121291c558786492a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6976ab19027866bbb01e9a1504aa5c9"><td class="memItemLeft" align="right" valign="top">QTime *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#ab6976ab19027866bbb01e9a1504aa5c9">m_time</a></td></tr>
+<tr class="separator:ab6976ab19027866bbb01e9a1504aa5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a574ba64fd2af1d8c64d2c293d4811fc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_scene_renderer.html">SceneRenderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a574ba64fd2af1d8c64d2c293d4811fc2">m_sceneRenderer</a></td></tr>
+<tr class="separator:a574ba64fd2af1d8c64d2c293d4811fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05558ea7a2f818641e0506d01d518010"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a05558ea7a2f818641e0506d01d518010">m_camera</a></td></tr>
+<tr class="separator:a05558ea7a2f818641e0506d01d518010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a237399ac0b5da625eb19de1ae3c0a236"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_painter.html#a237399ac0b5da625eb19de1ae3c0a236">m_previewCamera</a></td></tr>
+<tr class="separator:a237399ac0b5da625eb19de1ae3c0a236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. ">Painter</a> class  Includes the rendering process, thus creates the whole picture. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6cbe31709ecd794c00d4c524c8468b14"></a>
+<div class="textblock"><p>The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> class  Includes the rendering process, thus creates the whole picture. The <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> will be used by QML within rendering thread. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae9520672fc113fc60cf942ba3d13a46e"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Painter::setViewport </td>
+          <td class="memname">Painter::Painter </td>
           <td>(</td>
-          <td class="paramtype">const QSize &amp;&#160;</td>
-          <td class="paramname"><em>viewport</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_painter_q_m_l.html">PainterQML</a> *&#160;</td>
+          <td class="paramname"><em>painter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>SceneRenderer::setViewport Only set within sync() </p>
+<p>Constructor of <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">viewport</td><td></td></tr>
+    <tr><td class="paramname">painter</td><td>Corresponding QML-Painter. Will be informed about finished rendering. </td></tr>
+    <tr><td class="paramname">parent</td><td>QObject-parent </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
+<a class="anchor" id="a6db88212368910da3385fa9e5fa97174"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Painter::~Painter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destrutor. Will delete all rendering related classes and ressources. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a37014617684597b602522d3de20f8f41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::clearScene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears the scene and removes all not anymore required ressources. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab5dbc13d3e46ee83c4f819a5ae74206e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::handleInitializeDone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a12f9623c2acf87eced6e141e7638804e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes all required ressources, that are direct members of painter (scene independant ressources). This method is executed within first paint. </p>
+
+</div>
+</div>
+<a class="anchor" id="a171dd523e7ba423b8da554a062168e94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::initializeDone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This signal is emitted if initialization of all required ressources for current scene are initalized.  The signal is everytime emitted if previous scene was deleted and a new scene was synchronized. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad7db952528a1d7745dbf083ee1431f50"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::initializeFBOs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4fee3b94c00da17f851b52cc8d60ff72"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::initializeShaderPrograms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="addfa0fd4dd943d27c67b62dfc9ab3a0b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Painter::isActive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if <a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> is active. Active means the painter is rendering. </p>
+<dl class="section return"><dt>Returns</dt><dd>Active state of painter. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5b9b4ed8aebaebeb2f6483e350445fbc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::paint </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Starts rendering and paints the whole picture. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5fee5d930d347b38fe1aa565e3264d3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::renderLightRays </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8cbffb0c2d28dd1558716136c99a079f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::renderScene </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7dd43be8d3e1eab98035fcc23316bd1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::setActive </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set Active state. If active is true the painter renders the picture. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">active</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0c7f2b5b2bc7fa8fdfac559cc9b1401d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::synchronizeScene </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_scene.html">Scene</a> *&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_painter.html" title="The Painter class  Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread. ">Painter</a> copies all needed information of scene into own thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scene</td><td>The scene that should be synchronized. If nullptr is passed it is like <a class="el" href="class_painter.html#a37014617684597b602522d3de20f8f41" title="Clears the scene and removes all not anymore required ressources. ">clearScene()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a3af62665915b5f5380e7009c18862e7e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Painter::updateEnvMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates enviorment map using config file. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a9b476c949ca4b2af7b1653c7106b659b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Painter::m_active</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8960c588485d1ccdb7d4306236e187af"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_blur_effect.html">BlurEffect</a>* Painter::m_blurEffectPreviewScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a951961fa0e012d87500b9775f9dcb19a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_blur_effect.html">BlurEffect</a>* Painter::m_blurEffectScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab898af5b9784a08a86a93d9d9f3e6de6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Painter::m_blurViewportRatioPreviewScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9a58327bf0fd8004e11e97c4415caa62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Painter::m_blurViewportRatioScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a05558ea7a2f818641e0506d01d518010"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Painter::m_camera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1a3de21931e9796db399252b7336169c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Painter::m_counter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acb7b623817cf6865168bb74d3823897f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_environment_map.html">EnvironmentMap</a>* Painter::m_envMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="abd540fa99df6acea8eb32c3bcfb81773"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cube_map.html">CubeMap</a>* Painter::m_gemStructureMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8aa44a5f1477d570ee10d3dacae09f08"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLFunctions* Painter::m_gl</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae7d26057c7ce98d20f8e11242f9b8d23"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowPreviewSceneDepthRB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a68a674089abe95f55b48e12fef4e3a8f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowPreviewSceneFBO</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a642492c18262a53f20c0824bd70e7526"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowPreviewSceneTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af165f6cb73abce18d3c48e4cbba39058"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowSceneDepthRB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a265ca037babf5497830eda6f42b6aeef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowSceneFBO</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab0b0d6b22e49da1a22d3e3114efc6f56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_glowSceneTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0adcfafb8172b4f76561e2c951b1090b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Painter::m_initialized</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aedfda3eb1a37f4f121291c558786492a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Painter::m_oldElapsed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af2774293bfaf6f654cb01e504937abb8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_painter_q_m_l.html">PainterQML</a>* Painter::m_painterQML</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a237399ac0b5da625eb19de1ae3c0a236"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Painter::m_previewCamera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad4fb3338a366abb5592996572afa070d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_previewSceneDepthRB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adb6ae15aabf53d3f2c9108a8db0cbbb5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_previewSceneFBO</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aff56d277a464801c66a7f7414ef86733"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_previewSceneTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a50f7fad2d44554f0be878a96afacfa44"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_screen_aligned_quad.html">ScreenAlignedQuad</a>* Painter::m_quad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9f99a5ccb9b1b645281b1439cbf416e1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_cube_map.html">CubeMap</a>* Painter::m_rainbowMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a92db0cde0f42dd82569e85785850c283"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_sceneDepthRB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4df95c88604785d7eecaf1474df67629"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_sceneFBO</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a574ba64fd2af1d8c64d2c293d4811fc2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_scene_renderer.html">SceneRenderer</a>* Painter::m_sceneRenderer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af82c25060227ea6ec91ae60f0753c593"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint Painter::m_sceneTexture</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a30655a30ba8f540f0e28b976b97d126f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_q_hash.html">QHash</a>&lt;<a class="el" href="shaderprograms_8h.html#ada89718f8d394b2cc093eb9770c554ff">ShaderPrograms</a>, QOpenGLShaderProgram*&gt;* Painter::m_shaderPrograms</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab6976ab19027866bbb01e9a1504aa5c9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QTime* Painter::m_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aff5d274eb90d7a94565effe5bd5d03f7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSize* Painter::m_usedViewport</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="painter_8h_source.html">painter.h</a></li>
-<li>gemIlluminator/painter.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="painter_8h_source.html">painter.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="painter_8cpp.html">painter.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:43 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:05 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

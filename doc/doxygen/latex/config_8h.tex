@@ -1,0 +1,39 @@
+\hypertarget{config_8h}{}\section{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/config.h File Reference}
+\label{config_8h}\index{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/config.\+h@{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/config.\+h}}
+{\ttfamily \#include $<$Q\+Object$>$}\\*
+{\ttfamily \#include \char`\"{}fileio.\+h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_config}{Config}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{class_config}{Config} class provides easy access to values read out of our config.\+json provided by Config\+View.\+qml.  The config class is implemented as singleton, because these values are used in many various situations. This class works together Config\+View.\+qml. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Object $\ast$ \hyperlink{config_8h_ab3fd4eb7f94958ed77c45b019e9f9156}{config\+Singletontype\+Provider} (Q\+Qml\+Engine $\ast$engine, Q\+J\+S\+Engine $\ast$script\+Engine)
+\begin{DoxyCompactList}\small\item\em Callback function used to get the current instance of \hyperlink{class_config}{Config} within Q\+M\+L. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{config_8h_ab3fd4eb7f94958ed77c45b019e9f9156}{}\index{config.\+h@{config.\+h}!config\+Singletontype\+Provider@{config\+Singletontype\+Provider}}
+\index{config\+Singletontype\+Provider@{config\+Singletontype\+Provider}!config.\+h@{config.\+h}}
+\subsubsection[{config\+Singletontype\+Provider}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Object$\ast$ config\+Singletontype\+Provider (
+\begin{DoxyParamCaption}
+\item[{Q\+Qml\+Engine $\ast$}]{engine, }
+\item[{Q\+J\+S\+Engine $\ast$}]{script\+Engine}
+\end{DoxyParamCaption}
+)}\label{config_8h_ab3fd4eb7f94958ed77c45b019e9f9156}
+
+
+Callback function used to get the current instance of \hyperlink{class_config}{Config} within Q\+M\+L. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em engine} & Unused parameter required by callback. \\
+\hline
+{\em script\+Engine} & Unused parameter required by callback. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Our instance of \hyperlink{class_config}{Config} 
+\end{DoxyReturn}

@@ -1,50 +1,329 @@
 \hypertarget{class_config}{}\section{Config Class Reference}
 \label{class_config}\index{Config@{Config}}
+
+
+The \hyperlink{class_config}{Config} class provides easy access to values read out of our config.\+json provided by Config\+View.\+qml.  The config class is implemented as singleton, because these values are used in many various situations. This class works together Config\+View.\+qml.  
+
+
+
+
+{\ttfamily \#include $<$config.\+h$>$}
+
 Inheritance diagram for Config\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_config}
+\includegraphics[height=3.000000cm]{class_config}
 \end{center}
 \end{figure}
-\subsection*{Public Slots}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{class_config_a530e025b1029f52cfb30db55ad388a5b}{}void {\bfseries set\+Source} (const Q\+String \&source)\label{class_config_a530e025b1029f52cfb30db55ad388a5b}
-
-\end{DoxyCompactItemize}
 \subsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_config_a050a986da8a1e6bb56abfdf1b52dea44}{}void {\bfseries source\+Changed} (const Q\+String \&source)\label{class_config_a050a986da8a1e6bb56abfdf1b52dea44}
-
+void \hyperlink{class_config_a5681c5b14ccda37c70498b984bd706ff}{axis\+Range\+Changed} ()
 \item 
-\hypertarget{class_config_a1424b845bdd6decb86f87d1673912bfc}{}void {\bfseries error} (const Q\+String \&msg)\label{class_config_a1424b845bdd6decb86f87d1673912bfc}
-
+void \hyperlink{class_config_a46f1b9a172d4f44882d784e6f880480e}{env\+Map\+Changed} ()
+\item 
+void \hyperlink{class_config_a4ef0417dbecefc3febeee33cdf93488d}{max\+Gem\+Size\+Changed} ()
+\item 
+void \hyperlink{class_config_a3d78af7f9a04ae58883f7f309d0f43d7}{min\+Gem\+Size\+Changed} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_config_ad534404fa0c9fffe81d6859d88b527be}{}{\bfseries Config} (Q\+Object $\ast$parent=0)\label{class_config_ad534404fa0c9fffe81d6859d88b527be}
-
+virtual \hyperlink{class_config_a543dce59b66475c5108088ee4ce1cdfc}{$\sim$\+Config} ()
 \item 
-\hypertarget{class_config_a39a9b9a0d8e01451e39b2e6db69d2b07}{}Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E Q\+String {\bfseries read} ()\label{class_config_a39a9b9a0d8e01451e39b2e6db69d2b07}
-
+int \hyperlink{class_config_a17e5e932c588503e186f40c2bcff3149}{axis\+Range} ()
+\begin{DoxyCompactList}\small\item\em The axis\+Range describes how far the scene expands along all axis. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_config_ada50183c56178ba20a6d91193901434e}{env\+Map} () const 
+\begin{DoxyCompactList}\small\item\em env\+Map is the name of our current environment. The name is the prefix of our environment texture names. \end{DoxyCompactList}\item 
+float \hyperlink{class_config_a55adaaba8e9105c2047f485fc1ff737e}{max\+Gem\+Size} () const 
+\begin{DoxyCompactList}\small\item\em max\+Gem\+Size is the maximum size a gem could be.  This is the same as maximum scale factor for a gem, because all gems are in range between \mbox{[}-\/1;1\mbox{]} by default. \end{DoxyCompactList}\item 
+float \hyperlink{class_config_af5183a4e104ff4d86f112359199a861f}{min\+Gem\+Size} () const 
+\begin{DoxyCompactList}\small\item\em min\+Gem\+Size is the minimum size a gem could be.  This is the same as minimum scale factor for a gem, because all gems are in range between \mbox{[}-\/1;1\mbox{]} by default. \end{DoxyCompactList}\item 
+void \hyperlink{class_config_ab6e130f2988e1ee72e81e853865708ba}{set\+Axis\+Range} (int \&\hyperlink{class_config_a5068b92866fd941b72314c6c7f36145f}{axis\+Range})
+\begin{DoxyCompactList}\small\item\em Sets value of \hyperlink{class_config_a17e5e932c588503e186f40c2bcff3149}{axis\+Range()};. \end{DoxyCompactList}\item 
+void \hyperlink{class_config_a5fd3388c946f7ce1ee6342d6c6b15950}{set\+Env\+Map} (const Q\+String \&\hyperlink{class_config_ae85b2124ed4685d081068c6028081d28}{env\+Map})
+\begin{DoxyCompactList}\small\item\em Sets value of \hyperlink{class_config_ae85b2124ed4685d081068c6028081d28}{env\+Map()};. \end{DoxyCompactList}\item 
+void \hyperlink{class_config_a4b35695819904d22fc6e01ee3950a4b2}{set\+Max\+Gem\+Size} (float \hyperlink{class_config_a9e631288322234538f08c601202c0dba}{max\+Gem\+Size})
+\begin{DoxyCompactList}\small\item\em Sets value of \hyperlink{class_config_a9e631288322234538f08c601202c0dba}{max\+Gem\+Size()};. \end{DoxyCompactList}\item 
+void \hyperlink{class_config_a7fa7e53435ece969074029efd14e70e2}{set\+Min\+Gem\+Size} (float \hyperlink{class_config_a26688d51537cbea3ee27810b3f6d1568}{min\+Gem\+Size})
+\begin{DoxyCompactList}\small\item\em Sets value of \hyperlink{class_config_a26688d51537cbea3ee27810b3f6d1568}{min\+Gem\+Size()};. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_config_a684d7acdbe8a5d564f01812f7d0fe775}{}Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E bool {\bfseries write} (const Q\+String \&data)\label{class_config_a684d7acdbe8a5d564f01812f7d0fe775}
-
+static void \hyperlink{class_config_af99cd0f14331b3df3ed82902728c002c}{drop} ()
+\begin{DoxyCompactList}\small\item\em Drops current instance of our \hyperlink{class_config}{Config}. \end{DoxyCompactList}\item 
+static \hyperlink{class_config}{Config} $\ast$ \hyperlink{class_config_abf1d4539011ef83cac0fef2ac864a3a9}{instance} ()
+\begin{DoxyCompactList}\small\item\em The instance of our \hyperlink{class_config}{Config}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_config_a4c57268899313893ce95857cdec5c1a3}{}Q\+String {\bfseries source} ()\label{class_config_a4c57268899313893ce95857cdec5c1a3}
-
+\hyperlink{class_config_abd0c571c116924871e30444b192b792a}{Config} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_config_a5f172b706977841fdcb91351eeae817e}{m\+\_\+axis\+Range}
+\item 
+Q\+String \hyperlink{class_config_a70804accd579749b776f9c0c3e5c000b}{m\+\_\+env\+Map}
+\item 
+float \hyperlink{class_config_ae8a0c3906a4d18952a7fbb00868c963e}{m\+\_\+max\+Gem\+Size}
+\item 
+float \hyperlink{class_config_a7284f245054875419777e7cbad67183c}{m\+\_\+min\+Gem\+Size}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_config}{Config} $\ast$ \hyperlink{class_config_af8e6282b4a10e5bce08419395394581b}{m\+\_\+instance} = 0
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_config_a1d0aeaacc2f358bb5a448f314c819d66}{}Q\+String {\bfseries source}\label{class_config_a1d0aeaacc2f358bb5a448f314c819d66}
-
+int \hyperlink{class_config_a5068b92866fd941b72314c6c7f36145f}{axis\+Range}
+\item 
+Q\+String \hyperlink{class_config_ae85b2124ed4685d081068c6028081d28}{env\+Map}
+\item 
+float \hyperlink{class_config_a9e631288322234538f08c601202c0dba}{max\+Gem\+Size}
+\item 
+float \hyperlink{class_config_a26688d51537cbea3ee27810b3f6d1568}{min\+Gem\+Size}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_config}{Config} class provides easy access to values read out of our config.\+json provided by Config\+View.\+qml.  The config class is implemented as singleton, because these values are used in many various situations. This class works together Config\+View.\+qml. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_config_a543dce59b66475c5108088ee4ce1cdfc}{}\index{Config@{Config}!````~Config@{$\sim$\+Config}}
+\index{````~Config@{$\sim$\+Config}!Config@{Config}}
+\subsubsection[{$\sim$\+Config}]{\setlength{\rightskip}{0pt plus 5cm}Config\+::$\sim$\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_config_a543dce59b66475c5108088ee4ce1cdfc}
+\hypertarget{class_config_abd0c571c116924871e30444b192b792a}{}\index{Config@{Config}!Config@{Config}}
+\index{Config@{Config}!Config@{Config}}
+\subsubsection[{Config}]{\setlength{\rightskip}{0pt plus 5cm}Config\+::\+Config (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_config_abd0c571c116924871e30444b192b792a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_config_a17e5e932c588503e186f40c2bcff3149}{}\index{Config@{Config}!axis\+Range@{axis\+Range}}
+\index{axis\+Range@{axis\+Range}!Config@{Config}}
+\subsubsection[{axis\+Range}]{\setlength{\rightskip}{0pt plus 5cm}int Config\+::axis\+Range (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_config_a17e5e932c588503e186f40c2bcff3149}
+
+
+The axis\+Range describes how far the scene expands along all axis. 
+
+\begin{DoxyReturn}{Returns}
+The value of axis\+Range 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_config_ab6e130f2988e1ee72e81e853865708ba}{set\+Axis\+Range()} 
+\end{DoxySeeAlso}
+\hypertarget{class_config_a5681c5b14ccda37c70498b984bd706ff}{}\index{Config@{Config}!axis\+Range\+Changed@{axis\+Range\+Changed}}
+\index{axis\+Range\+Changed@{axis\+Range\+Changed}!Config@{Config}}
+\subsubsection[{axis\+Range\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::axis\+Range\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_config_a5681c5b14ccda37c70498b984bd706ff}
+\hypertarget{class_config_af99cd0f14331b3df3ed82902728c002c}{}\index{Config@{Config}!drop@{drop}}
+\index{drop@{drop}!Config@{Config}}
+\subsubsection[{drop}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::drop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_config_af99cd0f14331b3df3ed82902728c002c}
+
+
+Drops current instance of our \hyperlink{class_config}{Config}. 
+
+\hypertarget{class_config_ada50183c56178ba20a6d91193901434e}{}\index{Config@{Config}!env\+Map@{env\+Map}}
+\index{env\+Map@{env\+Map}!Config@{Config}}
+\subsubsection[{env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Config\+::env\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_config_ada50183c56178ba20a6d91193901434e}
+
+
+env\+Map is the name of our current environment. The name is the prefix of our environment texture names. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_config_a46f1b9a172d4f44882d784e6f880480e}{}\index{Config@{Config}!env\+Map\+Changed@{env\+Map\+Changed}}
+\index{env\+Map\+Changed@{env\+Map\+Changed}!Config@{Config}}
+\subsubsection[{env\+Map\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::env\+Map\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_config_a46f1b9a172d4f44882d784e6f880480e}
+\hypertarget{class_config_abf1d4539011ef83cac0fef2ac864a3a9}{}\index{Config@{Config}!instance@{instance}}
+\index{instance@{instance}!Config@{Config}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Config} $\ast$ Config\+::instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\label{class_config_abf1d4539011ef83cac0fef2ac864a3a9}
+
+
+The instance of our \hyperlink{class_config}{Config}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_config_a55adaaba8e9105c2047f485fc1ff737e}{}\index{Config@{Config}!max\+Gem\+Size@{max\+Gem\+Size}}
+\index{max\+Gem\+Size@{max\+Gem\+Size}!Config@{Config}}
+\subsubsection[{max\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::max\+Gem\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_config_a55adaaba8e9105c2047f485fc1ff737e}
+
+
+max\+Gem\+Size is the maximum size a gem could be.  This is the same as maximum scale factor for a gem, because all gems are in range between \mbox{[}-\/1;1\mbox{]} by default. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_config_a4b35695819904d22fc6e01ee3950a4b2}{set\+Max\+Gem\+Size()} 
+\end{DoxySeeAlso}
+\hypertarget{class_config_a4ef0417dbecefc3febeee33cdf93488d}{}\index{Config@{Config}!max\+Gem\+Size\+Changed@{max\+Gem\+Size\+Changed}}
+\index{max\+Gem\+Size\+Changed@{max\+Gem\+Size\+Changed}!Config@{Config}}
+\subsubsection[{max\+Gem\+Size\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::max\+Gem\+Size\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_config_a4ef0417dbecefc3febeee33cdf93488d}
+\hypertarget{class_config_af5183a4e104ff4d86f112359199a861f}{}\index{Config@{Config}!min\+Gem\+Size@{min\+Gem\+Size}}
+\index{min\+Gem\+Size@{min\+Gem\+Size}!Config@{Config}}
+\subsubsection[{min\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::min\+Gem\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_config_af5183a4e104ff4d86f112359199a861f}
+
+
+min\+Gem\+Size is the minimum size a gem could be.  This is the same as minimum scale factor for a gem, because all gems are in range between \mbox{[}-\/1;1\mbox{]} by default. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_config_a3d78af7f9a04ae58883f7f309d0f43d7}{}\index{Config@{Config}!min\+Gem\+Size\+Changed@{min\+Gem\+Size\+Changed}}
+\index{min\+Gem\+Size\+Changed@{min\+Gem\+Size\+Changed}!Config@{Config}}
+\subsubsection[{min\+Gem\+Size\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::min\+Gem\+Size\+Changed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_config_a3d78af7f9a04ae58883f7f309d0f43d7}
+\hypertarget{class_config_ab6e130f2988e1ee72e81e853865708ba}{}\index{Config@{Config}!set\+Axis\+Range@{set\+Axis\+Range}}
+\index{set\+Axis\+Range@{set\+Axis\+Range}!Config@{Config}}
+\subsubsection[{set\+Axis\+Range}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::set\+Axis\+Range (
+\begin{DoxyParamCaption}
+\item[{int \&}]{axis\+Range}
+\end{DoxyParamCaption}
+)}\label{class_config_ab6e130f2988e1ee72e81e853865708ba}
+
+
+Sets value of \hyperlink{class_config_a17e5e932c588503e186f40c2bcff3149}{axis\+Range()};. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & new value \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_config_a5fd3388c946f7ce1ee6342d6c6b15950}{}\index{Config@{Config}!set\+Env\+Map@{set\+Env\+Map}}
+\index{set\+Env\+Map@{set\+Env\+Map}!Config@{Config}}
+\subsubsection[{set\+Env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::set\+Env\+Map (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{env\+Map}
+\end{DoxyParamCaption}
+)}\label{class_config_a5fd3388c946f7ce1ee6342d6c6b15950}
+
+
+Sets value of \hyperlink{class_config_ae85b2124ed4685d081068c6028081d28}{env\+Map()};. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & new value \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_config_a4b35695819904d22fc6e01ee3950a4b2}{}\index{Config@{Config}!set\+Max\+Gem\+Size@{set\+Max\+Gem\+Size}}
+\index{set\+Max\+Gem\+Size@{set\+Max\+Gem\+Size}!Config@{Config}}
+\subsubsection[{set\+Max\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::set\+Max\+Gem\+Size (
+\begin{DoxyParamCaption}
+\item[{float}]{max\+Gem\+Size}
+\end{DoxyParamCaption}
+)}\label{class_config_a4b35695819904d22fc6e01ee3950a4b2}
+
+
+Sets value of \hyperlink{class_config_a9e631288322234538f08c601202c0dba}{max\+Gem\+Size()};. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & new value \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_config_a7fa7e53435ece969074029efd14e70e2}{}\index{Config@{Config}!set\+Min\+Gem\+Size@{set\+Min\+Gem\+Size}}
+\index{set\+Min\+Gem\+Size@{set\+Min\+Gem\+Size}!Config@{Config}}
+\subsubsection[{set\+Min\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}void Config\+::set\+Min\+Gem\+Size (
+\begin{DoxyParamCaption}
+\item[{float}]{min\+Gem\+Size}
+\end{DoxyParamCaption}
+)}\label{class_config_a7fa7e53435ece969074029efd14e70e2}
+
+
+Sets value of \hyperlink{class_config_a26688d51537cbea3ee27810b3f6d1568}{min\+Gem\+Size()};. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & new value \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_config_a5f172b706977841fdcb91351eeae817e}{}\index{Config@{Config}!m\+\_\+axis\+Range@{m\+\_\+axis\+Range}}
+\index{m\+\_\+axis\+Range@{m\+\_\+axis\+Range}!Config@{Config}}
+\subsubsection[{m\+\_\+axis\+Range}]{\setlength{\rightskip}{0pt plus 5cm}int Config\+::m\+\_\+axis\+Range\hspace{0.3cm}{\ttfamily [protected]}}\label{class_config_a5f172b706977841fdcb91351eeae817e}
+\hypertarget{class_config_a70804accd579749b776f9c0c3e5c000b}{}\index{Config@{Config}!m\+\_\+env\+Map@{m\+\_\+env\+Map}}
+\index{m\+\_\+env\+Map@{m\+\_\+env\+Map}!Config@{Config}}
+\subsubsection[{m\+\_\+env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Config\+::m\+\_\+env\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_config_a70804accd579749b776f9c0c3e5c000b}
+\hypertarget{class_config_af8e6282b4a10e5bce08419395394581b}{}\index{Config@{Config}!m\+\_\+instance@{m\+\_\+instance}}
+\index{m\+\_\+instance@{m\+\_\+instance}!Config@{Config}}
+\subsubsection[{m\+\_\+instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Config} $\ast$ Config\+::m\+\_\+instance = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\label{class_config_af8e6282b4a10e5bce08419395394581b}
+\hypertarget{class_config_ae8a0c3906a4d18952a7fbb00868c963e}{}\index{Config@{Config}!m\+\_\+max\+Gem\+Size@{m\+\_\+max\+Gem\+Size}}
+\index{m\+\_\+max\+Gem\+Size@{m\+\_\+max\+Gem\+Size}!Config@{Config}}
+\subsubsection[{m\+\_\+max\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::m\+\_\+max\+Gem\+Size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_config_ae8a0c3906a4d18952a7fbb00868c963e}
+\hypertarget{class_config_a7284f245054875419777e7cbad67183c}{}\index{Config@{Config}!m\+\_\+min\+Gem\+Size@{m\+\_\+min\+Gem\+Size}}
+\index{m\+\_\+min\+Gem\+Size@{m\+\_\+min\+Gem\+Size}!Config@{Config}}
+\subsubsection[{m\+\_\+min\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::m\+\_\+min\+Gem\+Size\hspace{0.3cm}{\ttfamily [protected]}}\label{class_config_a7284f245054875419777e7cbad67183c}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_config_a5068b92866fd941b72314c6c7f36145f}{}\index{Config@{Config}!axis\+Range@{axis\+Range}}
+\index{axis\+Range@{axis\+Range}!Config@{Config}}
+\subsubsection[{axis\+Range}]{\setlength{\rightskip}{0pt plus 5cm}int Config\+::axis\+Range\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_config_a5068b92866fd941b72314c6c7f36145f}
+\hypertarget{class_config_ae85b2124ed4685d081068c6028081d28}{}\index{Config@{Config}!env\+Map@{env\+Map}}
+\index{env\+Map@{env\+Map}!Config@{Config}}
+\subsubsection[{env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Config\+::env\+Map\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_config_ae85b2124ed4685d081068c6028081d28}
+\hypertarget{class_config_a9e631288322234538f08c601202c0dba}{}\index{Config@{Config}!max\+Gem\+Size@{max\+Gem\+Size}}
+\index{max\+Gem\+Size@{max\+Gem\+Size}!Config@{Config}}
+\subsubsection[{max\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::max\+Gem\+Size\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_config_a9e631288322234538f08c601202c0dba}
+\hypertarget{class_config_a26688d51537cbea3ee27810b3f6d1568}{}\index{Config@{Config}!min\+Gem\+Size@{min\+Gem\+Size}}
+\index{min\+Gem\+Size@{min\+Gem\+Size}!Config@{Config}}
+\subsubsection[{min\+Gem\+Size}]{\setlength{\rightskip}{0pt plus 5cm}float Config\+::min\+Gem\+Size\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_config_a26688d51537cbea3ee27810b3f6d1568}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/config.\+h\item 
-gem\+Illuminator/config.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{config_8h}{config.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{config_8cpp}{config.\+cpp}\end{DoxyCompactItemize}

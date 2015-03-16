@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['scene',['Scene',['../class_scene.html',1,'']]],
-  ['scenebounds',['SceneBounds',['../class_scene_bounds.html',1,'']]],
-  ['scenerenderer',['SceneRenderer',['../class_scene_renderer.html',1,'']]],
-  ['screenalignedquad',['ScreenAlignedQuad',['../class_screen_aligned_quad.html',1,'']]]
+  ['lightray',['LightRay',['../class_light_ray.html',1,'']]],
+  ['lightraydata',['LightRayData',['../class_light_ray_data.html',1,'']]],
+  ['lightrayrenderer',['LightRayRenderer',['../class_light_ray_renderer.html',1,'']]]
 ];

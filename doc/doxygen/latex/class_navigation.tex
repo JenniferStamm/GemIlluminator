@@ -1,5 +1,14 @@
 \hypertarget{class_navigation}{}\section{Navigation Class Reference}
 \label{class_navigation}\index{Navigation@{Navigation}}
+
+
+The \hyperlink{class_navigation}{Navigation} class provides an interface for all navigation techniques.  The navigation takes euler angles in coordinate system based on current view and translate them into quaternions describing the changes in our world.  
+
+
+
+
+{\ttfamily \#include $<$navigation.\+h$>$}
+
 Inheritance diagram for Navigation\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,60 +18,152 @@ Inheritance diagram for Navigation\+:\begin{figure}[H]
 \subsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_navigation_a46da025077023f9c225d3f5dfe870324}{}void {\bfseries euler\+Rotation\+Changed} (const Q\+Vector3\+D \&rotation)\label{class_navigation_a46da025077023f9c225d3f5dfe870324}
-
+void \hyperlink{class_navigation_a46da025077023f9c225d3f5dfe870324}{euler\+Rotation\+Changed} (const Q\+Vector3\+D \&\hyperlink{class_navigation_a264e178e874b62aec38c9986a234d044}{rotation})
 \item 
-\hypertarget{class_navigation_ac54fe5d8be2858c2988a9f5158d2d58e}{}void {\bfseries rotation\+Changed} (const Q\+Quaternion \&rotation)\label{class_navigation_ac54fe5d8be2858c2988a9f5158d2d58e}
-
+void \hyperlink{class_navigation_ac54fe5d8be2858c2988a9f5158d2d58e}{rotation\+Changed} (const Q\+Quaternion \&\hyperlink{class_navigation_a264e178e874b62aec38c9986a234d044}{rotation})
 \item 
-\hypertarget{class_navigation_aa8de8f9227de65da000d1ce730821bab}{}void {\bfseries world\+Space\+Rotation\+Changed} (const Q\+Quaternion \&rotation)\label{class_navigation_aa8de8f9227de65da000d1ce730821bab}
-
+void \hyperlink{class_navigation_aa8de8f9227de65da000d1ce730821bab}{world\+Space\+Rotation\+Changed} (const Q\+Quaternion \&\hyperlink{class_navigation_a264e178e874b62aec38c9986a234d044}{rotation})
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_navigation_a9848e09ca6fab3590ffdb0e1c188f31d}{}{\bfseries Navigation} (Q\+Object $\ast$parent=0)\label{class_navigation_a9848e09ca6fab3590ffdb0e1c188f31d}
-
+\hyperlink{class_navigation_a9848e09ca6fab3590ffdb0e1c188f31d}{Navigation} (Q\+Object $\ast$parent=0)
 \item 
-\hypertarget{class_navigation_a264e178e874b62aec38c9986a234d044}{}Q\+Quaternion {\bfseries rotation} () const \label{class_navigation_a264e178e874b62aec38c9986a234d044}
-
+virtual \hyperlink{class_navigation_addd4022d716df48f4e55a1db69361ba7}{$\sim$\+Navigation} ()
 \item 
-\hypertarget{class_navigation_adedf1fd31c40b2ba7461f67387bbb00c}{}Q\+Quaternion {\bfseries world\+Space\+Rotation} () const \label{class_navigation_adedf1fd31c40b2ba7461f67387bbb00c}
-
+Q\+Quaternion \hyperlink{class_navigation_a264e178e874b62aec38c9986a234d044}{rotation} () const 
 \item 
-\hypertarget{class_navigation_a945e0c9bd30f3c66da040f3242864027}{}void {\bfseries set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)\label{class_navigation_a945e0c9bd30f3c66da040f3242864027}
-
+Q\+Quaternion \hyperlink{class_navigation_adedf1fd31c40b2ba7461f67387bbb00c}{world\+Space\+Rotation} () const 
 \item 
-\hypertarget{class_navigation_ac756f0b773b771556505a8f20a5f2cf1}{}const Q\+Vector3\+D \& {\bfseries euler\+Rotation} () const \label{class_navigation_ac756f0b773b771556505a8f20a5f2cf1}
-
+void \hyperlink{class_navigation_a945e0c9bd30f3c66da040f3242864027}{set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)
 \item 
-\hypertarget{class_navigation_a4d9b8c12ac091a1db0c3b89f0e36cedd}{}void {\bfseries set\+Euler\+Rotation} (const Q\+Vector3\+D \&angles)\label{class_navigation_a4d9b8c12ac091a1db0c3b89f0e36cedd}
-
+const Q\+Vector3\+D \& \hyperlink{class_navigation_ac756f0b773b771556505a8f20a5f2cf1}{euler\+Rotation} () const 
+\item 
+void \hyperlink{class_navigation_a4d9b8c12ac091a1db0c3b89f0e36cedd}{set\+Euler\+Rotation} (const Q\+Vector3\+D \&angles)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_navigation_a210a31fd6fc626468793b4dbeefcaf2c}{}Q\+Quaternion {\bfseries from\+Euler\+Angle\+Quaternions} (const Q\+Quaternion \&x, const Q\+Quaternion \&y, const Q\+Quaternion \&z) const \label{class_navigation_a210a31fd6fc626468793b4dbeefcaf2c}
-
+Q\+Quaternion \hyperlink{class_navigation_a210a31fd6fc626468793b4dbeefcaf2c}{from\+Euler\+Angle\+Quaternions} (const Q\+Quaternion \&x, const Q\+Quaternion \&y, const Q\+Quaternion \&z) const 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_navigation_a76a3e3ea5f8d81a19b22806eb3536302}{}\hyperlink{class_camera}{Camera} $\ast$ {\bfseries m\+\_\+camera}\label{class_navigation_a76a3e3ea5f8d81a19b22806eb3536302}
-
+\hyperlink{class_camera}{Camera} $\ast$ \hyperlink{class_navigation_a76a3e3ea5f8d81a19b22806eb3536302}{m\+\_\+camera}
 \item 
-\hypertarget{class_navigation_a6b056244895c4250c697f6b924874b05}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+euler\+Rotation}\label{class_navigation_a6b056244895c4250c697f6b924874b05}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_navigation_a6b056244895c4250c697f6b924874b05}{m\+\_\+euler\+Rotation}
 \end{DoxyCompactItemize}
 \subsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_navigation_a34c974ef7c98cf9853a4ac62ab42ac2f}{}const Q\+Vector3\+D {\bfseries euler\+Rotation}\label{class_navigation_a34c974ef7c98cf9853a4ac62ab42ac2f}
-
+const Q\+Vector3\+D \hyperlink{class_navigation_a34c974ef7c98cf9853a4ac62ab42ac2f}{euler\+Rotation}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_navigation}{Navigation} class provides an interface for all navigation techniques.  The navigation takes euler angles in coordinate system based on current view and translate them into quaternions describing the changes in our world. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_navigation_a9848e09ca6fab3590ffdb0e1c188f31d}{}\index{Navigation@{Navigation}!Navigation@{Navigation}}
+\index{Navigation@{Navigation}!Navigation@{Navigation}}
+\subsubsection[{Navigation}]{\setlength{\rightskip}{0pt plus 5cm}Navigation\+::\+Navigation (
+\begin{DoxyParamCaption}
+\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_navigation_a9848e09ca6fab3590ffdb0e1c188f31d}
+\hypertarget{class_navigation_addd4022d716df48f4e55a1db69361ba7}{}\index{Navigation@{Navigation}!````~Navigation@{$\sim$\+Navigation}}
+\index{````~Navigation@{$\sim$\+Navigation}!Navigation@{Navigation}}
+\subsubsection[{$\sim$\+Navigation}]{\setlength{\rightskip}{0pt plus 5cm}Navigation\+::$\sim$\+Navigation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_navigation_addd4022d716df48f4e55a1db69361ba7}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_navigation_ac756f0b773b771556505a8f20a5f2cf1}{}\index{Navigation@{Navigation}!euler\+Rotation@{euler\+Rotation}}
+\index{euler\+Rotation@{euler\+Rotation}!Navigation@{Navigation}}
+\subsubsection[{euler\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Navigation\+::euler\+Rotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_navigation_ac756f0b773b771556505a8f20a5f2cf1}
+\hypertarget{class_navigation_a46da025077023f9c225d3f5dfe870324}{}\index{Navigation@{Navigation}!euler\+Rotation\+Changed@{euler\+Rotation\+Changed}}
+\index{euler\+Rotation\+Changed@{euler\+Rotation\+Changed}!Navigation@{Navigation}}
+\subsubsection[{euler\+Rotation\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Navigation\+::euler\+Rotation\+Changed (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_navigation_a46da025077023f9c225d3f5dfe870324}
+\hypertarget{class_navigation_a210a31fd6fc626468793b4dbeefcaf2c}{}\index{Navigation@{Navigation}!from\+Euler\+Angle\+Quaternions@{from\+Euler\+Angle\+Quaternions}}
+\index{from\+Euler\+Angle\+Quaternions@{from\+Euler\+Angle\+Quaternions}!Navigation@{Navigation}}
+\subsubsection[{from\+Euler\+Angle\+Quaternions}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Quaternion Navigation\+::from\+Euler\+Angle\+Quaternions (
+\begin{DoxyParamCaption}
+\item[{const Q\+Quaternion \&}]{x, }
+\item[{const Q\+Quaternion \&}]{y, }
+\item[{const Q\+Quaternion \&}]{z}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_navigation_a210a31fd6fc626468793b4dbeefcaf2c}
+\hypertarget{class_navigation_a264e178e874b62aec38c9986a234d044}{}\index{Navigation@{Navigation}!rotation@{rotation}}
+\index{rotation@{rotation}!Navigation@{Navigation}}
+\subsubsection[{rotation}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Quaternion Navigation\+::rotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_navigation_a264e178e874b62aec38c9986a234d044}
+\hypertarget{class_navigation_ac54fe5d8be2858c2988a9f5158d2d58e}{}\index{Navigation@{Navigation}!rotation\+Changed@{rotation\+Changed}}
+\index{rotation\+Changed@{rotation\+Changed}!Navigation@{Navigation}}
+\subsubsection[{rotation\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Navigation\+::rotation\+Changed (
+\begin{DoxyParamCaption}
+\item[{const Q\+Quaternion \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_navigation_ac54fe5d8be2858c2988a9f5158d2d58e}
+\hypertarget{class_navigation_a945e0c9bd30f3c66da040f3242864027}{}\index{Navigation@{Navigation}!set\+Camera@{set\+Camera}}
+\index{set\+Camera@{set\+Camera}!Navigation@{Navigation}}
+\subsubsection[{set\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Navigation\+::set\+Camera (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{camera}
+\end{DoxyParamCaption}
+)}\label{class_navigation_a945e0c9bd30f3c66da040f3242864027}
+\hypertarget{class_navigation_a4d9b8c12ac091a1db0c3b89f0e36cedd}{}\index{Navigation@{Navigation}!set\+Euler\+Rotation@{set\+Euler\+Rotation}}
+\index{set\+Euler\+Rotation@{set\+Euler\+Rotation}!Navigation@{Navigation}}
+\subsubsection[{set\+Euler\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void Navigation\+::set\+Euler\+Rotation (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{angles}
+\end{DoxyParamCaption}
+)}\label{class_navigation_a4d9b8c12ac091a1db0c3b89f0e36cedd}
+\hypertarget{class_navigation_adedf1fd31c40b2ba7461f67387bbb00c}{}\index{Navigation@{Navigation}!world\+Space\+Rotation@{world\+Space\+Rotation}}
+\index{world\+Space\+Rotation@{world\+Space\+Rotation}!Navigation@{Navigation}}
+\subsubsection[{world\+Space\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Quaternion Navigation\+::world\+Space\+Rotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_navigation_adedf1fd31c40b2ba7461f67387bbb00c}
+\hypertarget{class_navigation_aa8de8f9227de65da000d1ce730821bab}{}\index{Navigation@{Navigation}!world\+Space\+Rotation\+Changed@{world\+Space\+Rotation\+Changed}}
+\index{world\+Space\+Rotation\+Changed@{world\+Space\+Rotation\+Changed}!Navigation@{Navigation}}
+\subsubsection[{world\+Space\+Rotation\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Navigation\+::world\+Space\+Rotation\+Changed (
+\begin{DoxyParamCaption}
+\item[{const Q\+Quaternion \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_navigation_aa8de8f9227de65da000d1ce730821bab}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_navigation_a76a3e3ea5f8d81a19b22806eb3536302}{}\index{Navigation@{Navigation}!m\+\_\+camera@{m\+\_\+camera}}
+\index{m\+\_\+camera@{m\+\_\+camera}!Navigation@{Navigation}}
+\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Navigation\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_navigation_a76a3e3ea5f8d81a19b22806eb3536302}
+\hypertarget{class_navigation_a6b056244895c4250c697f6b924874b05}{}\index{Navigation@{Navigation}!m\+\_\+euler\+Rotation@{m\+\_\+euler\+Rotation}}
+\index{m\+\_\+euler\+Rotation@{m\+\_\+euler\+Rotation}!Navigation@{Navigation}}
+\subsubsection[{m\+\_\+euler\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Navigation\+::m\+\_\+euler\+Rotation\hspace{0.3cm}{\ttfamily [protected]}}\label{class_navigation_a6b056244895c4250c697f6b924874b05}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_navigation_a34c974ef7c98cf9853a4ac62ab42ac2f}{}\index{Navigation@{Navigation}!euler\+Rotation@{euler\+Rotation}}
+\index{euler\+Rotation@{euler\+Rotation}!Navigation@{Navigation}}
+\subsubsection[{euler\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Navigation\+::euler\+Rotation\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_navigation_a34c974ef7c98cf9853a4ac62ab42ac2f}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/navigation.\+h\item 
-gem\+Illuminator/navigation.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{navigation_8h}{navigation.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{navigation_8cpp}{navigation.\+cpp}\end{DoxyCompactItemize}

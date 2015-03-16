@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Gem Illuminator: gemIlluminator/scene.h Source File</title>
+<title>Gem Illuminator: Game-Programming-WS2014/gemIlluminator/scene.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_6fe477e04668ae66267e4804812c6cd5.html">gemIlluminator</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_78153e7ed162178108f48b245e38da6a.html">Game-Programming-WS2014</a></li><li class="navelem"><a class="el" href="dir_f8d2780bb503ebb2e914d3f70acccb8e.html">gemIlluminator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,103 +89,120 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">scene.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SCENE_H</span></div>
+<a href="scene_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SCENE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define SCENE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QMap&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QQuickItem&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QQmlListProperty&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QOpenGLFunctions;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span>QOpenGLShaderProgram;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span>QMatrix4x4;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_abstract_gem.html">AbstractGem</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_light_ray.html">LightRay</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_light_ray_renderer.html">LightRayRenderer</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_navigation.html">Navigation</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene_bounds.html">SceneBounds</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene_renderer.html">SceneRenderer</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_triangle.html">Triangle</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">enum class</span> ShaderPrograms {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    GemProgram,</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    LighRayProgram,</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    EnvMapProgram</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_scene.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_scene.html">Scene</a> : <span class="keyword">public</span> QQuickItem</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Q_PROPERTY(QQmlListProperty&lt;AbstractGem&gt; geometries READ geometries NOTIFY geometriesChanged)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    Q_PROPERTY(<a class="code" href="class_camera.html">Camera</a>* camera READ camera WRITE setCamera)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    Q_PROPERTY(<a class="code" href="class_light_ray.html">LightRay</a>* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_scene.html">Scene</a>(QQuickItem *parent = 0);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_scene.html">Scene</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    QQmlListProperty&lt;AbstractGem&gt; geometries();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_camera.html">Camera</a>* camera() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> setCamera(<a class="code" href="class_camera.html">Camera</a> *camera);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_scene_renderer.html">SceneRenderer</a>&amp; sceneRenderer() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *<a class="code" href="class_scene.html#af96ea722705769055ef2f9e9572f3fa0">findGemWithBoundingSphereIntersectedBy</a>(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint = <span class="keyword">nullptr</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *<a class="code" href="class_scene.html#a2a2cee0a97d8436aac1cd582904af459">findGemIntersectedBy</a>(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint = <span class="keyword">nullptr</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_triangle.html">Triangle</a> *<a class="code" href="class_scene.html#a2a06baa2386486f9276f97c47d76e624">findGemFaceIntersectedBy</a>(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint = <span class="keyword">nullptr</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> setCurrentGem(<a class="code" href="class_abstract_gem.html">AbstractGem</a> *currentGem);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_light_ray.html">LightRay</a> *rootLightRay() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> setRootLightRay(<a class="code" href="class_light_ray.html">LightRay</a> *rootLightRay);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;signals:</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> cubesChanged();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> geometriesChanged();</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> rootLightRayChanged();</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QQuickItem&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QQmlListProperty&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">class </span>QOpenGLFunctions;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span>QOpenGLShaderProgram;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span>QMatrix4x4;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_abstract_gem.html">AbstractGem</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="class_light_ray.html">LightRay</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_navigation.html">Navigation</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="class_scene_bounds.html">SceneBounds</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_triangle.html">Triangle</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_scene.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_scene.html">Scene</a> : <span class="keyword">public</span> QQuickItem</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_scene.html#a426e8a21801c9cc93c5cd90896ed745d">   25</a></span>&#160;    Q_PROPERTY(QQmlListProperty&lt;AbstractGem&gt; <a class="code" href="class_scene.html#a65753673cd72f8b921cda3ac10c31e87">geometries</a> READ <a class="code" href="class_scene.html#ac437a983a495358875b319a4fcf912d4">geometriesQML</a> NOTIFY <a class="code" href="class_scene.html#a8df7e2ef0bf2910fa03df1c16b255551">geometriesChanged</a>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_scene.html#ab915c54546b8cecc3ae6bb7c8983518c">   26</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_scene.html#a81b014ae882dfaec147d917b1ea99d68">camera</a> READ <a class="code" href="class_scene.html#a81b014ae882dfaec147d917b1ea99d68">camera</a> WRITE <a class="code" href="class_scene.html#a4c722c43b266a642a4a06d0d818b14d1">setCamera</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_scene.html#ae8f457e7e69cac64f533e02f4f13e725">   27</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_scene.html#acdd91b41ac71a9e44b6e9883a30a1c48">previewCamera</a> READ <a class="code" href="class_scene.html#acdd91b41ac71a9e44b6e9883a30a1c48">previewCamera</a> WRITE <a class="code" href="class_scene.html#a84120dfbddf207c955e16b7aae975b8c">setPreviewCamera</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_scene.html#a437a4ce938a6de368c2a6abba0ec3f3d">   28</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_light_ray.html">LightRay</a>* <a class="code" href="class_scene.html#a7de6dcc38dd6398f71af71295ae09966">rootLightRay</a> READ <a class="code" href="class_scene.html#a7de6dcc38dd6398f71af71295ae09966">rootLightRay</a> WRITE <a class="code" href="class_scene.html#a3da6be3089fe335bf628ef58d23cda18">setRootLightRay</a> NOTIFY <a class="code" href="class_scene.html#a4eed91c96f13a7646830737b820755c4">rootLightRayChanged</a>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;public:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    explicit <a class="code" href="class_scene.html">Scene</a>(QQuickItem *parent = 0);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    virtual ~<a class="code" href="class_scene.html">Scene</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    QQmlListProperty&lt;<a class="code" href="class_abstract_gem.html">AbstractGem</a>&gt; <a class="code" href="class_scene.html#ac437a983a495358875b319a4fcf912d4">geometriesQML</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_q_list.html">QList</a>&lt;<a class="code" href="class_abstract_gem.html">AbstractGem</a> *&gt; <a class="code" href="class_scene.html#a65753673cd72f8b921cda3ac10c31e87">geometries</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_scene.html#a81b014ae882dfaec147d917b1ea99d68">camera</a>() const;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a4c722c43b266a642a4a06d0d818b14d1">setCamera</a>(<a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_scene.html#a81b014ae882dfaec147d917b1ea99d68">camera</a>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_scene.html#acdd91b41ac71a9e44b6e9883a30a1c48">previewCamera</a>() const;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a84120dfbddf207c955e16b7aae975b8c">setPreviewCamera</a>(<a class="code" href="class_camera.html">Camera</a> *camera);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *<a class="code" href="class_scene.html#af96ea722705769055ef2f9e9572f3fa0">findGemWithBoundingSphereIntersectedBy</a>(const <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint = <span class="keywordtype">nullptr</span>) const;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *<a class="code" href="class_scene.html#a2a2cee0a97d8436aac1cd582904af459">findGemIntersectedBy</a>(const <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, QVector3D *collisionPoint = <span class="keywordtype">nullptr</span>) const;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#afcaeead320358b9d9dd02a113ef97c44">setCurrentGem</a>(<a class="code" href="class_abstract_gem.html">AbstractGem</a> *currentGem);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_light_ray.html">LightRay</a> *<a class="code" href="class_scene.html#a7de6dcc38dd6398f71af71295ae09966">rootLightRay</a>() const;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a3da6be3089fe335bf628ef58d23cda18">setRootLightRay</a>(<a class="code" href="class_light_ray.html">LightRay</a> *<a class="code" href="class_scene.html#a7de6dcc38dd6398f71af71295ae09966">rootLightRay</a>);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> sync(<span class="keywordtype">int</span> elapsedTime);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> cleanupGL(QOpenGLFunctions &amp;gl);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> paint(QOpenGLFunctions &amp;gl, <span class="keyword">const</span> QMatrix4x4 &amp;viewProjection, <span class="keyword">const</span> QMap&lt;ShaderPrograms, QOpenGLShaderProgram*&gt; &amp;shaderPrograms);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> registerNavigation(<a class="code" href="class_navigation.html">Navigation</a> *navigation);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> rotateCurrentGem(<span class="keyword">const</span> QQuaternion &amp;quaternion);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;signals:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a9c23e7cda34a3089165ce18c2ec89c15">cubesChanged</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> geometriesChanged();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a4eed91c96f13a7646830737b820755c4">rootLightRayChanged</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a700dd8faf803b34d7b374c5aded06d45">gameStarted</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#aa73ff5f1f6c873357149afe83c749d09">gameLost</a>();</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_scene_bounds.html">SceneBounds</a> *m_bounds;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="class_camera.html">Camera</a> *m_camera;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *m_currentGem;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_q_list.html">QList&lt;AbstractGem*&gt;</a> m_gem;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_light_ray_renderer.html">LightRayRenderer</a> *m_lightRayRenderer;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_navigation.html">Navigation</a> *m_navigation;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_scene_renderer.html">SceneRenderer</a> *m_renderer;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="class_light_ray.html">LightRay</a> *m_rootLightRay;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif // SCENE_H</span></div>
-<div class="ttc" id="class_scene_html_a2a06baa2386486f9276f97c47d76e624"><div class="ttname"><a href="class_scene.html#a2a06baa2386486f9276f97c47d76e624">Scene::findGemFaceIntersectedBy</a></div><div class="ttdeci">Triangle * findGemFaceIntersectedBy(const LightRay &amp;ray, QVector3D *collisionPoint=nullptr) const </div><div class="ttdoc">Finds intersected face of nearest gem intersected by given ray. </div><div class="ttdef"><b>Definition:</b> scene.cpp:158</div></div>
-<div class="ttc" id="class_scene_html_a2a2cee0a97d8436aac1cd582904af459"><div class="ttname"><a href="class_scene.html#a2a2cee0a97d8436aac1cd582904af459">Scene::findGemIntersectedBy</a></div><div class="ttdeci">AbstractGem * findGemIntersectedBy(const LightRay &amp;ray, QVector3D *collisionPoint=nullptr) const </div><div class="ttdoc">Finds the nearest gem with bounding sphere intersected by given ray. </div><div class="ttdef"><b>Definition:</b> scene.cpp:120</div></div>
-<div class="ttc" id="class_light_ray_html"><div class="ttname"><a href="class_light_ray.html">LightRay</a></div><div class="ttdef"><b>Definition:</b> lightray.h:19</div></div>
-<div class="ttc" id="class_triangle_html"><div class="ttname"><a href="class_triangle.html">Triangle</a></div><div class="ttdef"><b>Definition:</b> triangle.h:9</div></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> camera.h:10</div></div>
-<div class="ttc" id="class_scene_html_af96ea722705769055ef2f9e9572f3fa0"><div class="ttname"><a href="class_scene.html#af96ea722705769055ef2f9e9572f3fa0">Scene::findGemWithBoundingSphereIntersectedBy</a></div><div class="ttdeci">AbstractGem * findGemWithBoundingSphereIntersectedBy(const LightRay &amp;ray, QVector3D *collisionPoint=nullptr) const </div><div class="ttdoc">Finds the nearest gem, that bounding sphere is intersected by given ray. </div><div class="ttdef"><b>Definition:</b> scene.cpp:139</div></div>
-<div class="ttc" id="class_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdef"><b>Definition:</b> scene.h:27</div></div>
-<div class="ttc" id="class_light_ray_renderer_html"><div class="ttname"><a href="class_light_ray_renderer.html">LightRayRenderer</a></div><div class="ttdef"><b>Definition:</b> lightrayrenderer.h:15</div></div>
-<div class="ttc" id="class_scene_renderer_html"><div class="ttname"><a href="class_scene_renderer.html">SceneRenderer</a></div><div class="ttdoc">The SceneRenderer class  Renders the scene: Packs the scene in the buffer and draws the scene in one ...</div><div class="ttdef"><b>Definition:</b> scenerenderer.h:22</div></div>
-<div class="ttc" id="class_navigation_html"><div class="ttname"><a href="class_navigation.html">Navigation</a></div><div class="ttdef"><b>Definition:</b> navigation.h:11</div></div>
-<div class="ttc" id="class_q_list_html"><div class="ttname"><a href="class_q_list.html">QList&lt; AbstractGem * &gt;</a></div></div>
-<div class="ttc" id="class_scene_bounds_html"><div class="ttname"><a href="class_scene_bounds.html">SceneBounds</a></div><div class="ttdef"><b>Definition:</b> scenebounds.h:11</div></div>
-<div class="ttc" id="class_abstract_gem_html"><div class="ttname"><a href="class_abstract_gem.html">AbstractGem</a></div><div class="ttdef"><b>Definition:</b> abstractgem.h:24</div></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;public slots:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    virtual <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a0c9213091fb06643b95801d2b406878f">update</a>(<span class="keywordtype">int</span> elapsedTime);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#a3f593e4e80703153633a76cc628ab539">handleGameLost</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#aceda1edb06b179bd439539965998f7da">handleGameStarted</a>();</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#ace3407a4d148d317a20b1bf205554bc5">registerNavigation</a>(<a class="code" href="class_navigation.html">Navigation</a> *navigation);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_scene.html#ade6d7968a2bad7c1dfbae98045a8aa7d">rotateCurrentGem</a>(const QQuaternion &amp;quaternion);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;protected:</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_scene.html#a62831eb6a67ce74ee608b4327bf069f3">   97</a></span>&#160;    <a class="code" href="class_scene_bounds.html">SceneBounds</a> *<a class="code" href="class_scene.html#a62831eb6a67ce74ee608b4327bf069f3">m_bounds</a>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_scene.html#ab37f5e133a5fe0803c3df42a4fcba7bf">   98</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_scene.html#ab37f5e133a5fe0803c3df42a4fcba7bf">m_camera</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="class_scene.html#af1841b6c042a5edcf39653706f17cdd1">   99</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_scene.html#af1841b6c042a5edcf39653706f17cdd1">m_previewCamera</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="class_scene.html#aff9d5a2212ba1b5813dc10177f0344cb">  100</a></span>&#160;    <a class="code" href="class_abstract_gem.html">AbstractGem</a> *<a class="code" href="class_scene.html#aff9d5a2212ba1b5813dc10177f0344cb">m_currentGem</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_scene.html#a47d7b35730d7959a640339ed11d18866">  101</a></span>&#160;    <a class="code" href="class_q_list.html">QList</a>&lt;<a class="code" href="class_abstract_gem.html">AbstractGem</a>*&gt; <a class="code" href="class_scene.html#a47d7b35730d7959a640339ed11d18866">m_gems</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="class_scene.html#a595ab554271bd87c4c73f0cce175ff81">  102</a></span>&#160;    <a class="code" href="class_navigation.html">Navigation</a> *<a class="code" href="class_scene.html#a595ab554271bd87c4c73f0cce175ff81">m_navigation</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_scene.html#a766daf7b6a92c877f1fc57f3d8af9959">  103</a></span>&#160;    <a class="code" href="class_light_ray.html">LightRay</a> *<a class="code" href="class_scene.html#a766daf7b6a92c877f1fc57f3d8af9959">m_rootLightRay</a>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif // SCENE_H</span></div>
+<div class="ttc" id="class_scene_html_a3f593e4e80703153633a76cc628ab539"><div class="ttname"><a href="class_scene.html#a3f593e4e80703153633a76cc628ab539">Scene::handleGameLost</a></div><div class="ttdeci">void handleGameLost()</div><div class="ttdef"><b>Definition:</b> scene.cpp:42</div></div>
+<div class="ttc" id="class_scene_html_a2a2cee0a97d8436aac1cd582904af459"><div class="ttname"><a href="class_scene.html#a2a2cee0a97d8436aac1cd582904af459">Scene::findGemIntersectedBy</a></div><div class="ttdeci">AbstractGem * findGemIntersectedBy(const LightRay &amp;ray, QVector3D *collisionPoint=nullptr) const </div><div class="ttdoc">Finds the nearest gem with bounding sphere intersected by given ray. </div><div class="ttdef"><b>Definition:</b> scene.cpp:102</div></div>
+<div class="ttc" id="class_light_ray_html"><div class="ttname"><a href="class_light_ray.html">LightRay</a></div><div class="ttdoc">The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...</div><div class="ttdef"><b>Definition:</b> lightray.h:24</div></div>
+<div class="ttc" id="class_scene_html_ace3407a4d148d317a20b1bf205554bc5"><div class="ttname"><a href="class_scene.html#ace3407a4d148d317a20b1bf205554bc5">Scene::registerNavigation</a></div><div class="ttdeci">void registerNavigation(Navigation *navigation)</div><div class="ttdef"><b>Definition:</b> scene.cpp:57</div></div>
+<div class="ttc" id="class_scene_html_a84120dfbddf207c955e16b7aae975b8c"><div class="ttname"><a href="class_scene.html#a84120dfbddf207c955e16b7aae975b8c">Scene::setPreviewCamera</a></div><div class="ttdeci">void setPreviewCamera(Camera *camera)</div><div class="ttdef"><b>Definition:</b> scene.cpp:87</div></div>
+<div class="ttc" id="class_triangle_html"><div class="ttname"><a href="class_triangle.html">Triangle</a></div><div class="ttdoc">The Triangle class represents a triangle in three dimensional space. </div><div class="ttdef"><b>Definition:</b> triangle.h:11</div></div>
+<div class="ttc" id="class_scene_html_a700dd8faf803b34d7b374c5aded06d45"><div class="ttname"><a href="class_scene.html#a700dd8faf803b34d7b374c5aded06d45">Scene::gameStarted</a></div><div class="ttdeci">void gameStarted()</div></div>
+<div class="ttc" id="class_scene_html_a4c722c43b266a642a4a06d0d818b14d1"><div class="ttname"><a href="class_scene.html#a4c722c43b266a642a4a06d0d818b14d1">Scene::setCamera</a></div><div class="ttdeci">void setCamera(Camera *camera)</div><div class="ttdef"><b>Definition:</b> scene.cpp:77</div></div>
+<div class="ttc" id="class_scene_html_aff9d5a2212ba1b5813dc10177f0344cb"><div class="ttname"><a href="class_scene.html#aff9d5a2212ba1b5813dc10177f0344cb">Scene::m_currentGem</a></div><div class="ttdeci">AbstractGem * m_currentGem</div><div class="ttdef"><b>Definition:</b> scene.h:100</div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">The Camera class provides view and perspective projection matrices. Additional the viewport of camera...</div><div class="ttdef"><b>Definition:</b> camera.h:16</div></div>
+<div class="ttc" id="class_scene_html_af96ea722705769055ef2f9e9572f3fa0"><div class="ttname"><a href="class_scene.html#af96ea722705769055ef2f9e9572f3fa0">Scene::findGemWithBoundingSphereIntersectedBy</a></div><div class="ttdeci">AbstractGem * findGemWithBoundingSphereIntersectedBy(const LightRay &amp;ray, QVector3D *collisionPoint=nullptr) const </div><div class="ttdoc">Finds the nearest gem, that bounding sphere is intersected by given ray. </div><div class="ttdef"><b>Definition:</b> scene.cpp:121</div></div>
+<div class="ttc" id="class_scene_html_a81b014ae882dfaec147d917b1ea99d68"><div class="ttname"><a href="class_scene.html#a81b014ae882dfaec147d917b1ea99d68">Scene::camera</a></div><div class="ttdeci">Camera * camera() const </div></div>
+<div class="ttc" id="class_scene_html_aceda1edb06b179bd439539965998f7da"><div class="ttname"><a href="class_scene.html#aceda1edb06b179bd439539965998f7da">Scene::handleGameStarted</a></div><div class="ttdeci">void handleGameStarted()</div><div class="ttdef"><b>Definition:</b> scene.cpp:47</div></div>
+<div class="ttc" id="class_scene_html_a8df7e2ef0bf2910fa03df1c16b255551"><div class="ttname"><a href="class_scene.html#a8df7e2ef0bf2910fa03df1c16b255551">Scene::geometriesChanged</a></div><div class="ttdeci">void geometriesChanged()</div></div>
+<div class="ttc" id="class_scene_html_a9c23e7cda34a3089165ce18c2ec89c15"><div class="ttname"><a href="class_scene.html#a9c23e7cda34a3089165ce18c2ec89c15">Scene::cubesChanged</a></div><div class="ttdeci">void cubesChanged()</div></div>
+<div class="ttc" id="class_scene_html"><div class="ttname"><a href="class_scene.html">Scene</a></div><div class="ttdoc">The Scene class provides access to geometry and collision detection methods. Furthermore some game lo...</div><div class="ttdef"><b>Definition:</b> scene.h:22</div></div>
+<div class="ttc" id="class_scene_html_af1841b6c042a5edcf39653706f17cdd1"><div class="ttname"><a href="class_scene.html#af1841b6c042a5edcf39653706f17cdd1">Scene::m_previewCamera</a></div><div class="ttdeci">Camera * m_previewCamera</div><div class="ttdef"><b>Definition:</b> scene.h:99</div></div>
+<div class="ttc" id="class_scene_html_a7de6dcc38dd6398f71af71295ae09966"><div class="ttname"><a href="class_scene.html#a7de6dcc38dd6398f71af71295ae09966">Scene::rootLightRay</a></div><div class="ttdeci">LightRay * rootLightRay() const </div></div>
+<div class="ttc" id="class_scene_html_a595ab554271bd87c4c73f0cce175ff81"><div class="ttname"><a href="class_scene.html#a595ab554271bd87c4c73f0cce175ff81">Scene::m_navigation</a></div><div class="ttdeci">Navigation * m_navigation</div><div class="ttdef"><b>Definition:</b> scene.h:102</div></div>
+<div class="ttc" id="class_scene_html_a0c9213091fb06643b95801d2b406878f"><div class="ttname"><a href="class_scene.html#a0c9213091fb06643b95801d2b406878f">Scene::update</a></div><div class="ttdeci">virtual void update(int elapsedTime)</div><div class="ttdef"><b>Definition:</b> scene.cpp:37</div></div>
+<div class="ttc" id="class_scene_html_aa73ff5f1f6c873357149afe83c749d09"><div class="ttname"><a href="class_scene.html#aa73ff5f1f6c873357149afe83c749d09">Scene::gameLost</a></div><div class="ttdeci">void gameLost()</div></div>
+<div class="ttc" id="class_scene_html_a47d7b35730d7959a640339ed11d18866"><div class="ttname"><a href="class_scene.html#a47d7b35730d7959a640339ed11d18866">Scene::m_gems</a></div><div class="ttdeci">QList&lt; AbstractGem * &gt; m_gems</div><div class="ttdef"><b>Definition:</b> scene.h:101</div></div>
+<div class="ttc" id="class_navigation_html"><div class="ttname"><a href="class_navigation.html">Navigation</a></div><div class="ttdoc">The Navigation class provides an interface for all navigation techniques.  The navigation takes euler...</div><div class="ttdef"><b>Definition:</b> navigation.h:16</div></div>
+<div class="ttc" id="class_scene_html_acdd91b41ac71a9e44b6e9883a30a1c48"><div class="ttname"><a href="class_scene.html#acdd91b41ac71a9e44b6e9883a30a1c48">Scene::previewCamera</a></div><div class="ttdeci">Camera * previewCamera() const </div></div>
+<div class="ttc" id="class_scene_html_a62831eb6a67ce74ee608b4327bf069f3"><div class="ttname"><a href="class_scene.html#a62831eb6a67ce74ee608b4327bf069f3">Scene::m_bounds</a></div><div class="ttdeci">SceneBounds * m_bounds</div><div class="ttdef"><b>Definition:</b> scene.h:97</div></div>
+<div class="ttc" id="class_q_list_html"><div class="ttname"><a href="class_q_list.html">QList</a></div><div class="ttdef"><b>Definition:</b> gemdata.h:6</div></div>
+<div class="ttc" id="class_scene_html_a65753673cd72f8b921cda3ac10c31e87"><div class="ttname"><a href="class_scene.html#a65753673cd72f8b921cda3ac10c31e87">Scene::geometries</a></div><div class="ttdeci">QList&lt; AbstractGem * &gt; geometries()</div></div>
+<div class="ttc" id="class_scene_bounds_html"><div class="ttname"><a href="class_scene_bounds.html">SceneBounds</a></div><div class="ttdoc">The SceneBounds class is a special kind of gem describing the bounds of scene. The shape of the bound...</div><div class="ttdef"><b>Definition:</b> scenebounds.h:17</div></div>
+<div class="ttc" id="class_scene_html_a3da6be3089fe335bf628ef58d23cda18"><div class="ttname"><a href="class_scene.html#a3da6be3089fe335bf628ef58d23cda18">Scene::setRootLightRay</a></div><div class="ttdeci">void setRootLightRay(LightRay *rootLightRay)</div><div class="ttdef"><b>Definition:</b> scene.cpp:97</div></div>
+<div class="ttc" id="class_scene_html_a766daf7b6a92c877f1fc57f3d8af9959"><div class="ttname"><a href="class_scene.html#a766daf7b6a92c877f1fc57f3d8af9959">Scene::m_rootLightRay</a></div><div class="ttdeci">LightRay * m_rootLightRay</div><div class="ttdef"><b>Definition:</b> scene.h:103</div></div>
+<div class="ttc" id="class_abstract_gem_html"><div class="ttname"><a href="class_abstract_gem.html">AbstractGem</a></div><div class="ttdoc">The AbstractGem class is our base class of all gems.  As base class all required information of a gem...</div><div class="ttdef"><b>Definition:</b> abstractgem.h:39</div></div>
+<div class="ttc" id="class_scene_html_ac437a983a495358875b319a4fcf912d4"><div class="ttname"><a href="class_scene.html#ac437a983a495358875b319a4fcf912d4">Scene::geometriesQML</a></div><div class="ttdeci">QQmlListProperty&lt; AbstractGem &gt; geometriesQML()</div><div class="ttdoc">Allow QML classes to read our gems.  Initially it was planned to manipulate our gems from QML classes...</div><div class="ttdef"><b>Definition:</b> scene.cpp:52</div></div>
+<div class="ttc" id="class_scene_html_ade6d7968a2bad7c1dfbae98045a8aa7d"><div class="ttname"><a href="class_scene.html#ade6d7968a2bad7c1dfbae98045a8aa7d">Scene::rotateCurrentGem</a></div><div class="ttdeci">void rotateCurrentGem(const QQuaternion &amp;quaternion)</div><div class="ttdef"><b>Definition:</b> scene.cpp:67</div></div>
+<div class="ttc" id="class_scene_html_ab37f5e133a5fe0803c3df42a4fcba7bf"><div class="ttname"><a href="class_scene.html#ab37f5e133a5fe0803c3df42a4fcba7bf">Scene::m_camera</a></div><div class="ttdeci">Camera * m_camera</div><div class="ttdef"><b>Definition:</b> scene.h:98</div></div>
+<div class="ttc" id="class_scene_html_a4eed91c96f13a7646830737b820755c4"><div class="ttname"><a href="class_scene.html#a4eed91c96f13a7646830737b820755c4">Scene::rootLightRayChanged</a></div><div class="ttdeci">void rootLightRayChanged()</div></div>
+<div class="ttc" id="class_scene_html_afcaeead320358b9d9dd02a113ef97c44"><div class="ttname"><a href="class_scene.html#afcaeead320358b9d9dd02a113ef97c44">Scene::setCurrentGem</a></div><div class="ttdeci">void setCurrentGem(AbstractGem *currentGem)</div><div class="ttdoc">Set the gem, that will be controlled by player. </div><div class="ttdef"><b>Definition:</b> scene.cpp:140</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:41 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:00 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

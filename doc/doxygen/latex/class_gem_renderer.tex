@@ -1,80 +1,210 @@
 \hypertarget{class_gem_renderer}{}\section{Gem\+Renderer Class Reference}
 \label{class_gem_renderer}\index{Gem\+Renderer@{Gem\+Renderer}}
+
+
+The \hyperlink{class_gem_renderer}{Gem\+Renderer} class renders all of our gems.  For performance reasons the \hyperlink{class_gem_renderer}{Gem\+Renderer} packs all gems and fakes instanced drawing.  
+
+
+
+
+{\ttfamily \#include $<$gemrenderer.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}{}void {\bfseries cleanup} (Q\+Open\+G\+L\+Functions \&gl)\label{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}
-
+\hyperlink{class_gem_renderer_ab7d20a029bd5b43a1a6f9ed660cfebd8}{Gem\+Renderer} ()
 \item 
-\hypertarget{class_gem_renderer_a129dc12b1b309a0d707f9c6f17a3a4e9}{}void {\bfseries paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_a129dc12b1b309a0d707f9c6f17a3a4e9}
-
+\hyperlink{class_gem_renderer_af66cf5ad414c21487c8513a8e5bf972a}{$\sim$\+Gem\+Renderer} ()
 \item 
-\hypertarget{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}{}void {\bfseries set\+Scene\+Extent} (float extent)\label{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}
-
-\item 
-\hypertarget{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{}void {\bfseries update\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}{cleanup} (Q\+Open\+G\+L\+Functions \&gl)
+\begin{DoxyCompactList}\small\item\em Cleans up all gpu ressources. \end{DoxyCompactList}\item 
+void \hyperlink{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}{initialize} (Q\+Open\+G\+L\+Functions \&gl)
+\begin{DoxyCompactList}\small\item\em Initializes all gpu ressources. \end{DoxyCompactList}\item 
+void \hyperlink{class_gem_renderer_a0a1765f07c953c05b1d7865f356b7ba2}{paint} (Q\+Open\+G\+L\+Functions \&gl, Q\+Open\+G\+L\+Shader\+Program \&program)
+\begin{DoxyCompactList}\small\item\em paint Paints all gems. Using faked instanced drawing. \end{DoxyCompactList}\item 
+void \hyperlink{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}{set\+Scene\+Extent} (float extent)
+\begin{DoxyCompactList}\small\item\em Sets the scene extent, which is required to encode gem positions into byte textures. \end{DoxyCompactList}\item 
+void \hyperlink{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{update\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)
+\begin{DoxyCompactList}\small\item\em Save given gem in order to update it later. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}{}void {\bfseries initialize} (Q\+Open\+G\+L\+Functions \&gl)\label{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}
-
-\item 
-\hypertarget{class_gem_renderer_aaac7cf2429ddde7715e80b4e2014d484}{}void {\bfseries paint\+All\+Gems\+With\+Own\+Draw\+Call} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_aaac7cf2429ddde7715e80b4e2014d484}
-
-\item 
-\hypertarget{class_gem_renderer_ad9e201c7b6d1e49537e5bcab80f296e3}{}void {\bfseries paint\+Gems\+Packed\+Using\+Uniform\+Arays} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_ad9e201c7b6d1e49537e5bcab80f296e3}
-
-\item 
-\hypertarget{class_gem_renderer_a03cc6455c9b52c79c120097bbe03bbd9}{}void {\bfseries paint\+Gems\+Optimized\+With\+Texture} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&program)\label{class_gem_renderer_a03cc6455c9b52c79c120097bbe03bbd9}
-
-\item 
-\hypertarget{class_gem_renderer_a114291cb009678f06e889c46433d7076}{}void {\bfseries update\+Gem\+For\+Own\+Draw\+Call} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a114291cb009678f06e889c46433d7076}
-
-\item 
-\hypertarget{class_gem_renderer_ac5257d21b1833cc9276c144c4722a18f}{}void {\bfseries update\+Gem\+For\+Uniform\+Draw\+Call} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_ac5257d21b1833cc9276c144c4722a18f}
-
-\item 
-\hypertarget{class_gem_renderer_a11f9e6827954a2ea7aff7b105d59c1a5}{}void {\bfseries update\+Gem\+For\+Texture\+Optimization} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$gem)\label{class_gem_renderer_a11f9e6827954a2ea7aff7b105d59c1a5}
-
-\end{DoxyCompactItemize}
+void \hyperlink{class_gem_renderer_ada5ea2f54e918b16879d378cf84dab42}{update\+Data} (Q\+Open\+G\+L\+Functions \&gl)
+\begin{DoxyCompactList}\small\item\em Updates previous added gem using \hyperlink{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{update\+Gem()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}{}bool {\bfseries m\+\_\+is\+Initialized}\label{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}
-
+bool \hyperlink{class_gem_renderer_a09205046ea644ba35327843b208af1de}{m\+\_\+are\+Float\+Textures\+Available}
 \item 
-\hypertarget{class_gem_renderer_a3ed9c37e253feb54b1ca0e34d51751a9}{}int {\bfseries m\+\_\+max\+Uniform\+Vector\+Size}\label{class_gem_renderer_a3ed9c37e253feb54b1ca0e34d51751a9}
-
+\hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{abstractgem_8h_a2f0a34b6dac35a9610cab7a1c5fcb444}{Gem\+Type}, Gem\+Render\+Data $\ast$ $>$ $\ast$ \hyperlink{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}{m\+\_\+gem\+Buffers\+Tex}
 \item 
-\hypertarget{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$, Gem\+Data\+Info $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Map}\label{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}
-
+\hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$, Gem\+Data\+Info $\ast$ $>$ $\ast$ \hyperlink{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}{m\+\_\+gem\+Map}
 \item 
-\hypertarget{class_gem_renderer_af64c5f2973d7c025dc011bc64fb93e50}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Gem\+Type, \hyperlink{class_q_list}{Q\+List}$<$ Q\+Open\+G\+L\+Buffer $\ast$ $>$ $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Buffers}\label{class_gem_renderer_af64c5f2973d7c025dc011bc64fb93e50}
-
+bool \hyperlink{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}{m\+\_\+is\+Gem\+Buffer\+Update\+Required}
 \item 
-\hypertarget{class_gem_renderer_ace5a7e3d33bd65cbe78d2b395a83e27a}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Q\+Open\+G\+L\+Buffer $\ast$, \hyperlink{class_q_list}{Q\+List}$<$ Gem\+Data\+Info $\ast$ $>$ $\ast$ $>$ $\ast$ {\bfseries m\+\_\+buffer\+Data\+Linkage}\label{class_gem_renderer_ace5a7e3d33bd65cbe78d2b395a83e27a}
-
+bool \hyperlink{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}{m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}
 \item 
-\hypertarget{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}{}bool {\bfseries m\+\_\+is\+Gem\+Buffer\+Update\+Required}\label{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}
-
+bool \hyperlink{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}{m\+\_\+is\+Initialized}
 \item 
-\hypertarget{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}{}bool {\bfseries m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}\label{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}
-
+\hyperlink{class_q_list}{Q\+List}$<$ Gem\+Data\+Info $\ast$ $>$ $\ast$ \hyperlink{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}{m\+\_\+new\+Gems}
 \item 
-\hypertarget{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}{}\hyperlink{class_q_list}{Q\+List}$<$ Gem\+Data\+Info $\ast$ $>$ $\ast$ {\bfseries m\+\_\+new\+Gems}\label{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}
-
-\item 
-\hypertarget{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}{}\hyperlink{class_q_hash}{Q\+Hash}$<$ Gem\+Type, Gem\+Render\+Data $\ast$ $>$ $\ast$ {\bfseries m\+\_\+gem\+Buffers\+Tex}\label{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}
-
-\item 
-\hypertarget{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}{}float {\bfseries m\+\_\+scene\+Extent}\label{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}
-
+float \hyperlink{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}{m\+\_\+scene\+Extent}
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_gem_renderer}{Gem\+Renderer} class renders all of our gems.  For performance reasons the \hyperlink{class_gem_renderer}{Gem\+Renderer} packs all gems and fakes instanced drawing. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_gem_renderer_ab7d20a029bd5b43a1a6f9ed660cfebd8}{}\index{Gem\+Renderer@{Gem\+Renderer}!Gem\+Renderer@{Gem\+Renderer}}
+\index{Gem\+Renderer@{Gem\+Renderer}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{Gem\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Gem\+Renderer\+::\+Gem\+Renderer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_ab7d20a029bd5b43a1a6f9ed660cfebd8}
+\hypertarget{class_gem_renderer_af66cf5ad414c21487c8513a8e5bf972a}{}\index{Gem\+Renderer@{Gem\+Renderer}!````~Gem\+Renderer@{$\sim$\+Gem\+Renderer}}
+\index{````~Gem\+Renderer@{$\sim$\+Gem\+Renderer}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{$\sim$\+Gem\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Gem\+Renderer\+::$\sim$\+Gem\+Renderer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_af66cf5ad414c21487c8513a8e5bf972a}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}{}\index{Gem\+Renderer@{Gem\+Renderer}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{cleanup}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::cleanup (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_a9da8103dc08a4203727b6967337fa65b}
+
+
+Cleans up all gpu ressources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions used to do gl-\/calls \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}{}\index{Gem\+Renderer@{Gem\+Renderer}!initialize@{initialize}}
+\index{initialize@{initialize}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::initialize (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_a2d4dc2d6f9b1aae7dc1e8b8d09b153de}
+
+
+Initializes all gpu ressources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions used to do gl-\/calls \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_renderer_a0a1765f07c953c05b1d7865f356b7ba2}{}\index{Gem\+Renderer@{Gem\+Renderer}!paint@{paint}}
+\index{paint@{paint}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::paint (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl, }
+\item[{Q\+Open\+G\+L\+Shader\+Program \&}]{program}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_a0a1765f07c953c05b1d7865f356b7ba2}
+
+
+paint Paints all gems. Using faked instanced drawing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions used to do gl-\/calls \\
+\hline
+{\em program} & The program that is used for drawing gems. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}{}\index{Gem\+Renderer@{Gem\+Renderer}!set\+Scene\+Extent@{set\+Scene\+Extent}}
+\index{set\+Scene\+Extent@{set\+Scene\+Extent}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{set\+Scene\+Extent}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::set\+Scene\+Extent (
+\begin{DoxyParamCaption}
+\item[{float}]{extent}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_afdc5555e3e82c4a021deac461fffe435}
+
+
+Sets the scene extent, which is required to encode gem positions into byte textures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em extent} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_renderer_ada5ea2f54e918b16879d378cf84dab42}{}\index{Gem\+Renderer@{Gem\+Renderer}!update\+Data@{update\+Data}}
+\index{update\+Data@{update\+Data}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{update\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::update\+Data (
+\begin{DoxyParamCaption}
+\item[{Q\+Open\+G\+L\+Functions \&}]{gl}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_ada5ea2f54e918b16879d378cf84dab42}
+
+
+Updates previous added gem using \hyperlink{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{update\+Gem()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gl} & Q\+Open\+G\+L\+Functions used to do gl-\/calls \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}{}\index{Gem\+Renderer@{Gem\+Renderer}!update\+Gem@{update\+Gem}}
+\index{update\+Gem@{update\+Gem}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{update\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}void Gem\+Renderer\+::update\+Gem (
+\begin{DoxyParamCaption}
+\item[{{\bf Abstract\+Gem} $\ast$}]{gem}
+\end{DoxyParamCaption}
+)}\label{class_gem_renderer_a4be8d2a7b1443262392adc828f3910c8}
+
+
+Save given gem in order to update it later. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gem} & The gem that should be updated (or added). \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_gem_renderer_ada5ea2f54e918b16879d378cf84dab42}{update\+Data()} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_gem_renderer_a09205046ea644ba35327843b208af1de}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+are\+Float\+Textures\+Available@{m\+\_\+are\+Float\+Textures\+Available}}
+\index{m\+\_\+are\+Float\+Textures\+Available@{m\+\_\+are\+Float\+Textures\+Available}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+are\+Float\+Textures\+Available}]{\setlength{\rightskip}{0pt plus 5cm}bool Gem\+Renderer\+::m\+\_\+are\+Float\+Textures\+Available\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_a09205046ea644ba35327843b208af1de}
+\hypertarget{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+gem\+Buffers\+Tex@{m\+\_\+gem\+Buffers\+Tex}}
+\index{m\+\_\+gem\+Buffers\+Tex@{m\+\_\+gem\+Buffers\+Tex}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+gem\+Buffers\+Tex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Hash}$<${\bf Gem\+Type}, Gem\+Render\+Data $\ast$$>$$\ast$ Gem\+Renderer\+::m\+\_\+gem\+Buffers\+Tex\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_ac09a5c2581e1500071429a833cf2bc56}
+\hypertarget{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+gem\+Map@{m\+\_\+gem\+Map}}
+\index{m\+\_\+gem\+Map@{m\+\_\+gem\+Map}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+gem\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Hash}$<${\bf Abstract\+Gem} $\ast$, Gem\+Data\+Info $\ast$$>$$\ast$ Gem\+Renderer\+::m\+\_\+gem\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_a549290c95d8ca95b163ca0fae08e11c8}
+\hypertarget{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+is\+Gem\+Buffer\+Update\+Required@{m\+\_\+is\+Gem\+Buffer\+Update\+Required}}
+\index{m\+\_\+is\+Gem\+Buffer\+Update\+Required@{m\+\_\+is\+Gem\+Buffer\+Update\+Required}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+is\+Gem\+Buffer\+Update\+Required}]{\setlength{\rightskip}{0pt plus 5cm}bool Gem\+Renderer\+::m\+\_\+is\+Gem\+Buffer\+Update\+Required\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_a1c7545294804fd500e8e02ce106bb6ba}
+\hypertarget{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+is\+Gem\+Data\+Buffer\+Invalid@{m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}}
+\index{m\+\_\+is\+Gem\+Data\+Buffer\+Invalid@{m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+is\+Gem\+Data\+Buffer\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Gem\+Renderer\+::m\+\_\+is\+Gem\+Data\+Buffer\+Invalid\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_aabd20f07edbe436be86c9b29d4e05fa8}
+\hypertarget{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+is\+Initialized@{m\+\_\+is\+Initialized}}
+\index{m\+\_\+is\+Initialized@{m\+\_\+is\+Initialized}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+is\+Initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool Gem\+Renderer\+::m\+\_\+is\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_abedb030e36a36f2faa096727bfdd226d}
+\hypertarget{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+new\+Gems@{m\+\_\+new\+Gems}}
+\index{m\+\_\+new\+Gems@{m\+\_\+new\+Gems}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+new\+Gems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<$Gem\+Data\+Info $\ast$$>$$\ast$ Gem\+Renderer\+::m\+\_\+new\+Gems\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_ab93df8610036b343cdd98be3cd328aed}
+\hypertarget{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}{}\index{Gem\+Renderer@{Gem\+Renderer}!m\+\_\+scene\+Extent@{m\+\_\+scene\+Extent}}
+\index{m\+\_\+scene\+Extent@{m\+\_\+scene\+Extent}!Gem\+Renderer@{Gem\+Renderer}}
+\subsubsection[{m\+\_\+scene\+Extent}]{\setlength{\rightskip}{0pt plus 5cm}float Gem\+Renderer\+::m\+\_\+scene\+Extent\hspace{0.3cm}{\ttfamily [protected]}}\label{class_gem_renderer_a24391e7dfe1663b9c74210fb0424487d}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/gemrenderer.\+h\item 
-gem\+Illuminator/gemrenderer.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gemrenderer_8h}{gemrenderer.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gemrenderer_8cpp}{gemrenderer.\+cpp}\end{DoxyCompactItemize}

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -93,6 +94,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Navigation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The <a class="el" href="class_navigation.html" title="The Navigation class provides an interface for all navigation techniques.  The navigation takes euler...">Navigation</a> class provides an interface for all navigation techniques.  The navigation takes euler angles in coordinate system based on current view and translate them into quaternions describing the changes in our world.  
+ <a href="class_navigation.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="navigation_8h_source.html">navigation.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Navigation:</div>
 <div class="dyncontent">
@@ -104,66 +110,357 @@ Inheritance diagram for Navigation:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:a46da025077023f9c225d3f5dfe870324"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46da025077023f9c225d3f5dfe870324"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>eulerRotationChanged</b> (const QVector3D &amp;rotation)</td></tr>
+<tr class="memitem:a46da025077023f9c225d3f5dfe870324"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a46da025077023f9c225d3f5dfe870324">eulerRotationChanged</a> (const QVector3D &amp;<a class="el" href="class_navigation.html#a264e178e874b62aec38c9986a234d044">rotation</a>)</td></tr>
 <tr class="separator:a46da025077023f9c225d3f5dfe870324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac54fe5d8be2858c2988a9f5158d2d58e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac54fe5d8be2858c2988a9f5158d2d58e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>rotationChanged</b> (const QQuaternion &amp;rotation)</td></tr>
+<tr class="memitem:ac54fe5d8be2858c2988a9f5158d2d58e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#ac54fe5d8be2858c2988a9f5158d2d58e">rotationChanged</a> (const QQuaternion &amp;<a class="el" href="class_navigation.html#a264e178e874b62aec38c9986a234d044">rotation</a>)</td></tr>
 <tr class="separator:ac54fe5d8be2858c2988a9f5158d2d58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8de8f9227de65da000d1ce730821bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8de8f9227de65da000d1ce730821bab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>worldSpaceRotationChanged</b> (const QQuaternion &amp;rotation)</td></tr>
+<tr class="memitem:aa8de8f9227de65da000d1ce730821bab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#aa8de8f9227de65da000d1ce730821bab">worldSpaceRotationChanged</a> (const QQuaternion &amp;<a class="el" href="class_navigation.html#a264e178e874b62aec38c9986a234d044">rotation</a>)</td></tr>
 <tr class="separator:aa8de8f9227de65da000d1ce730821bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9848e09ca6fab3590ffdb0e1c188f31d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9848e09ca6fab3590ffdb0e1c188f31d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Navigation</b> (QObject *parent=0)</td></tr>
+<tr class="memitem:a9848e09ca6fab3590ffdb0e1c188f31d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a9848e09ca6fab3590ffdb0e1c188f31d">Navigation</a> (QObject *parent=0)</td></tr>
 <tr class="separator:a9848e09ca6fab3590ffdb0e1c188f31d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a264e178e874b62aec38c9986a234d044"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a264e178e874b62aec38c9986a234d044"></a>
-QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b> () const </td></tr>
+<tr class="memitem:addd4022d716df48f4e55a1db69361ba7"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#addd4022d716df48f4e55a1db69361ba7">~Navigation</a> ()</td></tr>
+<tr class="separator:addd4022d716df48f4e55a1db69361ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a264e178e874b62aec38c9986a234d044"><td class="memItemLeft" align="right" valign="top">QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a264e178e874b62aec38c9986a234d044">rotation</a> () const </td></tr>
 <tr class="separator:a264e178e874b62aec38c9986a234d044"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adedf1fd31c40b2ba7461f67387bbb00c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adedf1fd31c40b2ba7461f67387bbb00c"></a>
-QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><b>worldSpaceRotation</b> () const </td></tr>
+<tr class="memitem:adedf1fd31c40b2ba7461f67387bbb00c"><td class="memItemLeft" align="right" valign="top">QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#adedf1fd31c40b2ba7461f67387bbb00c">worldSpaceRotation</a> () const </td></tr>
 <tr class="separator:adedf1fd31c40b2ba7461f67387bbb00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a945e0c9bd30f3c66da040f3242864027"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a945e0c9bd30f3c66da040f3242864027"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setCamera</b> (<a class="el" href="class_camera.html">Camera</a> *camera)</td></tr>
+<tr class="memitem:a945e0c9bd30f3c66da040f3242864027"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a945e0c9bd30f3c66da040f3242864027">setCamera</a> (<a class="el" href="class_camera.html">Camera</a> *camera)</td></tr>
 <tr class="separator:a945e0c9bd30f3c66da040f3242864027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac756f0b773b771556505a8f20a5f2cf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac756f0b773b771556505a8f20a5f2cf1"></a>
-const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>eulerRotation</b> () const </td></tr>
+<tr class="memitem:ac756f0b773b771556505a8f20a5f2cf1"><td class="memItemLeft" align="right" valign="top">const QVector3D &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#ac756f0b773b771556505a8f20a5f2cf1">eulerRotation</a> () const </td></tr>
 <tr class="separator:ac756f0b773b771556505a8f20a5f2cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d9b8c12ac091a1db0c3b89f0e36cedd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d9b8c12ac091a1db0c3b89f0e36cedd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEulerRotation</b> (const QVector3D &amp;angles)</td></tr>
+<tr class="memitem:a4d9b8c12ac091a1db0c3b89f0e36cedd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a4d9b8c12ac091a1db0c3b89f0e36cedd">setEulerRotation</a> (const QVector3D &amp;angles)</td></tr>
 <tr class="separator:a4d9b8c12ac091a1db0c3b89f0e36cedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a210a31fd6fc626468793b4dbeefcaf2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a210a31fd6fc626468793b4dbeefcaf2c"></a>
-QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><b>fromEulerAngleQuaternions</b> (const QQuaternion &amp;x, const QQuaternion &amp;y, const QQuaternion &amp;z) const </td></tr>
+<tr class="memitem:a210a31fd6fc626468793b4dbeefcaf2c"><td class="memItemLeft" align="right" valign="top">QQuaternion&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a210a31fd6fc626468793b4dbeefcaf2c">fromEulerAngleQuaternions</a> (const QQuaternion &amp;x, const QQuaternion &amp;y, const QQuaternion &amp;z) const </td></tr>
 <tr class="separator:a210a31fd6fc626468793b4dbeefcaf2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a76a3e3ea5f8d81a19b22806eb3536302"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76a3e3ea5f8d81a19b22806eb3536302"></a>
-<a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_camera</b></td></tr>
+<tr class="memitem:a76a3e3ea5f8d81a19b22806eb3536302"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera.html">Camera</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a76a3e3ea5f8d81a19b22806eb3536302">m_camera</a></td></tr>
 <tr class="separator:a76a3e3ea5f8d81a19b22806eb3536302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b056244895c4250c697f6b924874b05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b056244895c4250c697f6b924874b05"></a>
-QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><b>m_eulerRotation</b></td></tr>
+<tr class="memitem:a6b056244895c4250c697f6b924874b05"><td class="memItemLeft" align="right" valign="top">QVector3D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a6b056244895c4250c697f6b924874b05">m_eulerRotation</a></td></tr>
 <tr class="separator:a6b056244895c4250c697f6b924874b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a34c974ef7c98cf9853a4ac62ab42ac2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34c974ef7c98cf9853a4ac62ab42ac2f"></a>
-const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><b>eulerRotation</b></td></tr>
+<tr class="memitem:a34c974ef7c98cf9853a4ac62ab42ac2f"><td class="memItemLeft" align="right" valign="top">const QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_navigation.html#a34c974ef7c98cf9853a4ac62ab42ac2f">eulerRotation</a></td></tr>
 <tr class="separator:a34c974ef7c98cf9853a4ac62ab42ac2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="class_navigation.html" title="The Navigation class provides an interface for all navigation techniques.  The navigation takes euler...">Navigation</a> class provides an interface for all navigation techniques.  The navigation takes euler angles in coordinate system based on current view and translate them into quaternions describing the changes in our world. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9848e09ca6fab3590ffdb0e1c188f31d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Navigation::Navigation </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="addd4022d716df48f4e55a1db69361ba7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Navigation::~Navigation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ac756f0b773b771556505a8f20a5f2cf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D&amp; Navigation::eulerRotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a46da025077023f9c225d3f5dfe870324"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Navigation::eulerRotationChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a210a31fd6fc626468793b4dbeefcaf2c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QQuaternion Navigation::fromEulerAngleQuaternions </td>
+          <td>(</td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a264e178e874b62aec38c9986a234d044"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QQuaternion Navigation::rotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac54fe5d8be2858c2988a9f5158d2d58e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Navigation::rotationChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a945e0c9bd30f3c66da040f3242864027"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Navigation::setCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_camera.html">Camera</a> *&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4d9b8c12ac091a1db0c3b89f0e36cedd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Navigation::setEulerRotation </td>
+          <td>(</td>
+          <td class="paramtype">const QVector3D &amp;&#160;</td>
+          <td class="paramname"><em>angles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="adedf1fd31c40b2ba7461f67387bbb00c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QQuaternion Navigation::worldSpaceRotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa8de8f9227de65da000d1ce730821bab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Navigation::worldSpaceRotationChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QQuaternion &amp;&#160;</td>
+          <td class="paramname"><em>rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a76a3e3ea5f8d81a19b22806eb3536302"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera.html">Camera</a>* Navigation::m_camera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6b056244895c4250c697f6b924874b05"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D* Navigation::m_eulerRotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a34c974ef7c98cf9853a4ac62ab42ac2f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QVector3D &amp; Navigation::eulerRotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span><span class="mlabel">write</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>gemIlluminator/<a class="el" href="navigation_8h_source.html">navigation.h</a></li>
-<li>gemIlluminator/navigation.cpp</li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="navigation_8h_source.html">navigation.h</a></li>
+<li>Game-Programming-WS2014/gemIlluminator/<a class="el" href="navigation_8cpp.html">navigation.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:43 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:05 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

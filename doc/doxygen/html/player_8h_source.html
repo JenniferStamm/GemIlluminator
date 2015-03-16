@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Gem Illuminator: gemIlluminator/player.h Source File</title>
+<title>Gem Illuminator: Game-Programming-WS2014/gemIlluminator/player.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -79,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_6fe477e04668ae66267e4804812c6cd5.html">gemIlluminator</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_78153e7ed162178108f48b245e38da6a.html">Game-Programming-WS2014</a></li><li class="navelem"><a class="el" href="dir_f8d2780bb503ebb2e914d3f70acccb8e.html">gemIlluminator</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">player.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PLAYER_H</span></div>
+<a href="player_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PLAYER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PLAYER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
@@ -97,53 +99,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span><a class="code" href="class_light_ray.html">LightRay</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_player.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <span class="keyword">public</span> QObject</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    Q_PROPERTY(<a class="code" href="class_camera.html">Camera</a>* camera READ camera WRITE setCamera NOTIFY cameraChanged)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    Q_PROPERTY(qreal velocity READ velocity WRITE setVelocity NOTIFY velocityChanged)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_player.html">Player</a>(QObject *parent = 0);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_player.html">Player</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_player.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_player.html">Player</a> : <span class="keyword">public</span> QObject</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_player.html#a4e1ae30bdaec837b94451416a523d5cb">   18</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">camera</a> READ <a class="code" href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">camera</a> WRITE <a class="code" href="class_player.html#af5e57b3a9719cd999aff21d59355be52">setCamera</a> NOTIFY <a class="code" href="class_player.html#aef620bc75871b32311560a7b2a31c144">cameraChanged</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_player.html#a53141a3791c456938945973cc78a2ea7">   19</a></span>&#160;    Q_PROPERTY(qreal <a class="code" href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">velocity</a> READ <a class="code" href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">velocity</a> WRITE <a class="code" href="class_player.html#ae2d5423c7bf6c6c924a451dc1cdab6aa">setVelocity</a> NOTIFY <a class="code" href="class_player.html#a22ae3d9604e92fa12cfad39fe40e8651">velocityChanged</a>)</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> moveOnRay(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, <span class="keywordtype">int</span> timeDifferenceInMilliseconds);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> moveToStartPointOnRay(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> moveToEndPointOnRay(<span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;public:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    explicit <a class="code" href="class_player.html">Player</a>(QObject *parent = 0);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    virtual ~<a class="code" href="class_player.html">Player</a>();</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> QVector3D &amp;position() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> setPosition(<span class="keyword">const</span> QVector3D &amp;position);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> setViewDirection(<span class="keyword">const</span> QVector3D &amp;viewDirection);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;signals:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> cameraChanged();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> velocityChanged();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span> slots:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_camera.html">Camera</a>* camera() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> setCamera(<a class="code" href="class_camera.html">Camera</a> *camera);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    qreal velocity() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> setVelocity(qreal velocity);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> updateCameraForPointOnRay(<span class="keyword">const</span> QVector3D &amp;point, <span class="keyword">const</span> <a class="code" href="class_light_ray.html">LightRay</a> &amp; ray);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a6dcd0b9f4d678260314878ab20ce6e09">moveOnRay</a>(const <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray, <span class="keywordtype">int</span> timeDifferenceInMilliseconds);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a38269e0706f91b71c6e8f8373c397969">moveToStartPointOnRay</a>(const <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a0a4ebefb0f7593d79573ddcfe68e8e2f">moveToEndPointOnRay</a>(const <a class="code" href="class_light_ray.html">LightRay</a> &amp;ray);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    qreal m_velocity;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    QVector3D *m_position;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_camera.html">Camera</a> *m_camera;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif // PLAYER_H</span></div>
-<div class="ttc" id="class_light_ray_html"><div class="ttname"><a href="class_light_ray.html">LightRay</a></div><div class="ttdef"><b>Definition:</b> lightray.h:19</div></div>
-<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> camera.h:10</div></div>
-<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition:</b> player.h:11</div></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    const QVector3D &amp;<a class="code" href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095">position</a>() const;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a0cb33ddb87038b4e2af648e1b884d79f">setPosition</a>(const QVector3D &amp;<a class="code" href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095">position</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#ae51ad40372e26d33351c02d77a1aba63">setViewDirection</a>(const QVector3D &amp;viewDirection);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;signals:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> cameraChanged();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a22ae3d9604e92fa12cfad39fe40e8651">velocityChanged</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;public slots:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_camera.html">Camera</a>* <a class="code" href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">camera</a>() const;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#af5e57b3a9719cd999aff21d59355be52">setCamera</a>(<a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">camera</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    qreal <a class="code" href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">velocity</a>() const;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#ae2d5423c7bf6c6c924a451dc1cdab6aa">setVelocity</a>(qreal <a class="code" href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">velocity</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;protected:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_player.html#a557b70acbd3cb1f71218390f7e90105c">updateCameraForPointOnRay</a>(const QVector3D &amp;point, const <a class="code" href="class_light_ray.html">LightRay</a> &amp; ray);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;protected:</div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_player.html#a962e97e5fd3fe1c2db4e7e2066dbe61c">   93</a></span>&#160;    qreal <a class="code" href="class_player.html#a962e97e5fd3fe1c2db4e7e2066dbe61c">m_velocity</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="class_player.html#a9dc251e6a6d9a7f49c3f2ad5b64a7780">   94</a></span>&#160;    QVector3D *<a class="code" href="class_player.html#a9dc251e6a6d9a7f49c3f2ad5b64a7780">m_position</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_player.html#a7721626a1c43592bfcb0c81a836f7aad">   95</a></span>&#160;    <a class="code" href="class_camera.html">Camera</a> *<a class="code" href="class_player.html#a7721626a1c43592bfcb0c81a836f7aad">m_camera</a>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif // PLAYER_H</span></div>
+<div class="ttc" id="class_light_ray_html"><div class="ttname"><a href="class_light_ray.html">LightRay</a></div><div class="ttdoc">The LightRay class describes our lightrays send into Scene.  Because we send our LightRays into Scene...</div><div class="ttdef"><b>Definition:</b> lightray.h:24</div></div>
+<div class="ttc" id="class_player_html_a557b70acbd3cb1f71218390f7e90105c"><div class="ttname"><a href="class_player.html#a557b70acbd3cb1f71218390f7e90105c">Player::updateCameraForPointOnRay</a></div><div class="ttdeci">void updateCameraForPointOnRay(const QVector3D &amp;point, const LightRay &amp;ray)</div><div class="ttdoc">Updates the camera position for given point on ray. </div><div class="ttdef"><b>Definition:</b> player.cpp:84</div></div>
+<div class="ttc" id="class_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">The Camera class provides view and perspective projection matrices. Additional the viewport of camera...</div><div class="ttdef"><b>Definition:</b> camera.h:16</div></div>
+<div class="ttc" id="class_player_html_a962e97e5fd3fe1c2db4e7e2066dbe61c"><div class="ttname"><a href="class_player.html#a962e97e5fd3fe1c2db4e7e2066dbe61c">Player::m_velocity</a></div><div class="ttdeci">qreal m_velocity</div><div class="ttdef"><b>Definition:</b> player.h:93</div></div>
+<div class="ttc" id="class_player_html_a6dcd0b9f4d678260314878ab20ce6e09"><div class="ttname"><a href="class_player.html#a6dcd0b9f4d678260314878ab20ce6e09">Player::moveOnRay</a></div><div class="ttdeci">void moveOnRay(const LightRay &amp;ray, int timeDifferenceInMilliseconds)</div><div class="ttdoc">Move the player along a ray. </div><div class="ttdef"><b>Definition:</b> player.cpp:19</div></div>
+<div class="ttc" id="class_player_html_a22ae3d9604e92fa12cfad39fe40e8651"><div class="ttname"><a href="class_player.html#a22ae3d9604e92fa12cfad39fe40e8651">Player::velocityChanged</a></div><div class="ttdeci">void velocityChanged()</div></div>
+<div class="ttc" id="class_player_html_a38269e0706f91b71c6e8f8373c397969"><div class="ttname"><a href="class_player.html#a38269e0706f91b71c6e8f8373c397969">Player::moveToStartPointOnRay</a></div><div class="ttdeci">void moveToStartPointOnRay(const LightRay &amp;ray)</div><div class="ttdoc">Set the player to ray.startPosition() and updates the camera accordingly. </div><div class="ttdef"><b>Definition:</b> player.cpp:25</div></div>
+<div class="ttc" id="class_player_html_a9dc251e6a6d9a7f49c3f2ad5b64a7780"><div class="ttname"><a href="class_player.html#a9dc251e6a6d9a7f49c3f2ad5b64a7780">Player::m_position</a></div><div class="ttdeci">QVector3D * m_position</div><div class="ttdef"><b>Definition:</b> player.h:94</div></div>
+<div class="ttc" id="class_player_html_aef620bc75871b32311560a7b2a31c144"><div class="ttname"><a href="class_player.html#aef620bc75871b32311560a7b2a31c144">Player::cameraChanged</a></div><div class="ttdeci">void cameraChanged()</div></div>
+<div class="ttc" id="class_player_html_a10605ebcab0fac1b542d1bd8f3d23acd"><div class="ttname"><a href="class_player.html#a10605ebcab0fac1b542d1bd8f3d23acd">Player::camera</a></div><div class="ttdeci">Camera * camera() const </div><div class="ttdoc">The camera which is updated by player. </div></div>
+<div class="ttc" id="class_player_html_a0c307c67d3c6d64ee9c5b724c1e2b095"><div class="ttname"><a href="class_player.html#a0c307c67d3c6d64ee9c5b724c1e2b095">Player::position</a></div><div class="ttdeci">const QVector3D &amp; position() const </div><div class="ttdoc">The position of player in world coordinates. </div><div class="ttdef"><b>Definition:</b> player.cpp:37</div></div>
+<div class="ttc" id="class_player_html_ae2d5423c7bf6c6c924a451dc1cdab6aa"><div class="ttname"><a href="class_player.html#ae2d5423c7bf6c6c924a451dc1cdab6aa">Player::setVelocity</a></div><div class="ttdeci">void setVelocity(qreal velocity)</div><div class="ttdoc">Set velocity of player. </div><div class="ttdef"><b>Definition:</b> player.cpp:75</div></div>
+<div class="ttc" id="class_player_html_af5e57b3a9719cd999aff21d59355be52"><div class="ttname"><a href="class_player.html#af5e57b3a9719cd999aff21d59355be52">Player::setCamera</a></div><div class="ttdeci">void setCamera(Camera *camera)</div><div class="ttdoc">Sets the camera, that should be updated by player. The player does not take ownership of camera...</div><div class="ttdef"><b>Definition:</b> player.cpp:65</div></div>
+<div class="ttc" id="class_player_html_ae51ad40372e26d33351c02d77a1aba63"><div class="ttname"><a href="class_player.html#ae51ad40372e26d33351c02d77a1aba63">Player::setViewDirection</a></div><div class="ttdeci">void setViewDirection(const QVector3D &amp;viewDirection)</div><div class="ttdoc">Set view direction to provided value. For now this value should be the same like the direction of fol...</div><div class="ttdef"><b>Definition:</b> player.cpp:53</div></div>
+<div class="ttc" id="class_player_html_a7721626a1c43592bfcb0c81a836f7aad"><div class="ttname"><a href="class_player.html#a7721626a1c43592bfcb0c81a836f7aad">Player::m_camera</a></div><div class="ttdeci">Camera * m_camera</div><div class="ttdef"><b>Definition:</b> player.h:95</div></div>
+<div class="ttc" id="class_player_html_a836e1afdde2c379b964bcf5d3811f0da"><div class="ttname"><a href="class_player.html#a836e1afdde2c379b964bcf5d3811f0da">Player::velocity</a></div><div class="ttdeci">qreal velocity() const </div><div class="ttdoc">The velocity of player. </div></div>
+<div class="ttc" id="class_player_html_a0cb33ddb87038b4e2af648e1b884d79f"><div class="ttname"><a href="class_player.html#a0cb33ddb87038b4e2af648e1b884d79f">Player::setPosition</a></div><div class="ttdeci">void setPosition(const QVector3D &amp;position)</div><div class="ttdef"><b>Definition:</b> player.cpp:42</div></div>
+<div class="ttc" id="class_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdoc">Our Player class is pretty stupid, because our player only ride on lightrays. The only responsiblity ...</div><div class="ttdef"><b>Definition:</b> player.h:15</div></div>
+<div class="ttc" id="class_player_html_a0a4ebefb0f7593d79573ddcfe68e8e2f"><div class="ttname"><a href="class_player.html#a0a4ebefb0f7593d79573ddcfe68e8e2f">Player::moveToEndPointOnRay</a></div><div class="ttdeci">void moveToEndPointOnRay(const LightRay &amp;ray)</div><div class="ttdoc">Set the player to ray.endPosition() and updates the camera accordingly. </div><div class="ttdef"><b>Definition:</b> player.cpp:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 15 2015 23:04:41 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 16 2015 23:09:00 for Gem Illuminator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

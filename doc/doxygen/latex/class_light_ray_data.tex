@@ -2,7 +2,7 @@
 \label{class_light_ray_data}\index{Light\+Ray\+Data@{Light\+Ray\+Data}}
 
 
-The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} class stores data of a \hyperlink{class_light_ray}{Light\+Ray}. The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} doesn\textquotesingle{}t inherit from Q\+Object, so it can be stored in Qt-\/\+Containers (currently only those require == or q\+Hash) by Value.  
+The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} class stores data of a \hyperlink{class_light_ray}{Light\+Ray}. The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} doesn\textquotesingle{}t inherit from Q\+Object, so it can be stored in Qt-\/\+Containers (currently only those require == or q\+Hash) by Value. Also the data can be copied easily.  
 
 
 
@@ -12,60 +12,182 @@ The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} class stores data of a \h
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_data_a50350aa163fd7c1a54f97cefafd2d2f7}{}{\bfseries Light\+Ray\+Data} (const \hyperlink{class_light_ray}{Light\+Ray} \&light\+Ray)\label{class_light_ray_data_a50350aa163fd7c1a54f97cefafd2d2f7}
-
+\hyperlink{class_light_ray_data_ac0cb11da1651f8ff7b8ed9d785b68a27}{Light\+Ray\+Data} ()
 \item 
-\hypertarget{class_light_ray_data_a9344f139cafb257f61f4d800fbecd905}{}{\bfseries Light\+Ray\+Data} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&light\+Ray)\label{class_light_ray_data_a9344f139cafb257f61f4d800fbecd905}
-
+\hyperlink{class_light_ray_data_a50350aa163fd7c1a54f97cefafd2d2f7}{Light\+Ray\+Data} (const \hyperlink{class_light_ray}{Light\+Ray} \&light\+Ray)
 \item 
-\hypertarget{class_light_ray_data_acada2319ae380a11a405817cd9cd3d65}{}Q\+Vector3\+D {\bfseries normalized\+Orthogonal\+Vector} () const \label{class_light_ray_data_acada2319ae380a11a405817cd9cd3d65}
-
+\hyperlink{class_light_ray_data_a9344f139cafb257f61f4d800fbecd905}{Light\+Ray\+Data} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&light\+Ray)
 \item 
-\hypertarget{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}{}const Q\+Vector3\+D \& {\bfseries color} () const \label{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}
-
+\hyperlink{class_light_ray_data_a6cd92465c9ba1da296d30a32487a6ac0}{$\sim$\+Light\+Ray\+Data} ()
 \item 
-\hypertarget{class_light_ray_data_ad8fead207765a43bb1167e2ce95e85a4}{}void {\bfseries set\+Color} (const Q\+Vector3\+D \&color)\label{class_light_ray_data_ad8fead207765a43bb1167e2ce95e85a4}
-
+Q\+Vector3\+D \hyperlink{class_light_ray_data_acada2319ae380a11a405817cd9cd3d65}{normalized\+Orthogonal\+Vector} () const 
+\begin{DoxyCompactList}\small\item\em Calculates a normalized vector, that is orthogonal to \hyperlink{class_light_ray_data_aaecf9f1d378eebf6d577eaa588930a4f}{direction()}. \end{DoxyCompactList}\item 
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}{color} () const 
 \item 
-\hypertarget{class_light_ray_data_af040092e873e42d0d31f803452fc648e}{}const Q\+Vector3\+D \& {\bfseries start\+Position} () const \label{class_light_ray_data_af040092e873e42d0d31f803452fc648e}
-
+void \hyperlink{class_light_ray_data_ad8fead207765a43bb1167e2ce95e85a4}{set\+Color} (const Q\+Vector3\+D \&\hyperlink{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}{color})
 \item 
-\hypertarget{class_light_ray_data_a464a868047052152f375cb45ac476eb2}{}void {\bfseries set\+Start\+Position} (const Q\+Vector3\+D \&position)\label{class_light_ray_data_a464a868047052152f375cb45ac476eb2}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_data_af040092e873e42d0d31f803452fc648e}{start\+Position} () const 
 \item 
-\hypertarget{class_light_ray_data_ab47d397dcffe8a2c8da0cf4d8bbbd2bc}{}const Q\+Vector3\+D \& {\bfseries end\+Position} () const \label{class_light_ray_data_ab47d397dcffe8a2c8da0cf4d8bbbd2bc}
-
+void \hyperlink{class_light_ray_data_a464a868047052152f375cb45ac476eb2}{set\+Start\+Position} (const Q\+Vector3\+D \&position)
 \item 
-\hypertarget{class_light_ray_data_ad7ec7b96408f0fb7f603687c54804d3b}{}void {\bfseries set\+End\+Position} (const Q\+Vector3\+D \&position)\label{class_light_ray_data_ad7ec7b96408f0fb7f603687c54804d3b}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_data_ab47d397dcffe8a2c8da0cf4d8bbbd2bc}{end\+Position} () const 
 \item 
-\hypertarget{class_light_ray_data_a8fe5ec48ab375501e81610af12330cce}{}Q\+Vector3\+D {\bfseries direction} () const \label{class_light_ray_data_a8fe5ec48ab375501e81610af12330cce}
-
+void \hyperlink{class_light_ray_data_ad7ec7b96408f0fb7f603687c54804d3b}{set\+End\+Position} (const Q\+Vector3\+D \&position)
 \item 
-\hypertarget{class_light_ray_data_a472299411aab12213a9d712ea07f012b}{}Q\+Vector3\+D {\bfseries normalized\+Direction} () const \label{class_light_ray_data_a472299411aab12213a9d712ea07f012b}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_data_aaecf9f1d378eebf6d577eaa588930a4f}{direction} () const 
 \item 
-\hypertarget{class_light_ray_data_a2dc01f58929829517a90b1fc29f12942}{}\hyperlink{class_light_ray_data}{Light\+Ray\+Data} \& {\bfseries operator=} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&light\+Ray)\label{class_light_ray_data_a2dc01f58929829517a90b1fc29f12942}
-
+const Q\+Vector3\+D \& \hyperlink{class_light_ray_data_a791bbf3c85d32004d0d7d155cd248a43}{normalized\+Direction} () const 
+\item 
+\hyperlink{class_light_ray_data}{Light\+Ray\+Data} \& \hyperlink{class_light_ray_data_a2dc01f58929829517a90b1fc29f12942}{operator=} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&light\+Ray)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_light_ray_data_ae6ad9fa7cd9bc9db1837691c603e5eaa}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+color}\label{class_light_ray_data_ae6ad9fa7cd9bc9db1837691c603e5eaa}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_light_ray_data_ae6ad9fa7cd9bc9db1837691c603e5eaa}{m\+\_\+color}
 \item 
-\hypertarget{class_light_ray_data_a1da577bdf12b630015fca5d89712e479}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+start\+Position}\label{class_light_ray_data_a1da577bdf12b630015fca5d89712e479}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_light_ray_data_a4a71e8787288d9e243c3c9dd744350ff}{m\+\_\+direction}
 \item 
-\hypertarget{class_light_ray_data_ab7228a576b4b1c0843641e3706a6cb35}{}Q\+Vector3\+D $\ast$ {\bfseries m\+\_\+end\+Position}\label{class_light_ray_data_ab7228a576b4b1c0843641e3706a6cb35}
-
+Q\+Vector3\+D $\ast$ \hyperlink{class_light_ray_data_af18cf984ba862735dcde2d77767c4bb2}{m\+\_\+direction\+Normalized}
+\item 
+Q\+Vector3\+D $\ast$ \hyperlink{class_light_ray_data_ab7228a576b4b1c0843641e3706a6cb35}{m\+\_\+end\+Position}
+\item 
+Q\+Vector3\+D $\ast$ \hyperlink{class_light_ray_data_a1da577bdf12b630015fca5d89712e479}{m\+\_\+start\+Position}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} class stores data of a \hyperlink{class_light_ray}{Light\+Ray}. The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} doesn\textquotesingle{}t inherit from Q\+Object, so it can be stored in Qt-\/\+Containers (currently only those require == or q\+Hash) by Value. 
+The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} class stores data of a \hyperlink{class_light_ray}{Light\+Ray}. The \hyperlink{class_light_ray_data}{Light\+Ray\+Data} doesn\textquotesingle{}t inherit from Q\+Object, so it can be stored in Qt-\/\+Containers (currently only those require == or q\+Hash) by Value. Also the data can be copied easily. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_light_ray_data_ac0cb11da1651f8ff7b8ed9d785b68a27}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{Light\+Ray\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Data\+::\+Light\+Ray\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_ac0cb11da1651f8ff7b8ed9d785b68a27}
+\hypertarget{class_light_ray_data_a50350aa163fd7c1a54f97cefafd2d2f7}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{Light\+Ray\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Data\+::\+Light\+Ray\+Data (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray} \&}]{light\+Ray}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_a50350aa163fd7c1a54f97cefafd2d2f7}
+\hypertarget{class_light_ray_data_a9344f139cafb257f61f4d800fbecd905}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\index{Light\+Ray\+Data@{Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{Light\+Ray\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Data\+::\+Light\+Ray\+Data (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray\+Data} \&}]{light\+Ray}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_a9344f139cafb257f61f4d800fbecd905}
+\hypertarget{class_light_ray_data_a6cd92465c9ba1da296d30a32487a6ac0}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!````~Light\+Ray\+Data@{$\sim$\+Light\+Ray\+Data}}
+\index{````~Light\+Ray\+Data@{$\sim$\+Light\+Ray\+Data}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{$\sim$\+Light\+Ray\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Data\+::$\sim$\+Light\+Ray\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_a6cd92465c9ba1da296d30a32487a6ac0}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!color@{color}}
+\index{color@{color}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{color}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+Data\+::color (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_a64a5b7f8d4c3af9cc3e8c1a6c6ea8c57}
+\hypertarget{class_light_ray_data_aaecf9f1d378eebf6d577eaa588930a4f}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!direction@{direction}}
+\index{direction@{direction}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+Data\+::direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_aaecf9f1d378eebf6d577eaa588930a4f}
+\hypertarget{class_light_ray_data_ab47d397dcffe8a2c8da0cf4d8bbbd2bc}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!end\+Position@{end\+Position}}
+\index{end\+Position@{end\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{end\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+Data\+::end\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_ab47d397dcffe8a2c8da0cf4d8bbbd2bc}
+\hypertarget{class_light_ray_data_a791bbf3c85d32004d0d7d155cd248a43}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!normalized\+Direction@{normalized\+Direction}}
+\index{normalized\+Direction@{normalized\+Direction}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{normalized\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+Data\+::normalized\+Direction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_a791bbf3c85d32004d0d7d155cd248a43}
+\hypertarget{class_light_ray_data_acada2319ae380a11a405817cd9cd3d65}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!normalized\+Orthogonal\+Vector@{normalized\+Orthogonal\+Vector}}
+\index{normalized\+Orthogonal\+Vector@{normalized\+Orthogonal\+Vector}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{normalized\+Orthogonal\+Vector}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Light\+Ray\+Data\+::normalized\+Orthogonal\+Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_acada2319ae380a11a405817cd9cd3d65}
+
+
+Calculates a normalized vector, that is orthogonal to \hyperlink{class_light_ray_data_aaecf9f1d378eebf6d577eaa588930a4f}{direction()}. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{class_light_ray_data_a2dc01f58929829517a90b1fc29f12942}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!operator=@{operator=}}
+\index{operator=@{operator=}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray\+Data} \& Light\+Ray\+Data\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Light\+Ray\+Data} \&}]{light\+Ray}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_a2dc01f58929829517a90b1fc29f12942}
+\hypertarget{class_light_ray_data_ad8fead207765a43bb1167e2ce95e85a4}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{set\+Color}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Data\+::set\+Color (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{color}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_ad8fead207765a43bb1167e2ce95e85a4}
+\hypertarget{class_light_ray_data_ad7ec7b96408f0fb7f603687c54804d3b}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!set\+End\+Position@{set\+End\+Position}}
+\index{set\+End\+Position@{set\+End\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{set\+End\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Data\+::set\+End\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_ad7ec7b96408f0fb7f603687c54804d3b}
+\hypertarget{class_light_ray_data_a464a868047052152f375cb45ac476eb2}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!set\+Start\+Position@{set\+Start\+Position}}
+\index{set\+Start\+Position@{set\+Start\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{set\+Start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Data\+::set\+Start\+Position (
+\begin{DoxyParamCaption}
+\item[{const Q\+Vector3\+D \&}]{position}
+\end{DoxyParamCaption}
+)}\label{class_light_ray_data_a464a868047052152f375cb45ac476eb2}
+\hypertarget{class_light_ray_data_af040092e873e42d0d31f803452fc648e}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!start\+Position@{start\+Position}}
+\index{start\+Position@{start\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Light\+Ray\+Data\+::start\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_light_ray_data_af040092e873e42d0d31f803452fc648e}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_light_ray_data_ae6ad9fa7cd9bc9db1837691c603e5eaa}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!m\+\_\+color@{m\+\_\+color}}
+\index{m\+\_\+color@{m\+\_\+color}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{m\+\_\+color}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Light\+Ray\+Data\+::m\+\_\+color\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_data_ae6ad9fa7cd9bc9db1837691c603e5eaa}
+\hypertarget{class_light_ray_data_a4a71e8787288d9e243c3c9dd744350ff}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!m\+\_\+direction@{m\+\_\+direction}}
+\index{m\+\_\+direction@{m\+\_\+direction}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{m\+\_\+direction}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Light\+Ray\+Data\+::m\+\_\+direction\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_data_a4a71e8787288d9e243c3c9dd744350ff}
+\hypertarget{class_light_ray_data_af18cf984ba862735dcde2d77767c4bb2}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!m\+\_\+direction\+Normalized@{m\+\_\+direction\+Normalized}}
+\index{m\+\_\+direction\+Normalized@{m\+\_\+direction\+Normalized}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{m\+\_\+direction\+Normalized}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Light\+Ray\+Data\+::m\+\_\+direction\+Normalized\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_data_af18cf984ba862735dcde2d77767c4bb2}
+\hypertarget{class_light_ray_data_ab7228a576b4b1c0843641e3706a6cb35}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!m\+\_\+end\+Position@{m\+\_\+end\+Position}}
+\index{m\+\_\+end\+Position@{m\+\_\+end\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{m\+\_\+end\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Light\+Ray\+Data\+::m\+\_\+end\+Position\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_data_ab7228a576b4b1c0843641e3706a6cb35}
+\hypertarget{class_light_ray_data_a1da577bdf12b630015fca5d89712e479}{}\index{Light\+Ray\+Data@{Light\+Ray\+Data}!m\+\_\+start\+Position@{m\+\_\+start\+Position}}
+\index{m\+\_\+start\+Position@{m\+\_\+start\+Position}!Light\+Ray\+Data@{Light\+Ray\+Data}}
+\subsubsection[{m\+\_\+start\+Position}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Light\+Ray\+Data\+::m\+\_\+start\+Position\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_data_a1da577bdf12b630015fca5d89712e479}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-gem\+Illuminator/lightraydata.\+h\item 
-gem\+Illuminator/lightraydata.\+cpp\end{DoxyCompactItemize}
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightraydata_8h}{lightraydata.\+h}\item 
+Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightraydata_8cpp}{lightraydata.\+cpp}\end{DoxyCompactItemize}
