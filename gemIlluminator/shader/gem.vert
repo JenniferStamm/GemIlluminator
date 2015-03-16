@@ -33,9 +33,10 @@ vec2 getUVOfGemAttribute(float gemIndex, float attributeIndex)
     } else {
         texelPerGem = 6.0;
     }
-    float bufferPosX = mod(gemIndex, u_texWidth / texelPerGem) * texelPerGem + attributeIndex;
-    //float bufferPosX = mod(gemIndex * texelPerGem, u_texWidth) + attributeIndex;
-    float bufferPosY = floor((gemIndex * texelPerGem) / u_texWidth);
+    float texIndex = gemIndex * texelPerGem;
+    //bias texIndex in order to avoid precision problems
+    float bufferPosY = floor((texIndex + 0.25) / u_texWidth);
+    float bufferPosX = texIndex - bufferPosY * u_texWidth + attributeIndex;
     vec2 result = vec2(bufferPosX, bufferPosY);
     result += vec2(0.5);
     result /= vec2(u_texWidth, u_texHeight);
