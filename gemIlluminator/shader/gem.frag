@@ -4,7 +4,7 @@ precision mediump int;
 precision mediump float;
 #endif
 
-uniform samplerCube envmap;
+uniform samplerCube envMap;
 uniform samplerCube gemStructureMap;
 uniform samplerCube rainbowMap;
 
@@ -16,21 +16,21 @@ varying vec3 v_vertex;
 
 const vec4 lightDirection = vec4(4.0, 8.0, 4.0, 1.0);
 const vec3 specularColor = vec3(1.0, 1.0, 1.0);
-const float brightness = 0.8;
+const float coordinateObfuscator = 0.8;
 const float shininess = 16.0;
 const float smoothnessFactor = 0.5;
 
-vec3 envmapCoordinates(vec3 eyeVector)
+vec3 envMapCoordinates(vec3 eyeVector)
 {
-    vec3 refractVector1 = refract(eyeVector, v_normal, 0.9);
+    vec3 refractVector = refract(eyeVector, v_normal, 0.9);
 
     vec3 randomVector = normalize(vec3(mod(v_index * 289.0, 1021.0)));
-    refractVector1 = reflect(refractVector1, randomVector);
+    refractVector = reflect(refractVector, randomVector);
 
-    vec3 refractColor = textureCube(gemStructureMap, v_vertex).xyz * brightness;
-    refractColor += textureCube(rainbowMap, refractVector1).xyz;
+    vec3 envMapCoordinates = textureCube(gemStructureMap, v_vertex).xyz * coordinateObfuscator;
+    envMapCoordinates += textureCube(rainbowMap, refractVector).xyz;
 
-    return refractColor;
+    return envMapCoordinates;
 }
 
 vec3 calculateEnvironmentColor(vec3 eyeVector)
@@ -42,8 +42,8 @@ vec3 calculateEnvironmentColor(vec3 eyeVector)
 
     float fresnel = pow(1.0 - clamp(dot(v_normal, eyeVector), 0.0, 1.0), 2.0);
 
-    vec3 envmapAccess = mix(envmapCoordinates(eyeVector), r_face, vec3(smoothnessFactor));
-    vec3 environmentColor = textureCube(envmap, envmapAccess).xyz;
+    vec3 envMapAccess = mix(envMapCoordinates(eyeVector), r_face, vec3(smoothnessFactor));
+    vec3 environmentColor = textureCube(envMap, envMapAccess).xyz;
     vec3 rainbowColor = textureCube(rainbowMap, r_face).xyz;
 
     environmentColor = mix(environmentColor, rainbowColor, vec3(0.1)) * fresnel;
