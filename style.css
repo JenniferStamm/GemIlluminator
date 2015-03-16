@@ -21,9 +21,11 @@ html, body {
 * {
   color: #0099cc; }
 
-.section .slide {
+.section .slide .row {
   margin-left: 50px;
   margin-right: 50px; }
+  .section .slide .row img {
+    margin-top: 35px; }
 .section .fp-controlArrow.fp-prev {
   border-color: transparent #0099cc transparent transparent; }
 .section .fp-controlArrow.fp-next {

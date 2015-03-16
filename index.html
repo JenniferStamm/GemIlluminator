@@ -59,19 +59,19 @@
 	<div class="section">
 		<div class="slide">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<h2>Game Story</h2>
 					<p>Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's homosphere. Actually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most excite moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.</p>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<img src="assets/screen03.png" class="story-images">
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<img src="assets/screen11.png" class="story-images">
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<h2>Meta Game Story</h2>
 					<p>This game was developed within the scope of the game programming seminar 2014/15 of the Computer Graphics Systems Group at Hasso Plattner Institute. Our team was technically mentored by Daniel Limberger. During the game idea evolution we cooperated with Martin Reiter. We aimed for a racing game with sudden changes of perspective. Martin guided us to the idea of telling a light ray's story which evolved into telling the story of light coloring a gem scenery.</p>
 				</div>
@@ -79,11 +79,11 @@
 		</div>
 	    <div class="slide">
 	    	<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-6">
 					<h2>Technology Used</h2>
 					<p>The seminar's setting required us to develop for mobile devices by using QML and OpenGL ES 2.0. We were provided with an NVidia Shield Tablet. Furthermore, we tested our game on the following devices: Samsung Galaxy Tab 2 7.0, HTC Desire 500, Samsung Galaxy S4.</p>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-6">
 					<img src="assets/screen07.png" class="story-images">
 				</div>
 			</div>
@@ -146,8 +146,13 @@
 	</div>
 
 	<div class="section">
+
+	</div>
+
+	<div class="section">
 		<a href="doc/doxygen/html/index.html" target="blank">Documentation</a>
 	</div>
+
 	<div class="section">
 
 	</div>
@@ -161,18 +166,19 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#fullpage').fullpage({
-			anchors: ['game', 'game1', 'game2', 'download', 'documentation', 'contact', 'lastPage'],
+			anchors: ['game', 'game1', 'game2', 'game3', 'download', 'documentation', 'contact', 'lastPage'],
 			menu: '#menu',
 			paddingTop: '0',
 			verticalCentered: true,
+			// Use the line to disable the whole page scrolling
+		    //autoScrolling: false,
 		});
      
     	$("#features").owlCarousel({
 		    navigation : true, // Show next and prev buttons
 		    slideSpeed : 300,
 		    paginationSpeed : 400,
-		    singleItem:true,
-		     
+		    singleItem:true,		     
 	    });
 	});
 </script>

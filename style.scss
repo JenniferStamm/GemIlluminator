@@ -40,8 +40,14 @@ html, body {
 
 .section {
 	.slide {
-		margin-left: 50px;
-		margin-right: 50px;
+		.row {
+			margin-left: 50px;
+   			margin-right: 50px;
+
+   			img {
+   				margin-top: 35px;
+   			}
+		}
 	}
 
 	.fp-controlArrow.fp-prev {
