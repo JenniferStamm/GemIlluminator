@@ -3,6 +3,11 @@ $backgroundBlue: #e4eeff;
 $highlightBlue: #33b5e5;
 $fontBlue: #75d5f5;
 
+html, body {
+	font-size: 18px;
+	line-height: 1.5em;
+}
+
 .navbar-default {
 	background-color: $backgroundBlue;
 	border-color: $fontBlue;
@@ -34,7 +39,18 @@ $fontBlue: #75d5f5;
 }
 
 .section {
+	.slide {
+		margin-left: 50px;
+		margin-right: 50px;
+	}
 
+	.fp-controlArrow.fp-prev {
+    	border-color: transparent $standardBlue transparent transparent;
+    }
+
+    .fp-controlArrow.fp-next {
+    	border-color: transparent transparent transparent $standardBlue;
+    }
 }
 
 #doc {
@@ -49,6 +65,11 @@ $fontBlue: #75d5f5;
 	height: 100%;
 }
 
+.story-images {
+	height: 250px;
+	width: 445px;
+}
+
 #features {
 	margin-bottom: 10px;
 	.item {
@@ -56,7 +77,12 @@ $fontBlue: #75d5f5;
 			display: block;
 			width: 100%;
 			height: auto;
-			border: 1px solid $fontBlue;
+			border: 1px solid $standardBlue;
+		}
+
+		.carousel-caption {
+			color: white;
+			background-color: $fontBlue;
 		}
 	}
 }
