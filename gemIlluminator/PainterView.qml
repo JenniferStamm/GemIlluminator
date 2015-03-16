@@ -27,14 +27,4 @@ Painter {
         scene.destroy()
         scene = null
     }
-
-    onIsAppActiveChanged: {
-        if (scene !== null) {
-            if (isAppActive) {
-                scene.timerId.start()
-            } else {
-                scene.timerId.stop()
-            }
-        }
-    }
 }

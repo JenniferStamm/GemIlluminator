@@ -12,8 +12,8 @@
 
 PainterQML::PainterQML(QQuickItem *parent) :
     QQuickItem(parent)
-  , m_active(false)
   , m_isAppActive(true)
+  , m_isGameActive(false)
   , m_isSceneDeletionRequired(false)
   , m_isUpdatePending(false)
   , m_painter(nullptr)
@@ -37,11 +37,11 @@ bool PainterQML::event(QEvent *ev)
     }
     switch (ev->type()) {
     case QEvent::UpdateRequest: {
-        if (m_active && !m_isUpdatePending && window()) {
+        if (m_isGameActive && !m_isUpdatePending && window()) {
             window()->update();
             m_isUpdatePending = true;
         }
-        if (m_active && m_isAppActive) {
+        if (isActive()) {
             QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
         }
         return QQuickItem::event(ev);
@@ -60,25 +60,34 @@ void PainterQML::handleWindowChanged(QQuickWindow *win)
     }
 }
 
-bool PainterQML::isActive() const
+bool PainterQML::isGameActive() const
 {
-    return m_active;
+    return m_isGameActive;
 }
 
-void PainterQML::setActive(bool active)
+void PainterQML::setIsGameActive(bool active)
 {
-    if (m_active == active) {
+    if (m_isGameActive == active) {
         return;
     }
-    m_active = active;
-    if (m_active && m_isAppActive) {
+    bool wasActive = isActive();
+    m_isGameActive = active;
+    if (isActive()) {
         m_isUpdatePending = false;
         QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
     } else {
         delete m_time;
         m_time = nullptr;
     }
-    emit activeChanged();
+    emit isActiveChanged();
+    if (wasActive != isActive()) {
+        emit isActiveChanged();
+    }
+}
+
+bool PainterQML::isActive() const
+{
+    return m_isGameActive && m_isAppActive;
 }
 
 QEvent::Type PainterQML::paintingDoneEventType()
@@ -133,8 +142,9 @@ void PainterQML::setIsAppActive(bool active)
     if (m_isAppActive == active) {
         return;
     }
+    bool wasActive = isActive();
     m_isAppActive = active;
-    if (m_active && m_isAppActive) {
+    if (isActive()) {
         m_isUpdatePending = false;
         QCoreApplication::postEvent(this, new QEvent(QEvent::UpdateRequest));
     } else {
@@ -143,6 +153,9 @@ void PainterQML::setIsAppActive(bool active)
     }
 
     emit isAppActiveChanged();
+    if (wasActive != isActive()) {
+        emit isActiveChanged();
+    }
 }
 
 void PainterQML::synchronize()
@@ -161,7 +174,7 @@ void PainterQML::synchronize()
         m_painter->clearScene();
         m_isSceneDeletionRequired = false;
     }
-    if (m_active && m_isAppActive) {
+    if (isActive()) {
         if (!m_time) {
             m_time = new QTime();
             m_time->start();

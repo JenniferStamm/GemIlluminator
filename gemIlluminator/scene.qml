@@ -14,7 +14,7 @@ Scene {
     property var loadScreen: null
     property int score: 0
 
-    property alias timerId: timer
+    signal painterActiveChanged()
 
     onGameLost: {
         if (timer.running) {
@@ -33,6 +33,17 @@ Scene {
         painter.resetTimer();
         score = 0;
         timer.start();
+        playerVelocityTimer.start();
+    }
+
+    onPainterActiveChanged: {
+        if (painter.isActive) {
+            timer.start();
+            playerVelocityTimer.start();
+        } else {
+            timer.stop();
+            playerVelocityTimer.stop();
+        }
     }
 
     camera: Camera {
@@ -99,7 +110,7 @@ Scene {
                                                         }));
                 }
 
-                painter.active = true;
+                painter.isGameActive = true;
                 scene.geometries = gemsToJSON;
 
                 if (loadScreen !== null) {
@@ -131,7 +142,7 @@ Scene {
     Timer {
         id: timer
         interval: 1000
-        running: true
+        running: false
         repeat: true
         onTriggered: {
             score = score + 1
@@ -145,15 +156,16 @@ Scene {
         // Final velocity is set to 10.0
         id: playerVelocityTimer
         interval: 3000
-        running: true
+        running: false
         repeat: true
-        onTriggered:
+        onTriggered: {
             if (player.velocity <= 10.0) {
                 player.velocity += 0.1
                if (player.velocity > 10.0) {
                    console.log("Final velocity reached!")
                }
             }
+        }
     }
 
     Text {
@@ -171,15 +183,14 @@ Scene {
         visible: false
         onPressedChanged: {
             if (pressed) {
-                painter.active = !painter.active
+                painter.isGameActive = !painter.isGameActive
 
-                if (painter.active) {
+                if (painter.isGameActive) {
                     timer.start();
                     pause.image.source = "qrc:/data/pauseButton.png";
                 } else {
                     timer.stop();
                     pause.image.source = "qrc:/data/playButton.png";
-
                 }
             }
         }
@@ -196,6 +207,7 @@ Scene {
                                      "gemTypes": config.gemTypes,
                                      "seed": seed
                                  });
+        painter.isActiveChanged.connect(painterActiveChanged);
     }
 }
 

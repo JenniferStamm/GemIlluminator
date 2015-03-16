@@ -18,8 +18,9 @@ class Scene;
 class PainterQML : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(bool active READ isActive WRITE setActive NOTIFY activeChanged)
+    Q_PROPERTY(bool isActive READ isActive NOTIFY isActiveChanged)
     Q_PROPERTY(bool isAppActive READ isAppActive WRITE setIsAppActive NOTIFY isAppActiveChanged)
+    Q_PROPERTY(bool isGameActive READ isGameActive WRITE setIsGameActive NOTIFY isGameActiveChanged)
     Q_PROPERTY(Scene* scene READ scene WRITE setScene NOTIFY sceneChanged)
 public:
     explicit PainterQML(QQuickItem *parent = 0);
@@ -33,18 +34,18 @@ public:
     bool event(QEvent *ev) override;
 
     /**
-     * @brief Checks if our painter is active.
+     * @brief Checks if our painter and therfor aour game is active.
      * @detail Active means, that the game should be updated and rendered.
      * But updates and rendering will be done only if there are no reasons against (e.g. The app is not active)
      * @return Returns true if PainterQML is active.
-     * @seealso isAppActive()
+     * @see isAppActive(), isActive()
      */
-    bool isActive() const;
+    bool isGameActive() const;
     /**
      * @brief Sets active state of PainterQML.
      * @param active
      */
-    void setActive(bool active);
+    void setIsGameActive(bool active);
 
     /**
      * @brief Queries registered event type, that should be send after rendering of current frame is done.
@@ -83,10 +84,17 @@ public:
      */
     void setIsAppActive(bool active);
 
+    /**
+     * @brief Checks if the our game will be updated. This means there is no reason, that our game is not updated.
+     * @return
+     */
+    bool isActive() const;
+
 signals:
-    void activeChanged();
-    void sceneChanged();
+    void isActiveChanged();
     void isAppActiveChanged();
+    void isGameActiveChanged();
+    void sceneChanged();
 
 protected slots:
     /**
@@ -102,8 +110,8 @@ protected slots:
     void cleanup();
 
 protected:
-    bool m_active;
     bool m_isAppActive;
+    bool m_isGameActive;
     bool m_isSceneDeletionRequired;
     bool m_isUpdatePending;
     Painter *m_painter;
