@@ -11,7 +11,7 @@ html, body {
 
 .navbar-default {
 	background-color: $backgroundBlue;
-	border-color: $fontBlue;
+	border-color: $standardBlue;
 
 	.navbar-brand {
 		color: $standardBlue;
@@ -31,7 +31,7 @@ html, body {
 	.navbar-nav>.active>a:hover,
 	.navbar-nav>.active>a {
 		color: white;
-		background-color: $fontBlue;
+		background-color: $standardBlue;
 	}
 
 	.navbar-brand {
@@ -165,6 +165,12 @@ html, body {
 	margin-top: 10px;
 	margin-bottom: 25px;
 	min-width: 200px;
+}
+
+.link-button:hover {
+	text-decoration: none;
+	background-color: $highlightBlue;
+	color: white;
 }
 
 .link-info {
