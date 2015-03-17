@@ -64,7 +64,7 @@ public slots:
      */
     void setPosition(const QVector3D &position);
     /**
-     * @brief Sets viewDirection of camera to given vector. center() will be changed in order to
+     * @brief Sets viewDirection of camera to given vector. center() will be changed in order to keep eye() consistent.
      * @param viewDirection Direction the camera should look.
      */
     void setViewDirection(const QVector3D &viewDirection);

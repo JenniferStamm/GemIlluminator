@@ -9,8 +9,7 @@ class Camera;
 class LightRay;
 
 /**
- * @brief Our Player class is pretty stupid, because all the player does is riding on lightrays.
- * The only responsiblity is to move on rays and update the camera.
+ * @brief The Player class' only responsibilities are riding on lightrays and updating the camera.
  */
 class Player : public QObject
 {
