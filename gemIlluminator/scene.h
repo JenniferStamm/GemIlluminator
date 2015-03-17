@@ -17,7 +17,7 @@ class Triangle;
 
 /**
  * @brief The Scene class provides access to geometry and collision detection methods.
- * Furthermore, some game logic is implemented, so the scene holds the player, the gem inflicted by player and cameras.
+ * Furthermore, some game logic is implemented, so the scene holds the player, the gem influenced by player and cameras.
  */
 class Scene : public QQuickItem
 {

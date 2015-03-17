@@ -21,7 +21,7 @@ enum class SoundEffects {
 
 /**
  * @brief The Soundmanager class provides several sounds which can be played.
- * @detail The Soundmanager manages the required resources.
+ * @detail The Soundmanager is implemented as a singleton to manage the required resources.
  */
 class Soundmanager : public QObject
 {
