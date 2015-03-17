@@ -33,18 +33,62 @@ html, body {
 		color: white;
 		background-color: $fontBlue;
 	}
+
+	.navbar-brand {
+		font-size: 21px;
+	}
+
+	.logo {
+		float: left;
+		padding: 10px 10px 8px 5px;
+	}
 }
 
 * {
 	color: $standardBlue;
 }
 
+.fullscreen {
+	padding: 0;
+	background-image: url("assets/fullscreen.jpg");
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.fullscreen-overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 53, 104, 0.3);
+	z-index: 1;
+}
+
+.overlay-text {
+	text-align: center;
+	position: relative;
+	z-index: 2;
+
+	p, h1 {
+		color: white;
+	}
+
+	p {
+		font-size: 26px;
+		line-height: 40px;
+	}
+
+	h1 {
+		font-size: 50px;
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+}
+
 .section {
 	.slide {
 		.row {
-			margin-left: 50px;
-   			margin-right: 50px;
-
    			img {
    				margin-top: 35px;
    			}

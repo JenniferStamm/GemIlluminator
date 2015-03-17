@@ -22,7 +22,7 @@
 	<![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="clearfix navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
@@ -31,7 +31,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="" class="navbar-brand">Gem Illuminator</a>
+      <img class="img-responsive logo" src="assets/logo_32.png">
+      <a href="" class="navbar-brand">
+      	Gem Illuminator
+      </a>
     </div>
     <div class="navbar-collapse collapse" id="navbar">
       <ul id="menu" class="nav navbar-nav navbar-right">
@@ -43,119 +46,145 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-<div id="fullpage" class="container">
+<div id="fullpage">
 	<!-- Welcome -->
 	<div class="section">
-		<div class="img-overlay">
+		<div class="container-fluid fullscreen">
+			<div class="fullscreen-overlay"></div>
+		</div>
+		<div class="row overlay-text">
+			<div class="container">
+				<h1>Gem Illuminator</h1>
+				<p>
+					As light, travel through an imposing <br>
+					crystal scenery. Navigate the world's illumination <br>
+					and experience gem coloration at first hand.
+				</p>
+			</div>
+		</div>
+		
+		<!--<div class="img-overlay">
 			<p>Welcome to Gem Illuminator Navigate through crystal sceneries as light.</p>
 			<img src="assets/crystal-effect.png">
-		</div>
+		</div>-->
 	</div>
 
 	<!-- Trailer -->
-	<div class="section embed-responsive embed-responsive-16by9" id="section0">
-	    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/krtvGjwKJaQ" frameborder="0" allowfullscreen></iframe>
+	<div class="section" id="section0">
+	    <div class="container">
+		    <div class="embed-responsive embed-responsive-16by9">
+		    	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/krtvGjwKJaQ" frameborder="0" allowfullscreen></iframe>
+		    </div>
+	    </div>
 	</div>
 
 	<!-- Story and Setting -->
 	<div class="section">
 		<div class="slide">
-			<div class="row">
-				<div class="col-md-6">
-					<h2>Game Story</h2>
-					<p>Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's homosphere. Actually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most excite moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.</p>
-				</div>
-				<div class="col-md-6">
-					<img src="assets/screen03.png" class="story-images">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h2>Game Story</h2>
+						<p>Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's homosphere. Actually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most excite moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.</p>
+					</div>
+					<div class="col-md-6">
+						<img src="assets/screen03.png" class="story-images">
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<img src="assets/screen11.png" class="story-images">
-				</div>
-				<div class="col-md-6">
-					<h2>Meta Game Story</h2>
-					<p>This game was developed within the scope of the game programming seminar 2014/15 of the Computer Graphics Systems Group at Hasso Plattner Institute. Our team was technically mentored by Daniel Limberger. During the game idea evolution we cooperated with Martin Reiter. We aimed for a racing game with sudden changes of perspective. Martin guided us to the idea of telling a light ray's story which evolved into telling the story of light coloring a gem scenery.</p>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<img src="assets/screen11.png" class="story-images">
+					</div>
+					<div class="col-md-6">
+						<h2>Meta Game Story</h2>
+						<p>This game was developed within the scope of the game programming seminar 2014/15 of the Computer Graphics Systems Group at Hasso Plattner Institute. Our team was technically mentored by Daniel Limberger. During the game idea evolution we cooperated with Martin Reiter. We aimed for a racing game with sudden changes of perspective. Martin guided us to the idea of telling a light ray's story which evolved into telling the story of light coloring a gem scenery.</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	    <div class="slide">
-	    	<div class="row">
-				<div class="col-md-6">
-					<h2>Technology Used</h2>
-					<p>The seminar's setting required us to develop for mobile devices by using QML and OpenGL ES 2.0. We were provided with an NVidia Shield Tablet. Furthermore, we tested our game on the following devices: Samsung Galaxy Tab 2 7.0, HTC Desire 500, Samsung Galaxy S4.</p>
+	    	<div class="container">
+	    		<div class="row">
+					<div class="col-md-6">
+						<h2>Technology Used</h2>
+						<p>The seminar's setting required us to develop for mobile devices by using QML and OpenGL ES 2.0. We were provided with an NVidia Shield Tablet. Furthermore, we tested our game on the following devices: Samsung Galaxy Tab 2 7.0, HTC Desire 500, Samsung Galaxy S4.</p>
+					</div>
+					<div class="col-md-6">
+						<img src="assets/screen07.png" class="story-images">
+					</div>
 				</div>
-				<div class="col-md-6">
-					<img src="assets/screen07.png" class="story-images">
-				</div>
-			</div>
+	    	</div>
 	    </div>
 	</div>
 
 	<!-- Features -->
 	<div class="section">
-		<div id="features" class="owl-carousel owl-theme">
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Different gems of different sizes
-		    	</div>
-		    	<img src="assets/big-small-gems-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Gems take the light's color
-		    	</div>
-		    	<img src="assets/colorful-gems-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Light color changes on reflection
-		    	</div>
-		    	<img src="assets/colorful-lightrays-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Crystal appearance
-		    	</div>
-		    	<img src="assets/crystal-effect-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Preview window
-		    	</div>
-		    	<img src="assets/preview-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-			    	Main menu
-		    	</div>
-		    	<img src="assets/MainMenu-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Create scenerey based on seed
-		    	</div>
-		    	<img src="assets/Seed-2.png" alt="">
-		    </div>
-		    <div class="item">
-		    	<div class="carousel-caption">
-		    		Try to beat the highscore
-		    	</div>
-		    	<img src="assets/highscore-2.png" alt="">
-		    </div>
+		<div class="container">
+			<div id="features" class="owl-carousel owl-theme">
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Different gems of different sizes
+			    	</div>
+			    	<img src="assets/big-small-gems-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Gems take the light's color
+			    	</div>
+			    	<img src="assets/colorful-gems-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Light color changes on reflection
+			    	</div>
+			    	<img src="assets/colorful-lightrays-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Crystal appearance
+			    	</div>
+			    	<img src="assets/crystal-effect-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Preview window
+			    	</div>
+			    	<img src="assets/preview-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+				    	Main menu
+			    	</div>
+			    	<img src="assets/MainMenu-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Create scenerey based on seed
+			    	</div>
+			    	<img src="assets/Seed-2.png" alt="">
+			    </div>
+			    <div class="item">
+			    	<div class="carousel-caption">
+			    		Try to beat the highscore
+			    	</div>
+			    	<img src="assets/highscore-2.png" alt="">
+			    </div>
 
-	    </div>
+		    </div>
+		</div>
 	</div>
 
-	<div class="section">
+	<div class="section container">
 
 	</div>
 
-	<div class="section">
+	<div class="section container">
 		<a href="doc/doxygen/html/index.html" target="blank">Documentation</a>
 	</div>
 
-	<div class="section">
+	<div class="section container">
 
 	</div>
 </div>
@@ -170,7 +199,7 @@
 		$('#fullpage').fullpage({
 			anchors: ['game', 'game1', 'game2', 'game3', 'download', 'documentation', 'contact', 'lastPage'],
 			menu: '#menu',
-			paddingTop: '0',
+			paddingTop: '50px',
 			verticalCentered: true,
 			// Use the line to disable the whole page scrolling
 		    //autoScrolling: false,
