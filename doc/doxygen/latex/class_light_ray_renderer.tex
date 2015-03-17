@@ -1,8 +1,9 @@
-\hypertarget{class_light_ray_renderer}{}\section{Light\+Ray\+Renderer Class Reference}
+\hypertarget{class_light_ray_renderer}{\section{Light\+Ray\+Renderer Class Reference}
 \label{class_light_ray_renderer}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
+}
 
 
-The \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} packs Light\+Rays and paint them.  
+The \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} packs Light\+Rays and paints them.  
 
 
 
@@ -23,7 +24,7 @@ Inheritance diagram for Light\+Ray\+Renderer\+:\begin{figure}[H]
 virtual \hyperlink{class_light_ray_renderer_ac751be83a9d351286b0f89693c425205}{$\sim$\+Light\+Ray\+Renderer} ()
 \item 
 void \hyperlink{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}{add\+Light\+Ray} (const \hyperlink{class_light_ray}{Light\+Ray} \&light\+Ray)
-\begin{DoxyCompactList}\small\item\em Adds a new \hyperlink{class_light_ray}{Light\+Ray} that will be rendered.  Dynamic Light\+Rays are added without checking wheter they exist or not. Static Light\+Rays will be only added if the \hyperlink{class_light_ray}{Light\+Ray} is not allready drawn by \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds a new \hyperlink{class_light_ray}{Light\+Ray} that will be rendered.  Dynamic Light\+Rays are added without checking whether they exist or not. Static Light\+Rays will be only added if the \hyperlink{class_light_ray}{Light\+Ray} is not already drawn by \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer}. \end{DoxyCompactList}\item 
 virtual void \hyperlink{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}{paint} (Q\+Open\+G\+L\+Functions \&gl, const Q\+Matrix4x4 \&view\+Projection, Q\+Open\+G\+L\+Shader\+Program \&shader\+Program)
 \begin{DoxyCompactList}\small\item\em Paints all Light\+Rays. \end{DoxyCompactList}\item 
 void \hyperlink{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}{reset\+Dynamic\+Rays} ()
@@ -31,20 +32,20 @@ void \hyperlink{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}{rese
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}{calculate\+Vertex\+Data\+For} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&ray\+Data, \hyperlink{class_q_vector}{Q\+Vector}$<$ float $>$ \&vertices, \hyperlink{class_q_vector}{Q\+Vector}$<$ unsigned int $>$ \&indices)
+void \hyperlink{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}{calculate\+Vertex\+Data\+For} (const \hyperlink{class_light_ray_data}{Light\+Ray\+Data} \&ray\+Data, \hyperlink{singleton_q_vector}{Q\+Vector}$<$ float $>$ \&vertices, \hyperlink{singleton_q_vector}{Q\+Vector}$<$ unsigned int $>$ \&indices)
 \begin{DoxyCompactList}\small\item\em Calculates vertex data out of start and end position of a ray. \end{DoxyCompactList}\item 
 void \hyperlink{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}{update\+Dynamic\+V\+B\+O} ()
 \item 
 void \hyperlink{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}{update\+Static\+V\+B\+O} ()
 \item 
-void \hyperlink{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}{update\+Ray\+V\+B\+O} (Q\+Open\+G\+L\+Buffer $\ast$\&vertex\+Buffer, Q\+Open\+G\+L\+Buffer $\ast$\&index\+Buffer, const \hyperlink{class_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ \&data)
+void \hyperlink{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}{update\+Ray\+V\+B\+O} (Q\+Open\+G\+L\+Buffer $\ast$\&vertex\+Buffer, Q\+Open\+G\+L\+Buffer $\ast$\&index\+Buffer, const \hyperlink{singleton_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ \&data)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Q\+Open\+G\+L\+Buffer $\ast$ \hyperlink{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}{m\+\_\+dynamic\+Index\+Buffer}
 \item 
-\hyperlink{class_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ \hyperlink{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}{m\+\_\+dynamic\+Rays}
+\hyperlink{singleton_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ \hyperlink{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}{m\+\_\+dynamic\+Rays}
 \item 
 Q\+Open\+G\+L\+Buffer $\ast$ \hyperlink{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}{m\+\_\+dynamic\+Vertex\+Buffer}
 \item 
@@ -52,50 +53,50 @@ bool \hyperlink{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}{m\+\
 \item 
 Q\+Open\+G\+L\+Buffer $\ast$ \hyperlink{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}{m\+\_\+static\+Index\+Buffer}
 \item 
-\hyperlink{class_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ \hyperlink{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}{m\+\_\+static\+Rays}
+\hyperlink{singleton_q_set}{Q\+Set}$<$ \hyperlink{class_light_ray_data}{Light\+Ray\+Data} $>$ $\ast$ \hyperlink{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}{m\+\_\+static\+Rays}
 \item 
 Q\+Open\+G\+L\+Buffer $\ast$ \hyperlink{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}{m\+\_\+static\+Vertex\+Buffer}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} packs Light\+Rays and paint them. 
+The \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer} packs Light\+Rays and paints them. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
+\hypertarget{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{Light\+Ray\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Renderer\+::\+Light\+Ray\+Renderer (
 \begin{DoxyParamCaption}
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}
-\hypertarget{class_light_ray_renderer_ac751be83a9d351286b0f89693c425205}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!````~Light\+Ray\+Renderer@{$\sim$\+Light\+Ray\+Renderer}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_light_ray_renderer_a081e83e5e16a36faec002878052aab04}
+\hypertarget{class_light_ray_renderer_ac751be83a9d351286b0f89693c425205}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!````~Light\+Ray\+Renderer@{$\sim$\+Light\+Ray\+Renderer}}
 \index{````~Light\+Ray\+Renderer@{$\sim$\+Light\+Ray\+Renderer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{$\sim$\+Light\+Ray\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}Light\+Ray\+Renderer\+::$\sim$\+Light\+Ray\+Renderer (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_light_ray_renderer_ac751be83a9d351286b0f89693c425205}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_light_ray_renderer_ac751be83a9d351286b0f89693c425205}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!add\+Light\+Ray@{add\+Light\+Ray}}
+\hypertarget{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!add\+Light\+Ray@{add\+Light\+Ray}}
 \index{add\+Light\+Ray@{add\+Light\+Ray}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{add\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::add\+Light\+Ray (
 \begin{DoxyParamCaption}
 \item[{const {\bf Light\+Ray} \&}]{light\+Ray}
 \end{DoxyParamCaption}
-)}\label{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}
+)}}\label{class_light_ray_renderer_a0e481c5c466f2423e06adfde398f6a28}
 
 
-Adds a new \hyperlink{class_light_ray}{Light\+Ray} that will be rendered.  Dynamic Light\+Rays are added without checking wheter they exist or not. Static Light\+Rays will be only added if the \hyperlink{class_light_ray}{Light\+Ray} is not allready drawn by \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer}. 
+Adds a new \hyperlink{class_light_ray}{Light\+Ray} that will be rendered.  Dynamic Light\+Rays are added without checking whether they exist or not. Static Light\+Rays will be only added if the \hyperlink{class_light_ray}{Light\+Ray} is not already drawn by \hyperlink{class_light_ray_renderer}{Light\+Ray\+Renderer}. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em light\+Ray} & The \hyperlink{class_light_ray}{Light\+Ray} that is added \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!calculate\+Vertex\+Data\+For@{calculate\+Vertex\+Data\+For}}
+\hypertarget{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!calculate\+Vertex\+Data\+For@{calculate\+Vertex\+Data\+For}}
 \index{calculate\+Vertex\+Data\+For@{calculate\+Vertex\+Data\+For}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{calculate\+Vertex\+Data\+For}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::calculate\+Vertex\+Data\+For (
 \begin{DoxyParamCaption}
@@ -103,7 +104,7 @@ Adds a new \hyperlink{class_light_ray}{Light\+Ray} that will be rendered.  Dynam
 \item[{{\bf Q\+Vector}$<$ float $>$ \&}]{vertices, }
 \item[{{\bf Q\+Vector}$<$ unsigned int $>$ \&}]{indices}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a6f7367b897a492fd021ea2ae43053cef}
 
 
 Calculates vertex data out of start and end position of a ray. 
@@ -117,7 +118,7 @@ Calculates vertex data out of start and end position of a ray.
 {\em indices} & A vector the index data will be appended \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!paint@{paint}}
+\hypertarget{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!paint@{paint}}
 \index{paint@{paint}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::paint (
 \begin{DoxyParamCaption}
@@ -125,7 +126,7 @@ Calculates vertex data out of start and end position of a ray.
 \item[{const Q\+Matrix4x4 \&}]{view\+Projection, }
 \item[{Q\+Open\+G\+L\+Shader\+Program \&}]{shader\+Program}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_light_ray_renderer_a3270c30bd4f5eba01e543bb196c501ed}
 
 
 Paints all Light\+Rays. 
@@ -139,25 +140,25 @@ Paints all Light\+Rays.
 {\em shader\+Program} & The shader program that will be used to draw rays. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!reset\+Dynamic\+Rays@{reset\+Dynamic\+Rays}}
+\hypertarget{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!reset\+Dynamic\+Rays@{reset\+Dynamic\+Rays}}
 \index{reset\+Dynamic\+Rays@{reset\+Dynamic\+Rays}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{reset\+Dynamic\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::reset\+Dynamic\+Rays (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}
+)}}\label{class_light_ray_renderer_a6274b441ae15e56176d1d4d7d86ed540}
 
 
 Removes all dynamic rays. It is suggested to do so every frame. 
 
-\hypertarget{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Dynamic\+V\+B\+O@{update\+Dynamic\+V\+B\+O}}
+\hypertarget{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Dynamic\+V\+B\+O@{update\+Dynamic\+V\+B\+O}}
 \index{update\+Dynamic\+V\+B\+O@{update\+Dynamic\+V\+B\+O}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{update\+Dynamic\+V\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::update\+Dynamic\+V\+B\+O (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}
-\hypertarget{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Ray\+V\+B\+O@{update\+Ray\+V\+B\+O}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_aa60b1a942ae0b926f4126836dc19ea21}
+\hypertarget{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Ray\+V\+B\+O@{update\+Ray\+V\+B\+O}}
 \index{update\+Ray\+V\+B\+O@{update\+Ray\+V\+B\+O}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{update\+Ray\+V\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::update\+Ray\+V\+B\+O (
 \begin{DoxyParamCaption}
@@ -165,41 +166,41 @@ Removes all dynamic rays. It is suggested to do so every frame.
 \item[{Q\+Open\+G\+L\+Buffer $\ast$\&}]{index\+Buffer, }
 \item[{const {\bf Q\+Set}$<$ {\bf Light\+Ray\+Data} $>$ \&}]{data}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}
-\hypertarget{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Static\+V\+B\+O@{update\+Static\+V\+B\+O}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a3e31cf1e12e66f170cb34d3620983c7c}
+\hypertarget{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!update\+Static\+V\+B\+O@{update\+Static\+V\+B\+O}}
 \index{update\+Static\+V\+B\+O@{update\+Static\+V\+B\+O}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
 \subsubsection[{update\+Static\+V\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}void Light\+Ray\+Renderer\+::update\+Static\+V\+B\+O (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a26948ed2a22fac94af809d293cecf135}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Index\+Buffer@{m\+\_\+dynamic\+Index\+Buffer}}
+\hypertarget{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Index\+Buffer@{m\+\_\+dynamic\+Index\+Buffer}}
 \index{m\+\_\+dynamic\+Index\+Buffer@{m\+\_\+dynamic\+Index\+Buffer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+dynamic\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Index\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}
-\hypertarget{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Rays@{m\+\_\+dynamic\+Rays}}
+\subsubsection[{m\+\_\+dynamic\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Index\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_afe1bab9c62f8e91c45df4680f1f878a9}
+\hypertarget{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Rays@{m\+\_\+dynamic\+Rays}}
 \index{m\+\_\+dynamic\+Rays@{m\+\_\+dynamic\+Rays}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+dynamic\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Set}$<${\bf Light\+Ray\+Data}$>$$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Rays\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}
-\hypertarget{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Vertex\+Buffer@{m\+\_\+dynamic\+Vertex\+Buffer}}
+\subsubsection[{m\+\_\+dynamic\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Set}$<${\bf Light\+Ray\+Data}$>$$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Rays\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a829e8b67018149941b5e349c336be865}
+\hypertarget{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+dynamic\+Vertex\+Buffer@{m\+\_\+dynamic\+Vertex\+Buffer}}
 \index{m\+\_\+dynamic\+Vertex\+Buffer@{m\+\_\+dynamic\+Vertex\+Buffer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+dynamic\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}
-\hypertarget{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+is\+Static\+V\+B\+O\+Update\+Required@{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}}
+\subsubsection[{m\+\_\+dynamic\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+dynamic\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_ae8c0c8b69c3dda2e8e535f3c7da7543f}
+\hypertarget{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+is\+Static\+V\+B\+O\+Update\+Required@{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}}
 \index{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required@{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}]{\setlength{\rightskip}{0pt plus 5cm}bool Light\+Ray\+Renderer\+::m\+\_\+is\+Static\+V\+B\+O\+Update\+Required\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}
-\hypertarget{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Index\+Buffer@{m\+\_\+static\+Index\+Buffer}}
+\subsubsection[{m\+\_\+is\+Static\+V\+B\+O\+Update\+Required}]{\setlength{\rightskip}{0pt plus 5cm}bool Light\+Ray\+Renderer\+::m\+\_\+is\+Static\+V\+B\+O\+Update\+Required\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a9931d2944cabf289973c862a714fc5fd}
+\hypertarget{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Index\+Buffer@{m\+\_\+static\+Index\+Buffer}}
 \index{m\+\_\+static\+Index\+Buffer@{m\+\_\+static\+Index\+Buffer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+static\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Index\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}
-\hypertarget{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Rays@{m\+\_\+static\+Rays}}
+\subsubsection[{m\+\_\+static\+Index\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Index\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_ab78cd6dadbb241b4d8929f5f1b60995a}
+\hypertarget{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Rays@{m\+\_\+static\+Rays}}
 \index{m\+\_\+static\+Rays@{m\+\_\+static\+Rays}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+static\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Set}$<${\bf Light\+Ray\+Data}$>$$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Rays\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}
-\hypertarget{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}{}\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Vertex\+Buffer@{m\+\_\+static\+Vertex\+Buffer}}
+\subsubsection[{m\+\_\+static\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Set}$<${\bf Light\+Ray\+Data}$>$$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Rays\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_a6524c19725083f59fe41616998dcf111}
+\hypertarget{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}{\index{Light\+Ray\+Renderer@{Light\+Ray\+Renderer}!m\+\_\+static\+Vertex\+Buffer@{m\+\_\+static\+Vertex\+Buffer}}
 \index{m\+\_\+static\+Vertex\+Buffer@{m\+\_\+static\+Vertex\+Buffer}!Light\+Ray\+Renderer@{Light\+Ray\+Renderer}}
-\subsubsection[{m\+\_\+static\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}
+\subsubsection[{m\+\_\+static\+Vertex\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Buffer$\ast$ Light\+Ray\+Renderer\+::m\+\_\+static\+Vertex\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_light_ray_renderer_af21bb4b6a08c84b13753860a0a89b199}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightrayrenderer_8h}{lightrayrenderer.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{lightrayrenderer_8cpp}{lightrayrenderer.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{lightrayrenderer_8h}{lightrayrenderer.\+h}\item 
+\hyperlink{lightrayrenderer_8cpp}{lightrayrenderer.\+cpp}\end{DoxyCompactItemize}

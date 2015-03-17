@@ -1,5 +1,6 @@
-\hypertarget{class_triangle}{}\section{Triangle Class Reference}
+\hypertarget{class_triangle}{\section{Triangle Class Reference}
 \label{class_triangle}\index{Triangle@{Triangle}}
+}
 
 
 The \hyperlink{class_triangle}{Triangle} class represents a triangle in three dimensional space.  
@@ -36,8 +37,8 @@ void \hyperlink{class_triangle_af4566995b306c0f9ae72b457b7acb983}{set\+C} (const
 \item 
 const Q\+Vector3\+D \& \hyperlink{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}{normal} () const 
 \begin{DoxyCompactList}\small\item\em Returns normal of triangle. The vertices \hyperlink{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{a()}, \hyperlink{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{b()} and \hyperlink{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{c()} ordered counter clockwise are expected to describe outer side of triangle. \end{DoxyCompactList}\item 
-\hyperlink{class_q_list}{Q\+List}$<$ Q\+Vector3\+D $>$ \hyperlink{class_triangle_a66da12d2c747c435ea5148df472d9229}{vertices} () const 
-\begin{DoxyCompactList}\small\item\em Convienence method. All vertices are returned in \hyperlink{class_q_list}{Q\+List}. \end{DoxyCompactList}\item 
+\hyperlink{singleton_q_list}{Q\+List}$<$ Q\+Vector3\+D $>$ \hyperlink{class_triangle_a66da12d2c747c435ea5148df472d9229}{vertices} () const 
+\begin{DoxyCompactList}\small\item\em Convenience method. All vertices are returned in \hyperlink{singleton_q_list}{Q\+List}. \end{DoxyCompactList}\item 
 Q\+Vector3\+D \hyperlink{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}{reflect} (const Q\+Vector3\+D \&incident\+Vector) const 
 \begin{DoxyCompactList}\small\item\em Reflects incoming ray at outer side of triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
@@ -61,21 +62,21 @@ Q\+Vector3\+D $\ast$ \hyperlink{class_triangle_a86922a6a07e847f2df3b9310af273d8a
 \subsection{Detailed Description}
 The \hyperlink{class_triangle}{Triangle} class represents a triangle in three dimensional space. 
 
-Mostly this is a data class storing the vertices and is easy copiable. Also some helper functions are implemented. 
+Mostly this is a data class storing the vertices and is easy copyable. Also, some helper functions are implemented. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}{}\index{Triangle@{Triangle}!Triangle@{Triangle}}
+\hypertarget{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}{\index{Triangle@{Triangle}!Triangle@{Triangle}}
 \index{Triangle@{Triangle}!Triangle@{Triangle}}
 \subsubsection[{Triangle}]{\setlength{\rightskip}{0pt plus 5cm}Triangle\+::\+Triangle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}
+)}}\label{class_triangle_aaefe4ed500c07918d30c6f0e286332c5}
 
 
 Creates a new degenerated \hyperlink{class_triangle}{Triangle}, with all points in (0, 0, 0). 
 
-\hypertarget{class_triangle_a89052ece2572bfee5d6ade44b9f5094d}{}\index{Triangle@{Triangle}!Triangle@{Triangle}}
+\hypertarget{class_triangle_a89052ece2572bfee5d6ade44b9f5094d}{\index{Triangle@{Triangle}!Triangle@{Triangle}}
 \index{Triangle@{Triangle}!Triangle@{Triangle}}
 \subsubsection[{Triangle}]{\setlength{\rightskip}{0pt plus 5cm}Triangle\+::\+Triangle (
 \begin{DoxyParamCaption}
@@ -83,7 +84,7 @@ Creates a new degenerated \hyperlink{class_triangle}{Triangle}, with all points 
 \item[{const Q\+Vector3\+D \&}]{b, }
 \item[{const Q\+Vector3\+D \&}]{c}
 \end{DoxyParamCaption}
-)}\label{class_triangle_a89052ece2572bfee5d6ade44b9f5094d}
+)}}\label{class_triangle_a89052ece2572bfee5d6ade44b9f5094d}
 
 
 Creates a new \hyperlink{class_triangle}{Triangle}, with specified points. It is expected, that points a, b and c are ordered counter clock wise. 
@@ -97,13 +98,13 @@ Creates a new \hyperlink{class_triangle}{Triangle}, with specified points. It is
 {\em c} & Third vertex. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_triangle_a889893fe34e2eb7121082b86199d5628}{}\index{Triangle@{Triangle}!Triangle@{Triangle}}
+\hypertarget{class_triangle_a889893fe34e2eb7121082b86199d5628}{\index{Triangle@{Triangle}!Triangle@{Triangle}}
 \index{Triangle@{Triangle}!Triangle@{Triangle}}
 \subsubsection[{Triangle}]{\setlength{\rightskip}{0pt plus 5cm}Triangle\+::\+Triangle (
 \begin{DoxyParamCaption}
 \item[{const {\bf Triangle} \&}]{triangle}
 \end{DoxyParamCaption}
-)}\label{class_triangle_a889893fe34e2eb7121082b86199d5628}
+)}}\label{class_triangle_a889893fe34e2eb7121082b86199d5628}
 
 
 Creates a new \hyperlink{class_triangle}{Triangle} with data copied from given triangle. 
@@ -113,51 +114,51 @@ Creates a new \hyperlink{class_triangle}{Triangle} with data copied from given t
 {\em triangle} & The \hyperlink{class_triangle}{Triangle}, that will be copied. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_triangle_a5199760a17454f4dc94c855a57e3a152}{}\index{Triangle@{Triangle}!````~Triangle@{$\sim$\+Triangle}}
+\hypertarget{class_triangle_a5199760a17454f4dc94c855a57e3a152}{\index{Triangle@{Triangle}!````~Triangle@{$\sim$\+Triangle}}
 \index{````~Triangle@{$\sim$\+Triangle}!Triangle@{Triangle}}
 \subsubsection[{$\sim$\+Triangle}]{\setlength{\rightskip}{0pt plus 5cm}Triangle\+::$\sim$\+Triangle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_triangle_a5199760a17454f4dc94c855a57e3a152}
+)}}\label{class_triangle_a5199760a17454f4dc94c855a57e3a152}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{}\index{Triangle@{Triangle}!a@{a}}
+\hypertarget{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{\index{Triangle@{Triangle}!a@{a}}
 \index{a@{a}!Triangle@{Triangle}}
 \subsubsection[{a}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Triangle\+::a (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}
-\hypertarget{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{}\index{Triangle@{Triangle}!b@{b}}
+) const}}\label{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}
+\hypertarget{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{\index{Triangle@{Triangle}!b@{b}}
 \index{b@{b}!Triangle@{Triangle}}
 \subsubsection[{b}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Triangle\+::b (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_a8327124c9b9b752be94187c9fbf3f460}
-\hypertarget{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{}\index{Triangle@{Triangle}!c@{c}}
+) const}}\label{class_triangle_a8327124c9b9b752be94187c9fbf3f460}
+\hypertarget{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{\index{Triangle@{Triangle}!c@{c}}
 \index{c@{c}!Triangle@{Triangle}}
 \subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Triangle\+::c (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_a61f6c0245df276555de6d1b1a98840b8}
-\hypertarget{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}{}\index{Triangle@{Triangle}!calculate\+Normal@{calculate\+Normal}}
+) const}}\label{class_triangle_a61f6c0245df276555de6d1b1a98840b8}
+\hypertarget{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}{\index{Triangle@{Triangle}!calculate\+Normal@{calculate\+Normal}}
 \index{calculate\+Normal@{calculate\+Normal}!Triangle@{Triangle}}
 \subsubsection[{calculate\+Normal}]{\setlength{\rightskip}{0pt plus 5cm}void Triangle\+::calculate\+Normal (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}
-\hypertarget{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}{}\index{Triangle@{Triangle}!normal@{normal}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_triangle_a429f86c999f5c27720f7b912fa3b20ca}
+\hypertarget{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}{\index{Triangle@{Triangle}!normal@{normal}}
 \index{normal@{normal}!Triangle@{Triangle}}
 \subsubsection[{normal}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Triangle\+::normal (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}
+) const}}\label{class_triangle_aa1ccf6af0c2567e53b9dc6f51243f934}
 
 
 Returns normal of triangle. The vertices \hyperlink{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{a()}, \hyperlink{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{b()} and \hyperlink{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{c()} ordered counter clockwise are expected to describe outer side of triangle. 
@@ -165,20 +166,20 @@ Returns normal of triangle. The vertices \hyperlink{class_triangle_a430bf0a9d8ea
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\hypertarget{class_triangle_aae57b61e09898f54256a83e76acfe502}{}\index{Triangle@{Triangle}!operator=@{operator=}}
+\hypertarget{class_triangle_aae57b61e09898f54256a83e76acfe502}{\index{Triangle@{Triangle}!operator=@{operator=}}
 \index{operator=@{operator=}!Triangle@{Triangle}}
 \subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Triangle} \& Triangle\+::operator= (
 \begin{DoxyParamCaption}
 \item[{const {\bf Triangle} \&}]{triangle}
 \end{DoxyParamCaption}
-)}\label{class_triangle_aae57b61e09898f54256a83e76acfe502}
-\hypertarget{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}{}\index{Triangle@{Triangle}!reflect@{reflect}}
+)}}\label{class_triangle_aae57b61e09898f54256a83e76acfe502}
+\hypertarget{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}{\index{Triangle@{Triangle}!reflect@{reflect}}
 \index{reflect@{reflect}!Triangle@{Triangle}}
 \subsubsection[{reflect}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Triangle\+::reflect (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{incident\+Vector}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}
+) const}}\label{class_triangle_a4fb81ac7e355c97a03f4c056bd79ac99}
 
 
 Reflects incoming ray at outer side of triangle. 
@@ -191,59 +192,59 @@ Reflects incoming ray at outer side of triangle.
 \begin{DoxyReturn}{Returns}
 Reflected vector. 
 \end{DoxyReturn}
-\hypertarget{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}{}\index{Triangle@{Triangle}!set\+A@{set\+A}}
+\hypertarget{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}{\index{Triangle@{Triangle}!set\+A@{set\+A}}
 \index{set\+A@{set\+A}!Triangle@{Triangle}}
 \subsubsection[{set\+A}]{\setlength{\rightskip}{0pt plus 5cm}void Triangle\+::set\+A (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{a}
 \end{DoxyParamCaption}
-)}\label{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}
-\hypertarget{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}{}\index{Triangle@{Triangle}!set\+B@{set\+B}}
+)}}\label{class_triangle_a24c012d83d7e6c5d0b27985d8dcb64da}
+\hypertarget{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}{\index{Triangle@{Triangle}!set\+B@{set\+B}}
 \index{set\+B@{set\+B}!Triangle@{Triangle}}
 \subsubsection[{set\+B}]{\setlength{\rightskip}{0pt plus 5cm}void Triangle\+::set\+B (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{b}
 \end{DoxyParamCaption}
-)}\label{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}
-\hypertarget{class_triangle_af4566995b306c0f9ae72b457b7acb983}{}\index{Triangle@{Triangle}!set\+C@{set\+C}}
+)}}\label{class_triangle_a9f889b49a5ea3b4be4c4366c63673095}
+\hypertarget{class_triangle_af4566995b306c0f9ae72b457b7acb983}{\index{Triangle@{Triangle}!set\+C@{set\+C}}
 \index{set\+C@{set\+C}!Triangle@{Triangle}}
 \subsubsection[{set\+C}]{\setlength{\rightskip}{0pt plus 5cm}void Triangle\+::set\+C (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{c}
 \end{DoxyParamCaption}
-)}\label{class_triangle_af4566995b306c0f9ae72b457b7acb983}
-\hypertarget{class_triangle_a66da12d2c747c435ea5148df472d9229}{}\index{Triangle@{Triangle}!vertices@{vertices}}
+)}}\label{class_triangle_af4566995b306c0f9ae72b457b7acb983}
+\hypertarget{class_triangle_a66da12d2c747c435ea5148df472d9229}{\index{Triangle@{Triangle}!vertices@{vertices}}
 \index{vertices@{vertices}!Triangle@{Triangle}}
 \subsubsection[{vertices}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<$ Q\+Vector3\+D $>$ Triangle\+::vertices (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_triangle_a66da12d2c747c435ea5148df472d9229}
+) const}}\label{class_triangle_a66da12d2c747c435ea5148df472d9229}
 
 
-Convienence method. All vertices are returned in \hyperlink{class_q_list}{Q\+List}. 
+Convenience method. All vertices are returned in \hyperlink{singleton_q_list}{Q\+List}. 
 
 \begin{DoxyReturn}{Returns}
-\hyperlink{class_q_list}{Q\+List} of vertices. Containing \hyperlink{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{a()}, \hyperlink{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{b()} and \hyperlink{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{c()} in this order. 
+\hyperlink{singleton_q_list}{Q\+List} of vertices. Containing \hyperlink{class_triangle_a430bf0a9d8eaf20ea7bdefcd8082588c}{a()}, \hyperlink{class_triangle_a8327124c9b9b752be94187c9fbf3f460}{b()} and \hyperlink{class_triangle_a61f6c0245df276555de6d1b1a98840b8}{c()} in this order. 
 \end{DoxyReturn}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}{}\index{Triangle@{Triangle}!m\+\_\+a@{m\+\_\+a}}
+\hypertarget{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}{\index{Triangle@{Triangle}!m\+\_\+a@{m\+\_\+a}}
 \index{m\+\_\+a@{m\+\_\+a}!Triangle@{Triangle}}
-\subsubsection[{m\+\_\+a}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+a\hspace{0.3cm}{\ttfamily [protected]}}\label{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}
-\hypertarget{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}{}\index{Triangle@{Triangle}!m\+\_\+b@{m\+\_\+b}}
+\subsubsection[{m\+\_\+a}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+a\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_triangle_a38f859bd8a6291d1fe460dbcf3c937c8}
+\hypertarget{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}{\index{Triangle@{Triangle}!m\+\_\+b@{m\+\_\+b}}
 \index{m\+\_\+b@{m\+\_\+b}!Triangle@{Triangle}}
-\subsubsection[{m\+\_\+b}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+b\hspace{0.3cm}{\ttfamily [protected]}}\label{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}
-\hypertarget{class_triangle_ae39dcbf0b28b543900380517bbef628c}{}\index{Triangle@{Triangle}!m\+\_\+c@{m\+\_\+c}}
+\subsubsection[{m\+\_\+b}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+b\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_triangle_a783a7fcacbfa566c37dfd3fa8c6f44fd}
+\hypertarget{class_triangle_ae39dcbf0b28b543900380517bbef628c}{\index{Triangle@{Triangle}!m\+\_\+c@{m\+\_\+c}}
 \index{m\+\_\+c@{m\+\_\+c}!Triangle@{Triangle}}
-\subsubsection[{m\+\_\+c}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+c\hspace{0.3cm}{\ttfamily [protected]}}\label{class_triangle_ae39dcbf0b28b543900380517bbef628c}
-\hypertarget{class_triangle_a86922a6a07e847f2df3b9310af273d8a}{}\index{Triangle@{Triangle}!m\+\_\+normal@{m\+\_\+normal}}
+\subsubsection[{m\+\_\+c}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+c\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_triangle_ae39dcbf0b28b543900380517bbef628c}
+\hypertarget{class_triangle_a86922a6a07e847f2df3b9310af273d8a}{\index{Triangle@{Triangle}!m\+\_\+normal@{m\+\_\+normal}}
 \index{m\+\_\+normal@{m\+\_\+normal}!Triangle@{Triangle}}
-\subsubsection[{m\+\_\+normal}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+normal\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_triangle_a86922a6a07e847f2df3b9310af273d8a}
+\subsubsection[{m\+\_\+normal}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Triangle\+::m\+\_\+normal\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_triangle_a86922a6a07e847f2df3b9310af273d8a}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{triangle_8h}{triangle.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{triangle_8cpp}{triangle.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{triangle_8h}{triangle.\+h}\item 
+\hyperlink{triangle_8cpp}{triangle.\+cpp}\end{DoxyCompactItemize}

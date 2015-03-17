@@ -1,8 +1,9 @@
-\hypertarget{class_painter}{}\section{Painter Class Reference}
+\hypertarget{class_painter}{\section{Painter Class Reference}
 \label{class_painter}\index{Painter@{Painter}}
+}
 
 
-The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creates the whole picture. The \hyperlink{class_painter}{Painter} will be used by Q\+M\+L within rendering thread.  
+The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creating the whole picture. The \hyperlink{class_painter}{Painter} will be used by Q\+M\+L within rendering thread.  
 
 
 
@@ -24,22 +25,22 @@ void \hyperlink{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}{paint} ()
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_painter_a171dd523e7ba423b8da554a062168e94}{initialize\+Done} ()
-\begin{DoxyCompactList}\small\item\em This signal is emitted if initialization of all required ressources for current scene are initalized.  The signal is everytime emitted if previous scene was deleted and a new scene was synchronized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This signal is emitted if initialization of all required resources for current scene are initialized.  The signal is emitted every time if previous scene was deleted and a new scene was synchronized. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_painter_ae9520672fc113fc60cf942ba3d13a46e}{Painter} (\hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} $\ast$painter, Q\+Object $\ast$parent=0)
 \begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_painter}{Painter}. \end{DoxyCompactList}\item 
 virtual \hyperlink{class_painter_a6db88212368910da3385fa9e5fa97174}{$\sim$\+Painter} ()
-\begin{DoxyCompactList}\small\item\em Destrutor. Will delete all rendering related classes and ressources. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Destructor. Will delete all rendering related classes and resources. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_a3af62665915b5f5380e7009c18862e7e}{update\+Env\+Map} ()
-\begin{DoxyCompactList}\small\item\em Updates enviorment map using config file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Updates environment map using config file. \end{DoxyCompactList}\item 
 bool \hyperlink{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}{is\+Active} () const 
-\begin{DoxyCompactList}\small\item\em Check if \hyperlink{class_painter}{Painter} is active. Active means the painter is rendering. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if \hyperlink{class_painter}{Painter} is active. Active means the painter is rendering. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}{set\+Active} (bool active)
-\begin{DoxyCompactList}\small\item\em Set Active state. If active is true the painter renders the picture. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets Active state. If active is true the painter renders the picture. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_a37014617684597b602522d3de20f8f41}{clear\+Scene} ()
-\begin{DoxyCompactList}\small\item\em Clears the scene and removes all not anymore required ressources. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clears the scene and removes all not anymore required resources. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_a0c7f2b5b2bc7fa8fdfac559cc9b1401d}{synchronize\+Scene} (\hyperlink{class_scene}{Scene} $\ast$scene)
 \begin{DoxyCompactList}\small\item\em \hyperlink{class_painter}{Painter} copies all needed information of scene into own thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Slots}
@@ -51,7 +52,7 @@ void \hyperlink{class_painter_ab5dbc13d3e46ee83c4f819a5ae74206e}{handle\+Initial
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_painter_a12f9623c2acf87eced6e141e7638804e}{initialize} ()
-\begin{DoxyCompactList}\small\item\em Initializes all required ressources, that are direct members of painter (scene independant ressources). This method is executed within first paint. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Initializes all required resources, that are direct members of painter (scene independent resources). This method is executed within first paint. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_ad7db952528a1d7745dbf083ee1431f50}{initialize\+F\+B\+Os} ()
 \item 
 void \hyperlink{class_painter_a4fee3b94c00da17f851b52cc8d60ff72}{initialize\+Shader\+Programs} ()
@@ -111,7 +112,8 @@ uint \hyperlink{class_painter_a92db0cde0f42dd82569e85785850c283}{m\+\_\+scene\+D
 \item 
 uint \hyperlink{class_painter_af82c25060227ea6ec91ae60f0753c593}{m\+\_\+scene\+Texture}
 \item 
-\hyperlink{class_q_hash}{Q\+Hash}$<$ \hyperlink{shaderprograms_8h_ada89718f8d394b2cc093eb9770c554ff}{Shader\+Programs}, Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ $\ast$ \hyperlink{class_painter_a30655a30ba8f540f0e28b976b97d126f}{m\+\_\+shader\+Programs}
+\hyperlink{singleton_q_hash}{Q\+Hash}$<$ \hyperlink{shaderprograms_8h_ada89718f8d394b2cc093eb9770c554ff}{Shader\+Programs}, \\*
+Q\+Open\+G\+L\+Shader\+Program $\ast$ $>$ $\ast$ \hyperlink{class_painter_a30655a30ba8f540f0e28b976b97d126f}{m\+\_\+shader\+Programs}
 \item 
 Q\+Size $\ast$ \hyperlink{class_painter_aff5d274eb90d7a94565effe5bd5d03f7}{m\+\_\+used\+Viewport}
 \item 
@@ -130,17 +132,17 @@ Q\+Time $\ast$ \hyperlink{class_painter_ab6976ab19027866bbb01e9a1504aa5c9}{m\+\_
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creates the whole picture. The \hyperlink{class_painter}{Painter} will be used by Q\+M\+L within rendering thread. 
+The \hyperlink{class_painter}{Painter} class  Includes the rendering process, thus creating the whole picture. The \hyperlink{class_painter}{Painter} will be used by Q\+M\+L within rendering thread. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_painter_ae9520672fc113fc60cf942ba3d13a46e}{}\index{Painter@{Painter}!Painter@{Painter}}
+\hypertarget{class_painter_ae9520672fc113fc60cf942ba3d13a46e}{\index{Painter@{Painter}!Painter@{Painter}}
 \index{Painter@{Painter}!Painter@{Painter}}
 \subsubsection[{Painter}]{\setlength{\rightskip}{0pt plus 5cm}Painter\+::\+Painter (
 \begin{DoxyParamCaption}
 \item[{{\bf Painter\+Q\+M\+L} $\ast$}]{painter, }
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_painter_ae9520672fc113fc60cf942ba3d13a46e}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_painter_ae9520672fc113fc60cf942ba3d13a46e}
 
 
 Constructor of \hyperlink{class_painter}{Painter}. 
@@ -152,136 +154,136 @@ Constructor of \hyperlink{class_painter}{Painter}.
 {\em parent} & Q\+Object-\/parent \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_a6db88212368910da3385fa9e5fa97174}{}\index{Painter@{Painter}!````~Painter@{$\sim$\+Painter}}
+\hypertarget{class_painter_a6db88212368910da3385fa9e5fa97174}{\index{Painter@{Painter}!````~Painter@{$\sim$\+Painter}}
 \index{````~Painter@{$\sim$\+Painter}!Painter@{Painter}}
 \subsubsection[{$\sim$\+Painter}]{\setlength{\rightskip}{0pt plus 5cm}Painter\+::$\sim$\+Painter (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_painter_a6db88212368910da3385fa9e5fa97174}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_painter_a6db88212368910da3385fa9e5fa97174}
 
 
-Destrutor. Will delete all rendering related classes and ressources. 
+Destructor. Will delete all rendering related classes and resources. 
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_painter_a37014617684597b602522d3de20f8f41}{}\index{Painter@{Painter}!clear\+Scene@{clear\+Scene}}
+\hypertarget{class_painter_a37014617684597b602522d3de20f8f41}{\index{Painter@{Painter}!clear\+Scene@{clear\+Scene}}
 \index{clear\+Scene@{clear\+Scene}!Painter@{Painter}}
 \subsubsection[{clear\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::clear\+Scene (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_painter_a37014617684597b602522d3de20f8f41}
+)}}\label{class_painter_a37014617684597b602522d3de20f8f41}
 
 
-Clears the scene and removes all not anymore required ressources. 
+Clears the scene and removes all not anymore required resources. 
 
-\hypertarget{class_painter_ab5dbc13d3e46ee83c4f819a5ae74206e}{}\index{Painter@{Painter}!handle\+Initialize\+Done@{handle\+Initialize\+Done}}
+\hypertarget{class_painter_ab5dbc13d3e46ee83c4f819a5ae74206e}{\index{Painter@{Painter}!handle\+Initialize\+Done@{handle\+Initialize\+Done}}
 \index{handle\+Initialize\+Done@{handle\+Initialize\+Done}!Painter@{Painter}}
 \subsubsection[{handle\+Initialize\+Done}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::handle\+Initialize\+Done (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}\label{class_painter_ab5dbc13d3e46ee83c4f819a5ae74206e}
-\hypertarget{class_painter_a12f9623c2acf87eced6e141e7638804e}{}\index{Painter@{Painter}!initialize@{initialize}}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{class_painter_ab5dbc13d3e46ee83c4f819a5ae74206e}
+\hypertarget{class_painter_a12f9623c2acf87eced6e141e7638804e}{\index{Painter@{Painter}!initialize@{initialize}}
 \index{initialize@{initialize}!Painter@{Painter}}
 \subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::initialize (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a12f9623c2acf87eced6e141e7638804e}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a12f9623c2acf87eced6e141e7638804e}
 
 
-Initializes all required ressources, that are direct members of painter (scene independant ressources). This method is executed within first paint. 
+Initializes all required resources, that are direct members of painter (scene independent resources). This method is executed within first paint. 
 
-\hypertarget{class_painter_a171dd523e7ba423b8da554a062168e94}{}\index{Painter@{Painter}!initialize\+Done@{initialize\+Done}}
+\hypertarget{class_painter_a171dd523e7ba423b8da554a062168e94}{\index{Painter@{Painter}!initialize\+Done@{initialize\+Done}}
 \index{initialize\+Done@{initialize\+Done}!Painter@{Painter}}
 \subsubsection[{initialize\+Done}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::initialize\+Done (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_painter_a171dd523e7ba423b8da554a062168e94}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_painter_a171dd523e7ba423b8da554a062168e94}
 
 
-This signal is emitted if initialization of all required ressources for current scene are initalized.  The signal is everytime emitted if previous scene was deleted and a new scene was synchronized. 
+This signal is emitted if initialization of all required resources for current scene are initialized.  The signal is emitted every time if previous scene was deleted and a new scene was synchronized. 
 
-\hypertarget{class_painter_ad7db952528a1d7745dbf083ee1431f50}{}\index{Painter@{Painter}!initialize\+F\+B\+Os@{initialize\+F\+B\+Os}}
+\hypertarget{class_painter_ad7db952528a1d7745dbf083ee1431f50}{\index{Painter@{Painter}!initialize\+F\+B\+Os@{initialize\+F\+B\+Os}}
 \index{initialize\+F\+B\+Os@{initialize\+F\+B\+Os}!Painter@{Painter}}
 \subsubsection[{initialize\+F\+B\+Os}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::initialize\+F\+B\+Os (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ad7db952528a1d7745dbf083ee1431f50}
-\hypertarget{class_painter_a4fee3b94c00da17f851b52cc8d60ff72}{}\index{Painter@{Painter}!initialize\+Shader\+Programs@{initialize\+Shader\+Programs}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ad7db952528a1d7745dbf083ee1431f50}
+\hypertarget{class_painter_a4fee3b94c00da17f851b52cc8d60ff72}{\index{Painter@{Painter}!initialize\+Shader\+Programs@{initialize\+Shader\+Programs}}
 \index{initialize\+Shader\+Programs@{initialize\+Shader\+Programs}!Painter@{Painter}}
 \subsubsection[{initialize\+Shader\+Programs}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::initialize\+Shader\+Programs (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a4fee3b94c00da17f851b52cc8d60ff72}
-\hypertarget{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}{}\index{Painter@{Painter}!is\+Active@{is\+Active}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a4fee3b94c00da17f851b52cc8d60ff72}
+\hypertarget{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}{\index{Painter@{Painter}!is\+Active@{is\+Active}}
 \index{is\+Active@{is\+Active}!Painter@{Painter}}
 \subsubsection[{is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+::is\+Active (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}
+) const}}\label{class_painter_addfa0fd4dd943d27c67b62dfc9ab3a0b}
 
 
-Check if \hyperlink{class_painter}{Painter} is active. Active means the painter is rendering. 
+Checks if \hyperlink{class_painter}{Painter} is active. Active means the painter is rendering. 
 
 \begin{DoxyReturn}{Returns}
 Active state of painter. 
 \end{DoxyReturn}
-\hypertarget{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}{}\index{Painter@{Painter}!paint@{paint}}
+\hypertarget{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}{\index{Painter@{Painter}!paint@{paint}}
 \index{paint@{paint}!Painter@{Painter}}
 \subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::paint (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_painter_a5b9b4ed8aebaebeb2f6483e350445fbc}
 
 
 Starts rendering and paints the whole picture. 
 
-\hypertarget{class_painter_a5fee5d930d347b38fe1aa565e3264d3c}{}\index{Painter@{Painter}!render\+Light\+Rays@{render\+Light\+Rays}}
+\hypertarget{class_painter_a5fee5d930d347b38fe1aa565e3264d3c}{\index{Painter@{Painter}!render\+Light\+Rays@{render\+Light\+Rays}}
 \index{render\+Light\+Rays@{render\+Light\+Rays}!Painter@{Painter}}
 \subsubsection[{render\+Light\+Rays}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::render\+Light\+Rays (
 \begin{DoxyParamCaption}
 \item[{const {\bf Camera} \&}]{camera}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a5fee5d930d347b38fe1aa565e3264d3c}
-\hypertarget{class_painter_a8cbffb0c2d28dd1558716136c99a079f}{}\index{Painter@{Painter}!render\+Scene@{render\+Scene}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a5fee5d930d347b38fe1aa565e3264d3c}
+\hypertarget{class_painter_a8cbffb0c2d28dd1558716136c99a079f}{\index{Painter@{Painter}!render\+Scene@{render\+Scene}}
 \index{render\+Scene@{render\+Scene}!Painter@{Painter}}
 \subsubsection[{render\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::render\+Scene (
 \begin{DoxyParamCaption}
 \item[{const {\bf Camera} \&}]{camera}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a8cbffb0c2d28dd1558716136c99a079f}
-\hypertarget{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}{}\index{Painter@{Painter}!set\+Active@{set\+Active}}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a8cbffb0c2d28dd1558716136c99a079f}
+\hypertarget{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}{\index{Painter@{Painter}!set\+Active@{set\+Active}}
 \index{set\+Active@{set\+Active}!Painter@{Painter}}
 \subsubsection[{set\+Active}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::set\+Active (
 \begin{DoxyParamCaption}
 \item[{bool}]{active}
 \end{DoxyParamCaption}
-)}\label{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}
+)}}\label{class_painter_a7dd43be8d3e1eab98035fcc23316bd1a}
 
 
-Set Active state. If active is true the painter renders the picture. 
+Sets Active state. If active is true the painter renders the picture. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em active} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_a0c7f2b5b2bc7fa8fdfac559cc9b1401d}{}\index{Painter@{Painter}!synchronize\+Scene@{synchronize\+Scene}}
+\hypertarget{class_painter_a0c7f2b5b2bc7fa8fdfac559cc9b1401d}{\index{Painter@{Painter}!synchronize\+Scene@{synchronize\+Scene}}
 \index{synchronize\+Scene@{synchronize\+Scene}!Painter@{Painter}}
 \subsubsection[{synchronize\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::synchronize\+Scene (
 \begin{DoxyParamCaption}
 \item[{{\bf Scene} $\ast$}]{scene}
 \end{DoxyParamCaption}
-)}\label{class_painter_a0c7f2b5b2bc7fa8fdfac559cc9b1401d}
+)}}\label{class_painter_a0c7f2b5b2bc7fa8fdfac559cc9b1401d}
 
 
 \hyperlink{class_painter}{Painter} copies all needed information of scene into own thread. 
@@ -291,119 +293,119 @@ Set Active state. If active is true the painter renders the picture.
 {\em scene} & The scene that should be synchronized. If nullptr is passed it is like \hyperlink{class_painter_a37014617684597b602522d3de20f8f41}{clear\+Scene()} \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_a3af62665915b5f5380e7009c18862e7e}{}\index{Painter@{Painter}!update\+Env\+Map@{update\+Env\+Map}}
+\hypertarget{class_painter_a3af62665915b5f5380e7009c18862e7e}{\index{Painter@{Painter}!update\+Env\+Map@{update\+Env\+Map}}
 \index{update\+Env\+Map@{update\+Env\+Map}!Painter@{Painter}}
 \subsubsection[{update\+Env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+::update\+Env\+Map (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_painter_a3af62665915b5f5380e7009c18862e7e}
+)}}\label{class_painter_a3af62665915b5f5380e7009c18862e7e}
 
 
-Updates enviorment map using config file. 
+Updates environment map using config file. 
 
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_painter_a9b476c949ca4b2af7b1653c7106b659b}{}\index{Painter@{Painter}!m\+\_\+active@{m\+\_\+active}}
+\hypertarget{class_painter_a9b476c949ca4b2af7b1653c7106b659b}{\index{Painter@{Painter}!m\+\_\+active@{m\+\_\+active}}
 \index{m\+\_\+active@{m\+\_\+active}!Painter@{Painter}}
-\subsubsection[{m\+\_\+active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+::m\+\_\+active\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a9b476c949ca4b2af7b1653c7106b659b}
-\hypertarget{class_painter_a8960c588485d1ccdb7d4306236e187af}{}\index{Painter@{Painter}!m\+\_\+blur\+Effect\+Preview\+Scene@{m\+\_\+blur\+Effect\+Preview\+Scene}}
+\subsubsection[{m\+\_\+active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+::m\+\_\+active\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a9b476c949ca4b2af7b1653c7106b659b}
+\hypertarget{class_painter_a8960c588485d1ccdb7d4306236e187af}{\index{Painter@{Painter}!m\+\_\+blur\+Effect\+Preview\+Scene@{m\+\_\+blur\+Effect\+Preview\+Scene}}
 \index{m\+\_\+blur\+Effect\+Preview\+Scene@{m\+\_\+blur\+Effect\+Preview\+Scene}!Painter@{Painter}}
-\subsubsection[{m\+\_\+blur\+Effect\+Preview\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Blur\+Effect}$\ast$ Painter\+::m\+\_\+blur\+Effect\+Preview\+Scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a8960c588485d1ccdb7d4306236e187af}
-\hypertarget{class_painter_a951961fa0e012d87500b9775f9dcb19a}{}\index{Painter@{Painter}!m\+\_\+blur\+Effect\+Scene@{m\+\_\+blur\+Effect\+Scene}}
+\subsubsection[{m\+\_\+blur\+Effect\+Preview\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Blur\+Effect}$\ast$ Painter\+::m\+\_\+blur\+Effect\+Preview\+Scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a8960c588485d1ccdb7d4306236e187af}
+\hypertarget{class_painter_a951961fa0e012d87500b9775f9dcb19a}{\index{Painter@{Painter}!m\+\_\+blur\+Effect\+Scene@{m\+\_\+blur\+Effect\+Scene}}
 \index{m\+\_\+blur\+Effect\+Scene@{m\+\_\+blur\+Effect\+Scene}!Painter@{Painter}}
-\subsubsection[{m\+\_\+blur\+Effect\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Blur\+Effect}$\ast$ Painter\+::m\+\_\+blur\+Effect\+Scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a951961fa0e012d87500b9775f9dcb19a}
-\hypertarget{class_painter_ab898af5b9784a08a86a93d9d9f3e6de6}{}\index{Painter@{Painter}!m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene}}
+\subsubsection[{m\+\_\+blur\+Effect\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Blur\+Effect}$\ast$ Painter\+::m\+\_\+blur\+Effect\+Scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a951961fa0e012d87500b9775f9dcb19a}
+\hypertarget{class_painter_ab898af5b9784a08a86a93d9d9f3e6de6}{\index{Painter@{Painter}!m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene}}
 \index{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene}!Painter@{Painter}}
-\subsubsection[{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ab898af5b9784a08a86a93d9d9f3e6de6}
-\hypertarget{class_painter_a9a58327bf0fd8004e11e97c4415caa62}{}\index{Painter@{Painter}!m\+\_\+blur\+Viewport\+Ratio\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Scene}}
+\subsubsection[{m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+blur\+Viewport\+Ratio\+Preview\+Scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ab898af5b9784a08a86a93d9d9f3e6de6}
+\hypertarget{class_painter_a9a58327bf0fd8004e11e97c4415caa62}{\index{Painter@{Painter}!m\+\_\+blur\+Viewport\+Ratio\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Scene}}
 \index{m\+\_\+blur\+Viewport\+Ratio\+Scene@{m\+\_\+blur\+Viewport\+Ratio\+Scene}!Painter@{Painter}}
-\subsubsection[{m\+\_\+blur\+Viewport\+Ratio\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+blur\+Viewport\+Ratio\+Scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a9a58327bf0fd8004e11e97c4415caa62}
-\hypertarget{class_painter_a05558ea7a2f818641e0506d01d518010}{}\index{Painter@{Painter}!m\+\_\+camera@{m\+\_\+camera}}
+\subsubsection[{m\+\_\+blur\+Viewport\+Ratio\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+blur\+Viewport\+Ratio\+Scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a9a58327bf0fd8004e11e97c4415caa62}
+\hypertarget{class_painter_a05558ea7a2f818641e0506d01d518010}{\index{Painter@{Painter}!m\+\_\+camera@{m\+\_\+camera}}
 \index{m\+\_\+camera@{m\+\_\+camera}!Painter@{Painter}}
-\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Painter\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a05558ea7a2f818641e0506d01d518010}
-\hypertarget{class_painter_a1a3de21931e9796db399252b7336169c}{}\index{Painter@{Painter}!m\+\_\+counter@{m\+\_\+counter}}
+\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Painter\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a05558ea7a2f818641e0506d01d518010}
+\hypertarget{class_painter_a1a3de21931e9796db399252b7336169c}{\index{Painter@{Painter}!m\+\_\+counter@{m\+\_\+counter}}
 \index{m\+\_\+counter@{m\+\_\+counter}!Painter@{Painter}}
-\subsubsection[{m\+\_\+counter}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+counter\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a1a3de21931e9796db399252b7336169c}
-\hypertarget{class_painter_acb7b623817cf6865168bb74d3823897f}{}\index{Painter@{Painter}!m\+\_\+env\+Map@{m\+\_\+env\+Map}}
+\subsubsection[{m\+\_\+counter}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+counter\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a1a3de21931e9796db399252b7336169c}
+\hypertarget{class_painter_acb7b623817cf6865168bb74d3823897f}{\index{Painter@{Painter}!m\+\_\+env\+Map@{m\+\_\+env\+Map}}
 \index{m\+\_\+env\+Map@{m\+\_\+env\+Map}!Painter@{Painter}}
-\subsubsection[{m\+\_\+env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Environment\+Map}$\ast$ Painter\+::m\+\_\+env\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_acb7b623817cf6865168bb74d3823897f}
-\hypertarget{class_painter_abd540fa99df6acea8eb32c3bcfb81773}{}\index{Painter@{Painter}!m\+\_\+gem\+Structure\+Map@{m\+\_\+gem\+Structure\+Map}}
+\subsubsection[{m\+\_\+env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Environment\+Map}$\ast$ Painter\+::m\+\_\+env\+Map\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_acb7b623817cf6865168bb74d3823897f}
+\hypertarget{class_painter_abd540fa99df6acea8eb32c3bcfb81773}{\index{Painter@{Painter}!m\+\_\+gem\+Structure\+Map@{m\+\_\+gem\+Structure\+Map}}
 \index{m\+\_\+gem\+Structure\+Map@{m\+\_\+gem\+Structure\+Map}!Painter@{Painter}}
-\subsubsection[{m\+\_\+gem\+Structure\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cube\+Map}$\ast$ Painter\+::m\+\_\+gem\+Structure\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_abd540fa99df6acea8eb32c3bcfb81773}
-\hypertarget{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}{}\index{Painter@{Painter}!m\+\_\+gl@{m\+\_\+gl}}
+\subsubsection[{m\+\_\+gem\+Structure\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cube\+Map}$\ast$ Painter\+::m\+\_\+gem\+Structure\+Map\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_abd540fa99df6acea8eb32c3bcfb81773}
+\hypertarget{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}{\index{Painter@{Painter}!m\+\_\+gl@{m\+\_\+gl}}
 \index{m\+\_\+gl@{m\+\_\+gl}!Painter@{Painter}}
-\subsubsection[{m\+\_\+gl}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Functions$\ast$ Painter\+::m\+\_\+gl\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}
-\hypertarget{class_painter_ae7d26057c7ce98d20f8e11242f9b8d23}{}\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B}}
+\subsubsection[{m\+\_\+gl}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Open\+G\+L\+Functions$\ast$ Painter\+::m\+\_\+gl\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a8aa44a5f1477d570ee10d3dacae09f08}
+\hypertarget{class_painter_ae7d26057c7ce98d20f8e11242f9b8d23}{\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B}}
 \index{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ae7d26057c7ce98d20f8e11242f9b8d23}
-\hypertarget{class_painter_a68a674089abe95f55b48e12fef4e3a8f}{}\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+F\+B\+O@{m\+\_\+glow\+Preview\+Scene\+F\+B\+O}}
+\subsubsection[{m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ae7d26057c7ce98d20f8e11242f9b8d23}
+\hypertarget{class_painter_a68a674089abe95f55b48e12fef4e3a8f}{\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+F\+B\+O@{m\+\_\+glow\+Preview\+Scene\+F\+B\+O}}
 \index{m\+\_\+glow\+Preview\+Scene\+F\+B\+O@{m\+\_\+glow\+Preview\+Scene\+F\+B\+O}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Preview\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a68a674089abe95f55b48e12fef4e3a8f}
-\hypertarget{class_painter_a642492c18262a53f20c0824bd70e7526}{}\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+Texture@{m\+\_\+glow\+Preview\+Scene\+Texture}}
+\subsubsection[{m\+\_\+glow\+Preview\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a68a674089abe95f55b48e12fef4e3a8f}
+\hypertarget{class_painter_a642492c18262a53f20c0824bd70e7526}{\index{Painter@{Painter}!m\+\_\+glow\+Preview\+Scene\+Texture@{m\+\_\+glow\+Preview\+Scene\+Texture}}
 \index{m\+\_\+glow\+Preview\+Scene\+Texture@{m\+\_\+glow\+Preview\+Scene\+Texture}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Preview\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a642492c18262a53f20c0824bd70e7526}
-\hypertarget{class_painter_af165f6cb73abce18d3c48e4cbba39058}{}\index{Painter@{Painter}!m\+\_\+glow\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Scene\+Depth\+R\+B}}
+\subsubsection[{m\+\_\+glow\+Preview\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Preview\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a642492c18262a53f20c0824bd70e7526}
+\hypertarget{class_painter_af165f6cb73abce18d3c48e4cbba39058}{\index{Painter@{Painter}!m\+\_\+glow\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Scene\+Depth\+R\+B}}
 \index{m\+\_\+glow\+Scene\+Depth\+R\+B@{m\+\_\+glow\+Scene\+Depth\+R\+B}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_af165f6cb73abce18d3c48e4cbba39058}
-\hypertarget{class_painter_a265ca037babf5497830eda6f42b6aeef}{}\index{Painter@{Painter}!m\+\_\+glow\+Scene\+F\+B\+O@{m\+\_\+glow\+Scene\+F\+B\+O}}
+\subsubsection[{m\+\_\+glow\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_af165f6cb73abce18d3c48e4cbba39058}
+\hypertarget{class_painter_a265ca037babf5497830eda6f42b6aeef}{\index{Painter@{Painter}!m\+\_\+glow\+Scene\+F\+B\+O@{m\+\_\+glow\+Scene\+F\+B\+O}}
 \index{m\+\_\+glow\+Scene\+F\+B\+O@{m\+\_\+glow\+Scene\+F\+B\+O}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a265ca037babf5497830eda6f42b6aeef}
-\hypertarget{class_painter_ab0b0d6b22e49da1a22d3e3114efc6f56}{}\index{Painter@{Painter}!m\+\_\+glow\+Scene\+Texture@{m\+\_\+glow\+Scene\+Texture}}
+\subsubsection[{m\+\_\+glow\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a265ca037babf5497830eda6f42b6aeef}
+\hypertarget{class_painter_ab0b0d6b22e49da1a22d3e3114efc6f56}{\index{Painter@{Painter}!m\+\_\+glow\+Scene\+Texture@{m\+\_\+glow\+Scene\+Texture}}
 \index{m\+\_\+glow\+Scene\+Texture@{m\+\_\+glow\+Scene\+Texture}!Painter@{Painter}}
-\subsubsection[{m\+\_\+glow\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ab0b0d6b22e49da1a22d3e3114efc6f56}
-\hypertarget{class_painter_a0adcfafb8172b4f76561e2c951b1090b}{}\index{Painter@{Painter}!m\+\_\+initialized@{m\+\_\+initialized}}
+\subsubsection[{m\+\_\+glow\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+glow\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ab0b0d6b22e49da1a22d3e3114efc6f56}
+\hypertarget{class_painter_a0adcfafb8172b4f76561e2c951b1090b}{\index{Painter@{Painter}!m\+\_\+initialized@{m\+\_\+initialized}}
 \index{m\+\_\+initialized@{m\+\_\+initialized}!Painter@{Painter}}
-\subsubsection[{m\+\_\+initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+::m\+\_\+initialized\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a0adcfafb8172b4f76561e2c951b1090b}
-\hypertarget{class_painter_aedfda3eb1a37f4f121291c558786492a}{}\index{Painter@{Painter}!m\+\_\+old\+Elapsed@{m\+\_\+old\+Elapsed}}
+\subsubsection[{m\+\_\+initialized}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+::m\+\_\+initialized\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a0adcfafb8172b4f76561e2c951b1090b}
+\hypertarget{class_painter_aedfda3eb1a37f4f121291c558786492a}{\index{Painter@{Painter}!m\+\_\+old\+Elapsed@{m\+\_\+old\+Elapsed}}
 \index{m\+\_\+old\+Elapsed@{m\+\_\+old\+Elapsed}!Painter@{Painter}}
-\subsubsection[{m\+\_\+old\+Elapsed}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+old\+Elapsed\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_aedfda3eb1a37f4f121291c558786492a}
-\hypertarget{class_painter_af2774293bfaf6f654cb01e504937abb8}{}\index{Painter@{Painter}!m\+\_\+painter\+Q\+M\+L@{m\+\_\+painter\+Q\+M\+L}}
+\subsubsection[{m\+\_\+old\+Elapsed}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+::m\+\_\+old\+Elapsed\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_aedfda3eb1a37f4f121291c558786492a}
+\hypertarget{class_painter_af2774293bfaf6f654cb01e504937abb8}{\index{Painter@{Painter}!m\+\_\+painter\+Q\+M\+L@{m\+\_\+painter\+Q\+M\+L}}
 \index{m\+\_\+painter\+Q\+M\+L@{m\+\_\+painter\+Q\+M\+L}!Painter@{Painter}}
-\subsubsection[{m\+\_\+painter\+Q\+M\+L}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Painter\+Q\+M\+L}$\ast$ Painter\+::m\+\_\+painter\+Q\+M\+L\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_af2774293bfaf6f654cb01e504937abb8}
-\hypertarget{class_painter_a237399ac0b5da625eb19de1ae3c0a236}{}\index{Painter@{Painter}!m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}}
+\subsubsection[{m\+\_\+painter\+Q\+M\+L}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Painter\+Q\+M\+L}$\ast$ Painter\+::m\+\_\+painter\+Q\+M\+L\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_af2774293bfaf6f654cb01e504937abb8}
+\hypertarget{class_painter_a237399ac0b5da625eb19de1ae3c0a236}{\index{Painter@{Painter}!m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}}
 \index{m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}!Painter@{Painter}}
-\subsubsection[{m\+\_\+preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Painter\+::m\+\_\+preview\+Camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a237399ac0b5da625eb19de1ae3c0a236}
-\hypertarget{class_painter_ad4fb3338a366abb5592996572afa070d}{}\index{Painter@{Painter}!m\+\_\+preview\+Scene\+Depth\+R\+B@{m\+\_\+preview\+Scene\+Depth\+R\+B}}
+\subsubsection[{m\+\_\+preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Painter\+::m\+\_\+preview\+Camera\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a237399ac0b5da625eb19de1ae3c0a236}
+\hypertarget{class_painter_ad4fb3338a366abb5592996572afa070d}{\index{Painter@{Painter}!m\+\_\+preview\+Scene\+Depth\+R\+B@{m\+\_\+preview\+Scene\+Depth\+R\+B}}
 \index{m\+\_\+preview\+Scene\+Depth\+R\+B@{m\+\_\+preview\+Scene\+Depth\+R\+B}!Painter@{Painter}}
-\subsubsection[{m\+\_\+preview\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ad4fb3338a366abb5592996572afa070d}
-\hypertarget{class_painter_adb6ae15aabf53d3f2c9108a8db0cbbb5}{}\index{Painter@{Painter}!m\+\_\+preview\+Scene\+F\+B\+O@{m\+\_\+preview\+Scene\+F\+B\+O}}
+\subsubsection[{m\+\_\+preview\+Scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ad4fb3338a366abb5592996572afa070d}
+\hypertarget{class_painter_adb6ae15aabf53d3f2c9108a8db0cbbb5}{\index{Painter@{Painter}!m\+\_\+preview\+Scene\+F\+B\+O@{m\+\_\+preview\+Scene\+F\+B\+O}}
 \index{m\+\_\+preview\+Scene\+F\+B\+O@{m\+\_\+preview\+Scene\+F\+B\+O}!Painter@{Painter}}
-\subsubsection[{m\+\_\+preview\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_adb6ae15aabf53d3f2c9108a8db0cbbb5}
-\hypertarget{class_painter_aff56d277a464801c66a7f7414ef86733}{}\index{Painter@{Painter}!m\+\_\+preview\+Scene\+Texture@{m\+\_\+preview\+Scene\+Texture}}
+\subsubsection[{m\+\_\+preview\+Scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_adb6ae15aabf53d3f2c9108a8db0cbbb5}
+\hypertarget{class_painter_aff56d277a464801c66a7f7414ef86733}{\index{Painter@{Painter}!m\+\_\+preview\+Scene\+Texture@{m\+\_\+preview\+Scene\+Texture}}
 \index{m\+\_\+preview\+Scene\+Texture@{m\+\_\+preview\+Scene\+Texture}!Painter@{Painter}}
-\subsubsection[{m\+\_\+preview\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_aff56d277a464801c66a7f7414ef86733}
-\hypertarget{class_painter_a50f7fad2d44554f0be878a96afacfa44}{}\index{Painter@{Painter}!m\+\_\+quad@{m\+\_\+quad}}
+\subsubsection[{m\+\_\+preview\+Scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+preview\+Scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_aff56d277a464801c66a7f7414ef86733}
+\hypertarget{class_painter_a50f7fad2d44554f0be878a96afacfa44}{\index{Painter@{Painter}!m\+\_\+quad@{m\+\_\+quad}}
 \index{m\+\_\+quad@{m\+\_\+quad}!Painter@{Painter}}
-\subsubsection[{m\+\_\+quad}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Screen\+Aligned\+Quad}$\ast$ Painter\+::m\+\_\+quad\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a50f7fad2d44554f0be878a96afacfa44}
-\hypertarget{class_painter_a9f99a5ccb9b1b645281b1439cbf416e1}{}\index{Painter@{Painter}!m\+\_\+rainbow\+Map@{m\+\_\+rainbow\+Map}}
+\subsubsection[{m\+\_\+quad}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Screen\+Aligned\+Quad}$\ast$ Painter\+::m\+\_\+quad\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a50f7fad2d44554f0be878a96afacfa44}
+\hypertarget{class_painter_a9f99a5ccb9b1b645281b1439cbf416e1}{\index{Painter@{Painter}!m\+\_\+rainbow\+Map@{m\+\_\+rainbow\+Map}}
 \index{m\+\_\+rainbow\+Map@{m\+\_\+rainbow\+Map}!Painter@{Painter}}
-\subsubsection[{m\+\_\+rainbow\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cube\+Map}$\ast$ Painter\+::m\+\_\+rainbow\+Map\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a9f99a5ccb9b1b645281b1439cbf416e1}
-\hypertarget{class_painter_a92db0cde0f42dd82569e85785850c283}{}\index{Painter@{Painter}!m\+\_\+scene\+Depth\+R\+B@{m\+\_\+scene\+Depth\+R\+B}}
+\subsubsection[{m\+\_\+rainbow\+Map}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Cube\+Map}$\ast$ Painter\+::m\+\_\+rainbow\+Map\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a9f99a5ccb9b1b645281b1439cbf416e1}
+\hypertarget{class_painter_a92db0cde0f42dd82569e85785850c283}{\index{Painter@{Painter}!m\+\_\+scene\+Depth\+R\+B@{m\+\_\+scene\+Depth\+R\+B}}
 \index{m\+\_\+scene\+Depth\+R\+B@{m\+\_\+scene\+Depth\+R\+B}!Painter@{Painter}}
-\subsubsection[{m\+\_\+scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a92db0cde0f42dd82569e85785850c283}
-\hypertarget{class_painter_a4df95c88604785d7eecaf1474df67629}{}\index{Painter@{Painter}!m\+\_\+scene\+F\+B\+O@{m\+\_\+scene\+F\+B\+O}}
+\subsubsection[{m\+\_\+scene\+Depth\+R\+B}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+Depth\+R\+B\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a92db0cde0f42dd82569e85785850c283}
+\hypertarget{class_painter_a4df95c88604785d7eecaf1474df67629}{\index{Painter@{Painter}!m\+\_\+scene\+F\+B\+O@{m\+\_\+scene\+F\+B\+O}}
 \index{m\+\_\+scene\+F\+B\+O@{m\+\_\+scene\+F\+B\+O}!Painter@{Painter}}
-\subsubsection[{m\+\_\+scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a4df95c88604785d7eecaf1474df67629}
-\hypertarget{class_painter_a574ba64fd2af1d8c64d2c293d4811fc2}{}\index{Painter@{Painter}!m\+\_\+scene\+Renderer@{m\+\_\+scene\+Renderer}}
+\subsubsection[{m\+\_\+scene\+F\+B\+O}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+F\+B\+O\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a4df95c88604785d7eecaf1474df67629}
+\hypertarget{class_painter_a574ba64fd2af1d8c64d2c293d4811fc2}{\index{Painter@{Painter}!m\+\_\+scene\+Renderer@{m\+\_\+scene\+Renderer}}
 \index{m\+\_\+scene\+Renderer@{m\+\_\+scene\+Renderer}!Painter@{Painter}}
-\subsubsection[{m\+\_\+scene\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Renderer}$\ast$ Painter\+::m\+\_\+scene\+Renderer\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a574ba64fd2af1d8c64d2c293d4811fc2}
-\hypertarget{class_painter_af82c25060227ea6ec91ae60f0753c593}{}\index{Painter@{Painter}!m\+\_\+scene\+Texture@{m\+\_\+scene\+Texture}}
+\subsubsection[{m\+\_\+scene\+Renderer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Renderer}$\ast$ Painter\+::m\+\_\+scene\+Renderer\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a574ba64fd2af1d8c64d2c293d4811fc2}
+\hypertarget{class_painter_af82c25060227ea6ec91ae60f0753c593}{\index{Painter@{Painter}!m\+\_\+scene\+Texture@{m\+\_\+scene\+Texture}}
 \index{m\+\_\+scene\+Texture@{m\+\_\+scene\+Texture}!Painter@{Painter}}
-\subsubsection[{m\+\_\+scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_af82c25060227ea6ec91ae60f0753c593}
-\hypertarget{class_painter_a30655a30ba8f540f0e28b976b97d126f}{}\index{Painter@{Painter}!m\+\_\+shader\+Programs@{m\+\_\+shader\+Programs}}
+\subsubsection[{m\+\_\+scene\+Texture}]{\setlength{\rightskip}{0pt plus 5cm}uint Painter\+::m\+\_\+scene\+Texture\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_af82c25060227ea6ec91ae60f0753c593}
+\hypertarget{class_painter_a30655a30ba8f540f0e28b976b97d126f}{\index{Painter@{Painter}!m\+\_\+shader\+Programs@{m\+\_\+shader\+Programs}}
 \index{m\+\_\+shader\+Programs@{m\+\_\+shader\+Programs}!Painter@{Painter}}
-\subsubsection[{m\+\_\+shader\+Programs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Hash}$<${\bf Shader\+Programs}, Q\+Open\+G\+L\+Shader\+Program$\ast$$>$$\ast$ Painter\+::m\+\_\+shader\+Programs\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_a30655a30ba8f540f0e28b976b97d126f}
-\hypertarget{class_painter_ab6976ab19027866bbb01e9a1504aa5c9}{}\index{Painter@{Painter}!m\+\_\+time@{m\+\_\+time}}
+\subsubsection[{m\+\_\+shader\+Programs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+Hash}$<${\bf Shader\+Programs}, Q\+Open\+G\+L\+Shader\+Program$\ast$$>$$\ast$ Painter\+::m\+\_\+shader\+Programs\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_a30655a30ba8f540f0e28b976b97d126f}
+\hypertarget{class_painter_ab6976ab19027866bbb01e9a1504aa5c9}{\index{Painter@{Painter}!m\+\_\+time@{m\+\_\+time}}
 \index{m\+\_\+time@{m\+\_\+time}!Painter@{Painter}}
-\subsubsection[{m\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Time$\ast$ Painter\+::m\+\_\+time\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_ab6976ab19027866bbb01e9a1504aa5c9}
-\hypertarget{class_painter_aff5d274eb90d7a94565effe5bd5d03f7}{}\index{Painter@{Painter}!m\+\_\+used\+Viewport@{m\+\_\+used\+Viewport}}
+\subsubsection[{m\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Time$\ast$ Painter\+::m\+\_\+time\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_ab6976ab19027866bbb01e9a1504aa5c9}
+\hypertarget{class_painter_aff5d274eb90d7a94565effe5bd5d03f7}{\index{Painter@{Painter}!m\+\_\+used\+Viewport@{m\+\_\+used\+Viewport}}
 \index{m\+\_\+used\+Viewport@{m\+\_\+used\+Viewport}!Painter@{Painter}}
-\subsubsection[{m\+\_\+used\+Viewport}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size$\ast$ Painter\+::m\+\_\+used\+Viewport\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_aff5d274eb90d7a94565effe5bd5d03f7}
+\subsubsection[{m\+\_\+used\+Viewport}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size$\ast$ Painter\+::m\+\_\+used\+Viewport\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_aff5d274eb90d7a94565effe5bd5d03f7}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{painter_8h}{painter.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{painter_8cpp}{painter.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{painter_8h}{painter.\+h}\item 
+\hyperlink{painter_8cpp}{painter.\+cpp}\end{DoxyCompactItemize}

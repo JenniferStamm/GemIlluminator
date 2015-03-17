@@ -1,8 +1,9 @@
-\hypertarget{class_game_lost_ray}{}\section{Game\+Lost\+Ray Class Reference}
+\hypertarget{class_game_lost_ray}{\section{Game\+Lost\+Ray Class Reference}
 \label{class_game_lost_ray}\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}}
+}
 
 
-The \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray} class is a specialized \hyperlink{class_light_ray}{Light\+Ray}, that is created if the player should loose as soon as the player reaches it.  
+The \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray} class is a specialized \hyperlink{class_light_ray}{Light\+Ray}, that is created if the player should lose as soon as the player reaches it.  
 
 
 
@@ -26,7 +27,7 @@ void \hyperlink{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}{game\+Los
 \hyperlink{class_game_lost_ray_a15ec367ee8dfd87bc8deccde5553f8e6}{Game\+Lost\+Ray} (Q\+Object $\ast$parent=0)
 \item 
 void \hyperlink{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}{update} (int time\+Difference) override
-\begin{DoxyCompactList}\small\item\em This method is like \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()} with the addition, that the game end is detect a soon as the ray has a player-\/$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This method is like \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()} with the addition, that the game end is detected a soon as the ray has a player. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,44 +37,44 @@ bool \hyperlink{class_game_lost_ray_a9b8fd54b22a3f25d4fef9431cebafa7a}{m\+\_\+al
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray} class is a specialized \hyperlink{class_light_ray}{Light\+Ray}, that is created if the player should loose as soon as the player reaches it. 
+The \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray} class is a specialized \hyperlink{class_light_ray}{Light\+Ray}, that is created if the player should lose as soon as the player reaches it. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_game_lost_ray_a15ec367ee8dfd87bc8deccde5553f8e6}{}\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
+\hypertarget{class_game_lost_ray_a15ec367ee8dfd87bc8deccde5553f8e6}{\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
 \index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
 \subsubsection[{Game\+Lost\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}Game\+Lost\+Ray\+::\+Game\+Lost\+Ray (
 \begin{DoxyParamCaption}
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_game_lost_ray_a15ec367ee8dfd87bc8deccde5553f8e6}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_game_lost_ray_a15ec367ee8dfd87bc8deccde5553f8e6}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}{}\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!game\+Lost@{game\+Lost}}
+\hypertarget{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}{\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!game\+Lost@{game\+Lost}}
 \index{game\+Lost@{game\+Lost}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
 \subsubsection[{game\+Lost}]{\setlength{\rightskip}{0pt plus 5cm}void Game\+Lost\+Ray\+::game\+Lost (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}
 
 
 The \hyperlink{class_game_lost_ray_a9b2afbad70387bd9ec8f80170760ef57}{game\+Lost()} signal is emitted at that moment the ray detects the player leaving the scene. 
 
-\hypertarget{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}{}\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!update@{update}}
+\hypertarget{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}{\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!update@{update}}
 \index{update@{update}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
 \subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Game\+Lost\+Ray\+::update (
 \begin{DoxyParamCaption}
 \item[{int}]{time\+Difference}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_game_lost_ray_a417d814372891fe7595a7e745b7a9f0f}
 
 
-This method is like \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()} with the addition, that the game end is detect a soon as the ray has a player-\/$>$ 
+This method is like \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()} with the addition, that the game end is detected a soon as the ray has a player. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em time\+Difference} & Time differnce to previous update. \\
+{\em time\+Difference} & Time difference to previous update. \\
 \hline
 \end{DoxyParams}
 
@@ -83,12 +84,12 @@ Reimplemented from \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_game_lost_ray_a9b8fd54b22a3f25d4fef9431cebafa7a}{}\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!m\+\_\+already\+Lost@{m\+\_\+already\+Lost}}
+\hypertarget{class_game_lost_ray_a9b8fd54b22a3f25d4fef9431cebafa7a}{\index{Game\+Lost\+Ray@{Game\+Lost\+Ray}!m\+\_\+already\+Lost@{m\+\_\+already\+Lost}}
 \index{m\+\_\+already\+Lost@{m\+\_\+already\+Lost}!Game\+Lost\+Ray@{Game\+Lost\+Ray}}
-\subsubsection[{m\+\_\+already\+Lost}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\+Lost\+Ray\+::m\+\_\+already\+Lost\hspace{0.3cm}{\ttfamily [protected]}}\label{class_game_lost_ray_a9b8fd54b22a3f25d4fef9431cebafa7a}
+\subsubsection[{m\+\_\+already\+Lost}]{\setlength{\rightskip}{0pt plus 5cm}bool Game\+Lost\+Ray\+::m\+\_\+already\+Lost\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_game_lost_ray_a9b8fd54b22a3f25d4fef9431cebafa7a}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gamelostray_8h}{gamelostray.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{gamelostray_8cpp}{gamelostray.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{gamelostray_8h}{gamelostray.\+h}\item 
+\hyperlink{gamelostray_8cpp}{gamelostray.\+cpp}\end{DoxyCompactItemize}

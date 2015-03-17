@@ -6,6 +6,6 @@ var searchData=
   ['fileio_2eh',['fileio.h',['../fileio_8h.html',1,'']]],
   ['findgemintersectedby',['findGemIntersectedBy',['../class_scene.html#a2a2cee0a97d8436aac1cd582904af459',1,'Scene']]],
   ['findgemwithboundingsphereintersectedby',['findGemWithBoundingSphereIntersectedBy',['../class_scene.html#af96ea722705769055ef2f9e9572f3fa0',1,'Scene']]],
-  ['fovy',['fovy',['../class_camera.html#a6cba4066109137fb0d23ee207205927c',1,'Camera::fovy()'],['../class_camera.html#a74f8741128595da3efa466cb5e580601',1,'Camera::fovy() const ']]],
+  ['fovy',['fovy',['../class_camera.html#a74f8741128595da3efa466cb5e580601',1,'Camera']]],
   ['fromeuleranglequaternions',['fromEulerAngleQuaternions',['../class_navigation.html#a210a31fd6fc626468793b4dbeefcaf2c',1,'Navigation']]]
 ];

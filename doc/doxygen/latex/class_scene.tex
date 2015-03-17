@@ -1,8 +1,9 @@
-\hypertarget{class_scene}{}\section{Scene Class Reference}
+\hypertarget{class_scene}{\section{Scene Class Reference}
 \label{class_scene}\index{Scene@{Scene}}
+}
 
 
-The \hyperlink{class_scene}{Scene} class provides access to geometry and collision detection methods. Furthermore some game logic is implemented, so the scene holds the player, the gem inflicted by player and cameras.  
+The \hyperlink{class_scene}{Scene} class provides access to geometry and collision detection methods. Furthermore, some game logic is implemented, so the scene holds the player, the gem influenced by player and cameras.  
 
 
 
@@ -45,30 +46,30 @@ void \hyperlink{class_scene_aa73ff5f1f6c873357149afe83c749d09}{game\+Lost} ()
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_scene_a93f88c89ce94ad70a668225522818b1e}{Scene} (Q\+Quick\+Item $\ast$parent=0)
-\begin{DoxyCompactList}\small\item\em Creates a new scene without any further information.  Before use scene you have to set \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries()}, \hyperlink{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{root\+Light\+Ray()}, \hyperlink{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{camera()}, \hyperlink{class_scene_ae8f457e7e69cac64f533e02f4f13e725}{preview\+Camera()} and \hyperlink{class_scene_ace3407a4d148d317a20b1bf205554bc5}{register\+Navigation()} \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Creates a new scene without any further information.  Before use scene you have to set \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries()}, root\+Light\+Ray(), camera(), preview\+Camera() and \hyperlink{class_scene_ace3407a4d148d317a20b1bf205554bc5}{register\+Navigation()} \end{DoxyCompactList}\item 
 virtual \hyperlink{class_scene_a3b8cec2e32546713915f8c6303c951f1}{$\sim$\+Scene} ()
 \item 
 Q\+Qml\+List\+Property$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $>$ \hyperlink{class_scene_ac437a983a495358875b319a4fcf912d4}{geometries\+Q\+M\+L} ()
 \begin{DoxyCompactList}\small\item\em Allow Q\+M\+L classes to read our gems.  Initially it was planned to manipulate our gems from Q\+M\+L classes, but we did not get it to work. Now we create it over a J\+S\+O\+N-\/object and set it once, which works. All in all gem manipulation from Q\+M\+L is magic and we do not know why and how it really works. \end{DoxyCompactList}\item 
-\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries} ()
+\hyperlink{singleton_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries} ()
 \item 
 \hyperlink{class_camera}{Camera} $\ast$ \hyperlink{class_scene_a81b014ae882dfaec147d917b1ea99d68}{camera} () const 
 \item 
-void \hyperlink{class_scene_a4c722c43b266a642a4a06d0d818b14d1}{set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$\hyperlink{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{camera})
+void \hyperlink{class_scene_a4c722c43b266a642a4a06d0d818b14d1}{set\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)
 \item 
 \hyperlink{class_camera}{Camera} $\ast$ \hyperlink{class_scene_acdd91b41ac71a9e44b6e9883a30a1c48}{preview\+Camera} () const 
 \item 
-void \hyperlink{class_scene_a84120dfbddf207c955e16b7aae975b8c}{set\+Preview\+Camera} (\hyperlink{class_camera}{Camera} $\ast$\hyperlink{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{camera})
+void \hyperlink{class_scene_a84120dfbddf207c955e16b7aae975b8c}{set\+Preview\+Camera} (\hyperlink{class_camera}{Camera} $\ast$camera)
 \item 
 \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_scene_af96ea722705769055ef2f9e9572f3fa0}{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, Q\+Vector3\+D $\ast$collision\+Point=nullptr) const 
 \begin{DoxyCompactList}\small\item\em Finds the nearest gem, that bounding sphere is intersected by given ray. \end{DoxyCompactList}\item 
 \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_scene_a2a2cee0a97d8436aac1cd582904af459}{find\+Gem\+Intersected\+By} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, Q\+Vector3\+D $\ast$collision\+Point=nullptr) const 
 \begin{DoxyCompactList}\small\item\em Finds the nearest gem with bounding sphere intersected by given ray. \end{DoxyCompactList}\item 
 void \hyperlink{class_scene_afcaeead320358b9d9dd02a113ef97c44}{set\+Current\+Gem} (\hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$current\+Gem)
-\begin{DoxyCompactList}\small\item\em Set the gem, that will be controlled by player. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets the gem, that will be controlled by player. \end{DoxyCompactList}\item 
 \hyperlink{class_light_ray}{Light\+Ray} $\ast$ \hyperlink{class_scene_a7de6dcc38dd6398f71af71295ae09966}{root\+Light\+Ray} () const 
 \item 
-void \hyperlink{class_scene_a3da6be3089fe335bf628ef58d23cda18}{set\+Root\+Light\+Ray} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$\hyperlink{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{root\+Light\+Ray})
+void \hyperlink{class_scene_a3da6be3089fe335bf628ef58d23cda18}{set\+Root\+Light\+Ray} (\hyperlink{class_light_ray}{Light\+Ray} $\ast$root\+Light\+Ray)
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -81,148 +82,137 @@ void \hyperlink{class_scene_a3da6be3089fe335bf628ef58d23cda18}{set\+Root\+Light\
 \item 
 \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ \hyperlink{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}{m\+\_\+current\+Gem}
 \item 
-\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ \hyperlink{class_scene_a47d7b35730d7959a640339ed11d18866}{m\+\_\+gems}
+\hyperlink{singleton_q_list}{Q\+List}$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $\ast$ $>$ \hyperlink{class_scene_a47d7b35730d7959a640339ed11d18866}{m\+\_\+gems}
 \item 
 \hyperlink{class_navigation}{Navigation} $\ast$ \hyperlink{class_scene_a595ab554271bd87c4c73f0cce175ff81}{m\+\_\+navigation}
 \item 
 \hyperlink{class_light_ray}{Light\+Ray} $\ast$ \hyperlink{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}{m\+\_\+root\+Light\+Ray}
 \end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-Q\+Qml\+List\+Property$<$ \hyperlink{class_abstract_gem}{Abstract\+Gem} $>$ \hyperlink{class_scene_a426e8a21801c9cc93c5cd90896ed745d}{geometries}
-\item 
-\hyperlink{class_camera}{Camera} \hyperlink{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{camera}
-\item 
-\hyperlink{class_camera}{Camera} \hyperlink{class_scene_ae8f457e7e69cac64f533e02f4f13e725}{preview\+Camera}
-\item 
-\hyperlink{class_light_ray}{Light\+Ray} \hyperlink{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{root\+Light\+Ray}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_scene}{Scene} class provides access to geometry and collision detection methods. Furthermore some game logic is implemented, so the scene holds the player, the gem inflicted by player and cameras. 
+The \hyperlink{class_scene}{Scene} class provides access to geometry and collision detection methods. Furthermore, some game logic is implemented, so the scene holds the player, the gem influenced by player and cameras. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_scene_a93f88c89ce94ad70a668225522818b1e}{}\index{Scene@{Scene}!Scene@{Scene}}
+\hypertarget{class_scene_a93f88c89ce94ad70a668225522818b1e}{\index{Scene@{Scene}!Scene@{Scene}}
 \index{Scene@{Scene}!Scene@{Scene}}
 \subsubsection[{Scene}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+::\+Scene (
 \begin{DoxyParamCaption}
 \item[{Q\+Quick\+Item $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_scene_a93f88c89ce94ad70a668225522818b1e}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_scene_a93f88c89ce94ad70a668225522818b1e}
 
 
-Creates a new scene without any further information.  Before use scene you have to set \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries()}, \hyperlink{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{root\+Light\+Ray()}, \hyperlink{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{camera()}, \hyperlink{class_scene_ae8f457e7e69cac64f533e02f4f13e725}{preview\+Camera()} and \hyperlink{class_scene_ace3407a4d148d317a20b1bf205554bc5}{register\+Navigation()} 
+Creates a new scene without any further information.  Before use scene you have to set \hyperlink{class_scene_a65753673cd72f8b921cda3ac10c31e87}{geometries()}, root\+Light\+Ray(), camera(), preview\+Camera() and \hyperlink{class_scene_ace3407a4d148d317a20b1bf205554bc5}{register\+Navigation()} 
 
 
 \begin{DoxyParams}{Parameters}
 {\em parent} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_scene_a3b8cec2e32546713915f8c6303c951f1}{}\index{Scene@{Scene}!````~Scene@{$\sim$\+Scene}}
+\hypertarget{class_scene_a3b8cec2e32546713915f8c6303c951f1}{\index{Scene@{Scene}!````~Scene@{$\sim$\+Scene}}
 \index{````~Scene@{$\sim$\+Scene}!Scene@{Scene}}
 \subsubsection[{$\sim$\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+::$\sim$\+Scene (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_scene_a3b8cec2e32546713915f8c6303c951f1}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_scene_a3b8cec2e32546713915f8c6303c951f1}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_scene_a81b014ae882dfaec147d917b1ea99d68}{}\index{Scene@{Scene}!camera@{camera}}
+\hypertarget{class_scene_a81b014ae882dfaec147d917b1ea99d68}{\index{Scene@{Scene}!camera@{camera}}
 \index{camera@{camera}!Scene@{Scene}}
 \subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::camera (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_scene_a81b014ae882dfaec147d917b1ea99d68}
-\hypertarget{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}{}\index{Scene@{Scene}!cubes\+Changed@{cubes\+Changed}}
+) const}}\label{class_scene_a81b014ae882dfaec147d917b1ea99d68}
+\hypertarget{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}{\index{Scene@{Scene}!cubes\+Changed@{cubes\+Changed}}
 \index{cubes\+Changed@{cubes\+Changed}!Scene@{Scene}}
 \subsubsection[{cubes\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::cubes\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}
-\hypertarget{class_scene_a2a2cee0a97d8436aac1cd582904af459}{}\index{Scene@{Scene}!find\+Gem\+Intersected\+By@{find\+Gem\+Intersected\+By}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_scene_a9c23e7cda34a3089165ce18c2ec89c15}
+\hypertarget{class_scene_a2a2cee0a97d8436aac1cd582904af459}{\index{Scene@{Scene}!find\+Gem\+Intersected\+By@{find\+Gem\+Intersected\+By}}
 \index{find\+Gem\+Intersected\+By@{find\+Gem\+Intersected\+By}!Scene@{Scene}}
 \subsubsection[{find\+Gem\+Intersected\+By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem} $\ast$ Scene\+::find\+Gem\+Intersected\+By (
 \begin{DoxyParamCaption}
 \item[{const {\bf Light\+Ray} \&}]{ray, }
 \item[{Q\+Vector3\+D $\ast$}]{collision\+Point = {\ttfamily nullptr}}
 \end{DoxyParamCaption}
-) const}\label{class_scene_a2a2cee0a97d8436aac1cd582904af459}
+) const}}\label{class_scene_a2a2cee0a97d8436aac1cd582904af459}
 
 
 Finds the nearest gem with bounding sphere intersected by given ray. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ray} & Ray send into scene to find gem. \\
+{\em ray} & Ray sent into scene to find gem. \\
 \hline
 {\em collision\+Point} & Optional parameter. The point of collision is written into. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the nearst intersected gem. Returns never a nullptr; 
+Returns the nearst intersected gem. Never returns nullptr; 
 \end{DoxyReturn}
-\hypertarget{class_scene_af96ea722705769055ef2f9e9572f3fa0}{}\index{Scene@{Scene}!find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By@{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}}
+\hypertarget{class_scene_af96ea722705769055ef2f9e9572f3fa0}{\index{Scene@{Scene}!find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By@{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}}
 \index{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By@{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}!Scene@{Scene}}
 \subsubsection[{find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem} $\ast$ Scene\+::find\+Gem\+With\+Bounding\+Sphere\+Intersected\+By (
 \begin{DoxyParamCaption}
 \item[{const {\bf Light\+Ray} \&}]{ray, }
 \item[{Q\+Vector3\+D $\ast$}]{collision\+Point = {\ttfamily nullptr}}
 \end{DoxyParamCaption}
-) const}\label{class_scene_af96ea722705769055ef2f9e9572f3fa0}
+) const}}\label{class_scene_af96ea722705769055ef2f9e9572f3fa0}
 
 
 Finds the nearest gem, that bounding sphere is intersected by given ray. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ray} & Ray send into scene to find gem. \\
+{\em ray} & Ray sent into scene to find gem. \\
 \hline
-{\em collision\+Point} & Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable. \\
+{\em collision\+Point} & Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is usable. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the nearst intersected gem. Returns never nullptr. 
+Returns the nearst intersected gem. nullptr. 
 \end{DoxyReturn}
-\hypertarget{class_scene_aa73ff5f1f6c873357149afe83c749d09}{}\index{Scene@{Scene}!game\+Lost@{game\+Lost}}
+\hypertarget{class_scene_aa73ff5f1f6c873357149afe83c749d09}{\index{Scene@{Scene}!game\+Lost@{game\+Lost}}
 \index{game\+Lost@{game\+Lost}!Scene@{Scene}}
 \subsubsection[{game\+Lost}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::game\+Lost (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_aa73ff5f1f6c873357149afe83c749d09}
-\hypertarget{class_scene_a700dd8faf803b34d7b374c5aded06d45}{}\index{Scene@{Scene}!game\+Started@{game\+Started}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_scene_aa73ff5f1f6c873357149afe83c749d09}
+\hypertarget{class_scene_a700dd8faf803b34d7b374c5aded06d45}{\index{Scene@{Scene}!game\+Started@{game\+Started}}
 \index{game\+Started@{game\+Started}!Scene@{Scene}}
 \subsubsection[{game\+Started}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::game\+Started (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_a700dd8faf803b34d7b374c5aded06d45}
-\hypertarget{class_scene_a65753673cd72f8b921cda3ac10c31e87}{}\index{Scene@{Scene}!geometries@{geometries}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_scene_a700dd8faf803b34d7b374c5aded06d45}
+\hypertarget{class_scene_a65753673cd72f8b921cda3ac10c31e87}{\index{Scene@{Scene}!geometries@{geometries}}
 \index{geometries@{geometries}!Scene@{Scene}}
 \subsubsection[{geometries}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<${\bf Abstract\+Gem} $\ast$$>$ Scene\+::geometries (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_scene_a65753673cd72f8b921cda3ac10c31e87}
-\hypertarget{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}{}\index{Scene@{Scene}!geometries\+Changed@{geometries\+Changed}}
+)}}\label{class_scene_a65753673cd72f8b921cda3ac10c31e87}
+\hypertarget{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}{\index{Scene@{Scene}!geometries\+Changed@{geometries\+Changed}}
 \index{geometries\+Changed@{geometries\+Changed}!Scene@{Scene}}
 \subsubsection[{geometries\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::geometries\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}
-\hypertarget{class_scene_ac437a983a495358875b319a4fcf912d4}{}\index{Scene@{Scene}!geometries\+Q\+M\+L@{geometries\+Q\+M\+L}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_scene_a8df7e2ef0bf2910fa03df1c16b255551}
+\hypertarget{class_scene_ac437a983a495358875b319a4fcf912d4}{\index{Scene@{Scene}!geometries\+Q\+M\+L@{geometries\+Q\+M\+L}}
 \index{geometries\+Q\+M\+L@{geometries\+Q\+M\+L}!Scene@{Scene}}
 \subsubsection[{geometries\+Q\+M\+L}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Qml\+List\+Property$<$ {\bf Abstract\+Gem} $>$ Scene\+::geometries\+Q\+M\+L (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_scene_ac437a983a495358875b319a4fcf912d4}
+)}}\label{class_scene_ac437a983a495358875b319a4fcf912d4}
 
 
 Allow Q\+M\+L classes to read our gems.  Initially it was planned to manipulate our gems from Q\+M\+L classes, but we did not get it to work. Now we create it over a J\+S\+O\+N-\/object and set it once, which works. All in all gem manipulation from Q\+M\+L is magic and we do not know why and how it really works. 
@@ -230,141 +220,127 @@ Allow Q\+M\+L classes to read our gems.  Initially it was planned to manipulate 
 \begin{DoxyReturn}{Returns}
 Returns a List of Gems which is supported by Q\+M\+L. 
 \end{DoxyReturn}
-\hypertarget{class_scene_a3f593e4e80703153633a76cc628ab539}{}\index{Scene@{Scene}!handle\+Game\+Lost@{handle\+Game\+Lost}}
+\hypertarget{class_scene_a3f593e4e80703153633a76cc628ab539}{\index{Scene@{Scene}!handle\+Game\+Lost@{handle\+Game\+Lost}}
 \index{handle\+Game\+Lost@{handle\+Game\+Lost}!Scene@{Scene}}
 \subsubsection[{handle\+Game\+Lost}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::handle\+Game\+Lost (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_scene_a3f593e4e80703153633a76cc628ab539}
-\hypertarget{class_scene_aceda1edb06b179bd439539965998f7da}{}\index{Scene@{Scene}!handle\+Game\+Started@{handle\+Game\+Started}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_scene_a3f593e4e80703153633a76cc628ab539}
+\hypertarget{class_scene_aceda1edb06b179bd439539965998f7da}{\index{Scene@{Scene}!handle\+Game\+Started@{handle\+Game\+Started}}
 \index{handle\+Game\+Started@{handle\+Game\+Started}!Scene@{Scene}}
 \subsubsection[{handle\+Game\+Started}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::handle\+Game\+Started (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_scene_aceda1edb06b179bd439539965998f7da}
-\hypertarget{class_scene_acdd91b41ac71a9e44b6e9883a30a1c48}{}\index{Scene@{Scene}!preview\+Camera@{preview\+Camera}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_scene_aceda1edb06b179bd439539965998f7da}
+\hypertarget{class_scene_acdd91b41ac71a9e44b6e9883a30a1c48}{\index{Scene@{Scene}!preview\+Camera@{preview\+Camera}}
 \index{preview\+Camera@{preview\+Camera}!Scene@{Scene}}
 \subsubsection[{preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::preview\+Camera (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_scene_acdd91b41ac71a9e44b6e9883a30a1c48}
-\hypertarget{class_scene_ace3407a4d148d317a20b1bf205554bc5}{}\index{Scene@{Scene}!register\+Navigation@{register\+Navigation}}
+) const}}\label{class_scene_acdd91b41ac71a9e44b6e9883a30a1c48}
+\hypertarget{class_scene_ace3407a4d148d317a20b1bf205554bc5}{\index{Scene@{Scene}!register\+Navigation@{register\+Navigation}}
 \index{register\+Navigation@{register\+Navigation}!Scene@{Scene}}
 \subsubsection[{register\+Navigation}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::register\+Navigation (
 \begin{DoxyParamCaption}
 \item[{{\bf Navigation} $\ast$}]{navigation}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_scene_ace3407a4d148d317a20b1bf205554bc5}
-\hypertarget{class_scene_a7de6dcc38dd6398f71af71295ae09966}{}\index{Scene@{Scene}!root\+Light\+Ray@{root\+Light\+Ray}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_scene_ace3407a4d148d317a20b1bf205554bc5}
+\hypertarget{class_scene_a7de6dcc38dd6398f71af71295ae09966}{\index{Scene@{Scene}!root\+Light\+Ray@{root\+Light\+Ray}}
 \index{root\+Light\+Ray@{root\+Light\+Ray}!Scene@{Scene}}
 \subsubsection[{root\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray}$\ast$ Scene\+::root\+Light\+Ray (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_scene_a7de6dcc38dd6398f71af71295ae09966}
-\hypertarget{class_scene_a4eed91c96f13a7646830737b820755c4}{}\index{Scene@{Scene}!root\+Light\+Ray\+Changed@{root\+Light\+Ray\+Changed}}
+) const}}\label{class_scene_a7de6dcc38dd6398f71af71295ae09966}
+\hypertarget{class_scene_a4eed91c96f13a7646830737b820755c4}{\index{Scene@{Scene}!root\+Light\+Ray\+Changed@{root\+Light\+Ray\+Changed}}
 \index{root\+Light\+Ray\+Changed@{root\+Light\+Ray\+Changed}!Scene@{Scene}}
 \subsubsection[{root\+Light\+Ray\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::root\+Light\+Ray\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_scene_a4eed91c96f13a7646830737b820755c4}
-\hypertarget{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}{}\index{Scene@{Scene}!rotate\+Current\+Gem@{rotate\+Current\+Gem}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_scene_a4eed91c96f13a7646830737b820755c4}
+\hypertarget{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}{\index{Scene@{Scene}!rotate\+Current\+Gem@{rotate\+Current\+Gem}}
 \index{rotate\+Current\+Gem@{rotate\+Current\+Gem}!Scene@{Scene}}
 \subsubsection[{rotate\+Current\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::rotate\+Current\+Gem (
 \begin{DoxyParamCaption}
 \item[{const Q\+Quaternion \&}]{quaternion}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}
-\hypertarget{class_scene_a4c722c43b266a642a4a06d0d818b14d1}{}\index{Scene@{Scene}!set\+Camera@{set\+Camera}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_scene_ade6d7968a2bad7c1dfbae98045a8aa7d}
+\hypertarget{class_scene_a4c722c43b266a642a4a06d0d818b14d1}{\index{Scene@{Scene}!set\+Camera@{set\+Camera}}
 \index{set\+Camera@{set\+Camera}!Scene@{Scene}}
 \subsubsection[{set\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::set\+Camera (
 \begin{DoxyParamCaption}
 \item[{{\bf Camera} $\ast$}]{camera}
 \end{DoxyParamCaption}
-)}\label{class_scene_a4c722c43b266a642a4a06d0d818b14d1}
-\hypertarget{class_scene_afcaeead320358b9d9dd02a113ef97c44}{}\index{Scene@{Scene}!set\+Current\+Gem@{set\+Current\+Gem}}
+)}}\label{class_scene_a4c722c43b266a642a4a06d0d818b14d1}
+\hypertarget{class_scene_afcaeead320358b9d9dd02a113ef97c44}{\index{Scene@{Scene}!set\+Current\+Gem@{set\+Current\+Gem}}
 \index{set\+Current\+Gem@{set\+Current\+Gem}!Scene@{Scene}}
 \subsubsection[{set\+Current\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::set\+Current\+Gem (
 \begin{DoxyParamCaption}
 \item[{{\bf Abstract\+Gem} $\ast$}]{current\+Gem}
 \end{DoxyParamCaption}
-)}\label{class_scene_afcaeead320358b9d9dd02a113ef97c44}
+)}}\label{class_scene_afcaeead320358b9d9dd02a113ef97c44}
 
 
-Set the gem, that will be controlled by player. 
+Sets the gem, that will be controlled by player. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em current\+Gem} & The gem that will be controlled by player. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_scene_a84120dfbddf207c955e16b7aae975b8c}{}\index{Scene@{Scene}!set\+Preview\+Camera@{set\+Preview\+Camera}}
+\hypertarget{class_scene_a84120dfbddf207c955e16b7aae975b8c}{\index{Scene@{Scene}!set\+Preview\+Camera@{set\+Preview\+Camera}}
 \index{set\+Preview\+Camera@{set\+Preview\+Camera}!Scene@{Scene}}
 \subsubsection[{set\+Preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::set\+Preview\+Camera (
 \begin{DoxyParamCaption}
 \item[{{\bf Camera} $\ast$}]{camera}
 \end{DoxyParamCaption}
-)}\label{class_scene_a84120dfbddf207c955e16b7aae975b8c}
-\hypertarget{class_scene_a3da6be3089fe335bf628ef58d23cda18}{}\index{Scene@{Scene}!set\+Root\+Light\+Ray@{set\+Root\+Light\+Ray}}
+)}}\label{class_scene_a84120dfbddf207c955e16b7aae975b8c}
+\hypertarget{class_scene_a3da6be3089fe335bf628ef58d23cda18}{\index{Scene@{Scene}!set\+Root\+Light\+Ray@{set\+Root\+Light\+Ray}}
 \index{set\+Root\+Light\+Ray@{set\+Root\+Light\+Ray}!Scene@{Scene}}
 \subsubsection[{set\+Root\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::set\+Root\+Light\+Ray (
 \begin{DoxyParamCaption}
 \item[{{\bf Light\+Ray} $\ast$}]{root\+Light\+Ray}
 \end{DoxyParamCaption}
-)}\label{class_scene_a3da6be3089fe335bf628ef58d23cda18}
-\hypertarget{class_scene_a0c9213091fb06643b95801d2b406878f}{}\index{Scene@{Scene}!update@{update}}
+)}}\label{class_scene_a3da6be3089fe335bf628ef58d23cda18}
+\hypertarget{class_scene_a0c9213091fb06643b95801d2b406878f}{\index{Scene@{Scene}!update@{update}}
 \index{update@{update}!Scene@{Scene}}
 \subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+::update (
 \begin{DoxyParamCaption}
 \item[{int}]{elapsed\+Time}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [slot]}}\label{class_scene_a0c9213091fb06643b95801d2b406878f}
+)\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [slot]}}}\label{class_scene_a0c9213091fb06643b95801d2b406878f}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_scene_a62831eb6a67ce74ee608b4327bf069f3}{}\index{Scene@{Scene}!m\+\_\+bounds@{m\+\_\+bounds}}
+\hypertarget{class_scene_a62831eb6a67ce74ee608b4327bf069f3}{\index{Scene@{Scene}!m\+\_\+bounds@{m\+\_\+bounds}}
 \index{m\+\_\+bounds@{m\+\_\+bounds}!Scene@{Scene}}
-\subsubsection[{m\+\_\+bounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Bounds}$\ast$ Scene\+::m\+\_\+bounds\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_a62831eb6a67ce74ee608b4327bf069f3}
-\hypertarget{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}{}\index{Scene@{Scene}!m\+\_\+camera@{m\+\_\+camera}}
+\subsubsection[{m\+\_\+bounds}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene\+Bounds}$\ast$ Scene\+::m\+\_\+bounds\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_a62831eb6a67ce74ee608b4327bf069f3}
+\hypertarget{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}{\index{Scene@{Scene}!m\+\_\+camera@{m\+\_\+camera}}
 \index{m\+\_\+camera@{m\+\_\+camera}!Scene@{Scene}}
-\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}
-\hypertarget{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}{}\index{Scene@{Scene}!m\+\_\+current\+Gem@{m\+\_\+current\+Gem}}
+\subsubsection[{m\+\_\+camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::m\+\_\+camera\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_ab37f5e133a5fe0803c3df42a4fcba7bf}
+\hypertarget{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}{\index{Scene@{Scene}!m\+\_\+current\+Gem@{m\+\_\+current\+Gem}}
 \index{m\+\_\+current\+Gem@{m\+\_\+current\+Gem}!Scene@{Scene}}
-\subsubsection[{m\+\_\+current\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem}$\ast$ Scene\+::m\+\_\+current\+Gem\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}
-\hypertarget{class_scene_a47d7b35730d7959a640339ed11d18866}{}\index{Scene@{Scene}!m\+\_\+gems@{m\+\_\+gems}}
+\subsubsection[{m\+\_\+current\+Gem}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Abstract\+Gem}$\ast$ Scene\+::m\+\_\+current\+Gem\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_aff9d5a2212ba1b5813dc10177f0344cb}
+\hypertarget{class_scene_a47d7b35730d7959a640339ed11d18866}{\index{Scene@{Scene}!m\+\_\+gems@{m\+\_\+gems}}
 \index{m\+\_\+gems@{m\+\_\+gems}!Scene@{Scene}}
-\subsubsection[{m\+\_\+gems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<${\bf Abstract\+Gem}$\ast$$>$ Scene\+::m\+\_\+gems\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_a47d7b35730d7959a640339ed11d18866}
-\hypertarget{class_scene_a595ab554271bd87c4c73f0cce175ff81}{}\index{Scene@{Scene}!m\+\_\+navigation@{m\+\_\+navigation}}
+\subsubsection[{m\+\_\+gems}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<${\bf Abstract\+Gem}$\ast$$>$ Scene\+::m\+\_\+gems\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_a47d7b35730d7959a640339ed11d18866}
+\hypertarget{class_scene_a595ab554271bd87c4c73f0cce175ff81}{\index{Scene@{Scene}!m\+\_\+navigation@{m\+\_\+navigation}}
 \index{m\+\_\+navigation@{m\+\_\+navigation}!Scene@{Scene}}
-\subsubsection[{m\+\_\+navigation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Navigation}$\ast$ Scene\+::m\+\_\+navigation\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_a595ab554271bd87c4c73f0cce175ff81}
-\hypertarget{class_scene_af1841b6c042a5edcf39653706f17cdd1}{}\index{Scene@{Scene}!m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}}
+\subsubsection[{m\+\_\+navigation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Navigation}$\ast$ Scene\+::m\+\_\+navigation\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_a595ab554271bd87c4c73f0cce175ff81}
+\hypertarget{class_scene_af1841b6c042a5edcf39653706f17cdd1}{\index{Scene@{Scene}!m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}}
 \index{m\+\_\+preview\+Camera@{m\+\_\+preview\+Camera}!Scene@{Scene}}
-\subsubsection[{m\+\_\+preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::m\+\_\+preview\+Camera\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_af1841b6c042a5edcf39653706f17cdd1}
-\hypertarget{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}{}\index{Scene@{Scene}!m\+\_\+root\+Light\+Ray@{m\+\_\+root\+Light\+Ray}}
+\subsubsection[{m\+\_\+preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera}$\ast$ Scene\+::m\+\_\+preview\+Camera\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_af1841b6c042a5edcf39653706f17cdd1}
+\hypertarget{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}{\index{Scene@{Scene}!m\+\_\+root\+Light\+Ray@{m\+\_\+root\+Light\+Ray}}
 \index{m\+\_\+root\+Light\+Ray@{m\+\_\+root\+Light\+Ray}!Scene@{Scene}}
-\subsubsection[{m\+\_\+root\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray}$\ast$ Scene\+::m\+\_\+root\+Light\+Ray\hspace{0.3cm}{\ttfamily [protected]}}\label{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}
-
-
-\subsection{Property Documentation}
-\hypertarget{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}{}\index{Scene@{Scene}!camera@{camera}}
-\index{camera@{camera}!Scene@{Scene}}
-\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ Scene\+::camera\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_scene_ab915c54546b8cecc3ae6bb7c8983518c}
-\hypertarget{class_scene_a426e8a21801c9cc93c5cd90896ed745d}{}\index{Scene@{Scene}!geometries@{geometries}}
-\index{geometries@{geometries}!Scene@{Scene}}
-\subsubsection[{geometries}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<$ {\bf Abstract\+Gem} $\ast$ $>$ Scene\+::geometries\hspace{0.3cm}{\ttfamily [read]}}\label{class_scene_a426e8a21801c9cc93c5cd90896ed745d}
-\hypertarget{class_scene_ae8f457e7e69cac64f533e02f4f13e725}{}\index{Scene@{Scene}!preview\+Camera@{preview\+Camera}}
-\index{preview\+Camera@{preview\+Camera}!Scene@{Scene}}
-\subsubsection[{preview\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ Scene\+::preview\+Camera\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_scene_ae8f457e7e69cac64f533e02f4f13e725}
-\hypertarget{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}{}\index{Scene@{Scene}!root\+Light\+Ray@{root\+Light\+Ray}}
-\index{root\+Light\+Ray@{root\+Light\+Ray}!Scene@{Scene}}
-\subsubsection[{root\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray} $\ast$ Scene\+::root\+Light\+Ray\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_scene_a437a4ce938a6de368c2a6abba0ec3f3d}
+\subsubsection[{m\+\_\+root\+Light\+Ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Light\+Ray}$\ast$ Scene\+::m\+\_\+root\+Light\+Ray\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_scene_a766daf7b6a92c877f1fc57f3d8af9959}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scene_8h}{scene.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scene_8cpp}{scene.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{scene_8h}{scene.\+h}\item 
+build-\/\+Gem\+Illuminator-\/\+Desktop\+\_\+\+Qt\+\_\+5\+\_\+3\+\_\+\+M\+S\+V\+C2013\+\_\+\+Open\+G\+L\+\_\+64bit-\/\+Debug/debug/\hyperlink{moc__scene_8cpp}{moc\+\_\+scene.\+cpp}\item 
+\hyperlink{scene_8cpp}{scene.\+cpp}\end{DoxyCompactItemize}

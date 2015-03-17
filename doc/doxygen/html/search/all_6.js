@@ -17,7 +17,7 @@ var searchData=
   ['gemrenderer_2ecpp',['gemrenderer.cpp',['../gemrenderer_8cpp.html',1,'']]],
   ['gemrenderer_2eh',['gemrenderer.h',['../gemrenderer_8h.html',1,'']]],
   ['gemtype',['GemType',['../abstractgem_8h.html#a2f0a34b6dac35a9610cab7a1c5fcb444',1,'abstractgem.h']]],
-  ['geometries',['geometries',['../class_scene.html#a426e8a21801c9cc93c5cd90896ed745d',1,'Scene::geometries()'],['../class_scene.html#a65753673cd72f8b921cda3ac10c31e87',1,'Scene::geometries()']]],
+  ['geometries',['geometries',['../class_scene.html#a65753673cd72f8b921cda3ac10c31e87',1,'Scene']]],
   ['geometrieschanged',['geometriesChanged',['../class_scene.html#a8df7e2ef0bf2910fa03df1c16b255551',1,'Scene']]],
   ['geometriesqml',['geometriesQML',['../class_scene.html#ac437a983a495358875b319a4fcf912d4',1,'Scene']]]
 ];

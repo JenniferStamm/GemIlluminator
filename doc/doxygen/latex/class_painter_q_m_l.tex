@@ -1,8 +1,9 @@
-\hypertarget{class_painter_q_m_l}{}\section{Painter\+Q\+M\+L Class Reference}
+\hypertarget{class_painter_q_m_l}{\section{Painter\+Q\+M\+L Class Reference}
 \label{class_painter_q_m_l}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
+}
 
 
-The \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} class is responsible to make our game visible within Q\+M\+L using \hyperlink{class_painter}{Painter}.  This class is intended to be added and created within Q\+M\+L. As the element showing our game it recognizes(?) resize events and update events needed by our application. Also it keeps our rendering alive. Furthermore it is the interface between game logic and rendering.  
+The \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} class is responsible for making our game visible within Q\+M\+L using \hyperlink{class_painter}{Painter}.  This class is intended to be added and created within Q\+M\+L. As the element showing our game it recognizes resize events and update events needed by our application. Also it keeps our rendering alive. Furthermore, it is the interface between game logic and rendering.  
 
 
 
@@ -34,34 +35,34 @@ void \hyperlink{class_painter_q_m_l_a5fce3441beea885f9ba2a70b2f21f0ae}{scene\+Ch
 virtual \hyperlink{class_painter_q_m_l_a2d0bd68f4b501927f65ec5ff2a06da64}{$\sim$\+Painter\+Q\+M\+L} ()
 \item 
 bool \hyperlink{class_painter_q_m_l_a69fecccc6056c3ee957219ffd63c193c}{event} (Q\+Event $\ast$ev) override
-\begin{DoxyCompactList}\small\item\em Process incomming qt events. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Process incoming qt events. \end{DoxyCompactList}\item 
 bool \hyperlink{class_painter_q_m_l_aad209e5ccfa2a6aa2a5dcd6148befb5b}{is\+Game\+Active} () const 
-\begin{DoxyCompactList}\small\item\em Checks if our painter and therfor aour game is active.  Active means, that the game should be updated and rendered. But updates and rendering will be done only if there are no reasons against (e.\+g. The app is not active) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if our painter and therfor aour game is active.  Active means that the game should be updated and rendered. But updates and rendering will be done only if there are no reasons against (e.\+g. The app is not active) \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_q_m_l_a303f544708d2041bc25e75db52e89736}{set\+Is\+Game\+Active} (bool active)
 \begin{DoxyCompactList}\small\item\em Sets active state of \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. \end{DoxyCompactList}\item 
 Q\+Event\+::\+Type \hyperlink{class_painter_q_m_l_a7715bb2f3d638ff3d5e6e602a427b413}{painting\+Done\+Event\+Type} ()
-\begin{DoxyCompactList}\small\item\em Queries registered event type, that should be send after rendering of current frame is done. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Queries registered event type, that should be sent after rendering of current frame is done. \end{DoxyCompactList}\item 
 Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E void \hyperlink{class_painter_q_m_l_a3dede2a01c6e90c51c9bfe69ac0d83bd}{reload\+Env\+Map} ()
-\begin{DoxyCompactList}\small\item\em Reloads enviroment map of game using \hyperlink{class_config}{Config}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Reloads environment map of game using \hyperlink{class_config}{Config}. \end{DoxyCompactList}\item 
 Q\+\_\+\+I\+N\+V\+O\+K\+A\+B\+L\+E void \hyperlink{class_painter_q_m_l_a401a8a8b2406679b61fe326a37e97b6a}{reset\+Timer} ()
 \begin{DoxyCompactList}\small\item\em Resets update timer. This method is provided to allow manual resetting update time. \end{DoxyCompactList}\item 
 \hyperlink{class_scene}{Scene} $\ast$ \hyperlink{class_painter_q_m_l_a6694ad2cfda4aefaffc0a3151a2b09dd}{scene} () const 
-\begin{DoxyCompactList}\small\item\em The scene, that is painted by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. \end{DoxyCompactList}\item 
-void \hyperlink{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}{set\+Scene} (\hyperlink{class_scene}{Scene} $\ast$\hyperlink{class_painter_q_m_l_a59b4d398bc7880e59bc8296c2669aaab}{scene})
-\begin{DoxyCompactList}\small\item\em Set the scene, which should be drawn by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The scene that is painted by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. \end{DoxyCompactList}\item 
+void \hyperlink{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}{set\+Scene} (\hyperlink{class_scene}{Scene} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Sets the scene which should be drawn by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. \end{DoxyCompactList}\item 
 bool \hyperlink{class_painter_q_m_l_aea7b18053c645bf7c1eda6dd00715888}{is\+App\+Active} () const 
-\begin{DoxyCompactList}\small\item\em Check if the \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} assumes the app is active or not. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if the \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} assumes the app is active or not. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_q_m_l_a71be24e10048b456a566d2a3c9a8992b}{set\+Is\+App\+Active} (bool active)
-\begin{DoxyCompactList}\small\item\em Inform the painter if app is active or not. Setting this attribute to false leads to pause of game (stop updating and rendering). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Informs the painter if app is active or not. Setting this attribute to false leads to pause of game (stop updating and rendering). \end{DoxyCompactList}\item 
 bool \hyperlink{class_painter_q_m_l_a391bd3c26f57dfcb3177318595c89353}{is\+Active} () const 
-\begin{DoxyCompactList}\small\item\em Checks if the our game will be updated. This means there is no reason, that our game is not updated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks if the game will be updated. This means there is no reason to not update the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Slots}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{class_painter_q_m_l_a4cfd22a52fc9e29d304c0ff7cea86744}{synchronize} ()
-\begin{DoxyCompactList}\small\item\em Synchronize game logic and rendering.  Because Q\+M\+L uses different threads for ui and rendering, synchronization between these threads has to be done. This slot is connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signals of Q\+Quick\+Item. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Synchronizes game logic and rendering.  Because Q\+M\+L uses different threads for ui and rendering, synchronization between these threads has to be done. This slot is connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signals of Q\+Quick\+Item. \end{DoxyCompactList}\item 
 void \hyperlink{class_painter_q_m_l_ab07e4719d2b05bbbfa48980b4854d190}{cleanup} ()
-\begin{DoxyCompactList}\small\item\em Clean up the rendering thread ressources.  This slot is also connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signal of Q\+Quick\+Item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Cleans up the rendering thread ressources.  This slot is also connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signal of Q\+Quick\+Item. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -81,61 +82,50 @@ int \hyperlink{class_painter_q_m_l_a7a6641710573e4fa47dfdae13e87d58e}{m\+\_\+pai
 \item 
 Q\+Time $\ast$ \hyperlink{class_painter_q_m_l_ad4ced718f47b69f2344a5311ec87a156}{m\+\_\+time}
 \end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-bool \hyperlink{class_painter_q_m_l_aab9bd8451a3cbfe6e8189994fd3dc329}{is\+Active}
-\item 
-bool \hyperlink{class_painter_q_m_l_a70ad19e1bbe24b9915c5f23366549a15}{is\+App\+Active}
-\item 
-bool \hyperlink{class_painter_q_m_l_ae878004adcc5589b4ffc81870a700f82}{is\+Game\+Active}
-\item 
-\hyperlink{class_scene}{Scene} \hyperlink{class_painter_q_m_l_a59b4d398bc7880e59bc8296c2669aaab}{scene}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} class is responsible to make our game visible within Q\+M\+L using \hyperlink{class_painter}{Painter}.  This class is intended to be added and created within Q\+M\+L. As the element showing our game it recognizes(?) resize events and update events needed by our application. Also it keeps our rendering alive. Furthermore it is the interface between game logic and rendering. 
+The \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} class is responsible for making our game visible within Q\+M\+L using \hyperlink{class_painter}{Painter}.  This class is intended to be added and created within Q\+M\+L. As the element showing our game it recognizes resize events and update events needed by our application. Also it keeps our rendering alive. Furthermore, it is the interface between game logic and rendering. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_painter_q_m_l_a6ce68afc41c75b1fc74da16890d9f797}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
+\hypertarget{class_painter_q_m_l_a6ce68afc41c75b1fc74da16890d9f797}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{Painter\+Q\+M\+L}]{\setlength{\rightskip}{0pt plus 5cm}Painter\+Q\+M\+L\+::\+Painter\+Q\+M\+L (
 \begin{DoxyParamCaption}
 \item[{Q\+Quick\+Item $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_painter_q_m_l_a6ce68afc41c75b1fc74da16890d9f797}
-\hypertarget{class_painter_q_m_l_a2d0bd68f4b501927f65ec5ff2a06da64}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!````~Painter\+Q\+M\+L@{$\sim$\+Painter\+Q\+M\+L}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_painter_q_m_l_a6ce68afc41c75b1fc74da16890d9f797}
+\hypertarget{class_painter_q_m_l_a2d0bd68f4b501927f65ec5ff2a06da64}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!````~Painter\+Q\+M\+L@{$\sim$\+Painter\+Q\+M\+L}}
 \index{````~Painter\+Q\+M\+L@{$\sim$\+Painter\+Q\+M\+L}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{$\sim$\+Painter\+Q\+M\+L}]{\setlength{\rightskip}{0pt plus 5cm}Painter\+Q\+M\+L\+::$\sim$\+Painter\+Q\+M\+L (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_painter_q_m_l_a2d0bd68f4b501927f65ec5ff2a06da64}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_painter_q_m_l_a2d0bd68f4b501927f65ec5ff2a06da64}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_painter_q_m_l_ab07e4719d2b05bbbfa48980b4854d190}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!cleanup@{cleanup}}
+\hypertarget{class_painter_q_m_l_ab07e4719d2b05bbbfa48980b4854d190}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!cleanup@{cleanup}}
 \index{cleanup@{cleanup}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{cleanup}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::cleanup (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}\label{class_painter_q_m_l_ab07e4719d2b05bbbfa48980b4854d190}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{class_painter_q_m_l_ab07e4719d2b05bbbfa48980b4854d190}
 
 
-Clean up the rendering thread ressources.  This slot is also connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signal of Q\+Quick\+Item. 
+Cleans up the rendering thread ressources.  This slot is also connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signal of Q\+Quick\+Item. 
 
-\hypertarget{class_painter_q_m_l_a69fecccc6056c3ee957219ffd63c193c}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!event@{event}}
+\hypertarget{class_painter_q_m_l_a69fecccc6056c3ee957219ffd63c193c}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!event@{event}}
 \index{event@{event}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{event}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::event (
 \begin{DoxyParamCaption}
 \item[{Q\+Event $\ast$}]{ev}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}}\label{class_painter_q_m_l_a69fecccc6056c3ee957219ffd63c193c}
+)\hspace{0.3cm}{\ttfamily [override]}}}\label{class_painter_q_m_l_a69fecccc6056c3ee957219ffd63c193c}
 
 
-Process incomming qt events. 
+Process incoming qt events. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -145,152 +135,152 @@ Process incomming qt events.
 \begin{DoxyReturn}{Returns}
 Returns true if the event was handled by Q\+Object. 
 \end{DoxyReturn}
-\hypertarget{class_painter_q_m_l_a391bd3c26f57dfcb3177318595c89353}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Active@{is\+Active}}
+\hypertarget{class_painter_q_m_l_a391bd3c26f57dfcb3177318595c89353}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Active@{is\+Active}}
 \index{is\+Active@{is\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+Active (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_painter_q_m_l_a391bd3c26f57dfcb3177318595c89353}
+) const}}\label{class_painter_q_m_l_a391bd3c26f57dfcb3177318595c89353}
 
 
-Checks if the our game will be updated. This means there is no reason, that our game is not updated. 
+Checks if the game will be updated. This means there is no reason to not update the game. 
 
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\hypertarget{class_painter_q_m_l_a9143d84bcf1b2c150c28983459916a70}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Active\+Changed@{is\+Active\+Changed}}
+\hypertarget{class_painter_q_m_l_a9143d84bcf1b2c150c28983459916a70}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Active\+Changed@{is\+Active\+Changed}}
 \index{is\+Active\+Changed@{is\+Active\+Changed}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+Active\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::is\+Active\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_painter_q_m_l_a9143d84bcf1b2c150c28983459916a70}
-\hypertarget{class_painter_q_m_l_aea7b18053c645bf7c1eda6dd00715888}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+App\+Active@{is\+App\+Active}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_painter_q_m_l_a9143d84bcf1b2c150c28983459916a70}
+\hypertarget{class_painter_q_m_l_aea7b18053c645bf7c1eda6dd00715888}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+App\+Active@{is\+App\+Active}}
 \index{is\+App\+Active@{is\+App\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+App\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+App\+Active (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_painter_q_m_l_aea7b18053c645bf7c1eda6dd00715888}
+) const}}\label{class_painter_q_m_l_aea7b18053c645bf7c1eda6dd00715888}
 
 
-Check if the \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} assumes the app is active or not. 
+Checks if the \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} assumes the app is active or not. 
 
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\hypertarget{class_painter_q_m_l_a4f2212d4a85e7844c2c7c02ebc5bcf49}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+App\+Active\+Changed@{is\+App\+Active\+Changed}}
+\hypertarget{class_painter_q_m_l_a4f2212d4a85e7844c2c7c02ebc5bcf49}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+App\+Active\+Changed@{is\+App\+Active\+Changed}}
 \index{is\+App\+Active\+Changed@{is\+App\+Active\+Changed}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+App\+Active\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::is\+App\+Active\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_painter_q_m_l_a4f2212d4a85e7844c2c7c02ebc5bcf49}
-\hypertarget{class_painter_q_m_l_aad209e5ccfa2a6aa2a5dcd6148befb5b}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Game\+Active@{is\+Game\+Active}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_painter_q_m_l_a4f2212d4a85e7844c2c7c02ebc5bcf49}
+\hypertarget{class_painter_q_m_l_aad209e5ccfa2a6aa2a5dcd6148befb5b}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Game\+Active@{is\+Game\+Active}}
 \index{is\+Game\+Active@{is\+Game\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+Game\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+Game\+Active (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_painter_q_m_l_aad209e5ccfa2a6aa2a5dcd6148befb5b}
+) const}}\label{class_painter_q_m_l_aad209e5ccfa2a6aa2a5dcd6148befb5b}
 
 
-Checks if our painter and therfor aour game is active.  Active means, that the game should be updated and rendered. But updates and rendering will be done only if there are no reasons against (e.\+g. The app is not active) 
+Checks if our painter and therfor aour game is active.  Active means that the game should be updated and rendered. But updates and rendering will be done only if there are no reasons against (e.\+g. The app is not active) 
 
 \begin{DoxyReturn}{Returns}
 Returns true if \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} is active. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{class_painter_q_m_l_a70ad19e1bbe24b9915c5f23366549a15}{is\+App\+Active()}, \hyperlink{class_painter_q_m_l_aab9bd8451a3cbfe6e8189994fd3dc329}{is\+Active()} 
+is\+App\+Active(), is\+Active() 
 \end{DoxySeeAlso}
-\hypertarget{class_painter_q_m_l_a46f7374519937259609441c88a3b8b9f}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Game\+Active\+Changed@{is\+Game\+Active\+Changed}}
+\hypertarget{class_painter_q_m_l_a46f7374519937259609441c88a3b8b9f}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Game\+Active\+Changed@{is\+Game\+Active\+Changed}}
 \index{is\+Game\+Active\+Changed@{is\+Game\+Active\+Changed}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{is\+Game\+Active\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::is\+Game\+Active\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_painter_q_m_l_a46f7374519937259609441c88a3b8b9f}
-\hypertarget{class_painter_q_m_l_a7715bb2f3d638ff3d5e6e602a427b413}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!painting\+Done\+Event\+Type@{painting\+Done\+Event\+Type}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_painter_q_m_l_a46f7374519937259609441c88a3b8b9f}
+\hypertarget{class_painter_q_m_l_a7715bb2f3d638ff3d5e6e602a427b413}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!painting\+Done\+Event\+Type@{painting\+Done\+Event\+Type}}
 \index{painting\+Done\+Event\+Type@{painting\+Done\+Event\+Type}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{painting\+Done\+Event\+Type}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Event\+::\+Type Painter\+Q\+M\+L\+::painting\+Done\+Event\+Type (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a7715bb2f3d638ff3d5e6e602a427b413}
+)}}\label{class_painter_q_m_l_a7715bb2f3d638ff3d5e6e602a427b413}
 
 
-Queries registered event type, that should be send after rendering of current frame is done. 
+Queries registered event type, that should be sent after rendering of current frame is done. 
 
 \begin{DoxyReturn}{Returns}
 Returns registered event type 
 \end{DoxyReturn}
-\hypertarget{class_painter_q_m_l_a3dede2a01c6e90c51c9bfe69ac0d83bd}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!reload\+Env\+Map@{reload\+Env\+Map}}
+\hypertarget{class_painter_q_m_l_a3dede2a01c6e90c51c9bfe69ac0d83bd}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!reload\+Env\+Map@{reload\+Env\+Map}}
 \index{reload\+Env\+Map@{reload\+Env\+Map}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{reload\+Env\+Map}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::reload\+Env\+Map (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a3dede2a01c6e90c51c9bfe69ac0d83bd}
+)}}\label{class_painter_q_m_l_a3dede2a01c6e90c51c9bfe69ac0d83bd}
 
 
-Reloads enviroment map of game using \hyperlink{class_config}{Config}. 
+Reloads environment map of game using \hyperlink{class_config}{Config}. 
 
-\hypertarget{class_painter_q_m_l_a401a8a8b2406679b61fe326a37e97b6a}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!reset\+Timer@{reset\+Timer}}
+\hypertarget{class_painter_q_m_l_a401a8a8b2406679b61fe326a37e97b6a}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!reset\+Timer@{reset\+Timer}}
 \index{reset\+Timer@{reset\+Timer}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{reset\+Timer}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::reset\+Timer (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a401a8a8b2406679b61fe326a37e97b6a}
+)}}\label{class_painter_q_m_l_a401a8a8b2406679b61fe326a37e97b6a}
 
 
 Resets update timer. This method is provided to allow manual resetting update time. 
 
-\hypertarget{class_painter_q_m_l_a6694ad2cfda4aefaffc0a3151a2b09dd}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!scene@{scene}}
+\hypertarget{class_painter_q_m_l_a6694ad2cfda4aefaffc0a3151a2b09dd}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!scene@{scene}}
 \index{scene@{scene}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene}$\ast$ Painter\+Q\+M\+L\+::scene (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_painter_q_m_l_a6694ad2cfda4aefaffc0a3151a2b09dd}
+) const}}\label{class_painter_q_m_l_a6694ad2cfda4aefaffc0a3151a2b09dd}
 
 
-The scene, that is painted by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. 
+The scene that is painted by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. 
 
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
-\hypertarget{class_painter_q_m_l_a5fce3441beea885f9ba2a70b2f21f0ae}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!scene\+Changed@{scene\+Changed}}
+\hypertarget{class_painter_q_m_l_a5fce3441beea885f9ba2a70b2f21f0ae}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!scene\+Changed@{scene\+Changed}}
 \index{scene\+Changed@{scene\+Changed}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{scene\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::scene\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_painter_q_m_l_a5fce3441beea885f9ba2a70b2f21f0ae}
-\hypertarget{class_painter_q_m_l_a71be24e10048b456a566d2a3c9a8992b}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Is\+App\+Active@{set\+Is\+App\+Active}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_painter_q_m_l_a5fce3441beea885f9ba2a70b2f21f0ae}
+\hypertarget{class_painter_q_m_l_a71be24e10048b456a566d2a3c9a8992b}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Is\+App\+Active@{set\+Is\+App\+Active}}
 \index{set\+Is\+App\+Active@{set\+Is\+App\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{set\+Is\+App\+Active}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::set\+Is\+App\+Active (
 \begin{DoxyParamCaption}
 \item[{bool}]{active}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a71be24e10048b456a566d2a3c9a8992b}
+)}}\label{class_painter_q_m_l_a71be24e10048b456a566d2a3c9a8992b}
 
 
-Inform the painter if app is active or not. Setting this attribute to false leads to pause of game (stop updating and rendering). 
+Informs the painter if app is active or not. Setting this attribute to false leads to pause of game (stop updating and rendering). 
 
 
 \begin{DoxyParams}{Parameters}
 {\em active} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_q_m_l_a303f544708d2041bc25e75db52e89736}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Is\+Game\+Active@{set\+Is\+Game\+Active}}
+\hypertarget{class_painter_q_m_l_a303f544708d2041bc25e75db52e89736}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Is\+Game\+Active@{set\+Is\+Game\+Active}}
 \index{set\+Is\+Game\+Active@{set\+Is\+Game\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{set\+Is\+Game\+Active}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::set\+Is\+Game\+Active (
 \begin{DoxyParamCaption}
 \item[{bool}]{active}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a303f544708d2041bc25e75db52e89736}
+)}}\label{class_painter_q_m_l_a303f544708d2041bc25e75db52e89736}
 
 
 Sets active state of \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. 
@@ -300,78 +290,63 @@ Sets active state of \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}.
 {\em active} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Scene@{set\+Scene}}
+\hypertarget{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!set\+Scene@{set\+Scene}}
 \index{set\+Scene@{set\+Scene}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{set\+Scene}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::set\+Scene (
 \begin{DoxyParamCaption}
 \item[{{\bf Scene} $\ast$}]{scene}
 \end{DoxyParamCaption}
-)}\label{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}
+)}}\label{class_painter_q_m_l_a81288bcb25e5b985eea33b26ede7931a}
 
 
-Set the scene, which should be drawn by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. 
+Sets the scene which should be drawn by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L}. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em scene} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_painter_q_m_l_a4cfd22a52fc9e29d304c0ff7cea86744}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!synchronize@{synchronize}}
+\hypertarget{class_painter_q_m_l_a4cfd22a52fc9e29d304c0ff7cea86744}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!synchronize@{synchronize}}
 \index{synchronize@{synchronize}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
 \subsubsection[{synchronize}]{\setlength{\rightskip}{0pt plus 5cm}void Painter\+Q\+M\+L\+::synchronize (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}\label{class_painter_q_m_l_a4cfd22a52fc9e29d304c0ff7cea86744}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [slot]}}}\label{class_painter_q_m_l_a4cfd22a52fc9e29d304c0ff7cea86744}
 
 
-Synchronize game logic and rendering.  Because Q\+M\+L uses different threads for ui and rendering, synchronization between these threads has to be done. This slot is connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signals of Q\+Quick\+Item. 
+Synchronizes game logic and rendering.  Because Q\+M\+L uses different threads for ui and rendering, synchronization between these threads has to be done. This slot is connected by \hyperlink{class_painter_q_m_l}{Painter\+Q\+M\+L} to corresponding signals of Q\+Quick\+Item. 
 
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_painter_q_m_l_a9acde8bb9dae70089141153efe168690}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+App\+Active@{m\+\_\+is\+App\+Active}}
+\hypertarget{class_painter_q_m_l_a9acde8bb9dae70089141153efe168690}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+App\+Active@{m\+\_\+is\+App\+Active}}
 \index{m\+\_\+is\+App\+Active@{m\+\_\+is\+App\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+is\+App\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+App\+Active\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_a9acde8bb9dae70089141153efe168690}
-\hypertarget{class_painter_q_m_l_ab6aae1f8b8723eb4ebe7677ddc18ee11}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Game\+Active@{m\+\_\+is\+Game\+Active}}
+\subsubsection[{m\+\_\+is\+App\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+App\+Active\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_a9acde8bb9dae70089141153efe168690}
+\hypertarget{class_painter_q_m_l_ab6aae1f8b8723eb4ebe7677ddc18ee11}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Game\+Active@{m\+\_\+is\+Game\+Active}}
 \index{m\+\_\+is\+Game\+Active@{m\+\_\+is\+Game\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+is\+Game\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Game\+Active\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_ab6aae1f8b8723eb4ebe7677ddc18ee11}
-\hypertarget{class_painter_q_m_l_ae2e60015d5cc12a5fb5b5d0402189532}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Scene\+Deletion\+Required@{m\+\_\+is\+Scene\+Deletion\+Required}}
+\subsubsection[{m\+\_\+is\+Game\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Game\+Active\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_ab6aae1f8b8723eb4ebe7677ddc18ee11}
+\hypertarget{class_painter_q_m_l_ae2e60015d5cc12a5fb5b5d0402189532}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Scene\+Deletion\+Required@{m\+\_\+is\+Scene\+Deletion\+Required}}
 \index{m\+\_\+is\+Scene\+Deletion\+Required@{m\+\_\+is\+Scene\+Deletion\+Required}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+is\+Scene\+Deletion\+Required}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Scene\+Deletion\+Required\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_ae2e60015d5cc12a5fb5b5d0402189532}
-\hypertarget{class_painter_q_m_l_a3b291f7043ad8437baadf6d7be1c174d}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Update\+Pending@{m\+\_\+is\+Update\+Pending}}
+\subsubsection[{m\+\_\+is\+Scene\+Deletion\+Required}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Scene\+Deletion\+Required\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_ae2e60015d5cc12a5fb5b5d0402189532}
+\hypertarget{class_painter_q_m_l_a3b291f7043ad8437baadf6d7be1c174d}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+is\+Update\+Pending@{m\+\_\+is\+Update\+Pending}}
 \index{m\+\_\+is\+Update\+Pending@{m\+\_\+is\+Update\+Pending}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+is\+Update\+Pending}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Update\+Pending\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_a3b291f7043ad8437baadf6d7be1c174d}
-\hypertarget{class_painter_q_m_l_a6b21bae1a75260e121bc56cda38729c8}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+painter@{m\+\_\+painter}}
+\subsubsection[{m\+\_\+is\+Update\+Pending}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::m\+\_\+is\+Update\+Pending\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_a3b291f7043ad8437baadf6d7be1c174d}
+\hypertarget{class_painter_q_m_l_a6b21bae1a75260e121bc56cda38729c8}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+painter@{m\+\_\+painter}}
 \index{m\+\_\+painter@{m\+\_\+painter}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+painter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Painter}$\ast$ Painter\+Q\+M\+L\+::m\+\_\+painter\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_a6b21bae1a75260e121bc56cda38729c8}
-\hypertarget{class_painter_q_m_l_a7a6641710573e4fa47dfdae13e87d58e}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+painting\+Done\+Event\+Type@{m\+\_\+painting\+Done\+Event\+Type}}
+\subsubsection[{m\+\_\+painter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Painter}$\ast$ Painter\+Q\+M\+L\+::m\+\_\+painter\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_a6b21bae1a75260e121bc56cda38729c8}
+\hypertarget{class_painter_q_m_l_a7a6641710573e4fa47dfdae13e87d58e}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+painting\+Done\+Event\+Type@{m\+\_\+painting\+Done\+Event\+Type}}
 \index{m\+\_\+painting\+Done\+Event\+Type@{m\+\_\+painting\+Done\+Event\+Type}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+painting\+Done\+Event\+Type}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+Q\+M\+L\+::m\+\_\+painting\+Done\+Event\+Type\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_a7a6641710573e4fa47dfdae13e87d58e}
-\hypertarget{class_painter_q_m_l_a5eccac2ab6d9974a9ae94573ac7b19d6}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+scene@{m\+\_\+scene}}
+\subsubsection[{m\+\_\+painting\+Done\+Event\+Type}]{\setlength{\rightskip}{0pt plus 5cm}int Painter\+Q\+M\+L\+::m\+\_\+painting\+Done\+Event\+Type\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_a7a6641710573e4fa47dfdae13e87d58e}
+\hypertarget{class_painter_q_m_l_a5eccac2ab6d9974a9ae94573ac7b19d6}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+scene@{m\+\_\+scene}}
 \index{m\+\_\+scene@{m\+\_\+scene}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene}$\ast$ Painter\+Q\+M\+L\+::m\+\_\+scene\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_a5eccac2ab6d9974a9ae94573ac7b19d6}
-\hypertarget{class_painter_q_m_l_ad4ced718f47b69f2344a5311ec87a156}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+time@{m\+\_\+time}}
+\subsubsection[{m\+\_\+scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene}$\ast$ Painter\+Q\+M\+L\+::m\+\_\+scene\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_a5eccac2ab6d9974a9ae94573ac7b19d6}
+\hypertarget{class_painter_q_m_l_ad4ced718f47b69f2344a5311ec87a156}{\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!m\+\_\+time@{m\+\_\+time}}
 \index{m\+\_\+time@{m\+\_\+time}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{m\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Time$\ast$ Painter\+Q\+M\+L\+::m\+\_\+time\hspace{0.3cm}{\ttfamily [protected]}}\label{class_painter_q_m_l_ad4ced718f47b69f2344a5311ec87a156}
-
-
-\subsection{Property Documentation}
-\hypertarget{class_painter_q_m_l_aab9bd8451a3cbfe6e8189994fd3dc329}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Active@{is\+Active}}
-\index{is\+Active@{is\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{is\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+Active\hspace{0.3cm}{\ttfamily [read]}}\label{class_painter_q_m_l_aab9bd8451a3cbfe6e8189994fd3dc329}
-\hypertarget{class_painter_q_m_l_a70ad19e1bbe24b9915c5f23366549a15}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+App\+Active@{is\+App\+Active}}
-\index{is\+App\+Active@{is\+App\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{is\+App\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+App\+Active\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_painter_q_m_l_a70ad19e1bbe24b9915c5f23366549a15}
-\hypertarget{class_painter_q_m_l_ae878004adcc5589b4ffc81870a700f82}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!is\+Game\+Active@{is\+Game\+Active}}
-\index{is\+Game\+Active@{is\+Game\+Active}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{is\+Game\+Active}]{\setlength{\rightskip}{0pt plus 5cm}bool Painter\+Q\+M\+L\+::is\+Game\+Active\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_painter_q_m_l_ae878004adcc5589b4ffc81870a700f82}
-\hypertarget{class_painter_q_m_l_a59b4d398bc7880e59bc8296c2669aaab}{}\index{Painter\+Q\+M\+L@{Painter\+Q\+M\+L}!scene@{scene}}
-\index{scene@{scene}!Painter\+Q\+M\+L@{Painter\+Q\+M\+L}}
-\subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Scene} $\ast$ Painter\+Q\+M\+L\+::scene\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_painter_q_m_l_a59b4d398bc7880e59bc8296c2669aaab}
+\subsubsection[{m\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Time$\ast$ Painter\+Q\+M\+L\+::m\+\_\+time\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_painter_q_m_l_ad4ced718f47b69f2344a5311ec87a156}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{painterqml_8h}{painterqml.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{painterqml_8cpp}{painterqml.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{painterqml_8h}{painterqml.\+h}\item 
+\hyperlink{painterqml_8cpp}{painterqml.\+cpp}\end{DoxyCompactItemize}

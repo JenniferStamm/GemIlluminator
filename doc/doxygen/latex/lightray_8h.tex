@@ -1,12 +1,13 @@
-\hypertarget{lightray_8h}{}\section{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/lightray.h File Reference}
-\label{lightray_8h}\index{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/lightray.\+h@{Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/lightray.\+h}}
+\hypertarget{lightray_8h}{\section{lightray.\+h File Reference}
+\label{lightray_8h}\index{lightray.\+h@{lightray.\+h}}
+}
 {\ttfamily \#include \char`\"{}player.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$Q\+Object$>$}\\*
 {\ttfamily \#include $<$Q\+Vector3\+D$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class_q_list}{Q\+List$<$ T $>$}
+singleton \hyperlink{singleton_q_list}{Q\+List$<$ T $>$}
 \item 
 class \hyperlink{class_light_ray}{Light\+Ray}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{class_light_ray}{Light\+Ray} class describes our lightrays send into \hyperlink{class_scene}{Scene}.  Because we send our Light\+Rays into \hyperlink{class_scene}{Scene} right after creation, they are more lines but rays. Our rays are organized as a tree, a ray owns all of its \hyperlink{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{successors()}. Accidentally most of our game logic is done within \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The \hyperlink{class_light_ray}{Light\+Ray} class describes the lightrays sent into \hyperlink{class_scene}{Scene}.  Because Light\+Rays are sent into \hyperlink{class_scene}{Scene} right after creation, they are more lines but rays. Rays are organized as a tree, a ray owns all of its \hyperlink{class_light_ray_a6673a77eb8fcd32dcfde26a1b112d303}{successors()}. Most of the game logic is still done within \hyperlink{class_light_ray_acf06a71a307433fa5b220baccf809e64}{Light\+Ray\+::update()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
