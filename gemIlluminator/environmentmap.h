@@ -18,7 +18,7 @@ class EnvironmentMap : public QObject
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new EnvironmentMap. The specified cube map textures are loaded imedetly(?).
+     * @brief Creates a new EnvironmentMap. The specified cube map textures are loaded immediately.
      * @param gl The QOpenGLFunctions which are used for every gl-call
      * @param cubeMapPrefix The name of cubemap that should be shown.
      * @param parent QObject-parent

@@ -19,7 +19,7 @@ class BlurEffect : public QObject
     Q_OBJECT
 public:
     /**
-     * @brief Creates a new BlurEffect, that will blur a specified texture everytime blur() is called
+     * @brief Creates a new BlurEffect that will blur a specified texture everytime blur() is called
      * @param gl The QOpenGLFuntions will be used for all gl-calls.
      * @param glowTexture The texture that will be blurred.
      * @param parent QObject-parent

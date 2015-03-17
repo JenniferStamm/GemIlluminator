@@ -17,7 +17,7 @@ class Triangle;
 
 /**
  * @brief The Scene class provides access to geometry and collision detection methods.
- * Furthermore some game logic is implemented, so the scene holds the player, the gem inflicted by player and cameras.
+ * Furthermore, some game logic is implemented, so the scene holds the player, the gem inflicted by player and cameras.
  */
 class Scene : public QQuickItem
 {
@@ -54,22 +54,22 @@ public:
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
-     * @param ray Ray send into scene to find gem.
-     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected gem. Returns never nullptr.
+     * @param ray Ray sent into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is usable.
+     * @return Returns the nearst intersected gem.  nullptr.
      */
     AbstractGem *findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
      * @brief Finds the nearest gem with bounding sphere intersected by given ray.
-     * @param ray Ray send into scene to find gem.
+     * @param ray Ray sent into scene to find gem.
      * @param collisionPoint Optional parameter. The point of collision is written into.
-     * @return Returns the nearst intersected gem. Returns never a nullptr;
+     * @return Returns the nearst intersected gem. Never returns nullptr;
      */
     AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
-     * @brief Set the gem, that will be controlled by player.
+     * @brief Sets the gem, that will be controlled by player.
      * @param currentGem The gem that will be controlled by player.
      */
     void setCurrentGem(AbstractGem *currentGem);

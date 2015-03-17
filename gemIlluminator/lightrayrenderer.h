@@ -13,7 +13,7 @@ class LightRay;
 class LightRayData;
 
 /**
- * @brief The LightRayRenderer packs LightRays and paint them
+ * @brief The LightRayRenderer packs LightRays and paints them
  */
 class LightRayRenderer : public QObject
 {
@@ -24,8 +24,8 @@ public:
 
     /**
      * @brief Adds a new LightRay that will be rendered.
-     * @detail Dynamic LightRays are added without checking wheter they exist or not.
-     * Static LightRays will be only added if the LightRay is not allready drawn by LightRayRenderer
+     * @detail Dynamic LightRays are added without checking whether they exist or not.
+     * Static LightRays will be only added if the LightRay is not already drawn by LightRayRenderer
      * @param lightRay The LightRay that is added
      */
     void addLightRay(const LightRay &lightRay);

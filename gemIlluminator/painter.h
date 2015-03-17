@@ -20,7 +20,7 @@ enum class ShaderPrograms;
 
 /**
  * @brief The Painter class
- * @detail Includes the rendering process, thus creates the whole picture. The Painter will be used by QML within rendering thread
+ * @detail Includes the rendering process, thus creating the whole picture. The Painter will be used by QML within rendering thread
  *
  */
 class Painter : public QObject
@@ -35,28 +35,28 @@ public:
     explicit Painter(PainterQML *painter, QObject *parent = 0);
 
     /**
-     * @brief Destrutor. Will delete all rendering related classes and ressources.
+     * @brief Destructor. Will delete all rendering related classes and resources.
      */
     virtual ~Painter();
 
     /**
-     * @brief Updates enviorment map using config file
+     * @brief Updates environment map using config file
      */
     void updateEnvMap();
 
     /**
-     * @brief Check if Painter is active. Active means the painter is rendering.
+     * @brief Checks if Painter is active. Active means the painter is rendering.
      * @return Active state of painter.
      */
     bool isActive() const;
     /**
-     * @brief Set Active state. If active is true the painter renders the picture.
+     * @brief Sets Active state. If active is true the painter renders the picture.
      * @param active
      */
     void setActive(bool active);
 
     /**
-     * @brief Clears the scene and removes all not anymore required ressources.
+     * @brief Clears the scene and removes all not anymore required resources.
      */
     void clearScene();
 
@@ -74,15 +74,15 @@ public slots:
 
 signals:
     /**
-     * @brief This signal is emitted if initialization of all required ressources for current scene are initalized.
-     * @detail The signal is everytime emitted if previous scene was deleted and a new scene was synchronized.
+     * @brief This signal is emitted if initialization of all required resources for current scene are initialized.
+     * @detail The signal is emitted every time if previous scene was deleted and a new scene was synchronized.
      */
     void initializeDone();
 
 protected:
     /**
-     * @brief Initializes all required ressources,
-     * that are direct members of painter (scene independant ressources).
+     * @brief Initializes all required resources,
+     * that are direct members of painter (scene independent resources).
      * This method is executed within first paint.
      */
     void initialize();

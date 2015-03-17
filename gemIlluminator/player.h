@@ -9,7 +9,7 @@ class Camera;
 class LightRay;
 
 /**
- * @brief Our Player class is pretty stupid, because our player only ride on lightrays.
+ * @brief Our Player class is pretty stupid, because all the player does is riding on lightrays.
  * The only responsiblity is to move on rays and update the camera.
  */
 class Player : public QObject
@@ -23,19 +23,19 @@ public:
     virtual ~Player();
 
     /**
-     * @brief Move the player along a ray.
+     * @brief Moves the player along a ray.
      * @param ray The ray that is followed by ray.
-     * @param timeDifferenceInMilliseconds The time left since last update in order to calculate how far the player should move.
+     * @param timeDifferenceInMilliseconds The time elapsed since last update in order to calculate how far the player should move.
      */
     void moveOnRay(const LightRay &ray, int timeDifferenceInMilliseconds);
     /**
-     * @brief Set the player to ray.startPosition() and updates the camera accordingly.
+     * @brief Sest the player to ray.startPosition() and updates the camera accordingly.
      * @param ray
      * @seealso moveToEndPointOnRay();
      */
     void moveToStartPointOnRay(const LightRay &ray);
     /**
-     * @brief Set the player to ray.endPosition() and updates the camera accordingly.
+     * @brief Sets the player to ray.endPosition() and updates the camera accordingly.
      * @param ray
      * @seealso moveToEndPointOnRay();
      */
@@ -76,7 +76,7 @@ public slots:
      */
     qreal velocity() const;
     /**
-     * @brief Set velocity of player
+     * @brief Sets velocity of player
      * @param velocity
      */
     void setVelocity(qreal velocity);

@@ -22,7 +22,7 @@ class GemRenderer
 {
     /**
      * @brief The GemDataInfo class stores the GemData of a Gem. In addition some further values are stored.
-     * @detail Because a index is stored, we do not want this accessiable from outside of GemRenderer and GemRenderData is a private nested class of GemRenderer.
+     * @detail Because an index is stored, we do not want this accessable from outside of GemRenderer and GemRenderData is a private nested class of GemRenderer.
      */
     class GemDataInfo
     {
@@ -81,7 +81,7 @@ class GemRenderer
         ~GemRenderData();
 
         /**
-         * @brief Removes all gpu ressources.
+         * @brief Removes all gpu resources.
          * @param gl QOpenGLFunctions used to do gl-calls
          */
         void cleanup(QOpenGLFunctions &gl);
@@ -99,8 +99,8 @@ class GemRenderer
         void paint(QOpenGLFunctions &gl, QOpenGLShaderProgram &program);
 
         /**
-         * @brief Adds a gem to GemRenderData or updates the gem if allredy contained by GemRenderData.
-         * @detail The decision if a gem is allready contained is done by pointer value of gem
+         * @brief Adds a gem to GemRenderData or updates the gem if already contained by GemRenderData.
+         * @detail The decision if a gem is already contained is done by pointer value of gem
          * @param gem The gem that should be added or updated
          * @param gl QOpenGLFunctions used to do gl-calls
          */
@@ -122,14 +122,14 @@ class GemRenderer
         void setFloatTexturesEnabled(bool enable);
         /**
          * @brief Append per gem attributes to vector.
-         * @param gem The gem, which attributes should be appended.
+         * @param gem The gem which attributes should be appended.
          * @param vector The vector the data is appended to.
          */
         void appendAttributesToVector(GemDataInfo *gem, QVector<float> &vector);
         /**
          * @brief Append per gem attributes to vector.
          * @detail This overrided version encodes the data into unsigned chars in order to support byte textures.
-         * @param gem The gem, which attributes should be appended.
+         * @param gem The gem which attributes should be appended.
          * @param vector The vector the data is appended to.
          */
         void appendAttributesToVector(GemDataInfo *gem, QVector<unsigned char> &vector);
@@ -137,7 +137,7 @@ class GemRenderer
     protected:
         /**
          * @brief Add a new gem.
-         * @detail In order to save allocation time we allocate more memory then needed and reorganize our data if we needs even more.
+         * @detail In order to save allocation time allocate more memory then needed and reorganize data if more is needed.
          * @param gem The gem that will be added
          * @param gl QOpenGLFunctions used to do gl-calls
          */
@@ -181,7 +181,7 @@ public:
      */
     void initialize(QOpenGLFunctions &gl);
     /**
-     * @brief paint Paints all gems. Using faked instanced drawing.
+     * @brief paint Paints all gems using faked instanced drawing.
      * @param gl QOpenGLFunctions used to do gl-calls
      * @param program The program that is used for drawing gems.
      */

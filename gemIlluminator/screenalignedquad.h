@@ -18,7 +18,7 @@ public:
 
     /**
      * @brief Draws the ScreenAlignedQuad with bound shader program.
-     * @param gl QOpenGLFunctions thar are used to do gl-calls
+     * @param gl QOpenGLFunctions that are used to do gl-calls
      */
     void draw(QOpenGLFunctions &gl);
 

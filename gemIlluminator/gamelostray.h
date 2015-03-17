@@ -4,7 +4,7 @@
 #include "lightray.h"
 
 /**
- * @brief The GameLostRay class is a specialized LightRay, that is created if the player should loose as soon as the player reaches it.
+ * @brief The GameLostRay class is a specialized LightRay, that is created if the player should lose as soon as the player reaches it.
  */
 class GameLostRay : public LightRay
 {
@@ -12,8 +12,8 @@ class GameLostRay : public LightRay
 public:
     explicit GameLostRay(QObject *parent = 0);
     /**
-     * @brief This method is like LightRay::update() with the addition, that the game end is detect a soon as the ray has a player->
-     * @param timeDifference Time differnce to previous update.
+     * @brief This method is like LightRay::update() with the addition, that the game end is detected a soon as the ray has a player
+     * @param timeDifference Time difference to previous update.
      */
     void update(int timeDifference) override;
 
