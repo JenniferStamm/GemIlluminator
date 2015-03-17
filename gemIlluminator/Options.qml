@@ -105,6 +105,17 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: 14 * Screen.pixelDensity
 
+        Text {
+            text: "Gems:"
+            font.pointSize: 12
+            color: "white"
+            anchors.leftMargin: 1 * Screen.pixelDensity
+            anchors.bottom: parent.verticalCenter
+            anchors.left: parent.left
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+        }
+
         TextInput {
             id: numGemsInput
             text: config.numGems
