@@ -58,6 +58,10 @@ html, body {
 
 .owl-theme .owl-controls .owl-page span {
   background: none repeat scroll 0 0 #0099cc; }
+.owl-theme .owl-controls .owl-buttons div {
+  background: #0099cc;
+  font-size: 14px;
+  border-radius: 0; }
 
 .doc-download {
   text-align: center; }
