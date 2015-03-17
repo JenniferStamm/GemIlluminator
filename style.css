@@ -56,6 +56,12 @@ html, body {
     margin-top: 0;
     margin-bottom: 20px; }
 
+.owl-theme .owl-controls .owl-page span {
+  background: none repeat scroll 0 0 #0099cc; }
+
+.doc-download {
+  text-align: center; }
+
 .section .slide .row img {
   margin-top: 25px; }
 .section .fp-controlArrow.fp-prev {
@@ -78,15 +84,19 @@ html, body {
   height: 250px;
   width: 445px; }
 
-#features {
+#feature-overview {
   margin-bottom: 10px; }
-  #features .item img {
+  #feature-overview .item img {
     display: block;
     width: 100%;
     height: auto;
     border: 1px solid #0099cc; }
-  #features .item .carousel-caption {
-    color: white;
-    background-color: #75d5f5; }
+  #feature-overview .item .carousel-caption {
+    color: #005577;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding-bottom: 12px;
+    padding-top: 12px;
+    text-shadow: none;
+    font-size: 22px; }
 
 /*# sourceMappingURL=style.css.map */

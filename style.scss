@@ -86,6 +86,20 @@ html, body {
 	}
 }
 
+.owl-theme {
+	.owl-controls {
+		.owl-page {
+			span {
+				background: none repeat scroll 0 0 $standardBlue;
+			}
+		}
+	}
+}
+
+.doc-download {
+	text-align: center;
+}
+
 .section {
 	.slide {
 		.row {
@@ -121,7 +135,7 @@ html, body {
 	width: 445px;
 }
 
-#features {
+#feature-overview {
 	margin-bottom: 10px;
 	.item {
 		img {
@@ -132,8 +146,12 @@ html, body {
 		}
 
 		.carousel-caption {
-			color: white;
-			background-color: $fontBlue;
+			color: #005577;
+			background-color: rgba(255, 255, 255, 0.75);
+			padding-bottom: 12px;
+			padding-top: 12px;
+			text-shadow: none;
+			font-size: 22px;
 		}
 	}
 }

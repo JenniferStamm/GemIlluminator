@@ -39,8 +39,8 @@
     <div class="navbar-collapse collapse" id="navbar">
       <ul id="menu" class="nav navbar-nav navbar-right">
       	<li class="link" data-menuanchor="game"><a href="#game">The Game</a></li>
-        <li class="link" data-menuanchor="download"><a href="#download">Download</a></li>
-        <li id="doc-link" class="link" data-menuanchor="documentation"><a href="#documentation">Documentation</a></li>
+        <li class="link" data-menuanchor="features"><a href="#features">Features</a></li>
+        <li class="link" data-menuanchor="doc-download"><a href="#doc-download">Get it!</a></li>
         <li class="link" data-menuanchor="contact"><a href="#contact">Contact</a></li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -122,7 +122,7 @@
 	<!-- Features -->
 	<div class="section">
 		<div class="container">
-			<div id="features" class="owl-carousel owl-theme">
+			<div id="feature-overview" class="owl-carousel owl-theme">
 			    <div class="item">
 			    	<div class="carousel-caption">
 			    		Different gems of different sizes
@@ -176,12 +176,19 @@
 		</div>
 	</div>
 
-	<div class="section container">
-
-	</div>
-
-	<div class="section container">
-		<a href="doc/doxygen/html/index.html" target="blank">Documentation</a>
+	<div class="section">
+		<div class="container doc-download">
+			<div class="row">
+				<div class="col-md-6">
+					Get the game on Github:
+					<a href="https://github.com/JenniferStamm/Game-Programming-WS2014" target="blank">Github</a>
+				</div>
+				<div class="col-md-6">
+					Take a look at our Documentation:
+					<a href="doc/doxygen/html/index.html" target="blank">Documentation</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="section container">
@@ -197,7 +204,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#fullpage').fullpage({
-			anchors: ['game', 'game1', 'game2', 'game3', 'download', 'documentation', 'contact', 'lastPage'],
+			anchors: ['game', 'game1', 'game2', 'features', 'doc-download', 'contact', 'lastPage'],
 			menu: '#menu',
 			paddingTop: '50px',
 			verticalCentered: true,
@@ -205,7 +212,7 @@
 		    //autoScrolling: false,
 		});
      
-    	$("#features").owlCarousel({
+    	$("#feature-overview").owlCarousel({
 		    navigation : true, // Show next and prev buttons
 		    slideSpeed : 300,
 		    paginationSpeed : 400,
