@@ -14,11 +14,11 @@ var searchData=
   ['renderscene',['renderScene',['../class_painter.html#a8cbffb0c2d28dd1558716136c99a079f',1,'Painter']]],
   ['resetdynamicrays',['resetDynamicRays',['../class_light_ray_renderer.html#a6274b441ae15e56176d1d4d7d86ed540',1,'LightRayRenderer']]],
   ['resettimer',['resetTimer',['../class_painter_q_m_l.html#a401a8a8b2406679b61fe326a37e97b6a',1,'PainterQML']]],
-  ['rootlightray',['rootLightRay',['../class_scene.html#a437a4ce938a6de368c2a6abba0ec3f3d',1,'Scene::rootLightRay()'],['../class_scene.html#a7de6dcc38dd6398f71af71295ae09966',1,'Scene::rootLightRay() const ']]],
+  ['rootlightray',['rootLightRay',['../class_scene.html#a7de6dcc38dd6398f71af71295ae09966',1,'Scene']]],
   ['rootlightraychanged',['rootLightRayChanged',['../class_scene.html#a4eed91c96f13a7646830737b820755c4',1,'Scene']]],
   ['rotate',['rotate',['../class_abstract_gem.html#a5ca6867a835dfe2b49d46dbfb933bfca',1,'AbstractGem']]],
   ['rotatecurrentgem',['rotateCurrentGem',['../class_scene.html#ade6d7968a2bad7c1dfbae98045a8aa7d',1,'Scene']]],
   ['rotatevector',['rotateVector',['../abstractgem_8cpp.html#a697c6102488dd3c0aff0ca9ddccf23cd',1,'abstractgem.cpp']]],
-  ['rotation',['rotation',['../class_abstract_gem.html#a6d85928549d64d369864716dbe2c716b',1,'AbstractGem::rotation()'],['../class_abstract_gem.html#a4fc9d6ed418b73ec2539e063ebfa70c1',1,'AbstractGem::rotation() const '],['../class_gem_data.html#a3c902384912903b22d5eaab7e70f1f5c',1,'GemData::rotation()'],['../class_navigation.html#a264e178e874b62aec38c9986a234d044',1,'Navigation::rotation()']]],
+  ['rotation',['rotation',['../class_abstract_gem.html#a4fc9d6ed418b73ec2539e063ebfa70c1',1,'AbstractGem::rotation()'],['../class_gem_data.html#a3c902384912903b22d5eaab7e70f1f5c',1,'GemData::rotation()'],['../class_navigation.html#a264e178e874b62aec38c9986a234d044',1,'Navigation::rotation()']]],
   ['rotationchanged',['rotationChanged',['../class_abstract_gem.html#a2702e870321deb40a8f056c1fce01094',1,'AbstractGem::rotationChanged()'],['../class_navigation.html#ac54fe5d8be2858c2988a9f5158d2d58e',1,'Navigation::rotationChanged()']]]
 ];

@@ -7,6 +7,6 @@ var searchData=
   ['abstractgem_2eh',['abstractgem.h',['../abstractgem_8h.html',1,'']]],
   ['addlightray',['addLightRay',['../class_light_ray_renderer.html#a0e481c5c466f2423e06adfde398f6a28',1,'LightRayRenderer']]],
   ['application_5fparameters',['APPLICATION_PARAMETERS',['../classorg_1_1qtproject_1_1qt5_1_1android_1_1bindings_1_1_qt_activity.html#a1c6754715d370c1e91160c534c54a7e7',1,'org::qtproject::qt5::android::bindings::QtActivity']]],
-  ['axisrange',['axisRange',['../class_config.html#a5068b92866fd941b72314c6c7f36145f',1,'Config::axisRange()'],['../class_config.html#a17e5e932c588503e186f40c2bcff3149',1,'Config::axisRange()']]],
+  ['axisrange',['axisRange',['../class_config.html#a17e5e932c588503e186f40c2bcff3149',1,'Config']]],
   ['axisrangechanged',['axisRangeChanged',['../class_config.html#a5681c5b14ccda37c70498b984bd706ff',1,'Config']]]
 ];

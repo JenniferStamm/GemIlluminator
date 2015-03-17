@@ -1,5 +1,6 @@
-\hypertarget{class_camera}{}\section{Camera Class Reference}
+\hypertarget{class_camera}{\section{Camera Class Reference}
 \label{class_camera}\index{Camera@{Camera}}
+}
 
 
 The \hyperlink{class_camera}{Camera} class provides view and perspective projection matrices. Additional the viewport of camera is stored.  The view of camera has to be specified by eye, center and up or by position, viewdirection and up. It is allowed to mix both definitions, but it might lead to unexpected behaviour. The perspective projection is specified by field of view, viewport, and near and far plane.  
@@ -18,27 +19,27 @@ Inheritance diagram for Camera\+:\begin{figure}[H]
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{class_camera_a3ac4fcd89c146068205a3c8b73a86520}{set\+Position} (const Q\+Vector3\+D \&\hyperlink{class_camera_a1e8c173f6a47c5ebea0e91aefea50b51}{position})
-\begin{DoxyCompactList}\small\item\em Set position of camera to given value. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will be changed in order to keep \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} the same. \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_a61a059ce3aedc779f9087dda9b5e227c}{set\+View\+Direction} (const Q\+Vector3\+D \&\hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction})
-\begin{DoxyCompactList}\small\item\em Set view\+Direction of camera to given vector. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will be changed in order to. \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_aa445664f0bf5f3cd892a99125e4bc786}{set\+Eye} (const Q\+Vector3\+D \&\hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye})
-\begin{DoxyCompactList}\small\item\em Set eye (position) of camera to given value. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will not be changed, so \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} is set to \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} -\/ \hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye()} \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}{set\+Center} (const Q\+Vector3\+D \&\hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center})
-\begin{DoxyCompactList}\small\item\em Set center of camera to given value. \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} will be set to new \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} -\/ \hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye()}. \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}{set\+Up} (const Q\+Vector3\+D \&\hyperlink{class_camera_a86995a93a125a9d9941f10144c4c398e}{up})
-\begin{DoxyCompactList}\small\item\em Set up-\/vector of camera. \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_a995075e3b619176b72ad2ff0ab434ed8}{set\+View} (const Q\+Vector3\+D \&\hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye}, const Q\+Vector3\+D \&\hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center}, const Q\+Vector3\+D \&\hyperlink{class_camera_a86995a93a125a9d9941f10144c4c398e}{up})
-\begin{DoxyCompactList}\small\item\em Convinence method to specify view with one method call. \end{DoxyCompactList}\item 
-void \hyperlink{class_camera_ad47041196bf35fed448003491112f528}{set\+Viewport} (const Q\+Size \&\hyperlink{class_camera_a56b601feb6a54eee0bce1910cdeac291}{viewport})
+void \hyperlink{class_camera_a3ac4fcd89c146068205a3c8b73a86520}{set\+Position} (const Q\+Vector3\+D \&position)
+\begin{DoxyCompactList}\small\item\em Sets position of camera to given value. center() will be changed in order to keep view\+Direction() the same. \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_a61a059ce3aedc779f9087dda9b5e227c}{set\+View\+Direction} (const Q\+Vector3\+D \&view\+Direction)
+\begin{DoxyCompactList}\small\item\em Sets view\+Direction of camera to given vector. center() will be changed in order to keep eye() consistent. \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_aa445664f0bf5f3cd892a99125e4bc786}{set\+Eye} (const Q\+Vector3\+D \&eye)
+\begin{DoxyCompactList}\small\item\em Sets eye (position) of camera to given value. center() will not be changed, so view\+Direction() is set to center() -\/ eye() \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}{set\+Center} (const Q\+Vector3\+D \&center)
+\begin{DoxyCompactList}\small\item\em Sets center of camera to given value. view\+Direction() will be set to new center() -\/ eye(). \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}{set\+Up} (const Q\+Vector3\+D \&up)
+\begin{DoxyCompactList}\small\item\em Sets up-\/vector of camera. \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_a995075e3b619176b72ad2ff0ab434ed8}{set\+View} (const Q\+Vector3\+D \&eye, const Q\+Vector3\+D \&center, const Q\+Vector3\+D \&up)
+\begin{DoxyCompactList}\small\item\em Convenience method to specify view with one method call. \end{DoxyCompactList}\item 
+void \hyperlink{class_camera_ad47041196bf35fed448003491112f528}{set\+Viewport} (const Q\+Size \&viewport)
 \item 
 void \hyperlink{class_camera_ab0794a4ebc430368c5c3731e9bb35cdc}{set\+Viewport} (int x, int y)
 \item 
 void \hyperlink{class_camera_aa0e1d52fdb7e3d060041b960fa8b5c24}{set\+Fovy} (float angle)
 \item 
-void \hyperlink{class_camera_a4a8cda23fc022255f30452f608c66081}{set\+Z\+Near} (float \hyperlink{class_camera_a1db2166635ff27594eda3a23130b66ac}{z\+Near})
+void \hyperlink{class_camera_a4a8cda23fc022255f30452f608c66081}{set\+Z\+Near} (float z\+Near)
 \item 
-void \hyperlink{class_camera_a8ab94de2388acc72fa129fa203ccc587}{set\+Z\+Far} (float \hyperlink{class_camera_a6290469f972a5903c805725db563f41f}{z\+Far})
+void \hyperlink{class_camera_a8ab94de2388acc72fa129fa203ccc587}{set\+Z\+Far} (float z\+Far)
 \end{DoxyCompactItemize}
 \subsection*{Signals}
 \begin{DoxyCompactItemize}
@@ -132,48 +133,27 @@ bool \hyperlink{class_camera_a62264f74f2fb442e8d94e5c0a44098f0}{m\+\_\+is\+Proje
 \item 
 bool \hyperlink{class_camera_a34a4ccea1f4f66eb140db34ef7bdf11a}{m\+\_\+is\+View\+Projection\+Invalid}
 \end{DoxyCompactItemize}
-\subsection*{Properties}
-\begin{DoxyCompactItemize}
-\item 
-const Q\+Vector3\+D \hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye}
-\item 
-const Q\+Vector3\+D \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center}
-\item 
-const Q\+Vector3\+D \hyperlink{class_camera_a86995a93a125a9d9941f10144c4c398e}{up}
-\item 
-const Q\+Vector3\+D \hyperlink{class_camera_a1e8c173f6a47c5ebea0e91aefea50b51}{position}
-\item 
-const Q\+Vector3\+D \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction}
-\item 
-const Q\+Size \hyperlink{class_camera_a56b601feb6a54eee0bce1910cdeac291}{viewport}
-\item 
-qreal \hyperlink{class_camera_a1db2166635ff27594eda3a23130b66ac}{z\+Near}
-\item 
-qreal \hyperlink{class_camera_a6290469f972a5903c805725db563f41f}{z\+Far}
-\item 
-qreal \hyperlink{class_camera_a6cba4066109137fb0d23ee207205927c}{fovy}
-\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 The \hyperlink{class_camera}{Camera} class provides view and perspective projection matrices. Additional the viewport of camera is stored.  The view of camera has to be specified by eye, center and up or by position, viewdirection and up. It is allowed to mix both definitions, but it might lead to unexpected behaviour. The perspective projection is specified by field of view, viewport, and near and far plane. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_camera_ad56e137b78c37179019cf90005af9b29}{}\index{Camera@{Camera}!Camera@{Camera}}
+\hypertarget{class_camera_ad56e137b78c37179019cf90005af9b29}{\index{Camera@{Camera}!Camera@{Camera}}
 \index{Camera@{Camera}!Camera@{Camera}}
 \subsubsection[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::\+Camera (
 \begin{DoxyParamCaption}
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_camera_ad56e137b78c37179019cf90005af9b29}
-\hypertarget{class_camera_a33ad49c0e2c636d279be20bacc0d1757}{}\index{Camera@{Camera}!Camera@{Camera}}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_camera_ad56e137b78c37179019cf90005af9b29}
+\hypertarget{class_camera_a33ad49c0e2c636d279be20bacc0d1757}{\index{Camera@{Camera}!Camera@{Camera}}
 \index{Camera@{Camera}!Camera@{Camera}}
 \subsubsection[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::\+Camera (
 \begin{DoxyParamCaption}
 \item[{const {\bf Camera} \&}]{camera, }
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)}\label{class_camera_a33ad49c0e2c636d279be20bacc0d1757}
+)}}\label{class_camera_a33ad49c0e2c636d279be20bacc0d1757}
 
 
 Creates a new \hyperlink{class_camera}{Camera} with matrices copied. 
@@ -185,165 +165,165 @@ Creates a new \hyperlink{class_camera}{Camera} with matrices copied.
 {\em parent} & Specifies the parent \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_ad1897942d0ccf91052386388a497349f}{}\index{Camera@{Camera}!````~Camera@{$\sim$\+Camera}}
+\hypertarget{class_camera_ad1897942d0ccf91052386388a497349f}{\index{Camera@{Camera}!````~Camera@{$\sim$\+Camera}}
 \index{````~Camera@{$\sim$\+Camera}!Camera@{Camera}}
 \subsubsection[{$\sim$\+Camera}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::$\sim$\+Camera (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_camera_ad1897942d0ccf91052386388a497349f}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_camera_ad1897942d0ccf91052386388a497349f}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_camera_a3eabf004448f650a632365cfd3d6980b}{}\index{Camera@{Camera}!center@{center}}
+\hypertarget{class_camera_a3eabf004448f650a632365cfd3d6980b}{\index{Camera@{Camera}!center@{center}}
 \index{center@{center}!Camera@{Camera}}
 \subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Camera\+::center (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a3eabf004448f650a632365cfd3d6980b}
-\hypertarget{class_camera_a2558b66a8e6b053468bb1f5ffcc5841b}{}\index{Camera@{Camera}!eye@{eye}}
+) const}}\label{class_camera_a3eabf004448f650a632365cfd3d6980b}
+\hypertarget{class_camera_a2558b66a8e6b053468bb1f5ffcc5841b}{\index{Camera@{Camera}!eye@{eye}}
 \index{eye@{eye}!Camera@{Camera}}
 \subsubsection[{eye}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Camera\+::eye (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a2558b66a8e6b053468bb1f5ffcc5841b}
-\hypertarget{class_camera_a74f8741128595da3efa466cb5e580601}{}\index{Camera@{Camera}!fovy@{fovy}}
+) const}}\label{class_camera_a2558b66a8e6b053468bb1f5ffcc5841b}
+\hypertarget{class_camera_a74f8741128595da3efa466cb5e580601}{\index{Camera@{Camera}!fovy@{fovy}}
 \index{fovy@{fovy}!Camera@{Camera}}
 \subsubsection[{fovy}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::fovy (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a74f8741128595da3efa466cb5e580601}
-\hypertarget{class_camera_a8067b4207b1a429318159059fac186c0}{}\index{Camera@{Camera}!invalidate\+Projection@{invalidate\+Projection}}
+) const}}\label{class_camera_a74f8741128595da3efa466cb5e580601}
+\hypertarget{class_camera_a8067b4207b1a429318159059fac186c0}{\index{Camera@{Camera}!invalidate\+Projection@{invalidate\+Projection}}
 \index{invalidate\+Projection@{invalidate\+Projection}!Camera@{Camera}}
 \subsubsection[{invalidate\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::invalidate\+Projection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_a8067b4207b1a429318159059fac186c0}
-\hypertarget{class_camera_ada8eafa78187469b93a22e2cc97d49f8}{}\index{Camera@{Camera}!invalidate\+View@{invalidate\+View}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_a8067b4207b1a429318159059fac186c0}
+\hypertarget{class_camera_ada8eafa78187469b93a22e2cc97d49f8}{\index{Camera@{Camera}!invalidate\+View@{invalidate\+View}}
 \index{invalidate\+View@{invalidate\+View}!Camera@{Camera}}
 \subsubsection[{invalidate\+View}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::invalidate\+View (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_ada8eafa78187469b93a22e2cc97d49f8}
-\hypertarget{class_camera_aa03eb8b412fd5c6a496072503c78ee95}{}\index{Camera@{Camera}!position@{position}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_ada8eafa78187469b93a22e2cc97d49f8}
+\hypertarget{class_camera_aa03eb8b412fd5c6a496072503c78ee95}{\index{Camera@{Camera}!position@{position}}
 \index{position@{position}!Camera@{Camera}}
 \subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Camera\+::position (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_aa03eb8b412fd5c6a496072503c78ee95}
-\hypertarget{class_camera_af87d251359157acdb6e540d63a933392}{}\index{Camera@{Camera}!projection@{projection}}
+) const}}\label{class_camera_aa03eb8b412fd5c6a496072503c78ee95}
+\hypertarget{class_camera_af87d251359157acdb6e540d63a933392}{\index{Camera@{Camera}!projection@{projection}}
 \index{projection@{projection}!Camera@{Camera}}
 \subsubsection[{projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::projection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_af87d251359157acdb6e540d63a933392}
-\hypertarget{class_camera_a6108163876720d7e856ac91c6835cde9}{}\index{Camera@{Camera}!projection\+Inverted@{projection\+Inverted}}
+) const}}\label{class_camera_af87d251359157acdb6e540d63a933392}
+\hypertarget{class_camera_a6108163876720d7e856ac91c6835cde9}{\index{Camera@{Camera}!projection\+Inverted@{projection\+Inverted}}
 \index{projection\+Inverted@{projection\+Inverted}!Camera@{Camera}}
 \subsubsection[{projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::projection\+Inverted (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a6108163876720d7e856ac91c6835cde9}
-\hypertarget{class_camera_adba918d86364f5452cad93a9ec6ea6d6}{}\index{Camera@{Camera}!recalculate\+Projection@{recalculate\+Projection}}
+) const}}\label{class_camera_a6108163876720d7e856ac91c6835cde9}
+\hypertarget{class_camera_adba918d86364f5452cad93a9ec6ea6d6}{\index{Camera@{Camera}!recalculate\+Projection@{recalculate\+Projection}}
 \index{recalculate\+Projection@{recalculate\+Projection}!Camera@{Camera}}
 \subsubsection[{recalculate\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::recalculate\+Projection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_adba918d86364f5452cad93a9ec6ea6d6}
-\hypertarget{class_camera_aa1ce6744a19131677ee890325032e749}{}\index{Camera@{Camera}!recalculate\+View@{recalculate\+View}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_adba918d86364f5452cad93a9ec6ea6d6}
+\hypertarget{class_camera_aa1ce6744a19131677ee890325032e749}{\index{Camera@{Camera}!recalculate\+View@{recalculate\+View}}
 \index{recalculate\+View@{recalculate\+View}!Camera@{Camera}}
 \subsubsection[{recalculate\+View}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::recalculate\+View (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_aa1ce6744a19131677ee890325032e749}
-\hypertarget{class_camera_ae4c6dcfee420eb57f9521d5195ce78f8}{}\index{Camera@{Camera}!recalculate\+View\+Projection@{recalculate\+View\+Projection}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_aa1ce6744a19131677ee890325032e749}
+\hypertarget{class_camera_ae4c6dcfee420eb57f9521d5195ce78f8}{\index{Camera@{Camera}!recalculate\+View\+Projection@{recalculate\+View\+Projection}}
 \index{recalculate\+View\+Projection@{recalculate\+View\+Projection}!Camera@{Camera}}
 \subsubsection[{recalculate\+View\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::recalculate\+View\+Projection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_ae4c6dcfee420eb57f9521d5195ce78f8}
-\hypertarget{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}{}\index{Camera@{Camera}!set\+Center@{set\+Center}}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_ae4c6dcfee420eb57f9521d5195ce78f8}
+\hypertarget{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}{\index{Camera@{Camera}!set\+Center@{set\+Center}}
 \index{set\+Center@{set\+Center}!Camera@{Camera}}
 \subsubsection[{set\+Center}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Center (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{center}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_ae0594124b7a1baf13ef38de7a6bd0ed8}
 
 
-Set center of camera to given value. \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} will be set to new \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} -\/ \hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye()}. 
+Sets center of camera to given value. view\+Direction() will be set to new center() -\/ eye(). 
 
 
 \begin{DoxyParams}{Parameters}
 {\em center} & Position the camera is looking to. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_aa445664f0bf5f3cd892a99125e4bc786}{}\index{Camera@{Camera}!set\+Eye@{set\+Eye}}
+\hypertarget{class_camera_aa445664f0bf5f3cd892a99125e4bc786}{\index{Camera@{Camera}!set\+Eye@{set\+Eye}}
 \index{set\+Eye@{set\+Eye}!Camera@{Camera}}
 \subsubsection[{set\+Eye}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Eye (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{eye}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_aa445664f0bf5f3cd892a99125e4bc786}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_aa445664f0bf5f3cd892a99125e4bc786}
 
 
-Set eye (position) of camera to given value. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will not be changed, so \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} is set to \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} -\/ \hyperlink{class_camera_aac5808300c4e00d266da238ad35b1a1b}{eye()} 
+Sets eye (position) of camera to given value. center() will not be changed, so view\+Direction() is set to center() -\/ eye() 
 
 
 \begin{DoxyParams}{Parameters}
 {\em eye} & \hyperlink{class_camera}{Camera} will be set to this position. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_aa0e1d52fdb7e3d060041b960fa8b5c24}{}\index{Camera@{Camera}!set\+Fovy@{set\+Fovy}}
+\hypertarget{class_camera_aa0e1d52fdb7e3d060041b960fa8b5c24}{\index{Camera@{Camera}!set\+Fovy@{set\+Fovy}}
 \index{set\+Fovy@{set\+Fovy}!Camera@{Camera}}
 \subsubsection[{set\+Fovy}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Fovy (
 \begin{DoxyParamCaption}
 \item[{float}]{angle}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_aa0e1d52fdb7e3d060041b960fa8b5c24}
-\hypertarget{class_camera_a3ac4fcd89c146068205a3c8b73a86520}{}\index{Camera@{Camera}!set\+Position@{set\+Position}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_aa0e1d52fdb7e3d060041b960fa8b5c24}
+\hypertarget{class_camera_a3ac4fcd89c146068205a3c8b73a86520}{\index{Camera@{Camera}!set\+Position@{set\+Position}}
 \index{set\+Position@{set\+Position}!Camera@{Camera}}
 \subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Position (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{position}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a3ac4fcd89c146068205a3c8b73a86520}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a3ac4fcd89c146068205a3c8b73a86520}
 
 
-Set position of camera to given value. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will be changed in order to keep \hyperlink{class_camera_a7745654f918533ddc5e285bcf630e934}{view\+Direction()} the same. 
+Sets position of camera to given value. center() will be changed in order to keep view\+Direction() the same. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em position} & \hyperlink{class_camera}{Camera} will be set to this position. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}{}\index{Camera@{Camera}!set\+Up@{set\+Up}}
+\hypertarget{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}{\index{Camera@{Camera}!set\+Up@{set\+Up}}
 \index{set\+Up@{set\+Up}!Camera@{Camera}}
 \subsubsection[{set\+Up}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Up (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{up}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}
 
 
-Set up-\/vector of camera. 
+Sets up-\/vector of camera. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em up} & New up vector. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_a995075e3b619176b72ad2ff0ab434ed8}{}\index{Camera@{Camera}!set\+View@{set\+View}}
+\hypertarget{class_camera_a995075e3b619176b72ad2ff0ab434ed8}{\index{Camera@{Camera}!set\+View@{set\+View}}
 \index{set\+View@{set\+View}!Camera@{Camera}}
 \subsubsection[{set\+View}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+View (
 \begin{DoxyParamCaption}
@@ -351,10 +331,10 @@ Set up-\/vector of camera.
 \item[{const Q\+Vector3\+D \&}]{center, }
 \item[{const Q\+Vector3\+D \&}]{up}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a995075e3b619176b72ad2ff0ab434ed8}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a995075e3b619176b72ad2ff0ab434ed8}
 
 
-Convinence method to specify view with one method call. 
+Convenience method to specify view with one method call. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -365,205 +345,175 @@ Convinence method to specify view with one method call.
 {\em up} & See \hyperlink{class_camera_a037ef3f032c7fc09fa1f044260dd3a09}{set\+Up()} \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_a61a059ce3aedc779f9087dda9b5e227c}{}\index{Camera@{Camera}!set\+View\+Direction@{set\+View\+Direction}}
+\hypertarget{class_camera_a61a059ce3aedc779f9087dda9b5e227c}{\index{Camera@{Camera}!set\+View\+Direction@{set\+View\+Direction}}
 \index{set\+View\+Direction@{set\+View\+Direction}!Camera@{Camera}}
 \subsubsection[{set\+View\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+View\+Direction (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{view\+Direction}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a61a059ce3aedc779f9087dda9b5e227c}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a61a059ce3aedc779f9087dda9b5e227c}
 
 
-Set view\+Direction of camera to given vector. \hyperlink{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{center()} will be changed in order to. 
+Sets view\+Direction of camera to given vector. center() will be changed in order to keep eye() consistent. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em view\+Direction} & Direction the camera should look. \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_camera_ad47041196bf35fed448003491112f528}{}\index{Camera@{Camera}!set\+Viewport@{set\+Viewport}}
+\hypertarget{class_camera_ad47041196bf35fed448003491112f528}{\index{Camera@{Camera}!set\+Viewport@{set\+Viewport}}
 \index{set\+Viewport@{set\+Viewport}!Camera@{Camera}}
 \subsubsection[{set\+Viewport}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Viewport (
 \begin{DoxyParamCaption}
 \item[{const Q\+Size \&}]{viewport}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_ad47041196bf35fed448003491112f528}
-\hypertarget{class_camera_ab0794a4ebc430368c5c3731e9bb35cdc}{}\index{Camera@{Camera}!set\+Viewport@{set\+Viewport}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_ad47041196bf35fed448003491112f528}
+\hypertarget{class_camera_ab0794a4ebc430368c5c3731e9bb35cdc}{\index{Camera@{Camera}!set\+Viewport@{set\+Viewport}}
 \index{set\+Viewport@{set\+Viewport}!Camera@{Camera}}
 \subsubsection[{set\+Viewport}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Viewport (
 \begin{DoxyParamCaption}
 \item[{int}]{x, }
 \item[{int}]{y}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_ab0794a4ebc430368c5c3731e9bb35cdc}
-\hypertarget{class_camera_a8ab94de2388acc72fa129fa203ccc587}{}\index{Camera@{Camera}!set\+Z\+Far@{set\+Z\+Far}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_ab0794a4ebc430368c5c3731e9bb35cdc}
+\hypertarget{class_camera_a8ab94de2388acc72fa129fa203ccc587}{\index{Camera@{Camera}!set\+Z\+Far@{set\+Z\+Far}}
 \index{set\+Z\+Far@{set\+Z\+Far}!Camera@{Camera}}
 \subsubsection[{set\+Z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Z\+Far (
 \begin{DoxyParamCaption}
 \item[{float}]{z\+Far}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a8ab94de2388acc72fa129fa203ccc587}
-\hypertarget{class_camera_a4a8cda23fc022255f30452f608c66081}{}\index{Camera@{Camera}!set\+Z\+Near@{set\+Z\+Near}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a8ab94de2388acc72fa129fa203ccc587}
+\hypertarget{class_camera_a4a8cda23fc022255f30452f608c66081}{\index{Camera@{Camera}!set\+Z\+Near@{set\+Z\+Near}}
 \index{set\+Z\+Near@{set\+Z\+Near}!Camera@{Camera}}
 \subsubsection[{set\+Z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::set\+Z\+Near (
 \begin{DoxyParamCaption}
 \item[{float}]{z\+Near}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [slot]}}\label{class_camera_a4a8cda23fc022255f30452f608c66081}
-\hypertarget{class_camera_a86a19bc4ac24604bb5c0b3f4b6dad193}{}\index{Camera@{Camera}!up@{up}}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_camera_a4a8cda23fc022255f30452f608c66081}
+\hypertarget{class_camera_a86a19bc4ac24604bb5c0b3f4b6dad193}{\index{Camera@{Camera}!up@{up}}
 \index{up@{up}!Camera@{Camera}}
 \subsubsection[{up}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D\& Camera\+::up (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a86a19bc4ac24604bb5c0b3f4b6dad193}
-\hypertarget{class_camera_a6797f30b3a8a94a798a9687be4e1d825}{}\index{Camera@{Camera}!view@{view}}
+) const}}\label{class_camera_a86a19bc4ac24604bb5c0b3f4b6dad193}
+\hypertarget{class_camera_a6797f30b3a8a94a798a9687be4e1d825}{\index{Camera@{Camera}!view@{view}}
 \index{view@{view}!Camera@{Camera}}
 \subsubsection[{view}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::view (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a6797f30b3a8a94a798a9687be4e1d825}
-\hypertarget{class_camera_af652ce7cb83eb966a90393be8e0038c3}{}\index{Camera@{Camera}!view\+Changed@{view\+Changed}}
+) const}}\label{class_camera_a6797f30b3a8a94a798a9687be4e1d825}
+\hypertarget{class_camera_af652ce7cb83eb966a90393be8e0038c3}{\index{Camera@{Camera}!view\+Changed@{view\+Changed}}
 \index{view\+Changed@{view\+Changed}!Camera@{Camera}}
 \subsubsection[{view\+Changed}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::view\+Changed (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [signal]}}\label{class_camera_af652ce7cb83eb966a90393be8e0038c3}
-\hypertarget{class_camera_a3b5d47728aad185b6471e9d641e5716e}{}\index{Camera@{Camera}!view\+Direction@{view\+Direction}}
+)\hspace{0.3cm}{\ttfamily [signal]}}}\label{class_camera_af652ce7cb83eb966a90393be8e0038c3}
+\hypertarget{class_camera_a3b5d47728aad185b6471e9d641e5716e}{\index{Camera@{Camera}!view\+Direction@{view\+Direction}}
 \index{view\+Direction@{view\+Direction}!Camera@{Camera}}
 \subsubsection[{view\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Camera\+::view\+Direction (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a3b5d47728aad185b6471e9d641e5716e}
-\hypertarget{class_camera_a6f373d44131b72f23b4a23ef3b13f90b}{}\index{Camera@{Camera}!view\+Inverted@{view\+Inverted}}
+) const}}\label{class_camera_a3b5d47728aad185b6471e9d641e5716e}
+\hypertarget{class_camera_a6f373d44131b72f23b4a23ef3b13f90b}{\index{Camera@{Camera}!view\+Inverted@{view\+Inverted}}
 \index{view\+Inverted@{view\+Inverted}!Camera@{Camera}}
 \subsubsection[{view\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::view\+Inverted (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a6f373d44131b72f23b4a23ef3b13f90b}
-\hypertarget{class_camera_af74af0fabb70490072ebeb013582284a}{}\index{Camera@{Camera}!viewport@{viewport}}
+) const}}\label{class_camera_a6f373d44131b72f23b4a23ef3b13f90b}
+\hypertarget{class_camera_af74af0fabb70490072ebeb013582284a}{\index{Camera@{Camera}!viewport@{viewport}}
 \index{viewport@{viewport}!Camera@{Camera}}
 \subsubsection[{viewport}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Size\& Camera\+::viewport (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_af74af0fabb70490072ebeb013582284a}
-\hypertarget{class_camera_a683759f8c6c9207192a4c8b3f12be8e7}{}\index{Camera@{Camera}!view\+Projection@{view\+Projection}}
+) const}}\label{class_camera_af74af0fabb70490072ebeb013582284a}
+\hypertarget{class_camera_a683759f8c6c9207192a4c8b3f12be8e7}{\index{Camera@{Camera}!view\+Projection@{view\+Projection}}
 \index{view\+Projection@{view\+Projection}!Camera@{Camera}}
 \subsubsection[{view\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::view\+Projection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a683759f8c6c9207192a4c8b3f12be8e7}
-\hypertarget{class_camera_a5ee2df09ee42e1ddddf7b6dc3de330e4}{}\index{Camera@{Camera}!view\+Projection\+Inverted@{view\+Projection\+Inverted}}
+) const}}\label{class_camera_a683759f8c6c9207192a4c8b3f12be8e7}
+\hypertarget{class_camera_a5ee2df09ee42e1ddddf7b6dc3de330e4}{\index{Camera@{Camera}!view\+Projection\+Inverted@{view\+Projection\+Inverted}}
 \index{view\+Projection\+Inverted@{view\+Projection\+Inverted}!Camera@{Camera}}
 \subsubsection[{view\+Projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4 const \& Camera\+::view\+Projection\+Inverted (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a5ee2df09ee42e1ddddf7b6dc3de330e4}
-\hypertarget{class_camera_a14e0e8d92dfcd76624780288caa7de8e}{}\index{Camera@{Camera}!z\+Far@{z\+Far}}
+) const}}\label{class_camera_a5ee2df09ee42e1ddddf7b6dc3de330e4}
+\hypertarget{class_camera_a14e0e8d92dfcd76624780288caa7de8e}{\index{Camera@{Camera}!z\+Far@{z\+Far}}
 \index{z\+Far@{z\+Far}!Camera@{Camera}}
 \subsubsection[{z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Far (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a14e0e8d92dfcd76624780288caa7de8e}
-\hypertarget{class_camera_a898b996f8cc534948886387193bcbc52}{}\index{Camera@{Camera}!z\+Near@{z\+Near}}
+) const}}\label{class_camera_a14e0e8d92dfcd76624780288caa7de8e}
+\hypertarget{class_camera_a898b996f8cc534948886387193bcbc52}{\index{Camera@{Camera}!z\+Near@{z\+Near}}
 \index{z\+Near@{z\+Near}!Camera@{Camera}}
 \subsubsection[{z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Near (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_camera_a898b996f8cc534948886387193bcbc52}
+) const}}\label{class_camera_a898b996f8cc534948886387193bcbc52}
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_camera_a7048a9ea478532b36678d4d2d07c6dd6}{}\index{Camera@{Camera}!m\+\_\+center@{m\+\_\+center}}
+\hypertarget{class_camera_a7048a9ea478532b36678d4d2d07c6dd6}{\index{Camera@{Camera}!m\+\_\+center@{m\+\_\+center}}
 \index{m\+\_\+center@{m\+\_\+center}!Camera@{Camera}}
-\subsubsection[{m\+\_\+center}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+center\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_a7048a9ea478532b36678d4d2d07c6dd6}
-\hypertarget{class_camera_a227e5fd463e3bea92f376d8a9d7cee7e}{}\index{Camera@{Camera}!m\+\_\+eye@{m\+\_\+eye}}
+\subsubsection[{m\+\_\+center}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+center\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_a7048a9ea478532b36678d4d2d07c6dd6}
+\hypertarget{class_camera_a227e5fd463e3bea92f376d8a9d7cee7e}{\index{Camera@{Camera}!m\+\_\+eye@{m\+\_\+eye}}
 \index{m\+\_\+eye@{m\+\_\+eye}!Camera@{Camera}}
-\subsubsection[{m\+\_\+eye}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+eye\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_a227e5fd463e3bea92f376d8a9d7cee7e}
-\hypertarget{class_camera_ae537e927f6648b6ce7054e0ff54442b9}{}\index{Camera@{Camera}!m\+\_\+fovy@{m\+\_\+fovy}}
+\subsubsection[{m\+\_\+eye}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+eye\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_a227e5fd463e3bea92f376d8a9d7cee7e}
+\hypertarget{class_camera_ae537e927f6648b6ce7054e0ff54442b9}{\index{Camera@{Camera}!m\+\_\+fovy@{m\+\_\+fovy}}
 \index{m\+\_\+fovy@{m\+\_\+fovy}!Camera@{Camera}}
-\subsubsection[{m\+\_\+fovy}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+fovy\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_ae537e927f6648b6ce7054e0ff54442b9}
-\hypertarget{class_camera_a62264f74f2fb442e8d94e5c0a44098f0}{}\index{Camera@{Camera}!m\+\_\+is\+Projection\+Invalid@{m\+\_\+is\+Projection\+Invalid}}
+\subsubsection[{m\+\_\+fovy}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+fovy\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_ae537e927f6648b6ce7054e0ff54442b9}
+\hypertarget{class_camera_a62264f74f2fb442e8d94e5c0a44098f0}{\index{Camera@{Camera}!m\+\_\+is\+Projection\+Invalid@{m\+\_\+is\+Projection\+Invalid}}
 \index{m\+\_\+is\+Projection\+Invalid@{m\+\_\+is\+Projection\+Invalid}!Camera@{Camera}}
-\subsubsection[{m\+\_\+is\+Projection\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+Projection\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a62264f74f2fb442e8d94e5c0a44098f0}
-\hypertarget{class_camera_a07a7666a3529761624675f4f1771f1c7}{}\index{Camera@{Camera}!m\+\_\+is\+View\+Invalid@{m\+\_\+is\+View\+Invalid}}
+\subsubsection[{m\+\_\+is\+Projection\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+Projection\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a62264f74f2fb442e8d94e5c0a44098f0}
+\hypertarget{class_camera_a07a7666a3529761624675f4f1771f1c7}{\index{Camera@{Camera}!m\+\_\+is\+View\+Invalid@{m\+\_\+is\+View\+Invalid}}
 \index{m\+\_\+is\+View\+Invalid@{m\+\_\+is\+View\+Invalid}!Camera@{Camera}}
-\subsubsection[{m\+\_\+is\+View\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+View\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a07a7666a3529761624675f4f1771f1c7}
-\hypertarget{class_camera_a34a4ccea1f4f66eb140db34ef7bdf11a}{}\index{Camera@{Camera}!m\+\_\+is\+View\+Projection\+Invalid@{m\+\_\+is\+View\+Projection\+Invalid}}
+\subsubsection[{m\+\_\+is\+View\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+View\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a07a7666a3529761624675f4f1771f1c7}
+\hypertarget{class_camera_a34a4ccea1f4f66eb140db34ef7bdf11a}{\index{Camera@{Camera}!m\+\_\+is\+View\+Projection\+Invalid@{m\+\_\+is\+View\+Projection\+Invalid}}
 \index{m\+\_\+is\+View\+Projection\+Invalid@{m\+\_\+is\+View\+Projection\+Invalid}!Camera@{Camera}}
-\subsubsection[{m\+\_\+is\+View\+Projection\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+View\+Projection\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a34a4ccea1f4f66eb140db34ef7bdf11a}
-\hypertarget{class_camera_a23f540bd415235c5b917322e8a333996}{}\index{Camera@{Camera}!m\+\_\+projection@{m\+\_\+projection}}
+\subsubsection[{m\+\_\+is\+View\+Projection\+Invalid}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::m\+\_\+is\+View\+Projection\+Invalid\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a34a4ccea1f4f66eb140db34ef7bdf11a}
+\hypertarget{class_camera_a23f540bd415235c5b917322e8a333996}{\index{Camera@{Camera}!m\+\_\+projection@{m\+\_\+projection}}
 \index{m\+\_\+projection@{m\+\_\+projection}!Camera@{Camera}}
-\subsubsection[{m\+\_\+projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+projection\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a23f540bd415235c5b917322e8a333996}
-\hypertarget{class_camera_a406e8638e0676defdc5757ed2733e401}{}\index{Camera@{Camera}!m\+\_\+projection\+Inverted@{m\+\_\+projection\+Inverted}}
+\subsubsection[{m\+\_\+projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+projection\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a23f540bd415235c5b917322e8a333996}
+\hypertarget{class_camera_a406e8638e0676defdc5757ed2733e401}{\index{Camera@{Camera}!m\+\_\+projection\+Inverted@{m\+\_\+projection\+Inverted}}
 \index{m\+\_\+projection\+Inverted@{m\+\_\+projection\+Inverted}!Camera@{Camera}}
-\subsubsection[{m\+\_\+projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+projection\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a406e8638e0676defdc5757ed2733e401}
-\hypertarget{class_camera_af30016ca4d7348e14462f3147add42ec}{}\index{Camera@{Camera}!m\+\_\+up@{m\+\_\+up}}
+\subsubsection[{m\+\_\+projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+projection\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a406e8638e0676defdc5757ed2733e401}
+\hypertarget{class_camera_af30016ca4d7348e14462f3147add42ec}{\index{Camera@{Camera}!m\+\_\+up@{m\+\_\+up}}
 \index{m\+\_\+up@{m\+\_\+up}!Camera@{Camera}}
-\subsubsection[{m\+\_\+up}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+up\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_af30016ca4d7348e14462f3147add42ec}
-\hypertarget{class_camera_ac11306608e9187c2ff52e0b949cdc5b3}{}\index{Camera@{Camera}!m\+\_\+view@{m\+\_\+view}}
+\subsubsection[{m\+\_\+up}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D$\ast$ Camera\+::m\+\_\+up\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_af30016ca4d7348e14462f3147add42ec}
+\hypertarget{class_camera_ac11306608e9187c2ff52e0b949cdc5b3}{\index{Camera@{Camera}!m\+\_\+view@{m\+\_\+view}}
 \index{m\+\_\+view@{m\+\_\+view}!Camera@{Camera}}
-\subsubsection[{m\+\_\+view}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_ac11306608e9187c2ff52e0b949cdc5b3}
-\hypertarget{class_camera_a06be12235980a27d0e529de166117b3e}{}\index{Camera@{Camera}!m\+\_\+view\+Inverted@{m\+\_\+view\+Inverted}}
+\subsubsection[{m\+\_\+view}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_ac11306608e9187c2ff52e0b949cdc5b3}
+\hypertarget{class_camera_a06be12235980a27d0e529de166117b3e}{\index{Camera@{Camera}!m\+\_\+view\+Inverted@{m\+\_\+view\+Inverted}}
 \index{m\+\_\+view\+Inverted@{m\+\_\+view\+Inverted}!Camera@{Camera}}
-\subsubsection[{m\+\_\+view\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a06be12235980a27d0e529de166117b3e}
-\hypertarget{class_camera_ac6968a6be1441d8947d3376e983c592e}{}\index{Camera@{Camera}!m\+\_\+viewport@{m\+\_\+viewport}}
+\subsubsection[{m\+\_\+view\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a06be12235980a27d0e529de166117b3e}
+\hypertarget{class_camera_ac6968a6be1441d8947d3376e983c592e}{\index{Camera@{Camera}!m\+\_\+viewport@{m\+\_\+viewport}}
 \index{m\+\_\+viewport@{m\+\_\+viewport}!Camera@{Camera}}
-\subsubsection[{m\+\_\+viewport}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size$\ast$ Camera\+::m\+\_\+viewport\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_ac6968a6be1441d8947d3376e983c592e}
-\hypertarget{class_camera_a00e4c0e94057379c97e8c71fd69995f7}{}\index{Camera@{Camera}!m\+\_\+view\+Projection@{m\+\_\+view\+Projection}}
+\subsubsection[{m\+\_\+viewport}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Size$\ast$ Camera\+::m\+\_\+viewport\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_ac6968a6be1441d8947d3376e983c592e}
+\hypertarget{class_camera_a00e4c0e94057379c97e8c71fd69995f7}{\index{Camera@{Camera}!m\+\_\+view\+Projection@{m\+\_\+view\+Projection}}
 \index{m\+\_\+view\+Projection@{m\+\_\+view\+Projection}!Camera@{Camera}}
-\subsubsection[{m\+\_\+view\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Projection\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a00e4c0e94057379c97e8c71fd69995f7}
-\hypertarget{class_camera_a29e1c120c55810920954e335eb60e84e}{}\index{Camera@{Camera}!m\+\_\+view\+Projection\+Inverted@{m\+\_\+view\+Projection\+Inverted}}
+\subsubsection[{m\+\_\+view\+Projection}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Projection\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a00e4c0e94057379c97e8c71fd69995f7}
+\hypertarget{class_camera_a29e1c120c55810920954e335eb60e84e}{\index{Camera@{Camera}!m\+\_\+view\+Projection\+Inverted@{m\+\_\+view\+Projection\+Inverted}}
 \index{m\+\_\+view\+Projection\+Inverted@{m\+\_\+view\+Projection\+Inverted}!Camera@{Camera}}
-\subsubsection[{m\+\_\+view\+Projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Projection\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}\label{class_camera_a29e1c120c55810920954e335eb60e84e}
-\hypertarget{class_camera_aa1aaffbfe1f859ff06ae57f7c1faa208}{}\index{Camera@{Camera}!m\+\_\+z\+Far@{m\+\_\+z\+Far}}
+\subsubsection[{m\+\_\+view\+Projection\+Inverted}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Matrix4x4$\ast$ Camera\+::m\+\_\+view\+Projection\+Inverted\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}}\label{class_camera_a29e1c120c55810920954e335eb60e84e}
+\hypertarget{class_camera_aa1aaffbfe1f859ff06ae57f7c1faa208}{\index{Camera@{Camera}!m\+\_\+z\+Far@{m\+\_\+z\+Far}}
 \index{m\+\_\+z\+Far@{m\+\_\+z\+Far}!Camera@{Camera}}
-\subsubsection[{m\+\_\+z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+z\+Far\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_aa1aaffbfe1f859ff06ae57f7c1faa208}
-\hypertarget{class_camera_ae77d866ea9d0aa75853c8243154fca82}{}\index{Camera@{Camera}!m\+\_\+z\+Near@{m\+\_\+z\+Near}}
+\subsubsection[{m\+\_\+z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+z\+Far\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_aa1aaffbfe1f859ff06ae57f7c1faa208}
+\hypertarget{class_camera_ae77d866ea9d0aa75853c8243154fca82}{\index{Camera@{Camera}!m\+\_\+z\+Near@{m\+\_\+z\+Near}}
 \index{m\+\_\+z\+Near@{m\+\_\+z\+Near}!Camera@{Camera}}
-\subsubsection[{m\+\_\+z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+z\+Near\hspace{0.3cm}{\ttfamily [protected]}}\label{class_camera_ae77d866ea9d0aa75853c8243154fca82}
-
-
-\subsection{Property Documentation}
-\hypertarget{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}{}\index{Camera@{Camera}!center@{center}}
-\index{center@{center}!Camera@{Camera}}
-\subsubsection[{center}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Camera\+::center\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_aacb30cc51aef5e3f98db5b51e3a4ef3b}
-\hypertarget{class_camera_aac5808300c4e00d266da238ad35b1a1b}{}\index{Camera@{Camera}!eye@{eye}}
-\index{eye@{eye}!Camera@{Camera}}
-\subsubsection[{eye}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Camera\+::eye\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_aac5808300c4e00d266da238ad35b1a1b}
-\hypertarget{class_camera_a6cba4066109137fb0d23ee207205927c}{}\index{Camera@{Camera}!fovy@{fovy}}
-\index{fovy@{fovy}!Camera@{Camera}}
-\subsubsection[{fovy}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::fovy\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a6cba4066109137fb0d23ee207205927c}
-\hypertarget{class_camera_a1e8c173f6a47c5ebea0e91aefea50b51}{}\index{Camera@{Camera}!position@{position}}
-\index{position@{position}!Camera@{Camera}}
-\subsubsection[{position}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Camera\+::position\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a1e8c173f6a47c5ebea0e91aefea50b51}
-\hypertarget{class_camera_a86995a93a125a9d9941f10144c4c398e}{}\index{Camera@{Camera}!up@{up}}
-\index{up@{up}!Camera@{Camera}}
-\subsubsection[{up}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Vector3\+D \& Camera\+::up\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a86995a93a125a9d9941f10144c4c398e}
-\hypertarget{class_camera_a7745654f918533ddc5e285bcf630e934}{}\index{Camera@{Camera}!view\+Direction@{view\+Direction}}
-\index{view\+Direction@{view\+Direction}!Camera@{Camera}}
-\subsubsection[{view\+Direction}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Vector3\+D Camera\+::view\+Direction\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a7745654f918533ddc5e285bcf630e934}
-\hypertarget{class_camera_a56b601feb6a54eee0bce1910cdeac291}{}\index{Camera@{Camera}!viewport@{viewport}}
-\index{viewport@{viewport}!Camera@{Camera}}
-\subsubsection[{viewport}]{\setlength{\rightskip}{0pt plus 5cm}const Q\+Size \& Camera\+::viewport\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a56b601feb6a54eee0bce1910cdeac291}
-\hypertarget{class_camera_a6290469f972a5903c805725db563f41f}{}\index{Camera@{Camera}!z\+Far@{z\+Far}}
-\index{z\+Far@{z\+Far}!Camera@{Camera}}
-\subsubsection[{z\+Far}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Far\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a6290469f972a5903c805725db563f41f}
-\hypertarget{class_camera_a1db2166635ff27594eda3a23130b66ac}{}\index{Camera@{Camera}!z\+Near@{z\+Near}}
-\index{z\+Near@{z\+Near}!Camera@{Camera}}
-\subsubsection[{z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::z\+Near\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}\label{class_camera_a1db2166635ff27594eda3a23130b66ac}
+\subsubsection[{m\+\_\+z\+Near}]{\setlength{\rightskip}{0pt plus 5cm}float Camera\+::m\+\_\+z\+Near\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_camera_ae77d866ea9d0aa75853c8243154fca82}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{camera_8h}{camera.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{camera_8cpp}{camera.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{camera_8h}{camera.\+h}\item 
+\hyperlink{camera_8cpp}{camera.\+cpp}\end{DoxyCompactItemize}

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['up',['up',['../class_camera.html#a86995a93a125a9d9941f10144c4c398e',1,'Camera::up()'],['../class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193',1,'Camera::up() const ']]],
+  ['up',['up',['../class_camera.html#a86a19bc4ac24604bb5c0b3f4b6dad193',1,'Camera']]],
   ['update',['update',['../class_cube_map.html#a5d772f8a6b43356593dc909a704354eb',1,'CubeMap::update()'],['../class_environment_map.html#a700a5d20db46b88e2ad09675cfeb5a7f',1,'EnvironmentMap::update()'],['../class_game_lost_ray.html#a417d814372891fe7595a7e745b7a9f0f',1,'GameLostRay::update()'],['../class_light_ray.html#acf06a71a307433fa5b220baccf809e64',1,'LightRay::update()'],['../class_scene.html#a0c9213091fb06643b95801d2b406878f',1,'Scene::update()']]],
   ['updatecameraforpointonray',['updateCameraForPointOnRay',['../class_player.html#a557b70acbd3cb1f71218390f7e90105c',1,'Player']]],
   ['updatedata',['updateData',['../class_gem_renderer.html#ada5ea2f54e918b16879d378cf84dab42',1,'GemRenderer']]],

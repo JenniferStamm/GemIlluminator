@@ -1,8 +1,9 @@
-\hypertarget{class_scene_bounds}{}\section{Scene\+Bounds Class Reference}
+\hypertarget{class_scene_bounds}{\section{Scene\+Bounds Class Reference}
 \label{class_scene_bounds}\index{Scene\+Bounds@{Scene\+Bounds}}
+}
 
 
-The \hyperlink{class_scene_bounds}{Scene\+Bounds} class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.  The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something. Furthermore the collision with scene bounds can be processed in a way, that the player will loose if the player hits the bounds.  
+The \hyperlink{class_scene_bounds}{Scene\+Bounds} class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.  The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something. Furthermore the collision with scene bounds can be processed in a way, that the player will lose if the player hits the bounds.  
 
 
 
@@ -22,26 +23,26 @@ Inheritance diagram for Scene\+Bounds\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Creates new \hyperlink{class_scene_bounds}{Scene\+Bounds}. The extent of bounds is taken from config file. \end{DoxyCompactList}\item 
 virtual \hyperlink{class_scene_bounds_a625ef0d42c9133022a636ba5a57ad840}{$\sim$\+Scene\+Bounds} ()
 \item 
-void \hyperlink{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}{set\+Position} (const Q\+Vector3\+D \&\hyperlink{class_abstract_gem_accd665898ada9bc95c886bfbcf56d9a8}{position}) override
+void \hyperlink{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}{set\+Position} (const Q\+Vector3\+D \&position) override
 \begin{DoxyCompactList}\small\item\em Override \hyperlink{class_abstract_gem_aaf11fa4b522dc334ebed4f2d031a3e2b}{Abstract\+Gem\+::set\+Position()} in order to forbid moving the bounds around. \end{DoxyCompactList}\item 
-void \hyperlink{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}{set\+Rotation} (const Q\+Quaternion \&\hyperlink{class_abstract_gem_a6d85928549d64d369864716dbe2c716b}{rotation}) override
+void \hyperlink{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}{set\+Rotation} (const Q\+Quaternion \&rotation) override
 \begin{DoxyCompactList}\small\item\em set\+Rotation Override \hyperlink{class_abstract_gem_afce4d09f74fec117d27b11a220eee6b9}{Abstract\+Gem\+::set\+Rotation()} in order to forbid rotating the bounds. \end{DoxyCompactList}\item 
-\hyperlink{class_q_list}{Q\+List}$<$ \hyperlink{class_light_ray}{Light\+Ray} $\ast$ $>$ \hyperlink{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}{process\+Ray\+Intersection} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, \hyperlink{class_scene}{Scene} $\ast$scene) override
-\begin{DoxyCompactList}\small\item\em Override \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstract\+Gem\+::process\+Ray\+Intersection()} in order to ensure the player looses hitting the bounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{singleton_q_list}{Q\+List}$<$ \hyperlink{class_light_ray}{Light\+Ray} $\ast$ $>$ \hyperlink{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}{process\+Ray\+Intersection} (const \hyperlink{class_light_ray}{Light\+Ray} \&ray, \hyperlink{class_scene}{Scene} $\ast$scene) override
+\begin{DoxyCompactList}\small\item\em Override \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstract\+Gem\+::process\+Ray\+Intersection()} in order to ensure the player loses hitting the bounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-The \hyperlink{class_scene_bounds}{Scene\+Bounds} class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.  The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something. Furthermore the collision with scene bounds can be processed in a way, that the player will loose if the player hits the bounds. 
+The \hyperlink{class_scene_bounds}{Scene\+Bounds} class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.  The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something. Furthermore the collision with scene bounds can be processed in a way, that the player will lose if the player hits the bounds. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_scene_bounds_a26e24012c6a45d3412745828b037dae4}{}\index{Scene\+Bounds@{Scene\+Bounds}!Scene\+Bounds@{Scene\+Bounds}}
+\hypertarget{class_scene_bounds_a26e24012c6a45d3412745828b037dae4}{\index{Scene\+Bounds@{Scene\+Bounds}!Scene\+Bounds@{Scene\+Bounds}}
 \index{Scene\+Bounds@{Scene\+Bounds}!Scene\+Bounds@{Scene\+Bounds}}
 \subsubsection[{Scene\+Bounds}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Bounds\+::\+Scene\+Bounds (
 \begin{DoxyParamCaption}
 \item[{Q\+Object $\ast$}]{parent = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_scene_bounds_a26e24012c6a45d3412745828b037dae4}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_scene_bounds_a26e24012c6a45d3412745828b037dae4}
 
 
 Creates new \hyperlink{class_scene_bounds}{Scene\+Bounds}. The extent of bounds is taken from config file. 
@@ -51,27 +52,27 @@ Creates new \hyperlink{class_scene_bounds}{Scene\+Bounds}. The extent of bounds 
 {\em parent} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_scene_bounds_a625ef0d42c9133022a636ba5a57ad840}{}\index{Scene\+Bounds@{Scene\+Bounds}!````~Scene\+Bounds@{$\sim$\+Scene\+Bounds}}
+\hypertarget{class_scene_bounds_a625ef0d42c9133022a636ba5a57ad840}{\index{Scene\+Bounds@{Scene\+Bounds}!````~Scene\+Bounds@{$\sim$\+Scene\+Bounds}}
 \index{````~Scene\+Bounds@{$\sim$\+Scene\+Bounds}!Scene\+Bounds@{Scene\+Bounds}}
 \subsubsection[{$\sim$\+Scene\+Bounds}]{\setlength{\rightskip}{0pt plus 5cm}Scene\+Bounds\+::$\sim$\+Scene\+Bounds (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_scene_bounds_a625ef0d42c9133022a636ba5a57ad840}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_scene_bounds_a625ef0d42c9133022a636ba5a57ad840}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}{}\index{Scene\+Bounds@{Scene\+Bounds}!process\+Ray\+Intersection@{process\+Ray\+Intersection}}
+\hypertarget{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}{\index{Scene\+Bounds@{Scene\+Bounds}!process\+Ray\+Intersection@{process\+Ray\+Intersection}}
 \index{process\+Ray\+Intersection@{process\+Ray\+Intersection}!Scene\+Bounds@{Scene\+Bounds}}
 \subsubsection[{process\+Ray\+Intersection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Q\+List}$<$ {\bf Light\+Ray} $\ast$ $>$ Scene\+Bounds\+::process\+Ray\+Intersection (
 \begin{DoxyParamCaption}
 \item[{const {\bf Light\+Ray} \&}]{ray, }
 \item[{{\bf Scene} $\ast$}]{scene}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_scene_bounds_aeac6aafe6081e8efd6b4180e86346dc0}
 
 
-Override \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstract\+Gem\+::process\+Ray\+Intersection()} in order to ensure the player looses hitting the bounds. 
+Override \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstract\+Gem\+::process\+Ray\+Intersection()} in order to ensure the player loses hitting the bounds. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -81,19 +82,19 @@ Override \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstra
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{class_q_list}{Q\+List} containing only a \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray}, so the player will loose as soon as the player tries to move on returned ray. 
+Returns a \hyperlink{singleton_q_list}{Q\+List} containing only a \hyperlink{class_game_lost_ray}{Game\+Lost\+Ray}, so the player will loose as soon as the player tries to move on returned ray. 
 \end{DoxyReturn}
 
 
 Reimplemented from \hyperlink{class_abstract_gem_ab4f3c6d38acbe59a610c67588e4944d7}{Abstract\+Gem}.
 
-\hypertarget{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}{}\index{Scene\+Bounds@{Scene\+Bounds}!set\+Position@{set\+Position}}
+\hypertarget{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}{\index{Scene\+Bounds@{Scene\+Bounds}!set\+Position@{set\+Position}}
 \index{set\+Position@{set\+Position}!Scene\+Bounds@{Scene\+Bounds}}
 \subsubsection[{set\+Position}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Bounds\+::set\+Position (
 \begin{DoxyParamCaption}
 \item[{const Q\+Vector3\+D \&}]{position}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_scene_bounds_a26db5e7928d3ac7d0257dc52e1ed4e77}
 
 
 Override \hyperlink{class_abstract_gem_aaf11fa4b522dc334ebed4f2d031a3e2b}{Abstract\+Gem\+::set\+Position()} in order to forbid moving the bounds around. 
@@ -107,13 +108,13 @@ Override \hyperlink{class_abstract_gem_aaf11fa4b522dc334ebed4f2d031a3e2b}{Abstra
 
 Reimplemented from \hyperlink{class_abstract_gem_aaf11fa4b522dc334ebed4f2d031a3e2b}{Abstract\+Gem}.
 
-\hypertarget{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}{}\index{Scene\+Bounds@{Scene\+Bounds}!set\+Rotation@{set\+Rotation}}
+\hypertarget{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}{\index{Scene\+Bounds@{Scene\+Bounds}!set\+Rotation@{set\+Rotation}}
 \index{set\+Rotation@{set\+Rotation}!Scene\+Bounds@{Scene\+Bounds}}
 \subsubsection[{set\+Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void Scene\+Bounds\+::set\+Rotation (
 \begin{DoxyParamCaption}
 \item[{const Q\+Quaternion \&}]{rotation}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}\label{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_scene_bounds_a2e7b2f2e66700b414584ca6b407faf72}
 
 
 set\+Rotation Override \hyperlink{class_abstract_gem_afce4d09f74fec117d27b11a220eee6b9}{Abstract\+Gem\+::set\+Rotation()} in order to forbid rotating the bounds. 
@@ -131,5 +132,5 @@ Reimplemented from \hyperlink{class_abstract_gem_afce4d09f74fec117d27b11a220eee6
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scenebounds_8h}{scenebounds.\+h}\item 
-Game-\/\+Programming-\/\+W\+S2014/gem\+Illuminator/\hyperlink{scenebounds_8cpp}{scenebounds.\+cpp}\end{DoxyCompactItemize}
+\hyperlink{scenebounds_8h}{scenebounds.\+h}\item 
+\hyperlink{scenebounds_8cpp}{scenebounds.\+cpp}\end{DoxyCompactItemize}

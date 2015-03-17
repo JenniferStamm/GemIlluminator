@@ -2,7 +2,7 @@ var searchData=
 [
   ['scale',['scale',['../class_abstract_gem.html#aadc1c5925331b573d9aba6c2451c9348',1,'AbstractGem::scale()'],['../class_gem_data.html#a39ef099801a421c7b7ffbbd920084eb0',1,'GemData::scale()']]],
   ['scalechanged',['scaleChanged',['../class_abstract_gem.html#a7e6bfe659f09bc68222211a58c365177',1,'AbstractGem']]],
-  ['scene',['Scene',['../class_scene.html#a93f88c89ce94ad70a668225522818b1e',1,'Scene::Scene()'],['../class_light_ray.html#a7ad5ff6f8863759c2183c95ba8914dfc',1,'LightRay::scene()'],['../class_painter_q_m_l.html#a6694ad2cfda4aefaffc0a3151a2b09dd',1,'PainterQML::scene()']]],
+  ['scene',['scene',['../class_light_ray.html#a7ad5ff6f8863759c2183c95ba8914dfc',1,'LightRay::scene()'],['../class_painter_q_m_l.html#a6694ad2cfda4aefaffc0a3151a2b09dd',1,'PainterQML::scene()'],['../class_scene.html#a93f88c89ce94ad70a668225522818b1e',1,'Scene::Scene()']]],
   ['scenebounds',['SceneBounds',['../class_scene_bounds.html#a26e24012c6a45d3412745828b037dae4',1,'SceneBounds']]],
   ['scenechanged',['sceneChanged',['../class_light_ray.html#aeea833ba9fe0fe8a3810ba002c3dbec4',1,'LightRay::sceneChanged()'],['../class_painter_q_m_l.html#a5fce3441beea885f9ba2a70b2f21f0ae',1,'PainterQML::sceneChanged()']]],
   ['scenerenderer',['SceneRenderer',['../class_scene_renderer.html#a12f72dc9b22e99ecdccaec38b6d2d512',1,'SceneRenderer']]],
