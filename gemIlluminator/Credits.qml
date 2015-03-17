@@ -50,7 +50,7 @@ Rectangle {
 
         ParentCenteredText {
             font.pointSize: 19
-            text: "Mentor"
+            text: "Mentors"
         }
 
         ParentCenteredText {
