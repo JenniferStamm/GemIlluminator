@@ -13,9 +13,9 @@ enum class GemType;
 class Triangle;
 
 /**
- * @brief The GemData class stores all required information to describe a AbstractGem.
- * @detail The adventage of GemData is, that it is possible to assign, copy, compare and qHash() this class.
- * Therefore it is possible to store it in most Qt-containers.
+ * @brief The GemData class stores all required information to describe an AbstractGem.
+ * @detail The advantage of GemData is, that it is possible to assign, copy, compare and qHash() this class.
+ * Therefore, it is possible to store it in most Qt-containers.
  */
 class GemData
 {

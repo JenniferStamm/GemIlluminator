@@ -21,7 +21,7 @@ enum class SoundEffects {
 
 /**
  * @brief The Soundmanager class provides several sounds which can be played.
- * @detail The Soundmanager manages the required ressources.
+ * @detail The Soundmanager manages the required resources.
  */
 class Soundmanager : public QObject
 {
@@ -33,7 +33,7 @@ public:
     virtual ~Soundmanager();
 
     /**
-     * @brief Drops current instance of our Soundmanager
+     * @brief Drops current instance of Soundmanager
      */
     static void drop();
     /**
@@ -53,7 +53,7 @@ public:
     void playCollisionSound();
     /**
      * @brief Sets the collision sound that will be played next time playCollisionSound() is called
-     * @param effect The choosen SoundEffect
+     * @param effect The chosen SoundEffect
      */
     void setCollisionSound(SoundEffects effect);
     /**

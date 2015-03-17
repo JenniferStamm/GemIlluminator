@@ -12,7 +12,7 @@ class Scene;
 /**
  * @brief The SceneBounds class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.
  * @detail The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something.
- * Furthermore the collision with scene bounds can be processed in a way, that the player will loose if the player hits the bounds.
+ * Furthermore the collision with scene bounds can be processed in a way, that the player will lose if the player hits the bounds.
  */
 class SceneBounds : public AbstractGem
 {
@@ -38,7 +38,7 @@ public:
     void setRotation(const QQuaternion &rotation) override;
 
     /**
-     * @brief Override AbstractGem::processRayIntersection() in order to ensure the player looses hitting the bounds.
+     * @brief Override AbstractGem::processRayIntersection() in order to ensure the player loses hitting the bounds.
      * @param ray The ray hitting the bounds.
      * @param scene The scene containing all lightrays.
      * @return Returns a QList containing only a GameLostRay, so the player will loose as soon as the player tries to move on returned ray.

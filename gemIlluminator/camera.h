@@ -59,32 +59,32 @@ signals:
 
 public slots:
     /**
-     * @brief Set position of camera to given value. center() will be changed in order to keep viewDirection() the same.
+     * @brief Sets position of camera to given value. center() will be changed in order to keep viewDirection() the same.
      * @param position Camera will be set to this position.
      */
     void setPosition(const QVector3D &position);
     /**
-     * @brief Set viewDirection of camera to given vector. center() will be changed in order to
+     * @brief Sets viewDirection of camera to given vector. center() will be changed in order to
      * @param viewDirection Direction the camera should look.
      */
     void setViewDirection(const QVector3D &viewDirection);
     /**
-     * @brief Set eye (position) of camera to given value. center() will not be changed, so viewDirection() is set to center() - eye()
+     * @brief Sets eye (position) of camera to given value. center() will not be changed, so viewDirection() is set to center() - eye()
      * @param eye Camera will be set to this position.
      */
     void setEye(const QVector3D &eye);
     /**
-     * @brief Set center of camera to given value. viewDirection() will be set to new center() - eye().
+     * @brief Sets center of camera to given value. viewDirection() will be set to new center() - eye().
      * @param center Position the camera is looking to.
      */
     void setCenter(const QVector3D &center);
     /**
-     * @brief Set up-vector of camera.
+     * @brief Sets up-vector of camera.
      * @param up New up vector.
      */
     void setUp(const QVector3D &up);
     /**
-     * @brief Convinence method to specify view with one method call
+     * @brief Convenience method to specify view with one method call
      * @param eye See setEye()
      * @param center See setCenter()
      * @param up See setUp()

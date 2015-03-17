@@ -33,8 +33,8 @@ public:
     virtual ~SceneRenderer();
 
     /**
-     * @brief Clears all used ressources.
-     * @param gl QOpenGLFunctions which can be used by SceneRenderer to release GPU ressources
+     * @brief Clears all used resources.
+     * @param gl QOpenGLFunctions which can be used by SceneRenderer to release GPU resources
      */
     void cleanup(QOpenGLFunctions &gl);
 
@@ -45,20 +45,20 @@ public:
     void synchronizeGeometries(QList<AbstractGem*> geometries);
 
     /**
-     * @brief Synchronizes lightrays between gui and render thread.
+     * @brief Synchronizes light rays between gui and render thread.
      * @param rootLightRay This and all of its successors will be synchronized.
      */
     void synchronizeLightRays(LightRay *rootLightRay);
 
     /**
-     * @brief Paint the previous synchronized gems using specified program.
+     * @brief Paints the previous synchronized gems using specified program.
      * @param gl QOpenGLFunctions which will be used for any gl-call
      * @param viewProjection The viewprojection matrix which will be used.
      * @param shaderProgram The specified shaderprogram used for rendering.
      */
     void paintGems(QOpenGLFunctions &gl, QOpenGLShaderProgram &shaderProgram);
     /**
-     * @brief Paints previous synchronized lightrays using specified program.
+     * @brief Paints previous synchronized light rays using specified program.
      * @param gl QOpenGLFunctions which will be used for any gl-call
      * @param viewProjection The viewprojection matrix which will be used.
      * @param shaderProgram The specified shaderprogram used for rendering.
@@ -70,13 +70,13 @@ public slots:
      * @brief paint Paints the previous synchronized scene using specified programs.
      * @param gl QOpenGLFunctions which will be used for any gl-call
      * @param viewProjection The viewprojection matrix which will be used.
-     * @param shaderPrograms A QHash containing diffrent shader programs for different components of scene (lightrays and gems)
+     * @param shaderPrograms A QHash containing different shader programs for different components of scene (lightrays and gems)
      */
     void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
 
 signals:
     /**
-     * @brief This signal is emitted after initialization of all ressources is done.
+     * @brief This signal is emitted after initialization of all resources is done.
      */
     void initalizationDone();
 

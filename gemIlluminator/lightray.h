@@ -16,9 +16,9 @@ class LightRayData;
 class Scene;
 
 /**
- * @brief The LightRay class describes our lightrays send into Scene.
- * @detail Because we send our LightRays into Scene right after creation, they are more lines but rays.
- * Our rays are organized as a tree, a ray owns all of its successors().
+ * @brief The LightRay class describes the lightrays sent into Scene.
+ * @detail Because LightRays are sent into Scene right after creation, they are more lines but rays.
+ * Rays are organized as a tree, a ray owns all of its successors().
  * Accidentally most of our game logic is done within LightRay::update().
  */
 class LightRay : public QObject

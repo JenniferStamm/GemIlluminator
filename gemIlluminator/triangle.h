@@ -6,7 +6,7 @@ class QVector3D;
 
 /**
  * @brief The Triangle class represents a triangle in three dimensional space.
- * @details Mostly this is a data class storing the vertices and is easy copiable. Also some helper functions are implemented.
+ * @details Mostly this is a data class storing the vertices and is easy copyable. Also, some helper functions are implemented.
  */
 class Triangle
 {
@@ -52,7 +52,7 @@ public:
     const QVector3D &normal() const;
 
     /**
-     * @brief Convienence method. All vertices are returned in QList
+     * @brief Convenience method. All vertices are returned in QList
      * @return QList of vertices. Containing a(), b() and c() in this order.
      */
     QList<QVector3D> vertices() const;
