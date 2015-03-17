@@ -99,4 +99,19 @@ html, body {
     text-shadow: none;
     font-size: 22px; }
 
+.link-button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #0099cc;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  min-width: 200px; }
+
+.link-info {
+  padding-top: 45px;
+  display: block;
+  font-size: 22px; }
+
 /*# sourceMappingURL=style.css.map */

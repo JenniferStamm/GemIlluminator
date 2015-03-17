@@ -189,16 +189,17 @@
 
 	<div class="section">
 		<div class="container doc-download">
-			<div class="row">
+			<div id="get-it" class="row">
 				<div class="col-md-6">
-					Get the game on Github:
-					<a href="https://github.com/JenniferStamm/Game-Programming-WS2014" target="blank">Github</a>
+					<p class="link-info">Get the game on Github:</p>
+					<a class="link-button" href="https://github.com/JenniferStamm/Game-Programming-WS2014" target="blank">Github</a>
 				</div>
 				<div class="col-md-6">
-					Take a look at our Documentation:
-					<a href="doc/doxygen/html/index.html" target="blank">Documentation</a>
+					<p class="link-info">Take a look at our Documentation:</p>
+					<a class="link-button" href="doc/doxygen/html/index.html" target="blank">Documentation</a>
 				</div>
 			</div>
+			<div id="cube-container" class="row container"></div>
 		</div>
 	</div>
 
@@ -212,6 +213,75 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="owlcarousel/owl.carousel.min.js"></script>
 <script type="text/javascript" src="fullpagescroll/jquery.fullPage.min.js"></script>
+
+<script type="text/javascript" src="lib/three.min.js"></script>
+<script type="x-shader/x-vertex" id="vertexShader">
+    varying vec3 v_color;
+    varying vec3 v_eyeVector;
+    varying vec3 v_normal;
+    varying vec3 v_vertex;
+
+    void main()
+    {
+        v_color = vec3(0.2, 0.5, 0.2);
+        v_eyeVector = position - cameraPosition;
+        v_normal = normal;
+        v_vertex = position;
+        
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+
+</script>
+<script type="x-shader/x-fragment" id="fragmentShader">
+    uniform samplerCube envMap;
+    uniform samplerCube gemStructureMap;
+    uniform samplerCube rainbowMap;
+    
+    varying vec3 v_color;
+    varying vec3 v_eyeVector;
+    varying vec3 v_normal;
+    varying vec3 v_vertex;
+    
+    //const vec4 lightDirection = vec4(4.0, 8.0, 4.0, 1.0);
+    //const vec3 specularColor = vec3(1.0, 1.0, 1.0);
+    //const float brightness = 0.8;
+    //const float shininess = 16.0;
+    //const float smoothnessFactor = 0.5;
+    
+    void main()
+    {
+        vec3 eyeVector = normalize(v_eyeVector);
+        
+        vec3 refractVector1 = refract(eyeVector, v_normal, 0.9);
+        
+        vec3 randomVector = normalize(vec3(mod(367.0 * 289.0, 1021.0)));
+        
+        refractVector1 = reflect(refractVector1, randomVector);
+
+        vec3 refractColor = textureCube(gemStructureMap, v_vertex).xyz *  0.8;
+        refractColor += textureCube(rainbowMap, refractVector1).xyz;
+        
+        vec3 r_face = reflect(eyeVector, v_normal);
+        
+        float dotResult = dot(r_face, normalize(vec3(4.0, 8.0, 4.0)));
+        float RdotL = clamp(dotResult, 0.0, 1.0);
+        vec3 specular = pow(RdotL, 16.0) * vec3(1.0, 1.0, 1.0);
+        
+        
+        float fresnel = pow(1.0 - clamp(dot(v_normal, eyeVector), 0.0, 1.0), 2.0);
+
+        vec3 envmapAccess = mix(refractColor, r_face, vec3(0.5));
+        vec3 environmentColor = textureCube(envMap, envmapAccess).xyz;
+        vec3 rainbowColor = textureCube(rainbowMap, r_face).xyz;
+
+        environmentColor = mix(environmentColor, rainbowColor, vec3(0.1)) * fresnel;
+        environmentColor += clamp(specular, 0.0, 1.0);
+        
+        vec3 color = mix(environmentColor, textureCube(gemStructureMap, v_vertex).xyz, vec3(0.1));
+        gl_FragColor = vec4(mix(color, v_color, 0.3), 1.0);
+    }
+</script>
+<script src="js/gemrenderer.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#fullpage').fullpage({
