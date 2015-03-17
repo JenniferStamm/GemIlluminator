@@ -161,9 +161,9 @@ Scene {
         onTriggered: {
             if (player.velocity <= 10.0) {
                 player.velocity += 0.1
-               if (player.velocity > 10.0) {
-                   console.log("Final velocity reached!")
-               }
+                if (player.velocity > 10.0) {
+                    console.log("Final velocity reached!")
+                }
             }
         }
     }
