@@ -1,7 +1,6 @@
 $standardBlue: #0099cc;
 $backgroundBlue: #e4eeff;
 $highlightBlue: #33b5e5;
-$fontBlue: #75d5f5;
 
 html, body {
 	font-size: 18px;
@@ -185,4 +184,18 @@ html, body {
 	padding-top: 45px;
 	display: block;
 	font-size: 22px;
+}
+
+.contact {
+	text-align: center;
+
+	h1 {
+		font-size: 40px;
+	}
+
+	p {
+		font-size: 20px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }

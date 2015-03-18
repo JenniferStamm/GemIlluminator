@@ -123,4 +123,13 @@ html, body {
   display: block;
   font-size: 22px; }
 
+.contact {
+  text-align: center; }
+  .contact h1 {
+    font-size: 40px; }
+  .contact p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+
 /*# sourceMappingURL=style.css.map */
