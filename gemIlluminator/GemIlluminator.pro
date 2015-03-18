@@ -91,9 +91,14 @@ win32 {
     install_highscore.files = assets/highscore.dat
 
     INSTALLS += install_config install_highscore
+
+    RC_ICONS += data/icon.ico
 }
 
 android {
     QT += androidextras
 }
+
+DISTFILES += \
+    data/icon.ico
 
