@@ -1,7 +1,6 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <QMap>
 #include <QQuickItem>
 #include <QQmlListProperty>
 
@@ -12,61 +11,67 @@ class QMatrix4x4;
 class AbstractGem;
 class Camera;
 class LightRay;
-class LightRayRenderer;
 class Navigation;
 class SceneBounds;
-class SceneRenderer;
 class Triangle;
 
-enum class ShaderPrograms {
-    GemProgram,
-    LighRayProgram,
-    EnvMapProgram
-};
-
+/**
+ * @brief The Scene class provides access to geometry and collision detection methods.
+ * Furthermore, some game logic is implemented, so the scene holds the player, the gem influenced by player and cameras.
+ */
 class Scene : public QQuickItem
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometries NOTIFY geometriesChanged)
+    Q_PROPERTY(QQmlListProperty<AbstractGem> geometries READ geometriesQML NOTIFY geometriesChanged)
     Q_PROPERTY(Camera* camera READ camera WRITE setCamera)
+    Q_PROPERTY(Camera* previewCamera READ previewCamera WRITE setPreviewCamera)
     Q_PROPERTY(LightRay* rootLightRay READ rootLightRay WRITE setRootLightRay NOTIFY rootLightRayChanged)
 
 public:
+    /**
+     * @brief Creates a new scene without any further information.
+     * @detail Before use scene you have to set geometries(), rootLightRay(), camera(), previewCamera() and registerNavigation()
+     * @param parent
+     */
     explicit Scene(QQuickItem *parent = 0);
     virtual ~Scene();
 
-    QQmlListProperty<AbstractGem> geometries();
+    /**
+     * @brief Allow QML classes to read our gems.
+     * @detail Initially it was planned to manipulate our gems from QML classes, but we did not get it to work.
+     * Now we create it over a JSON-object and set it once, which works. All in all gem manipulation from QML
+     * is magic and we do not know why and how it really works.
+     * @return Returns a List of Gems which is supported by QML.
+     */
+    QQmlListProperty<AbstractGem> geometriesQML();
+    QList<AbstractGem *> geometries();
 
     Camera* camera() const;
     void setCamera(Camera *camera);
 
-    SceneRenderer& sceneRenderer() const;
-
+    Camera* previewCamera() const;
+    void setPreviewCamera(Camera *camera);
 
     /**
      * @brief Finds the nearest gem, that bounding sphere is intersected by given ray.
-     * @param ray Ray send into scene to find gem.
-     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected gem. Returns never nullptr.
+     * @param ray Ray sent into scene to find gem.
+     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is usable.
+     * @return Returns the nearst intersected gem.  nullptr.
      */
     AbstractGem *findGemWithBoundingSphereIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
      * @brief Finds the nearest gem with bounding sphere intersected by given ray.
-     * @param ray Ray send into scene to find gem.
+     * @param ray Ray sent into scene to find gem.
      * @param collisionPoint Optional parameter. The point of collision is written into.
-     * @return Returns the nearst intersected gem. Returns never a nullptr;
+     * @return Returns the nearst intersected gem. Never returns nullptr;
      */
     AbstractGem *findGemIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
 
     /**
-     * @brief Finds intersected face of nearest gem intersected by given ray.
-     * @param ray Ray send into scene to find gem face.
-     * @param collisionPoint Optional parameter. The point of collision is written into. Only if no nullptr is returned this value is useable.
-     * @return Returns the nearst intersected face of a gem. Returns never nullptr.
+     * @brief Sets the gem, that will be controlled by player.
+     * @param currentGem The gem that will be controlled by player.
      */
-    Triangle *findGemFaceIntersectedBy(const LightRay &ray, QVector3D *collisionPoint = nullptr) const;
-
     void setCurrentGem(AbstractGem *currentGem);
 
     LightRay *rootLightRay() const;
@@ -76,22 +81,25 @@ signals:
     void cubesChanged();
     void geometriesChanged();
     void rootLightRayChanged();
+    void gameStarted();
+    void gameLost();
 
 public slots:
-    virtual void sync(int elapsedTime);
-    virtual void cleanupGL(QOpenGLFunctions &gl);
-    void paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms);
+    virtual void update(int elapsedTime);
+
+    void handleGameLost();
+    void handleGameStarted();
+
     void registerNavigation(Navigation *navigation);
     void rotateCurrentGem(const QQuaternion &quaternion);
 
 protected:
     SceneBounds *m_bounds;
     Camera *m_camera;
+    Camera *m_previewCamera;
     AbstractGem *m_currentGem;
-    QList<AbstractGem*> m_gem;
-    LightRayRenderer *m_lightRayRenderer;
+    QList<AbstractGem*> m_gems;
     Navigation *m_navigation;
-    SceneRenderer *m_renderer;
     LightRay *m_rootLightRay;
 };
 

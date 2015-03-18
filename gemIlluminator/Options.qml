@@ -1,10 +1,15 @@
+import GemIlluminator 1.0
 import QtQuick 2.0
 import QtQuick.Window 2.2
-import QtQuick.Controls 1.2
+import QtQuick.Controls 1.3
+import QtQuick.Controls.Styles 1.3
 
+/**
+ * @brief The view provides the ability to manipulate some configurations.
+ */
 Rectangle {
     id: options
-    color: "#e5ffff"
+    color: "#e4eeff"
     anchors.fill: parent
     visible: false
 
@@ -15,13 +20,16 @@ Rectangle {
         label: "Save"
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 5 * Screen.pixelDensity
+        anchors.bottomMargin: 2 * Screen.pixelDensity
 
         onClicked: {
             options.visible = false
             config.numGems = numGemsInput.text
+            config.smoothnessFactor = smoothnessInput.value
             config.saveConfig()
+            painter.reloadEnvMap()
             inputElement.focus = true
+            mainMenu.visible = true
         }
     }
 
@@ -29,7 +37,7 @@ Rectangle {
         x: envButton.x - 12.5 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
         width: 7.5 * Screen.pixelDensity
-        anchors.bottomMargin: 35 * Screen.pixelDensity
+        anchors.bottomMargin: 26 * Screen.pixelDensity
         anchors.bottom: parent.bottom
 
         Image {
@@ -41,8 +49,8 @@ Rectangle {
         onClicked: {
             if (curEnvMapIndex > 0) {
                 curEnvMapIndex--
-                config.envMap = config.availableEnvMaps[curEnvMapIndex]
-                envMapInput.text = config.envMap
+                Config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = Config.envMap
             }
         }
     }
@@ -51,7 +59,7 @@ Rectangle {
         x: envButton.x + 65 * Screen.pixelDensity
         height: 10 * Screen.pixelDensity
         width: 7.5 * Screen.pixelDensity
-        anchors.bottomMargin: 35 * Screen.pixelDensity
+        anchors.bottomMargin: 26 * Screen.pixelDensity
         anchors.bottom: parent.bottom
 
         Image {
@@ -63,8 +71,8 @@ Rectangle {
         onClicked: {
             if (curEnvMapIndex < config.availableEnvMaps.length - 1) {
                 curEnvMapIndex++
-                config.envMap = config.availableEnvMaps[curEnvMapIndex]
-                envMapInput.text = config.envMap
+                Config.envMap = config.availableEnvMaps[curEnvMapIndex]
+                envMapInput.text = Config.envMap
             }
         }
     }
@@ -76,11 +84,11 @@ Rectangle {
         height: 10 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 35 * Screen.pixelDensity
+        anchors.bottomMargin: 26 * Screen.pixelDensity
 
         Text {
             id: envMapInput
-            text: config.envMap
+            text: Config.envMap
             anchors.fill: parent
             font.pointSize: 16
             color: "white"
@@ -95,7 +103,18 @@ Rectangle {
         height: 10 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 20 * Screen.pixelDensity
+        anchors.bottomMargin: 14 * Screen.pixelDensity
+
+        Text {
+            text: "Gems:"
+            font.pointSize: 12
+            color: "white"
+            anchors.leftMargin: 1 * Screen.pixelDensity
+            anchors.bottom: parent.verticalCenter
+            anchors.left: parent.left
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+        }
 
         TextInput {
             id: numGemsInput
@@ -107,6 +126,49 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
+    }
+
+    Rectangle {
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottomMargin: 38 * Screen.pixelDensity
+        color: "#33b5e5"
+        height: 10 * Screen.pixelDensity
+        width: 60 * Screen.pixelDensity
+
+        Text {
+            text: "Control Sensitivity:"
+            font.pointSize: 12
+            color: "white"
+            anchors.leftMargin: 1 * Screen.pixelDensity
+            anchors.bottom: parent.verticalCenter
+            anchors.left: parent.left
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Slider {
+            id: smoothnessInput
+            value: config.smoothnessFactor
+            stepSize: 0.1
+            minimumValue: 0.1
+            maximumValue: 1.0
+            anchors.top: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            style: SliderStyle {
+                groove: Rectangle {
+                    color: "white"
+                    implicitWidth: 55 * Screen.pixelDensity
+                    implicitHeight: 1 * Screen.pixelDensity
+                }
+                handle: Rectangle {
+                    color: "#0099cc"
+                    implicitWidth: 2 * Screen.pixelDensity
+                    implicitHeight: 4 * Screen.pixelDensity
+                }
+            }
+        }
+
     }
 
     onVisibleChanged: {

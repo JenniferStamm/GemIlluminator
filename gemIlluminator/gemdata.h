@@ -12,12 +12,24 @@ class AbstractGem;
 enum class GemType;
 class Triangle;
 
+/**
+ * @brief The GemData class stores all required information to describe an AbstractGem.
+ * @detail The advantage of GemData is, that it is possible to assign, copy, compare and qHash() this class.
+ * Therefore, it is possible to store it in most Qt-containers.
+ */
 class GemData
 {
 public:
+    /**
+     * @brief Creates a new GemData with all values initialized to zero.
+     */
     GemData();
+    /**
+     * @brief Copy constructor
+     * @param ohterGemData GemData that should be copied.
+     */
     GemData(const GemData &ohterGemData);
-    GemData(const AbstractGem &gem);
+
     ~GemData();
 
     GemData &operator=(const GemData &rhs);
@@ -25,6 +37,10 @@ public:
     const QVector3D &color() const;
     void setColor(const QVector3D &color);
 
+    /**
+     * @brief Returns on demand the modelmatrix of current gemData
+     * @return
+     */
     const QMatrix4x4 &model() const;
 
     const QVector3D &position() const;
@@ -48,13 +64,13 @@ protected:
 
 protected:
     QVector3D *m_color;
+    mutable bool m_isModelInvalid;
+    mutable QMatrix4x4 *m_model;
     QVector3D *m_position;
     QQuaternion *m_rotation;
     float m_scale;
     QList<Triangle *> *m_triangles;
     GemType m_type;
-    mutable QMatrix4x4 *m_model;
-    mutable bool m_isModelInvalid;
 };
 
 bool operator==(const GemData &lhs, const GemData &rhs);

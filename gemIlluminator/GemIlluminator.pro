@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets sensors #multimedia
+QT += qml quick widgets sensors opengl openglextensions multimedia
 
 SOURCES += main.cpp \
     scene.cpp \
@@ -21,11 +21,21 @@ SOURCES += main.cpp \
     painter.cpp \
     painterqml.cpp \
     gemdata.cpp \
-    gemrenderer.cpp
+    gemrenderer.cpp \
+    gamelostray.cpp \
+    soundmanager.cpp \
+    blureffect.cpp \
+    environmentmap.cpp \
+    fileio.cpp \
+    highscore.cpp \
+    cubemap.cpp
 
 RESOURCES += qml.qrc \
     shader.qrc \
-    data.qrc
+    data.qrc \
+    backgroundmusic.qrc \
+    sound.qrc \
+    data2.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -60,15 +70,35 @@ HEADERS += \
     painter.h \
     painterqml.h \
     gemdata.h \
-    gemrenderer.h
+    gemrenderer.h \
+    gamelostray.h \
+    soundmanager.h \
+    blureffect.h \
+    shaderprograms.h \
+    environmentmap.h \
+    fileio.h \
+    highscore.h \
+    cubemap.h
 
 release: DESTDIR = $$OUT_PWD/release
 debug:   DESTDIR = $$OUT_PWD/debug
 
-
 win32 {
-    install_it.path = $$DESTDIR/assets
-    install_it.files = assets/config.json
+    install_config.path = $$DESTDIR/assets
+    install_config.files = assets/config.json
 
-    INSTALLS += install_it
+    install_highscore.path = $$DESTDIR/assets
+    install_highscore.files = assets/highscore.dat
+
+    INSTALLS += install_config install_highscore
+
+    RC_ICONS += data/icon.ico
 }
+
+android {
+    QT += androidextras
+}
+
+DISTFILES += \
+    data/icon.ico
+

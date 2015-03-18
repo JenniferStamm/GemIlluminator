@@ -1,7 +1,9 @@
+import GemIlluminator 1.0
+
 import QtQuick 2.3
 import QtQuick.Controls 1.2
-import QtQml 2.2
 import QtQuick.Window 2.1
+import QtQml 2.2
 import QtSensors 5.0
 
 ApplicationWindow {
@@ -17,15 +19,11 @@ ApplicationWindow {
         onStateChanged: {
             switch (Qt.application.state) {
             case Qt.ApplicationSuspended:
-                if(painter.scene !== null) {
-                    painter.active = false
-                }
+                painter.isAppActive = false
                 console.log("Suspended")
                 break
             case Qt.ApplicationHidden:
-                if(painter.scene !== null) {
-                    painter.active = false
-                }
+                painter.isAppActive = false
                 console.log("Hidden")
                 break
             case Qt.ApplicationActive:
@@ -45,15 +43,11 @@ ApplicationWindow {
                     mouseInput.enabled = true
                 }
 
-                if(painter.scene !== null) {
-                    painter.active = true
-                }
+                painter.isAppActive = true
                 console.log("Active")
                 break
             case Qt.ApplicationInactive:
-                if(painter.scene !== null) {
-                    painter.active = false
-                }
+                painter.isAppActive = false
 
                 if(Qt.platform.os === "android") {
                     root.hide()
@@ -88,17 +82,14 @@ ApplicationWindow {
             if (((event.key === Qt.Key_Escape && Qt.platform.os !== "android") ||
                     (event.key === Qt.Key_Back && Qt.platform.os === "android")) &&
                     painter.scene !== null) {
+                gameOver.visible = false;
                 event.accepted = true
-                mainMenu.visible = true
+                highscore.visible = true
+                Soundmanager.stopBackgroundMusic()
 
-                painter.active = false
                 painter.clearScene()
             }
         }
-    }
-
-    Navigation {
-        id: navigation
     }
 
     SensorInputs {
@@ -116,23 +107,46 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+    GameOver {
+        id: gameOver
+    }
+
     MainMenu {
         id: mainMenu
         anchors.fill: parent
 
         startButton.onClicked: {
-            loadScreen.visible = true
-
-            painter.generateScene()
-            painter.active = true
+            seedInput.visible = true;
         }
     }
 
-    Config {
+    Options {
+        id: options
+
+    }
+
+    Credits {
+        id: credits
+
+    }
+
+    SeedInput {
+        id: seedInput
+    }
+
+    Navigation {
+        id: navigation
+    }
+
+    ConfigView {
         id: config
     }
 
-    Painter {
+    PainterView {
         id: painter
+    }
+
+    HighscoreView {
+        id: highscore
     }
 }

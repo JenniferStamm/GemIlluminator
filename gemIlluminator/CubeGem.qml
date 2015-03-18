@@ -1,11 +1,15 @@
 import QtQuick 2.3
 import GemIlluminator 1.0
 
+/**
+ * @brief A generatic cube gem object need for the gem generation.
+ */
 CubeGem {
+    property real xAngle
+    property real yAngle
+    property real zAngle
+
     Component.onCompleted: {
-        var xAngle = Math.random() * 360 - 180
-        var yAngle = Math.random() * 360 - 180
-        var zAngle = Math.random() * 360 - 180
         setRotationFromEuler(Qt.vector3d(xAngle, yAngle, zAngle))
     }
 }

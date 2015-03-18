@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{graphicx}
+\usepackage{textcomp}
 %\usepackage{amsmath}
 \usepackage[labelformat=empty,textfont=small,justification=centering,compatibility=false, skip=5pt]{caption}
 \usepackage[labelformat=empty,textfont=small,justification=centering]{subcaption}
@@ -24,7 +25,6 @@
 \usepackage{calc}
 \usepackage{etoolbox}
 \usepackage{animate}
-\usepackage{color}
 
 
 \deftranslation[to=German]{Table of Contents}{Inhaltsverzeichnis}
@@ -142,9 +142,11 @@
 \setbeamercolor{itemize item}{fg=black}
 \setbeamercolor{itemize subitem}{fg=black}
 \setbeamercolor{item projected}{bg=black}
-\setbeamertemplate{enumerate items}[box]
+\setbeamertemplate{enumerate items}[default]
 \setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
 
+\input{../../common/commands/signed}
+\input{../../common/commands/aquote}
 \input{../../common/commands/fullsizegraphic}
 \input{../../common/commands/slidetitle}
 \input{../../common/commands/slidetableofcontents}
@@ -161,6 +163,8 @@
 \input{../../common/commands/onetoonetoone}
 \input{../../common/commands/slideonetoonetoone}
 \input{../../common/commands/slideonetoonetoonegraphics}
+\input{../../common/commands/twotoone}
+\input{../../common/commands/slidetwotoone}
 \input{../../common/commands/zoom}
 \input{../../common/commands/videoyoutube}
 \input{../../common/commands/videovimeo}

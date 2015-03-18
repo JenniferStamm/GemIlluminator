@@ -3,6 +3,9 @@ import QtQuick.Controls 1.2
 import QtQuick.Window 2.2
 import QtQuick.Controls.Styles 1.1
 
+/**
+ * @brief A generic button for any menu interaction.
+ */
 Button {
     width: 60 * Screen.pixelDensity
     height: 10 * Screen.pixelDensity
@@ -43,7 +46,7 @@ Button {
         id: bottomBorder
         anchors.bottom: parent.bottom
         color: blue
-        height: getBorderHeight()
+        height: 2
         width: parent.width
         visible: true
     }
@@ -53,7 +56,7 @@ Button {
         anchors.left: parent.left
         color: blue
         height: parent.height
-        width: getBorderWidth()
+        width: 3
         visible: true
     }
 
@@ -62,17 +65,7 @@ Button {
         anchors.right: parent.right
         color: blue
         height: parent.height
-        width: getBorderWidth()
+        width: 3
         visible: true
-    }
-
-    function getBorderWidth()
-    {
-        return Math.floor(root.width / 300)
-    }
-
-    function getBorderHeight()
-    {
-        return Math.floor(root.height / 150)
     }
 }

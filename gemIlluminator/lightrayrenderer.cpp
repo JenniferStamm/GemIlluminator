@@ -11,13 +11,13 @@
 
 LightRayRenderer::LightRayRenderer(QObject *parent) :
     QObject(parent)
-  , m_isStaticVBOUpdateRequired(true)
-  , m_staticVertexBuffer(nullptr)
-  , m_staticIndexBuffer(nullptr)
-  , m_dynamicVertexBuffer(nullptr)
   , m_dynamicIndexBuffer(nullptr)
-  , m_dynamicRays(new QVector<LightRayData>)
+  , m_dynamicRays(new QSet<LightRayData>)
+  , m_dynamicVertexBuffer(nullptr)
+  , m_isStaticVBOUpdateRequired(true)
+  , m_staticIndexBuffer(nullptr)
   , m_staticRays(new QSet<LightRayData>)
+  , m_staticVertexBuffer(nullptr)
 {
 }
 
@@ -43,8 +43,63 @@ void LightRayRenderer::addLightRay(const LightRay & ray)
     }
     else
     {
-        m_dynamicRays->push_back(LightRayData(ray));
+        m_dynamicRays->insert(LightRayData(ray));
     }
+}
+
+void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
+{
+    if (m_isStaticVBOUpdateRequired) {
+        updateStaticVBO();
+    }
+
+    gl.glDisable(GL_CULL_FACE);
+
+    shaderProgram.bind();
+    shaderProgram.enableAttributeArray(0);
+    shaderProgram.enableAttributeArray(1);
+    shaderProgram.setUniformValue("u_modelViewProjection", viewProjection);
+
+    m_staticVertexBuffer->bind();
+    m_staticIndexBuffer->bind();
+
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
+    gl.glDrawElements(GL_TRIANGLES, m_staticIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
+
+    m_staticVertexBuffer->release();
+    m_staticIndexBuffer->release();
+
+    updateDynamicVBO();
+    m_dynamicVertexBuffer->bind();
+    m_dynamicIndexBuffer->bind();
+
+    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+    gl.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), reinterpret_cast<void *>(3 * sizeof(float)));
+    gl.glDrawElements(GL_TRIANGLES, m_dynamicIndexBuffer->size(), GL_UNSIGNED_INT, nullptr);
+
+    m_dynamicVertexBuffer->release();
+    m_dynamicIndexBuffer->release();
+
+    shaderProgram.disableAttributeArray(0);
+    shaderProgram.release();
+
+    gl.glEnable(GL_CULL_FACE);
+}
+
+void LightRayRenderer::resetDynamicRays()
+{
+    m_dynamicRays->clear();
+}
+
+void pushVertexAndColorToVector(const QVector3D &pos, const QVector3D &color, QVector<float> &vector)
+{
+    vector.push_back(pos.x());
+    vector.push_back(pos.y());
+    vector.push_back(pos.z());
+    vector.push_back(color.x());
+    vector.push_back(color.y());
+    vector.push_back(color.z());
 }
 
 void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVector<float> &vertices, QVector<unsigned int> & indices)
@@ -55,7 +110,7 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     QVector3D rightVector = QVector3D::crossProduct(direction, upVector).normalized();
 
     //s-start, e-end, t-top, b-bottom, r-right, l-left
-    int valuesPerVertex = 3;
+    int valuesPerVertex = 6;
     unsigned int startTop = vertices.count() / valuesPerVertex;
     unsigned int startRight =  startTop + 1;
     unsigned int startBottom = startTop + 2;
@@ -65,147 +120,56 @@ void LightRayRenderer::calculateVertexDataFor(const LightRayData & rayData, QVec
     unsigned int endBottom =   startTop + 6;
     unsigned int endLeft =     startTop + 7;
 
-    vertices.push_back((rayData.startPosition() + upVector * offset).x());
-    vertices.push_back((rayData.startPosition() + upVector * offset).y());
-    vertices.push_back((rayData.startPosition() + upVector * offset).z());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).x());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).y());
-    vertices.push_back((rayData.startPosition() + rightVector * offset).z());
-    vertices.push_back((rayData.startPosition() - upVector * offset).x());
-    vertices.push_back((rayData.startPosition() - upVector * offset).y());
-    vertices.push_back((rayData.startPosition() - upVector * offset).z());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).x());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).y());
-    vertices.push_back((rayData.startPosition() - rightVector * offset).z());
-    vertices.push_back((rayData.endPosition() + upVector * offset).x());
-    vertices.push_back((rayData.endPosition() + upVector * offset).y());
-    vertices.push_back((rayData.endPosition() + upVector * offset).z());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).x());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).y());
-    vertices.push_back((rayData.endPosition() + rightVector * offset).z());
-    vertices.push_back((rayData.endPosition() - upVector * offset).x());
-    vertices.push_back((rayData.endPosition() - upVector * offset).y());
-    vertices.push_back((rayData.endPosition() - upVector * offset).z());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).x());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).y());
-    vertices.push_back((rayData.endPosition() - rightVector * offset).z());
+    pushVertexAndColorToVector(rayData.startPosition() + upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() + rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() - upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.startPosition() - rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   + upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   + rightVector * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   - upVector    * offset, rayData.color(), vertices);
+    pushVertexAndColorToVector(rayData.endPosition()   - rightVector * offset, rayData.color(), vertices);
 
-    indices.push_back(startBottom);
-    indices.push_back(startRight);
-    indices.push_back(startLeft);
-    indices.push_back(startTop);
-    indices.push_back(endTop);
-    indices.push_back(startRight);
-    indices.push_back(endRight);
-    indices.push_back(endBottom);
-    indices.push_back(endTop);
-    indices.push_back(endLeft);
-    indices.push_back(startLeft);
-    indices.push_back(endBottom);
-    indices.push_back(startBottom);
-    indices.push_back(startRight);
+    indices << startLeft << startRight << endRight;
+    indices << endRight << endLeft << startLeft;
+    indices << startTop << startBottom << endBottom;
+    indices << endBottom << endTop << startTop;
 }
 
-void LightRayRenderer::updateStaticVBO()
+void LightRayRenderer::updateRayVBO(
+        QOpenGLBuffer *&vertexBuffer,
+        QOpenGLBuffer *&indexBuffer,
+        const QSet<LightRayData> &data)
 {
-    if (!m_staticVertexBuffer) {
-        m_staticVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
-        m_staticVertexBuffer->create();
+    if (!vertexBuffer) {
+        vertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
+        vertexBuffer->create();
     }
-    if (!m_staticIndexBuffer) {
-        m_staticIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
-        m_staticIndexBuffer->create();
+    if (!indexBuffer) {
+        indexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
+        indexBuffer->create();
     }
-    m_staticVertexBuffer->bind();
-    m_staticIndexBuffer->bind();
+
+    vertexBuffer->bind();
+    indexBuffer->bind();
 
     QVector<float> vertexData;
     QVector<unsigned int> indexData;
 
-    for (auto& rayData : *m_staticRays) {
+    for (auto& rayData : data) {
         calculateVertexDataFor(rayData, vertexData, indexData);
     }
 
-    m_staticVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
-    m_staticIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
-    m_isStaticVBOUpdateRequired = false;
+    vertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
+    indexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
 }
 
 void LightRayRenderer::updateDynamicVBO()
 {
-    if (!m_dynamicVertexBuffer) {
-        m_dynamicVertexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::VertexBuffer);
-        m_dynamicVertexBuffer->create();
-    }
-    if (!m_dynamicIndexBuffer) {
-        m_dynamicIndexBuffer = new QOpenGLBuffer(QOpenGLBuffer::Type::IndexBuffer);
-        m_dynamicIndexBuffer->create();
-    }
-    m_dynamicVertexBuffer->bind();
-    m_dynamicIndexBuffer->bind();
-
-    QVector<float> vertexData;
-    QVector<unsigned int> indexData;
-
-    for (auto& rayData : *m_dynamicRays) {
-        calculateVertexDataFor(rayData, vertexData, indexData);
-    }
-
-    m_dynamicVertexBuffer->allocate(vertexData.data(), vertexData.count() * sizeof(float));
-    m_dynamicIndexBuffer->allocate(indexData.data(), indexData.count() * sizeof(unsigned int));
+    updateRayVBO(m_dynamicVertexBuffer, m_dynamicIndexBuffer, *m_dynamicRays);
 }
 
-void LightRayRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
+void LightRayRenderer::updateStaticVBO()
 {
-    if (m_isStaticVBOUpdateRequired) {
-        updateStaticVBO();
-    }
-
-    shaderProgram.bind();
-    shaderProgram.enableAttributeArray(0);
-    shaderProgram.setUniformValue("modelViewProjection", viewProjection);
-
-    m_staticVertexBuffer->bind();
-    m_staticIndexBuffer->bind();
-
-    if (!m_staticRays->isEmpty()) {
-        shaderProgram.setUniformValue(
-                    "color",
-                    m_staticRays->values().first().color());
-    }
-
-    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-    int indicesPerLightRay = 14;
-    int bytesPerLightRay = indicesPerLightRay * sizeof(unsigned int);
-    for (int i = 0; i < m_staticIndexBuffer->size(); i += bytesPerLightRay) {
-        gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
-    }
-
-    m_staticVertexBuffer->release();
-    m_staticIndexBuffer->release();
-
-    updateDynamicVBO();
-    m_dynamicVertexBuffer->bind();
-    m_dynamicIndexBuffer->bind();
-
-    if (!m_dynamicRays->isEmpty()) {
-        shaderProgram.setUniformValue(
-                    "color",
-                    m_dynamicRays->first().color());
-    }
-
-    gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
-
-    for (int i = 0; i < m_dynamicIndexBuffer->size(); i += bytesPerLightRay) {
-        gl.glDrawElements(GL_TRIANGLE_STRIP, indicesPerLightRay, GL_UNSIGNED_INT, reinterpret_cast<void *>(i));
-    }
-
-    m_dynamicVertexBuffer->release();
-    m_dynamicIndexBuffer->release();
-
-    shaderProgram.disableAttributeArray(0);
-    shaderProgram.release();
-
-    m_dynamicRays->clear();
+    updateRayVBO(m_staticVertexBuffer, m_staticIndexBuffer, *m_staticRays);
+    m_isStaticVBOUpdateRequired = false;
 }

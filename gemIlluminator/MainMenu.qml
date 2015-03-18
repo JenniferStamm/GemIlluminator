@@ -1,11 +1,16 @@
+import GemIlluminator 1.0
+
 import QtQuick 2.3
 import QtQuick.Controls 1.2
-import QtQuick.Window 2.2
 import QtQuick.Controls.Styles 1.1
+import QtQuick.Window 2.2
 
+/**
+ * @brief Displays the main menu of the game.
+ */
 Rectangle {
     id: mainMenu
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     property color backgroundBlue: "#75d5f5"
     property color lightBlue: "#33b5e5"
@@ -15,19 +20,32 @@ Rectangle {
     Rectangle {
         color: backgroundBlue
         width: 70 * Screen.pixelDensity
-        height: 100 + 30 * Screen.pixelDensity
+        height: 110 + 40 * Screen.pixelDensity
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottomMargin: 50
+        anchors.bottomMargin: 2 * Screen.pixelDensity
 
         MenuButton {
             id: startButton
             label: "Start the Game!"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 70 + 20 * Screen.pixelDensity
+            anchors.bottomMargin: 85 + 30 * Screen.pixelDensity
 
             onClicked: {
+                mainMenu.visible = false
+            }
+        }
+
+        MenuButton {
+            id: highscoreButton
+            label: "Highscore"
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottomMargin: 65 + 20 * Screen.pixelDensity
+
+            onClicked: {
+                highscore.visible = true
                 mainMenu.visible = false
             }
         }
@@ -37,10 +55,11 @@ Rectangle {
             label: "Options"
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 50 + 10 * Screen.pixelDensity
+            anchors.bottomMargin: 45 + 10 * Screen.pixelDensity
 
             onClicked: {
                 options.visible = true
+                mainMenu.visible = false
             }
         }
 
@@ -49,10 +68,11 @@ Rectangle {
             label: "Credits..."
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottomMargin: 30
+            anchors.bottomMargin: 25
 
             onClicked: {
                 credits.visible = true
+                mainMenu.visible = false
             }
         }
 
@@ -79,15 +99,5 @@ Rectangle {
             height: parent.height
             width: 0.5 * Screen.pixelDensity
         }
-    }
-
-    Options {
-        id: options
-
-    }
-
-    Credits {
-        id: credits
-
     }
 }

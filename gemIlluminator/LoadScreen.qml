@@ -1,13 +1,18 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 
+/**
+ * @brief The screen shown when the game is lost.
+ */
 Rectangle {
     visible: false
-    color: "#e5ffff"
+    color: "#e4eeff"
 
     property real currentProgress: 0.0
+    property alias progressBar: progressBar
 
     Rectangle {
+        id: progressBar
         color: "#75d5f5"
         x: parent.width * 0.05
         anchors.verticalCenter: parent.verticalCenter

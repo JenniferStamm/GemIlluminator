@@ -1,24 +1,29 @@
 #include "scenerenderer.h"
 
-#include <QMap>
+#include <QHash>
 #include <QString>
 #include <QDebug>
 
 #include "abstractgem.h"
+#include "config.h"
 #include "gemrenderer.h"
 #include "lightray.h"
+#include "lightrayrenderer.h"
+#include "shaderprograms.h"
 
 SceneRenderer::SceneRenderer(QObject *parent) :
     QObject(parent)
   , m_gemRenderer(new GemRenderer())
-  , m_sceneExtent(25.f)
+  , m_lightRayRenderer(new LightRayRenderer())
+  , m_isInitalized(false)
 {
-    m_gemRenderer->setSceneExtent(m_sceneExtent);
+    m_gemRenderer->setSceneExtent(Config::instance()->axisRange());
 }
 
 SceneRenderer::~SceneRenderer()
 {
     delete m_gemRenderer;
+    delete m_lightRayRenderer;
 }
 
 void SceneRenderer::cleanup(QOpenGLFunctions &gl)
@@ -28,20 +33,30 @@ void SceneRenderer::cleanup(QOpenGLFunctions &gl)
     }
 }
 
-void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QMap<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
+void SceneRenderer::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, const QHash<ShaderPrograms, QOpenGLShaderProgram*> &shaderPrograms)
 {
-    paintGems(gl, viewProjection, *shaderPrograms[ShaderPrograms::GemProgram]);
-    paintLightRays(gl, viewProjection, *shaderPrograms[ShaderPrograms::LighRayProgram]);
+    if (!m_isInitalized) {
+        initalize(gl);
+    }
+    paintGems(gl, *shaderPrograms.value(ShaderPrograms::GemProgram));
+    paintLightRays(gl, viewProjection, *shaderPrograms.value(ShaderPrograms::LighRayProgram));
 }
 
-void SceneRenderer::paintGems(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram& shaderProgram)
+void SceneRenderer::initalize(QOpenGLFunctions &gl)
 {
-    m_gemRenderer->paint(gl, viewProjection, shaderProgram);
+    m_gemRenderer->initialize(gl);
+    m_isInitalized = true;
+    emit initalizationDone();
+}
+
+void SceneRenderer::paintGems(QOpenGLFunctions &gl, QOpenGLShaderProgram& shaderProgram)
+{
+    m_gemRenderer->paint(gl, shaderProgram);
 }
 
 void SceneRenderer::paintLightRays(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
 {
-    m_rootLightRay->paint(gl, viewProjection, shaderProgram);
+    m_lightRayRenderer->paint(gl, viewProjection, shaderProgram);
 }
 
 void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
@@ -49,20 +64,16 @@ void SceneRenderer::synchronizeGeometries(QList<AbstractGem*> geometries)
     for (auto gem : geometries) {
         m_gemRenderer->updateGem(gem);
     }
-    m_geometries = geometries;
 }
 
-void SceneRenderer::setSceneExtent(float extent)
+void SceneRenderer::synchronizeLightRays(LightRay *rootLightRay)
 {
-
-}
-
-LightRay* SceneRenderer::rootLightRay() const
-{
-    return m_rootLightRay;
-}
-
-void SceneRenderer::setRootLightRay(LightRay *rootLightRay)
-{
-    m_rootLightRay = rootLightRay;
+    m_lightRayRenderer->resetDynamicRays();
+    auto rays = QList<LightRay *>() << rootLightRay;
+    int counter = 0;
+    while (counter < rays.count()) {
+        m_lightRayRenderer->addLightRay(*rays.at(counter));
+        rays.append(rays.at(counter)->successors());
+        ++counter;
+    }
 }

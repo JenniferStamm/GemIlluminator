@@ -1,88 +1,93 @@
 #include "config.h"
 
-#include <QApplication>
-#include <QDebug>
-#include <QFile>
-#include <QFileInfo>
-#include <QTextStream>
+#include <QMutex>
 
-Config::Config(QObject *parent) : QObject(parent)
+Config* Config::m_instance = 0;
+
+Config::Config()
 {
-
 }
 
-QString Config::read()
+void Config::setAxisRange(int &axisRange)
 {
-    if (m_source.isEmpty()) {
-        emit error("Source is empty.");
-        return QString();
+    m_axisRange = axisRange;
+    emit axisRangeChanged();
+}
+
+QString Config::envMap() const
+{
+    return m_envMap;
+}
+
+void Config::setEnvMap(const QString &envMap)
+{
+    m_envMap = envMap;
+    emit envMapChanged();
+}
+
+void Config::setMaxGemSize(float maxGemSize)
+{
+    if (m_maxGemSize == maxGemSize) {
+        return;
     }
+    m_maxGemSize = maxGemSize;
+    emit maxGemSizeChanged();
+}
 
-    QFile *file = new QFile();
-
-#ifdef __ANDROID__
-    file->setFileName("assets:/" + m_source);
-#endif
-#ifdef _WIN32
-    file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
-#endif
-
-    QString fileContent;
-    if (file->open(QIODevice::ReadOnly)) {
-        QString line;
-        QTextStream t(file);
-        do {
-            line = t.readLine();
-            fileContent += line;
-        } while (!line.isNull());
-
-        file->close();
-        delete file;
-    } else {
-        emit error("Unable to open the file.");
-        return QString();
+void Config::setMinGemSize(float minGemSize)
+{
+    if (m_minGemSize == minGemSize) {
+        return;
     }
-    return fileContent;
-}
-
-bool Config::write(const QString& data)
-{
-    if (m_source.isEmpty())
-        return false;
-
-    QFile *file = new QFile();
-
-#ifdef __ANDROID__
-    file->setFileName("assets:/" + m_source);
-#endif
-#ifdef __WIN32__
-    file->setFileName(QApplication::applicationDirPath() + "/assets/" + m_source);
-#endif
-
-    if (!file->open(QFile::WriteOnly | QFile::Truncate))
-        return false;
-
-    QTextStream out(file);
-    out << data;
-
-    file->close();
-    delete file;
-
-    return true;
-}
-
-QString Config::source()
-{
-    return m_source;
-}
-
-void Config::setSource(const QString &source)
-{
-    m_source = source;
+    m_minGemSize = minGemSize;
+    emit minGemSizeChanged();
 }
 
 Config::~Config()
 {
-
 }
 
+int Config::axisRange()
+{
+    return m_axisRange;
+}
+
+void Config::drop()
+{
+    static QMutex mutex;
+    mutex.lock();
+    delete m_instance;
+    m_instance = 0;
+    mutex.unlock();
+}
+
+Config *Config::instance()
+{
+    static QMutex mutex;
+    if (!m_instance) {
+        mutex.lock();
+
+        if (!m_instance) {
+            m_instance = new Config();
+        }
+
+        mutex.unlock();
+    }
+
+    return m_instance;
+}
+
+float Config::maxGemSize() const
+{
+    return m_maxGemSize;
+}
+
+float Config::minGemSize() const
+{
+    return m_minGemSize;
+}
+
+QObject *configSingletontypeProvider(QQmlEngine * /*engine*/, QJSEngine * /*scriptEngine*/)
+{
+    return Config::instance();
+}

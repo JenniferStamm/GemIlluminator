@@ -32,9 +32,6 @@
 *.xdy
 *.tdo
 
-# Generated PDFs
-*.pdf
-
 # Don't exclude image files
 !**/images/*
 !**/logos/*

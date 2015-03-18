@@ -1,52 +1,47 @@
 Game-Programming-WS2014
 =======================
-Idee
+Idea
 --------------
-Inspiriert wurden wir von Spielen Mammut (http://gameprogramming.hpi3d.de/201314/mammut/) und Krautscape (http://www.krautscape.net/). Ausgehend von einem abstrakten Spielkonzept hat sich unsere Idee folgendermaßen weiterentwickelt. 
+Inspired by the games Mammut (http://gameprogramming.hpi3d.de/201314/mammut/) and Krautscape (http://www.krautscape.net/) we developed an abstract game concept.
 
 Plot
 --------------
-Stell dir folgende, fast alltägliche, Situation vor: 
-Ein kleines Mädchen bewundert das für kleine Hände viel zu große Schmuckkästchen ihrer Großmutter. Es kommt, was kommen muss, und der Schmuck rutscht ihr aus der Hand. Sämtliche Kristalle fallen Richtung Boden. Und jetzt Stop. Stell dir genau diesen Moment aus der Sicht des Lichts vor. Ein Abenteuererwartet dich.
+Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's atmossphere. Eventually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most exciting moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.
 
 Play
 --------------
-Der Spieler beeinflusst das Spiel, in dem er den Kristall steuert, auf den dasLichtbündel als nächstes treffen wird. Mit leichter Rotation kann man ansteuern, welcher Kristall als übernächstes vom Lichtbündel getroffen wird. Durch starke Rotation trifft man auf eine andere Oberfläche des Kristalls, und löst damit einen anderen Lichteffekt aus. Der Spieler versucht durch die Lichteffekte die Erzeugung einer ansprechenden (bunten) Kristalllandschaft zu erreichen.
+As the player, you are able to control the closest gem that could collide with the current light ray. Rotate the gem to control the direction and the color of the next light ray and to collide with as many gems as possible. Use your light ray's color to colorize the gems and gain a colorful crystal scenery.
 
 Rules
 --------------
-Das Lichtbündel besitzt ein Energielevel. Er startet mit voller Energie und das Spiel ist beendet, wenn ihm die Energie ausgeht. Die Energie sinkt proportional zu der Zeit und wird von Kristallen zusätzlich beeinflusst. Sämtliche Kristalloberflächen sind mit einem bestimmten Lichteffekt verknüpft.
+You lose as soon as you cannot collide with another gem and you leave the crystal scenery. You will gain points for staying in the scenery. Try to beat the highscore!
 
 Must Have
 --------------
-* Einfärben der Kristalle
-* Kristalllandschaft
-* Steuerung des nächsten Kristalls
-* Energielevel des Lichtbündels
+* Coloration of gems - Done
+* Crystal scenery - Done
+* Control over the next gem - Done
+* Energy level of light - Game End replaced by losing the game on leaving the scene
 
 Should Have
 --------------
-* Abrupte Perspektivenwechsel
-* Berechnung und Hervorhebung des übernächsten Kristalls
-* Hindernisse
-* Verschiedene Kristalle/Kristalleigenschaften
+* Sudden changes of perspective - Done
+* Calculation and emphasis of after next gem
+* Obstacles
+* Different crystals - Done
 
 Details
 --------------
-**Spielfigur**
+**Player**
+The light is visible from third-person-perspektive. 
 
-Das Lichtbündel soll aus Third-Person-Perspektive sichtbar sein. 
+**Controlling**
+The light rays cannot be controlled. Instead the player should be able to rotate the next gem to be collided with.
 
-**Steuerung**
+**Crystal scenery generation**
+The crystal scenery generation is based upon a seed entered by the player.
 
-Das Lichtbündel kann nicht gesteuert werden. Der nächste Kristall, der getroffen wird, soll rotiert werden können.
-
-**Levelgenerierung**
-
-Grafik
+Graphic
 --------------
-
-
-Sound
---------------
-Es ist denkbar, dem Nutzer zu erlauben, Musik in das Spiel zu laden.
+![Gem Illuminator Gold](/data/gemilluminatorgold.png)
+![Gem Illuminator Sky](/data/gemilluminatorsky.png)

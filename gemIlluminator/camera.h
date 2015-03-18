@@ -7,6 +7,12 @@
 
 class QMatrix4x4;
 
+/**
+ * @brief The Camera class provides view and perspective projection matrices. Additional the viewport of camera is stored.
+ * @detail The view of camera has to be specified by eye, center and up or by position, viewdirection and up.
+ * It is allowed to mix both definitions, but it might lead to unexpected behaviour.
+ * The perspective projection is specified by field of view, viewport, and near and far plane
+ */
 class Camera : public QObject
 {
     Q_OBJECT
@@ -52,11 +58,37 @@ signals:
     void viewChanged();
 
 public slots:
+    /**
+     * @brief Sets position of camera to given value. center() will be changed in order to keep viewDirection() the same.
+     * @param position Camera will be set to this position.
+     */
     void setPosition(const QVector3D &position);
+    /**
+     * @brief Sets viewDirection of camera to given vector. center() will be changed in order to keep eye() consistent.
+     * @param viewDirection Direction the camera should look.
+     */
     void setViewDirection(const QVector3D &viewDirection);
+    /**
+     * @brief Sets eye (position) of camera to given value. center() will not be changed, so viewDirection() is set to center() - eye()
+     * @param eye Camera will be set to this position.
+     */
     void setEye(const QVector3D &eye);
+    /**
+     * @brief Sets center of camera to given value. viewDirection() will be set to new center() - eye().
+     * @param center Position the camera is looking to.
+     */
     void setCenter(const QVector3D &center);
+    /**
+     * @brief Sets up-vector of camera.
+     * @param up New up vector.
+     */
     void setUp(const QVector3D &up);
+    /**
+     * @brief Convenience method to specify view with one method call
+     * @param eye See setEye()
+     * @param center See setCenter()
+     * @param up See setUp()
+     */
     void setView(const QVector3D &eye, const QVector3D &center, const QVector3D &up);
 
     void setViewport(const QSize &viewport);

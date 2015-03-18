@@ -8,6 +8,11 @@ class QQuaternion;
 
 class Camera;
 
+/**
+ * @brief The Navigation class provides an interface for all navigation techniques.
+ * @detail The navigation takes euler angles in coordinate system based on current view
+ * and translate them into quaternions describing the changes in our world.
+ */
 class Navigation : public QObject
 {
     Q_OBJECT

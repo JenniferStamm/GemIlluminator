@@ -1,12 +1,11 @@
 #include "lightray.h"
 
-#include <cstdlib>
-
 #include "abstractgem.h"
+#include "camera.h"
 #include "lightraydata.h"
-#include "lightrayrenderer.h"
 #include "player.h"
 #include "scene.h"
+#include "soundmanager.h"
 #include "triangle.h"
 
 LightRay::LightRay(QObject *parent) :
@@ -15,7 +14,6 @@ LightRay::LightRay(QObject *parent) :
   , m_data(new LightRayData())
   , m_successors(new QList<LightRay *>)
   , m_selectedSuccessor(nullptr)
-  , m_renderer(nullptr)
   , m_isStatic(false)
   , m_player(nullptr)
   , m_scene(nullptr)
@@ -31,15 +29,6 @@ LightRay::~LightRay()
     }
     delete m_successors;
     delete m_data;
-}
-
-void LightRay::synchronize()
-{
-    m_renderer->addLightRay(*this);
-
-    for (auto& successor : *m_successors ) {
-        successor->synchronize();
-    }
 }
 
 void LightRay::update(int timeDifference)
@@ -67,18 +56,22 @@ void LightRay::update(int timeDifference)
             LightRay collisionTestRay;
             collisionTestRay.setStartPosition(m_player->position());
             collisionTestRay.setEndPosition(endPosition());
-            m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay);
-            m_scene->setCurrentGem(m_collidingGem);
+            m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(collisionTestRay));
         } else {
+            Soundmanager::instance()->setCollisionSound(SoundEffects::Collision2);
+            Soundmanager::instance()->playCollisionSound();
             m_collidingGem->setColor(m_data->color());
-
             m_scene->setCurrentGem(m_scene->findGemWithBoundingSphereIntersectedBy(*selectedSuccessor()));
             m_player->setPosition(endPosition());
             selectedSuccessor()->setPlayer(m_player);
             m_player = nullptr;
-            m_data->setColor(QVector3D(0.f, 0.f, 1.f));
             setStatic();
         }
+
+        QVector3D up = selectedSuccessor()->normalizedOrthogonalVector();
+        m_scene->previewCamera()->setUp(up);
+        m_scene->previewCamera()->setPosition(endPosition() + up * 0.1f);
+        m_scene->previewCamera()->setViewDirection(selectedSuccessor()->direction());
     }
 }
 
@@ -115,12 +108,12 @@ void LightRay::setEndPosition(const QVector3D &position)
     emit endPositionChanged();
 }
 
-QVector3D LightRay::direction() const
+const QVector3D &LightRay::direction() const
 {
     return m_data->direction();
 }
 
-QVector3D LightRay::normalizedDirection() const
+const QVector3D &LightRay::normalizedDirection() const
 {
     return m_data->normalizedDirection();
 }
@@ -140,6 +133,15 @@ const QVector3D & LightRay::color() const
     return m_data->color();
 }
 
+void LightRay::setColor(const QVector3D &color)
+{
+    if (color == m_data->color()) {
+        return;
+    }
+    m_data->setColor(color);
+    emit colorChanged();
+}
+
 Player * LightRay::player() const
 {
     return m_player;
@@ -150,15 +152,6 @@ void LightRay::setPlayer(Player *attachedPlayer)
     m_player = attachedPlayer;
     m_player->setPosition(startPosition());
     m_player->setViewDirection(direction());
-}
-
-void LightRay::setRenderer(LightRayRenderer *renderer)
-{
-    m_renderer = renderer;
-
-    for (auto& successor : *m_successors ) {
-        successor->setRenderer(renderer);
-    }
 }
 
 Scene *LightRay::scene() const
@@ -189,7 +182,9 @@ void LightRay::setStatic()
 LightRay *LightRay::selectedSuccessor()
 {
     if (!m_selectedSuccessor) {
-        calculateSuccessors();
+        if (m_successors->isEmpty()) {
+            calculateSuccessors();
+        }
         m_selectedSuccessor = m_successors->at(0);
     }
     return m_selectedSuccessor;
@@ -200,11 +195,9 @@ void LightRay::setSelectedSuccessor(LightRay *successor)
     m_selectedSuccessor = successor;
 }
 
-void LightRay::paint(QOpenGLFunctions &gl, const QMatrix4x4 &viewProjection, QOpenGLShaderProgram &shaderProgram)
+const QList<LightRay *> &LightRay::successors()
 {
-    if (m_renderer) {
-        m_renderer->paint(gl, viewProjection, shaderProgram);
-    }
+    return *m_successors;
 }
 
 void LightRay::calculateSuccessors()
@@ -213,19 +206,18 @@ void LightRay::calculateSuccessors()
         delete successor;
     }
     m_successors->clear();
+    m_selectedSuccessor = nullptr;
 
-    LightRay *nextRay = new LightRay();
-    nextRay->setScene(m_scene);
-    nextRay->setStartPosition(endPosition());
+    auto collidingGem = m_scene->findGemIntersectedBy(*this);
+    m_successors->append(collidingGem->processRayIntersection(*this, m_scene));
+}
 
-    Triangle *intersectedFace = m_scene->findGemFaceIntersectedBy(*this);
-    QVector3D reflectedDirection = intersectedFace->reflect(direction());
-    nextRay->setEndPosition(endPosition() + reflectedDirection * 10);
-
-    QVector3D nextCollisionPoint;
-    m_scene->findGemIntersectedBy(*nextRay, &nextCollisionPoint);
-    nextRay->setEndPosition(nextCollisionPoint);
-    m_successors->push_back(nextRay);
+QVector3D LightRay::calculateColor()
+{
+    QVector3D newColor = m_data->normalizedDirection();
+    newColor /= 2.8f;
+    newColor += QVector3D(0.45f, 0.45f, 0.45f);
+    return newColor;
 }
 
 bool LightRay::isPlayerBeforeCollisionPoint()
