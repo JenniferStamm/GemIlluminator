@@ -22,7 +22,7 @@ class GemRenderer
 {
     /**
      * @brief The GemDataInfo class stores the GemData of a Gem. In addition some further values are stored.
-     * @detail Because an index is stored, we do not want this accessable from outside of GemRenderer and GemRenderData is a private nested class of GemRenderer.
+     * @detail Because an index is stored, we do not want this accessible from outside of GemRenderer and GemRenderData is a private nested class of GemRenderer.
      */
     class GemDataInfo
     {
@@ -86,7 +86,7 @@ class GemRenderer
          */
         void cleanup(QOpenGLFunctions &gl);
         /**
-         * @brief Initialize all gpu ressources.
+         * @brief Initialize all gpu resources.
          * @param gl QOpenGLFunctions used to do gl-calls
          */
         void initialize(QOpenGLFunctions &gl);
@@ -171,12 +171,12 @@ public:
     ~GemRenderer();
 
     /**
-     * @brief Cleans up all gpu ressources.
+     * @brief Cleans up all gpu resources.
      * @param gl QOpenGLFunctions used to do gl-calls
      */
     void cleanup(QOpenGLFunctions &gl);
     /**
-     * @brief Initializes all gpu ressources
+     * @brief Initializes all gpu resources
      * @param gl QOpenGLFunctions used to do gl-calls
      */
     void initialize(QOpenGLFunctions &gl);

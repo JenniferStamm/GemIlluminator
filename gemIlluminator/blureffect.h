@@ -30,7 +30,7 @@ public:
     /**
      * @brief Blurs previous set texture.
      * @detail The texture is blurred using two seperated passes of gauss blur. The result is a gaussblur with 9x9 kernel.
-     * @param textureSize The size of texture, because we support changing texture sizes.
+     * @param textureSize The size of texture, because changing texture sizes is supported.
      */
     void blur(const QSize &textureSize);
 

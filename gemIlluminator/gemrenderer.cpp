@@ -271,7 +271,7 @@ void GemRenderer::GemRenderData::initialize(QOpenGLFunctions &gl)
     gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     gl.glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
-    m_maxTextureSize = qMin(m_maxTextureSize, 512);    //precision of mediump is 2^-10 and we allways want to take right texel
+    m_maxTextureSize = qMin(m_maxTextureSize, 512);    //precision of mediump is 2^-10 and always take right texel
 }
 
 void GemRenderer::GemRenderData::addOrUpdateGem(GemDataInfo *gem, QOpenGLFunctions &gl)
@@ -346,7 +346,7 @@ void GemRenderer::GemRenderData::appendAttributesToVector(GemRenderer::GemDataIn
     GLubyte highY, midY, lowY;
     GLubyte highZ, midZ, lowZ;
     GLubyte highS, midS, lowS;
-    //xyzs 3 texel per value because we want high precission and with 3 values per value we can use complete precission
+    //xyzs 3 texel per value because high precision is wanedt and with 3 values per value complete precision can be used
     encode(gemData.position().x(), -m_sceneExtent, m_sceneExtent, highX, midX, lowX);
     encode(gemData.position().y(), -m_sceneExtent, m_sceneExtent, highY, midY, lowY);
     encode(gemData.position().z(), -m_sceneExtent, m_sceneExtent, highZ, midZ, lowZ);
@@ -363,7 +363,7 @@ void GemRenderer::GemRenderData::appendAttributesToVector(GemRenderer::GemDataIn
     vector << highX << highY << highZ << highS;
     vector << midX << midY << midZ << midS;
 
-    //rgb 1 texel per value because there is no need for precission
+    //rgb 1 texel per value because there is no need for precision
     GLubyte colorHigh, colorMid, colorLow;
     encode(gemData.color().x(), 0.f, 1.f, colorHigh, colorMid, colorLow);
     vector << colorHigh;

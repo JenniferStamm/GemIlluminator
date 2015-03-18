@@ -6,7 +6,7 @@
 #include "fileio.h"
 
 /**
- * @brief The Highscore is only a semantic class. We want to clarify that this fileIO is a Highscore.
+ * @brief The Highscore is only a semantic class to clarify that this fileIO is a Highscore.
  */
 class Highscore : public FileIO
 {
