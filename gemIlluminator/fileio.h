@@ -4,7 +4,7 @@
 #include <QObject>
 
 /**
- * @brief The FileIO class provides platform independent file reading for ressource files used by us.
+ * @brief The FileIO class provides platform independent file reading for resource files used.
  * @detail The file that should be read is specified by name and FileIO will load it from platform dependent location.
  */
 class FileIO : public QObject

@@ -11,7 +11,7 @@ class Scene;
 
 /**
  * @brief The SceneBounds class is a special kind of gem describing the bounds of scene. The shape of the bounds is a cube, with a given extent in each direction.
- * @detail The main reason that the bounds are also a gem is easier collision detection. If we have bounds around our scene every ray emitted into scene will hit something.
+ * @detail The main reason that the bounds are also a gem is easier collision detection. If there are bounds around our scene every ray emitted into scene will hit something.
  * Furthermore the collision with scene bounds can be processed in a way, that the player will lose if the player hits the bounds.
  */
 class SceneBounds : public AbstractGem
