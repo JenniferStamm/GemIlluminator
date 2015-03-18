@@ -6,7 +6,7 @@ Inspired by the games Mammut (http://gameprogramming.hpi3d.de/201314/mammut/) an
 
 Plot
 --------------
-Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's atmossphere. Actually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most excite moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.
+Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's atmossphere. Eventually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most exciting moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.
 
 Play
 --------------
