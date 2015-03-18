@@ -187,7 +187,7 @@
 			<div id="get-it" class="row">
 				<div class="col-md-4">
 					<p class="link-info">Get the game on Github:</p>
-					<a class="link-button" href="https://github.com/JenniferStamm/Game-Programming-WS2014" target="blank">Github</a>
+					<a class="link-button" href="https://github.com/JenniferStamm/GemIlluminator" target="blank">Github</a>
 				</div>
 				<div class="col-md-4">
 					<p class="link-info">Download the installer for Windows:</p>
@@ -213,6 +213,18 @@
 
 				<p>
 					E-Mail: gemilluminator@gmail.com
+				</p>
+			</div>
+			<div id="legal" class="row">
+				Impressum
+				<p id="note">
+					Angaben gemäß § 5 TMG:<br>
+					Sebastian Koall<br>
+					Detmolder Straße 62a<br>
+					10715 Berlin<br>
+					Kontakt:<br>
+					Telefon: +49160 99651637<br>
+					E-Mail: sebastian-koall@t-online.de<br>
 				</p>
 			</div>
 		</div>
@@ -307,6 +319,10 @@
 		    slideSpeed : 300,
 		    paginationSpeed : 400,
 		    singleItem:true,		     
+	    });
+
+	    $("#legal").click(function() {
+	    	$("#note").toggle();
 	    });
 	});
 </script>
