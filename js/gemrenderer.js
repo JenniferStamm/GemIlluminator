@@ -7,6 +7,9 @@ var uniforms;
 
 var cube;
 
+var eyeVector;
+var sceneRange = 20.0;
+
 init();
 animate();
 
@@ -41,8 +44,11 @@ function init() {
     var rainbowPaths = [ prefix + "px.png", prefix + "nx.png",
                               prefix + "py.png", prefix + "ny.png",
                               prefix + "pz.png", prefix + "nz.png" ];
+
+    eyeVector = new THREE.Vector3( -sceneRange, -sceneRange, -sceneRange);
                 
     uniforms = {
+        u_eyeVector: { type: 'v3', value: eyeVector},
         envMap: { type: "t", value: THREE.ImageUtils.loadTextureCube(envmapPaths) },
         gemStructureMap: { type: "t", value: THREE.ImageUtils.loadTextureCube(gemStructurePaths) },
         rainbowMap: { type: "t", value: THREE.ImageUtils.loadTextureCube(rainbowPaths) },
@@ -86,6 +92,24 @@ function onWindowResize() {
 function animate() {
     requestAnimationFrame(animate);
     cube.rotation.set(cube.rotation.x + 0.001, cube.rotation.y + 0.002, cube.rotation.z + 0.001);
+    updateEyeVector();
     camera.lookAt( scene.position );
     renderer.render(scene, camera);
+}
+
+function updateEyeVector() {
+    if (eyeVector.x + 0.1 > sceneRange)
+        eyeVector.setX( -sceneRange );
+    else
+        eyeVector.setX( eyeVector.x + 0.01 );
+
+    if (eyeVector.y + 0.2 > sceneRange)
+        eyeVector.setY( -sceneRange );
+    else
+        eyeVector.setY( eyeVector.y + 0.02 );
+
+    if (eyeVector.z + 0.3 > sceneRange)
+        eyeVector.setZ( -sceneRange );
+    else
+        eyeVector.setZ( eyeVector.z + 0.03 );
 }

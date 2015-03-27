@@ -125,6 +125,7 @@ html, body {
   font-size: 22px; }
 
 .contact {
+  margin-bottom: 150px;
   text-align: center; }
   .contact h1 {
     font-size: 40px; }
@@ -132,5 +133,12 @@ html, body {
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 20px; }
+
+#legal {
+  text-align: center; }
+  #legal #note {
+    font-size: 14px;
+    display: none;
+    vertical-align: bottom; }
 
 /*# sourceMappingURL=style.css.map */

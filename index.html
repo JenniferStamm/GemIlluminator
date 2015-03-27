@@ -80,7 +80,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h2>Game Story</h2>
-						<p>Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's homosphere. Actually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most excite moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.</p>
+						<p>Imagine light emitted by the sun on its way to earth. You travelled 92 million miles undisturbed. Now you reached the earth's atmosphere. Eventually you are already close to the surface. You enter a home through a bedroom window. A little girl is playing with her granny's jewel case - she drops it! This is the most exciting moment of your life. This is your chance to do everything you are supposed to do. This is where you can show off your abilities. You are about to illuminate a gem scenery to thrill the girl's little heart.</p>
 					</div>
 					<div class="col-md-6">
 						<img src="assets/screen03.png" class="story-images">
@@ -103,7 +103,7 @@
 	    	<div class="container">
 	    		<div class="row">
 					<div class="col-md-6">
-						<img src="assets/screen07.png" class="story-images">
+						<img src="assets/screen10.png" class="story-images">
 					</div>
 					<div class="col-md-6">
 						<h2>Controlling</h2>
@@ -187,7 +187,7 @@
 			<div id="get-it" class="row">
 				<div class="col-md-4">
 					<p class="link-info">Get the game on Github:</p>
-					<a class="link-button" href="https://github.com/JenniferStamm/Game-Programming-WS2014" target="blank">Github</a>
+					<a class="link-button" href="https://github.com/JenniferStamm/GemIlluminator" target="blank">Github</a>
 				</div>
 				<div class="col-md-4">
 					<p class="link-info">Download the installer for Windows:</p>
@@ -215,6 +215,18 @@
 					E-Mail: gemilluminator@gmail.com
 				</p>
 			</div>
+			<div id="legal" class="row">
+				Impressum
+				<p id="note">
+					Angaben gemäß § 5 TMG:<br>
+					Sebastian Koall<br>
+					Detmolder Straße 62a<br>
+					10715 Berlin<br>
+					Kontakt:<br>
+					Telefon: +49160 99651637<br>
+					E-Mail: sebastian-koall@t-online.de<br>
+				</p>
+			</div>
 		</div>
 	</div>
 </div>
@@ -228,14 +240,12 @@
 <script type="text/javascript" src="lib/three.min.js"></script>
 <script type="x-shader/x-vertex" id="vertexShader">
     varying vec3 v_color;
-    varying vec3 v_eyeVector;
     varying vec3 v_normal;
     varying vec3 v_vertex;
 
     void main()
     {
         v_color = vec3(0.2, 0.5, 0.2);
-        v_eyeVector = position - cameraPosition;
         v_normal = normal;
         v_vertex = position;
         
@@ -244,12 +254,12 @@
 
 </script>
 <script type="x-shader/x-fragment" id="fragmentShader">
+	uniform vec3 u_eyeVector;
     uniform samplerCube envMap;
     uniform samplerCube gemStructureMap;
     uniform samplerCube rainbowMap;
     
     varying vec3 v_color;
-    varying vec3 v_eyeVector;
     varying vec3 v_normal;
     varying vec3 v_vertex;
     
@@ -261,7 +271,7 @@
     
     void main()
     {
-        vec3 eyeVector = normalize(v_eyeVector);
+        vec3 eyeVector = normalize(u_eyeVector);
         
         vec3 refractVector1 = refract(eyeVector, v_normal, 0.9);
         
@@ -309,6 +319,10 @@
 		    slideSpeed : 300,
 		    paginationSpeed : 400,
 		    singleItem:true,		     
+	    });
+
+	    $("#legal").click(function() {
+	    	$("#note").toggle();
 	    });
 	});
 </script>
